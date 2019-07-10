@@ -1,0 +1,251 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/mtgset' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/mtgset/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>mtgset</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/DURC/mtgset/'>Return to mtgset list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/mtgset/create'>Create new mtgset </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-2 col-form-label'>id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{scryfall_identifier_row_class}}'>
+    <label for='scryfall_identifier' class='col-sm-2 col-form-label'>scryfall_identifier</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='scryfall_identifier' name='scryfall_identifier' placeholder='' value='{{scryfall_identifier}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{code_row_class}}'>
+    <label for='code' class='col-sm-2 col-form-label'>code</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='code' name='code' placeholder='' value='{{code}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{mtgo_code_row_class}}'>
+    <label for='mtgo_code' class='col-sm-2 col-form-label'>mtgo_code</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='mtgo_code' name='mtgo_code' placeholder='' value='{{mtgo_code}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{tcgplayer_id_row_class}}'>
+    <label for='tcgplayer_id' class='col-sm-2 col-form-label'>tcgplayer_id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='tcgplayer_id' name='tcgplayer_id' placeholder='' value='{{tcgplayer_id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{name_row_class}}'>
+    <label for='name' class='col-sm-2 col-form-label'>name</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='name' name='name' placeholder='' value='{{name}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{set_type_row_class}}'>
+    <label for='set_type' class='col-sm-2 col-form-label'>set_type</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='set_type' name='set_type' placeholder='' value='{{set_type}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{released_at_row_class}}'>
+    <label for='released_at' class='col-sm-2 col-form-label'>released_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='released_at' name='released_at' placeholder='' value='{{released_at}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{block_code_row_class}}'>
+    <label for='block_code' class='col-sm-2 col-form-label'>block_code</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='block_code' name='block_code' placeholder='' value='{{block_code}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{block_row_class}}'>
+    <label for='block' class='col-sm-2 col-form-label'>block</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='block' name='block' placeholder='' value='{{block}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{parenth_set_code_row_class}}'>
+    <label for='parenth_set_code' class='col-sm-2 col-form-label'>parenth_set_code</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='parenth_set_code' name='parenth_set_code' placeholder='' value='{{parenth_set_code}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{card_count_row_class}}'>
+    <label for='card_count' class='col-sm-2 col-form-label'>card_count</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='card_count' name='card_count' placeholder='' value='{{card_count}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{is_digital_row_class}}'>
+    <div class='col-sm-2'><label>is_digital</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_digital' name='is_digital' {{is_digital}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_foil_only_row_class}}'>
+    <div class='col-sm-2'><label>is_foil_only</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_foil_only' name='is_foil_only' {{is_foil_only}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{scryfall_url_row_class}}'>
+    <label for='scryfall_url' class='col-sm-2 col-form-label'>scryfall_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='scryfall_url' name='scryfall_url' placeholder='' value='{{scryfall_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{set_url_row_class}}'>
+    <label for='set_url' class='col-sm-2 col-form-label'>set_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='set_url' name='set_url' placeholder='' value='{{set_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{icon_svg_url_row_class}}'>
+    <label for='icon_svg_url' class='col-sm-2 col-form-label'>icon_svg_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='icon_svg_url' name='icon_svg_url' placeholder='' value='{{icon_svg_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{search_url_row_class}}'>
+    <label for='search_url' class='col-sm-2 col-form-label'>search_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='search_url' name='search_url' placeholder='' value='{{search_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-10'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/mtgset/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='mtgset' class='do-soft-delete btn btn-outline-danger'>Hard Delete mtgset</button>
+</form>
+              </div>
+            </div>
+
+
+<br>

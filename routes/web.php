@@ -38,6 +38,13 @@ Route::get("/DURC/json/creature/", 'creatureController@jsonall');
 Route::get("/DURC/searchjson/creature/", 'creatureController@search');
 
  
+//DURC->	lore.mtgset
+Route::resource("/DURC/mtgset", 'mtgsetController');
+Route::get("/DURC/json/mtgset/{mtgset_id}", 'mtgsetController@jsonone');
+Route::get("/DURC/json/mtgset/", 'mtgsetController@jsonall');
+Route::get("/DURC/searchjson/mtgset/", 'mtgsetController@search');
+
+ 
 //DURC->	lore.person
 Route::resource("/DURC/person", 'personController');
 Route::get("/DURC/json/person/{person_id}", 'personController@jsonone');
