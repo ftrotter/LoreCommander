@@ -1,0 +1,271 @@
+{
+    "lore": {
+        "creature": {
+            "table_name": "creature",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "creature_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "has_many": {
+                "person_creature_relation": {
+                    "prefix": null,
+                    "type": "person_creature_relation",
+                    "from_table": "person_creature_relation",
+                    "from_db": "lore",
+                    "from_column": "creature_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+        },
+        "person": {
+            "table_name": "person",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "last_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "first_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "has_many": {
+                "person_creature_relation": {
+                    "prefix": null,
+                    "type": "person_creature_relation",
+                    "from_table": "person_creature_relation",
+                    "from_db": "lore",
+                    "from_column": "person_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(255) NOT NULL,\n  `first_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+        },
+        "person_creature_relation": {
+            "table_name": "person_creature_relation",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "person_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "person"
+                },
+                {
+                    "column_name": "relation_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "relation"
+                },
+                {
+                    "column_name": "creature_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "creature"
+                },
+                {
+                    "column_name": "justification_note",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "justification_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "belongs_to": {
+                "person": {
+                    "prefix": null,
+                    "type": "person",
+                    "to_table": "person",
+                    "to_db": "lore",
+                    "local_key": "person_id"
+                },
+                "relation": {
+                    "prefix": null,
+                    "type": "relation",
+                    "to_table": "relation",
+                    "to_db": "lore",
+                    "local_key": "relation_id"
+                },
+                "creature": {
+                    "prefix": null,
+                    "type": "creature",
+                    "to_table": "creature",
+                    "to_db": "lore",
+                    "local_key": "creature_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`person_creature_relation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `relation_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `justification_note` varchar(1000) NOT NULL,\n  `justification_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`relation_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+        },
+        "relation": {
+            "table_name": "relation",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "relation_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "has_many": {
+                "person_creature_relation": {
+                    "prefix": null,
+                    "type": "person_creature_relation",
+                    "from_table": "person_creature_relation",
+                    "from_db": "lore",
+                    "from_column": "relation_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`relation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `relation_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+        }
+    }
+}
