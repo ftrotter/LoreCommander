@@ -20,6 +20,10 @@ Route::get('durctest', function () {
  			'/DURC/creature/create', //from: lore.creature 
  			'/DURC/creature/1', //from: lore.creature 
  			'/DURC/creature/1/edit', //from: lore.creature 
+ 			'/DURC/mtgset', //from: lore.mtgset 
+ 			'/DURC/mtgset/create', //from: lore.mtgset 
+ 			'/DURC/mtgset/1', //from: lore.mtgset 
+ 			'/DURC/mtgset/1/edit', //from: lore.mtgset 
  			'/DURC/person', //from: lore.person 
  			'/DURC/person/create', //from: lore.person 
  			'/DURC/person/1', //from: lore.person 
