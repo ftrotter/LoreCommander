@@ -321,7 +321,7 @@ class SlowScrapeScryfall extends Command
 	
 
 				foreach($this_card['image_uris'] as $image_type => $image_url){
-					$cardface_fill["image_url_$image_type"] = $image_url;
+					$cardface_fill["image_uri_$image_type"] = $image_url;
 				}
 
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=10469e6d425377e407b53a9eba3a1125
+FILE_SIG=5bcf73568a602c683fe425d0a1c2484d
 */
 namespace App;
 /*
@@ -39,6 +39,12 @@ class cardface extends \App\DURC\Models\cardface
 			//'power', //varchar
 			//'type_line', //varchar
 			//'border_color', //varchar
+			//'image_uri_small', //varchar
+			//'image_uri_normal', //varchar
+			//'image_uri_large', //varchar
+			//'image_uri_png', //varchar
+			//'image_uri_art_crop', //varchar
+			//'image_uri_border_crop', //varchar
 			//'is_foil', //tinyint
 			//'is_nonfoil', //tinyint
 			//'is_oversized', //tinyint
@@ -89,6 +95,12 @@ CREATE TABLE `lore`.`cardface` (
   `power` varchar(255) DEFAULT NULL,
   `type_line` varchar(255) NOT NULL,
   `border_color` varchar(255) NOT NULL,
+  `image_uri_small` varchar(500) DEFAULT NULL,
+  `image_uri_normal` varchar(500) DEFAULT NULL,
+  `image_uri_large` varchar(500) DEFAULT NULL,
+  `image_uri_png` varchar(500) DEFAULT NULL,
+  `image_uri_art_crop` varchar(500) DEFAULT NULL,
+  `image_uri_border_crop` varchar(500) DEFAULT NULL,
   `is_foil` tinyint(1) NOT NULL,
   `is_nonfoil` tinyint(1) NOT NULL,
   `is_oversized` tinyint(1) NOT NULL DEFAULT 0,
