@@ -1,0 +1,194 @@
+
+<h1>card list </h1>
+Create <a href='/DURC/card/create/'>new card</a><br>
+
+
+{{^is_need_paging}}
+<p>
+{{total}} results. All rows shown.
+</p>
+{{/is_need_paging}}
+
+{{#is_need_paging}}
+
+<div class='dataTables_paginate paging_simple_numbers' id='table_card_page'>
+	<ul class='pagination'>
+		<li class='paginate_button page-item previous {{first_page_class}}' 
+			id='table_card_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_card' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+		</li>
+		<li class='paginate_button page-item {{prev_page_class}}'>
+			<a href='{{prev_page_url}}' aria-controls='table_card' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+		</li>
+		<li class='paginate_button page-item active'>
+			<a href='#' aria-controls='table_card' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+		</li>
+		<li class='paginate_button page-item {{next_page_class}} '>
+			<a href='{{next_page_url}}' aria-controls='table_card' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+		</li>
+		<li class='paginate_button page-item {{last_page_class}}'>
+			<a href='{{last_page_url}}' aria-controls='table_card' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+		</li>
+	</ul>
+</div>
+{{/is_need_paging}}
+
+
+<table id='table_card' class='table table-bordered table-hover table-responsive table-sm'>
+<thead><tr>
+<th scope='col'>#</th><th scope='col'>scryfall_id</th>
+<th scope='col'>lang</th>
+<th scope='col'>oracle_id</th>
+<th scope='col'>rulings_uri</th>
+<th scope='col'>scryfall_uri</th>
+<th scope='col'>scryfall_api_uri</th>
+<th scope='col'>is_foil</th>
+<th scope='col'>layout</th>
+<th scope='col'>flavor_text</th>
+<th scope='col'>is_promo</th>
+<th scope='col'>rarity</th>
+<th scope='col'>released_at</th>
+<th scope='col'>set_name</th>
+<th scope='col'>set_type</th>
+<th scope='col'>mtgset_id</th>
+<th scope='col'>is_story_spotlight</th>
+<th scope='col'>variation_of_scryfall_id</th>
+<th scope='col'>edhrec_rank</th>
+<th scope='col'>is_legal_oldschool</th>
+<th scope='col'>is_legal_duel</th>
+<th scope='col'>is_legal_commander</th>
+<th scope='col'>is_legal_penny</th>
+<th scope='col'>is_legal_vintage</th>
+<th scope='col'>is_legal_pauper</th>
+<th scope='col'>is_legal_legacy</th>
+<th scope='col'>is_legal_modern</th>
+<th scope='col'>is_legal_frontier</th>
+<th scope='col'>is_legal_future</th>
+<th scope='col'>is_legal_standard</th>
+<th scope='col'>created_at</th>
+<th scope='col'>updated_at</th>
+
+</tr></thead>
+<tfoot><tr>
+<th scope='col'>#</th><th scope='col'>scryfall_id</th>
+<th scope='col'>lang</th>
+<th scope='col'>oracle_id</th>
+<th scope='col'>rulings_uri</th>
+<th scope='col'>scryfall_uri</th>
+<th scope='col'>scryfall_api_uri</th>
+<th scope='col'>is_foil</th>
+<th scope='col'>layout</th>
+<th scope='col'>flavor_text</th>
+<th scope='col'>is_promo</th>
+<th scope='col'>rarity</th>
+<th scope='col'>released_at</th>
+<th scope='col'>set_name</th>
+<th scope='col'>set_type</th>
+<th scope='col'>mtgset_id</th>
+<th scope='col'>is_story_spotlight</th>
+<th scope='col'>variation_of_scryfall_id</th>
+<th scope='col'>edhrec_rank</th>
+<th scope='col'>is_legal_oldschool</th>
+<th scope='col'>is_legal_duel</th>
+<th scope='col'>is_legal_commander</th>
+<th scope='col'>is_legal_penny</th>
+<th scope='col'>is_legal_vintage</th>
+<th scope='col'>is_legal_pauper</th>
+<th scope='col'>is_legal_legacy</th>
+<th scope='col'>is_legal_modern</th>
+<th scope='col'>is_legal_frontier</th>
+<th scope='col'>is_legal_future</th>
+<th scope='col'>is_legal_standard</th>
+<th scope='col'>created_at</th>
+<th scope='col'>updated_at</th>
+
+</tr></tfoot>
+<tbody>
+  {{#data}}
+    <tr>
+	<th scope='row'><a href='/DURC/card/{{id}}/'> {{id}} </a></th>			<td>{{lang}}</td>
+			<td>{{rulings_uri}}</td>
+			<td>{{scryfall_uri}}</td>
+			<td>{{scryfall_api_uri}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{layout}}</td>
+			<td>{{flavor_text}}</td>
+			<td>{{is_promo}}</td>
+			<td>{{rarity}}</td>
+			<td>{{released_at}}</td>
+			<td>{{set_name}}</td>
+			<td>{{set_type}}</td>
+			<td>{{mtgset_id_DURClabel}} <a href='/DURC/mtgset/{{mtgset_id}}/'> ({{mtgset_id}})</a> </td>			<td>{{is_story_spotlight}}</td>
+			<td>{{edhrec_rank}}</td>
+			<td>{{is_legal_oldschool}}</td>
+			<td>{{is_legal_duel}}</td>
+			<td>{{is_legal_commander}}</td>
+			<td>{{is_legal_penny}}</td>
+			<td>{{is_legal_vintage}}</td>
+			<td>{{is_legal_pauper}}</td>
+			<td>{{is_legal_legacy}}</td>
+			<td>{{is_legal_modern}}</td>
+			<td>{{is_legal_frontier}}</td>
+			<td>{{is_legal_future}}</td>
+			<td>{{is_legal_standard}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+
+    </tr>
+  {{/data}}
+
+<tbody></table>
+
+
+
+{{^is_need_paging}}
+<p>
+{{total}} results. All rows shown.
+</p>
+{{/is_need_paging}}
+
+{{#is_need_paging}}
+
+<div class='dataTables_paginate paging_simple_numbers' id='table_card_page'>
+	<ul class='pagination'>
+		<li class='paginate_button page-item previous {{first_page_class}}' 
+			id='table_card_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_card' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+		</li>
+		<li class='paginate_button page-item {{prev_page_class}}'>
+			<a href='{{prev_page_url}}' aria-controls='table_card' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+		</li>
+		<li class='paginate_button page-item active'>
+			<a href='#' aria-controls='table_card' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+		</li>
+		<li class='paginate_button page-item {{next_page_class}} '>
+			<a href='{{next_page_url}}' aria-controls='table_card' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+		</li>
+		<li class='paginate_button page-item {{last_page_class}}'>
+			<a href='{{last_page_url}}' aria-controls='table_card' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+		</li>
+	</ul>
+</div>
+{{/is_need_paging}}
+
+
+<script type='text/javascript'>
+//we need a way to check to see if the page is loaded before we call DataTable()
+//but we frequently do not have JQuery yet... it could be loaded at the bottom of the page...
+//so we have a pure JS alternative to the ready() function..
+var DURC_checkReadyState = setInterval(() => {
+  if (document.readyState === 'complete') {
+    clearInterval(DURC_checkReadyState);
+    // document is ready
+    $('#table_card').DataTable(
+{
+        'paging':   false,
+        'info':     false
+}
+);
+  }
+}, 100);
+
+
+</script>
+

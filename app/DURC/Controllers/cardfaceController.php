@@ -2,13 +2,13 @@
 
 namespace App\DURC\Controllers;
 
-use App\mtgset;
+use App\cardface;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 
-class mtgsetController extends DURCController
+class cardfaceController extends DURCController
 {
 
 
@@ -24,6 +24,7 @@ class mtgsetController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
+		$with_summary_array[] = "card:id,".\App\card::getNameField();
 
 		return($with_summary_array);
 		
@@ -36,7 +37,7 @@ class mtgsetController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = mtgset::with($with_argument)->paginate(100);
+		$these = cardface::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -51,8 +52,8 @@ class mtgsetController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( mtgset::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = mtgset::$field_type_map[ $lowest_key ];
+                                        if ( isset( cardface::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = cardface::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -60,8 +61,8 @@ class mtgsetController extends DURCController
                                 }
                         }
 
-                        if ( isset( mtgset::$field_type_map[$key] ) ) {
-                            $field_type = mtgset::$field_type_map[ $key ];
+                        if ( isset( cardface::$field_type_map[$key] ) ) {
+                            $field_type = cardface::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -124,7 +125,7 @@ class mtgsetController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = mtgset::getSearchFields();
+                $search_fields = cardface::getSearchFields();
 
 		$where_sql = '';
 		$or = '';
@@ -133,7 +134,7 @@ class mtgsetController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = mtgset::whereRaw($where_sql)
+		$these = cardface::whereRaw($where_sql)
 					->take(20)
 					->get();
 
@@ -167,7 +168,7 @@ class mtgsetController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\mtgset  $mtgset
+     * @param  \App\cardface  $cardface
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -188,7 +189,7 @@ class mtgsetController extends DURCController
 		var_export($this->view_data);
 		exit();
 	}
-	$durc_template_results = view('DURC.mtgset.index',$this->view_data);        
+	$durc_template_results = view('DURC.cardface.index',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -200,54 +201,58 @@ class mtgsetController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewmtgset = new mtgset();
+	$myNewcardface = new cardface();
 
 	//the games we play to easily auto-generate code..
-	$tmp_mtgset = $myNewmtgset;
-			$tmp_mtgset->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
-		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code ); 
-		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code ); 
-		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
-		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
-		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
-		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at ); 
-		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code ); 
-		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block ); 
-		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code ); 
-		$tmp_mtgset->card_count = DURC::formatForStorage( 'card_count', 'int', $request->card_count ); 
-		$tmp_mtgset->is_digital = DURC::formatForStorage( 'is_digital', 'tinyint', $request->is_digital ); 
-		$tmp_mtgset->is_foil_only = DURC::formatForStorage( 'is_foil_only', 'tinyint', $request->is_foil_only ); 
-		$tmp_mtgset->scryfall_uri = DURC::formatForStorage( 'scryfall_uri', 'varchar', $request->scryfall_uri ); 
-		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri ); 
-		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri ); 
-		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri ); 
-		$tmp_mtgset->save();
+	$tmp_cardface = $myNewcardface;
+			$tmp_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_cardface->card_id = DURC::formatForStorage( 'card_id', 'int', $request->card_id ); 
+		$tmp_cardface->artist = DURC::formatForStorage( 'artist', 'varchar', $request->artist ); 
+		$tmp_cardface->color = DURC::formatForStorage( 'color', 'varchar', $request->color ); 
+		$tmp_cardface->color_identity = DURC::formatForStorage( 'color_identity', 'varchar', $request->color_identity ); 
+		$tmp_cardface->flavor_text = DURC::formatForStorage( 'flavor_text', 'varchar', $request->flavor_text ); 
+		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'int', $request->image_uri ); 
+		$tmp_cardface->mana_cost = DURC::formatForStorage( 'mana_cost', 'varchar', $request->mana_cost ); 
+		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
+		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
+		$tmp_cardface->power = DURC::formatForStorage( 'power', 'varchar', $request->power ); 
+		$tmp_cardface->type_line = DURC::formatForStorage( 'type_line', 'varchar', $request->type_line ); 
+		$tmp_cardface->border_color = DURC::formatForStorage( 'border_color', 'varchar', $request->border_color ); 
+		$tmp_cardface->is_foil = DURC::formatForStorage( 'is_foil', 'tinyint', $request->is_foil ); 
+		$tmp_cardface->is_nonfoil = DURC::formatForStorage( 'is_nonfoil', 'tinyint', $request->is_nonfoil ); 
+		$tmp_cardface->is_color_green = DURC::formatForStorage( 'is_color_green', 'tinyint', $request->is_color_green ); 
+		$tmp_cardface->is_color_red = DURC::formatForStorage( 'is_color_red', 'tinyint', $request->is_color_red ); 
+		$tmp_cardface->is_color_blue = DURC::formatForStorage( 'is_color_blue', 'tinyint', $request->is_color_blue ); 
+		$tmp_cardface->is_color_black = DURC::formatForStorage( 'is_color_black', 'tinyint', $request->is_color_black ); 
+		$tmp_cardface->is_color_white = DURC::formatForStorage( 'is_color_white', 'tinyint', $request->is_color_white ); 
+		$tmp_cardface->is_colorless = DURC::formatForStorage( 'is_colorless', 'tinyint', $request->is_colorless ); 
+		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
+		$tmp_cardface->save();
 
 
-	$new_id = $myNewmtgset->id;
+	$new_id = $myNewcardface->id;
 
-	return redirect("/DURC/mtgset/$new_id")->with('status', 'Data Saved!');
+	return redirect("/DURC/cardface/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
     /**
      * Display the specified resource.
-     * @param  \App\$mtgset  $mtgset
+     * @param  \App\$cardface  $cardface
      * @return \Illuminate\Http\Response
      */
-    public function show(mtgset $mtgset){
-	return($this->edit($mtgset));
+    public function show(cardface $cardface){
+	return($this->edit($cardface));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\mtgset  $mtgset
+     * @param  \App\cardface  $cardface
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $mtgset_id){
-		$mtgset = \App\mtgset::find($mtgset_id);
-		$mtgset = $mtgset->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($mtgset->toArray());
+    public function jsonone(Request $request, $cardface_id){
+		$cardface = \App\cardface::find($cardface_id);
+		$cardface = $cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		return response()->json($cardface->toArray());
  	}
 
 
@@ -257,17 +262,17 @@ class mtgsetController extends DURCController
      */
     public function create(){
 	// but really, we are just going to edit a new object..
-	$new_instance = new mtgset();
+	$new_instance = new cardface();
 	return $this->edit($new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\mtgset  $mtgset
+     * @param  \App\cardface  $cardface
      * @return \Illuminate\Http\Response
      */
-    public function edit(mtgset $mtgset){
+    public function edit(cardface $cardface){
 
 	$main_template_name = $this->_getMainTemplateName();
 
@@ -282,7 +287,7 @@ class mtgsetController extends DURCController
 	$this->view_data['csrf_token'] = csrf_token();
 	
 	
-	foreach ( mtgset::$field_type_map as $column_name => $field_type ) {
+	foreach ( cardface::$field_type_map as $column_name => $field_type ) {
         // If this field name is in the configured list of hidden fields, do not display the row.
         $this->view_data["{$column_name}_row_class"] = '';
         if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -290,15 +295,15 @@ class mtgsetController extends DURCController
         }
     }
 
-	if($mtgset->exists){	//we will not have old data if this is a new object
+	if($cardface->exists){	//we will not have old data if this is a new object
 
 		//well lets properly eager load this object with a refresh to load all of the related things
-		$mtgset = $mtgset->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$cardface = $cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 
 		//put the contents into the view...
-		foreach($mtgset->toArray() as $key => $value){
-			if ( isset( mtgset::$field_type_map[$key] ) ) {
-                $field_type = mtgset::$field_type_map[ $key ];
+		foreach($cardface->toArray() as $key => $value){
+			if ( isset( cardface::$field_type_map[$key] ) ) {
+                $field_type = cardface::$field_type_map[ $key ];
                 $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
             } else {
                 $this->view_data[$key] = $value;
@@ -306,9 +311,9 @@ class mtgsetController extends DURCController
 		}
 
 		//what is this object called?
-		$name_field = $mtgset->_getBestName();
+		$name_field = $cardface->_getBestName();
 		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $mtgset->$name_field;
+		$this->view_data['durc_instance_name'] = $cardface->$name_field;
 	}else{
 		$this->view_data['is_new'] = true;
 	}
@@ -321,53 +326,57 @@ class mtgsetController extends DURCController
 	}
 	
 
-	$durc_template_results = view('DURC.mtgset.edit',$this->view_data);        
+	$durc_template_results = view('DURC.cardface.edit',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\mtgset  $mtgset
+     * @param  \App\cardface  $cardface
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mtgset $mtgset){
+    public function update(Request $request, cardface $cardface){
 
-	$tmp_mtgset = $mtgset;
-			$tmp_mtgset->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
-		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code ); 
-		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code ); 
-		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
-		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
-		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
-		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at ); 
-		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code ); 
-		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block ); 
-		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code ); 
-		$tmp_mtgset->card_count = DURC::formatForStorage( 'card_count', 'int', $request->card_count ); 
-		$tmp_mtgset->is_digital = DURC::formatForStorage( 'is_digital', 'tinyint', $request->is_digital ); 
-		$tmp_mtgset->is_foil_only = DURC::formatForStorage( 'is_foil_only', 'tinyint', $request->is_foil_only ); 
-		$tmp_mtgset->scryfall_uri = DURC::formatForStorage( 'scryfall_uri', 'varchar', $request->scryfall_uri ); 
-		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri ); 
-		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri ); 
-		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri ); 
-		$tmp_mtgset->save();
+	$tmp_cardface = $cardface;
+			$tmp_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_cardface->card_id = DURC::formatForStorage( 'card_id', 'int', $request->card_id ); 
+		$tmp_cardface->artist = DURC::formatForStorage( 'artist', 'varchar', $request->artist ); 
+		$tmp_cardface->color = DURC::formatForStorage( 'color', 'varchar', $request->color ); 
+		$tmp_cardface->color_identity = DURC::formatForStorage( 'color_identity', 'varchar', $request->color_identity ); 
+		$tmp_cardface->flavor_text = DURC::formatForStorage( 'flavor_text', 'varchar', $request->flavor_text ); 
+		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'int', $request->image_uri ); 
+		$tmp_cardface->mana_cost = DURC::formatForStorage( 'mana_cost', 'varchar', $request->mana_cost ); 
+		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
+		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
+		$tmp_cardface->power = DURC::formatForStorage( 'power', 'varchar', $request->power ); 
+		$tmp_cardface->type_line = DURC::formatForStorage( 'type_line', 'varchar', $request->type_line ); 
+		$tmp_cardface->border_color = DURC::formatForStorage( 'border_color', 'varchar', $request->border_color ); 
+		$tmp_cardface->is_foil = DURC::formatForStorage( 'is_foil', 'tinyint', $request->is_foil ); 
+		$tmp_cardface->is_nonfoil = DURC::formatForStorage( 'is_nonfoil', 'tinyint', $request->is_nonfoil ); 
+		$tmp_cardface->is_color_green = DURC::formatForStorage( 'is_color_green', 'tinyint', $request->is_color_green ); 
+		$tmp_cardface->is_color_red = DURC::formatForStorage( 'is_color_red', 'tinyint', $request->is_color_red ); 
+		$tmp_cardface->is_color_blue = DURC::formatForStorage( 'is_color_blue', 'tinyint', $request->is_color_blue ); 
+		$tmp_cardface->is_color_black = DURC::formatForStorage( 'is_color_black', 'tinyint', $request->is_color_black ); 
+		$tmp_cardface->is_color_white = DURC::formatForStorage( 'is_color_white', 'tinyint', $request->is_color_white ); 
+		$tmp_cardface->is_colorless = DURC::formatForStorage( 'is_colorless', 'tinyint', $request->is_colorless ); 
+		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
+		$tmp_cardface->save();
 
 
-	$id = $mtgset->id;
+	$id = $cardface->id;
 
-	return redirect("/DURC/mtgset/$id")->with('status', 'Data Saved!');
+	return redirect("/DURC/cardface/$id")->with('status', 'Data Saved!');
         
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\mtgset  $mtgset
+     * @param  \App\cardface  $cardface
      * @return \Illuminate\Http\Response
      */
-    public function destroy(mtgset $mtgset){
-	    return mtgset::destroy( $mtgset->id );  
+    public function destroy(cardface $cardface){
+	    return cardface::destroy( $cardface->id );  
     }
     
     /**
@@ -377,7 +386,7 @@ class mtgsetController extends DURCController
      */
     public function restore( $id )
     {
-        $mtgset = mtgset::withTrashed()->find($id)->restore();
+        $cardface = cardface::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }

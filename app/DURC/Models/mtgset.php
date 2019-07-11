@@ -25,6 +25,7 @@ class mtgset extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'card', //from from many
 		];
 
 
@@ -39,7 +40,7 @@ class mtgset extends DURCModel{
 	//for many functions to work, we need to be able to do a lookup on the field_type and get back the MariaDB/MySQL column type.
 	static $field_type_map = [
 		'id' => 'int',
-		'scryfall_identifier' => 'varchar',
+		'scryfall_id' => 'varchar',
 		'code' => 'varchar',
 		'mtgo_code' => 'varchar',
 		'tcgplayer_id' => 'int',
@@ -48,14 +49,14 @@ class mtgset extends DURCModel{
 		'released_at' => 'varchar',
 		'block_code' => 'varchar',
 		'block' => 'varchar',
-		'parenth_set_code' => 'varchar',
+		'parent_set_code' => 'varchar',
 		'card_count' => 'int',
 		'is_digital' => 'tinyint',
 		'is_foil_only' => 'tinyint',
-		'scryfall_url' => 'varchar',
-		'set_url' => 'varchar',
-		'icon_svg_url' => 'varchar',
-		'search_url' => 'varchar',
+		'scryfall_uri' => 'varchar',
+		'mtgset_uri' => 'varchar',
+		'icon_svg_uri' => 'varchar',
+		'search_uri' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 			]; //end field_type_map
@@ -67,7 +68,14 @@ class mtgset extends DURCModel{
 		
 //DURC HAS_MANY SECTION
 
-			//DURC did not detect any has_many relationships
+/**
+*	get all the card for this mtgset
+*/
+	public function card(){
+		return $this->hasMany('App\card','mtgset_id','id');
+	}
+
+
 		
 		
 //DURC HAS_ONE SECTION
@@ -83,27 +91,28 @@ class mtgset extends DURCModel{
 /*
 CREATE TABLE `lore`.`mtgset` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `scryfall_identifier` varchar(255) NOT NULL,
+  `scryfall_id` varchar(255) NOT NULL,
   `code` varchar(5) NOT NULL,
   `mtgo_code` varchar(255) DEFAULT NULL,
-  `tcgplayer_id` int(11) NOT NULL,
+  `tcgplayer_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `set_type` varchar(255) NOT NULL,
   `released_at` varchar(255) NOT NULL,
-  `block_code` varchar(255) NOT NULL,
-  `block` varchar(255) NOT NULL,
-  `parenth_set_code` varchar(255) NOT NULL,
+  `block_code` varchar(255) DEFAULT NULL,
+  `block` varchar(255) DEFAULT NULL,
+  `parent_set_code` varchar(255) DEFAULT NULL,
   `card_count` int(11) NOT NULL,
   `is_digital` tinyint(1) NOT NULL,
   `is_foil_only` tinyint(1) NOT NULL,
-  `scryfall_url` varchar(255) NOT NULL,
-  `set_url` varchar(255) NOT NULL,
-  `icon_svg_url` varchar(255) NOT NULL,
-  `search_url` varchar(255) NOT NULL,
+  `scryfall_uri` varchar(255) NOT NULL,
+  `mtgset_uri` varchar(255) NOT NULL,
+  `icon_svg_uri` varchar(255) NOT NULL,
+  `search_uri` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `scryfall_id` (`scryfall_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1
 */
 
 

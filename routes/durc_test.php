@@ -16,6 +16,14 @@ Route::get('durctest', function () {
 
 
 
+ 			'/DURC/card', //from: lore.card 
+ 			'/DURC/card/create', //from: lore.card 
+ 			'/DURC/card/1', //from: lore.card 
+ 			'/DURC/card/1/edit', //from: lore.card 
+ 			'/DURC/cardface', //from: lore.cardface 
+ 			'/DURC/cardface/create', //from: lore.cardface 
+ 			'/DURC/cardface/1', //from: lore.cardface 
+ 			'/DURC/cardface/1/edit', //from: lore.cardface 
  			'/DURC/creature', //from: lore.creature 
  			'/DURC/creature/create', //from: lore.creature 
  			'/DURC/creature/1', //from: lore.creature 
