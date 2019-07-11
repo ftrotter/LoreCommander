@@ -51,7 +51,7 @@ COALESCE(artist,'missing artist') AS artist
 ,`color`, rarity , `color_identity`, `flavor_text`, `power` 
 , `name`,`image_uri_small`
 ,`mana_cost`
-,`type_line`
+, type_line
 ,`is_color_green`, `is_color_red`, `is_color_blue`, `is_color_black`
 ,`is_color_white`, `is_colorless`
 ,`color_count`, set_name, legal_modern, legal_standard
