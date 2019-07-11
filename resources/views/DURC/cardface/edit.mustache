@@ -1,0 +1,384 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/cardface' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/cardface/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>cardface</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/DURC/cardface/'>Return to cardface list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/cardface/create'>Create new cardface </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-2 col-form-label'>id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{card_id_row_class}}'>
+    <label for='card_id' class='col-sm-2 col-form-label'>card_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{card_id}} (see below for lookup value)<br>
+	<select class='select2_card_id form-control' id='card_id' name='card_id' form-control'>
+	<option value='{{card_id}}' selected='selected'>{{card_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_card_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/card/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{artist_row_class}}'>
+    <label for='artist' class='col-sm-2 col-form-label'>artist</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='artist' name='artist' placeholder='' value='{{artist}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{color_row_class}}'>
+    <label for='color' class='col-sm-2 col-form-label'>color</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='color' name='color' placeholder='' value='{{color}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{color_identity_row_class}}'>
+    <label for='color_identity' class='col-sm-2 col-form-label'>color_identity</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='color_identity' name='color_identity' placeholder='' value='{{color_identity}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{flavor_text_row_class}}'>
+    <label for='flavor_text' class='col-sm-2 col-form-label'>flavor_text</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='flavor_text' name='flavor_text' placeholder='' value='{{flavor_text}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{image_uri_row_class}}'>
+    <label for='image_uri' class='col-sm-2 col-form-label'>image_uri</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{mana_cost_row_class}}'>
+    <label for='mana_cost' class='col-sm-2 col-form-label'>mana_cost</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='mana_cost' name='mana_cost' placeholder='' value='{{mana_cost}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{name_row_class}}'>
+    <label for='name' class='col-sm-2 col-form-label'>name</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='name' name='name' placeholder='' value='{{name}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{oracle_text_row_class}}'>
+    <label for='oracle_text' class='col-sm-2 col-form-label'>oracle_text</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='oracle_text' name='oracle_text' placeholder='' value='{{oracle_text}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{power_row_class}}'>
+    <label for='power' class='col-sm-2 col-form-label'>power</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='power' name='power' placeholder='' value='{{power}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{type_line_row_class}}'>
+    <label for='type_line' class='col-sm-2 col-form-label'>type_line</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='type_line' name='type_line' placeholder='' value='{{type_line}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{border_color_row_class}}'>
+    <label for='border_color' class='col-sm-2 col-form-label'>border_color</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='border_color' name='border_color' placeholder='' value='{{border_color}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_green_row_class}}'>
+    <div class='col-sm-2'><label>is_color_green</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_green' name='is_color_green' {{is_color_green}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_red_row_class}}'>
+    <div class='col-sm-2'><label>is_color_red</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_red' name='is_color_red' {{is_color_red}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_blue_row_class}}'>
+    <div class='col-sm-2'><label>is_color_blue</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_blue' name='is_color_blue' {{is_color_blue}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_black_row_class}}'>
+    <div class='col-sm-2'><label>is_color_black</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_black' name='is_color_black' {{is_color_black}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_white_row_class}}'>
+    <div class='col-sm-2'><label>is_color_white</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_white' name='is_color_white' {{is_color_white}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_colorless_row_class}}'>
+    <div class='col-sm-2'><label>is_colorless</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_colorless' name='is_colorless' {{is_colorless}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_snow_row_class}}'>
+    <div class='col-sm-2'><label>is_snow</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_snow' name='is_snow' {{is_snow}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-10'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/cardface/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='cardface' class='do-soft-delete btn btn-outline-danger'>Hard Delete cardface</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    card ( <a href='/DURC/card/'>see all</a> )
+{{^card}}
+(no values)
+{{/card}}
+  </div>
+<div class='card-body'>
+<table id='table_card' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> scryfall_id </th>
+			<th> lang </th>
+			<th> oracle_id </th>
+			<th> rulings_uri </th>
+			<th> scryfall_uri </th>
+			<th> scryfall_api_uri </th>
+			<th> is_foil </th>
+			<th> layout </th>
+			<th> flavor_text </th>
+			<th> is_promo </th>
+			<th> rarity </th>
+			<th> released_at </th>
+			<th> set_name </th>
+			<th> set_type </th>
+			<th> mtgset_id </th>
+			<th> is_story_spotlight </th>
+			<th> variation_of_scryfall_id </th>
+			<th> edhrec_rank </th>
+			<th> is_legal_oldschool </th>
+			<th> is_legal_duel </th>
+			<th> is_legal_commander </th>
+			<th> is_legal_penny </th>
+			<th> is_legal_vintage </th>
+			<th> is_legal_pauper </th>
+			<th> is_legal_legacy </th>
+			<th> is_legal_modern </th>
+			<th> is_legal_frontier </th>
+			<th> is_legal_future </th>
+			<th> is_legal_standard </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#card}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/card/{{id}}'>{{id}}</a></td>
+			<td>{{scryfall_id_DURClabel}} ({{scryfall_id}}) </td>			<td>{{lang}}</td>
+			<td>{{oracle_id_DURClabel}} ({{oracle_id}}) </td>			<td>{{rulings_uri}}</td>
+			<td>{{scryfall_uri}}</td>
+			<td>{{scryfall_api_uri}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{layout}}</td>
+			<td>{{flavor_text}}</td>
+			<td>{{is_promo}}</td>
+			<td>{{rarity}}</td>
+			<td>{{released_at}}</td>
+			<td>{{set_name}}</td>
+			<td>{{set_type}}</td>
+			<td>{{mtgset_id_DURClabel}} ({{mtgset_id}}) </td>			<td>{{is_story_spotlight}}</td>
+			<td>{{variation_of_scryfall_id_DURClabel}} ({{variation_of_scryfall_id}}) </td>			<td>{{edhrec_rank}}</td>
+			<td>{{is_legal_oldschool}}</td>
+			<td>{{is_legal_duel}}</td>
+			<td>{{is_legal_commander}}</td>
+			<td>{{is_legal_penny}}</td>
+			<td>{{is_legal_vintage}}</td>
+			<td>{{is_legal_pauper}}</td>
+			<td>{{is_legal_legacy}}</td>
+			<td>{{is_legal_modern}}</td>
+			<td>{{is_legal_frontier}}</td>
+			<td>{{is_legal_future}}</td>
+			<td>{{is_legal_standard}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/card}}
+</tbody>
+</table>
+</div></div> <!-- end card card-->
+</div></div> <!--end belongs to card-->
+<br>

@@ -36,7 +36,7 @@ Create <a href='/DURC/mtgset/create/'>new mtgset</a><br>
 
 <table id='table_mtgset' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
-<th scope='col'>#</th><th scope='col'>scryfall_identifier</th>
+<th scope='col'>#</th><th scope='col'>scryfall_id</th>
 <th scope='col'>code</th>
 <th scope='col'>mtgo_code</th>
 <th scope='col'>tcgplayer_id</th>
@@ -49,16 +49,16 @@ Create <a href='/DURC/mtgset/create/'>new mtgset</a><br>
 <th scope='col'>card_count</th>
 <th scope='col'>is_digital</th>
 <th scope='col'>is_foil_only</th>
-<th scope='col'>scryfall_url</th>
-<th scope='col'>set_url</th>
-<th scope='col'>icon_svg_url</th>
-<th scope='col'>search_url</th>
+<th scope='col'>scryfall_uri</th>
+<th scope='col'>mtgset_uri</th>
+<th scope='col'>icon_svg_uri</th>
+<th scope='col'>search_uri</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
 </tr></thead>
 <tfoot><tr>
-<th scope='col'>#</th><th scope='col'>scryfall_identifier</th>
+<th scope='col'>#</th><th scope='col'>scryfall_id</th>
 <th scope='col'>code</th>
 <th scope='col'>mtgo_code</th>
 <th scope='col'>tcgplayer_id</th>
@@ -71,10 +71,10 @@ Create <a href='/DURC/mtgset/create/'>new mtgset</a><br>
 <th scope='col'>card_count</th>
 <th scope='col'>is_digital</th>
 <th scope='col'>is_foil_only</th>
-<th scope='col'>scryfall_url</th>
-<th scope='col'>set_url</th>
-<th scope='col'>icon_svg_url</th>
-<th scope='col'>search_url</th>
+<th scope='col'>scryfall_uri</th>
+<th scope='col'>mtgset_uri</th>
+<th scope='col'>icon_svg_uri</th>
+<th scope='col'>search_uri</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -82,8 +82,7 @@ Create <a href='/DURC/mtgset/create/'>new mtgset</a><br>
 <tbody>
   {{#data}}
     <tr>
-	<th scope='row'><a href='/DURC/mtgset/{{id}}/'> {{id}} </a></th>			<td>{{scryfall_identifier}}</td>
-			<td>{{code}}</td>
+	<th scope='row'><a href='/DURC/mtgset/{{id}}/'> {{id}} </a></th>			<td>{{code}}</td>
 			<td>{{mtgo_code}}</td>
 			<td>{{name}}</td>
 			<td>{{set_type}}</td>
@@ -94,10 +93,10 @@ Create <a href='/DURC/mtgset/create/'>new mtgset</a><br>
 			<td>{{card_count}}</td>
 			<td>{{is_digital}}</td>
 			<td>{{is_foil_only}}</td>
-			<td>{{scryfall_url}}</td>
-			<td>{{set_url}}</td>
-			<td>{{icon_svg_url}}</td>
-			<td>{{search_url}}</td>
+			<td>{{scryfall_uri}}</td>
+			<td>{{mtgset_uri}}</td>
+			<td>{{icon_svg_uri}}</td>
+			<td>{{search_uri}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 

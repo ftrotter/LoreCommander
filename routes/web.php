@@ -31,6 +31,20 @@ this will be automatically overwritten by future DURC runs.
 */
 
  
+//DURC->	lore.card
+Route::resource("/DURC/card", 'cardController');
+Route::get("/DURC/json/card/{card_id}", 'cardController@jsonone');
+Route::get("/DURC/json/card/", 'cardController@jsonall');
+Route::get("/DURC/searchjson/card/", 'cardController@search');
+
+ 
+//DURC->	lore.cardface
+Route::resource("/DURC/cardface", 'cardfaceController');
+Route::get("/DURC/json/cardface/{cardface_id}", 'cardfaceController@jsonone');
+Route::get("/DURC/json/cardface/", 'cardfaceController@jsonall');
+Route::get("/DURC/searchjson/cardface/", 'cardfaceController@search');
+
+ 
 //DURC->	lore.creature
 Route::resource("/DURC/creature", 'creatureController');
 Route::get("/DURC/json/creature/{creature_id}", 'creatureController@jsonone');
