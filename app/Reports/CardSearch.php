@@ -36,7 +36,9 @@ description
 	//replace with your own SQL
 /*
 
+//this is the data fix required to make this report run.
 
+UPDATE cardface SET type_line = REPLACE( type_line, '—','-')
 
 
 
