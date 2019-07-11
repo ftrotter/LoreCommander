@@ -152,7 +152,7 @@ CREATE TABLE `lore`.`card` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1
 */
 
 

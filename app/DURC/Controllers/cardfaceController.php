@@ -207,11 +207,13 @@ class cardfaceController extends DURCController
 	$tmp_cardface = $myNewcardface;
 			$tmp_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_cardface->card_id = DURC::formatForStorage( 'card_id', 'int', $request->card_id ); 
+		$tmp_cardface->cardface_index = DURC::formatForStorage( 'cardface_index', 'int', $request->cardface_index ); 
+		$tmp_cardface->illustration_id = DURC::formatForStorage( 'illustration_id', 'varchar', $request->illustration_id ); 
 		$tmp_cardface->artist = DURC::formatForStorage( 'artist', 'varchar', $request->artist ); 
 		$tmp_cardface->color = DURC::formatForStorage( 'color', 'varchar', $request->color ); 
 		$tmp_cardface->color_identity = DURC::formatForStorage( 'color_identity', 'varchar', $request->color_identity ); 
 		$tmp_cardface->flavor_text = DURC::formatForStorage( 'flavor_text', 'varchar', $request->flavor_text ); 
-		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'int', $request->image_uri ); 
+		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
 		$tmp_cardface->mana_cost = DURC::formatForStorage( 'mana_cost', 'varchar', $request->mana_cost ); 
 		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
@@ -220,13 +222,16 @@ class cardfaceController extends DURCController
 		$tmp_cardface->border_color = DURC::formatForStorage( 'border_color', 'varchar', $request->border_color ); 
 		$tmp_cardface->is_foil = DURC::formatForStorage( 'is_foil', 'tinyint', $request->is_foil ); 
 		$tmp_cardface->is_nonfoil = DURC::formatForStorage( 'is_nonfoil', 'tinyint', $request->is_nonfoil ); 
+		$tmp_cardface->is_oversized = DURC::formatForStorage( 'is_oversized', 'tinyint', $request->is_oversized ); 
 		$tmp_cardface->is_color_green = DURC::formatForStorage( 'is_color_green', 'tinyint', $request->is_color_green ); 
 		$tmp_cardface->is_color_red = DURC::formatForStorage( 'is_color_red', 'tinyint', $request->is_color_red ); 
 		$tmp_cardface->is_color_blue = DURC::formatForStorage( 'is_color_blue', 'tinyint', $request->is_color_blue ); 
 		$tmp_cardface->is_color_black = DURC::formatForStorage( 'is_color_black', 'tinyint', $request->is_color_black ); 
 		$tmp_cardface->is_color_white = DURC::formatForStorage( 'is_color_white', 'tinyint', $request->is_color_white ); 
 		$tmp_cardface->is_colorless = DURC::formatForStorage( 'is_colorless', 'tinyint', $request->is_colorless ); 
+		$tmp_cardface->color_count = DURC::formatForStorage( 'color_count', 'int', $request->color_count ); 
 		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
+		$tmp_cardface->has_phyrexian_mana = DURC::formatForStorage( 'has_phyrexian_mana', 'tinyint', $request->has_phyrexian_mana ); 
 		$tmp_cardface->save();
 
 
@@ -341,11 +346,13 @@ class cardfaceController extends DURCController
 	$tmp_cardface = $cardface;
 			$tmp_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_cardface->card_id = DURC::formatForStorage( 'card_id', 'int', $request->card_id ); 
+		$tmp_cardface->cardface_index = DURC::formatForStorage( 'cardface_index', 'int', $request->cardface_index ); 
+		$tmp_cardface->illustration_id = DURC::formatForStorage( 'illustration_id', 'varchar', $request->illustration_id ); 
 		$tmp_cardface->artist = DURC::formatForStorage( 'artist', 'varchar', $request->artist ); 
 		$tmp_cardface->color = DURC::formatForStorage( 'color', 'varchar', $request->color ); 
 		$tmp_cardface->color_identity = DURC::formatForStorage( 'color_identity', 'varchar', $request->color_identity ); 
 		$tmp_cardface->flavor_text = DURC::formatForStorage( 'flavor_text', 'varchar', $request->flavor_text ); 
-		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'int', $request->image_uri ); 
+		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
 		$tmp_cardface->mana_cost = DURC::formatForStorage( 'mana_cost', 'varchar', $request->mana_cost ); 
 		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
@@ -354,13 +361,16 @@ class cardfaceController extends DURCController
 		$tmp_cardface->border_color = DURC::formatForStorage( 'border_color', 'varchar', $request->border_color ); 
 		$tmp_cardface->is_foil = DURC::formatForStorage( 'is_foil', 'tinyint', $request->is_foil ); 
 		$tmp_cardface->is_nonfoil = DURC::formatForStorage( 'is_nonfoil', 'tinyint', $request->is_nonfoil ); 
+		$tmp_cardface->is_oversized = DURC::formatForStorage( 'is_oversized', 'tinyint', $request->is_oversized ); 
 		$tmp_cardface->is_color_green = DURC::formatForStorage( 'is_color_green', 'tinyint', $request->is_color_green ); 
 		$tmp_cardface->is_color_red = DURC::formatForStorage( 'is_color_red', 'tinyint', $request->is_color_red ); 
 		$tmp_cardface->is_color_blue = DURC::formatForStorage( 'is_color_blue', 'tinyint', $request->is_color_blue ); 
 		$tmp_cardface->is_color_black = DURC::formatForStorage( 'is_color_black', 'tinyint', $request->is_color_black ); 
 		$tmp_cardface->is_color_white = DURC::formatForStorage( 'is_color_white', 'tinyint', $request->is_color_white ); 
 		$tmp_cardface->is_colorless = DURC::formatForStorage( 'is_colorless', 'tinyint', $request->is_colorless ); 
+		$tmp_cardface->color_count = DURC::formatForStorage( 'color_count', 'int', $request->color_count ); 
 		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
+		$tmp_cardface->has_phyrexian_mana = DURC::formatForStorage( 'has_phyrexian_mana', 'tinyint', $request->has_phyrexian_mana ); 
 		$tmp_cardface->save();
 
 
