@@ -271,7 +271,8 @@ class SlowScrapeScryfall extends Command
 					}
 				}
 	
-				$DURC_card = \App\card::firstOrNew(['scryfall_id' => $scryfall_id]);
+				//we consider each card unique in its set...
+				$DURC_card = \App\card::firstOrNew(['scryfall_id' => $scryfall_id,'mtgset_id' => $mtgset_id ]);
 				$DURC_card->fill($card_fill);
 				$DURC_card->save();
 	
