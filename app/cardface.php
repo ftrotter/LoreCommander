@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4455b30bc2c09a4fc8fc0dac4f7cfbd3
+FILE_SIG=10469e6d425377e407b53a9eba3a1125
 */
 namespace App;
 /*
@@ -26,11 +26,13 @@ class cardface extends \App\DURC\Models\cardface
 	protected  $hidden = [
 			//'id', //int
 			//'card_id', //int
+			//'cardface_index', //int
+			//'illustration_id', //varchar
 			//'artist', //varchar
 			//'color', //varchar
 			//'color_identity', //varchar
 			//'flavor_text', //varchar
-			//'image_uri', //int
+			//'image_uri', //varchar
 			//'mana_cost', //varchar
 			//'name', //varchar
 			//'oracle_text', //varchar
@@ -39,13 +41,16 @@ class cardface extends \App\DURC\Models\cardface
 			//'border_color', //varchar
 			//'is_foil', //tinyint
 			//'is_nonfoil', //tinyint
+			//'is_oversized', //tinyint
 			//'is_color_green', //tinyint
 			//'is_color_red', //tinyint
 			//'is_color_blue', //tinyint
 			//'is_color_black', //tinyint
 			//'is_color_white', //tinyint
 			//'is_colorless', //tinyint
+			//'color_count', //int
 			//'is_snow', //tinyint
+			//'has_phyrexian_mana', //tinyint
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -71,30 +76,35 @@ class cardface extends \App\DURC\Models\cardface
 CREATE TABLE `lore`.`cardface` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `card_id` int(11) NOT NULL,
+  `cardface_index` int(11) NOT NULL,
+  `illustration_id` varchar(255) NOT NULL,
   `artist` varchar(255) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `color_identity` varchar(255) DEFAULT NULL,
-  `flavor_text` varchar(1000) NOT NULL,
-  `image_uri` int(11) NOT NULL,
+  `flavor_text` varchar(1000) DEFAULT NULL,
+  `image_uri` varchar(255) NOT NULL,
   `mana_cost` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `oracle_text` varchar(1000) NOT NULL,
-  `power` varchar(255) NOT NULL,
+  `power` varchar(255) DEFAULT NULL,
   `type_line` varchar(255) NOT NULL,
   `border_color` varchar(255) NOT NULL,
   `is_foil` tinyint(1) NOT NULL,
   `is_nonfoil` tinyint(1) NOT NULL,
+  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,
   `is_color_green` tinyint(1) NOT NULL,
   `is_color_red` tinyint(1) NOT NULL,
   `is_color_blue` tinyint(1) NOT NULL,
   `is_color_black` tinyint(1) NOT NULL,
   `is_color_white` tinyint(1) NOT NULL,
   `is_colorless` tinyint(1) NOT NULL,
+  `color_count` int(11) NOT NULL DEFAULT 0,
   `is_snow` tinyint(1) NOT NULL,
+  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1
 */
 
 	//your stuff goes here..
