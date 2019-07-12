@@ -17,9 +17,72 @@ class CardSearch extends AbstractTabularReport
     * Get the Report Description, bootstrap styled html is OK
     */
     public function GetReportDescription(): ?string {
-	$desc = "
-description
-"; 
+	$desc = '
+<form method="GET">
+  <div class="form-group row">
+    <label for="search_term" class="col-4 col-form-label">Term Search</label> 
+    <div class="col-8">
+      <input id="search_term" name="search_term" placeholder="enter search term here" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="card_type" class="col-4 col-form-label">Creature Type</label> 
+    <div class="col-8">
+      <select id="card_type" name="card_type" class="custom-select" aria-describedby="card_typeHelpBlock">
+
+        <option value="none">No Type Selected</option>
+        <option value="zombie">zombie</option>
+        <option value="angel">angel</option>
+        <option value="soldier">soldier</option>
+      </select> 
+      <span id="card_typeHelpBlock" class="form-text text-muted">Select a card type</span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-4">Include</label> 
+    <div class="col-8">
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_0" type="checkbox" class="custom-control-input" value="include_token"> 
+        <label for="include_0" class="custom-control-label">Tokens</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_1" type="checkbox" class="custom-control-input" value="include_green"> 
+        <label for="include_1" class="custom-control-label">Green Cards</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_2" type="checkbox" class="custom-control-input" value="include_red"> 
+        <label for="include_2" class="custom-control-label">Red Cards</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_3" type="checkbox" class="custom-control-input" value="include_blue"> 
+        <label for="include_3" class="custom-control-label">Blue Cards</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_4" type="checkbox" class="custom-control-input" value="include_black"> 
+        <label for="include_4" class="custom-control-label">Black Cards</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_5" type="checkbox" class="custom-control-input" value="include_white"> 
+        <label for="include_5" class="custom-control-label">White Cards</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_6" type="checkbox" class="custom-control-input" value="include_multi"> 
+        <label for="include_6" class="custom-control-label">Multi-Color Cards</label>
+      </div>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        <input name="include[]" id="include_7" type="checkbox" class="custom-control-input" value="include_colorless"> 
+        <label for="include_7" class="custom-control-label">Colorless Cards</label>
+      </div>
+    </div>
+  </div> 
+ 
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+'; 
 	return($desc);
     }
 
@@ -33,38 +96,142 @@ description
     **/
     public function GetSQL()
     {
-	//replace with your own SQL
-/*
+	$where_array = [];
 
-//this is the data fix required to make this report run.
+	$search_term = $this->getInput('search_term');
+	$card_type = $this->getInput('card_type');
+	$include = $this->getInput('include');
+	
 
-UPDATE cardface SET type_line = REPLACE( type_line, '—','-')
+	$is_include_token = false;
+	
+
+	if($card_type == 'none'){
+		$card_type = null;
+	}
+
+
+	if(is_null($include)){
+		$include = []; //empty does nothing...
+	}
 
 
 
 
-*/ 
+	foreach($include as $include_this){
+		if($include_this == 'include_green'){
+			$where_array[] = " is_color_green = 1 ";
+		}
+		if($include_this == 'include_red'){
+			$where_array[] = " is_color_red = 1 ";
+		}
+		if($include_this == 'include_blue'){
+			$where_array[] = " is_color_blue = 1 ";
+		}
+		if($include_this == 'include_black'){
+			$where_array[] = " is_color_black = 1 ";
+		}
+		if($include_this == 'include_white'){
+			$where_array[] = " is_color_white = 1 ";
+		}
+		if($include_this == 'include_multi'){
+			$where_array[] = " color_count > 1 ";
+		}
+		if($include_this == 'include_colorless'){
+			$where_array[] = " is_colorless = 1 ";
+		}
+		if($include_this == 'include_black'){
+			$where_array[] = " is_color_black = 1 ";
+		}
 
+		if($include_this == 'include_token'){
+			$is_include_token = true;
+		}
+
+	}
+
+	if($is_include_token){
+		//they are in the database so doing nothing will make them show up
+	}else{
+		//we must exclude it using the type
+		$where_array[] = " type_line NOT LIKE '%token%' ";
+	}
+	
+	
+
+	//so that we can add more fields to search easily...
+	$general_search_fields = [
+		'name',
+		'oracle_text',
+		'flavor_text',
+		'artist',
+		'type_line',
+		
+		];
+	
+
+
+	if(!is_null($search_term)){
+		$general_search_where = '';
+		$or = '';
+		foreach($general_search_fields as $this_field){
+			$general_search_where .= "\t $or \t$this_field LIKE '%$search_term%'\n";
+			$or = ' OR ';
+		}
+		$where_array[] = $general_search_where;
+	}
+
+	if(!is_null($card_type)){
+		$where_array[] = "\ttype_line LIKE '%$card_type%'";
+	}
+
+	if(count($where_array) > 0){
+		$where_sql = "\nWHERE ";
+		$and = '';
+		foreach($where_array as $this_where){
+			$where_sql .= "\t $and (\t$this_where)\n";	
+			$and = ' AND ';
+		}
+	}else{
+		$where_sql = '';
+	}
 
        $sql = 
 "
 SELECT 
-COALESCE(artist,'missing artist') AS artist
-,`color`, rarity , `color_identity`, `flavor_text`, `power` 
-, `name`,`image_uri_small`
+`name`
+, COUNT(DISTINCT(illustration_id)) AS illustration_count
+, COUNT(DISTINCT(scryfall_id)) AS release_count
 ,`mana_cost`
 , type_line
+, power
+, set_name
+, oracle_text
+, flavor_text
+,`color`, rarity , `color_identity`
+,artist
 ,`is_color_green`, `is_color_red`, `is_color_blue`, `is_color_black`
 ,`is_color_white`, `is_colorless`
-,`color_count`, set_name, legal_modern, legal_standard
- ,scryfall_web_uri, rulings_uri  
+,`color_count` 
+,legal_modern, legal_standard
+,scryfall_web_uri, rulings_uri  
+,`image_uri_small`
 
 FROM lore.cardface
 JOIN lore.card ON 
 	card.id =
     	cardface.card_id
-LIMIT 10,100
+$where_sql
+GROUP BY oracle_id
+
 ";
+
+	$is_debug = false;
+	if($is_debug){
+		echo "<pre>$sql";
+		exit();
+	}
+
     	return $sql;
     }
 
@@ -78,19 +245,9 @@ LIMIT 10,100
     public function MapRow(array $row, int $row_number) :array
     {
 
-    	/*
-		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
-		//a table drilldown report
-		$table_name = $row['TABLE_NAME'];
-
-		$row['TABLE_NAME'] = "Gotta Love Those Row Decorations: $table_name";
-
-		//this will make table name a link to another report
-		//$row['TABLE_NAME'] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
-
-		//this will do the same thing, but styling the link as a bootstrap button.
-		//$row['TABLE_NAME'] = "<a class='btn btn-primary btn-sm' href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
-	*/
+	extract($row);
+		
+	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img src='$image_uri_small'></a>";
 
         return $row;
     }
@@ -134,6 +291,7 @@ LIMIT 10,100
 	*	It will also check the full column name
     */
     public $NUMBER     = ['ROWS','AVG','LENGTH','DATA_FREE'];
+    public $CURRENCY = [];
 
 
     /*
