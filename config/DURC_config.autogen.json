@@ -116,7 +116,7 @@
                     "column_name": "mtgset_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
+                    "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
                     "foreign_table": "mtgset"
@@ -347,7 +347,7 @@
                     "from_column": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` int(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` int(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
         },
         "cardface": {
             "table_name": "cardface",
@@ -366,7 +366,7 @@
                     "column_name": "card_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
+                    "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
                     "foreign_table": "card"
@@ -498,7 +498,25 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "image_hash_small",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "image_uri_normal",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "image_hash_normal",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -516,7 +534,25 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "image_hash_large",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "image_uri_png",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "image_hash_png",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -534,7 +570,25 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "image_hash_art_crop",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "image_uri_border_crop",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "image_hash_border_crop",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -678,7 +732,7 @@
                     "local_key": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) CHARACTER SET utf8 NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT NULL,\n  `image_hash_art_crop` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
         },
         "creature": {
             "table_name": "creature",
