@@ -248,7 +248,7 @@ GROUP BY oracle_id
 
 	extract($row);
 		
-	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img src='$image_uri_art_crop'></a>";
+	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img width='250px' src='$image_uri_art_crop'></a>";
 
         return $row;
     }
