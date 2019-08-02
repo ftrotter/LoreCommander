@@ -215,7 +215,8 @@ SELECT
 ,`color_count` 
 ,legal_modern, legal_standard
 ,scryfall_web_uri, rulings_uri  
-,`image_uri_small`
+,`image_uri_small`,
+image_uri_art_crop
 
 FROM lore.cardface
 JOIN lore.card ON 
@@ -247,7 +248,7 @@ GROUP BY oracle_id
 
 	extract($row);
 		
-	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img src='$image_uri_small'></a>";
+	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img src='$image_uri_art_crop'></a>";
 
         return $row;
     }
