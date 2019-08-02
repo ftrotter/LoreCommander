@@ -80,7 +80,36 @@ class cardface extends \App\DURC\Models\cardface
 		return parent::card();
 	}
 
+	//we override the save function so that we can automatically calculate the img hashes
+	//from the image urls..
+	public function save(array $options = []){
 
+		//basically we hash the contents of the field on the left and put into the 
+		//field on the right..
+		$urls_to_hash = [
+			'image_uri_small'  => 'image_hash_small',
+			'image_uri_normal'  => 'image_hash_normal',
+			'image_uri_large' => 'image_hash_large',
+			'image_uri_png' => 'image_hash_png',
+			'image_uri_art_crop'  => 'image_hash_art_crop',
+			'image_uri_border_crop'  =>'image_hash_border_crop',
+		];	
+
+
+	
+		foreach($urls_to_hash as $url_field => $hash_field){
+			//we want to hash the url without arguments... 
+			///so that if the arguments change the hash, and image cache
+			//does not need to be rebuilt
+			
+			@list($url_to_hash) = explode("?", $this->$url_field, 2);
+			
+			$this->$hash_field = md5($url_to_hash);			
+		}
+	
+
+		return parent::save($options);
+	}
 
 
 // Last generated SQL Schema
