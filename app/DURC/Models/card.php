@@ -151,7 +151,16 @@ CREATE TABLE `lore`.`card` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `scryfall_id` (`scryfall_id`)
+  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),
+  KEY `set_name` (`set_name`),
+  KEY `is_story_spotlight` (`is_story_spotlight`),
+  KEY `is_game_paper` (`is_game_paper`),
+  KEY `is_game_mtgo` (`is_game_mtgo`),
+  KEY `is_game_arena` (`is_game_arena`),
+  KEY `legal_commander` (`legal_commander`),
+  KEY `legal_penny` (`legal_penny`),
+  KEY `legal_modern` (`legal_modern`),
+  KEY `legal_standard` (`legal_standard`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1
 */
 
