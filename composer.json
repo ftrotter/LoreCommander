@@ -5,17 +5,10 @@
     "license": "MIT",
     "type": "project",
     "repositories": [
-<<<<<<< HEAD
-        {
-            "type": "vcs",
-            "url": "git@github.com:CareSet/CareSetJWTAuthClient.git"
-        }, 
     	{
         	"type": "vcs",
 		"url" : "git@github.com:CareSet/ZermeloBladeGraph.git"
     	}
-=======
->>>>>>> 7963f6b07ee994098d5c0438867312aa1af2c8e8
     ],
     "require": {
         "php": ">=7.0.0",
