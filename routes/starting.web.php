@@ -15,11 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('pusher', function () {
 
-Route::get('/mockup',function () {
-        $content = view('dashboard_mockup');
-        $test_data = ['content' => $content];
-        return view('main_html',$test_data);
+        return view('pusher_test');
 });
+
 
 

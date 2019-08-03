@@ -3,7 +3,7 @@
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Graph\AbstractGraphReport;
 
-class GraphTest extends AbstractGraphReport
+class ShouldError_DifferentLatLon extends AbstractGraphReport
 {
 
 
@@ -68,7 +68,7 @@ SELECT
 	`query_num`
 
 
-FROM graph_testdata.graphdata_nodetypetests
+FROM graph_testdata.shoulderror_different_latlon
 ";
         return $sql;
     }
