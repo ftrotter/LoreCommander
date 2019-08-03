@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=5bcf73568a602c683fe425d0a1c2484d
+FILE_SIG=48438d397cc2c4457f42d40208a13418
 */
 namespace App;
 /*
@@ -40,11 +40,17 @@ class cardface extends \App\DURC\Models\cardface
 			//'type_line', //varchar
 			//'border_color', //varchar
 			//'image_uri_small', //varchar
+			//'image_hash_small', //varchar
 			//'image_uri_normal', //varchar
+			//'image_hash_normal', //varchar
 			//'image_uri_large', //varchar
+			//'image_hash_large', //varchar
 			//'image_uri_png', //varchar
+			//'image_hash_png', //varchar
 			//'image_uri_art_crop', //varchar
+			//'image_hash_art_crop', //varchar
 			//'image_uri_border_crop', //varchar
+			//'image_hash_border_crop', //varchar
 			//'is_foil', //tinyint
 			//'is_nonfoil', //tinyint
 			//'is_oversized', //tinyint
@@ -74,7 +80,36 @@ class cardface extends \App\DURC\Models\cardface
 		return parent::card();
 	}
 
+	//we override the save function so that we can automatically calculate the img hashes
+	//from the image urls..
+	public function save(array $options = []){
 
+		//basically we hash the contents of the field on the left and put into the 
+		//field on the right..
+		$urls_to_hash = [
+			'image_uri_small'  => 'image_hash_small',
+			'image_uri_normal'  => 'image_hash_normal',
+			'image_uri_large' => 'image_hash_large',
+			'image_uri_png' => 'image_hash_png',
+			'image_uri_art_crop'  => 'image_hash_art_crop',
+			'image_uri_border_crop'  =>'image_hash_border_crop',
+		];	
+
+
+	
+		foreach($urls_to_hash as $url_field => $hash_field){
+			//we want to hash the url without arguments... 
+			///so that if the arguments change the hash, and image cache
+			//does not need to be rebuilt
+			
+			@list($url_to_hash) = explode("?", $this->$url_field, 2);
+			
+			$this->$hash_field = md5($url_to_hash);			
+		}
+	
+
+		return parent::save($options);
+	}
 
 
 // Last generated SQL Schema
@@ -93,14 +128,20 @@ CREATE TABLE `lore`.`cardface` (
   `name` varchar(255) NOT NULL,
   `oracle_text` varchar(1000) NOT NULL,
   `power` varchar(255) DEFAULT NULL,
-  `type_line` varchar(255) NOT NULL,
+  `type_line` varchar(255) CHARACTER SET utf8 NOT NULL,
   `border_color` varchar(255) NOT NULL,
   `image_uri_small` varchar(500) DEFAULT NULL,
+  `image_hash_small` varchar(32) DEFAULT NULL,
   `image_uri_normal` varchar(500) DEFAULT NULL,
+  `image_hash_normal` varchar(32) DEFAULT NULL,
   `image_uri_large` varchar(500) DEFAULT NULL,
+  `image_hash_large` varchar(32) DEFAULT NULL,
   `image_uri_png` varchar(500) DEFAULT NULL,
+  `image_hash_png` varchar(32) DEFAULT NULL,
   `image_uri_art_crop` varchar(500) DEFAULT NULL,
+  `image_hash_art_crop` varchar(32) DEFAULT NULL,
   `image_uri_border_crop` varchar(500) DEFAULT NULL,
+  `image_hash_border_crop` varchar(32) DEFAULT NULL,
   `is_foil` tinyint(1) NOT NULL,
   `is_nonfoil` tinyint(1) NOT NULL,
   `is_oversized` tinyint(1) NOT NULL DEFAULT 0,
@@ -115,7 +156,18 @@ CREATE TABLE `lore`.`cardface` (
   `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`,`card_id`),
+  KEY `is_color_green` (`is_color_green`),
+  KEY `is_color_red` (`is_color_red`),
+  KEY `is_color_blue` (`is_color_blue`),
+  KEY `is_color_black` (`is_color_black`),
+  KEY `is_color_white` (`is_color_white`),
+  KEY `is_colorless` (`is_colorless`),
+  FULLTEXT KEY `artist` (`artist`),
+  FULLTEXT KEY `flavor_text` (`flavor_text`),
+  FULLTEXT KEY `oracle_text` (`oracle_text`),
+  FULLTEXT KEY `type_line` (`type_line`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1
 */
 
