@@ -39,7 +39,7 @@ class MakeImgCache extends Command
     public function handle()
     {
         
-	$all_cardfaces = \App\cardface::all();
+	$all_cardfaces = \App\cardface::where('image_uri_large', 'like', '%-%')->get();
 
                 $urls_to_hash = [
                 //        'image_uri_small'  => 'image_hash_small',
