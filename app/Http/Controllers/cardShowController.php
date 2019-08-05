@@ -27,7 +27,7 @@ class cardShowController extends Controller
 
         	$pusher->trigger( $channel_id, 'show_this_card',  ['multiverse_id' => $multiverse_id] );
 
-		return("Showing card $scryfall_id");
+		return("Showing card $multiverse_id");
 
 	}
 
