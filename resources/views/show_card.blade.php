@@ -19,32 +19,62 @@
   <script src='/js/mustache.3.0.1.js'></script>
   <script>
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    		// Enable pusher logging - don't include this in production
+    		Pusher.logToConsole = true;
 
-    var pusher = new Pusher('4fdeafbb25f448a6b3ab', {
-      cluster: 'us3',
-      forceTLS: true
-    });
+    		var pusher = new Pusher('4fdeafbb25f448a6b3ab', {
+      			cluster: 'us3',
+      			forceTLS: true
+    		});
 
-    var channel = pusher.subscribe('{{$channel_id}}');
-    channel.bind('show_this_card', function(data) {
+    		var channel = pusher.subscribe('{{$channel_id}}');
+    		channel.bind('show_this_card', function(data) {
 
-		var scryfall_url = 'https://api.scryfall.com/cards/multiverse/' + data['multiverse_id'];
+			var scryfall_url = 'https://api.scryfall.com/cards/multiverse/' + data['multiverse_id'];
 
-		var tpl = "<h1>@{{name}} </h1> <p> @{{oracle_text}} </p> <img src='@{{image_uris.large}}'>";
-		var tpl = "<div class='row'> <div class='col-6''> <img src='@{{image_uris.art_crop}}'> </div> <div class='col-6'> <h1>@{{name}} </h1> <p> @{{oracle_text}} </p> </div> </div>";
-//		var tpl = "<h1>@{{name}} </h1> <p> @{{oracle_text}} </p>";
+			$.get('/templates/cardview.template.html', function(templates) {
+				var tpl = $(templates).filter('#tpl-cardview').html();
+				//var tpl = "<h1>@{{name}}</h1>";	
+		
+				fetch(scryfall_url)
+					.then(function(response) {
+    						return response.json();
+  					})
+  					.then(function(myData) {
+						myData.img_url_list = get_illustration_array(myData);
+						var card_html = Mustache.to_html(tpl, myData);
+						$('#cardView').html(card_html);
+					});
+			}); // end get template
+		});  //end pusher channel bind
 
-		fetch(scryfall_url)
-			.then(function(response) {
-    				return response.json();
-  			})
-  			.then(function(myData) {
-				var card_html = Mustache.to_html(tpl, myData);
-				$('#cardView').html(card_html);
+	//
+	function get_illustration_array(card_data){
+
+		img_list = [];
+
+		
+
+		fetch(card_data.prints_search_url)
+			.then(function(response){
+				 return response.json();
+				})
+			.then(function(cards_data){
+
+				cards_data.data.forEach(function(this_card) {
+					img_list[] = this_card['image_uris']['large'];
+				});			
 			});
-    	});
+
+		
+		
+
+		return(img_list);
+
+
+	}
+
+
   </script>
 </head>
 <body>
