@@ -1,0 +1,69 @@
+<script id="tpl-cardview" type="text/html">
+
+<div class='row'> 
+	<div class='col-6''> 
+		<img src='{{image_uris.art_crop}}'> 
+	</div> 
+	<div class='col-3'> 
+		<h1>{{name}} </h1> <p> {{oracle_text}} </p> 
+        <dt>Artist</dt>
+        <dd>{{artist}}</dd>
+        <dt>Mana Cost</dt>
+        <dd>{{mana_cost}}</dd>
+        <dt>Set Name</dt>
+        <dd>{{set_name}}</dd>
+	<dt>  Legalities </dt>
+	<dd>
+		<ul>
+		{{#legalities}}
+			<li> commander: {{commander}} </li>
+			<li> standard: {{standard}} </li>
+			<li> modern: {{modern}} </li>
+			<li> vintage: {{vintage}} </li>
+			<li> future: {{future}} </li>
+			<li> legacy: {{legacy}} </li>
+			<li> pauper: {{pauper}} </li>
+			<li> penny: {{penny}} </li>
+			<li> brawl: {{brawl}} </li>
+			<li> duel: {{duel}} </li>
+			<li> oldschool: {{oldschool}} </li>
+		{{/legalities}}
+		</ul>
+	</dd>
+	<dt> Price </dt>
+	<dd>
+		{{#prices}}
+		<ul>
+			<li> Foil Price {{usd_foil}}  </li>
+			<li> Regular Price {{usd}} </li>
+		</ul>	
+		{{/prices}}	
+	</dd>
+	</div>  
+	<div class='col-3'> 
+		<img src='{{image_uris.small}}'> 
+	</div> 
+</div>
+<div class='row'>
+	<div class='col-1'> 
+
+	</div>
+
+	<div class='col-10'> 
+	<ul>
+	<li>List of urls</li>
+	{{blah.0}}
+	{{#blah}}
+<li>
+	{{0}}
+	url: {{.}}
+</li>
+	{{/blah}}
+	</ul>
+	Something after
+	</div>
+	<div class='col-1'> 
+
+	</div>
+</div>
+</script>
