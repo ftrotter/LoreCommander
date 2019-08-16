@@ -40,47 +40,56 @@
 					.then(function(response) {
     						return response.json();
   					})
-  					.then(function(myData) {
-						myData.img_url_list = get_illustration_array(myData);
+  					.then(async function(myData) {
+						//console.log('before get_illustration');
+						var ill_img_list = await get_illustration_array(myData);
+						await sleep(2000); //doing this as the simplest way to ensure that my ill_img_list is really set
+						myData.ill_img_list = ill_img_list;
+						//console.log('before mustache to_html');
+						//console.log(myData);
 						var card_html = Mustache.to_html(tpl, myData);
+						console.log('before html');
 						$('#cardView').html(card_html);
 					});
 			}); // end get template
 		});  //end pusher channel bind
 
 	//
-	function get_illustration_array(card_data){
+	async function get_illustration_array(card_data){
 
 		img_list = [];
 
-		
-
-		fetch(card_data.prints_search_url)
+		fetch(card_data.prints_search_uri)
 			.then(function(response){
 				 return response.json();
 				})
 			.then(function(cards_data){
-
+		//		console.log('cards data');
+		//		console.log(cards_data);
 				cards_data.data.forEach(function(this_card) {
-					img_list[] = this_card['image_uris']['large'];
+					img_list.push(this_card['image_uris']['large']);
 				});			
 			});
 
-		
-		
+	//	console.log('this is img_list');	
+	//	console.log(img_list);
 
 		return(img_list);
 
 
 	}
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
   </script>
 </head>
 <body>
+<div id='cardView' class='container-fluid' style='padding: 3% 3%;'>
 <h3> Delver URL: https://lore.ft1.us/changeCard/{{$channel_id}}/$multiverse_id </h3>
-<div id='cardView' class='container-fluid'>
-
+<a href='/templates/cardview.template.html'>reload card view template</a>
 </div>
 </body>
 
