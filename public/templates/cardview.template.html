@@ -1,32 +1,30 @@
 <script id="tpl-cardview" type="text/html">
 
 <div class='row'> 
-	<div class='col-6''> 
-		<img src='{{image_uris.art_crop}}'> 
+	<div class='col-12'>
+		<h3> {{name }} <small> {{mana_cost}} {{rarity}} </small></h3>
+	</div>
+</div>
+<div class='row'> 
+
+	<div class='col-6'> 
+		<img class="img-fluid" src='{{image_uris.art_crop}}'> 
+        	<dt>Artist</dt>
+        	<dd>{{artist}}</dd>
 	</div> 
-	<div class='col-3'> 
-		<h1>{{name}} </h1> <p> {{oracle_text}} </p> 
-        <dt>Artist</dt>
-        <dd>{{artist}}</dd>
-        <dt>Mana Cost</dt>
-        <dd>{{mana_cost}}</dd>
+	<div class='col-3 small'> 
+		<p> {{oracle_text}} </p> 
         <dt>Set Name</dt>
         <dd>{{set_name}}</dd>
 	<dt>  Legalities </dt>
 	<dd>
 		<ul>
 		{{#legalities}}
-			<li> commander: {{commander}} </li>
-			<li> standard: {{standard}} </li>
-			<li> modern: {{modern}} </li>
-			<li> vintage: {{vintage}} </li>
-			<li> future: {{future}} </li>
-			<li> legacy: {{legacy}} </li>
-			<li> pauper: {{pauper}} </li>
-			<li> penny: {{penny}} </li>
-			<li> brawl: {{brawl}} </li>
-			<li> duel: {{duel}} </li>
-			<li> oldschool: {{oldschool}} </li>
+			<li> standard: {{standard}} modern: {{modern}} </li>
+			<li> commander: {{commander}} pauper: {{pauper}} </li>
+			<li> vintage: {{vintage}} legacy: {{legacy}} </li>
+			<li> penny: {{penny}} brawl: {{brawl}} </li>
+			<li> duel: {{duel}} oldschool: {{oldschool}} </li>
 		{{/legalities}}
 		</ul>
 	</dd>
@@ -50,17 +48,9 @@
 	</div>
 
 	<div class='col-10'> 
-	<ul>
-	<li>List of urls</li>
-	{{blah.0}}
-	{{#blah}}
-<li>
-	{{0}}
-	url: {{.}}
-</li>
-	{{/blah}}
-	</ul>
-	Something after
+	{{#ill_img_list}}
+<img style='padding: 6px;' width='250px' src='{{.}}' class="rounded float-left">
+	{{/ill_img_list}}
 	</div>
 	<div class='col-1'> 
 
