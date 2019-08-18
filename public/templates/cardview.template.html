@@ -44,9 +44,14 @@
 	</div>  
 	<div class='col-3'> 
 		<img src='{{image_uris.small}}'> 
-		<div id='card_rulings'>
-			loading rulings...
-		</div>
+		<h4> Rulings: </h4>
+		<ul>
+		{{#rulings_list}}
+			<li>
+			{{.}}
+			</li>
+		{{/rulings_list}}
+		</ul>
 	</div> 
 </div>
 <div class='row'>
