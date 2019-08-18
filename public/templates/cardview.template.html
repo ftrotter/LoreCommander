@@ -42,13 +42,16 @@
 		{{/prices}}	
 	</dd>
 	</div>  
-	<div class='col-3'> 
+	<div class='col-3 small'> 
 		<img src='{{image_uris.small}}'> 
-		<h4> Rulings: </h4>
-		<ul>
+		<br>
+		<ul class="list-group">
 		{{#rulings_list}}
-			<li>
-			{{.}}
+			<li class="list-group-item">
+			{{comment}}
+			<br>
+			<small class='float-right'> {{source}}, {{published_at}} </small>
+			<br>
 			</li>
 		{{/rulings_list}}
 		</ul>
