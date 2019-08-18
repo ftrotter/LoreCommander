@@ -18,15 +18,19 @@
         <dd>{{set_name}}</dd>
 	<dt>  Legalities </dt>
 	<dd>
-		<ul>
 		{{#legalities}}
-			<li> standard: {{standard}} modern: {{modern}} </li>
-			<li> commander: {{commander}} pauper: {{pauper}} </li>
-			<li> vintage: {{vintage}} legacy: {{legacy}} </li>
-			<li> penny: {{penny}} brawl: {{brawl}} </li>
-			<li> duel: {{duel}} oldschool: {{oldschool}} </li>
+			<div class="float-left">
+				<img width='30px' title='standard {{standard}}' src='/images/standard_{{standard}}.png'  >
+				<img width='30px' title='modern {{modern}}' src='/images/modern_{{modern}}.png'  >
+				<img width='30px' title='commander {{commander}}' src='/images/commander_{{commander}}.png'  >
+				<img width='30px' title='duel {{duel}}' src='/images/duel_{{duel}}.png'  >
+				<img width='30px' title='brawl {{brawl}}' src='/images/brawl_{{brawl}}.png'  >
+				<img width='30px' title='penny {{penny}}' src='/images/penny_{{penny}}.png'  >
+				<img width='30px' title='pauper {{pauper}}' src='/images/pauper_{{pauper}}.png'  >
+				<img width='30px' title='vintage {{vintage}}' src='/images/vintage_{{vintage}}.png'  >
+				<img width='30px' title='legacy {{legacy}}' src='/images/legacy_{{legacy}}.png'  >
+			</div>
 		{{/legalities}}
-		</ul>
 	</dd>
 	<dt> Price </dt>
 	<dd>
@@ -40,6 +44,9 @@
 	</div>  
 	<div class='col-3'> 
 		<img src='{{image_uris.small}}'> 
+		<div id='card_rulings'>
+			loading rulings...
+		</div>
 	</div> 
 </div>
 <div class='row'>
