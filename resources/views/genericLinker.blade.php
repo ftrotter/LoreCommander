@@ -28,6 +28,9 @@ This interface allows you to quickly tag sets of objects...
 		</div>
 	</div>
 
+<form method='POST' action='/genericLinkerSave/{{$durc_type_left}}/{{$durc_type_right}}/{{$durc_type_tag}}'>
+
+
 	<div class='row'>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
@@ -49,6 +52,9 @@ This interface allows you to quickly tag sets of objects...
 		</div>
 		<div class='col-md-1'></div>
 	</div>
+
+<input type='submit'>
+</form>
 
 </div>
 
