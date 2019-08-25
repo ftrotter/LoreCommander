@@ -33,8 +33,7 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-3'>
 		LEft {{$durc_type_left}} goes here
 
-<select class='select2_{{$durc_type_left}}_id form-control' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id' form-control>
-	<option value='' selected='selected'></option>
+<select class='select2_{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id'>
 	</select>
 
 
