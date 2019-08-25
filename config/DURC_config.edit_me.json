@@ -880,10 +880,10 @@
                 }
             ],
             "has_many": {
-                "person_creature_relation": {
+                "person_creature_tag": {
                     "prefix": null,
-                    "type": "person_creature_relation",
-                    "from_table": "person_creature_relation",
+                    "type": "person_creature_tag",
+                    "from_table": "person_creature_tag",
                     "from_db": "lore",
                     "from_column": "creature_id"
                 }
@@ -1137,18 +1137,18 @@
                 }
             ],
             "has_many": {
-                "person_creature_relation": {
+                "person_creature_tag": {
                     "prefix": null,
-                    "type": "person_creature_relation",
-                    "from_table": "person_creature_relation",
+                    "type": "person_creature_tag",
+                    "from_table": "person_creature_tag",
                     "from_db": "lore",
                     "from_column": "person_id"
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(255) NOT NULL,\n  `first_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "person_creature_relation": {
-            "table_name": "person_creature_relation",
+        "person_creature_tag": {
+            "table_name": "person_creature_tag",
             "db": "lore",
             "column_data": [
                 {
@@ -1164,32 +1164,32 @@
                     "column_name": "person_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "lore",
                     "foreign_table": "person"
                 },
                 {
-                    "column_name": "relation_id",
-                    "data_type": "int",
-                    "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": null,
-                    "foreign_table": null
-                },
-                {
                     "column_name": "creature_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "lore",
                     "foreign_table": "creature"
                 },
                 {
-                    "column_name": "justification_note",
-                    "data_type": "varchar",
+                    "column_name": "tag_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "tag"
+                },
+                {
+                    "column_name": "is_generic_linker",
+                    "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
                     "is_linked_key": false,
@@ -1197,7 +1197,7 @@
                     "foreign_table": null
                 },
                 {
-                    "column_name": "justification_url",
+                    "column_name": "link_note",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -1238,9 +1238,16 @@
                     "to_table": "creature",
                     "to_db": "lore",
                     "local_key": "creature_id"
+                },
+                "tag": {
+                    "prefix": null,
+                    "type": "tag",
+                    "to_table": "tag",
+                    "to_db": "lore",
+                    "local_key": "tag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_creature_relation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `relation_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `justification_note` varchar(1000) NOT NULL,\n  `justification_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`relation_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_creature_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_generic_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
         },
         "tag": {
             "table_name": "tag",
@@ -1283,6 +1290,15 @@
                     "foreign_table": null
                 }
             ],
+            "has_many": {
+                "person_creature_tag": {
+                    "prefix": null,
+                    "type": "person_creature_tag",
+                    "from_table": "person_creature_tag",
+                    "from_db": "lore",
+                    "from_column": "tag_id"
+                }
+            },
             "create_table_sql": "CREATE TABLE `lore`.`tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `tag_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`tag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         }
     }

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4a4cca98f27e1534fa97648769c28e0c
+FILE_SIG=4481c74cdf5f0beec1a95a022f13b78f
 */
 namespace App;
 /*
@@ -18,7 +18,7 @@ class creature extends \App\DURC\Models\creature
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'person_creature_relation', //from from many
+			'person_creature_tag', //from from many
 		];
 
 */
@@ -34,11 +34,11 @@ class creature extends \App\DURC\Models\creature
 //DURC HAS_MANY SECTION
 
 /**
-*	DURC is handling the person_creature_relation for this creature in creature
+*	DURC is handling the person_creature_tag for this creature in creature
 *       but you can extend or override the defaults by editing this function...
 */
-	public function person_creature_relation(){
-		return parent::person_creature_relation();
+	public function person_creature_tag(){
+		return parent::person_creature_tag();
 	}
 
 
