@@ -38,9 +38,9 @@ This interface allows you to quickly tag sets of objects...
 
 <script type='text/javascript'>
 
-$('.{{durc_type_left}}')_div.select2({
+$('.{{$durc_type_left}}')_div.select2({
   ajax: {
-    	url: '/DURC/searchjson/{{durc_type_left}}/',
+    	url: '/DURC/searchjson/{{$durc_type_left}}/',
     	dataType: 'json'
   }
 });
