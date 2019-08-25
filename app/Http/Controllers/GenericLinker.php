@@ -8,7 +8,16 @@ use DB;
 class GenericLinker extends Controller
 {
 
-	public function linkMaker($durc_type_left,$durc_type_right,$durc_type_tag){
+	public function linkSaver(Request $request){
+
+		dd($request->all());
+		
+
+	}
+
+
+
+	public function linkForm($durc_type_left,$durc_type_right,$durc_type_tag){
 
 
 
