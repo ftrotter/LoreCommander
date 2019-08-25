@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('changeCard/{channel_id}/{multiverse_id}', 'cardShowController@sendCardPush');
 Route::get('showCard/{channel_id}', 'cardShowController@showCard');
 
+Route::get('genericLinker/{durc_type_left}/{durc_type_right}/{link_type}','GenericLinker@linkMaker');
 
 Route::get('pusher', function () {
 

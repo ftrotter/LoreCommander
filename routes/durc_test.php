@@ -44,10 +44,10 @@ Route::get('durctest', function () {
  			'/DURC/person/create', //from: lore.person 
  			'/DURC/person/1', //from: lore.person 
  			'/DURC/person/1/edit', //from: lore.person 
- 			'/DURC/person_creature_relation', //from: lore.person_creature_relation 
- 			'/DURC/person_creature_relation/create', //from: lore.person_creature_relation 
- 			'/DURC/person_creature_relation/1', //from: lore.person_creature_relation 
- 			'/DURC/person_creature_relation/1/edit', //from: lore.person_creature_relation 
+ 			'/DURC/person_creature_tag', //from: lore.person_creature_tag 
+ 			'/DURC/person_creature_tag/create', //from: lore.person_creature_tag 
+ 			'/DURC/person_creature_tag/1', //from: lore.person_creature_tag 
+ 			'/DURC/person_creature_tag/1/edit', //from: lore.person_creature_tag 
  			'/DURC/tag', //from: lore.tag 
  			'/DURC/tag/create', //from: lore.tag 
  			'/DURC/tag/1', //from: lore.tag 

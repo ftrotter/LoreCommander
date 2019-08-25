@@ -25,7 +25,7 @@ class person extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
-			'person_creature_relation', //from from many
+			'person_creature_tag', //from from many
 		];
 
 
@@ -54,10 +54,10 @@ class person extends DURCModel{
 //DURC HAS_MANY SECTION
 
 /**
-*	get all the person_creature_relation for this person
+*	get all the person_creature_tag for this person
 */
-	public function person_creature_relation(){
-		return $this->hasMany('App\person_creature_relation','person_id','id');
+	public function person_creature_tag(){
+		return $this->hasMany('App\person_creature_tag','person_id','id');
 	}
 
 

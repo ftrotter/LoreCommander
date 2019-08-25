@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('changeCard/{channel_id}/{multiverse_id}', 'cardShowController@sendCardPush');
 Route::get('showCard/{channel_id}', 'cardShowController@showCard');
 
+Route::get('genericLinker/{durc_type_left}/{durc_type_right}/{link_type}','GenericLinker@linkMaker');
 
 Route::get('pusher', function () {
 
@@ -94,11 +95,11 @@ Route::get("/DURC/json/person/", 'personController@jsonall');
 Route::get("/DURC/searchjson/person/", 'personController@search');
 
  
-//DURC->	lore.person_creature_relation
-Route::resource("/DURC/person_creature_relation", 'person_creature_relationController');
-Route::get("/DURC/json/person_creature_relation/{person_creature_relation_id}", 'person_creature_relationController@jsonone');
-Route::get("/DURC/json/person_creature_relation/", 'person_creature_relationController@jsonall');
-Route::get("/DURC/searchjson/person_creature_relation/", 'person_creature_relationController@search');
+//DURC->	lore.person_creature_tag
+Route::resource("/DURC/person_creature_tag", 'person_creature_tagController');
+Route::get("/DURC/json/person_creature_tag/{person_creature_tag_id}", 'person_creature_tagController@jsonone');
+Route::get("/DURC/json/person_creature_tag/", 'person_creature_tagController@jsonall');
+Route::get("/DURC/searchjson/person_creature_tag/", 'person_creature_tagController@search');
 
  
 //DURC->	lore.tag
