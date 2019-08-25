@@ -8,7 +8,7 @@
     <title>Link {{ $durc_type_left }} {{$durc_type_right}}</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="/css/select2.min.css" rel="stylesheet" />
 
   </head>
   <body>
@@ -62,8 +62,9 @@ $('.{{$durc_type_left}}')_div.select2({
 
 </div>
 
-    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="/js/select2.min.js"></script>
   </body>
 </html>
