@@ -34,7 +34,7 @@ This interface allows you to quickly tag sets of objects...
 	<div class='row'>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
-		LEft {{$durc_type_left}} goes here
+		<h3> Select {{$durc_type_left}} </h3>
 
 <select class='{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id[]'>
 	</select>
@@ -53,10 +53,16 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-1'></div>
 	</div>
 
-<input type='submit'>
+</div>
+
+<div class='row'>
+	<div class='col-md-2'></div>
+	<div class='col-md-10'>
+ 		<button name="submit" type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</div>
 </form>
 
-</div>
 
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/popper.min.js"></script>
