@@ -33,8 +33,9 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-3'>
 		LEft {{$durc_type_left}} goes here
 
-<select class="select2-container select2-container-multi" id="{{$durc_type_left}}_div">
-</select>
+<select class='select2_person_id form-control' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id' form-control>
+	<option value='' selected='selected'></option>
+	</select>
 
 
 
@@ -59,7 +60,7 @@ This interface allows you to quickly tag sets of objects...
 
 <script type='text/javascript'>
 
-$('.{{$durc_type_left}}_div').select2({
+$('.{{$durc_type_left}}_id').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_left}}/',
     	dataType: 'json'
