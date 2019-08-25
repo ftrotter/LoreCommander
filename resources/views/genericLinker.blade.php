@@ -33,8 +33,8 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-3'>
 		LEft {{$durc_type_left}} goes here
 
-<div class="select2-container select2-container-multi" id="{{$durc_type_left}}_div">
-</div>
+<select class="select2-container select2-container-multi" id="{{$durc_type_left}}_div">
+</select>
 
 
 
