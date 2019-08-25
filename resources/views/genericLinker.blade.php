@@ -34,35 +34,41 @@ This interface allows you to quickly tag sets of objects...
 	<div class='row'>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
-		<h3> Select {{$durc_type_left}} </h3>
+			<h3> Select {{$durc_type_left}} </h3>
 
-<select class='{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id[]'>
-	</select>
-
-
+			<select class='{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id[]'>
+			</select>
 
 		</div>
+
 		<div class='col-md-1'></div>
 		<div class='col-md-2'>
-		Middle {{$durc_type_tag}} goes here
+			<h3> Tag {{$durc_type_tag}} </h3>
+
+			<select class='{{$durc_type_tag}}_id form-control' multiple='' id='{{$durc_type_tag}}_id' name='{{$durc_type_tag}}_id[]'>
+			</select>
+
 		</div>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
-		Right {{$durc_type_right}} goes here
+			<h3> Select {{$durc_type_right}} </h3>
+
+			<select class='{{$durc_type_right}}_id form-control' multiple='' id='{{$durc_type_right}}_id' name='{{$durc_type_right}}_id[]'>
+			</select>
+
 		</div>
 		<div class='col-md-1'></div>
 	</div>
 
-</div>
-
-<div class='row'>
-	<div class='col-md-2'></div>
-	<div class='col-md-10'>
- 		<button name="submit" type="submit" class="btn btn-primary">Submit</button>
+	<div class='row'>
+		<div class='col-md-2'></div>
+		<div class='col-md-10'>
+ 			<button name="submit" type="submit" class="btn btn-primary">Submit</button>
+		</div>
 	</div>
-</div>
-</form>
+	</form>
 
+</div>
 
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/popper.min.js"></script>
@@ -74,6 +80,20 @@ This interface allows you to quickly tag sets of objects...
 $('.{{$durc_type_left}}_id').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_left}}/',
+    	dataType: 'json'
+  }
+});
+
+$('.{{$durc_type_right}}_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/{{$durc_type_right}}/',
+    	dataType: 'json'
+  }
+});
+
+$('.{{$durc_type_tag}}_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/{{$durc_type_tag}}/',
     	dataType: 'json'
   }
 });
