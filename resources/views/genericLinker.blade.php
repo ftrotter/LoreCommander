@@ -34,7 +34,7 @@ This interface allows you to quickly tag sets of objects...
 		</div>
 		<div class='col-md-1'></div>
 		<div class='col-md-2'>
-		Middle {{$durc_type_link}} goes here
+		Middle {{$durc_type_tag}} goes here
 		</div>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
