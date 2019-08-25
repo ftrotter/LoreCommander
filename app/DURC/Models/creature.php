@@ -78,8 +78,9 @@ CREATE TABLE `lore`.`creature` (
   `creature_name` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `creature_name` (`creature_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

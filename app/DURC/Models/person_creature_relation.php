@@ -26,7 +26,6 @@ class person_creature_relation extends DURCModel{
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
 			'person', //from belongs to
-			'relation', //from belongs to
 			'creature', //from belongs to
 		];
 
@@ -77,14 +76,6 @@ class person_creature_relation extends DURCModel{
 
 
 /**
-*	get the single relation for this person_creature_relation
-*/
-	public function relation(){
-		return $this->belongsTo('App\relation','relation_id','id');
-	}
-
-
-/**
 *	get the single creature for this person_creature_relation
 */
 	public function creature(){
@@ -106,7 +97,7 @@ CREATE TABLE `lore`.`person_creature_relation` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_id` (`person_id`,`relation_id`,`creature_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

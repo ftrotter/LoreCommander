@@ -66,6 +66,7 @@ class card extends DURCModel{
 		'legal_oldschool' => 'tinyint',
 		'legal_duel' => 'tinyint',
 		'legal_commander' => 'tinyint',
+		'legal_brawl' => 'tinyint',
 		'legal_penny' => 'tinyint',
 		'legal_vintage' => 'tinyint',
 		'legal_pauper' => 'tinyint',
@@ -140,6 +141,7 @@ CREATE TABLE `lore`.`card` (
   `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,
   `legal_duel` tinyint(1) NOT NULL DEFAULT 0,
   `legal_commander` tinyint(1) NOT NULL DEFAULT 0,
+  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,
   `legal_penny` tinyint(1) NOT NULL DEFAULT 0,
   `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,
   `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,
@@ -161,7 +163,7 @@ CREATE TABLE `lore`.`card` (
   KEY `legal_penny` (`legal_penny`),
   KEY `legal_modern` (`legal_modern`),
   KEY `legal_standard` (`legal_standard`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

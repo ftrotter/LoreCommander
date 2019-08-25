@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=ce3e09722b47d2ae8345e3e086ccb9b6
+FILE_SIG=ddda918076a434681df1cfea3dd8c7b2
 */
 namespace App;
 /*
@@ -51,6 +51,7 @@ class card extends \App\DURC\Models\card
 			//'legal_oldschool', //tinyint
 			//'legal_duel', //tinyint
 			//'legal_commander', //tinyint
+			//'legal_brawl', //tinyint
 			//'legal_penny', //tinyint
 			//'legal_vintage', //tinyint
 			//'legal_pauper', //tinyint
@@ -117,6 +118,7 @@ CREATE TABLE `lore`.`card` (
   `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,
   `legal_duel` tinyint(1) NOT NULL DEFAULT 0,
   `legal_commander` tinyint(1) NOT NULL DEFAULT 0,
+  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,
   `legal_penny` tinyint(1) NOT NULL DEFAULT 0,
   `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,
   `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,
@@ -138,7 +140,7 @@ CREATE TABLE `lore`.`card` (
   KEY `legal_penny` (`legal_penny`),
   KEY `legal_modern` (`legal_modern`),
   KEY `legal_standard` (`legal_standard`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
