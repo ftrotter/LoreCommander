@@ -36,16 +36,6 @@ This interface allows you to quickly tag sets of objects...
 <div class="select2-container select2-container-multi" id="{{$durc_type_left}}_div">
 </div>
 
-<script type='text/javascript'>
-
-$('.{{$durc_type_left}}_div').select2({
-  ajax: {
-    	url: '/DURC/searchjson/{{$durc_type_left}}/',
-    	dataType: 'json'
-  }
-});
-
-</script>
 
 
 		</div>
@@ -66,5 +56,16 @@ $('.{{$durc_type_left}}_div').select2({
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/select2.min.js"></script>
+
+<script type='text/javascript'>
+
+$('.{{$durc_type_left}}_div').select2({
+  ajax: {
+    	url: '/DURC/searchjson/{{$durc_type_left}}/',
+    	dataType: 'json'
+  }
+});
+
+</script>
   </body>
 </html>
