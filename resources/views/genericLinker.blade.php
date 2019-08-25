@@ -29,7 +29,7 @@ This interface allows you to quickly tag sets of objects...
 	</div>
 
 <form method='POST' action='/genericLinkerSave/{{$durc_type_left}}/{{$durc_type_right}}/{{$durc_type_tag}}'>
-
+	@csrf
 
 	<div class='row'>
 		<div class='col-md-1'></div>
