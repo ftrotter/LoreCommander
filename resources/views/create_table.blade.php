@@ -7,7 +7,7 @@
 
     <title>Need new Linker Table</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
@@ -17,15 +17,17 @@
 		<div class="col-md-12">
 			<div class="jumbotron">
 				<h2>
-					New Linking
+					New Linking Table Needed
 				</h2>
 				<p>
-This URL will representing a new linking table in your DURC instance. If that is on-purpose, then create the needed underlying table using the SQL below.
-<br>
-If not, (if this was a mistake) you should correct your URL above.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
+If you did not intend to create a new linking, by visiting the above url. Then do nothing. 
+<br><br>
+But if you want to actually create a new linking system, then: 
+
+<ul>
+	<li> Create the table by running the SQL code listed below </li>
+	<li> Re-run the DURC generator to create the linking class </li>
+</ul>
 				</p>
 			</div>
 <pre>{{{ $create_table_sql}}}
@@ -37,8 +39,7 @@ If not, (if this was a mistake) you should correct your URL above.
 	</div>
 </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
