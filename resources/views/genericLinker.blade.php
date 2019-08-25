@@ -8,6 +8,7 @@
     <title>Link {{ $durc_type_left }} {{$durc_type_right}}</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
   </head>
   <body>
@@ -31,6 +32,22 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
 		LEft {{$durc_type_left}} goes here
+
+<div class="select2-container select2-container-multi" id="{{$durc_type_left}}_div">
+</div>
+
+<script type='text/javascript'>
+
+$('.{{durc_type_left')_div.select2({
+  ajax: {
+    	url: '/DURC/searchjson/{{durc_type_left}}/',
+    	dataType: 'json'
+  }
+});
+
+</script>
+
+
 		</div>
 		<div class='col-md-1'></div>
 		<div class='col-md-2'>
@@ -47,5 +64,6 @@ This interface allows you to quickly tag sets of objects...
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   </body>
 </html>
