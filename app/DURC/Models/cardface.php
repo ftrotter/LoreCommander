@@ -124,7 +124,7 @@ CREATE TABLE `lore`.`cardface` (
   `name` varchar(255) NOT NULL,
   `oracle_text` varchar(1000) NOT NULL,
   `power` varchar(255) DEFAULT NULL,
-  `type_line` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `type_line` varchar(255) NOT NULL,
   `border_color` varchar(255) NOT NULL,
   `image_uri_small` varchar(500) DEFAULT NULL,
   `image_hash_small` varchar(32) DEFAULT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE `lore`.`cardface` (
   FULLTEXT KEY `flavor_text` (`flavor_text`),
   FULLTEXT KEY `oracle_text` (`oracle_text`),
   FULLTEXT KEY `type_line` (`type_line`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

@@ -231,6 +231,7 @@ class cardController extends DURCController
 		$tmp_card->legal_oldschool = DURC::formatForStorage( 'legal_oldschool', 'tinyint', $request->legal_oldschool ); 
 		$tmp_card->legal_duel = DURC::formatForStorage( 'legal_duel', 'tinyint', $request->legal_duel ); 
 		$tmp_card->legal_commander = DURC::formatForStorage( 'legal_commander', 'tinyint', $request->legal_commander ); 
+		$tmp_card->legal_brawl = DURC::formatForStorage( 'legal_brawl', 'tinyint', $request->legal_brawl ); 
 		$tmp_card->legal_penny = DURC::formatForStorage( 'legal_penny', 'tinyint', $request->legal_penny ); 
 		$tmp_card->legal_vintage = DURC::formatForStorage( 'legal_vintage', 'tinyint', $request->legal_vintage ); 
 		$tmp_card->legal_pauper = DURC::formatForStorage( 'legal_pauper', 'tinyint', $request->legal_pauper ); 
@@ -377,6 +378,7 @@ class cardController extends DURCController
 		$tmp_card->legal_oldschool = DURC::formatForStorage( 'legal_oldschool', 'tinyint', $request->legal_oldschool ); 
 		$tmp_card->legal_duel = DURC::formatForStorage( 'legal_duel', 'tinyint', $request->legal_duel ); 
 		$tmp_card->legal_commander = DURC::formatForStorage( 'legal_commander', 'tinyint', $request->legal_commander ); 
+		$tmp_card->legal_brawl = DURC::formatForStorage( 'legal_brawl', 'tinyint', $request->legal_brawl ); 
 		$tmp_card->legal_penny = DURC::formatForStorage( 'legal_penny', 'tinyint', $request->legal_penny ); 
 		$tmp_card->legal_vintage = DURC::formatForStorage( 'legal_vintage', 'tinyint', $request->legal_vintage ); 
 		$tmp_card->legal_pauper = DURC::formatForStorage( 'legal_pauper', 'tinyint', $request->legal_pauper ); 

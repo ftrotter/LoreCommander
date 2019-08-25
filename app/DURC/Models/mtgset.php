@@ -92,7 +92,7 @@ class mtgset extends DURCModel{
 CREATE TABLE `lore`.`mtgset` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `scryfall_id` varchar(255) NOT NULL,
-  `code` varchar(5) NOT NULL,
+  `code` varchar(10) NOT NULL,
   `mtgo_code` varchar(255) DEFAULT NULL,
   `tcgplayer_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE `lore`.`mtgset` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

@@ -2,13 +2,13 @@
 
 namespace App\DURC\Controllers;
 
-use App\person_creature_relation;
+use App\artistcredit;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 
-class person_creature_relationController extends DURCController
+class artistcreditController extends DURCController
 {
 
 
@@ -24,8 +24,6 @@ class person_creature_relationController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
-		$with_summary_array[] = "person:id,".\App\person::getNameField();
-		$with_summary_array[] = "creature:id,".\App\creature::getNameField();
 
 		return($with_summary_array);
 		
@@ -38,7 +36,7 @@ class person_creature_relationController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = person_creature_relation::with($with_argument)->paginate(100);
+		$these = artistcredit::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -53,8 +51,8 @@ class person_creature_relationController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( person_creature_relation::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = person_creature_relation::$field_type_map[ $lowest_key ];
+                                        if ( isset( artistcredit::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = artistcredit::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -62,8 +60,8 @@ class person_creature_relationController extends DURCController
                                 }
                         }
 
-                        if ( isset( person_creature_relation::$field_type_map[$key] ) ) {
-                            $field_type = person_creature_relation::$field_type_map[ $key ];
+                        if ( isset( artistcredit::$field_type_map[$key] ) ) {
+                            $field_type = artistcredit::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -126,7 +124,7 @@ class person_creature_relationController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = person_creature_relation::getSearchFields();
+                $search_fields = artistcredit::getSearchFields();
 
 		$where_sql = '';
 		$or = '';
@@ -135,7 +133,7 @@ class person_creature_relationController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = person_creature_relation::whereRaw($where_sql)
+		$these = artistcredit::whereRaw($where_sql)
 					->take(20)
 					->get();
 
@@ -169,7 +167,7 @@ class person_creature_relationController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\person_creature_relation  $person_creature_relation
+     * @param  \App\artistcredit  $artistcredit
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -190,7 +188,7 @@ class person_creature_relationController extends DURCController
 		var_export($this->view_data);
 		exit();
 	}
-	$durc_template_results = view('DURC.person_creature_relation.index',$this->view_data);        
+	$durc_template_results = view('DURC.artistcredit.index',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -202,42 +200,39 @@ class person_creature_relationController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewperson_creature_relation = new person_creature_relation();
+	$myNewartistcredit = new artistcredit();
 
 	//the games we play to easily auto-generate code..
-	$tmp_person_creature_relation = $myNewperson_creature_relation;
-			$tmp_person_creature_relation->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person_creature_relation->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_person_creature_relation->relation_id = DURC::formatForStorage( 'relation_id', 'int', $request->relation_id ); 
-		$tmp_person_creature_relation->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
-		$tmp_person_creature_relation->justification_note = DURC::formatForStorage( 'justification_note', 'varchar', $request->justification_note ); 
-		$tmp_person_creature_relation->justification_url = DURC::formatForStorage( 'justification_url', 'varchar', $request->justification_url ); 
-		$tmp_person_creature_relation->save();
+	$tmp_artistcredit = $myNewartistcredit;
+			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name ); 
+		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit ); 
+		$tmp_artistcredit->save();
 
 
-	$new_id = $myNewperson_creature_relation->id;
+	$new_id = $myNewartistcredit->id;
 
-	return redirect("/DURC/person_creature_relation/$new_id")->with('status', 'Data Saved!');
+	return redirect("/DURC/artistcredit/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
     /**
      * Display the specified resource.
-     * @param  \App\$person_creature_relation  $person_creature_relation
+     * @param  \App\$artistcredit  $artistcredit
      * @return \Illuminate\Http\Response
      */
-    public function show(person_creature_relation $person_creature_relation){
-	return($this->edit($person_creature_relation));
+    public function show(artistcredit $artistcredit){
+	return($this->edit($artistcredit));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\person_creature_relation  $person_creature_relation
+     * @param  \App\artistcredit  $artistcredit
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $person_creature_relation_id){
-		$person_creature_relation = \App\person_creature_relation::find($person_creature_relation_id);
-		$person_creature_relation = $person_creature_relation->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($person_creature_relation->toArray());
+    public function jsonone(Request $request, $artistcredit_id){
+		$artistcredit = \App\artistcredit::find($artistcredit_id);
+		$artistcredit = $artistcredit->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		return response()->json($artistcredit->toArray());
  	}
 
 
@@ -247,17 +242,17 @@ class person_creature_relationController extends DURCController
      */
     public function create(){
 	// but really, we are just going to edit a new object..
-	$new_instance = new person_creature_relation();
+	$new_instance = new artistcredit();
 	return $this->edit($new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\person_creature_relation  $person_creature_relation
+     * @param  \App\artistcredit  $artistcredit
      * @return \Illuminate\Http\Response
      */
-    public function edit(person_creature_relation $person_creature_relation){
+    public function edit(artistcredit $artistcredit){
 
 	$main_template_name = $this->_getMainTemplateName();
 
@@ -272,7 +267,7 @@ class person_creature_relationController extends DURCController
 	$this->view_data['csrf_token'] = csrf_token();
 	
 	
-	foreach ( person_creature_relation::$field_type_map as $column_name => $field_type ) {
+	foreach ( artistcredit::$field_type_map as $column_name => $field_type ) {
         // If this field name is in the configured list of hidden fields, do not display the row.
         $this->view_data["{$column_name}_row_class"] = '';
         if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -280,15 +275,15 @@ class person_creature_relationController extends DURCController
         }
     }
 
-	if($person_creature_relation->exists){	//we will not have old data if this is a new object
+	if($artistcredit->exists){	//we will not have old data if this is a new object
 
 		//well lets properly eager load this object with a refresh to load all of the related things
-		$person_creature_relation = $person_creature_relation->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$artistcredit = $artistcredit->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 
 		//put the contents into the view...
-		foreach($person_creature_relation->toArray() as $key => $value){
-			if ( isset( person_creature_relation::$field_type_map[$key] ) ) {
-                $field_type = person_creature_relation::$field_type_map[ $key ];
+		foreach($artistcredit->toArray() as $key => $value){
+			if ( isset( artistcredit::$field_type_map[$key] ) ) {
+                $field_type = artistcredit::$field_type_map[ $key ];
                 $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
             } else {
                 $this->view_data[$key] = $value;
@@ -296,9 +291,9 @@ class person_creature_relationController extends DURCController
 		}
 
 		//what is this object called?
-		$name_field = $person_creature_relation->_getBestName();
+		$name_field = $artistcredit->_getBestName();
 		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $person_creature_relation->$name_field;
+		$this->view_data['durc_instance_name'] = $artistcredit->$name_field;
 	}else{
 		$this->view_data['is_new'] = true;
 	}
@@ -311,41 +306,38 @@ class person_creature_relationController extends DURCController
 	}
 	
 
-	$durc_template_results = view('DURC.person_creature_relation.edit',$this->view_data);        
+	$durc_template_results = view('DURC.artistcredit.edit',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\person_creature_relation  $person_creature_relation
+     * @param  \App\artistcredit  $artistcredit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, person_creature_relation $person_creature_relation){
+    public function update(Request $request, artistcredit $artistcredit){
 
-	$tmp_person_creature_relation = $person_creature_relation;
-			$tmp_person_creature_relation->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person_creature_relation->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_person_creature_relation->relation_id = DURC::formatForStorage( 'relation_id', 'int', $request->relation_id ); 
-		$tmp_person_creature_relation->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
-		$tmp_person_creature_relation->justification_note = DURC::formatForStorage( 'justification_note', 'varchar', $request->justification_note ); 
-		$tmp_person_creature_relation->justification_url = DURC::formatForStorage( 'justification_url', 'varchar', $request->justification_url ); 
-		$tmp_person_creature_relation->save();
+	$tmp_artistcredit = $artistcredit;
+			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name ); 
+		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit ); 
+		$tmp_artistcredit->save();
 
 
-	$id = $person_creature_relation->id;
+	$id = $artistcredit->id;
 
-	return redirect("/DURC/person_creature_relation/$id")->with('status', 'Data Saved!');
+	return redirect("/DURC/artistcredit/$id")->with('status', 'Data Saved!');
         
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\person_creature_relation  $person_creature_relation
+     * @param  \App\artistcredit  $artistcredit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(person_creature_relation $person_creature_relation){
-	    return person_creature_relation::destroy( $person_creature_relation->id );  
+    public function destroy(artistcredit $artistcredit){
+	    return artistcredit::destroy( $artistcredit->id );  
     }
     
     /**
@@ -355,7 +347,7 @@ class person_creature_relationController extends DURCController
      */
     public function restore( $id )
     {
-        $person_creature_relation = person_creature_relation::withTrashed()->find($id)->restore();
+        $artistcredit = artistcredit::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }

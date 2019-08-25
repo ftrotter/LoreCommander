@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4b45a67be4ad762b9e285e2c0aed31a7
+FILE_SIG=8f2eee62aad3b7d4f53d85dfb764e4b8
 */
 namespace App;
 /*
@@ -19,7 +19,6 @@ class person_creature_relation extends \App\DURC\Models\person_creature_relation
 /*
 		protected $DURC_selfish_with = [ 
 			'person', //from belongs to
-			'relation', //from belongs to
 			'creature', //from belongs to
 		];
 
@@ -51,15 +50,6 @@ class person_creature_relation extends \App\DURC\Models\person_creature_relation
 
 
 /**
-*	DURC is handling the relation for this person_creature_relation in person_creature_relation
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function relation(){
-		return parent::relation();
-	}
-
-
-/**
 *	DURC is handling the creature for this person_creature_relation in person_creature_relation
 *       but you can extend or override the defaults by editing this function...
 */
@@ -83,7 +73,7 @@ CREATE TABLE `lore`.`person_creature_relation` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_id` (`person_id`,`relation_id`,`creature_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
