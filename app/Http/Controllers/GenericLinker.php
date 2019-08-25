@@ -8,7 +8,7 @@ use DB;
 class GenericLinker extends Controller
 {
 
-	public function linkMaker($durc_type_left,$durc_type_right,$link_type){
+	public function linkMaker($durc_type_left,$durc_type_right,$durc_type_tag){
 
 
 
@@ -30,7 +30,7 @@ class GenericLinker extends Controller
 		$pdo->query("USE $db");
 
 
-		$link_table = $durc_type_left."_$durc_type_right"."_$link_type";
+		$link_table = $durc_type_left."_$durc_type_right"."_$durc_type_tag";
 
 		if(!class_exists("\App\\$link_table")){
 			//so the class does not exist yet. Thats fine.
@@ -57,12 +57,18 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 			return view('create_table',['create_table_sql' => $create_table_sql]);	
 		}
 
-		//it would be lovely if we could count on having the proper DURC connector model here..
-		//but we cannot because we may have just generated the underlying linking table..
+		//here we know that we have DURC classes for all 4 of the relevant data contructs...
+		//the list of tags, the object that sits to the right and the left of the tag relation...
+		//we are ready to show the Select2 heavy interface that will allow for really fast tagging...
 		
+		$view_data = [
+			'durc_type_left' => $durc_type_left,
+			'durc_type_right' => $durc_type_right,
+			'durc_type_tag' => $durc_type_tag,
+			'durc_linker' => $link_table,
+		];
 
-	
-		return("durc_type_left: $durc_type_left durc_type_right:$durc_type_right link_type:$link_type");
+		return view('genericLinker',$view_data);
 
 	}
 
