@@ -16,6 +16,14 @@ Route::get('durctest', function () {
 
 
 
+ 			'/DURC/artist', //from: lore.artist 
+ 			'/DURC/artist/create', //from: lore.artist 
+ 			'/DURC/artist/1', //from: lore.artist 
+ 			'/DURC/artist/1/edit', //from: lore.artist 
+ 			'/DURC/artistcredit', //from: lore.artistcredit 
+ 			'/DURC/artistcredit/create', //from: lore.artistcredit 
+ 			'/DURC/artistcredit/1', //from: lore.artistcredit 
+ 			'/DURC/artistcredit/1/edit', //from: lore.artistcredit 
  			'/DURC/card', //from: lore.card 
  			'/DURC/card/create', //from: lore.card 
  			'/DURC/card/1', //from: lore.card 
@@ -40,10 +48,10 @@ Route::get('durctest', function () {
  			'/DURC/person_creature_relation/create', //from: lore.person_creature_relation 
  			'/DURC/person_creature_relation/1', //from: lore.person_creature_relation 
  			'/DURC/person_creature_relation/1/edit', //from: lore.person_creature_relation 
- 			'/DURC/relation', //from: lore.relation 
- 			'/DURC/relation/create', //from: lore.relation 
- 			'/DURC/relation/1', //from: lore.relation 
- 			'/DURC/relation/1/edit', //from: lore.relation 
+ 			'/DURC/tag', //from: lore.tag 
+ 			'/DURC/tag/create', //from: lore.tag 
+ 			'/DURC/tag/1', //from: lore.tag 
+ 			'/DURC/tag/1/edit', //from: lore.tag 
 
 
 	]; //end route_list

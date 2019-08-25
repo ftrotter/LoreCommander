@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('changeCard/{channel_id}/{scryfall_id}', 'cardShowController@sendCardPush');
+Route::get('changeCard/{channel_id}/{multiverse_id}', 'cardShowController@sendCardPush');
 Route::get('showCard/{channel_id}', 'cardShowController@showCard');
 
 
@@ -43,6 +43,20 @@ this will be automatically overwritten by future DURC runs.
 
 
 */
+
+ 
+//DURC->	lore.artist
+Route::resource("/DURC/artist", 'artistController');
+Route::get("/DURC/json/artist/{artist_id}", 'artistController@jsonone');
+Route::get("/DURC/json/artist/", 'artistController@jsonall');
+Route::get("/DURC/searchjson/artist/", 'artistController@search');
+
+ 
+//DURC->	lore.artistcredit
+Route::resource("/DURC/artistcredit", 'artistcreditController');
+Route::get("/DURC/json/artistcredit/{artistcredit_id}", 'artistcreditController@jsonone');
+Route::get("/DURC/json/artistcredit/", 'artistcreditController@jsonall');
+Route::get("/DURC/searchjson/artistcredit/", 'artistcreditController@search');
 
  
 //DURC->	lore.card
@@ -87,11 +101,11 @@ Route::get("/DURC/json/person_creature_relation/", 'person_creature_relationCont
 Route::get("/DURC/searchjson/person_creature_relation/", 'person_creature_relationController@search');
 
  
-//DURC->	lore.relation
-Route::resource("/DURC/relation", 'relationController');
-Route::get("/DURC/json/relation/{relation_id}", 'relationController@jsonone');
-Route::get("/DURC/json/relation/", 'relationController@jsonall');
-Route::get("/DURC/searchjson/relation/", 'relationController@search');
+//DURC->	lore.tag
+Route::resource("/DURC/tag", 'tagController');
+Route::get("/DURC/json/tag/{tag_id}", 'tagController@jsonone');
+Route::get("/DURC/json/tag/", 'tagController@jsonall');
+Route::get("/DURC/searchjson/tag/", 'tagController@search');
 
 
 

@@ -1,5 +1,100 @@
 {
     "lore": {
+        "artist": {
+            "table_name": "artist",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "artist_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `lore`.`artist` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `artist_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `artist_name` (`artist_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+        },
+        "artistcredit": {
+            "table_name": "artistcredit",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "artistcredit_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "is_plain_credit",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `lore`.`artistcredit` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `artistcredit_name` varchar(255) NOT NULL,\n  `is_plain_credit` tinyint(1) NOT NULL DEFAULT 1,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `artistcredit_name` (`artistcredit_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+        },
         "card": {
             "table_name": "card",
             "db": "lore",
@@ -239,6 +334,15 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "legal_brawl",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "legal_penny",
                     "data_type": "tinyint",
                     "is_primary_key": false,
@@ -347,7 +451,7 @@
                     "from_column": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` int(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` int(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface": {
             "table_name": "cardface",
@@ -732,7 +836,7 @@
                     "local_key": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) CHARACTER SET utf8 NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT NULL,\n  `image_hash_art_crop` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT NULL,\n  `image_hash_art_crop` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "creature": {
             "table_name": "creature",
@@ -751,8 +855,8 @@
                     "column_name": "creature_name",
                     "data_type": "varchar",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
                     "foreign_db": null,
                     "foreign_table": null
                 },
@@ -784,7 +888,7 @@
                     "from_column": "creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creature_name` (`creature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "mtgset": {
             "table_name": "mtgset",
@@ -980,7 +1084,7 @@
                     "from_column": "mtgset_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(5) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` varchar(255) NOT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` varchar(255) NOT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "person": {
             "table_name": "person",
@@ -1041,7 +1145,7 @@
                     "from_column": "person_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(255) NOT NULL,\n  `first_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(255) NOT NULL,\n  `first_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "person_creature_relation": {
             "table_name": "person_creature_relation",
@@ -1071,8 +1175,8 @@
                     "is_primary_key": false,
                     "is_foreign_key": true,
                     "is_linked_key": true,
-                    "foreign_db": "lore",
-                    "foreign_table": "relation"
+                    "foreign_db": null,
+                    "foreign_table": null
                 },
                 {
                     "column_name": "creature_id",
@@ -1128,13 +1232,6 @@
                     "to_db": "lore",
                     "local_key": "person_id"
                 },
-                "relation": {
-                    "prefix": null,
-                    "type": "relation",
-                    "to_table": "relation",
-                    "to_db": "lore",
-                    "local_key": "relation_id"
-                },
                 "creature": {
                     "prefix": null,
                     "type": "creature",
@@ -1143,10 +1240,10 @@
                     "local_key": "creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_creature_relation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `relation_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `justification_note` varchar(1000) NOT NULL,\n  `justification_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`relation_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`person_creature_relation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `relation_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `justification_note` varchar(1000) NOT NULL,\n  `justification_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`relation_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "relation": {
-            "table_name": "relation",
+        "tag": {
+            "table_name": "tag",
             "db": "lore",
             "column_data": [
                 {
@@ -1159,11 +1256,11 @@
                     "foreign_table": null
                 },
                 {
-                    "column_name": "relation_name",
+                    "column_name": "tag_name",
                     "data_type": "varchar",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
                     "foreign_db": null,
                     "foreign_table": null
                 },
@@ -1186,16 +1283,7 @@
                     "foreign_table": null
                 }
             ],
-            "has_many": {
-                "person_creature_relation": {
-                    "prefix": null,
-                    "type": "person_creature_relation",
-                    "from_table": "person_creature_relation",
-                    "from_db": "lore",
-                    "from_column": "relation_id"
-                }
-            },
-            "create_table_sql": "CREATE TABLE `lore`.`relation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `relation_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `lore`.`tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `tag_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`tag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         }
     }
 }
