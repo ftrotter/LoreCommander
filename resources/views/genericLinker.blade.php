@@ -30,15 +30,15 @@ This interface allows you to quickly tag sets of objects...
 	<div class='row'>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
-		LEft
+		LEft {{$durc_type_left}} goes here
 		</div>
 		<div class='col-md-1'></div>
 		<div class='col-md-2'>
-		Middle
+		Middle {{$durc_type_link}} goes here
 		</div>
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
-		Right
+		Right {{$durc_type_right}} goes here
 		</div>
 		<div class='col-md-1'></div>
 	</div>
