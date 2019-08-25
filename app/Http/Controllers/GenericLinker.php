@@ -18,8 +18,8 @@ class GenericLinker extends Controller
 		if(!class_exists("\App\\$durc_type_right")){
 			return("Error $durc_type_right does not exist");
 		}
-		if(!class_exists("\App\\$link_type")){
-			return("Error $link_type does not exist");
+		if(!class_exists("\App\\$durc_type_tag")){
+			return("Error $durc_type_tag does not exist");
 		}
 
 		$pdo = \DB::connection()->getPdo();
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 	`id` INT(11) NOT NULL AUTO_INCREMENT ,  
 	`$durc_type_left"."_id` INT(11) NOT NULL ,  
 	`$durc_type_right"."_id` INT(11) NOT NULL ,  
-	`$link_type"."_id` INT(11) NOT NULL ,  
+	`$durc_type_tag"."_id` INT(11) NOT NULL ,  
 	`is_generic_linker` TINYINT(1) NOT NULL DEFAULT '0' ,  
 	`link_note` VARCHAR(255) NOT NULL ,  
 	`created_at` DATETIME NOT NULL ,  
