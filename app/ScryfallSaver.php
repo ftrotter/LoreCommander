@@ -132,7 +132,12 @@ class  ScryfallSaver {
 				//these we rename..
 				$card_fill['scryfall_id'] = $scryfall_id;
 
-				$MTGSet = \App\mtgset::where('code', $this_card['set'])->first();
+				$this_set = $this_card['set'];
+				$MTGSet = \App\mtgset::where('code', $this_set)->first();
+				if(is_null($MTGSet->id)){
+					echo "Looking up the id for set $this_set failed";
+					exit();
+				}	
 				$mtgset_id = $MTGSet->id;
 				$card_fill['mtgset_id'] = $mtgset_id;
 				$card_fill['scryfall_api_uri'] = $this_card['uri'];		
