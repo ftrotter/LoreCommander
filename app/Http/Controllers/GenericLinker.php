@@ -51,9 +51,15 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 ;
 ";
 
-			$pdo->query($create_table_sql);
-			
+			// this is horribly risky from a security standpoint... leading to obvious DOS
+			//instead we throw this back to the user...
+			//$pdo->query($create_table_sql);
+			return view('create_table',['create_table_sql' => $create_table_sql]);	
 		}
+
+		//it would be lovely if we could count on having the proper DURC connector model here..
+		//but we cannot because we may have just generated the underlying linking table..
+		
 
 	
 		return("durc_type_left: $durc_type_left durc_type_right:$durc_type_right link_type:$link_type");
