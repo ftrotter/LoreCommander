@@ -145,6 +145,13 @@ Route::get("/DURC/json/strategy/", 'strategyController@jsonall');
 Route::get("/DURC/searchjson/strategy/", 'strategyController@search');
 
  
+//DURC->	lore.strategytag
+Route::resource("/DURC/strategytag", 'strategytagController');
+Route::get("/DURC/json/strategytag/{strategytag_id}", 'strategytagController@jsonone');
+Route::get("/DURC/json/strategytag/", 'strategytagController@jsonall');
+Route::get("/DURC/searchjson/strategytag/", 'strategytagController@search');
+
+ 
 //DURC->	lore.tag
 Route::resource("/DURC/tag", 'tagController');
 Route::get("/DURC/json/tag/{tag_id}", 'tagController@jsonone');
