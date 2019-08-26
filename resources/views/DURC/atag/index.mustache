@@ -1,6 +1,6 @@
 
-<h1>arttag list </h1>
-Create <a href='/DURC/arttag/create/'>new arttag</a><br>
+<h1>atag list </h1>
+Create <a href='/DURC/atag/create/'>new atag</a><br>
 
 
 {{^is_need_paging}}
@@ -11,30 +11,30 @@ Create <a href='/DURC/arttag/create/'>new arttag</a><br>
 
 {{#is_need_paging}}
 
-<div class='dataTables_paginate paging_simple_numbers' id='table_arttag_page'>
+<div class='dataTables_paginate paging_simple_numbers' id='table_atag_page'>
 	<ul class='pagination'>
 		<li class='paginate_button page-item previous {{first_page_class}}' 
-			id='table_arttag_previous'>
-			<a href='{{first_page_url}}' aria-controls='table_arttag' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+			id='table_atag_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_atag' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
 		</li>
 		<li class='paginate_button page-item {{prev_page_class}}'>
-			<a href='{{prev_page_url}}' aria-controls='table_arttag' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+			<a href='{{prev_page_url}}' aria-controls='table_atag' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
 		</li>
 		<li class='paginate_button page-item active'>
-			<a href='#' aria-controls='table_arttag' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+			<a href='#' aria-controls='table_atag' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
 		</li>
 		<li class='paginate_button page-item {{next_page_class}} '>
-			<a href='{{next_page_url}}' aria-controls='table_arttag' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+			<a href='{{next_page_url}}' aria-controls='table_atag' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
 		</li>
 		<li class='paginate_button page-item {{last_page_class}}'>
-			<a href='{{last_page_url}}' aria-controls='table_arttag' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+			<a href='{{last_page_url}}' aria-controls='table_atag' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
 		</li>
 	</ul>
 </div>
 {{/is_need_paging}}
 
 
-<table id='table_arttag' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_atag' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
 <th scope='col'>#</th><th scope='col'>arttag_name</th>
 <th scope='col'>is_directed</th>
@@ -54,9 +54,9 @@ Create <a href='/DURC/arttag/create/'>new arttag</a><br>
 <tbody>
   {{#data}}
     <tr>
-	<th scope='row'><a href='/DURC/arttag/{{id}}/'> {{id}} </a></th>			<td>{{arttag_name}}</td>
+	<th scope='row'><a href='/DURC/atag/{{id}}/'> {{id}} </a></th>			<td>{{arttag_name}}</td>
 			<td>{{is_directed}}</td>
-			<td>{{excludes_arttag_id_DURClabel}} <a href='/DURC/arttag/{{excludes_arttag_id}}/'> ({{excludes_arttag_id}})</a> </td>			<td>{{created_at}}</td>
+			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 
     </tr>
@@ -74,23 +74,23 @@ Create <a href='/DURC/arttag/create/'>new arttag</a><br>
 
 {{#is_need_paging}}
 
-<div class='dataTables_paginate paging_simple_numbers' id='table_arttag_page'>
+<div class='dataTables_paginate paging_simple_numbers' id='table_atag_page'>
 	<ul class='pagination'>
 		<li class='paginate_button page-item previous {{first_page_class}}' 
-			id='table_arttag_previous'>
-			<a href='{{first_page_url}}' aria-controls='table_arttag' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+			id='table_atag_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_atag' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
 		</li>
 		<li class='paginate_button page-item {{prev_page_class}}'>
-			<a href='{{prev_page_url}}' aria-controls='table_arttag' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+			<a href='{{prev_page_url}}' aria-controls='table_atag' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
 		</li>
 		<li class='paginate_button page-item active'>
-			<a href='#' aria-controls='table_arttag' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+			<a href='#' aria-controls='table_atag' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
 		</li>
 		<li class='paginate_button page-item {{next_page_class}} '>
-			<a href='{{next_page_url}}' aria-controls='table_arttag' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+			<a href='{{next_page_url}}' aria-controls='table_atag' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
 		</li>
 		<li class='paginate_button page-item {{last_page_class}}'>
-			<a href='{{last_page_url}}' aria-controls='table_arttag' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+			<a href='{{last_page_url}}' aria-controls='table_atag' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
 		</li>
 	</ul>
 </div>
@@ -105,7 +105,7 @@ var DURC_checkReadyState = setInterval(() => {
   if (document.readyState === 'complete') {
     clearInterval(DURC_checkReadyState);
     // document is ready
-    $('#table_arttag').DataTable(
+    $('#table_atag').DataTable(
 {
         'paging':   false,
         'info':     false

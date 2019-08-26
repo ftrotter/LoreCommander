@@ -10,22 +10,22 @@
             </div>
 
 {{#is_new}}
-<form action='/DURC/arttag' method='POST'>
+<form action='/DURC/atag' method='POST'>
 {{/is_new}}
 
 {{^is_new}}
-<form action='/DURC/arttag/{{id}}' method='POST'>
+<form action='/DURC/atag/{{id}}' method='POST'>
     <input type='hidden' name='_method' value='PUT'>
 {{/is_new}}
 
-	<h1>arttag</h1>
+	<h1>atag</h1>
 <div class='card'>
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/arttag/'>Return to arttag list</a> </li>
+<li> <a href='/DURC/atag/'>Return to atag list</a> </li>
 {{^is_new}}
-<li> <a href='/DURC/arttag/create'>Create new arttag </a> </li>
+<li> <a href='/DURC/atag/create'>Create new atag </a> </li>
 {{/is_new}}
 </ul>
   </div>
@@ -61,25 +61,9 @@
   <div class='form-group row {{excludes_arttag_id_row_class}}'>
     <label for='excludes_arttag_id' class='col-sm-2 col-form-label'>excludes_arttag_id</label>
     <div class='col-sm-10'>
-	Current id value: {{excludes_arttag_id}} (see below for lookup value)<br>
-	<select class='select2_excludes_arttag_id form-control' id='excludes_arttag_id' name='excludes_arttag_id' form-control'>
-	<option value='{{excludes_arttag_id}}' selected='selected'>{{excludes_arttag_id}}</option>
-	</select>
+      <input type='text' class='form-control' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='' value='{{excludes_arttag_id}}'>
     </div>
   </div>
-
-<script type='text/javascript'>
-
-$('.select2_excludes_arttag_id').select2({
-  ajax: {
-    	url: '/DURC/searchjson/arttag/',
-    	dataType: 'json'
-  }
-});
-
-
-</script>
-
 
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
@@ -154,145 +138,14 @@ $('.select2_excludes_arttag_id').select2({
   <div class='form-group row'>
               <div class='col-sm-12 text-right'>
 
-<form action='/DURC/arttag/{{id}}' method='POST'>
+<form action='/DURC/atag/{{id}}' method='POST'>
     	<input type='hidden' name='_method' value='DELETE'>
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 
-              <button type='button' data-id='{{id}}' data-controller='arttag' class='do-soft-delete btn btn-outline-danger'>Hard Delete arttag</button>
+              <button type='button' data-id='{{id}}' data-controller='atag' class='do-soft-delete btn btn-outline-danger'>Hard Delete atag</button>
 </form>
               </div>
             </div>
 
 
-<br>
-<div class='card'>
-  <div class='card-header'>
-    Relationships
-  </div>
-<div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    Has many excludes_arttag ( <a href='/DURC/arttag/'>see all</a> )
-{{^excludes_arttag}}
-(no values)
-{{/excludes_arttag}}
-  </div>
-<div class='card-body'>
-
-<table id='table_excludes_arttag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> arttag_name </th>
-			<th> is_directed </th>
-			<th> excludes_arttag_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#excludes_arttag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/arttag/{{id}}'>{{id}}</a></td>
-			<td>{{arttag_name}}</td>
-			<td>{{is_directed}}</td>
-			<td>{{excludes_arttag_id_DURClabel}} ({{excludes_arttag_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/excludes_arttag}}
-</tbody>
-</table>
-</div></div> <!-- end excludes_arttag card-->
-<br>
-
-<div class='card'>
-  <div class='card-header'>
-    Has many cardface_classofcreature_arttag ( <a href='/DURC/cardface_classofcreature_arttag/'>see all</a> )
-{{^cardface_classofcreature_arttag}}
-(no values)
-{{/cardface_classofcreature_arttag}}
-  </div>
-<div class='card-body'>
-
-<table id='table_cardface_classofcreature_arttag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> cardface_id </th>
-			<th> classofcreature_id </th>
-			<th> arttag_id </th>
-			<th> is_bulk_linker </th>
-			<th> link_note </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#cardface_classofcreature_arttag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/cardface_classofcreature_arttag/{{id}}'>{{id}}</a></td>
-			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{arttag_id_DURClabel}} ({{arttag_id}}) </td>			<td>{{is_bulk_linker}}</td>
-			<td>{{link_note}}</td>
-			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/cardface_classofcreature_arttag}}
-</tbody>
-</table>
-</div></div> <!-- end cardface_classofcreature_arttag card-->
-<br>
-</div></div> <!--end has many card-->
-<br>
-<div class='card'>
-  <div class='card-header'>
-    Belongs To Relationships
-  </div>
-<div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    excludes_arttag ( <a href='/DURC/arttag/'>see all</a> )
-{{^excludes_arttag}}
-(no values)
-{{/excludes_arttag}}
-  </div>
-<div class='card-body'>
-<table id='table_excludes_arttag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> arttag_name </th>
-			<th> is_directed </th>
-			<th> excludes_arttag_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#excludes_arttag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/arttag/{{id}}'>{{id}}</a></td>
-			<td>{{arttag_name}}</td>
-			<td>{{is_directed}}</td>
-			<td>{{excludes_arttag_id_DURClabel}} ({{excludes_arttag_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/excludes_arttag}}
-</tbody>
-</table>
-</div></div> <!-- end excludes_arttag card-->
-</div></div> <!--end belongs to card-->
 <br>
