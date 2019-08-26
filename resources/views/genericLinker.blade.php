@@ -35,6 +35,7 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
 			<h3> {{$durc_type_left}} </h3>
+			<a href='/DURC/{{$durc_type_left}}' target='_blank'>Add {{$durc_type_left}} entries</a><br>
 
 			<select class='{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id[]'>
 			</select>
@@ -44,6 +45,7 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-1'></div>
 		<div class='col-md-2'>
 			<h3> {{$durc_type_tag}} </h3>
+			<a href='/DURC/{{$durc_type_tag}}' target='_blank'>Add {{$durc_type_tag}} entries</a><br>
 
 			<select class='{{$durc_type_tag}}_id form-control' multiple='' id='{{$durc_type_tag}}_id' name='{{$durc_type_tag}}_id[]'>
 			</select>
@@ -52,6 +54,7 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-1'></div>
 		<div class='col-md-3'>
 			<h3> {{$durc_type_right}} </h3>
+			<a href='/DURC/{{$durc_type_right}}' target='_blank'>Add {{$durc_type_right}} entries</a><br>
 
 			<select class='{{$durc_type_right}}_id form-control' multiple='' id='{{$durc_type_right}}_id' name='{{$durc_type_right}}_id[]'>
 			</select>
