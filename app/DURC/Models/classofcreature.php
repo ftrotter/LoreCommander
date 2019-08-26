@@ -27,6 +27,7 @@ class classofcreature extends DURCModel{
 		protected $DURC_selfish_with = [ 
 			'classofcreature_cardface', //from from many
 			'classofcreature_creature', //from from many
+			'person_classofcreature_tag', //from from many
 		];
 
 
@@ -67,6 +68,14 @@ class classofcreature extends DURCModel{
 */
 	public function classofcreature_creature(){
 		return $this->hasMany('App\classofcreature_creature','classofcreature_id','id');
+	}
+
+
+/**
+*	get all the person_classofcreature_tag for this classofcreature
+*/
+	public function person_classofcreature_tag(){
+		return $this->hasMany('App\person_classofcreature_tag','classofcreature_id','id');
 	}
 
 

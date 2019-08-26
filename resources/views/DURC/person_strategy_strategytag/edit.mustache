@@ -10,22 +10,22 @@
             </div>
 
 {{#is_new}}
-<form action='/DURC/classofcreature' method='POST'>
+<form action='/DURC/person_strategy_strategytag' method='POST'>
 {{/is_new}}
 
 {{^is_new}}
-<form action='/DURC/classofcreature/{{id}}' method='POST'>
+<form action='/DURC/person_strategy_strategytag/{{id}}' method='POST'>
     <input type='hidden' name='_method' value='PUT'>
 {{/is_new}}
 
-	<h1>classofcreature</h1>
+	<h1>person_strategy_strategytag</h1>
 <div class='card'>
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/classofcreature/'>Return to classofcreature list</a> </li>
+<li> <a href='/DURC/person_strategy_strategytag/'>Return to person_strategy_strategytag list</a> </li>
 {{^is_new}}
-<li> <a href='/DURC/classofcreature/create'>Create new classofcreature </a> </li>
+<li> <a href='/DURC/person_strategy_strategytag/create'>Create new person_strategy_strategytag </a> </li>
 {{/is_new}}
 </ul>
   </div>
@@ -42,19 +42,88 @@
     </div>
   </div>
 
-  <div class='form-group row {{classofcreature_name_row_class}}'>
-    <label for='classofcreature_name' class='col-sm-2 col-form-label'>classofcreature_name</label>
+  <div class='form-group row {{person_id_row_class}}'>
+    <label for='person_id' class='col-sm-2 col-form-label'>person_id</label>
     <div class='col-sm-10'>
-      <input type='text' class='form-control' id='classofcreature_name' name='classofcreature_name' placeholder='' value='{{classofcreature_name}}'>
+	Current id value: {{person_id}} (see below for lookup value)<br>
+	<select class='select2_person_id form-control' id='person_id' name='person_id' form-control'>
+	<option value='{{person_id}}' selected='selected'>{{person_id}}</option>
+	</select>
     </div>
   </div>
 
-  <div class='form-group row {{is_mega_class_row_class}}'>
-    <div class='col-sm-2'><label>is_mega_class</label></div>
+<script type='text/javascript'>
+
+$('.select2_person_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/person/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{strategy_id_row_class}}'>
+    <label for='strategy_id' class='col-sm-2 col-form-label'>strategy_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{strategy_id}} (see below for lookup value)<br>
+	<select class='select2_strategy_id form-control' id='strategy_id' name='strategy_id' form-control'>
+	<option value='{{strategy_id}}' selected='selected'>{{strategy_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_strategy_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/strategy/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{strategytag_id_row_class}}'>
+    <label for='strategytag_id' class='col-sm-2 col-form-label'>strategytag_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{strategytag_id}} (see below for lookup value)<br>
+	<select class='select2_strategytag_id form-control' id='strategytag_id' name='strategytag_id' form-control'>
+	<option value='{{strategytag_id}}' selected='selected'>{{strategytag_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_strategytag_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/strategytag/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{is_bulk_linker_row_class}}'>
+    <div class='col-sm-2'><label>is_bulk_linker</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}} >
+            <input type='checkbox' id='is_bulk_linker' name='is_bulk_linker' {{is_bulk_linker}} >
        </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{link_note_row_class}}'>
+    <label for='link_note' class='col-sm-2 col-form-label'>link_note</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='link_note' name='link_note' placeholder='' value='{{link_note}}'>
     </div>
   </div>
 
@@ -131,11 +200,11 @@
   <div class='form-group row'>
               <div class='col-sm-12 text-right'>
 
-<form action='/DURC/classofcreature/{{id}}' method='POST'>
+<form action='/DURC/person_strategy_strategytag/{{id}}' method='POST'>
     	<input type='hidden' name='_method' value='DELETE'>
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 
-              <button type='button' data-id='{{id}}' data-controller='classofcreature' class='do-soft-delete btn btn-outline-danger'>Hard Delete classofcreature</button>
+              <button type='button' data-id='{{id}}' data-controller='person_strategy_strategytag' class='do-soft-delete btn btn-outline-danger'>Hard Delete person_strategy_strategytag</button>
 </form>
               </div>
             </div>
@@ -144,121 +213,119 @@
 <br>
 <div class='card'>
   <div class='card-header'>
-    Relationships
+    Belongs To Relationships
   </div>
 <div class='card-body'>
 
 <div class='card'>
   <div class='card-header'>
-    Has many classofcreature_cardface ( <a href='/DURC/classofcreature_cardface/'>see all</a> )
-{{^classofcreature_cardface}}
+    person ( <a href='/DURC/person/'>see all</a> )
+{{^person}}
 (no values)
-{{/classofcreature_cardface}}
+{{/person}}
   </div>
 <div class='card-body'>
-
-<table id='table_classofcreature_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_person' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
-			<th> cardface_id </th>
-			<th> classofcreature_id </th>
+			<th> last_name </th>
+			<th> first_name </th>
 			<th> created_at </th>
 			<th> updated_at </th>
 
 </tr>
 </thead>
 <tbody>
-{{#classofcreature_cardface}}
+{{#person}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/classofcreature_cardface/{{id}}'>{{id}}</a></td>
-			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/classofcreature_cardface}}
-</tbody>
-</table>
-</div></div> <!-- end classofcreature_cardface card-->
-<br>
-
-<div class='card'>
-  <div class='card-header'>
-    Has many classofcreature_creature ( <a href='/DURC/classofcreature_creature/'>see all</a> )
-{{^classofcreature_creature}}
-(no values)
-{{/classofcreature_creature}}
-  </div>
-<div class='card-body'>
-
-<table id='table_classofcreature_creature' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> classofcreature_id </th>
-			<th> creature_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#classofcreature_creature}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/classofcreature_creature/{{id}}'>{{id}}</a></td>
-			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/classofcreature_creature}}
-</tbody>
-</table>
-</div></div> <!-- end classofcreature_creature card-->
-<br>
-
-<div class='card'>
-  <div class='card-header'>
-    Has many person_classofcreature_tag ( <a href='/DURC/person_classofcreature_tag/'>see all</a> )
-{{^person_classofcreature_tag}}
-(no values)
-{{/person_classofcreature_tag}}
-  </div>
-<div class='card-body'>
-
-<table id='table_person_classofcreature_tag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> person_id </th>
-			<th> classofcreature_id </th>
-			<th> tag_id </th>
-			<th> is_bulk_linker </th>
-			<th> link_note </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#person_classofcreature_tag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/person_classofcreature_tag/{{id}}'>{{id}}</a></td>
-			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
-			<td>{{link_note}}</td>
+			<td><a href='/DURC/person/{{id}}'>{{id}}</a></td>
+			<td>{{last_name}}</td>
+			<td>{{first_name}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/person_classofcreature_tag}}
+{{/person}}
 </tbody>
 </table>
-</div></div> <!-- end person_classofcreature_tag card-->
-<br>
-</div></div> <!--end has many card-->
+</div></div> <!-- end person card-->
+
+<div class='card'>
+  <div class='card-header'>
+    strategy ( <a href='/DURC/strategy/'>see all</a> )
+{{^strategy}}
+(no values)
+{{/strategy}}
+  </div>
+<div class='card-body'>
+<table id='table_strategy' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> strategy_name </th>
+			<th> strategy_description </th>
+			<th> strategy_url </th>
+			<th> wincon_cardface_id </th>
+			<th> WOTC_rule_reference </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#strategy}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/strategy/{{id}}'>{{id}}</a></td>
+			<td>{{strategy_name}}</td>
+			<td>{{strategy_description}}</td>
+			<td>{{strategy_url}}</td>
+			<td>{{wincon_cardface_id_DURClabel}} ({{wincon_cardface_id}}) </td>			<td>{{WOTC_rule_reference}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/strategy}}
+</tbody>
+</table>
+</div></div> <!-- end strategy card-->
+
+<div class='card'>
+  <div class='card-header'>
+    strategytag ( <a href='/DURC/strategytag/'>see all</a> )
+{{^strategytag}}
+(no values)
+{{/strategytag}}
+  </div>
+<div class='card-body'>
+<table id='table_strategytag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> strategytag_name </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#strategytag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/strategytag/{{id}}'>{{id}}</a></td>
+			<td>{{strategytag_name}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/strategytag}}
+</tbody>
+</table>
+</div></div> <!-- end strategytag card-->
+</div></div> <!--end belongs to card-->
 <br>

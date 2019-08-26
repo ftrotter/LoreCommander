@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b2c37b7a9085b70c8ea607e2b6d4e100
+FILE_SIG=96ceba7a5def46bb1a6ae554aaceb9fb
 */
 namespace App;
 /*
@@ -18,6 +18,7 @@ class strategytag extends \App\DURC\Models\strategytag
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'person_strategy_strategytag', //from from many
 		];
 
 */
@@ -31,7 +32,16 @@ class strategytag extends \App\DURC\Models\strategytag
 
 
 //DURC HAS_MANY SECTION
-			//DURC did not detect any has_many relationships
+
+/**
+*	DURC is handling the person_strategy_strategytag for this strategytag in strategytag
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function person_strategy_strategytag(){
+		return parent::person_strategy_strategytag();
+	}
+
+
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
@@ -44,7 +54,7 @@ CREATE TABLE `lore`.`strategytag` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..

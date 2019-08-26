@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1c5ce14f2e803bcd020ea5d1953b02c3
+FILE_SIG=a34855407e914ee07109e01a1cad7772
 */
 namespace App;
 /*
@@ -18,6 +18,7 @@ class strategy extends \App\DURC\Models\strategy
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'person_strategy_strategytag', //from from many
 			'person_strategy_tag', //from from many
 			'wincon_cardface', //from belongs to
 		];
@@ -37,6 +38,15 @@ class strategy extends \App\DURC\Models\strategy
 
 
 //DURC HAS_MANY SECTION
+
+/**
+*	DURC is handling the person_strategy_strategytag for this strategy in strategy
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function person_strategy_strategytag(){
+		return parent::person_strategy_strategytag();
+	}
+
 
 /**
 *	DURC is handling the person_strategy_tag for this strategy in strategy

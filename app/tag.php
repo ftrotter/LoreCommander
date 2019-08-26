@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=6d708ba6d7c439335447b3c4a81cc3b6
+FILE_SIG=2df98c8d7c1bb0aff342a26a58423708
 */
 namespace App;
 /*
@@ -18,6 +18,7 @@ class tag extends \App\DURC\Models\tag
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'person_classofcreature_tag', //from from many
 			'person_creature_tag', //from from many
 			'person_strategy_tag', //from from many
 			'excludes_tag', //from from many
@@ -36,6 +37,15 @@ class tag extends \App\DURC\Models\tag
 
 
 //DURC HAS_MANY SECTION
+
+/**
+*	DURC is handling the person_classofcreature_tag for this tag in tag
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function person_classofcreature_tag(){
+		return parent::person_classofcreature_tag();
+	}
+
 
 /**
 *	DURC is handling the person_creature_tag for this tag in tag
