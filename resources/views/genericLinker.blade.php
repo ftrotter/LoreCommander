@@ -69,9 +69,9 @@ This interface allows you to quickly tag sets of objects...
 			<br><br>
 
   <div class="form-group row">
-    <label for="link_notes" class="col-4 col-form-label">Link Notes</label> 
+    <label for="link_note" class="col-4 col-form-label">Link Notes</label> 
     <div class="col-8">
-      <textarea id="link_notes" name="link_notes" cols="40" rows="5" aria-describedby="link_notesHelpBlock" class="form-control"></textarea> 
+      <textarea id="link_note" name="link_note" cols="40" rows="5" aria-describedby="link_notesHelpBlock" class="form-control"></textarea> 
       <span id="link_notesHelpBlock" class="form-text text-muted">Make any notes about these links here</span>
     </div>
   </div> 
