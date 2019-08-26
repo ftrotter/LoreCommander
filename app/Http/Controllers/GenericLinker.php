@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 	`$durc_type_left"."_id` INT(11) NOT NULL ,  
 	`$durc_type_right"."_id` INT(11) NOT NULL ,  
 	`$durc_type_tag"."_id` INT(11) NOT NULL ,  
-	`is_generic_linker` TINYINT(1) NOT NULL DEFAULT '0' ,  
+	`is_bulk_linker` TINYINT(1) NOT NULL DEFAULT '0' ,  
 	`link_note` VARCHAR(255) NOT NULL ,  
 	`created_at` DATETIME NOT NULL ,  
 	`updated_at` DATETIME NOT NULL ,    
