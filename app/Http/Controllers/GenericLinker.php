@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 	`created_at` DATETIME NOT NULL ,  
 	`updated_at` DATETIME NOT NULL ,    
 	PRIMARY KEY  (`id`)
-	 UNIQUE KEY( $durc_type_left"."_id, $durc_type_right"."_id, $durc_type_tag"."_id )
+	UNIQUE KEY( $durc_type_left"."_id, $durc_type_right"."_id, $durc_type_tag"."_id )
 	) ENGINE = MyISAM 
 ;
 ";
