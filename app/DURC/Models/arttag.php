@@ -26,6 +26,7 @@ class arttag extends DURCModel{
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
 			'excludes_arttag', //from from many
+			'cardface_classofcreature_arttag', //from from many
 		];
 
 
@@ -59,6 +60,14 @@ class arttag extends DURCModel{
 */
 	public function excludes_arttag(){
 		return $this->hasMany('App\arttag','excludes_arttag_id','id');
+	}
+
+
+/**
+*	get all the cardface_classofcreature_arttag for this arttag
+*/
+	public function cardface_classofcreature_arttag(){
+		return $this->hasMany('App\cardface_classofcreature_arttag','arttag_id','id');
 	}
 
 
