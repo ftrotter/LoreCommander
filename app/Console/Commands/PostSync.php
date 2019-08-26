@@ -159,6 +159,8 @@ SELECT * FROM lore.classofcreature
 	//loop over the classes and search for the class name in the creature table
 	//and then link the correspoding creature rows to the class row. 
 
+	echo "Associating creature class and creatures\n";
+
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
 		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
 			$name = $class_of_creature_array['classofcreature_name'];
@@ -176,12 +178,13 @@ WHERE creature.creature_name LIKE '%$name%'
 	
 			$count  =  $pdo->exec($insert_sql);
 			if($count > 0){
-				echo '.';
+				echo 'c';
 			}
 
 		}
 	}
 
+	echo "\nfinished linking creature types and creature classes\n";
 
 	foreach($sql as $this_sql){
 
