@@ -32,6 +32,7 @@ class  ScryfallSaver {
                         'oracle_text',
                         'border_color',
                         'power',
+			'toughness',
                         'cardface_index', // I am building this one below...
                 ];
 
