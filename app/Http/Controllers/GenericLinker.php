@@ -35,7 +35,7 @@ class GenericLinker extends Controller
 						
 					];
 
-					$class_name = "\App\$link_table";
+					$class_name = "\App\\$link_table";
 
 					$linker_object = $class_name::firstOrCreate($link_array);
 	
