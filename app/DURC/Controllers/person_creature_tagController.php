@@ -211,7 +211,7 @@ class person_creature_tagController extends DURCController
 		$tmp_person_creature_tag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
 		$tmp_person_creature_tag->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
 		$tmp_person_creature_tag->tag_id = DURC::formatForStorage( 'tag_id', 'int', $request->tag_id ); 
-		$tmp_person_creature_tag->is_generic_linker = DURC::formatForStorage( 'is_generic_linker', 'tinyint', $request->is_generic_linker ); 
+		$tmp_person_creature_tag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_person_creature_tag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
 		$tmp_person_creature_tag->save();
 
@@ -329,7 +329,7 @@ class person_creature_tagController extends DURCController
 		$tmp_person_creature_tag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
 		$tmp_person_creature_tag->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
 		$tmp_person_creature_tag->tag_id = DURC::formatForStorage( 'tag_id', 'int', $request->tag_id ); 
-		$tmp_person_creature_tag->is_generic_linker = DURC::formatForStorage( 'is_generic_linker', 'tinyint', $request->is_generic_linker ); 
+		$tmp_person_creature_tag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_person_creature_tag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
 		$tmp_person_creature_tag->save();
 

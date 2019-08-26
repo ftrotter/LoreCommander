@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=3a7515ecfd3e8837dfa1915c3cd8f97d
+FILE_SIG=137c9072371ecfaaf569d591c306f03e
 */
 namespace App;
 /*
@@ -19,6 +19,7 @@ class tag extends \App\DURC\Models\tag
 /*
 		protected $DURC_selfish_with = [ 
 			'person_creature_tag', //from from many
+			'excludes_tag', //from from many
 		];
 
 */
@@ -26,6 +27,8 @@ class tag extends \App\DURC\Models\tag
 	protected  $hidden = [
 			//'id', //int
 			//'tag_name', //varchar
+			//'is_directed', //tinyint
+			//'excludes_tag_id', //int
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -42,8 +45,19 @@ class tag extends \App\DURC\Models\tag
 	}
 
 
+/**
+*	DURC is handling the excludes_tag for this tag in tag
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function excludes_tag(){
+		return parent::excludes_tag();
+	}
+
+
 //DURC BELONGS_TO SECTION
-			//DURC did not detect any belongs_to relationships
+
+		//DURC would have added excludes_tag but it was already used in has_many. 
+		//You will have to resolve these recursive relationships in your code.
 
 
 // Last generated SQL Schema
@@ -51,6 +65,8 @@ class tag extends \App\DURC\Models\tag
 CREATE TABLE `lore`.`tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(255) NOT NULL,
+  `is_directed` tinyint(1) NOT NULL DEFAULT 0,
+  `excludes_tag_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

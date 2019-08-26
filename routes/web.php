@@ -75,6 +75,27 @@ Route::get("/DURC/json/cardface/", 'cardfaceController@jsonall');
 Route::get("/DURC/searchjson/cardface/", 'cardfaceController@search');
 
  
+//DURC->	lore.classofcreature
+Route::resource("/DURC/classofcreature", 'classofcreatureController');
+Route::get("/DURC/json/classofcreature/{classofcreature_id}", 'classofcreatureController@jsonone');
+Route::get("/DURC/json/classofcreature/", 'classofcreatureController@jsonall');
+Route::get("/DURC/searchjson/classofcreature/", 'classofcreatureController@search');
+
+ 
+//DURC->	lore.classofcreature_copy
+Route::resource("/DURC/classofcreature_copy", 'classofcreature_copyController');
+Route::get("/DURC/json/classofcreature_copy/{classofcreature_copy_id}", 'classofcreature_copyController@jsonone');
+Route::get("/DURC/json/classofcreature_copy/", 'classofcreature_copyController@jsonall');
+Route::get("/DURC/searchjson/classofcreature_copy/", 'classofcreature_copyController@search');
+
+ 
+//DURC->	lore.classofcreature_creature
+Route::resource("/DURC/classofcreature_creature", 'classofcreature_creatureController');
+Route::get("/DURC/json/classofcreature_creature/{classofcreature_creature_id}", 'classofcreature_creatureController@jsonone');
+Route::get("/DURC/json/classofcreature_creature/", 'classofcreature_creatureController@jsonall');
+Route::get("/DURC/searchjson/classofcreature_creature/", 'classofcreature_creatureController@search');
+
+ 
 //DURC->	lore.creature
 Route::resource("/DURC/creature", 'creatureController');
 Route::get("/DURC/json/creature/{creature_id}", 'creatureController@jsonone');

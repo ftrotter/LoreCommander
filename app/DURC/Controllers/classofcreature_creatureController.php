@@ -2,13 +2,13 @@
 
 namespace App\DURC\Controllers;
 
-use App\tag;
+use App\classofcreature_creature;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 
-class tagController extends DURCController
+class classofcreature_creatureController extends DURCController
 {
 
 
@@ -24,7 +24,8 @@ class tagController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
-		$with_summary_array[] = "excludes_tag:id,".\App\tag::getNameField();
+		$with_summary_array[] = "classofcreature:id,".\App\classofcreature::getNameField();
+		$with_summary_array[] = "creature:id,".\App\creature::getNameField();
 
 		return($with_summary_array);
 		
@@ -37,7 +38,7 @@ class tagController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = tag::with($with_argument)->paginate(100);
+		$these = classofcreature_creature::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -52,8 +53,8 @@ class tagController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( tag::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = tag::$field_type_map[ $lowest_key ];
+                                        if ( isset( classofcreature_creature::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = classofcreature_creature::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -61,8 +62,8 @@ class tagController extends DURCController
                                 }
                         }
 
-                        if ( isset( tag::$field_type_map[$key] ) ) {
-                            $field_type = tag::$field_type_map[ $key ];
+                        if ( isset( classofcreature_creature::$field_type_map[$key] ) ) {
+                            $field_type = classofcreature_creature::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -125,7 +126,7 @@ class tagController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = tag::getSearchFields();
+                $search_fields = classofcreature_creature::getSearchFields();
 
 		$where_sql = '';
 		$or = '';
@@ -134,7 +135,7 @@ class tagController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = tag::whereRaw($where_sql)
+		$these = classofcreature_creature::whereRaw($where_sql)
 					->take(20)
 					->get();
 
@@ -168,7 +169,7 @@ class tagController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\tag  $tag
+     * @param  \App\classofcreature_creature  $classofcreature_creature
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -189,7 +190,7 @@ class tagController extends DURCController
 		var_export($this->view_data);
 		exit();
 	}
-	$durc_template_results = view('DURC.tag.index',$this->view_data);        
+	$durc_template_results = view('DURC.classofcreature_creature.index',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -201,40 +202,39 @@ class tagController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewtag = new tag();
+	$myNewclassofcreature_creature = new classofcreature_creature();
 
 	//the games we play to easily auto-generate code..
-	$tmp_tag = $myNewtag;
-			$tmp_tag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name ); 
-		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
-		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id ); 
-		$tmp_tag->save();
+	$tmp_classofcreature_creature = $myNewclassofcreature_creature;
+			$tmp_classofcreature_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_classofcreature_creature->classofcreature_id = DURC::formatForStorage( 'classofcreature_id', 'int', $request->classofcreature_id ); 
+		$tmp_classofcreature_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+		$tmp_classofcreature_creature->save();
 
 
-	$new_id = $myNewtag->id;
+	$new_id = $myNewclassofcreature_creature->id;
 
-	return redirect("/DURC/tag/$new_id")->with('status', 'Data Saved!');
+	return redirect("/DURC/classofcreature_creature/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
     /**
      * Display the specified resource.
-     * @param  \App\$tag  $tag
+     * @param  \App\$classofcreature_creature  $classofcreature_creature
      * @return \Illuminate\Http\Response
      */
-    public function show(tag $tag){
-	return($this->edit($tag));
+    public function show(classofcreature_creature $classofcreature_creature){
+	return($this->edit($classofcreature_creature));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\tag  $tag
+     * @param  \App\classofcreature_creature  $classofcreature_creature
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $tag_id){
-		$tag = \App\tag::find($tag_id);
-		$tag = $tag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($tag->toArray());
+    public function jsonone(Request $request, $classofcreature_creature_id){
+		$classofcreature_creature = \App\classofcreature_creature::find($classofcreature_creature_id);
+		$classofcreature_creature = $classofcreature_creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		return response()->json($classofcreature_creature->toArray());
  	}
 
 
@@ -244,17 +244,17 @@ class tagController extends DURCController
      */
     public function create(){
 	// but really, we are just going to edit a new object..
-	$new_instance = new tag();
+	$new_instance = new classofcreature_creature();
 	return $this->edit($new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\tag  $tag
+     * @param  \App\classofcreature_creature  $classofcreature_creature
      * @return \Illuminate\Http\Response
      */
-    public function edit(tag $tag){
+    public function edit(classofcreature_creature $classofcreature_creature){
 
 	$main_template_name = $this->_getMainTemplateName();
 
@@ -269,7 +269,7 @@ class tagController extends DURCController
 	$this->view_data['csrf_token'] = csrf_token();
 	
 	
-	foreach ( tag::$field_type_map as $column_name => $field_type ) {
+	foreach ( classofcreature_creature::$field_type_map as $column_name => $field_type ) {
         // If this field name is in the configured list of hidden fields, do not display the row.
         $this->view_data["{$column_name}_row_class"] = '';
         if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -277,15 +277,15 @@ class tagController extends DURCController
         }
     }
 
-	if($tag->exists){	//we will not have old data if this is a new object
+	if($classofcreature_creature->exists){	//we will not have old data if this is a new object
 
 		//well lets properly eager load this object with a refresh to load all of the related things
-		$tag = $tag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$classofcreature_creature = $classofcreature_creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 
 		//put the contents into the view...
-		foreach($tag->toArray() as $key => $value){
-			if ( isset( tag::$field_type_map[$key] ) ) {
-                $field_type = tag::$field_type_map[ $key ];
+		foreach($classofcreature_creature->toArray() as $key => $value){
+			if ( isset( classofcreature_creature::$field_type_map[$key] ) ) {
+                $field_type = classofcreature_creature::$field_type_map[ $key ];
                 $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
             } else {
                 $this->view_data[$key] = $value;
@@ -293,9 +293,9 @@ class tagController extends DURCController
 		}
 
 		//what is this object called?
-		$name_field = $tag->_getBestName();
+		$name_field = $classofcreature_creature->_getBestName();
 		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $tag->$name_field;
+		$this->view_data['durc_instance_name'] = $classofcreature_creature->$name_field;
 	}else{
 		$this->view_data['is_new'] = true;
 	}
@@ -308,39 +308,38 @@ class tagController extends DURCController
 	}
 	
 
-	$durc_template_results = view('DURC.tag.edit',$this->view_data);        
+	$durc_template_results = view('DURC.classofcreature_creature.edit',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\tag  $tag
+     * @param  \App\classofcreature_creature  $classofcreature_creature
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tag $tag){
+    public function update(Request $request, classofcreature_creature $classofcreature_creature){
 
-	$tmp_tag = $tag;
-			$tmp_tag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name ); 
-		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
-		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id ); 
-		$tmp_tag->save();
+	$tmp_classofcreature_creature = $classofcreature_creature;
+			$tmp_classofcreature_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_classofcreature_creature->classofcreature_id = DURC::formatForStorage( 'classofcreature_id', 'int', $request->classofcreature_id ); 
+		$tmp_classofcreature_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+		$tmp_classofcreature_creature->save();
 
 
-	$id = $tag->id;
+	$id = $classofcreature_creature->id;
 
-	return redirect("/DURC/tag/$id")->with('status', 'Data Saved!');
+	return redirect("/DURC/classofcreature_creature/$id")->with('status', 'Data Saved!');
         
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\tag  $tag
+     * @param  \App\classofcreature_creature  $classofcreature_creature
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tag $tag){
-	    return tag::destroy( $tag->id );  
+    public function destroy(classofcreature_creature $classofcreature_creature){
+	    return classofcreature_creature::destroy( $classofcreature_creature->id );  
     }
     
     /**
@@ -350,7 +349,7 @@ class tagController extends DURCController
      */
     public function restore( $id )
     {
-        $tag = tag::withTrashed()->find($id)->restore();
+        $classofcreature_creature = classofcreature_creature::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }
