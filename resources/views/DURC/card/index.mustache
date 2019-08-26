@@ -40,31 +40,36 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 <th scope='col'>lang</th>
 <th scope='col'>oracle_id</th>
 <th scope='col'>rulings_uri</th>
-<th scope='col'>scryfall_uri</th>
+<th scope='col'>scryfall_web_uri</th>
 <th scope='col'>scryfall_api_uri</th>
-<th scope='col'>is_foil</th>
 <th scope='col'>layout</th>
-<th scope='col'>flavor_text</th>
-<th scope='col'>is_promo</th>
 <th scope='col'>rarity</th>
 <th scope='col'>released_at</th>
 <th scope='col'>set_name</th>
 <th scope='col'>set_type</th>
 <th scope='col'>mtgset_id</th>
-<th scope='col'>is_story_spotlight</th>
 <th scope='col'>variation_of_scryfall_id</th>
 <th scope='col'>edhrec_rank</th>
-<th scope='col'>is_legal_oldschool</th>
-<th scope='col'>is_legal_duel</th>
-<th scope='col'>is_legal_commander</th>
-<th scope='col'>is_legal_penny</th>
-<th scope='col'>is_legal_vintage</th>
-<th scope='col'>is_legal_pauper</th>
-<th scope='col'>is_legal_legacy</th>
-<th scope='col'>is_legal_modern</th>
-<th scope='col'>is_legal_frontier</th>
-<th scope='col'>is_legal_future</th>
-<th scope='col'>is_legal_standard</th>
+<th scope='col'>is_promo</th>
+<th scope='col'>is_reserved</th>
+<th scope='col'>is_story_spotlight</th>
+<th scope='col'>is_reprint</th>
+<th scope='col'>is_variation</th>
+<th scope='col'>is_game_paper</th>
+<th scope='col'>is_game_mtgo</th>
+<th scope='col'>is_game_arena</th>
+<th scope='col'>legal_oldschool</th>
+<th scope='col'>legal_duel</th>
+<th scope='col'>legal_commander</th>
+<th scope='col'>legal_brawl</th>
+<th scope='col'>legal_penny</th>
+<th scope='col'>legal_vintage</th>
+<th scope='col'>legal_pauper</th>
+<th scope='col'>legal_legacy</th>
+<th scope='col'>legal_modern</th>
+<th scope='col'>legal_frontier</th>
+<th scope='col'>legal_future</th>
+<th scope='col'>legal_standard</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -74,31 +79,36 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 <th scope='col'>lang</th>
 <th scope='col'>oracle_id</th>
 <th scope='col'>rulings_uri</th>
-<th scope='col'>scryfall_uri</th>
+<th scope='col'>scryfall_web_uri</th>
 <th scope='col'>scryfall_api_uri</th>
-<th scope='col'>is_foil</th>
 <th scope='col'>layout</th>
-<th scope='col'>flavor_text</th>
-<th scope='col'>is_promo</th>
 <th scope='col'>rarity</th>
 <th scope='col'>released_at</th>
 <th scope='col'>set_name</th>
 <th scope='col'>set_type</th>
 <th scope='col'>mtgset_id</th>
-<th scope='col'>is_story_spotlight</th>
 <th scope='col'>variation_of_scryfall_id</th>
 <th scope='col'>edhrec_rank</th>
-<th scope='col'>is_legal_oldschool</th>
-<th scope='col'>is_legal_duel</th>
-<th scope='col'>is_legal_commander</th>
-<th scope='col'>is_legal_penny</th>
-<th scope='col'>is_legal_vintage</th>
-<th scope='col'>is_legal_pauper</th>
-<th scope='col'>is_legal_legacy</th>
-<th scope='col'>is_legal_modern</th>
-<th scope='col'>is_legal_frontier</th>
-<th scope='col'>is_legal_future</th>
-<th scope='col'>is_legal_standard</th>
+<th scope='col'>is_promo</th>
+<th scope='col'>is_reserved</th>
+<th scope='col'>is_story_spotlight</th>
+<th scope='col'>is_reprint</th>
+<th scope='col'>is_variation</th>
+<th scope='col'>is_game_paper</th>
+<th scope='col'>is_game_mtgo</th>
+<th scope='col'>is_game_arena</th>
+<th scope='col'>legal_oldschool</th>
+<th scope='col'>legal_duel</th>
+<th scope='col'>legal_commander</th>
+<th scope='col'>legal_brawl</th>
+<th scope='col'>legal_penny</th>
+<th scope='col'>legal_vintage</th>
+<th scope='col'>legal_pauper</th>
+<th scope='col'>legal_legacy</th>
+<th scope='col'>legal_modern</th>
+<th scope='col'>legal_frontier</th>
+<th scope='col'>legal_future</th>
+<th scope='col'>legal_standard</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -108,29 +118,34 @@ Create <a href='/DURC/card/create/'>new card</a><br>
     <tr>
 	<th scope='row'><a href='/DURC/card/{{id}}/'> {{id}} </a></th>			<td>{{lang}}</td>
 			<td>{{rulings_uri}}</td>
-			<td>{{scryfall_uri}}</td>
+			<td>{{scryfall_web_uri}}</td>
 			<td>{{scryfall_api_uri}}</td>
-			<td>{{is_foil}}</td>
 			<td>{{layout}}</td>
-			<td>{{flavor_text}}</td>
-			<td>{{is_promo}}</td>
 			<td>{{rarity}}</td>
 			<td>{{released_at}}</td>
 			<td>{{set_name}}</td>
 			<td>{{set_type}}</td>
-			<td>{{mtgset_id_DURClabel}} <a href='/DURC/mtgset/{{mtgset_id}}/'> ({{mtgset_id}})</a> </td>			<td>{{is_story_spotlight}}</td>
-			<td>{{edhrec_rank}}</td>
-			<td>{{is_legal_oldschool}}</td>
-			<td>{{is_legal_duel}}</td>
-			<td>{{is_legal_commander}}</td>
-			<td>{{is_legal_penny}}</td>
-			<td>{{is_legal_vintage}}</td>
-			<td>{{is_legal_pauper}}</td>
-			<td>{{is_legal_legacy}}</td>
-			<td>{{is_legal_modern}}</td>
-			<td>{{is_legal_frontier}}</td>
-			<td>{{is_legal_future}}</td>
-			<td>{{is_legal_standard}}</td>
+			<td>{{mtgset_id_DURClabel}} <a href='/DURC/mtgset/{{mtgset_id}}/'> ({{mtgset_id}})</a> </td>			<td>{{edhrec_rank}}</td>
+			<td>{{is_promo}}</td>
+			<td>{{is_reserved}}</td>
+			<td>{{is_story_spotlight}}</td>
+			<td>{{is_reprint}}</td>
+			<td>{{is_variation}}</td>
+			<td>{{is_game_paper}}</td>
+			<td>{{is_game_mtgo}}</td>
+			<td>{{is_game_arena}}</td>
+			<td>{{legal_oldschool}}</td>
+			<td>{{legal_duel}}</td>
+			<td>{{legal_commander}}</td>
+			<td>{{legal_brawl}}</td>
+			<td>{{legal_penny}}</td>
+			<td>{{legal_vintage}}</td>
+			<td>{{legal_pauper}}</td>
+			<td>{{legal_legacy}}</td>
+			<td>{{legal_modern}}</td>
+			<td>{{legal_frontier}}</td>
+			<td>{{legal_future}}</td>
+			<td>{{legal_standard}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 

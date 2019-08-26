@@ -105,10 +105,10 @@
     </div>
   </div>
 
-  <div class='form-group row {{parenth_set_code_row_class}}'>
-    <label for='parenth_set_code' class='col-sm-2 col-form-label'>parenth_set_code</label>
+  <div class='form-group row {{parent_set_code_row_class}}'>
+    <label for='parent_set_code' class='col-sm-2 col-form-label'>parent_set_code</label>
     <div class='col-sm-10'>
-      <input type='text' class='form-control' id='parenth_set_code' name='parenth_set_code' placeholder='' value='{{parenth_set_code}}'>
+      <input type='text' class='form-control' id='parent_set_code' name='parent_set_code' placeholder='' value='{{parent_set_code}}'>
     </div>
   </div>
 
@@ -248,4 +248,109 @@
             </div>
 
 
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many card ( <a href='/DURC/card/'>see all</a> )
+{{^card}}
+(no values)
+{{/card}}
+  </div>
+<div class='card-body'>
+
+<table id='table_card' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> scryfall_id </th>
+			<th> lang </th>
+			<th> oracle_id </th>
+			<th> rulings_uri </th>
+			<th> scryfall_web_uri </th>
+			<th> scryfall_api_uri </th>
+			<th> layout </th>
+			<th> rarity </th>
+			<th> released_at </th>
+			<th> set_name </th>
+			<th> set_type </th>
+			<th> mtgset_id </th>
+			<th> variation_of_scryfall_id </th>
+			<th> edhrec_rank </th>
+			<th> is_promo </th>
+			<th> is_reserved </th>
+			<th> is_story_spotlight </th>
+			<th> is_reprint </th>
+			<th> is_variation </th>
+			<th> is_game_paper </th>
+			<th> is_game_mtgo </th>
+			<th> is_game_arena </th>
+			<th> legal_oldschool </th>
+			<th> legal_duel </th>
+			<th> legal_commander </th>
+			<th> legal_brawl </th>
+			<th> legal_penny </th>
+			<th> legal_vintage </th>
+			<th> legal_pauper </th>
+			<th> legal_legacy </th>
+			<th> legal_modern </th>
+			<th> legal_frontier </th>
+			<th> legal_future </th>
+			<th> legal_standard </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#card}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/card/{{id}}'>{{id}}</a></td>
+			<td>{{scryfall_id_DURClabel}} ({{scryfall_id}}) </td>			<td>{{lang}}</td>
+			<td>{{oracle_id_DURClabel}} ({{oracle_id}}) </td>			<td>{{rulings_uri}}</td>
+			<td>{{scryfall_web_uri}}</td>
+			<td>{{scryfall_api_uri}}</td>
+			<td>{{layout}}</td>
+			<td>{{rarity}}</td>
+			<td>{{released_at}}</td>
+			<td>{{set_name}}</td>
+			<td>{{set_type}}</td>
+			<td>{{mtgset_id_DURClabel}} ({{mtgset_id}}) </td>			<td>{{variation_of_scryfall_id_DURClabel}} ({{variation_of_scryfall_id}}) </td>			<td>{{edhrec_rank}}</td>
+			<td>{{is_promo}}</td>
+			<td>{{is_reserved}}</td>
+			<td>{{is_story_spotlight}}</td>
+			<td>{{is_reprint}}</td>
+			<td>{{is_variation}}</td>
+			<td>{{is_game_paper}}</td>
+			<td>{{is_game_mtgo}}</td>
+			<td>{{is_game_arena}}</td>
+			<td>{{legal_oldschool}}</td>
+			<td>{{legal_duel}}</td>
+			<td>{{legal_commander}}</td>
+			<td>{{legal_brawl}}</td>
+			<td>{{legal_penny}}</td>
+			<td>{{legal_vintage}}</td>
+			<td>{{legal_pauper}}</td>
+			<td>{{legal_legacy}}</td>
+			<td>{{legal_modern}}</td>
+			<td>{{legal_frontier}}</td>
+			<td>{{legal_future}}</td>
+			<td>{{legal_standard}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/card}}
+</tbody>
+</table>
+</div></div> <!-- end card card-->
+<br>
+</div></div> <!--end has many card-->
 <br>
