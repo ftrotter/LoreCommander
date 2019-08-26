@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 	`$durc_type_right"."_id` INT(11) NOT NULL ,  
 	`$durc_type_tag"."_id` INT(11) NOT NULL ,  
 	`is_bulk_linker` TINYINT(1) NOT NULL DEFAULT '0' ,  
-	`link_note` VARCHAR(255) NOT NULL ,  
+	`link_note` VARCHAR(255) DEFAULT NULL ,  
 	`created_at` DATETIME NOT NULL ,  
 	`updated_at` DATETIME NOT NULL ,    
 	PRIMARY KEY  (`id`)) ENGINE = MyISAM 
