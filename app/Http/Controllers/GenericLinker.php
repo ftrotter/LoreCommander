@@ -21,6 +21,8 @@ class GenericLinker extends Controller
 		$right_id = $durc_type_right."_id";
 		$tag_id = $durc_type_tag."_id";
 
+		$total_links_created = 0;
+		
 		foreach($left_ids as $this_left_id){
 			foreach($right_ids as $this_right_id){
 				foreach($tag_ids as $this_tag_id){
@@ -37,10 +39,14 @@ class GenericLinker extends Controller
 
 					$linker_object = $class_name::firstOrCreate($link_array);
 	
+					$total_links_created++;
+
 				}
 			}
 		}
 
+
+		return("Created $total_links_created");
 
 
 
