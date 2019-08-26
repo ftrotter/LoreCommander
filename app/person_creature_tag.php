@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=059b016476c332383234ab57151ea2ee
+FILE_SIG=96d8e22935602429c706a044673872c2
 */
 namespace App;
 /*
@@ -78,10 +78,11 @@ CREATE TABLE `lore`.`person_creature_tag` (
   `creature_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
   `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,
-  `link_note` varchar(255) NOT NULL,
+  `link_note` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `person_id` (`person_id`,`creature_id`,`tag_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 

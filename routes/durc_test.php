@@ -72,6 +72,10 @@ Route::get('durctest', function () {
  			'/DURC/strategy/create', //from: lore.strategy 
  			'/DURC/strategy/1', //from: lore.strategy 
  			'/DURC/strategy/1/edit', //from: lore.strategy 
+ 			'/DURC/strategytag', //from: lore.strategytag 
+ 			'/DURC/strategytag/create', //from: lore.strategytag 
+ 			'/DURC/strategytag/1', //from: lore.strategytag 
+ 			'/DURC/strategytag/1/edit', //from: lore.strategytag 
  			'/DURC/tag', //from: lore.tag 
  			'/DURC/tag/create', //from: lore.tag 
  			'/DURC/tag/1', //from: lore.tag 
