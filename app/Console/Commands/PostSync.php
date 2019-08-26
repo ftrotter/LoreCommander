@@ -187,6 +187,50 @@ WHERE creature.creature_name LIKE '%$name%'
 
 	echo "\nfinished linking creature types and creature classes\n";
 
+
+	//now we want to link the classes to the cards...
+
+	//again we do not want to fart around with the funny sets..
+	//so we do lots of joining to make sure the cardface is a legit card.
+
+	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
+		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
+			$name = $class_of_creature_array['classofcreature_name'];
+			$insert_sql = "
+INSERT IGNORE lore.classofcreature_cardface
+SELECT 
+	NULL AS id,
+	cardface.id AS cardface_id,
+	$coc_id AS classofcreature_id,
+	CURRENT_TIME AS created_at,
+	CURRENT_TIME AS updated_at
+FROM lore.cardface
+JOIN lore.card ON 
+	cardface.card_id =
+	card.id
+JOIN lore.mtgset ON 
+	mtgset.id =
+	mtgset_id
+WHERE 
+	`type_line` LIKE '%creature%' 
+	AND type_line NOT LIKE '%Token%'
+	AND mtgset.set_type != 'funny'
+	AND cardface.type_line LIKE '%$name%'
+";
+
+	
+			$count  =  $pdo->exec($insert_sql);
+			if($count > 0){
+				echo 'C';
+			}
+
+		}
+	}
+
+	echo "\nFinished linking creature classes with specific cards\n";
+
+
+
 	foreach($sql as $this_sql){
 
 		$this->info("Running\n $this_sql");
