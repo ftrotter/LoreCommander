@@ -35,34 +35,19 @@ class CreatureClass extends AbstractTabularReport
     {
 	$where_array = [];
 
-       $sql = 
-"
+       $sql = "
 SELECT 
-`name`
-, COUNT(DISTINCT(illustration_id)) AS illustration_count
-, COUNT(DISTINCT(scryfall_id)) AS release_count
-,`mana_cost`
-, type_line
-, power
-, set_name
-, oracle_text
-, flavor_text
-,`color`, rarity , `color_identity`
-,artist
-,`is_color_green`, `is_color_red`, `is_color_blue`, `is_color_black`
-,`is_color_white`, `is_colorless`
-,`color_count` 
-,legal_modern, legal_standard
-,scryfall_web_uri, rulings_uri  
-,`image_uri_small`,
-image_uri_art_crop
-
-FROM lore.cardface
-JOIN lore.card ON 
-	card.id =
-    	cardface.card_id
-$where_sql
-GROUP BY oracle_id
+	classofcreature_name AS creature_class_name,
+	classofcreature.id AS class_id,
+	COUNT(DISTINCT(creature.id)) AS creature_type_count
+FROM lore.classofcreature 
+JOIN lore.classofcreature_creature ON 
+	classofcreature_id =
+	classofcreature.id
+JOIN lore.creature ON 
+	creature.id =
+	classofcreature_creature.creature_id
+GROUP BY classofcreature.id
 
 ";
 
