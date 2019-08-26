@@ -8,10 +8,17 @@ use DB;
 class GenericLinker extends Controller
 {
 
-	public function linkSaver(Request $request){
+	public function linkSaver(Request $request, $durc_type_left,$durc_type_right,$durc_type_tag){
 
-		dd($request->all());
-		
+
+		$link_table = $durc_type_left."_$durc_type_right"."_$durc_type_tag";
+	
+		$left_ids = $request->input($durc_type_left."_id");
+		$right_ids = $request->input($durc_type_right."_id");
+		$tag_ids = $request->input($durc_type_tag."_id");
+	
+		dd($tag_ids);
+
 
 	}
 
