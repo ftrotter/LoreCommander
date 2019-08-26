@@ -1,76 +1,76 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a948c21cc38f58bec9207885a985c6c1
+FILE_SIG=417440b574a186290b2215df9199d1e9
 */
 namespace App;
 /*
-	person: controls lore.person
+	classofcreature_cardface: controls lore.classofcreature_cardface
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class person extends \App\DURC\Models\person
+class classofcreature_cardface extends \App\DURC\Models\classofcreature_cardface
 {
 
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'person_creature_tag', //from from many
-			'person_strategy_tag', //from from many
+			'cardface', //from belongs to
+			'classofcreature', //from belongs to
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'last_name', //varchar
-			//'first_name', //varchar
+			//'cardface_id', //int
+			//'classofcreature_id', //int
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
 
 
 //DURC HAS_MANY SECTION
-
-/**
-*	DURC is handling the person_creature_tag for this person in person
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function person_creature_tag(){
-		return parent::person_creature_tag();
-	}
-
-
-/**
-*	DURC is handling the person_strategy_tag for this person in person
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function person_strategy_tag(){
-		return parent::person_strategy_tag();
-	}
-
-
+			//DURC did not detect any has_many relationships
 //DURC BELONGS_TO SECTION
-			//DURC did not detect any belongs_to relationships
+
+/**
+*	DURC is handling the cardface for this classofcreature_cardface in classofcreature_cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardface(){
+		return parent::cardface();
+	}
+
+
+/**
+*	DURC is handling the classofcreature for this classofcreature_cardface in classofcreature_cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function classofcreature(){
+		return parent::classofcreature();
+	}
+
+
 
 
 // Last generated SQL Schema
 /*
-CREATE TABLE `lore`.`person` (
+CREATE TABLE `lore`.`classofcreature_cardface` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
+  `cardface_id` int(11) NOT NULL,
+  `classofcreature_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `last_name` (`last_name`)
+  UNIQUE KEY `cardface_id` (`cardface_id`,`classofcreature_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
 	
 
-}//end person
+}//end classofcreature_cardface

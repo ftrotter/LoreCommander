@@ -218,6 +218,7 @@ class cardfaceController extends DURCController
 		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
 		$tmp_cardface->power = DURC::formatForStorage( 'power', 'varchar', $request->power ); 
+		$tmp_cardface->toughness = DURC::formatForStorage( 'toughness', 'varchar', $request->toughness ); 
 		$tmp_cardface->type_line = DURC::formatForStorage( 'type_line', 'varchar', $request->type_line ); 
 		$tmp_cardface->border_color = DURC::formatForStorage( 'border_color', 'varchar', $request->border_color ); 
 		$tmp_cardface->image_uri_small = DURC::formatForStorage( 'image_uri_small', 'varchar', $request->image_uri_small ); 
@@ -369,6 +370,7 @@ class cardfaceController extends DURCController
 		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
 		$tmp_cardface->power = DURC::formatForStorage( 'power', 'varchar', $request->power ); 
+		$tmp_cardface->toughness = DURC::formatForStorage( 'toughness', 'varchar', $request->toughness ); 
 		$tmp_cardface->type_line = DURC::formatForStorage( 'type_line', 'varchar', $request->type_line ); 
 		$tmp_cardface->border_color = DURC::formatForStorage( 'border_color', 'varchar', $request->border_color ); 
 		$tmp_cardface->image_uri_small = DURC::formatForStorage( 'image_uri_small', 'varchar', $request->image_uri_small ); 

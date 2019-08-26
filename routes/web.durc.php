@@ -21,6 +21,13 @@ Route::get("/DURC/json/artistcredit/", 'artistcreditController@jsonall');
 Route::get("/DURC/searchjson/artistcredit/", 'artistcreditController@search');
 
  
+//DURC->	lore.arttag
+Route::resource("/DURC/arttag", 'arttagController');
+Route::get("/DURC/json/arttag/{arttag_id}", 'arttagController@jsonone');
+Route::get("/DURC/json/arttag/", 'arttagController@jsonall');
+Route::get("/DURC/searchjson/arttag/", 'arttagController@search');
+
+ 
 //DURC->	lore.card
 Route::resource("/DURC/card", 'cardController');
 Route::get("/DURC/json/card/{card_id}", 'cardController@jsonone');
@@ -42,11 +49,11 @@ Route::get("/DURC/json/classofcreature/", 'classofcreatureController@jsonall');
 Route::get("/DURC/searchjson/classofcreature/", 'classofcreatureController@search');
 
  
-//DURC->	lore.classofcreature_copy
-Route::resource("/DURC/classofcreature_copy", 'classofcreature_copyController');
-Route::get("/DURC/json/classofcreature_copy/{classofcreature_copy_id}", 'classofcreature_copyController@jsonone');
-Route::get("/DURC/json/classofcreature_copy/", 'classofcreature_copyController@jsonall');
-Route::get("/DURC/searchjson/classofcreature_copy/", 'classofcreature_copyController@search');
+//DURC->	lore.classofcreature_cardface
+Route::resource("/DURC/classofcreature_cardface", 'classofcreature_cardfaceController');
+Route::get("/DURC/json/classofcreature_cardface/{classofcreature_cardface_id}", 'classofcreature_cardfaceController@jsonone');
+Route::get("/DURC/json/classofcreature_cardface/", 'classofcreature_cardfaceController@jsonall');
+Route::get("/DURC/searchjson/classofcreature_cardface/", 'classofcreature_cardfaceController@search');
 
  
 //DURC->	lore.classofcreature_creature
@@ -82,6 +89,20 @@ Route::resource("/DURC/person_creature_tag", 'person_creature_tagController');
 Route::get("/DURC/json/person_creature_tag/{person_creature_tag_id}", 'person_creature_tagController@jsonone');
 Route::get("/DURC/json/person_creature_tag/", 'person_creature_tagController@jsonall');
 Route::get("/DURC/searchjson/person_creature_tag/", 'person_creature_tagController@search');
+
+ 
+//DURC->	lore.person_strategy_tag
+Route::resource("/DURC/person_strategy_tag", 'person_strategy_tagController');
+Route::get("/DURC/json/person_strategy_tag/{person_strategy_tag_id}", 'person_strategy_tagController@jsonone');
+Route::get("/DURC/json/person_strategy_tag/", 'person_strategy_tagController@jsonall');
+Route::get("/DURC/searchjson/person_strategy_tag/", 'person_strategy_tagController@search');
+
+ 
+//DURC->	lore.strategy
+Route::resource("/DURC/strategy", 'strategyController');
+Route::get("/DURC/json/strategy/{strategy_id}", 'strategyController@jsonone');
+Route::get("/DURC/json/strategy/", 'strategyController@jsonall');
+Route::get("/DURC/searchjson/strategy/", 'strategyController@search');
 
  
 //DURC->	lore.tag
