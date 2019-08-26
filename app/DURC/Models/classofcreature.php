@@ -25,6 +25,7 @@ class classofcreature extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'cardface_classofcreature_atag', //from from many
 			'classofcreature_cardface', //from from many
 			'classofcreature_creature', //from from many
 			'person_classofcreature_tag', //from from many
@@ -54,6 +55,14 @@ class classofcreature extends DURCModel{
 
 		
 //DURC HAS_MANY SECTION
+
+/**
+*	get all the cardface_classofcreature_atag for this classofcreature
+*/
+	public function cardface_classofcreature_atag(){
+		return $this->hasMany('App\cardface_classofcreature_atag','classofcreature_id','id');
+	}
+
 
 /**
 *	get all the classofcreature_cardface for this classofcreature
