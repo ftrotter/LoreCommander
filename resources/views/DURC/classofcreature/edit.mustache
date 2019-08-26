@@ -150,47 +150,6 @@
 
 <div class='card'>
   <div class='card-header'>
-    Has many cardface_classofcreature_arttag ( <a href='/DURC/cardface_classofcreature_arttag/'>see all</a> )
-{{^cardface_classofcreature_arttag}}
-(no values)
-{{/cardface_classofcreature_arttag}}
-  </div>
-<div class='card-body'>
-
-<table id='table_cardface_classofcreature_arttag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> cardface_id </th>
-			<th> classofcreature_id </th>
-			<th> arttag_id </th>
-			<th> is_bulk_linker </th>
-			<th> link_note </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#cardface_classofcreature_arttag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/cardface_classofcreature_arttag/{{id}}'>{{id}}</a></td>
-			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{arttag_id_DURClabel}} ({{arttag_id}}) </td>			<td>{{is_bulk_linker}}</td>
-			<td>{{link_note}}</td>
-			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/cardface_classofcreature_arttag}}
-</tbody>
-</table>
-</div></div> <!-- end cardface_classofcreature_arttag card-->
-<br>
-
-<div class='card'>
-  <div class='card-header'>
     Has many classofcreature_cardface ( <a href='/DURC/classofcreature_cardface/'>see all</a> )
 {{^classofcreature_cardface}}
 (no values)

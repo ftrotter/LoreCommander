@@ -2,13 +2,13 @@
 
 namespace App\DURC\Controllers;
 
-use App\cardface_classofcreature_arttag;
+use App\atag;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 
-class cardface_classofcreature_arttagController extends DURCController
+class atagController extends DURCController
 {
 
 
@@ -24,9 +24,6 @@ class cardface_classofcreature_arttagController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
-		$with_summary_array[] = "cardface:id,".\App\cardface::getNameField();
-		$with_summary_array[] = "classofcreature:id,".\App\classofcreature::getNameField();
-		$with_summary_array[] = "arttag:id,".\App\arttag::getNameField();
 
 		return($with_summary_array);
 		
@@ -39,7 +36,7 @@ class cardface_classofcreature_arttagController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = cardface_classofcreature_arttag::with($with_argument)->paginate(100);
+		$these = atag::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -54,8 +51,8 @@ class cardface_classofcreature_arttagController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( cardface_classofcreature_arttag::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = cardface_classofcreature_arttag::$field_type_map[ $lowest_key ];
+                                        if ( isset( atag::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = atag::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -63,8 +60,8 @@ class cardface_classofcreature_arttagController extends DURCController
                                 }
                         }
 
-                        if ( isset( cardface_classofcreature_arttag::$field_type_map[$key] ) ) {
-                            $field_type = cardface_classofcreature_arttag::$field_type_map[ $key ];
+                        if ( isset( atag::$field_type_map[$key] ) ) {
+                            $field_type = atag::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -127,7 +124,7 @@ class cardface_classofcreature_arttagController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = cardface_classofcreature_arttag::getSearchFields();
+                $search_fields = atag::getSearchFields();
 
 		$where_sql = '';
 		$or = '';
@@ -136,7 +133,7 @@ class cardface_classofcreature_arttagController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = cardface_classofcreature_arttag::whereRaw($where_sql)
+		$these = atag::whereRaw($where_sql)
 					->take(20)
 					->get();
 
@@ -170,7 +167,7 @@ class cardface_classofcreature_arttagController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\cardface_classofcreature_arttag  $cardface_classofcreature_arttag
+     * @param  \App\atag  $atag
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -191,7 +188,7 @@ class cardface_classofcreature_arttagController extends DURCController
 		var_export($this->view_data);
 		exit();
 	}
-	$durc_template_results = view('DURC.cardface_classofcreature_arttag.index',$this->view_data);        
+	$durc_template_results = view('DURC.atag.index',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -203,42 +200,40 @@ class cardface_classofcreature_arttagController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewcardface_classofcreature_arttag = new cardface_classofcreature_arttag();
+	$myNewatag = new atag();
 
 	//the games we play to easily auto-generate code..
-	$tmp_cardface_classofcreature_arttag = $myNewcardface_classofcreature_arttag;
-			$tmp_cardface_classofcreature_arttag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_cardface_classofcreature_arttag->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_cardface_classofcreature_arttag->classofcreature_id = DURC::formatForStorage( 'classofcreature_id', 'int', $request->classofcreature_id ); 
-		$tmp_cardface_classofcreature_arttag->arttag_id = DURC::formatForStorage( 'arttag_id', 'int', $request->arttag_id ); 
-		$tmp_cardface_classofcreature_arttag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_cardface_classofcreature_arttag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_cardface_classofcreature_arttag->save();
+	$tmp_atag = $myNewatag;
+			$tmp_atag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_atag->arttag_name = DURC::formatForStorage( 'arttag_name', 'varchar', $request->arttag_name ); 
+		$tmp_atag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
+		$tmp_atag->excludes_arttag_id = DURC::formatForStorage( 'excludes_arttag_id', 'int', $request->excludes_arttag_id ); 
+		$tmp_atag->save();
 
 
-	$new_id = $myNewcardface_classofcreature_arttag->id;
+	$new_id = $myNewatag->id;
 
-	return redirect("/DURC/cardface_classofcreature_arttag/$new_id")->with('status', 'Data Saved!');
+	return redirect("/DURC/atag/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
     /**
      * Display the specified resource.
-     * @param  \App\$cardface_classofcreature_arttag  $cardface_classofcreature_arttag
+     * @param  \App\$atag  $atag
      * @return \Illuminate\Http\Response
      */
-    public function show(cardface_classofcreature_arttag $cardface_classofcreature_arttag){
-	return($this->edit($cardface_classofcreature_arttag));
+    public function show(atag $atag){
+	return($this->edit($atag));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\cardface_classofcreature_arttag  $cardface_classofcreature_arttag
+     * @param  \App\atag  $atag
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $cardface_classofcreature_arttag_id){
-		$cardface_classofcreature_arttag = \App\cardface_classofcreature_arttag::find($cardface_classofcreature_arttag_id);
-		$cardface_classofcreature_arttag = $cardface_classofcreature_arttag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($cardface_classofcreature_arttag->toArray());
+    public function jsonone(Request $request, $atag_id){
+		$atag = \App\atag::find($atag_id);
+		$atag = $atag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		return response()->json($atag->toArray());
  	}
 
 
@@ -248,17 +243,17 @@ class cardface_classofcreature_arttagController extends DURCController
      */
     public function create(){
 	// but really, we are just going to edit a new object..
-	$new_instance = new cardface_classofcreature_arttag();
+	$new_instance = new atag();
 	return $this->edit($new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\cardface_classofcreature_arttag  $cardface_classofcreature_arttag
+     * @param  \App\atag  $atag
      * @return \Illuminate\Http\Response
      */
-    public function edit(cardface_classofcreature_arttag $cardface_classofcreature_arttag){
+    public function edit(atag $atag){
 
 	$main_template_name = $this->_getMainTemplateName();
 
@@ -273,7 +268,7 @@ class cardface_classofcreature_arttagController extends DURCController
 	$this->view_data['csrf_token'] = csrf_token();
 	
 	
-	foreach ( cardface_classofcreature_arttag::$field_type_map as $column_name => $field_type ) {
+	foreach ( atag::$field_type_map as $column_name => $field_type ) {
         // If this field name is in the configured list of hidden fields, do not display the row.
         $this->view_data["{$column_name}_row_class"] = '';
         if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -281,15 +276,15 @@ class cardface_classofcreature_arttagController extends DURCController
         }
     }
 
-	if($cardface_classofcreature_arttag->exists){	//we will not have old data if this is a new object
+	if($atag->exists){	//we will not have old data if this is a new object
 
 		//well lets properly eager load this object with a refresh to load all of the related things
-		$cardface_classofcreature_arttag = $cardface_classofcreature_arttag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$atag = $atag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 
 		//put the contents into the view...
-		foreach($cardface_classofcreature_arttag->toArray() as $key => $value){
-			if ( isset( cardface_classofcreature_arttag::$field_type_map[$key] ) ) {
-                $field_type = cardface_classofcreature_arttag::$field_type_map[ $key ];
+		foreach($atag->toArray() as $key => $value){
+			if ( isset( atag::$field_type_map[$key] ) ) {
+                $field_type = atag::$field_type_map[ $key ];
                 $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
             } else {
                 $this->view_data[$key] = $value;
@@ -297,9 +292,9 @@ class cardface_classofcreature_arttagController extends DURCController
 		}
 
 		//what is this object called?
-		$name_field = $cardface_classofcreature_arttag->_getBestName();
+		$name_field = $atag->_getBestName();
 		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $cardface_classofcreature_arttag->$name_field;
+		$this->view_data['durc_instance_name'] = $atag->$name_field;
 	}else{
 		$this->view_data['is_new'] = true;
 	}
@@ -312,41 +307,39 @@ class cardface_classofcreature_arttagController extends DURCController
 	}
 	
 
-	$durc_template_results = view('DURC.cardface_classofcreature_arttag.edit',$this->view_data);        
+	$durc_template_results = view('DURC.atag.edit',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\cardface_classofcreature_arttag  $cardface_classofcreature_arttag
+     * @param  \App\atag  $atag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cardface_classofcreature_arttag $cardface_classofcreature_arttag){
+    public function update(Request $request, atag $atag){
 
-	$tmp_cardface_classofcreature_arttag = $cardface_classofcreature_arttag;
-			$tmp_cardface_classofcreature_arttag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_cardface_classofcreature_arttag->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_cardface_classofcreature_arttag->classofcreature_id = DURC::formatForStorage( 'classofcreature_id', 'int', $request->classofcreature_id ); 
-		$tmp_cardface_classofcreature_arttag->arttag_id = DURC::formatForStorage( 'arttag_id', 'int', $request->arttag_id ); 
-		$tmp_cardface_classofcreature_arttag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_cardface_classofcreature_arttag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_cardface_classofcreature_arttag->save();
+	$tmp_atag = $atag;
+			$tmp_atag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_atag->arttag_name = DURC::formatForStorage( 'arttag_name', 'varchar', $request->arttag_name ); 
+		$tmp_atag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
+		$tmp_atag->excludes_arttag_id = DURC::formatForStorage( 'excludes_arttag_id', 'int', $request->excludes_arttag_id ); 
+		$tmp_atag->save();
 
 
-	$id = $cardface_classofcreature_arttag->id;
+	$id = $atag->id;
 
-	return redirect("/DURC/cardface_classofcreature_arttag/$id")->with('status', 'Data Saved!');
+	return redirect("/DURC/atag/$id")->with('status', 'Data Saved!');
         
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\cardface_classofcreature_arttag  $cardface_classofcreature_arttag
+     * @param  \App\atag  $atag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cardface_classofcreature_arttag $cardface_classofcreature_arttag){
-	    return cardface_classofcreature_arttag::destroy( $cardface_classofcreature_arttag->id );  
+    public function destroy(atag $atag){
+	    return atag::destroy( $atag->id );  
     }
     
     /**
@@ -356,7 +349,7 @@ class cardface_classofcreature_arttagController extends DURCController
      */
     public function restore( $id )
     {
-        $cardface_classofcreature_arttag = cardface_classofcreature_arttag::withTrashed()->find($id)->restore();
+        $atag = atag::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }

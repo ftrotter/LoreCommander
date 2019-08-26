@@ -24,10 +24,10 @@ Route::get('durctest', function () {
  			'/DURC/artistcredit/create', //from: lore.artistcredit 
  			'/DURC/artistcredit/1', //from: lore.artistcredit 
  			'/DURC/artistcredit/1/edit', //from: lore.artistcredit 
- 			'/DURC/arttag', //from: lore.arttag 
- 			'/DURC/arttag/create', //from: lore.arttag 
- 			'/DURC/arttag/1', //from: lore.arttag 
- 			'/DURC/arttag/1/edit', //from: lore.arttag 
+ 			'/DURC/atag', //from: lore.atag 
+ 			'/DURC/atag/create', //from: lore.atag 
+ 			'/DURC/atag/1', //from: lore.atag 
+ 			'/DURC/atag/1/edit', //from: lore.atag 
  			'/DURC/card', //from: lore.card 
  			'/DURC/card/create', //from: lore.card 
  			'/DURC/card/1', //from: lore.card 
@@ -36,10 +36,6 @@ Route::get('durctest', function () {
  			'/DURC/cardface/create', //from: lore.cardface 
  			'/DURC/cardface/1', //from: lore.cardface 
  			'/DURC/cardface/1/edit', //from: lore.cardface 
- 			'/DURC/cardface_classofcreature_arttag', //from: lore.cardface_classofcreature_arttag 
- 			'/DURC/cardface_classofcreature_arttag/create', //from: lore.cardface_classofcreature_arttag 
- 			'/DURC/cardface_classofcreature_arttag/1', //from: lore.cardface_classofcreature_arttag 
- 			'/DURC/cardface_classofcreature_arttag/1/edit', //from: lore.cardface_classofcreature_arttag 
  			'/DURC/classofcreature', //from: lore.classofcreature 
  			'/DURC/classofcreature/create', //from: lore.classofcreature 
  			'/DURC/classofcreature/1', //from: lore.classofcreature 
