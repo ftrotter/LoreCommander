@@ -37,6 +37,8 @@ Create <a href='/DURC/cardface/create/'>new cardface</a><br>
 <table id='table_cardface' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
 <th scope='col'>#</th><th scope='col'>card_id</th>
+<th scope='col'>cardface_index</th>
+<th scope='col'>illustration_id</th>
 <th scope='col'>artist</th>
 <th scope='col'>color</th>
 <th scope='col'>color_identity</th>
@@ -48,19 +50,38 @@ Create <a href='/DURC/cardface/create/'>new cardface</a><br>
 <th scope='col'>power</th>
 <th scope='col'>type_line</th>
 <th scope='col'>border_color</th>
+<th scope='col'>image_uri_small</th>
+<th scope='col'>image_hash_small</th>
+<th scope='col'>image_uri_normal</th>
+<th scope='col'>image_hash_normal</th>
+<th scope='col'>image_uri_large</th>
+<th scope='col'>image_hash_large</th>
+<th scope='col'>image_uri_png</th>
+<th scope='col'>image_hash_png</th>
+<th scope='col'>image_uri_art_crop</th>
+<th scope='col'>image_hash_art_crop</th>
+<th scope='col'>image_uri_border_crop</th>
+<th scope='col'>image_hash_border_crop</th>
+<th scope='col'>is_foil</th>
+<th scope='col'>is_nonfoil</th>
+<th scope='col'>is_oversized</th>
 <th scope='col'>is_color_green</th>
 <th scope='col'>is_color_red</th>
 <th scope='col'>is_color_blue</th>
 <th scope='col'>is_color_black</th>
 <th scope='col'>is_color_white</th>
 <th scope='col'>is_colorless</th>
+<th scope='col'>color_count</th>
 <th scope='col'>is_snow</th>
+<th scope='col'>has_phyrexian_mana</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
 </tr></thead>
 <tfoot><tr>
 <th scope='col'>#</th><th scope='col'>card_id</th>
+<th scope='col'>cardface_index</th>
+<th scope='col'>illustration_id</th>
 <th scope='col'>artist</th>
 <th scope='col'>color</th>
 <th scope='col'>color_identity</th>
@@ -72,13 +93,30 @@ Create <a href='/DURC/cardface/create/'>new cardface</a><br>
 <th scope='col'>power</th>
 <th scope='col'>type_line</th>
 <th scope='col'>border_color</th>
+<th scope='col'>image_uri_small</th>
+<th scope='col'>image_hash_small</th>
+<th scope='col'>image_uri_normal</th>
+<th scope='col'>image_hash_normal</th>
+<th scope='col'>image_uri_large</th>
+<th scope='col'>image_hash_large</th>
+<th scope='col'>image_uri_png</th>
+<th scope='col'>image_hash_png</th>
+<th scope='col'>image_uri_art_crop</th>
+<th scope='col'>image_hash_art_crop</th>
+<th scope='col'>image_uri_border_crop</th>
+<th scope='col'>image_hash_border_crop</th>
+<th scope='col'>is_foil</th>
+<th scope='col'>is_nonfoil</th>
+<th scope='col'>is_oversized</th>
 <th scope='col'>is_color_green</th>
 <th scope='col'>is_color_red</th>
 <th scope='col'>is_color_blue</th>
 <th scope='col'>is_color_black</th>
 <th scope='col'>is_color_white</th>
 <th scope='col'>is_colorless</th>
+<th scope='col'>color_count</th>
 <th scope='col'>is_snow</th>
+<th scope='col'>has_phyrexian_mana</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -86,7 +124,8 @@ Create <a href='/DURC/cardface/create/'>new cardface</a><br>
 <tbody>
   {{#data}}
     <tr>
-	<th scope='row'><a href='/DURC/cardface/{{id}}/'> {{id}} </a></th>			<td>{{card_id_DURClabel}} <a href='/DURC/card/{{card_id}}/'> ({{card_id}})</a> </td>			<td>{{artist}}</td>
+	<th scope='row'><a href='/DURC/cardface/{{id}}/'> {{id}} </a></th>			<td>{{card_id_DURClabel}} <a href='/DURC/card/{{card_id}}/'> ({{card_id}})</a> </td>			<td>{{cardface_index}}</td>
+			<td>{{artist}}</td>
 			<td>{{color}}</td>
 			<td>{{color_identity}}</td>
 			<td>{{flavor_text}}</td>
@@ -97,13 +136,30 @@ Create <a href='/DURC/cardface/create/'>new cardface</a><br>
 			<td>{{power}}</td>
 			<td>{{type_line}}</td>
 			<td>{{border_color}}</td>
+			<td>{{image_uri_small}}</td>
+			<td>{{image_hash_small}}</td>
+			<td>{{image_uri_normal}}</td>
+			<td>{{image_hash_normal}}</td>
+			<td>{{image_uri_large}}</td>
+			<td>{{image_hash_large}}</td>
+			<td>{{image_uri_png}}</td>
+			<td>{{image_hash_png}}</td>
+			<td>{{image_uri_art_crop}}</td>
+			<td>{{image_hash_art_crop}}</td>
+			<td>{{image_uri_border_crop}}</td>
+			<td>{{image_hash_border_crop}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{is_nonfoil}}</td>
+			<td>{{is_oversized}}</td>
 			<td>{{is_color_green}}</td>
 			<td>{{is_color_red}}</td>
 			<td>{{is_color_blue}}</td>
 			<td>{{is_color_black}}</td>
 			<td>{{is_color_white}}</td>
 			<td>{{is_colorless}}</td>
+			<td>{{color_count}}</td>
 			<td>{{is_snow}}</td>
+			<td>{{has_phyrexian_mana}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 

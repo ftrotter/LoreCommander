@@ -133,3 +133,51 @@
 
 
 <br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_creature_tag ( <a href='/DURC/person_creature_tag/'>see all</a> )
+{{^person_creature_tag}}
+(no values)
+{{/person_creature_tag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_creature_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> creature_id </th>
+			<th> tag_id </th>
+			<th> is_generic_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_creature_tag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_creature_tag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_generic_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_creature_tag}}
+</tbody>
+</table>
+</div></div> <!-- end person_creature_tag card-->
+<br>
+</div></div> <!--end has many card-->
+<br>

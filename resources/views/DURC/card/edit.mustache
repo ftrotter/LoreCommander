@@ -70,10 +70,10 @@
     </div>
   </div>
 
-  <div class='form-group row {{scryfall_uri_row_class}}'>
-    <label for='scryfall_uri' class='col-sm-2 col-form-label'>scryfall_uri</label>
+  <div class='form-group row {{scryfall_web_uri_row_class}}'>
+    <label for='scryfall_web_uri' class='col-sm-2 col-form-label'>scryfall_web_uri</label>
     <div class='col-sm-10'>
-      <input type='text' class='form-control' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}'>
+      <input type='text' class='form-control' id='scryfall_web_uri' name='scryfall_web_uri' placeholder='' value='{{scryfall_web_uri}}'>
     </div>
   </div>
 
@@ -84,35 +84,10 @@
     </div>
   </div>
 
-  <div class='form-group row {{is_foil_row_class}}'>
-    <div class='col-sm-2'><label>is_foil</label></div>
-    <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_foil' name='is_foil' {{is_foil}} >
-       </div> 
-    </div>
-  </div>
-
   <div class='form-group row {{layout_row_class}}'>
     <label for='layout' class='col-sm-2 col-form-label'>layout</label>
     <div class='col-sm-10'>
       <input type='text' class='form-control' id='layout' name='layout' placeholder='' value='{{layout}}'>
-    </div>
-  </div>
-
-  <div class='form-group row {{flavor_text_row_class}}'>
-    <label for='flavor_text' class='col-sm-2 col-form-label'>flavor_text</label>
-    <div class='col-sm-10'>
-      <input type='text' class='form-control' id='flavor_text' name='flavor_text' placeholder='' value='{{flavor_text}}'>
-    </div>
-  </div>
-
-  <div class='form-group row {{is_promo_row_class}}'>
-    <div class='col-sm-2'><label>is_promo</label></div>
-    <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_promo' name='is_promo' {{is_promo}} >
-       </div> 
     </div>
   </div>
 
@@ -167,15 +142,6 @@ $('.select2_mtgset_id').select2({
 </script>
 
 
-  <div class='form-group row {{is_story_spotlight_row_class}}'>
-    <div class='col-sm-2'><label>is_story_spotlight</label></div>
-    <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_story_spotlight' name='is_story_spotlight' {{is_story_spotlight}} >
-       </div> 
-    </div>
-  </div>
-
   <div class='form-group row {{variation_of_scryfall_id_row_class}}'>
     <label for='variation_of_scryfall_id' class='col-sm-2 col-form-label'>variation_of_scryfall_id</label>
     <div class='col-sm-10'>
@@ -190,102 +156,157 @@ $('.select2_mtgset_id').select2({
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_oldschool_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_oldschool</label></div>
+  <div class='form-group row {{is_promo_row_class}}'>
+    <div class='col-sm-2'><label>is_promo</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_oldschool' name='is_legal_oldschool' {{is_legal_oldschool}} >
+            <input type='checkbox' id='is_promo' name='is_promo' {{is_promo}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_duel_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_duel</label></div>
+  <div class='form-group row {{is_reserved_row_class}}'>
+    <div class='col-sm-2'><label>is_reserved</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_duel' name='is_legal_duel' {{is_legal_duel}} >
+            <input type='checkbox' id='is_reserved' name='is_reserved' {{is_reserved}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_commander_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_commander</label></div>
+  <div class='form-group row {{is_story_spotlight_row_class}}'>
+    <div class='col-sm-2'><label>is_story_spotlight</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_commander' name='is_legal_commander' {{is_legal_commander}} >
+            <input type='checkbox' id='is_story_spotlight' name='is_story_spotlight' {{is_story_spotlight}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_penny_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_penny</label></div>
+  <div class='form-group row {{is_reprint_row_class}}'>
+    <label for='is_reprint' class='col-sm-2 col-form-label'>is_reprint</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='is_reprint' name='is_reprint' placeholder='' value='{{is_reprint}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{is_variation_row_class}}'>
+    <div class='col-sm-2'><label>is_variation</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_penny' name='is_legal_penny' {{is_legal_penny}} >
+            <input type='checkbox' id='is_variation' name='is_variation' {{is_variation}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_vintage_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_vintage</label></div>
+  <div class='form-group row {{is_game_paper_row_class}}'>
+    <div class='col-sm-2'><label>is_game_paper</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_vintage' name='is_legal_vintage' {{is_legal_vintage}} >
+            <input type='checkbox' id='is_game_paper' name='is_game_paper' {{is_game_paper}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_pauper_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_pauper</label></div>
+  <div class='form-group row {{is_game_mtgo_row_class}}'>
+    <div class='col-sm-2'><label>is_game_mtgo</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_pauper' name='is_legal_pauper' {{is_legal_pauper}} >
+            <input type='checkbox' id='is_game_mtgo' name='is_game_mtgo' {{is_game_mtgo}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_legacy_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_legacy</label></div>
+  <div class='form-group row {{is_game_arena_row_class}}'>
+    <div class='col-sm-2'><label>is_game_arena</label></div>
     <div class='col-sm-10'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_legal_legacy' name='is_legal_legacy' {{is_legal_legacy}} >
+            <input type='checkbox' id='is_game_arena' name='is_game_arena' {{is_game_arena}} >
        </div> 
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_modern_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_modern</label></div>
+  <div class='form-group row {{legal_oldschool_row_class}}'>
+    <label for='legal_oldschool' class='col-sm-2 col-form-label'>legal_oldschool</label>
     <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_legal_modern' name='is_legal_modern' {{is_legal_modern}} >
-       </div> 
+      <input type='text' class='form-control' id='legal_oldschool' name='legal_oldschool' placeholder='' value='{{legal_oldschool}}'>
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_frontier_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_frontier</label></div>
+  <div class='form-group row {{legal_duel_row_class}}'>
+    <label for='legal_duel' class='col-sm-2 col-form-label'>legal_duel</label>
     <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_legal_frontier' name='is_legal_frontier' {{is_legal_frontier}} >
-       </div> 
+      <input type='text' class='form-control' id='legal_duel' name='legal_duel' placeholder='' value='{{legal_duel}}'>
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_future_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_future</label></div>
+  <div class='form-group row {{legal_commander_row_class}}'>
+    <label for='legal_commander' class='col-sm-2 col-form-label'>legal_commander</label>
     <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_legal_future' name='is_legal_future' {{is_legal_future}} >
-       </div> 
+      <input type='text' class='form-control' id='legal_commander' name='legal_commander' placeholder='' value='{{legal_commander}}'>
     </div>
   </div>
 
-  <div class='form-group row {{is_legal_standard_row_class}}'>
-    <div class='col-sm-2'><label>is_legal_standard</label></div>
+  <div class='form-group row {{legal_brawl_row_class}}'>
+    <label for='legal_brawl' class='col-sm-2 col-form-label'>legal_brawl</label>
     <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_legal_standard' name='is_legal_standard' {{is_legal_standard}} >
-       </div> 
+      <input type='text' class='form-control' id='legal_brawl' name='legal_brawl' placeholder='' value='{{legal_brawl}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_penny_row_class}}'>
+    <label for='legal_penny' class='col-sm-2 col-form-label'>legal_penny</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_penny' name='legal_penny' placeholder='' value='{{legal_penny}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_vintage_row_class}}'>
+    <label for='legal_vintage' class='col-sm-2 col-form-label'>legal_vintage</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_vintage' name='legal_vintage' placeholder='' value='{{legal_vintage}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_pauper_row_class}}'>
+    <label for='legal_pauper' class='col-sm-2 col-form-label'>legal_pauper</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_pauper' name='legal_pauper' placeholder='' value='{{legal_pauper}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_legacy_row_class}}'>
+    <label for='legal_legacy' class='col-sm-2 col-form-label'>legal_legacy</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_legacy' name='legal_legacy' placeholder='' value='{{legal_legacy}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_modern_row_class}}'>
+    <label for='legal_modern' class='col-sm-2 col-form-label'>legal_modern</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_modern' name='legal_modern' placeholder='' value='{{legal_modern}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_frontier_row_class}}'>
+    <label for='legal_frontier' class='col-sm-2 col-form-label'>legal_frontier</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_frontier' name='legal_frontier' placeholder='' value='{{legal_frontier}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_future_row_class}}'>
+    <label for='legal_future' class='col-sm-2 col-form-label'>legal_future</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_future' name='legal_future' placeholder='' value='{{legal_future}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{legal_standard_row_class}}'>
+    <label for='legal_standard' class='col-sm-2 col-form-label'>legal_standard</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='legal_standard' name='legal_standard' placeholder='' value='{{legal_standard}}'>
     </div>
   </div>
 
@@ -393,6 +414,8 @@ $('.select2_mtgset_id').select2({
 <tr>
 			<th> id </th>
 			<th> card_id </th>
+			<th> cardface_index </th>
+			<th> illustration_id </th>
 			<th> artist </th>
 			<th> color </th>
 			<th> color_identity </th>
@@ -404,13 +427,30 @@ $('.select2_mtgset_id').select2({
 			<th> power </th>
 			<th> type_line </th>
 			<th> border_color </th>
+			<th> image_uri_small </th>
+			<th> image_hash_small </th>
+			<th> image_uri_normal </th>
+			<th> image_hash_normal </th>
+			<th> image_uri_large </th>
+			<th> image_hash_large </th>
+			<th> image_uri_png </th>
+			<th> image_hash_png </th>
+			<th> image_uri_art_crop </th>
+			<th> image_hash_art_crop </th>
+			<th> image_uri_border_crop </th>
+			<th> image_hash_border_crop </th>
+			<th> is_foil </th>
+			<th> is_nonfoil </th>
+			<th> is_oversized </th>
 			<th> is_color_green </th>
 			<th> is_color_red </th>
 			<th> is_color_blue </th>
 			<th> is_color_black </th>
 			<th> is_color_white </th>
 			<th> is_colorless </th>
+			<th> color_count </th>
 			<th> is_snow </th>
+			<th> has_phyrexian_mana </th>
 			<th> created_at </th>
 			<th> updated_at </th>
 
@@ -421,7 +461,8 @@ $('.select2_mtgset_id').select2({
 	<tr>
 		{{#.}}
 			<td><a href='/DURC/cardface/{{id}}'>{{id}}</a></td>
-			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{artist}}</td>
+			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{cardface_index}}</td>
+			<td>{{illustration_id_DURClabel}} ({{illustration_id}}) </td>			<td>{{artist}}</td>
 			<td>{{color}}</td>
 			<td>{{color_identity}}</td>
 			<td>{{flavor_text}}</td>
@@ -432,13 +473,30 @@ $('.select2_mtgset_id').select2({
 			<td>{{power}}</td>
 			<td>{{type_line}}</td>
 			<td>{{border_color}}</td>
+			<td>{{image_uri_small}}</td>
+			<td>{{image_hash_small}}</td>
+			<td>{{image_uri_normal}}</td>
+			<td>{{image_hash_normal}}</td>
+			<td>{{image_uri_large}}</td>
+			<td>{{image_hash_large}}</td>
+			<td>{{image_uri_png}}</td>
+			<td>{{image_hash_png}}</td>
+			<td>{{image_uri_art_crop}}</td>
+			<td>{{image_hash_art_crop}}</td>
+			<td>{{image_uri_border_crop}}</td>
+			<td>{{image_hash_border_crop}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{is_nonfoil}}</td>
+			<td>{{is_oversized}}</td>
 			<td>{{is_color_green}}</td>
 			<td>{{is_color_red}}</td>
 			<td>{{is_color_blue}}</td>
 			<td>{{is_color_black}}</td>
 			<td>{{is_color_white}}</td>
 			<td>{{is_colorless}}</td>
+			<td>{{color_count}}</td>
 			<td>{{is_snow}}</td>
+			<td>{{has_phyrexian_mana}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
