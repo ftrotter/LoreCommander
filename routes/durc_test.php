@@ -32,6 +32,18 @@ Route::get('durctest', function () {
  			'/DURC/cardface/create', //from: lore.cardface 
  			'/DURC/cardface/1', //from: lore.cardface 
  			'/DURC/cardface/1/edit', //from: lore.cardface 
+ 			'/DURC/classofcreature', //from: lore.classofcreature 
+ 			'/DURC/classofcreature/create', //from: lore.classofcreature 
+ 			'/DURC/classofcreature/1', //from: lore.classofcreature 
+ 			'/DURC/classofcreature/1/edit', //from: lore.classofcreature 
+ 			'/DURC/classofcreature_copy', //from: lore.classofcreature_copy 
+ 			'/DURC/classofcreature_copy/create', //from: lore.classofcreature_copy 
+ 			'/DURC/classofcreature_copy/1', //from: lore.classofcreature_copy 
+ 			'/DURC/classofcreature_copy/1/edit', //from: lore.classofcreature_copy 
+ 			'/DURC/classofcreature_creature', //from: lore.classofcreature_creature 
+ 			'/DURC/classofcreature_creature/create', //from: lore.classofcreature_creature 
+ 			'/DURC/classofcreature_creature/1', //from: lore.classofcreature_creature 
+ 			'/DURC/classofcreature_creature/1/edit', //from: lore.classofcreature_creature 
  			'/DURC/creature', //from: lore.creature 
  			'/DURC/creature/create', //from: lore.creature 
  			'/DURC/creature/1', //from: lore.creature 

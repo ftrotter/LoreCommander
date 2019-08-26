@@ -1,32 +1,32 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=fcb8079c977e858c1c3e332f61d09757
+FILE_SIG=2f41289428978c94e1e39438ab784c91
 */
 namespace App;
 /*
-	creature: controls lore.creature
+	classofcreature: controls lore.classofcreature
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class creature extends \App\DURC\Models\creature
+class classofcreature extends \App\DURC\Models\classofcreature
 {
 
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
 			'classofcreature_creature', //from from many
-			'person_creature_tag', //from from many
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'creature_name', //varchar
+			//'classofcreature_name', //varchar
+			//'is_mega_class', //tinyint
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -35,20 +35,11 @@ class creature extends \App\DURC\Models\creature
 //DURC HAS_MANY SECTION
 
 /**
-*	DURC is handling the classofcreature_creature for this creature in creature
+*	DURC is handling the classofcreature_creature for this classofcreature in classofcreature
 *       but you can extend or override the defaults by editing this function...
 */
 	public function classofcreature_creature(){
 		return parent::classofcreature_creature();
-	}
-
-
-/**
-*	DURC is handling the person_creature_tag for this creature in creature
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function person_creature_tag(){
-		return parent::person_creature_tag();
 	}
 
 
@@ -58,17 +49,18 @@ class creature extends \App\DURC\Models\creature
 
 // Last generated SQL Schema
 /*
-CREATE TABLE `lore`.`creature` (
+CREATE TABLE `lore`.`classofcreature` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `creature_name` varchar(255) NOT NULL,
+  `classofcreature_name` varchar(255) NOT NULL,
+  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `creature_name` (`creature_name`)
+  UNIQUE KEY `creatureclass_name` (`classofcreature_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
 	
 
-}//end creature
+}//end classofcreature
