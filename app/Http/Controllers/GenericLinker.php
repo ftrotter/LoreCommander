@@ -17,7 +17,31 @@ class GenericLinker extends Controller
 		$right_ids = $request->input($durc_type_right."_id");
 		$tag_ids = $request->input($durc_type_tag."_id");
 	
-		dd($tag_ids);
+		$left_id = $durc_type_left."_id";
+		$right_id = $durc_type_right."_id";
+		$tag_id = $durc_type_tag."_id";
+
+		foreach($left_ids as $this_left_id){
+			foreach($right_ids as $this_right_id){
+				foreach($tag_ids as $this_tag_id){
+	
+					
+					$link_array = [
+						$left_id => $this_left_id,
+						$right_id => $this_right_id,
+						$tag_id => $this_tag_id,
+						
+					];
+
+					$class_name = "\App\$link_table";
+
+					$linker_object = $class_name::firstOrCreate($link_array);
+	
+				}
+			}
+		}
+
+
 
 
 	}
