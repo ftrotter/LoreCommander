@@ -30,17 +30,19 @@ class GenericLinker extends Controller
 				foreach($tag_ids as $this_tag_id){
 	
 					
-					$link_array = [
+					$find_array = [
 						$left_id => $this_left_id,
 						$right_id => $this_right_id,
 						$tag_id => $this_tag_id,
+					];
+					$data_array = [
 						'is_bulk_linker' => 1,
 						'link_note' => $link_note,							
 					];
 
 					$class_name = "\App\\$link_table";
 
-					$linker_object = $class_name::updateOrCreate($link_array);
+					$linker_object = $class_name::updateOrCreate($find_array,$data_array);
 	
 					$total_links_created++;
 
