@@ -64,8 +64,8 @@ This interface allows you to quickly tag sets of objects...
 	</div>
 
 	<div class='row'>
-		<div class='col-md-6'></div>
-		<div class='col-md-6'>
+		<div class='col-md-2'></div>
+		<div class='col-md-10'>
 			<br><br>
 
   <div class="form-group row">
