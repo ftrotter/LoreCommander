@@ -160,7 +160,7 @@ SELECT * FROM lore.classofcreature
 	//and then link the correspoding creature rows to the class row. 
 
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
-		if(!$is_mega_class){ //there is a different system for the megaclasses
+		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
 			$name = $class_of_creature_array['classofcreature_name'];
 			$insert_sql = "
 INSERT IGNORE lore.classofcreature_creature
