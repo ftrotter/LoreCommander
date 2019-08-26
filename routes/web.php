@@ -89,6 +89,13 @@ Route::get("/DURC/json/cardface_classofcreature_atag/", 'cardface_classofcreatur
 Route::get("/DURC/searchjson/cardface_classofcreature_atag/", 'cardface_classofcreature_atagController@search');
 
  
+//DURC->	lore.cardface_person_atag
+Route::resource("/DURC/cardface_person_atag", 'cardface_person_atagController');
+Route::get("/DURC/json/cardface_person_atag/{cardface_person_atag_id}", 'cardface_person_atagController@jsonone');
+Route::get("/DURC/json/cardface_person_atag/", 'cardface_person_atagController@jsonall');
+Route::get("/DURC/searchjson/cardface_person_atag/", 'cardface_person_atagController@search');
+
+ 
 //DURC->	lore.classofcreature
 Route::resource("/DURC/classofcreature", 'classofcreatureController');
 Route::get("/DURC/json/classofcreature/{classofcreature_id}", 'classofcreatureController@jsonone');

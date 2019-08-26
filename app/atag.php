@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1825936d9ac138ee783d95ff80a57998
+FILE_SIG=5cbd02545a7cebd0e444ad070b25622e
 */
 namespace App;
 /*
@@ -19,6 +19,7 @@ class atag extends \App\DURC\Models\atag
 /*
 		protected $DURC_selfish_with = [ 
 			'cardface_classofcreature_atag', //from from many
+			'cardface_person_atag', //from from many
 		];
 
 */
@@ -41,6 +42,15 @@ class atag extends \App\DURC\Models\atag
 */
 	public function cardface_classofcreature_atag(){
 		return parent::cardface_classofcreature_atag();
+	}
+
+
+/**
+*	DURC is handling the cardface_person_atag for this atag in atag
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardface_person_atag(){
+		return parent::cardface_person_atag();
 	}
 
 
