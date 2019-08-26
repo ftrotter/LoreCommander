@@ -10,22 +10,22 @@
             </div>
 
 {{#is_new}}
-<form action='/DURC/tag' method='POST'>
+<form action='/DURC/strategy' method='POST'>
 {{/is_new}}
 
 {{^is_new}}
-<form action='/DURC/tag/{{id}}' method='POST'>
+<form action='/DURC/strategy/{{id}}' method='POST'>
     <input type='hidden' name='_method' value='PUT'>
 {{/is_new}}
 
-	<h1>tag</h1>
+	<h1>strategy</h1>
 <div class='card'>
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/tag/'>Return to tag list</a> </li>
+<li> <a href='/DURC/strategy/'>Return to strategy list</a> </li>
 {{^is_new}}
-<li> <a href='/DURC/tag/create'>Create new tag </a> </li>
+<li> <a href='/DURC/strategy/create'>Create new strategy </a> </li>
 {{/is_new}}
 </ul>
   </div>
@@ -42,37 +42,42 @@
     </div>
   </div>
 
-  <div class='form-group row {{tag_name_row_class}}'>
-    <label for='tag_name' class='col-sm-2 col-form-label'>tag_name</label>
+  <div class='form-group row {{strategy_name_row_class}}'>
+    <label for='strategy_name' class='col-sm-2 col-form-label'>strategy_name</label>
     <div class='col-sm-10'>
-      <input type='text' class='form-control' id='tag_name' name='tag_name' placeholder='' value='{{tag_name}}'>
+      <input type='text' class='form-control' id='strategy_name' name='strategy_name' placeholder='' value='{{strategy_name}}'>
     </div>
   </div>
 
-  <div class='form-group row {{is_directed_row_class}}'>
-    <div class='col-sm-2'><label>is_directed</label></div>
+  <div class='form-group row {{strategy_description_row_class}}'>
+    <label for='strategy_description' class='col-sm-2 col-form-label'>strategy_description</label>
     <div class='col-sm-10'>
-        <div class='checkbox'>
-            <input type='checkbox' id='is_directed' name='is_directed' {{is_directed}} >
-       </div> 
+      <input type='text' class='form-control' id='strategy_description' name='strategy_description' placeholder='' value='{{strategy_description}}'>
     </div>
   </div>
 
-  <div class='form-group row {{excludes_tag_id_row_class}}'>
-    <label for='excludes_tag_id' class='col-sm-2 col-form-label'>excludes_tag_id</label>
+  <div class='form-group row {{strategy_url_row_class}}'>
+    <label for='strategy_url' class='col-sm-2 col-form-label'>strategy_url</label>
     <div class='col-sm-10'>
-	Current id value: {{excludes_tag_id}} (see below for lookup value)<br>
-	<select class='select2_excludes_tag_id form-control' id='excludes_tag_id' name='excludes_tag_id' form-control'>
-	<option value='{{excludes_tag_id}}' selected='selected'>{{excludes_tag_id}}</option>
+      <input type='text' class='form-control' id='strategy_url' name='strategy_url' placeholder='' value='{{strategy_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{wincon_cardface_id_row_class}}'>
+    <label for='wincon_cardface_id' class='col-sm-2 col-form-label'>wincon_cardface_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{wincon_cardface_id}} (see below for lookup value)<br>
+	<select class='select2_wincon_cardface_id form-control' id='wincon_cardface_id' name='wincon_cardface_id' form-control'>
+	<option value='{{wincon_cardface_id}}' selected='selected'>{{wincon_cardface_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
 
-$('.select2_excludes_tag_id').select2({
+$('.select2_wincon_cardface_id').select2({
   ajax: {
-    	url: '/DURC/searchjson/tag/',
+    	url: '/DURC/searchjson/cardface/',
     	dataType: 'json'
   }
 });
@@ -80,6 +85,13 @@ $('.select2_excludes_tag_id').select2({
 
 </script>
 
+
+  <div class='form-group row {{WOTC_rule_reference_row_class}}'>
+    <label for='WOTC_rule_reference' class='col-sm-2 col-form-label'>WOTC_rule_reference</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='' value='{{WOTC_rule_reference}}'>
+    </div>
+  </div>
 
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
@@ -154,11 +166,11 @@ $('.select2_excludes_tag_id').select2({
   <div class='form-group row'>
               <div class='col-sm-12 text-right'>
 
-<form action='/DURC/tag/{{id}}' method='POST'>
+<form action='/DURC/strategy/{{id}}' method='POST'>
     	<input type='hidden' name='_method' value='DELETE'>
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 
-              <button type='button' data-id='{{id}}' data-controller='tag' class='do-soft-delete btn btn-outline-danger'>Hard Delete tag</button>
+              <button type='button' data-id='{{id}}' data-controller='strategy' class='do-soft-delete btn btn-outline-danger'>Hard Delete strategy</button>
 </form>
               </div>
             </div>
@@ -170,47 +182,6 @@ $('.select2_excludes_tag_id').select2({
     Relationships
   </div>
 <div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    Has many person_creature_tag ( <a href='/DURC/person_creature_tag/'>see all</a> )
-{{^person_creature_tag}}
-(no values)
-{{/person_creature_tag}}
-  </div>
-<div class='card-body'>
-
-<table id='table_person_creature_tag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> person_id </th>
-			<th> creature_id </th>
-			<th> tag_id </th>
-			<th> is_bulk_linker </th>
-			<th> link_note </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#person_creature_tag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/person_creature_tag/{{id}}'>{{id}}</a></td>
-			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
-			<td>{{link_note}}</td>
-			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/person_creature_tag}}
-</tbody>
-</table>
-</div></div> <!-- end person_creature_tag card-->
-<br>
 
 <div class='card'>
   <div class='card-header'>
@@ -252,45 +223,6 @@ $('.select2_excludes_tag_id').select2({
 </table>
 </div></div> <!-- end person_strategy_tag card-->
 <br>
-
-<div class='card'>
-  <div class='card-header'>
-    Has many excludes_tag ( <a href='/DURC/tag/'>see all</a> )
-{{^excludes_tag}}
-(no values)
-{{/excludes_tag}}
-  </div>
-<div class='card-body'>
-
-<table id='table_excludes_tag' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> tag_name </th>
-			<th> is_directed </th>
-			<th> excludes_tag_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#excludes_tag}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/tag/{{id}}'>{{id}}</a></td>
-			<td>{{tag_name}}</td>
-			<td>{{is_directed}}</td>
-			<td>{{excludes_tag_id_DURClabel}} ({{excludes_tag_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/excludes_tag}}
-</tbody>
-</table>
-</div></div> <!-- end excludes_tag card-->
-<br>
 </div></div> <!--end has many card-->
 <br>
 <div class='card'>
@@ -301,39 +233,110 @@ $('.select2_excludes_tag_id').select2({
 
 <div class='card'>
   <div class='card-header'>
-    excludes_tag ( <a href='/DURC/tag/'>see all</a> )
-{{^excludes_tag}}
+    wincon_cardface ( <a href='/DURC/cardface/'>see all</a> )
+{{^wincon_cardface}}
 (no values)
-{{/excludes_tag}}
+{{/wincon_cardface}}
   </div>
 <div class='card-body'>
-<table id='table_excludes_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_wincon_cardface' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
-			<th> tag_name </th>
-			<th> is_directed </th>
-			<th> excludes_tag_id </th>
+			<th> card_id </th>
+			<th> cardface_index </th>
+			<th> illustration_id </th>
+			<th> artist </th>
+			<th> color </th>
+			<th> color_identity </th>
+			<th> flavor_text </th>
+			<th> image_uri </th>
+			<th> mana_cost </th>
+			<th> name </th>
+			<th> oracle_text </th>
+			<th> power </th>
+			<th> toughness </th>
+			<th> type_line </th>
+			<th> border_color </th>
+			<th> image_uri_small </th>
+			<th> image_hash_small </th>
+			<th> image_uri_normal </th>
+			<th> image_hash_normal </th>
+			<th> image_uri_large </th>
+			<th> image_hash_large </th>
+			<th> image_uri_png </th>
+			<th> image_hash_png </th>
+			<th> image_uri_art_crop </th>
+			<th> image_hash_art_crop </th>
+			<th> image_uri_border_crop </th>
+			<th> image_hash_border_crop </th>
+			<th> is_foil </th>
+			<th> is_nonfoil </th>
+			<th> is_oversized </th>
+			<th> is_color_green </th>
+			<th> is_color_red </th>
+			<th> is_color_blue </th>
+			<th> is_color_black </th>
+			<th> is_color_white </th>
+			<th> is_colorless </th>
+			<th> color_count </th>
+			<th> is_snow </th>
+			<th> has_phyrexian_mana </th>
 			<th> created_at </th>
 			<th> updated_at </th>
 
 </tr>
 </thead>
 <tbody>
-{{#excludes_tag}}
+{{#wincon_cardface}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/tag/{{id}}'>{{id}}</a></td>
-			<td>{{tag_name}}</td>
-			<td>{{is_directed}}</td>
-			<td>{{excludes_tag_id_DURClabel}} ({{excludes_tag_id}}) </td>			<td>{{created_at}}</td>
+			<td><a href='/DURC/cardface/{{id}}'>{{id}}</a></td>
+			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{cardface_index}}</td>
+			<td>{{illustration_id_DURClabel}} ({{illustration_id}}) </td>			<td>{{artist}}</td>
+			<td>{{color}}</td>
+			<td>{{color_identity}}</td>
+			<td>{{flavor_text}}</td>
+			<td>{{image_uri}}</td>
+			<td>{{mana_cost}}</td>
+			<td>{{name}}</td>
+			<td>{{oracle_text}}</td>
+			<td>{{power}}</td>
+			<td>{{toughness}}</td>
+			<td>{{type_line}}</td>
+			<td>{{border_color}}</td>
+			<td>{{image_uri_small}}</td>
+			<td>{{image_hash_small}}</td>
+			<td>{{image_uri_normal}}</td>
+			<td>{{image_hash_normal}}</td>
+			<td>{{image_uri_large}}</td>
+			<td>{{image_hash_large}}</td>
+			<td>{{image_uri_png}}</td>
+			<td>{{image_hash_png}}</td>
+			<td>{{image_uri_art_crop}}</td>
+			<td>{{image_hash_art_crop}}</td>
+			<td>{{image_uri_border_crop}}</td>
+			<td>{{image_hash_border_crop}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{is_nonfoil}}</td>
+			<td>{{is_oversized}}</td>
+			<td>{{is_color_green}}</td>
+			<td>{{is_color_red}}</td>
+			<td>{{is_color_blue}}</td>
+			<td>{{is_color_black}}</td>
+			<td>{{is_color_white}}</td>
+			<td>{{is_colorless}}</td>
+			<td>{{color_count}}</td>
+			<td>{{is_snow}}</td>
+			<td>{{has_phyrexian_mana}}</td>
+			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/excludes_tag}}
+{{/wincon_cardface}}
 </tbody>
 </table>
-</div></div> <!-- end excludes_tag card-->
+</div></div> <!-- end wincon_cardface card-->
 </div></div> <!--end belongs to card-->
 <br>

@@ -37,12 +37,16 @@ Create <a href='/DURC/tag/create/'>new tag</a><br>
 <table id='table_tag' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
 <th scope='col'>#</th><th scope='col'>tag_name</th>
+<th scope='col'>is_directed</th>
+<th scope='col'>excludes_tag_id</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
 </tr></thead>
 <tfoot><tr>
 <th scope='col'>#</th><th scope='col'>tag_name</th>
+<th scope='col'>is_directed</th>
+<th scope='col'>excludes_tag_id</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -51,7 +55,8 @@ Create <a href='/DURC/tag/create/'>new tag</a><br>
   {{#data}}
     <tr>
 	<th scope='row'><a href='/DURC/tag/{{id}}/'> {{id}} </a></th>			<td>{{tag_name}}</td>
-			<td>{{created_at}}</td>
+			<td>{{is_directed}}</td>
+			<td>{{excludes_tag_id_DURClabel}} <a href='/DURC/tag/{{excludes_tag_id}}/'> ({{excludes_tag_id}})</a> </td>			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 
     </tr>

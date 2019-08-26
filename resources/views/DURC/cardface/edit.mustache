@@ -142,6 +142,13 @@ $('.select2_card_id').select2({
     </div>
   </div>
 
+  <div class='form-group row {{toughness_row_class}}'>
+    <label for='toughness' class='col-sm-2 col-form-label'>toughness</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='toughness' name='toughness' placeholder='' value='{{toughness}}'>
+    </div>
+  </div>
+
   <div class='form-group row {{type_line_row_class}}'>
     <label for='type_line' class='col-sm-2 col-form-label'>type_line</label>
     <div class='col-sm-10'>
@@ -429,6 +436,92 @@ $('.select2_card_id').select2({
             </div>
 
 
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofcreature_cardface ( <a href='/DURC/classofcreature_cardface/'>see all</a> )
+{{^classofcreature_cardface}}
+(no values)
+{{/classofcreature_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofcreature_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> classofcreature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofcreature_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofcreature_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofcreature_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end classofcreature_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many wincon_strategy ( <a href='/DURC/strategy/'>see all</a> )
+{{^wincon_strategy}}
+(no values)
+{{/wincon_strategy}}
+  </div>
+<div class='card-body'>
+
+<table id='table_wincon_strategy' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> strategy_name </th>
+			<th> strategy_description </th>
+			<th> strategy_url </th>
+			<th> wincon_cardface_id </th>
+			<th> WOTC_rule_reference </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#wincon_strategy}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/strategy/{{id}}'>{{id}}</a></td>
+			<td>{{strategy_name}}</td>
+			<td>{{strategy_description}}</td>
+			<td>{{strategy_url}}</td>
+			<td>{{wincon_cardface_id_DURClabel}} ({{wincon_cardface_id}}) </td>			<td>{{WOTC_rule_reference}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/wincon_strategy}}
+</tbody>
+</table>
+</div></div> <!-- end wincon_strategy card-->
+<br>
+</div></div> <!--end has many card-->
 <br>
 <div class='card'>
   <div class='card-header'>

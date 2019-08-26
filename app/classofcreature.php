@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2f41289428978c94e1e39438ab784c91
+FILE_SIG=ab7df9da0ac6e1b78b7ae264a760e5d2
 */
 namespace App;
 /*
@@ -18,6 +18,7 @@ class classofcreature extends \App\DURC\Models\classofcreature
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'classofcreature_cardface', //from from many
 			'classofcreature_creature', //from from many
 		];
 
@@ -33,6 +34,15 @@ class classofcreature extends \App\DURC\Models\classofcreature
 
 
 //DURC HAS_MANY SECTION
+
+/**
+*	DURC is handling the classofcreature_cardface for this classofcreature in classofcreature
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function classofcreature_cardface(){
+		return parent::classofcreature_cardface();
+	}
+
 
 /**
 *	DURC is handling the classofcreature_creature for this classofcreature in classofcreature

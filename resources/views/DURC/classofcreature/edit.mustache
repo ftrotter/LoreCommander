@@ -142,3 +142,82 @@
 
 
 <br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofcreature_cardface ( <a href='/DURC/classofcreature_cardface/'>see all</a> )
+{{^classofcreature_cardface}}
+(no values)
+{{/classofcreature_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofcreature_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> classofcreature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofcreature_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofcreature_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofcreature_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end classofcreature_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofcreature_creature ( <a href='/DURC/classofcreature_creature/'>see all</a> )
+{{^classofcreature_creature}}
+(no values)
+{{/classofcreature_creature}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofcreature_creature' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> classofcreature_id </th>
+			<th> creature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofcreature_creature}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofcreature_creature/{{id}}'>{{id}}</a></td>
+			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofcreature_creature}}
+</tbody>
+</table>
+</div></div> <!-- end classofcreature_creature card-->
+<br>
+</div></div> <!--end has many card-->
+<br>

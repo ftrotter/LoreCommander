@@ -25,6 +25,8 @@ class cardface extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'classofcreature_cardface', //from from many
+			'wincon_strategy', //from from many
 			'card', //from belongs to
 		];
 
@@ -52,6 +54,7 @@ class cardface extends DURCModel{
 		'name' => 'varchar',
 		'oracle_text' => 'varchar',
 		'power' => 'varchar',
+		'toughness' => 'varchar',
 		'type_line' => 'varchar',
 		'border_color' => 'varchar',
 		'image_uri_small' => 'varchar',
@@ -89,7 +92,22 @@ class cardface extends DURCModel{
 		
 //DURC HAS_MANY SECTION
 
-			//DURC did not detect any has_many relationships
+/**
+*	get all the classofcreature_cardface for this cardface
+*/
+	public function classofcreature_cardface(){
+		return $this->hasMany('App\classofcreature_cardface','cardface_id','id');
+	}
+
+
+/**
+*	get all the wincon_strategy for this cardface
+*/
+	public function wincon_strategy(){
+		return $this->hasMany('App\strategy','wincon_cardface_id','id');
+	}
+
+
 		
 		
 //DURC HAS_ONE SECTION
@@ -124,6 +142,7 @@ CREATE TABLE `lore`.`cardface` (
   `name` varchar(255) NOT NULL,
   `oracle_text` varchar(1000) NOT NULL,
   `power` varchar(255) DEFAULT NULL,
+  `toughness` varchar(255) DEFAULT NULL,
   `type_line` varchar(255) NOT NULL,
   `border_color` varchar(255) NOT NULL,
   `image_uri_small` varchar(500) DEFAULT NULL,
