@@ -204,7 +204,7 @@ GROUP_CONCAT(cardface.id) AS cardface_ids,
 , COUNT(DISTINCT(illustration_id)) AS illustration_count
 , COUNT(DISTINCT(scryfall_id)) AS release_count
 ,`mana_cost`
-, type_line
+,REGEXP_REPLACE(type_line,'[^a-zA-Z0-9]',' ') AS type_line
 , power
 , set_name
 , oracle_text
