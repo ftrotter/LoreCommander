@@ -16,7 +16,9 @@ class GenericLinker extends Controller
 		$left_ids = $request->input($durc_type_left."_id");
 		$right_ids = $request->input($durc_type_right."_id");
 		$tag_ids = $request->input($durc_type_tag."_id");
-	
+		$link_note = $request->input('link_note');
+
+
 		$left_id = $durc_type_left."_id";
 		$right_id = $durc_type_right."_id";
 		$tag_id = $durc_type_tag."_id";
@@ -32,7 +34,8 @@ class GenericLinker extends Controller
 						$left_id => $this_left_id,
 						$right_id => $this_right_id,
 						$tag_id => $this_tag_id,
-						
+						'is_bulk_linker' => 1,
+						'link_note' => $link_note,							
 					];
 
 					$class_name = "\App\\$link_table";
