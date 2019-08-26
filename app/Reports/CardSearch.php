@@ -198,7 +198,8 @@ class CardSearch extends AbstractTabularReport
 
        $sql = 
 "
-SELECT 
+SELECT
+GROUP_CONCAT(cardface.id) AS cardface_ids, 
 `name`
 , COUNT(DISTINCT(illustration_id)) AS illustration_count
 , COUNT(DISTINCT(scryfall_id)) AS release_count
