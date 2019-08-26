@@ -35,7 +35,12 @@ class CreatureClass extends AbstractTabularReport
     {
 	$where_array = [];
 
-       $sql = "
+	$class_id = $this->getCode();
+
+	if(is_null($class_id)){ 
+		//then this is the class-level summary..
+
+	       $sql = "
 SELECT 
 	classofcreature_name AS creature_class_name,
 	classofcreature.id AS class_id,
@@ -50,6 +55,29 @@ JOIN lore.creature ON
 GROUP BY classofcreature.id
 
 ";
+	}else{
+		if(!is_numeric($class_id)){
+			echo "Error class_id must be numeric\n";
+			exit();
+		}
+
+		$sql = "
+SELECT 
+	classofcreature_name AS creature_class_name,
+	creature_name AS creature_name
+FROM lore.classofcreature
+JOIN lore.classofcreature_creature ON
+        classofcreature_id =
+        classofcreature.id
+JOIN lore.creature ON
+        creature.id =
+        classofcreature_creature.creature_id
+WHERE classofcreature.id = '$class_id'
+";
+	
+
+	}
+
 
 	$is_debug = false;
 	if($is_debug){
@@ -72,6 +100,9 @@ GROUP BY classofcreature.id
 
 	extract($row);
 		
+	if(isset($class_id)){
+		$row['creature_type_count'] = "<a href='/CURC/CreatureClass/$class_id'>$creature_type_count</a>";
+	}
 
         return $row;
     }
