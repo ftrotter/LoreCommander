@@ -101,7 +101,7 @@ WHERE classofcreature.id = '$class_id'
 	extract($row);
 		
 	if(isset($class_id)){
-		$row['creature_type_count'] = "<a href='/CURC/CreatureClass/$class_id'>$creature_type_count</a>";
+		$row['creature_type_count'] = "<a href='/Zermelo/CreatureClass/$class_id'>$creature_type_count</a>";
 	}
 
         return $row;
