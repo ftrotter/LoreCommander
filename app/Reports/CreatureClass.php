@@ -45,7 +45,7 @@ SELECT
 	classofcreature_name AS creature_class_name,
 	classofcreature.id AS class_id,
 	COUNT(DISTINCT(creature.id)) AS creature_type_count,
-	COUNT(DISRINCT(cardface.id)) AS card_count
+	COUNT(DISTINCT(cardface.id)) AS card_count
 FROM lore.classofcreature 
 JOIN lore.classofcreature_creature ON 
 	classofcreature_id =
