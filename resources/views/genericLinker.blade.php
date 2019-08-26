@@ -67,7 +67,19 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-6'></div>
 		<div class='col-md-6'>
 			<br><br>
- 			<button name="submit" type="submit" class="btn btn-primary">Save Links</button>
+
+  <div class="form-group row">
+    <label for="link_notes" class="col-4 col-form-label">Link Notes</label> 
+    <div class="col-8">
+      <textarea id="link_notes" name="link_notes" cols="40" rows="5" aria-describedby="link_notesHelpBlock" class="form-control"></textarea> 
+      <span id="link_notesHelpBlock" class="form-text text-muted">Make any notes about these links here</span>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Save Links</button>
+    </div>
+  </div>
 		</div>
 	</div>
 	</form>
