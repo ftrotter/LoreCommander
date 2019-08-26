@@ -67,7 +67,7 @@ This interface allows you to quickly tag sets of objects...
 		<div class='col-md-6'></div>
 		<div class='col-md-6'>
 			<br><br>
- 			<button name="Save Links" type="submit" class="btn btn-primary">Submit</button>
+ 			<button name="submit" type="submit" class="btn btn-primary">Save Links</button>
 		</div>
 	</div>
 	</form>

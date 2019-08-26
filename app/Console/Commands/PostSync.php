@@ -105,7 +105,7 @@ SELECT id, creature_name FROM lore.creature
 	];
 
 	//now we need to save the creature tokens to the database...
-	//as creatureclass entries...
+	//as classofcreature entries...
 
 	$token_map = [];
 	foreach($creature_tokens as $this_token){
@@ -115,12 +115,12 @@ SELECT id, creature_name FROM lore.creature
 			//then do nothing..
 		}else{
 			//then add it to the list...
-
+			$this_token = trim($this_token);
 			$q_this_token = $pdo->quote($this_token);
 
 			$insert_sql = "
 INSERT IGNORE INTO 
-lore.creatureclass (`id`, `creatureclass_name`, `created_at`, `updated_at`) 
+lore.classofcreature (`id`, `classofcreature_name`, `created_at`, `updated_at`) 
 	VALUES 
 (NULL, TRIM($q_this_token), CURRENT_TIME(), CURRENT_TIME());
 ";
@@ -134,7 +134,54 @@ lore.creatureclass (`id`, `creatureclass_name`, `created_at`, `updated_at`)
 
 	echo "\n";
 
-	echo "Done inserting new creature types";
+	echo "Done inserting new class of creature";
+
+	//now we want  to build the links between the creatures and the classofcreature
+
+
+	//we need all the classes
+	$all_creature_class_sql = "
+SELECT * FROM lore.classofcreature
+";
+	
+	$results = DB::query($all_creature_class_sql);
+
+	//put them into a local array indexed by id
+	$all_class_of_creature = [];
+	foreach($results as $this_row){
+		$all_class_of_creature[$this_row->id]  = [
+				'id' =>  $this_row->id,
+				'classofcreature_name' => $this_row->classofcreature_name,
+				'is_mega_class' => $this_row->is_mega_class,
+			];
+	}
+
+	//loop over the classes and search for the class name in the creature table
+	//and then link the correspoding creature rows to the class row. 
+
+	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
+		if(!$is_mega_class){ //there is a different system for the megaclasses
+			$name = $class_of_creature_array['classofcreature_name'];
+			$insert_sql = "
+INSERT IGNORE lore.classofcreature_creature
+SELECT 
+	NULL AS id,
+	$coc_id AS classofcreature_id,
+	creature.id AS creature_id,
+	CURRENT_TIME AS created_at,
+	CURRENT_TIME AS updated_at
+FROM lore.creature 
+WHERE creature.creature_name LIKE '%$name%'
+";
+	
+			$count  =  $pdo->exec($insert_sql);
+			if($count > 0){
+				echo '.';
+			}
+
+		}
+	}
+
 
 	foreach($sql as $this_sql){
 
