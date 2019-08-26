@@ -148,6 +148,47 @@
 
 <div class='card'>
   <div class='card-header'>
+    Has many person_classofcreature_tag ( <a href='/DURC/person_classofcreature_tag/'>see all</a> )
+{{^person_classofcreature_tag}}
+(no values)
+{{/person_classofcreature_tag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_classofcreature_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> classofcreature_id </th>
+			<th> tag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_classofcreature_tag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_classofcreature_tag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_classofcreature_tag}}
+</tbody>
+</table>
+</div></div> <!-- end person_classofcreature_tag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
     Has many person_creature_tag ( <a href='/DURC/person_creature_tag/'>see all</a> )
 {{^person_creature_tag}}
 (no values)
@@ -185,6 +226,47 @@
 </tbody>
 </table>
 </div></div> <!-- end person_creature_tag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_strategy_strategytag ( <a href='/DURC/person_strategy_strategytag/'>see all</a> )
+{{^person_strategy_strategytag}}
+(no values)
+{{/person_strategy_strategytag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_strategy_strategytag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> strategy_id </th>
+			<th> strategytag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_strategy_strategytag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_strategy_strategytag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{strategy_id_DURClabel}} ({{strategy_id}}) </td>			<td>{{strategytag_id_DURClabel}} ({{strategytag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_strategy_strategytag}}
+</tbody>
+</table>
+</div></div> <!-- end person_strategy_strategytag card-->
 <br>
 
 <div class='card'>

@@ -185,6 +185,47 @@ $('.select2_wincon_cardface_id').select2({
 
 <div class='card'>
   <div class='card-header'>
+    Has many person_strategy_strategytag ( <a href='/DURC/person_strategy_strategytag/'>see all</a> )
+{{^person_strategy_strategytag}}
+(no values)
+{{/person_strategy_strategytag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_strategy_strategytag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> strategy_id </th>
+			<th> strategytag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_strategy_strategytag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_strategy_strategytag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{strategy_id_DURClabel}} ({{strategy_id}}) </td>			<td>{{strategytag_id_DURClabel}} ({{strategytag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_strategy_strategytag}}
+</tbody>
+</table>
+</div></div> <!-- end person_strategy_strategytag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
     Has many person_strategy_tag ( <a href='/DURC/person_strategy_tag/'>see all</a> )
 {{^person_strategy_tag}}
 (no values)

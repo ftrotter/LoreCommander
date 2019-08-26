@@ -25,6 +25,7 @@ class strategy extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'person_strategy_strategytag', //from from many
 			'person_strategy_tag', //from from many
 			'wincon_cardface', //from belongs to
 		];
@@ -56,6 +57,14 @@ class strategy extends DURCModel{
 
 		
 //DURC HAS_MANY SECTION
+
+/**
+*	get all the person_strategy_strategytag for this strategy
+*/
+	public function person_strategy_strategytag(){
+		return $this->hasMany('App\person_strategy_strategytag','strategy_id','id');
+	}
+
 
 /**
 *	get all the person_strategy_tag for this strategy

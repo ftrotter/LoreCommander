@@ -25,6 +25,7 @@ class strategytag extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'person_strategy_strategytag', //from from many
 		];
 
 
@@ -51,7 +52,14 @@ class strategytag extends DURCModel{
 		
 //DURC HAS_MANY SECTION
 
-			//DURC did not detect any has_many relationships
+/**
+*	get all the person_strategy_strategytag for this strategytag
+*/
+	public function person_strategy_strategytag(){
+		return $this->hasMany('App\person_strategy_strategytag','strategytag_id','id');
+	}
+
+
 		
 		
 //DURC HAS_ONE SECTION
@@ -71,7 +79,7 @@ CREATE TABLE `lore`.`strategytag` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

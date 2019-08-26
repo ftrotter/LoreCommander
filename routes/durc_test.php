@@ -60,10 +60,18 @@ Route::get('durctest', function () {
  			'/DURC/person/create', //from: lore.person 
  			'/DURC/person/1', //from: lore.person 
  			'/DURC/person/1/edit', //from: lore.person 
+ 			'/DURC/person_classofcreature_tag', //from: lore.person_classofcreature_tag 
+ 			'/DURC/person_classofcreature_tag/create', //from: lore.person_classofcreature_tag 
+ 			'/DURC/person_classofcreature_tag/1', //from: lore.person_classofcreature_tag 
+ 			'/DURC/person_classofcreature_tag/1/edit', //from: lore.person_classofcreature_tag 
  			'/DURC/person_creature_tag', //from: lore.person_creature_tag 
  			'/DURC/person_creature_tag/create', //from: lore.person_creature_tag 
  			'/DURC/person_creature_tag/1', //from: lore.person_creature_tag 
  			'/DURC/person_creature_tag/1/edit', //from: lore.person_creature_tag 
+ 			'/DURC/person_strategy_strategytag', //from: lore.person_strategy_strategytag 
+ 			'/DURC/person_strategy_strategytag/create', //from: lore.person_strategy_strategytag 
+ 			'/DURC/person_strategy_strategytag/1', //from: lore.person_strategy_strategytag 
+ 			'/DURC/person_strategy_strategytag/1/edit', //from: lore.person_strategy_strategytag 
  			'/DURC/person_strategy_tag', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/create', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1', //from: lore.person_strategy_tag 
