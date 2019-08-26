@@ -73,8 +73,9 @@ ORDER BY creature_name
 ";
 
 	$this->info("Running $sql_make_creature");
-	$pdo->query($sql_make_creature);
+	$count = $pdo->exec($sql_make_creature);
 
+	echo "Added $count new creatures\n";
 
 
 	//now we need to tokenize. Easier to do in php.
