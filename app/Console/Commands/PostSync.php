@@ -144,7 +144,7 @@ lore.classofcreature (`id`, `classofcreature_name`, `created_at`, `updated_at`)
 SELECT * FROM lore.classofcreature
 ";
 	
-	$results = DB::query(DB::raw($all_creature_class_sql));
+	$results = DB::select($all_creature_class_sql);
 
 	//put them into a local array indexed by id
 	$all_class_of_creature = [];
