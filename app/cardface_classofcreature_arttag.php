@@ -1,35 +1,34 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=f90c9308ba593791b3f523c10f877c8b
+FILE_SIG=7e861dcedb81184ff291627c0ee607a7
 */
 namespace App;
 /*
-	person_classofcreature_tag: controls lore.person_classofcreature_tag
+	cardface_classofcreature_arttag: controls lore.cardface_classofcreature_arttag
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class person_classofcreature_tag extends \App\DURC\Models\person_classofcreature_tag
+class cardface_classofcreature_arttag extends \App\DURC\Models\cardface_classofcreature_arttag
 {
 
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'person', //from belongs to
+			'cardface', //from belongs to
 			'classofcreature', //from belongs to
-			'tag', //from belongs to
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'person_id', //int
+			//'cardface_id', //int
 			//'classofcreature_id', //int
-			//'tag_id', //int
+			//'arttag_id', //int
 			//'is_bulk_linker', //tinyint
 			//'link_note', //varchar
 			//'created_at', //datetime
@@ -42,16 +41,16 @@ class person_classofcreature_tag extends \App\DURC\Models\person_classofcreature
 //DURC BELONGS_TO SECTION
 
 /**
-*	DURC is handling the person for this person_classofcreature_tag in person_classofcreature_tag
+*	DURC is handling the cardface for this cardface_classofcreature_arttag in cardface_classofcreature_arttag
 *       but you can extend or override the defaults by editing this function...
 */
-	public function person(){
-		return parent::person();
+	public function cardface(){
+		return parent::cardface();
 	}
 
 
 /**
-*	DURC is handling the classofcreature for this person_classofcreature_tag in person_classofcreature_tag
+*	DURC is handling the classofcreature for this cardface_classofcreature_arttag in cardface_classofcreature_arttag
 *       but you can extend or override the defaults by editing this function...
 */
 	public function classofcreature(){
@@ -59,34 +58,25 @@ class person_classofcreature_tag extends \App\DURC\Models\person_classofcreature
 	}
 
 
-/**
-*	DURC is handling the tag for this person_classofcreature_tag in person_classofcreature_tag
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function tag(){
-		return parent::tag();
-	}
-
-
 
 
 // Last generated SQL Schema
 /*
-CREATE TABLE `lore`.`person_classofcreature_tag` (
+CREATE TABLE `lore`.`cardface_classofcreature_arttag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `person_id` int(11) NOT NULL,
+  `cardface_id` int(11) NOT NULL,
   `classofcreature_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL,
+  `arttag_id` int(11) NOT NULL,
   `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,
   `link_note` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `person_id` (`person_id`,`classofcreature_id`,`tag_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+  UNIQUE KEY `cardface_id` (`cardface_id`,`classofcreature_id`,`arttag_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
 	
 
-}//end person_classofcreature_tag
+}//end cardface_classofcreature_arttag

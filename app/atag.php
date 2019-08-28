@@ -1,24 +1,25 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=5be52785184be66afee0ee1a84a5bd59
+FILE_SIG=5cbd02545a7cebd0e444ad070b25622e
 */
 namespace App;
 /*
-	arttag: controls lore.arttag
+	atag: controls lore.atag
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class arttag extends \App\DURC\Models\arttag
+class atag extends \App\DURC\Models\atag
 {
 
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'excludes_arttag', //from from many
+			'cardface_classofcreature_atag', //from from many
+			'cardface_person_atag', //from from many
 		];
 
 */
@@ -36,23 +37,30 @@ class arttag extends \App\DURC\Models\arttag
 //DURC HAS_MANY SECTION
 
 /**
-*	DURC is handling the excludes_arttag for this arttag in arttag
+*	DURC is handling the cardface_classofcreature_atag for this atag in atag
 *       but you can extend or override the defaults by editing this function...
 */
-	public function excludes_arttag(){
-		return parent::excludes_arttag();
+	public function cardface_classofcreature_atag(){
+		return parent::cardface_classofcreature_atag();
+	}
+
+
+/**
+*	DURC is handling the cardface_person_atag for this atag in atag
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardface_person_atag(){
+		return parent::cardface_person_atag();
 	}
 
 
 //DURC BELONGS_TO SECTION
-
-		//DURC would have added excludes_arttag but it was already used in has_many. 
-		//You will have to resolve these recursive relationships in your code.
+			//DURC did not detect any belongs_to relationships
 
 
 // Last generated SQL Schema
 /*
-CREATE TABLE `lore`.`arttag` (
+CREATE TABLE `lore`.`atag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `arttag_name` varchar(255) NOT NULL,
   `is_directed` tinyint(1) NOT NULL DEFAULT 0,
@@ -67,4 +75,4 @@ CREATE TABLE `lore`.`arttag` (
 	//your stuff goes here..
 	
 
-}//end arttag
+}//end atag

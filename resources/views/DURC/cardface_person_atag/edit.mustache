@@ -1,0 +1,401 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/cardface_person_atag' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/cardface_person_atag/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>cardface_person_atag</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/DURC/cardface_person_atag/'>Return to cardface_person_atag list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/cardface_person_atag/create'>Create new cardface_person_atag </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-2 col-form-label'>id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{cardface_id_row_class}}'>
+    <label for='cardface_id' class='col-sm-2 col-form-label'>cardface_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{cardface_id}} (see below for lookup value)<br>
+	<select class='select2_cardface_id form-control' id='cardface_id' name='cardface_id' form-control'>
+	<option value='{{cardface_id}}' selected='selected'>{{cardface_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_cardface_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/cardface/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{person_id_row_class}}'>
+    <label for='person_id' class='col-sm-2 col-form-label'>person_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{person_id}} (see below for lookup value)<br>
+	<select class='select2_person_id form-control' id='person_id' name='person_id' form-control'>
+	<option value='{{person_id}}' selected='selected'>{{person_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_person_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/person/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{atag_id_row_class}}'>
+    <label for='atag_id' class='col-sm-2 col-form-label'>atag_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{atag_id}} (see below for lookup value)<br>
+	<select class='select2_atag_id form-control' id='atag_id' name='atag_id' form-control'>
+	<option value='{{atag_id}}' selected='selected'>{{atag_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_atag_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/atag/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{is_bulk_linker_row_class}}'>
+    <div class='col-sm-2'><label>is_bulk_linker</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_bulk_linker' name='is_bulk_linker' {{is_bulk_linker}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{link_note_row_class}}'>
+    <label for='link_note' class='col-sm-2 col-form-label'>link_note</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='link_note' name='link_note' placeholder='' value='{{link_note}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-10'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/cardface_person_atag/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='cardface_person_atag' class='do-soft-delete btn btn-outline-danger'>Hard Delete cardface_person_atag</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    cardface ( <a href='/DURC/cardface/'>see all</a> )
+{{^cardface}}
+(no values)
+{{/cardface}}
+  </div>
+<div class='card-body'>
+<table id='table_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> card_id </th>
+			<th> cardface_index </th>
+			<th> illustration_id </th>
+			<th> artist </th>
+			<th> color </th>
+			<th> color_identity </th>
+			<th> flavor_text </th>
+			<th> image_uri </th>
+			<th> mana_cost </th>
+			<th> name </th>
+			<th> oracle_text </th>
+			<th> power </th>
+			<th> toughness </th>
+			<th> type_line </th>
+			<th> border_color </th>
+			<th> image_uri_small </th>
+			<th> image_hash_small </th>
+			<th> image_uri_normal </th>
+			<th> image_hash_normal </th>
+			<th> image_uri_large </th>
+			<th> image_hash_large </th>
+			<th> image_uri_png </th>
+			<th> image_hash_png </th>
+			<th> image_uri_art_crop </th>
+			<th> image_hash_art_crop </th>
+			<th> image_uri_border_crop </th>
+			<th> image_hash_border_crop </th>
+			<th> is_foil </th>
+			<th> is_nonfoil </th>
+			<th> is_oversized </th>
+			<th> is_color_green </th>
+			<th> is_color_red </th>
+			<th> is_color_blue </th>
+			<th> is_color_black </th>
+			<th> is_color_white </th>
+			<th> is_colorless </th>
+			<th> color_count </th>
+			<th> is_snow </th>
+			<th> has_phyrexian_mana </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface/{{id}}'>{{id}}</a></td>
+			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{cardface_index}}</td>
+			<td>{{illustration_id_DURClabel}} ({{illustration_id}}) </td>			<td>{{artist}}</td>
+			<td>{{color}}</td>
+			<td>{{color_identity}}</td>
+			<td>{{flavor_text}}</td>
+			<td>{{image_uri}}</td>
+			<td>{{mana_cost}}</td>
+			<td>{{name}}</td>
+			<td>{{oracle_text}}</td>
+			<td>{{power}}</td>
+			<td>{{toughness}}</td>
+			<td>{{type_line}}</td>
+			<td>{{border_color}}</td>
+			<td>{{image_uri_small}}</td>
+			<td>{{image_hash_small}}</td>
+			<td>{{image_uri_normal}}</td>
+			<td>{{image_hash_normal}}</td>
+			<td>{{image_uri_large}}</td>
+			<td>{{image_hash_large}}</td>
+			<td>{{image_uri_png}}</td>
+			<td>{{image_hash_png}}</td>
+			<td>{{image_uri_art_crop}}</td>
+			<td>{{image_hash_art_crop}}</td>
+			<td>{{image_uri_border_crop}}</td>
+			<td>{{image_hash_border_crop}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{is_nonfoil}}</td>
+			<td>{{is_oversized}}</td>
+			<td>{{is_color_green}}</td>
+			<td>{{is_color_red}}</td>
+			<td>{{is_color_blue}}</td>
+			<td>{{is_color_black}}</td>
+			<td>{{is_color_white}}</td>
+			<td>{{is_colorless}}</td>
+			<td>{{color_count}}</td>
+			<td>{{is_snow}}</td>
+			<td>{{has_phyrexian_mana}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/cardface}}
+</tbody>
+</table>
+</div></div> <!-- end cardface card-->
+
+<div class='card'>
+  <div class='card-header'>
+    person ( <a href='/DURC/person/'>see all</a> )
+{{^person}}
+(no values)
+{{/person}}
+  </div>
+<div class='card-body'>
+<table id='table_person' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> last_name </th>
+			<th> first_name </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person/{{id}}'>{{id}}</a></td>
+			<td>{{last_name}}</td>
+			<td>{{first_name}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person}}
+</tbody>
+</table>
+</div></div> <!-- end person card-->
+
+<div class='card'>
+  <div class='card-header'>
+    atag ( <a href='/DURC/atag/'>see all</a> )
+{{^atag}}
+(no values)
+{{/atag}}
+  </div>
+<div class='card-body'>
+<table id='table_atag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> arttag_name </th>
+			<th> is_directed </th>
+			<th> excludes_arttag_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#atag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/atag/{{id}}'>{{id}}</a></td>
+			<td>{{arttag_name}}</td>
+			<td>{{is_directed}}</td>
+			<td>{{excludes_arttag_id_DURClabel}} ({{excludes_arttag_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/atag}}
+</tbody>
+</table>
+</div></div> <!-- end atag card-->
+</div></div> <!--end belongs to card-->
+<br>
