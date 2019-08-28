@@ -679,6 +679,24 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "image_uri_art_crop",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "image_hash_art_crop",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "image_uri_small",
                     "data_type": "varchar",
                     "is_primary_key": false,
@@ -743,24 +761,6 @@
                 },
                 {
                     "column_name": "image_hash_png",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null
-                },
-                {
-                    "column_name": "image_uri_art_crop",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null
-                },
-                {
-                    "column_name": "image_hash_art_crop",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -952,7 +952,7 @@
                     "from_column": "wincon_cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT NULL,\n  `image_hash_art_crop` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface_classofcreature_atag": {
             "table_name": "cardface_classofcreature_atag",
