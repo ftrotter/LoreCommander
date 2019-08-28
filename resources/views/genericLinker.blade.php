@@ -22,6 +22,7 @@
 				</h2>
 				<p>
 This interface allows you to quickly tag sets of objects...
+<br> <a target='_blank_' href='/DURC/{{$durc_type_left}}_{{$durc_type_right}}_{{$durc_type_tag}}'> Current List of Links </a>
 				</p>
 			</div>
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8cc81f2ca86a6caa7200ca556be2cb0f
+FILE_SIG=293496d511cc3a0420cea15d22b9fea5
 */
 namespace App;
 /*
@@ -18,6 +18,7 @@ class person extends \App\DURC\Models\person
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'cardface_person_atag', //from from many
 			'person_classofcreature_tag', //from from many
 			'person_creature_tag', //from from many
 			'person_strategy_strategytag', //from from many
@@ -36,6 +37,15 @@ class person extends \App\DURC\Models\person
 
 
 //DURC HAS_MANY SECTION
+
+/**
+*	DURC is handling the cardface_person_atag for this person in person
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardface_person_atag(){
+		return parent::cardface_person_atag();
+	}
+
 
 /**
 *	DURC is handling the person_classofcreature_tag for this person in person
