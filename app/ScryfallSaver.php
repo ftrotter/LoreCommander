@@ -238,6 +238,11 @@ class  ScryfallSaver {
 				foreach($this_card['image_uris'] as $image_type => $image_url){
 					$cardface_fill["image_uri_$image_type"] = $image_url;
 				}
+
+				//set  the default url...
+				$cardface_fill['image_uri'] = $cardface_fill["image_uri_art_crop"];
+
+
 				//a card face is unique on card_id plus illustration_id... probably...
 				$DURC_cardface = \App\cardface::firstOrNew([
 								'card_id' => $card_id,
