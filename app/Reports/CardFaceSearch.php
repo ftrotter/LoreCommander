@@ -99,19 +99,20 @@ class CardFaceSearch extends AbstractTabularReport
 "
 SELECT
 GROUP_CONCAT(cardface.id) AS cardface_ids, 
-`name`
-,artist
+REGEXP_REPLACE(name,'[^a-zA-Z0-9]',' ') AS name
+,REGEXP_REPLACE(artist,'[^a-zA-Z0-9]',' ') AS artist
 ,`mana_cost`
 ,REGEXP_REPLACE(type_line,'[^a-zA-Z0-9]',' ') AS type_line
+
 , power
-, GROUP_CONCAT(DISTINCT(set_name)) AS set_names
-, GROUP_CONCAT(DISTINCT(oracle_text)) AS oracle_texts
-, GROUP_CONCAT(DISTINCT(flavor_text)) AS flavor_texts
+, GROUP_CONCAT(DISTINCT(REGEXP_REPLACE(set_name,'[^a-zA-Z0-9]',' '))) AS set_names
+, GROUP_CONCAT(DISTINCT(REGEXP_REPLACE(oracle_text,'[^a-zA-Z0-9]',' '))) AS oracle_texts
+, GROUP_CONCAT(DISTINCT(REGEXP_REPLACE(flavor_text,'[^a-zA-Z0-9]',' '))) AS flavor_texts
 ,`color`, rarity , `color_identity`
-,scryfall_web_uri, rulings_uri  
+,scryfall_web_uri
+, rulings_uri  
 ,`image_uri_small`,
 image_uri_art_crop
-
 FROM lore.cardface
 JOIN lore.card ON 
 	card.id =
@@ -141,9 +142,10 @@ GROUP BY illustration_id
     {
 
 	extract($row);
-		
-	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img width='250px' src='$image_uri_art_crop'></a>";
 
+	if(isset($scryfall_web_uri)){		
+		$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img width='250px' src='$image_uri_art_crop'></a>";
+	}
         return $row;
     }
 
