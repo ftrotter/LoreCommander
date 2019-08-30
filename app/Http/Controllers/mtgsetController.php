@@ -1,6 +1,6 @@
 <?php
 /*
-Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
+Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
 FILE_SIG=8dfec7dcb69ae2ac3fb2bf493bf5f4f5
 */
 namespace App\Http\Controllers;

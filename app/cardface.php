@@ -1,7 +1,7 @@
 <?php
 /*
-Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=48438d397cc2c4457f42d40208a13418
+Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
+FILE_SIG=8d5479c9a470887b6d961c586520f5c4
 */
 namespace App;
 /*
@@ -18,6 +18,10 @@ class cardface extends \App\DURC\Models\cardface
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'cardface_classofcreature_atag', //from from many
+			'cardface_person_atag', //from from many
+			'classofcreature_cardface', //from from many
+			'wincon_strategy', //from from many
 			'card', //from belongs to
 		];
 
@@ -37,8 +41,11 @@ class cardface extends \App\DURC\Models\cardface
 			//'name', //varchar
 			//'oracle_text', //varchar
 			//'power', //varchar
+			//'toughness', //varchar
 			//'type_line', //varchar
 			//'border_color', //varchar
+			//'image_uri_art_crop', //varchar
+			//'image_hash_art_crop', //varchar
 			//'image_uri_small', //varchar
 			//'image_hash_small', //varchar
 			//'image_uri_normal', //varchar
@@ -47,8 +54,6 @@ class cardface extends \App\DURC\Models\cardface
 			//'image_hash_large', //varchar
 			//'image_uri_png', //varchar
 			//'image_hash_png', //varchar
-			//'image_uri_art_crop', //varchar
-			//'image_hash_art_crop', //varchar
 			//'image_uri_border_crop', //varchar
 			//'image_hash_border_crop', //varchar
 			//'is_foil', //tinyint
@@ -69,7 +74,43 @@ class cardface extends \App\DURC\Models\cardface
 
 
 //DURC HAS_MANY SECTION
-			//DURC did not detect any has_many relationships
+
+/**
+*	DURC is handling the cardface_classofcreature_atag for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardface_classofcreature_atag(){
+		return parent::cardface_classofcreature_atag();
+	}
+
+
+/**
+*	DURC is handling the cardface_person_atag for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardface_person_atag(){
+		return parent::cardface_person_atag();
+	}
+
+
+/**
+*	DURC is handling the classofcreature_cardface for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function classofcreature_cardface(){
+		return parent::classofcreature_cardface();
+	}
+
+
+/**
+*	DURC is handling the wincon_strategy for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function wincon_strategy(){
+		return parent::wincon_strategy();
+	}
+
+
 //DURC BELONGS_TO SECTION
 
 /**
@@ -80,36 +121,7 @@ class cardface extends \App\DURC\Models\cardface
 		return parent::card();
 	}
 
-	//we override the save function so that we can automatically calculate the img hashes
-	//from the image urls..
-	public function save(array $options = []){
 
-		//basically we hash the contents of the field on the left and put into the 
-		//field on the right..
-		$urls_to_hash = [
-			'image_uri_small'  => 'image_hash_small',
-			'image_uri_normal'  => 'image_hash_normal',
-			'image_uri_large' => 'image_hash_large',
-			'image_uri_png' => 'image_hash_png',
-			'image_uri_art_crop'  => 'image_hash_art_crop',
-			'image_uri_border_crop'  =>'image_hash_border_crop',
-		];	
-
-
-	
-		foreach($urls_to_hash as $url_field => $hash_field){
-			//we want to hash the url without arguments... 
-			///so that if the arguments change the hash, and image cache
-			//does not need to be rebuilt
-			
-			@list($url_to_hash) = explode("?", $this->$url_field, 2);
-			
-			$this->$hash_field = md5($url_to_hash);			
-		}
-	
-
-		return parent::save($options);
-	}
 
 
 // Last generated SQL Schema
@@ -128,8 +140,11 @@ CREATE TABLE `lore`.`cardface` (
   `name` varchar(255) NOT NULL,
   `oracle_text` varchar(1000) NOT NULL,
   `power` varchar(255) DEFAULT NULL,
-  `type_line` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `toughness` varchar(255) DEFAULT NULL,
+  `type_line` varchar(255) NOT NULL,
   `border_color` varchar(255) NOT NULL,
+  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',
+  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',
   `image_uri_small` varchar(500) DEFAULT NULL,
   `image_hash_small` varchar(32) DEFAULT NULL,
   `image_uri_normal` varchar(500) DEFAULT NULL,
@@ -138,8 +153,6 @@ CREATE TABLE `lore`.`cardface` (
   `image_hash_large` varchar(32) DEFAULT NULL,
   `image_uri_png` varchar(500) DEFAULT NULL,
   `image_hash_png` varchar(32) DEFAULT NULL,
-  `image_uri_art_crop` varchar(500) DEFAULT NULL,
-  `image_hash_art_crop` varchar(32) DEFAULT NULL,
   `image_uri_border_crop` varchar(500) DEFAULT NULL,
   `image_hash_border_crop` varchar(32) DEFAULT NULL,
   `is_foil` tinyint(1) NOT NULL,
@@ -168,7 +181,7 @@ CREATE TABLE `lore`.`cardface` (
   FULLTEXT KEY `flavor_text` (`flavor_text`),
   FULLTEXT KEY `oracle_text` (`oracle_text`),
   FULLTEXT KEY `type_line` (`type_line`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
