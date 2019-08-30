@@ -1156,7 +1156,7 @@
                     "local_key": "atag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface_person_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `person_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface_person_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `person_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "classofcreature": {
             "table_name": "classofcreature",
