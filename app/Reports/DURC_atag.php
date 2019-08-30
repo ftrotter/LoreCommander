@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a045b1de6fa01969a88a9c5b2762bbd4
+FILE_SIG=11ba457409d4d7735d92dc889f8d5a42
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -30,16 +30,37 @@ class DURC_atag extends AbstractTabularReport
 
         $index = $this->getCode();
 
+
+
+
         if(is_null($index)){
 
                 $sql = "
-SELECT * FROM lore.atag
+SELECT 
+ atag.id AS id
+, atag.arttag_name AS arttag_name
+, atag.is_directed AS is_directed
+, atag.excludes_arttag_id AS excludes_arttag_id
+, atag.created_at AS created_at
+, atag.updated_at AS updated_at
+
+FROM lore.atag
+
 ";
 
         }else{
 
                 $sql = "
-SELECT * FROM lore.atag WHERE id = $index
+SELECT 
+ atag.id AS id
+, atag.arttag_name AS arttag_name
+, atag.is_directed AS is_directed
+, atag.excludes_arttag_id AS excludes_arttag_id
+, atag.created_at AS created_at
+, atag.updated_at AS updated_at
+ 
+FROM lore.atag 
+WHERE id = $index
 ";
 
         }
@@ -57,10 +78,15 @@ SELECT * FROM lore.atag WHERE id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
+
+
         extract($row);
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/atag/$id'>$id</a>";
+
+
+
 
         return $row;
     }
@@ -92,4 +118,265 @@ SELECT * FROM lore.atag WHERE id = $index
    }
 
 }
+
+/*
+
+//fields:
+array (
+  0 => 
+  array (
+    'column_name' => 'id',
+    'data_type' => 'int',
+    'is_primary_key' => true,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  1 => 
+  array (
+    'column_name' => 'arttag_name',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  2 => 
+  array (
+    'column_name' => 'is_directed',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  3 => 
+  array (
+    'column_name' => 'excludes_arttag_id',
+    'data_type' => 'int',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  4 => 
+  array (
+    'column_name' => 'created_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  5 => 
+  array (
+    'column_name' => 'updated_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+)
+//has_many
+array (
+  'cardface_classofcreature_atag' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'cardface_classofcreature_atag',
+    'from_table' => 'cardface_classofcreature_atag',
+    'from_db' => 'lore',
+    'from_column' => 'atag_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'cardface_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'cardface',
+      ),
+      2 => 
+      array (
+        'column_name' => 'classofcreature_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'classofcreature',
+      ),
+      3 => 
+      array (
+        'column_name' => 'atag_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'atag',
+      ),
+      4 => 
+      array (
+        'column_name' => 'is_bulk_linker',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'link_note',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+  'cardface_person_atag' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'cardface_person_atag',
+    'from_table' => 'cardface_person_atag',
+    'from_db' => 'lore',
+    'from_column' => 'atag_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'cardface_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'cardface',
+      ),
+      2 => 
+      array (
+        'column_name' => 'person_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'person',
+      ),
+      3 => 
+      array (
+        'column_name' => 'atag_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'atag',
+      ),
+      4 => 
+      array (
+        'column_name' => 'is_bulk_linker',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'link_note',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+)
+//has_one
+NULL
+//belongs_to
+NULL
+//many_many
+NULL
+//many_through
+NULL*\
+
+
 ?>
