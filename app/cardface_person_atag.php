@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=25e11c94e47e2f4ff7ea2316c09f48f4
+FILE_SIG=f1578cedef8b8734b7e092e431c2f4c1
 */
 namespace App;
 /*
@@ -83,7 +83,7 @@ CREATE TABLE `lore`.`cardface_person_atag` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..
