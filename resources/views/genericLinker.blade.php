@@ -28,13 +28,14 @@ This interface allows you to quickly tag sets of objects...
 
 		</div>
 	</div>
+     </div>
+<div class='container-fluid'>
 
 <form method='POST' action='/genericLinkerSave/{{$durc_type_left}}/{{$durc_type_right}}/{{$durc_type_tag}}'>
 	{{ csrf_field() }}
 
 	<div class='row'>
-		<div class='col-md-1'></div>
-		<div class='col-md-3'>
+		<div class='col-md-5'>
 			<h3> {{$durc_type_left}} </h3>
 			<a href='/DURC/{{$durc_type_left}}' target='_blank'>Add {{$durc_type_left}} entries</a><br>
 
@@ -43,7 +44,6 @@ This interface allows you to quickly tag sets of objects...
 
 		</div>
 
-		<div class='col-md-1'></div>
 		<div class='col-md-2'>
 			<h3> {{$durc_type_tag}} </h3>
 			<a href='/DURC/{{$durc_type_tag}}' target='_blank'>Add {{$durc_type_tag}} entries</a><br>
@@ -52,8 +52,7 @@ This interface allows you to quickly tag sets of objects...
 			</select>
 
 		</div>
-		<div class='col-md-1'></div>
-		<div class='col-md-3'>
+		<div class='col-md-5'>
 			<h3> {{$durc_type_right}} </h3>
 			<a href='/DURC/{{$durc_type_right}}' target='_blank'>Add {{$durc_type_right}} entries</a><br>
 
@@ -63,14 +62,15 @@ This interface allows you to quickly tag sets of objects...
 		</div>
 		<div class='col-md-1'></div>
 	</div>
-
+</div>
+<div class='container'>
 	<div class='row'>
-		<div class='col-md-2'></div>
-		<div class='col-md-10'>
+		<div class='col-md-12'>
 			<br><br>
 
   <div class="form-group row">
-    <label for="link_note" class="col-4 col-form-label">Link Notes</label> 
+    <div class="col-2"></div>
+    <label for="link_note" class="col-2 col-form-label"><h3>Link Notes</h3></label> 
     <div class="col-8">
       <textarea id="link_note" name="link_note" cols="40" rows="5" aria-describedby="link_notesHelpBlock" class="form-control"></textarea> 
       <span id="link_notesHelpBlock" class="form-text text-muted">Make any notes about these links here</span>
@@ -94,25 +94,46 @@ This interface allows you to quickly tag sets of objects...
 
 <script type='text/javascript'>
 
+
+function token_template(search_result,container,query) {
+    if (search_result.img_url === undefined) return search_result.text; // when there is no image.. just return the text
+	//if we get here then img_url was notnull and we want to use it to make an image
+    return "<img width='150px' src='"+search_result.img_url+"'/> " + search_result.text;
+
+}
+
+
 $('.{{$durc_type_left}}_id').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_left}}/',
     	dataType: 'json'
-  }
+  },
+    minimumInputLength: 3,
+    templateResult: token_template,
+    templateSelection: token_template,
+    escapeMarkup: function(m) { return m; }	
 });
 
 $('.{{$durc_type_right}}_id').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_right}}/',
     	dataType: 'json'
-  }
+  },
+    minimumInputLength: 2,
+    templateResult: token_template,
+    templateSelection: token_template,
+    escapeMarkup: function(m) { return m; }	
 });
 
 $('.{{$durc_type_tag}}_id').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_tag}}/',
     	dataType: 'json'
-  }
+  },
+    minimumInputLength: 3,
+    templateResult: token_template,
+    templateSelection: token_template,
+    escapeMarkup: function(m) { return m; }	
 });
 
 </script>

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everyting orignally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=293496d511cc3a0420cea15d22b9fea5
+FILE_SIG=1ed0600e9eea7d073fca62868c32f1a2
 */
 namespace App;
 /*
@@ -31,6 +31,7 @@ class person extends \App\DURC\Models\person
 			//'id', //int
 			//'last_name', //varchar
 			//'first_name', //varchar
+			//'image_uri', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -93,6 +94,7 @@ CREATE TABLE `lore`.`person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
+  `image_uri` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
