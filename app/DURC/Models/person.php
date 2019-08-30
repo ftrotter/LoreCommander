@@ -46,6 +46,7 @@ class person extends DURCModel{
 		'id' => 'int',
 		'last_name' => 'varchar',
 		'first_name' => 'varchar',
+		'image_uri' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 			]; //end field_type_map
@@ -114,6 +115,7 @@ CREATE TABLE `lore`.`person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
+  `image_uri` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

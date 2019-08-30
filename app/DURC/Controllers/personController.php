@@ -155,7 +155,7 @@ class personController extends DURCController
 					$tmp_text .=  "$data ";
 				}
 			}
-			$tmp['text'] = $tmp_text;
+			$tmp['text'] = trim($tmp_text);
 
 			if(!is_null($img_field)){ //then there is an image for this entry
 				$tmp['img_field'] = $img_field;
@@ -221,6 +221,7 @@ class personController extends DURCController
 			$tmp_person->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name ); 
 		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name ); 
+		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
 		$tmp_person->save();
 
 
@@ -336,6 +337,7 @@ class personController extends DURCController
 			$tmp_person->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name ); 
 		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name ); 
+		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
 		$tmp_person->save();
 
 
