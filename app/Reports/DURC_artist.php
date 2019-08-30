@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8d273150a6255ddae512a5f39b90aacf
+FILE_SIG=392f5ac6e9f85054b65b64e4579d5f88
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -30,16 +30,33 @@ class DURC_artist extends AbstractTabularReport
 
         $index = $this->getCode();
 
+
+
+
         if(is_null($index)){
 
                 $sql = "
-SELECT * FROM lore.artist
+SELECT 
+ artist.id AS id
+, artist.artist_name AS artist_name
+, artist.created_at AS created_at
+, artist.updated_at AS updated_at
+
+FROM lore.artist
+
 ";
 
         }else{
 
                 $sql = "
-SELECT * FROM lore.artist WHERE id = $index
+SELECT 
+ artist.id AS id
+, artist.artist_name AS artist_name
+, artist.created_at AS created_at
+, artist.updated_at AS updated_at
+ 
+FROM lore.artist 
+WHERE id = $index
 ";
 
         }
@@ -57,10 +74,15 @@ SELECT * FROM lore.artist WHERE id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
+
+
         extract($row);
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/artist/$id'>$id</a>";
+
+
+
 
         return $row;
     }
@@ -92,4 +114,62 @@ SELECT * FROM lore.artist WHERE id = $index
    }
 
 }
+
+/*
+
+//fields:
+array (
+  0 => 
+  array (
+    'column_name' => 'id',
+    'data_type' => 'int',
+    'is_primary_key' => true,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  1 => 
+  array (
+    'column_name' => 'artist_name',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  2 => 
+  array (
+    'column_name' => 'created_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  3 => 
+  array (
+    'column_name' => 'updated_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+)
+//has_many
+NULL
+//has_one
+NULL
+//belongs_to
+NULL
+//many_many
+NULL
+//many_through
+NULL*\
+
+
 ?>

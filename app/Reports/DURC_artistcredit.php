@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7a5fa97605aabf3744dc3abe2b3706e9
+FILE_SIG=027121064a811bb86e3e1f0ee7f4f038
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -30,16 +30,35 @@ class DURC_artistcredit extends AbstractTabularReport
 
         $index = $this->getCode();
 
+
+
+
         if(is_null($index)){
 
                 $sql = "
-SELECT * FROM lore.artistcredit
+SELECT 
+ artistcredit.id AS id
+, artistcredit.artistcredit_name AS artistcredit_name
+, artistcredit.is_plain_credit AS is_plain_credit
+, artistcredit.created_at AS created_at
+, artistcredit.updated_at AS updated_at
+
+FROM lore.artistcredit
+
 ";
 
         }else{
 
                 $sql = "
-SELECT * FROM lore.artistcredit WHERE id = $index
+SELECT 
+ artistcredit.id AS id
+, artistcredit.artistcredit_name AS artistcredit_name
+, artistcredit.is_plain_credit AS is_plain_credit
+, artistcredit.created_at AS created_at
+, artistcredit.updated_at AS updated_at
+ 
+FROM lore.artistcredit 
+WHERE id = $index
 ";
 
         }
@@ -57,10 +76,15 @@ SELECT * FROM lore.artistcredit WHERE id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
+
+
         extract($row);
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/artistcredit/$id'>$id</a>";
+
+
+
 
         return $row;
     }
@@ -92,4 +116,72 @@ SELECT * FROM lore.artistcredit WHERE id = $index
    }
 
 }
+
+/*
+
+//fields:
+array (
+  0 => 
+  array (
+    'column_name' => 'id',
+    'data_type' => 'int',
+    'is_primary_key' => true,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  1 => 
+  array (
+    'column_name' => 'artistcredit_name',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  2 => 
+  array (
+    'column_name' => 'is_plain_credit',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  3 => 
+  array (
+    'column_name' => 'created_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  4 => 
+  array (
+    'column_name' => 'updated_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+)
+//has_many
+NULL
+//has_one
+NULL
+//belongs_to
+NULL
+//many_many
+NULL
+//many_through
+NULL*\
+
+
 ?>

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b212851ac4c3b01a367c7567d1f1f91c
+FILE_SIG=e0ebd4e0d23a2086927be9f0ad18630e
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -30,16 +30,33 @@ class DURC_strategytag extends AbstractTabularReport
 
         $index = $this->getCode();
 
+
+
+
         if(is_null($index)){
 
                 $sql = "
-SELECT * FROM lore.strategytag
+SELECT 
+ strategytag.id AS id
+, strategytag.strategytag_name AS strategytag_name
+, strategytag.created_at AS created_at
+, strategytag.updated_at AS updated_at
+
+FROM lore.strategytag
+
 ";
 
         }else{
 
                 $sql = "
-SELECT * FROM lore.strategytag WHERE id = $index
+SELECT 
+ strategytag.id AS id
+, strategytag.strategytag_name AS strategytag_name
+, strategytag.created_at AS created_at
+, strategytag.updated_at AS updated_at
+ 
+FROM lore.strategytag 
+WHERE id = $index
 ";
 
         }
@@ -57,10 +74,15 @@ SELECT * FROM lore.strategytag WHERE id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
+
+
         extract($row);
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/strategytag/$id'>$id</a>";
+
+
+
 
         return $row;
     }
@@ -92,4 +114,154 @@ SELECT * FROM lore.strategytag WHERE id = $index
    }
 
 }
+
+/*
+
+//fields:
+array (
+  0 => 
+  array (
+    'column_name' => 'id',
+    'data_type' => 'int',
+    'is_primary_key' => true,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  1 => 
+  array (
+    'column_name' => 'strategytag_name',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  2 => 
+  array (
+    'column_name' => 'created_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  3 => 
+  array (
+    'column_name' => 'updated_at',
+    'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+)
+//has_many
+array (
+  'person_strategy_strategytag' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'person_strategy_strategytag',
+    'from_table' => 'person_strategy_strategytag',
+    'from_db' => 'lore',
+    'from_column' => 'strategytag_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'person_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'person',
+      ),
+      2 => 
+      array (
+        'column_name' => 'strategy_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'strategy',
+      ),
+      3 => 
+      array (
+        'column_name' => 'strategytag_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'strategytag',
+      ),
+      4 => 
+      array (
+        'column_name' => 'is_bulk_linker',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'link_note',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+)
+//has_one
+NULL
+//belongs_to
+NULL
+//many_many
+NULL
+//many_through
+NULL*\
+
+
 ?>
