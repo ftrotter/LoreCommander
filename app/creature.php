@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=fcb8079c977e858c1c3e332f61d09757
+FILE_SIG=4cf47eec204a698cde5627d828d32370
 */
 namespace App;
 /*
@@ -27,6 +27,7 @@ class creature extends \App\DURC\Models\creature
 	protected  $hidden = [
 			//'id', //int
 			//'creature_name', //varchar
+			//'creature_image_uri', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -61,6 +62,7 @@ class creature extends \App\DURC\Models\creature
 CREATE TABLE `lore`.`creature` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `creature_name` varchar(255) NOT NULL,
+  `creature_image_uri` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

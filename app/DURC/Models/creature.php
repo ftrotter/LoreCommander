@@ -42,6 +42,7 @@ class creature extends DURCModel{
 	static $field_type_map = [
 		'id' => 'int',
 		'creature_name' => 'varchar',
+		'creature_image_uri' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 			]; //end field_type_map
@@ -85,6 +86,7 @@ class creature extends DURCModel{
 CREATE TABLE `lore`.`creature` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `creature_name` varchar(255) NOT NULL,
+  `creature_image_uri` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
