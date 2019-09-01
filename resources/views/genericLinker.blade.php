@@ -9,6 +9,12 @@
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/select2.min.css" rel="stylesheet" />
+<style>
+
+ul.select2-results__options { max-height: 700px !important; }
+
+</style>
+
 
   </head>
   <body>
