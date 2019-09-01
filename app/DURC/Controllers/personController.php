@@ -222,6 +222,9 @@ class personController extends DURCController
 		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name ); 
 		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name ); 
 		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
+		$tmp_person->wallpaper_download_url = DURC::formatForStorage( 'wallpaper_download_url', 'varchar', $request->wallpaper_download_url ); 
+		$tmp_person->mtgwiki_url = DURC::formatForStorage( 'mtgwiki_url', 'varchar', $request->mtgwiki_url ); 
+		$tmp_person->wizards_story_url = DURC::formatForStorage( 'wizards_story_url', 'varchar', $request->wizards_story_url ); 
 		$tmp_person->save();
 
 
@@ -338,6 +341,9 @@ class personController extends DURCController
 		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name ); 
 		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name ); 
 		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
+		$tmp_person->wallpaper_download_url = DURC::formatForStorage( 'wallpaper_download_url', 'varchar', $request->wallpaper_download_url ); 
+		$tmp_person->mtgwiki_url = DURC::formatForStorage( 'mtgwiki_url', 'varchar', $request->mtgwiki_url ); 
+		$tmp_person->wizards_story_url = DURC::formatForStorage( 'wizards_story_url', 'varchar', $request->wizards_story_url ); 
 		$tmp_person->save();
 
 

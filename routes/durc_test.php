@@ -60,6 +60,10 @@ Route::get('durctest', function () {
  			'/DURC/creature/create', //from: lore.creature 
  			'/DURC/creature/1', //from: lore.creature 
  			'/DURC/creature/1/edit', //from: lore.creature 
+ 			'/DURC/creature_cardface', //from: lore.creature_cardface 
+ 			'/DURC/creature_cardface/create', //from: lore.creature_cardface 
+ 			'/DURC/creature_cardface/1', //from: lore.creature_cardface 
+ 			'/DURC/creature_cardface/1/edit', //from: lore.creature_cardface 
  			'/DURC/mtgset', //from: lore.mtgset 
  			'/DURC/mtgset/create', //from: lore.mtgset 
  			'/DURC/mtgset/1', //from: lore.mtgset 

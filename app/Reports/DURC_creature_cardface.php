@@ -1,25 +1,25 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=26193a3791fcf782110708350cbcbce9
+FILE_SIG=81ab35b959dcabe411ce7834d5e0018c
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 
-class DURC_cardface_classofcreature_atag extends AbstractTabularReport
+class DURC_creature_cardface extends AbstractTabularReport
 {
 
     //returns the name of the report
     public function GetReportName(): string {
-        $report_name = "cardface_classofcreature_atag Report";
+        $report_name = "creature_cardface Report";
         return($report_name);
     }
 
     //returns the description of the report. HTML is allowed here.
     public function GetReportDescription(): ?string {
-        $desc = "View the cardface_classofcreature_atag data
+        $desc = "View the creature_cardface data
 			<br>
-			<a href='/DURC/cardface_classofcreature_atag/create'>Add new cardface_classofcreature_atag</a>
+			<a href='/DURC/creature_cardface/create'>Add new creature_cardface</a>
 ";
         return($desc);
     }
@@ -34,7 +34,7 @@ class DURC_cardface_classofcreature_atag extends AbstractTabularReport
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\cardface_classofcreature_atag::getImgField();
+	$img_field_name = \App\creature_cardface::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -58,29 +58,16 @@ class DURC_cardface_classofcreature_atag extends AbstractTabularReport
 "; 
 	}
 
-	$classofcreature_field = \App\classofcreature::getNameField();	
+	$creature_field = \App\creature::getNameField();	
 	$joined_select_field_sql .= "
-, B_classofcreature.$classofcreature_field  AS $classofcreature_field
+, B_creature.$creature_field  AS $creature_field
 "; 
-	$classofcreature_img_field = \App\classofcreature::getImgField();
-	if(!is_null($classofcreature_img_field)){
-		if($is_debug){echo "classofcreature has an image field of: |$classofcreature_img_field|
+	$creature_img_field = \App\creature::getImgField();
+	if(!is_null($creature_img_field)){
+		if($is_debug){echo "creature has an image field of: |$creature_img_field|
 ";}
 		$joined_select_field_sql .= "
-, B_classofcreature.$classofcreature_img_field  AS $classofcreature_img_field
-"; 
-	}
-
-	$atag_field = \App\atag::getNameField();	
-	$joined_select_field_sql .= "
-, C_atag.$atag_field  AS $atag_field
-"; 
-	$atag_img_field = \App\atag::getImgField();
-	if(!is_null($atag_img_field)){
-		if($is_debug){echo "atag has an image field of: |$atag_img_field|
-";}
-		$joined_select_field_sql .= "
-, C_atag.$atag_img_field  AS $atag_img_field
+, B_creature.$creature_img_field  AS $creature_img_field
 "; 
 	}
 
@@ -89,29 +76,22 @@ class DURC_cardface_classofcreature_atag extends AbstractTabularReport
 
                 $sql = "
 SELECT
-cardface_classofcreature_atag.id
+creature_cardface.id
 $joined_select_field_sql 
-, cardface_classofcreature_atag.cardface_id AS cardface_id
-, cardface_classofcreature_atag.classofcreature_id AS classofcreature_id
-, cardface_classofcreature_atag.atag_id AS atag_id
-, cardface_classofcreature_atag.is_bulk_linker AS is_bulk_linker
-, cardface_classofcreature_atag.link_note AS link_note
-, cardface_classofcreature_atag.created_at AS created_at
-, cardface_classofcreature_atag.updated_at AS updated_at
+, creature_cardface.cardface_id AS cardface_id
+, creature_cardface.creature_id AS creature_id
+, creature_cardface.created_at AS created_at
+, creature_cardface.updated_at AS updated_at
 
-FROM lore.cardface_classofcreature_atag
+FROM lore.creature_cardface
 
 LEFT JOIN lore.cardface AS A_cardface ON 
 	A_cardface.id =
-	cardface_classofcreature_atag.cardface_id
+	creature_cardface.cardface_id
 
-LEFT JOIN lore.classofcreature AS B_classofcreature ON 
-	B_classofcreature.id =
-	cardface_classofcreature_atag.classofcreature_id
-
-LEFT JOIN lore.atag AS C_atag ON 
-	C_atag.id =
-	cardface_classofcreature_atag.atag_id
+LEFT JOIN lore.creature AS B_creature ON 
+	B_creature.id =
+	creature_cardface.creature_id
 
 ";
 
@@ -119,31 +99,24 @@ LEFT JOIN lore.atag AS C_atag ON
 
                 $sql = "
 SELECT
-cardface_classofcreature_atag.id 
+creature_cardface.id 
 $joined_select_field_sql
-, cardface_classofcreature_atag.cardface_id AS cardface_id
-, cardface_classofcreature_atag.classofcreature_id AS classofcreature_id
-, cardface_classofcreature_atag.atag_id AS atag_id
-, cardface_classofcreature_atag.is_bulk_linker AS is_bulk_linker
-, cardface_classofcreature_atag.link_note AS link_note
-, cardface_classofcreature_atag.created_at AS created_at
-, cardface_classofcreature_atag.updated_at AS updated_at
+, creature_cardface.cardface_id AS cardface_id
+, creature_cardface.creature_id AS creature_id
+, creature_cardface.created_at AS created_at
+, creature_cardface.updated_at AS updated_at
  
-FROM lore.cardface_classofcreature_atag 
+FROM lore.creature_cardface 
 
 LEFT JOIN lore.cardface AS A_cardface ON 
 	A_cardface.id =
-	cardface_classofcreature_atag.cardface_id
+	creature_cardface.cardface_id
 
-LEFT JOIN lore.classofcreature AS B_classofcreature ON 
-	B_classofcreature.id =
-	cardface_classofcreature_atag.classofcreature_id
+LEFT JOIN lore.creature AS B_creature ON 
+	B_creature.id =
+	creature_cardface.creature_id
 
-LEFT JOIN lore.atag AS C_atag ON 
-	C_atag.id =
-	cardface_classofcreature_atag.atag_id
-
-WHERE cardface_classofcreature_atag.id = $index
+WHERE creature_cardface.id = $index
 ";
 
         }
@@ -167,7 +140,7 @@ WHERE cardface_classofcreature_atag.id = $index
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\cardface_classofcreature_atag::getImgField();
+	$img_field_name = \App\creature_cardface::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -191,36 +164,23 @@ WHERE cardface_classofcreature_atag.id = $index
 "; 
 	}
 
-	$classofcreature_field = \App\classofcreature::getNameField();	
+	$creature_field = \App\creature::getNameField();	
 	$joined_select_field_sql .= "
-, B_classofcreature.$classofcreature_field  AS $classofcreature_field
+, B_creature.$creature_field  AS $creature_field
 "; 
-	$classofcreature_img_field = \App\classofcreature::getImgField();
-	if(!is_null($classofcreature_img_field)){
-		if($is_debug){echo "classofcreature has an image field of: |$classofcreature_img_field|
+	$creature_img_field = \App\creature::getImgField();
+	if(!is_null($creature_img_field)){
+		if($is_debug){echo "creature has an image field of: |$creature_img_field|
 ";}
 		$joined_select_field_sql .= "
-, B_classofcreature.$classofcreature_img_field  AS $classofcreature_img_field
-"; 
-	}
-
-	$atag_field = \App\atag::getNameField();	
-	$joined_select_field_sql .= "
-, C_atag.$atag_field  AS $atag_field
-"; 
-	$atag_img_field = \App\atag::getImgField();
-	if(!is_null($atag_img_field)){
-		if($is_debug){echo "atag has an image field of: |$atag_img_field|
-";}
-		$joined_select_field_sql .= "
-, C_atag.$atag_img_field  AS $atag_img_field
+, B_creature.$creature_img_field  AS $creature_img_field
 "; 
 	}
 
 
 
         //link this row to its DURC editor
-        $row['id'] = "<a href='/DURC/cardface_classofcreature_atag/$id'>$id</a>";
+        $row['id'] = "<a href='/DURC/creature_cardface/$id'>$id</a>";
 
 
 
@@ -244,28 +204,16 @@ if(isset($cardface_img_tmp) && strlen($cardface_img_tmp) > 0){
 	$row[$cardface_img_tmp] = "<img width='200px' src='$cardface_img_data'>";
 }
 
-$classofcreature_tmp = ''.$classofcreature_field;
-if(isset($classofcreature_tmp)){
-	$classofcreature_data = $row[$classofcreature_tmp];
-	$row[$classofcreature_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofcreature/$classofcreature_id'>$classofcreature_data</a>";
+$creature_tmp = ''.$creature_field;
+if(isset($creature_tmp)){
+	$creature_data = $row[$creature_tmp];
+	$row[$creature_tmp] = "<a target='_blank' href='/Zermelo/DURC_creature/$creature_id'>$creature_data</a>";
 }
 
-$classofcreature_img_tmp = ''.$classofcreature_img_field;
-if(isset($classofcreature_img_tmp) && strlen($classofcreature_img_tmp) > 0){
-	$classofcreature_img_data = $row[$classofcreature_img_tmp];
-	$row[$classofcreature_img_tmp] = "<img width='200px' src='$classofcreature_img_data'>";
-}
-
-$atag_tmp = ''.$atag_field;
-if(isset($atag_tmp)){
-	$atag_data = $row[$atag_tmp];
-	$row[$atag_tmp] = "<a target='_blank' href='/Zermelo/DURC_atag/$atag_id'>$atag_data</a>";
-}
-
-$atag_img_tmp = ''.$atag_img_field;
-if(isset($atag_img_tmp) && strlen($atag_img_tmp) > 0){
-	$atag_img_data = $row[$atag_img_tmp];
-	$row[$atag_img_tmp] = "<img width='200px' src='$atag_img_data'>";
+$creature_img_tmp = ''.$creature_img_field;
+if(isset($creature_img_tmp) && strlen($creature_img_tmp) > 0){
+	$creature_img_data = $row[$creature_img_tmp];
+	$row[$creature_img_tmp] = "<img width='200px' src='$creature_img_data'>";
 }
 
 
@@ -327,45 +275,15 @@ array (
   ),
   2 => 
   array (
-    'column_name' => 'classofcreature_id',
+    'column_name' => 'creature_id',
     'data_type' => 'int',
     'is_primary_key' => false,
     'is_foreign_key' => true,
     'is_linked_key' => true,
     'foreign_db' => 'lore',
-    'foreign_table' => 'classofcreature',
+    'foreign_table' => 'creature',
   ),
   3 => 
-  array (
-    'column_name' => 'atag_id',
-    'data_type' => 'int',
-    'is_primary_key' => false,
-    'is_foreign_key' => true,
-    'is_linked_key' => true,
-    'foreign_db' => 'lore',
-    'foreign_table' => 'atag',
-  ),
-  4 => 
-  array (
-    'column_name' => 'is_bulk_linker',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-  ),
-  5 => 
-  array (
-    'column_name' => 'link_note',
-    'data_type' => 'varchar',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-  ),
-  6 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -375,7 +293,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  7 => 
+  4 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',
@@ -823,13 +741,13 @@ array (
       ),
     ),
   ),
-  'classofcreature' => 
+  'creature' => 
   array (
     'prefix' => NULL,
-    'type' => 'classofcreature',
-    'to_table' => 'classofcreature',
+    'type' => 'creature',
+    'to_table' => 'creature',
     'to_db' => 'lore',
-    'local_key' => 'classofcreature_id',
+    'local_key' => 'creature_id',
     'other_columns' => 
     array (
       0 => 
@@ -844,7 +762,7 @@ array (
       ),
       1 => 
       array (
-        'column_name' => 'classofcreature_name',
+        'column_name' => 'creature_name',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => true,
@@ -854,7 +772,7 @@ array (
       ),
       2 => 
       array (
-        'column_name' => 'classofcreature_img_uri',
+        'column_name' => 'creature_image_uri',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -864,26 +782,6 @@ array (
       ),
       3 => 
       array (
-        'column_name' => 'classofcreature_wiki_url',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      4 => 
-      array (
-        'column_name' => 'is_mega_class',
-        'data_type' => 'tinyint',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      5 => 
-      array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
         'is_primary_key' => false,
@@ -892,78 +790,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      6 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-    ),
-  ),
-  'atag' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'atag',
-    'to_table' => 'atag',
-    'to_db' => 'lore',
-    'local_key' => 'atag_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      1 => 
-      array (
-        'column_name' => 'arttag_name',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      2 => 
-      array (
-        'column_name' => 'is_directed',
-        'data_type' => 'tinyint',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      3 => 
-      array (
-        'column_name' => 'excludes_arttag_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
       4 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      5 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',

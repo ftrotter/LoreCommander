@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=83e5788514db3df881704849cb548bc0
+FILE_SIG=8e915a790e1104750a0a077406865e3c
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -55,6 +55,9 @@ $joined_select_field_sql
 , person.last_name AS last_name
 , person.first_name AS first_name
 , person.image_uri AS image_uri
+, person.wallpaper_download_url AS wallpaper_download_url
+, person.mtgwiki_url AS mtgwiki_url
+, person.wizards_story_url AS wizards_story_url
 , person.created_at AS created_at
 , person.updated_at AS updated_at
 
@@ -71,6 +74,9 @@ $joined_select_field_sql
 , person.last_name AS last_name
 , person.first_name AS first_name
 , person.image_uri AS image_uri
+, person.wallpaper_download_url AS wallpaper_download_url
+, person.mtgwiki_url AS mtgwiki_url
+, person.wizards_story_url AS wizards_story_url
 , person.created_at AS created_at
 , person.updated_at AS updated_at
  
@@ -205,6 +211,36 @@ array (
   ),
   4 => 
   array (
+    'column_name' => 'wallpaper_download_url',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  5 => 
+  array (
+    'column_name' => 'mtgwiki_url',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  6 => 
+  array (
+    'column_name' => 'wizards_story_url',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  7 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -213,7 +249,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  5 => 
+  8 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

@@ -2,13 +2,13 @@
 
 namespace App\DURC\Controllers;
 
-use App\classofcreature;
+use App\creature_cardface;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 
-class classofcreatureController extends DURCController
+class creature_cardfaceController extends DURCController
 {
 
 
@@ -24,6 +24,8 @@ class classofcreatureController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
+		$with_summary_array[] = "cardface:id,".\App\cardface::getNameField();
+		$with_summary_array[] = "creature:id,".\App\creature::getNameField();
 
 		return($with_summary_array);
 		
@@ -36,7 +38,7 @@ class classofcreatureController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = classofcreature::with($with_argument)->paginate(100);
+		$these = creature_cardface::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -51,8 +53,8 @@ class classofcreatureController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( classofcreature::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = classofcreature::$field_type_map[ $lowest_key ];
+                                        if ( isset( creature_cardface::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = creature_cardface::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -60,8 +62,8 @@ class classofcreatureController extends DURCController
                                 }
                         }
 
-                        if ( isset( classofcreature::$field_type_map[$key] ) ) {
-                            $field_type = classofcreature::$field_type_map[ $key ];
+                        if ( isset( creature_cardface::$field_type_map[$key] ) ) {
+                            $field_type = creature_cardface::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -124,11 +126,11 @@ class classofcreatureController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = classofcreature::getSearchFields();
+                $search_fields = creature_cardface::getSearchFields();
 
 		//sometimes there is an image field that contains the url of an image
 		//but this is typically null
-		$img_field = classofcreature::getImgField();
+		$img_field = creature_cardface::getImgField();
 
 		$where_sql = '';
 		$or = '';
@@ -137,7 +139,7 @@ class classofcreatureController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = classofcreature::whereRaw($where_sql)
+		$these = creature_cardface::whereRaw($where_sql)
 					->take(20)
 					->get();
 
@@ -181,7 +183,7 @@ class classofcreatureController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\classofcreature  $classofcreature
+     * @param  \App\creature_cardface  $creature_cardface
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -202,7 +204,7 @@ class classofcreatureController extends DURCController
 		var_export($this->view_data);
 		exit();
 	}
-	$durc_template_results = view('DURC.classofcreature.index',$this->view_data);        
+	$durc_template_results = view('DURC.creature_cardface.index',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -214,41 +216,39 @@ class classofcreatureController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewclassofcreature = new classofcreature();
+	$myNewcreature_cardface = new creature_cardface();
 
 	//the games we play to easily auto-generate code..
-	$tmp_classofcreature = $myNewclassofcreature;
-			$tmp_classofcreature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofcreature->classofcreature_name = DURC::formatForStorage( 'classofcreature_name', 'varchar', $request->classofcreature_name ); 
-		$tmp_classofcreature->classofcreature_img_uri = DURC::formatForStorage( 'classofcreature_img_uri', 'varchar', $request->classofcreature_img_uri ); 
-		$tmp_classofcreature->classofcreature_wiki_url = DURC::formatForStorage( 'classofcreature_wiki_url', 'varchar', $request->classofcreature_wiki_url ); 
-		$tmp_classofcreature->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
-		$tmp_classofcreature->save();
+	$tmp_creature_cardface = $myNewcreature_cardface;
+			$tmp_creature_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_creature_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
+		$tmp_creature_cardface->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+		$tmp_creature_cardface->save();
 
 
-	$new_id = $myNewclassofcreature->id;
+	$new_id = $myNewcreature_cardface->id;
 
-	return redirect("/DURC/classofcreature/$new_id")->with('status', 'Data Saved!');
+	return redirect("/DURC/creature_cardface/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
     /**
      * Display the specified resource.
-     * @param  \App\$classofcreature  $classofcreature
+     * @param  \App\$creature_cardface  $creature_cardface
      * @return \Illuminate\Http\Response
      */
-    public function show(classofcreature $classofcreature){
-	return($this->edit($classofcreature));
+    public function show(creature_cardface $creature_cardface){
+	return($this->edit($creature_cardface));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\classofcreature  $classofcreature
+     * @param  \App\creature_cardface  $creature_cardface
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $classofcreature_id){
-		$classofcreature = \App\classofcreature::find($classofcreature_id);
-		$classofcreature = $classofcreature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($classofcreature->toArray());
+    public function jsonone(Request $request, $creature_cardface_id){
+		$creature_cardface = \App\creature_cardface::find($creature_cardface_id);
+		$creature_cardface = $creature_cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		return response()->json($creature_cardface->toArray());
  	}
 
 
@@ -258,17 +258,17 @@ class classofcreatureController extends DURCController
      */
     public function create(){
 	// but really, we are just going to edit a new object..
-	$new_instance = new classofcreature();
+	$new_instance = new creature_cardface();
 	return $this->edit($new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\classofcreature  $classofcreature
+     * @param  \App\creature_cardface  $creature_cardface
      * @return \Illuminate\Http\Response
      */
-    public function edit(classofcreature $classofcreature){
+    public function edit(creature_cardface $creature_cardface){
 
 	$main_template_name = $this->_getMainTemplateName();
 
@@ -283,7 +283,7 @@ class classofcreatureController extends DURCController
 	$this->view_data['csrf_token'] = csrf_token();
 	
 	
-	foreach ( classofcreature::$field_type_map as $column_name => $field_type ) {
+	foreach ( creature_cardface::$field_type_map as $column_name => $field_type ) {
         // If this field name is in the configured list of hidden fields, do not display the row.
         $this->view_data["{$column_name}_row_class"] = '';
         if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -291,15 +291,15 @@ class classofcreatureController extends DURCController
         }
     }
 
-	if($classofcreature->exists){	//we will not have old data if this is a new object
+	if($creature_cardface->exists){	//we will not have old data if this is a new object
 
 		//well lets properly eager load this object with a refresh to load all of the related things
-		$classofcreature = $classofcreature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$creature_cardface = $creature_cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 
 		//put the contents into the view...
-		foreach($classofcreature->toArray() as $key => $value){
-			if ( isset( classofcreature::$field_type_map[$key] ) ) {
-                $field_type = classofcreature::$field_type_map[ $key ];
+		foreach($creature_cardface->toArray() as $key => $value){
+			if ( isset( creature_cardface::$field_type_map[$key] ) ) {
+                $field_type = creature_cardface::$field_type_map[ $key ];
                 $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
             } else {
                 $this->view_data[$key] = $value;
@@ -307,9 +307,9 @@ class classofcreatureController extends DURCController
 		}
 
 		//what is this object called?
-		$name_field = $classofcreature->_getBestName();
+		$name_field = $creature_cardface->_getBestName();
 		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $classofcreature->$name_field;
+		$this->view_data['durc_instance_name'] = $creature_cardface->$name_field;
 	}else{
 		$this->view_data['is_new'] = true;
 	}
@@ -322,40 +322,38 @@ class classofcreatureController extends DURCController
 	}
 	
 
-	$durc_template_results = view('DURC.classofcreature.edit',$this->view_data);        
+	$durc_template_results = view('DURC.creature_cardface.edit',$this->view_data);        
 	return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\classofcreature  $classofcreature
+     * @param  \App\creature_cardface  $creature_cardface
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, classofcreature $classofcreature){
+    public function update(Request $request, creature_cardface $creature_cardface){
 
-	$tmp_classofcreature = $classofcreature;
-			$tmp_classofcreature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofcreature->classofcreature_name = DURC::formatForStorage( 'classofcreature_name', 'varchar', $request->classofcreature_name ); 
-		$tmp_classofcreature->classofcreature_img_uri = DURC::formatForStorage( 'classofcreature_img_uri', 'varchar', $request->classofcreature_img_uri ); 
-		$tmp_classofcreature->classofcreature_wiki_url = DURC::formatForStorage( 'classofcreature_wiki_url', 'varchar', $request->classofcreature_wiki_url ); 
-		$tmp_classofcreature->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
-		$tmp_classofcreature->save();
+	$tmp_creature_cardface = $creature_cardface;
+			$tmp_creature_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
+		$tmp_creature_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
+		$tmp_creature_cardface->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+		$tmp_creature_cardface->save();
 
 
-	$id = $classofcreature->id;
+	$id = $creature_cardface->id;
 
-	return redirect("/DURC/classofcreature/$id")->with('status', 'Data Saved!');
+	return redirect("/DURC/creature_cardface/$id")->with('status', 'Data Saved!');
         
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\classofcreature  $classofcreature
+     * @param  \App\creature_cardface  $creature_cardface
      * @return \Illuminate\Http\Response
      */
-    public function destroy(classofcreature $classofcreature){
-	    return classofcreature::destroy( $classofcreature->id );  
+    public function destroy(creature_cardface $creature_cardface){
+	    return creature_cardface::destroy( $creature_cardface->id );  
     }
     
     /**
@@ -365,7 +363,7 @@ class classofcreatureController extends DURCController
      */
     public function restore( $id )
     {
-        $classofcreature = classofcreature::withTrashed()->find($id)->restore();
+        $creature_cardface = creature_cardface::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }

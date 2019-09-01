@@ -944,6 +944,13 @@
                     "from_db": "lore",
                     "from_column": "cardface_id"
                 },
+                "creature_cardface": {
+                    "prefix": null,
+                    "type": "creature_cardface",
+                    "from_table": "creature_cardface",
+                    "from_db": "lore",
+                    "from_column": "cardface_id"
+                },
                 "wincon_strategy": {
                     "prefix": "wincon",
                     "type": "strategy",
@@ -1190,6 +1197,15 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "classofcreature_wiki_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "is_mega_class",
                     "data_type": "tinyint",
                     "is_primary_key": false,
@@ -1247,7 +1263,7 @@
                     "from_column": "classofcreature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofcreature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofcreature_name` varchar(255) NOT NULL,\n  `classofcreature_img_uri` varchar(255) DEFAULT NULL,\n  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creatureclass_name` (`classofcreature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofcreature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofcreature_name` varchar(255) NOT NULL,\n  `classofcreature_img_uri` varchar(255) DEFAULT NULL,\n  `classofcreature_wiki_url` varchar(255) DEFAULT NULL,\n  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creatureclass_name` (`classofcreature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "classofcreature_cardface": {
             "table_name": "classofcreature_cardface",
@@ -1443,6 +1459,13 @@
                     "from_db": "lore",
                     "from_column": "creature_id"
                 },
+                "creature_cardface": {
+                    "prefix": null,
+                    "type": "creature_cardface",
+                    "from_table": "creature_cardface",
+                    "from_db": "lore",
+                    "from_column": "creature_id"
+                },
                 "person_creature_tag": {
                     "prefix": null,
                     "type": "person_creature_tag",
@@ -1452,6 +1475,74 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `creature_image_uri` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creature_name` (`creature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+        },
+        "creature_cardface": {
+            "table_name": "creature_cardface",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "cardface_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "cardface"
+                },
+                {
+                    "column_name": "creature_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "creature"
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "belongs_to": {
+                "cardface": {
+                    "prefix": null,
+                    "type": "cardface",
+                    "to_table": "cardface",
+                    "to_db": "lore",
+                    "local_key": "cardface_id"
+                },
+                "creature": {
+                    "prefix": null,
+                    "type": "creature",
+                    "to_table": "creature",
+                    "to_db": "lore",
+                    "local_key": "creature_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`creature_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "mtgset": {
             "table_name": "mtgset",
@@ -1690,6 +1781,33 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "wallpaper_download_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "mtgwiki_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "wizards_story_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "created_at",
                     "data_type": "datetime",
                     "is_primary_key": false,
@@ -1745,7 +1863,7 @@
                     "from_column": "person_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(255) NOT NULL,\n  `first_name` varchar(255) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(255) NOT NULL,\n  `first_name` varchar(255) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `wallpaper_download_url` varchar(500) DEFAULT NULL,\n  `mtgwiki_url` varchar(255) DEFAULT NULL,\n  `wizards_story_url` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "person_classofcreature_tag": {
             "table_name": "person_classofcreature_tag",

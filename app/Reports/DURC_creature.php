@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=97add09d2ee78bb6a47ae4635c3ecca0
+FILE_SIG=cb8e74e92a1669d4d046c5adaa64df04
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -242,6 +242,67 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'classofcreature',
+      ),
+      2 => 
+      array (
+        'column_name' => 'creature_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'creature',
+      ),
+      3 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      4 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+  'creature_cardface' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'creature_cardface',
+    'from_table' => 'creature_cardface',
+    'from_db' => 'lore',
+    'from_column' => 'creature_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'cardface_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'cardface',
       ),
       2 => 
       array (

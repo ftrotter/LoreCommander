@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4cf47eec204a698cde5627d828d32370
+FILE_SIG=6685b64f81006e3973fda85ccab68fd3
 */
 namespace App;
 /*
@@ -19,6 +19,7 @@ class creature extends \App\DURC\Models\creature
 /*
 		protected $DURC_selfish_with = [ 
 			'classofcreature_creature', //from from many
+			'creature_cardface', //from from many
 			'person_creature_tag', //from from many
 		];
 
@@ -41,6 +42,15 @@ class creature extends \App\DURC\Models\creature
 */
 	public function classofcreature_creature(){
 		return parent::classofcreature_creature();
+	}
+
+
+/**
+*	DURC is handling the creature_cardface for this creature in creature
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function creature_cardface(){
+		return parent::creature_cardface();
 	}
 
 
