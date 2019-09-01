@@ -28,14 +28,7 @@ class CardSearch extends AbstractTabularReport
   <div class="form-group row">
     <label for="card_type" class="col-4 col-form-label">Creature Type</label> 
     <div class="col-8">
-      <select id="card_type" name="card_type" class="custom-select" aria-describedby="card_typeHelpBlock">
-
-        <option value="none">No Type Selected</option>
-        <option value="zombie">zombie</option>
-        <option value="angel">angel</option>
-        <option value="soldier">soldier</option>
-      </select> 
-      <span id="card_typeHelpBlock" class="form-text text-muted">Select a card type</span>
+      <input id="card_type" name="card_type" placeholder="enter creature type here" type="text" class="form-control">
     </div>
   </div>
   <div class="form-group row">
