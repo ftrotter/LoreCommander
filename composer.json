@@ -15,7 +15,7 @@
         "bestmomo/nice-artisan": "^1.1",
         "careset/zermelo": "dev-master",
         "careset/zermelobladecard": "dev-master",
-        "careset/zermelobladegraph": "^0.2.0",
+        "careset/zermelobladegraph": "dev-master",
         "careset/zermelobladetabular": "dev-master",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
