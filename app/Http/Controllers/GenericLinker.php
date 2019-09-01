@@ -13,11 +13,31 @@ class GenericLinker extends Controller
 
 		$link_table = $durc_type_left."_$durc_type_right"."_$durc_type_tag";
 	
+		$error_msg = "Error: ";
+		$has_error = false;
+	
 		$left_ids = $request->input($durc_type_left."_id");
+		if(is_null($left_ids)){
+			$has_error = true;
+			$error_msg .= "Nothing on the left to link...\n";
+		}
 		$right_ids = $request->input($durc_type_right."_id");
+		if(is_null($right_ids)){
+			$has_error = true;
+			$error_msg .= "Nothing on the right to link...\n";
+		}
 		$tag_ids = $request->input($durc_type_tag."_id");
+		if(is_null($tag_ids)){
+			$has_error = true;
+			$error_msg .= "No tags to link...\n";
+		}
 		$link_note = $request->input('link_note');
+		//nothing in the link_note is fine and typical.
 
+		if($has_error){
+			echo $error_msg;
+			exit();
+		}	
 
 		$left_id = $durc_type_left."_id";
 		$right_id = $durc_type_right."_id";

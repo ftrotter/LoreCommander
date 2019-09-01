@@ -37,6 +37,7 @@
 		<ul>
 			<li> <b><a href='/Zermelo/CardSearch'>Card Search</a></b>: Search Cards based on several factors </li>
 			<li> <b><a href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
+			<li> <b><a href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
