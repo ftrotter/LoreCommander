@@ -43,15 +43,3 @@ foreach($cmd as $label => $to_run){
 	system($to_run);
 }
 
-/*
-
-//the old way is listed here for reference...
-
-#!/bin/bash
-rm -rf vendor/careset/durc/src
-ln -s /var/www/html/DURC/src vendor/careset/durc/src
-#!/bin/bash
-# /home/vagrant/github/ftrotter/LoreCommander/vendor/careset/zermelobladegraph
-rm -rf vendor/careset/zermelobladegraph
-ln -s /home/vagrant/github/careset/ZermeloBladeGraph  vendor/careset/zermelobladegraph
-*/
