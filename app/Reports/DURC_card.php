@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4e9bc27ebe5041aab6b8aa1a78b93f9d
+FILE_SIG=d532f24ce85e2b9cbff298f55f2c52a1
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -50,7 +50,7 @@ SELECT
 , card.released_at AS released_at
 , card.set_name AS set_name
 , card.set_type AS set_type
-, mtgset.$mtgset_field AS $mtgset_field
+, B_mtgset.$mtgset_field AS $mtgset_field
 , card.variation_of_scryfall_id AS variation_of_scryfall_id
 , card.edhrec_rank AS edhrec_rank
 , card.is_promo AS is_promo
@@ -79,8 +79,8 @@ SELECT
 
 FROM lore.card
 
-LEFT JOIN lore.mtgset ON 
-	mtgset.id =
+LEFT JOIN lore.mtgset AS B_mtgset ON 
+	B_mtgset.id =
 	card.mtgset_id
 
 ";
@@ -101,7 +101,7 @@ SELECT
 , card.released_at AS released_at
 , card.set_name AS set_name
 , card.set_type AS set_type
-, mtgset.$mtgset_field AS $mtgset_field
+, B_mtgset.$mtgset_field AS $mtgset_field
 , card.variation_of_scryfall_id AS variation_of_scryfall_id
 , card.edhrec_rank AS edhrec_rank
 , card.is_promo AS is_promo
@@ -129,7 +129,12 @@ SELECT
 , card.mtgset_id AS mtgset_id
  
 FROM lore.card 
-WHERE id = $index
+
+LEFT JOIN lore.mtgset AS B_mtgset ON 
+	B_mtgset.id =
+	card.mtgset_id
+
+WHERE card.id = $index
 ";
 
         }
@@ -156,9 +161,10 @@ $mtgset_field = \App\mtgset::getNameField();
         $row['id'] = "<a href='/DURC/card/$id'>$id</a>";
 
 
-$mtgset_tmp = $$mtgset_field;
+$mtgset_tmp = ''.$mtgset_field;
+$mtgset_label = $row[$mtgset_tmp];
 if(isset($mtgset_tmp)){
-	$row[$mtgset_field] = "<a target='_blank' href='/Zermelo/DURC_mtgset/$mtgset_id'>$mtgset_tmp</a>";
+	$row[$mtgset_tmp] = "<a target='_blank' href='/Zermelo/DURC_mtgset/$mtgset_id'>$mtgset_label</a>";
 }
 
 

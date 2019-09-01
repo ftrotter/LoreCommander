@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=400988fd505320bb8f53f061a19ba840
+FILE_SIG=a150c4f8426991b4310e85ee59de6f66
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -39,7 +39,7 @@ $card_field = \App\card::getNameField();
                 $sql = "
 SELECT 
  cardface.id AS id
-, card.$card_field AS $card_field
+, B_card.$card_field AS $card_field
 , cardface.cardface_index AS cardface_index
 , cardface.illustration_id AS illustration_id
 , cardface.artist AS artist
@@ -84,8 +84,8 @@ SELECT
 
 FROM lore.cardface
 
-LEFT JOIN lore.card ON 
-	card.id =
+LEFT JOIN lore.card AS B_card ON 
+	B_card.id =
 	cardface.card_id
 
 ";
@@ -95,7 +95,7 @@ LEFT JOIN lore.card ON
                 $sql = "
 SELECT 
  cardface.id AS id
-, card.$card_field AS $card_field
+, B_card.$card_field AS $card_field
 , cardface.cardface_index AS cardface_index
 , cardface.illustration_id AS illustration_id
 , cardface.artist AS artist
@@ -139,7 +139,12 @@ SELECT
 , cardface.card_id AS card_id
  
 FROM lore.cardface 
-WHERE id = $index
+
+LEFT JOIN lore.card AS B_card ON 
+	B_card.id =
+	cardface.card_id
+
+WHERE cardface.id = $index
 ";
 
         }
@@ -166,9 +171,10 @@ $card_field = \App\card::getNameField();
         $row['id'] = "<a href='/DURC/cardface/$id'>$id</a>";
 
 
-$card_tmp = $$card_field;
+$card_tmp = ''.$card_field;
+$card_label = $row[$card_tmp];
 if(isset($card_tmp)){
-	$row[$card_field] = "<a target='_blank' href='/Zermelo/DURC_card/$card_id'>$card_tmp</a>";
+	$row[$card_tmp] = "<a target='_blank' href='/Zermelo/DURC_card/$card_id'>$card_label</a>";
 }
 
 

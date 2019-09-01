@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=763635b0743de454ee1cc76dbc76fffa
+FILE_SIG=afcdbb511a56c3c19e7ce51710f92497
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -41,9 +41,9 @@ $strategytag_field = \App\strategytag::getNameField();
                 $sql = "
 SELECT 
  person_strategy_strategytag.id AS id
-, person.$person_field AS $person_field
-, strategy.$strategy_field AS $strategy_field
-, strategytag.$strategytag_field AS $strategytag_field
+, B_person.$person_field AS $person_field
+, C_strategy.$strategy_field AS $strategy_field
+, D_strategytag.$strategytag_field AS $strategytag_field
 , person_strategy_strategytag.is_bulk_linker AS is_bulk_linker
 , person_strategy_strategytag.link_note AS link_note
 , person_strategy_strategytag.created_at AS created_at
@@ -54,16 +54,16 @@ SELECT
 
 FROM lore.person_strategy_strategytag
 
-LEFT JOIN lore.person ON 
-	person.id =
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
 	person_strategy_strategytag.person_id
 
-LEFT JOIN lore.strategy ON 
-	strategy.id =
+LEFT JOIN lore.strategy AS C_strategy ON 
+	C_strategy.id =
 	person_strategy_strategytag.strategy_id
 
-LEFT JOIN lore.strategytag ON 
-	strategytag.id =
+LEFT JOIN lore.strategytag AS D_strategytag ON 
+	D_strategytag.id =
 	person_strategy_strategytag.strategytag_id
 
 ";
@@ -73,9 +73,9 @@ LEFT JOIN lore.strategytag ON
                 $sql = "
 SELECT 
  person_strategy_strategytag.id AS id
-, person.$person_field AS $person_field
-, strategy.$strategy_field AS $strategy_field
-, strategytag.$strategytag_field AS $strategytag_field
+, B_person.$person_field AS $person_field
+, C_strategy.$strategy_field AS $strategy_field
+, D_strategytag.$strategytag_field AS $strategytag_field
 , person_strategy_strategytag.is_bulk_linker AS is_bulk_linker
 , person_strategy_strategytag.link_note AS link_note
 , person_strategy_strategytag.created_at AS created_at
@@ -85,7 +85,20 @@ SELECT
 , person_strategy_strategytag.strategytag_id AS strategytag_id
  
 FROM lore.person_strategy_strategytag 
-WHERE id = $index
+
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
+	person_strategy_strategytag.person_id
+
+LEFT JOIN lore.strategy AS C_strategy ON 
+	C_strategy.id =
+	person_strategy_strategytag.strategy_id
+
+LEFT JOIN lore.strategytag AS D_strategytag ON 
+	D_strategytag.id =
+	person_strategy_strategytag.strategytag_id
+
+WHERE person_strategy_strategytag.id = $index
 ";
 
         }
@@ -114,19 +127,22 @@ $strategytag_field = \App\strategytag::getNameField();
         $row['id'] = "<a href='/DURC/person_strategy_strategytag/$id'>$id</a>";
 
 
-$person_tmp = $$person_field;
+$person_tmp = ''.$person_field;
+$person_label = $row[$person_tmp];
 if(isset($person_tmp)){
-	$row[$person_field] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_tmp</a>";
+	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_label</a>";
 }
 
-$strategy_tmp = $$strategy_field;
+$strategy_tmp = ''.$strategy_field;
+$strategy_label = $row[$strategy_tmp];
 if(isset($strategy_tmp)){
-	$row[$strategy_field] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_tmp</a>";
+	$row[$strategy_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_label</a>";
 }
 
-$strategytag_tmp = $$strategytag_field;
+$strategytag_tmp = ''.$strategytag_field;
+$strategytag_label = $row[$strategytag_tmp];
 if(isset($strategytag_tmp)){
-	$row[$strategytag_field] = "<a target='_blank' href='/Zermelo/DURC_strategytag/$strategytag_id'>$strategytag_tmp</a>";
+	$row[$strategytag_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategytag/$strategytag_id'>$strategytag_label</a>";
 }
 
 

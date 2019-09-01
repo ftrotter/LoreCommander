@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2b7135cea56a3160c768b2e850cdc4ad
+FILE_SIG=c93e0b8cdd3a3c86862c87272f3a1d15
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -31,7 +31,7 @@ class DURC_tag extends AbstractTabularReport
         $index = $this->getCode();
 
 
-$excludes_tag_field = \App\tag::getNameField();
+$tag_field = \App\tag::getNameField();
 
 
         if(is_null($index)){
@@ -41,15 +41,15 @@ SELECT
  tag.id AS id
 , tag.tag_name AS tag_name
 , tag.is_directed AS is_directed
-, tag.$excludes_tag_field AS $excludes_tag_field
+, B_tag.$tag_field AS excludes_$tag_field
 , tag.created_at AS created_at
 , tag.updated_at AS updated_at
 , tag.excludes_tag_id AS excludes_tag_id
 
 FROM lore.tag
 
-LEFT JOIN lore.tag ON 
-	tag.id =
+LEFT JOIN lore.tag AS B_tag ON 
+	B_tag.id =
 	tag.excludes_tag_id
 
 ";
@@ -61,13 +61,18 @@ SELECT
  tag.id AS id
 , tag.tag_name AS tag_name
 , tag.is_directed AS is_directed
-, tag.$excludes_tag_field AS $excludes_tag_field
+, B_tag.$tag_field AS excludes_$tag_field
 , tag.created_at AS created_at
 , tag.updated_at AS updated_at
 , tag.excludes_tag_id AS excludes_tag_id
  
 FROM lore.tag 
-WHERE id = $index
+
+LEFT JOIN lore.tag AS B_tag ON 
+	B_tag.id =
+	tag.excludes_tag_id
+
+WHERE tag.id = $index
 ";
 
         }
@@ -86,7 +91,7 @@ WHERE id = $index
     {
 
 
-$excludes_tag_field = \App\tag::getNameField();
+$tag_field = \App\tag::getNameField();
 
         extract($row);
 
@@ -94,9 +99,10 @@ $excludes_tag_field = \App\tag::getNameField();
         $row['id'] = "<a href='/DURC/tag/$id'>$id</a>";
 
 
-$excludes_tag_tmp = $$excludes_tag_field;
+$excludes_tag_tmp = 'excludes_'.$tag_field;
+$excludes_tag_label = $row[$excludes_tag_tmp];
 if(isset($excludes_tag_tmp)){
-	$row[$excludes_tag_field] = "<a target='_blank' href='/Zermelo/DURC_excludes_tag/$excludes_tag_id'>$excludes_tag_tmp</a>";
+	$row[$excludes_tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$excludes_tag_id'>$excludes_tag_label</a>";
 }
 
 

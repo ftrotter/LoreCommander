@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d2020620cf4a212df038899b541d126f
+FILE_SIG=6dff5639429f958fb96408967c59e83a
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -41,9 +41,9 @@ $tag_field = \App\tag::getNameField();
                 $sql = "
 SELECT 
  person_strategy_tag.id AS id
-, person.$person_field AS $person_field
-, strategy.$strategy_field AS $strategy_field
-, tag.$tag_field AS $tag_field
+, B_person.$person_field AS $person_field
+, C_strategy.$strategy_field AS $strategy_field
+, D_tag.$tag_field AS $tag_field
 , person_strategy_tag.is_bulk_linker AS is_bulk_linker
 , person_strategy_tag.link_note AS link_note
 , person_strategy_tag.created_at AS created_at
@@ -54,16 +54,16 @@ SELECT
 
 FROM lore.person_strategy_tag
 
-LEFT JOIN lore.person ON 
-	person.id =
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
 	person_strategy_tag.person_id
 
-LEFT JOIN lore.strategy ON 
-	strategy.id =
+LEFT JOIN lore.strategy AS C_strategy ON 
+	C_strategy.id =
 	person_strategy_tag.strategy_id
 
-LEFT JOIN lore.tag ON 
-	tag.id =
+LEFT JOIN lore.tag AS D_tag ON 
+	D_tag.id =
 	person_strategy_tag.tag_id
 
 ";
@@ -73,9 +73,9 @@ LEFT JOIN lore.tag ON
                 $sql = "
 SELECT 
  person_strategy_tag.id AS id
-, person.$person_field AS $person_field
-, strategy.$strategy_field AS $strategy_field
-, tag.$tag_field AS $tag_field
+, B_person.$person_field AS $person_field
+, C_strategy.$strategy_field AS $strategy_field
+, D_tag.$tag_field AS $tag_field
 , person_strategy_tag.is_bulk_linker AS is_bulk_linker
 , person_strategy_tag.link_note AS link_note
 , person_strategy_tag.created_at AS created_at
@@ -85,7 +85,20 @@ SELECT
 , person_strategy_tag.tag_id AS tag_id
  
 FROM lore.person_strategy_tag 
-WHERE id = $index
+
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
+	person_strategy_tag.person_id
+
+LEFT JOIN lore.strategy AS C_strategy ON 
+	C_strategy.id =
+	person_strategy_tag.strategy_id
+
+LEFT JOIN lore.tag AS D_tag ON 
+	D_tag.id =
+	person_strategy_tag.tag_id
+
+WHERE person_strategy_tag.id = $index
 ";
 
         }
@@ -114,19 +127,22 @@ $tag_field = \App\tag::getNameField();
         $row['id'] = "<a href='/DURC/person_strategy_tag/$id'>$id</a>";
 
 
-$person_tmp = $$person_field;
+$person_tmp = ''.$person_field;
+$person_label = $row[$person_tmp];
 if(isset($person_tmp)){
-	$row[$person_field] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_tmp</a>";
+	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_label</a>";
 }
 
-$strategy_tmp = $$strategy_field;
+$strategy_tmp = ''.$strategy_field;
+$strategy_label = $row[$strategy_tmp];
 if(isset($strategy_tmp)){
-	$row[$strategy_field] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_tmp</a>";
+	$row[$strategy_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_label</a>";
 }
 
-$tag_tmp = $$tag_field;
+$tag_tmp = ''.$tag_field;
+$tag_label = $row[$tag_tmp];
 if(isset($tag_tmp)){
-	$row[$tag_field] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_tmp</a>";
+	$row[$tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_label</a>";
 }
 
 

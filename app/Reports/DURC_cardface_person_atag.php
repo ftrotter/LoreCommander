@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=f3d654c2194313fb87be1b971bf14c03
+FILE_SIG=763d5b3483b62f2081cd2bcad9befce3
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -41,9 +41,9 @@ $atag_field = \App\atag::getNameField();
                 $sql = "
 SELECT 
  cardface_person_atag.id AS id
-, cardface.$cardface_field AS $cardface_field
-, person.$person_field AS $person_field
-, atag.$atag_field AS $atag_field
+, B_cardface.$cardface_field AS $cardface_field
+, C_person.$person_field AS $person_field
+, D_atag.$atag_field AS $atag_field
 , cardface_person_atag.is_bulk_linker AS is_bulk_linker
 , cardface_person_atag.link_note AS link_note
 , cardface_person_atag.created_at AS created_at
@@ -54,16 +54,16 @@ SELECT
 
 FROM lore.cardface_person_atag
 
-LEFT JOIN lore.cardface ON 
-	cardface.id =
+LEFT JOIN lore.cardface AS B_cardface ON 
+	B_cardface.id =
 	cardface_person_atag.cardface_id
 
-LEFT JOIN lore.person ON 
-	person.id =
+LEFT JOIN lore.person AS C_person ON 
+	C_person.id =
 	cardface_person_atag.person_id
 
-LEFT JOIN lore.atag ON 
-	atag.id =
+LEFT JOIN lore.atag AS D_atag ON 
+	D_atag.id =
 	cardface_person_atag.atag_id
 
 ";
@@ -73,9 +73,9 @@ LEFT JOIN lore.atag ON
                 $sql = "
 SELECT 
  cardface_person_atag.id AS id
-, cardface.$cardface_field AS $cardface_field
-, person.$person_field AS $person_field
-, atag.$atag_field AS $atag_field
+, B_cardface.$cardface_field AS $cardface_field
+, C_person.$person_field AS $person_field
+, D_atag.$atag_field AS $atag_field
 , cardface_person_atag.is_bulk_linker AS is_bulk_linker
 , cardface_person_atag.link_note AS link_note
 , cardface_person_atag.created_at AS created_at
@@ -85,7 +85,20 @@ SELECT
 , cardface_person_atag.atag_id AS atag_id
  
 FROM lore.cardface_person_atag 
-WHERE id = $index
+
+LEFT JOIN lore.cardface AS B_cardface ON 
+	B_cardface.id =
+	cardface_person_atag.cardface_id
+
+LEFT JOIN lore.person AS C_person ON 
+	C_person.id =
+	cardface_person_atag.person_id
+
+LEFT JOIN lore.atag AS D_atag ON 
+	D_atag.id =
+	cardface_person_atag.atag_id
+
+WHERE cardface_person_atag.id = $index
 ";
 
         }
@@ -114,19 +127,22 @@ $atag_field = \App\atag::getNameField();
         $row['id'] = "<a href='/DURC/cardface_person_atag/$id'>$id</a>";
 
 
-$cardface_tmp = $$cardface_field;
+$cardface_tmp = ''.$cardface_field;
+$cardface_label = $row[$cardface_tmp];
 if(isset($cardface_tmp)){
-	$row[$cardface_field] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_tmp</a>";
+	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_label</a>";
 }
 
-$person_tmp = $$person_field;
+$person_tmp = ''.$person_field;
+$person_label = $row[$person_tmp];
 if(isset($person_tmp)){
-	$row[$person_field] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_tmp</a>";
+	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_label</a>";
 }
 
-$atag_tmp = $$atag_field;
+$atag_tmp = ''.$atag_field;
+$atag_label = $row[$atag_tmp];
 if(isset($atag_tmp)){
-	$row[$atag_field] = "<a target='_blank' href='/Zermelo/DURC_atag/$atag_id'>$atag_tmp</a>";
+	$row[$atag_tmp] = "<a target='_blank' href='/Zermelo/DURC_atag/$atag_id'>$atag_label</a>";
 }
 
 

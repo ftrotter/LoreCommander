@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=615c18f9d12e36ae10fe30fc1b7be371
+FILE_SIG=42ee1017fccc8d00bb9af56cf735aaa3
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -40,8 +40,8 @@ $classofcreature_field = \App\classofcreature::getNameField();
                 $sql = "
 SELECT 
  classofcreature_cardface.id AS id
-, cardface.$cardface_field AS $cardface_field
-, classofcreature.$classofcreature_field AS $classofcreature_field
+, B_cardface.$cardface_field AS $cardface_field
+, C_classofcreature.$classofcreature_field AS $classofcreature_field
 , classofcreature_cardface.created_at AS created_at
 , classofcreature_cardface.updated_at AS updated_at
 , classofcreature_cardface.cardface_id AS cardface_id
@@ -49,12 +49,12 @@ SELECT
 
 FROM lore.classofcreature_cardface
 
-LEFT JOIN lore.cardface ON 
-	cardface.id =
+LEFT JOIN lore.cardface AS B_cardface ON 
+	B_cardface.id =
 	classofcreature_cardface.cardface_id
 
-LEFT JOIN lore.classofcreature ON 
-	classofcreature.id =
+LEFT JOIN lore.classofcreature AS C_classofcreature ON 
+	C_classofcreature.id =
 	classofcreature_cardface.classofcreature_id
 
 ";
@@ -64,15 +64,24 @@ LEFT JOIN lore.classofcreature ON
                 $sql = "
 SELECT 
  classofcreature_cardface.id AS id
-, cardface.$cardface_field AS $cardface_field
-, classofcreature.$classofcreature_field AS $classofcreature_field
+, B_cardface.$cardface_field AS $cardface_field
+, C_classofcreature.$classofcreature_field AS $classofcreature_field
 , classofcreature_cardface.created_at AS created_at
 , classofcreature_cardface.updated_at AS updated_at
 , classofcreature_cardface.cardface_id AS cardface_id
 , classofcreature_cardface.classofcreature_id AS classofcreature_id
  
 FROM lore.classofcreature_cardface 
-WHERE id = $index
+
+LEFT JOIN lore.cardface AS B_cardface ON 
+	B_cardface.id =
+	classofcreature_cardface.cardface_id
+
+LEFT JOIN lore.classofcreature AS C_classofcreature ON 
+	C_classofcreature.id =
+	classofcreature_cardface.classofcreature_id
+
+WHERE classofcreature_cardface.id = $index
 ";
 
         }
@@ -100,14 +109,16 @@ $classofcreature_field = \App\classofcreature::getNameField();
         $row['id'] = "<a href='/DURC/classofcreature_cardface/$id'>$id</a>";
 
 
-$cardface_tmp = $$cardface_field;
+$cardface_tmp = ''.$cardface_field;
+$cardface_label = $row[$cardface_tmp];
 if(isset($cardface_tmp)){
-	$row[$cardface_field] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_tmp</a>";
+	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_label</a>";
 }
 
-$classofcreature_tmp = $$classofcreature_field;
+$classofcreature_tmp = ''.$classofcreature_field;
+$classofcreature_label = $row[$classofcreature_tmp];
 if(isset($classofcreature_tmp)){
-	$row[$classofcreature_field] = "<a target='_blank' href='/Zermelo/DURC_classofcreature/$classofcreature_id'>$classofcreature_tmp</a>";
+	$row[$classofcreature_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofcreature/$classofcreature_id'>$classofcreature_label</a>";
 }
 
 

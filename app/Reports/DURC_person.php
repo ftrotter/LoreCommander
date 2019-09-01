@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=640b2cdcc263e095658436e5d2e4886c
+FILE_SIG=664ea017714cb1873c72f30a57a2c815
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -60,7 +60,8 @@ SELECT
 , person.updated_at AS updated_at
  
 FROM lore.person 
-WHERE id = $index
+
+WHERE person.id = $index
 ";
 
         }
