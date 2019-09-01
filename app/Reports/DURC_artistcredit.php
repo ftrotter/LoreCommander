@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a3997a7d0c97e4df56bb32446ec193f1
+FILE_SIG=e6584b15a0ffef92b61a3012741557c1
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,7 +28,20 @@ class DURC_artistcredit extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\artistcredit::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
 
 
 
@@ -36,8 +49,9 @@ class DURC_artistcredit extends AbstractTabularReport
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- artistcredit.id AS id
+SELECT
+artistcredit.id
+$joined_select_field_sql 
 , artistcredit.artistcredit_name AS artistcredit_name
 , artistcredit.is_plain_credit AS is_plain_credit
 , artistcredit.created_at AS created_at
@@ -50,8 +64,9 @@ FROM lore.artistcredit
         }else{
 
                 $sql = "
-SELECT 
- artistcredit.id AS id
+SELECT
+artistcredit.id 
+$joined_select_field_sql
 , artistcredit.artistcredit_name AS artistcredit_name
 , artistcredit.is_plain_credit AS is_plain_credit
 , artistcredit.created_at AS created_at
@@ -64,7 +79,6 @@ WHERE artistcredit.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -77,12 +91,37 @@ WHERE artistcredit.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\artistcredit::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/artistcredit/$id'>$id</a>";
+
+
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
 
 
 

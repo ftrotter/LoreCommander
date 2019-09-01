@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c93e0b8cdd3a3c86862c87272f3a1d15
+FILE_SIG=328fefc76d4afbacbe754568680547b9
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,28 +28,53 @@ class DURC_tag extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$tag_field = \App\tag::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\tag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$tag_field = \App\tag::getNameField();	
+	$joined_select_field_sql .= "
+, A_tag.$tag_field  AS excludes_$tag_field
+"; 
+	$tag_img_field = \App\tag::getImgField();
+	if(!is_null($tag_img_field)){
+		if($is_debug){echo "tag has an image field of: |$tag_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_tag.$tag_img_field  AS excludes_$tag_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- tag.id AS id
+SELECT
+tag.id
+$joined_select_field_sql 
 , tag.tag_name AS tag_name
 , tag.is_directed AS is_directed
-, B_tag.$tag_field AS excludes_$tag_field
+, tag.excludes_tag_id AS excludes_tag_id
 , tag.created_at AS created_at
 , tag.updated_at AS updated_at
-, tag.excludes_tag_id AS excludes_tag_id
 
 FROM lore.tag
 
-LEFT JOIN lore.tag AS B_tag ON 
-	B_tag.id =
+LEFT JOIN lore.tag AS A_tag ON 
+	A_tag.id =
 	tag.excludes_tag_id
 
 ";
@@ -57,19 +82,19 @@ LEFT JOIN lore.tag AS B_tag ON
         }else{
 
                 $sql = "
-SELECT 
- tag.id AS id
+SELECT
+tag.id 
+$joined_select_field_sql
 , tag.tag_name AS tag_name
 , tag.is_directed AS is_directed
-, B_tag.$tag_field AS excludes_$tag_field
+, tag.excludes_tag_id AS excludes_tag_id
 , tag.created_at AS created_at
 , tag.updated_at AS updated_at
-, tag.excludes_tag_id AS excludes_tag_id
  
 FROM lore.tag 
 
-LEFT JOIN lore.tag AS B_tag ON 
-	B_tag.id =
+LEFT JOIN lore.tag AS A_tag ON 
+	A_tag.id =
 	tag.excludes_tag_id
 
 WHERE tag.id = $index
@@ -77,7 +102,6 @@ WHERE tag.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -90,19 +114,62 @@ WHERE tag.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$tag_field = \App\tag::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\tag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$tag_field = \App\tag::getNameField();	
+	$joined_select_field_sql .= "
+, A_tag.$tag_field  AS excludes_$tag_field
+"; 
+	$tag_img_field = \App\tag::getImgField();
+	if(!is_null($tag_img_field)){
+		if($is_debug){echo "tag has an image field of: |$tag_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_tag.$tag_img_field  AS excludes_$tag_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/tag/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $excludes_tag_tmp = 'excludes_'.$tag_field;
-$excludes_tag_label = $row[$excludes_tag_tmp];
 if(isset($excludes_tag_tmp)){
-	$row[$excludes_tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$excludes_tag_id'>$excludes_tag_label</a>";
+	$excludes_tag_data = $row[$excludes_tag_tmp];
+	$row[$excludes_tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$excludes_tag_id'>$excludes_tag_data</a>";
+}
+
+$excludes_tag_img_tmp = 'excludes_'.$tag_img_field;
+if(isset($excludes_tag_img_tmp) && strlen($excludes_tag_img_tmp) > 0){
+	$excludes_tag_img_data = $row[$excludes_tag_img_tmp];
+	$row[$excludes_tag_img_tmp] = "<img width='200px' src='$excludes_tag_img_data'>";
 }
 
 

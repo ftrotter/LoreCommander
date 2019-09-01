@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8771cb3f7f158c958b23c56e2a3d8bbe
+FILE_SIG=61f53879617ceb6885dab9ff17665a96
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,7 +28,20 @@ class DURC_strategytag extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\strategytag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
 
 
 
@@ -36,8 +49,9 @@ class DURC_strategytag extends AbstractTabularReport
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- strategytag.id AS id
+SELECT
+strategytag.id
+$joined_select_field_sql 
 , strategytag.strategytag_name AS strategytag_name
 , strategytag.created_at AS created_at
 , strategytag.updated_at AS updated_at
@@ -49,8 +63,9 @@ FROM lore.strategytag
         }else{
 
                 $sql = "
-SELECT 
- strategytag.id AS id
+SELECT
+strategytag.id 
+$joined_select_field_sql
 , strategytag.strategytag_name AS strategytag_name
 , strategytag.created_at AS created_at
 , strategytag.updated_at AS updated_at
@@ -62,7 +77,6 @@ WHERE strategytag.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -75,12 +89,37 @@ WHERE strategytag.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\strategytag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/strategytag/$id'>$id</a>";
+
+
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=3ccf587e122e5578594d96388c1ec8ba
+FILE_SIG=027d8f8540e191ec1ab4b2e7c0598356
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,7 +28,20 @@ class DURC_mtgset extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\mtgset::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
 
 
 
@@ -36,8 +49,9 @@ class DURC_mtgset extends AbstractTabularReport
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- mtgset.id AS id
+SELECT
+mtgset.id
+$joined_select_field_sql 
 , mtgset.scryfall_id AS scryfall_id
 , mtgset.code AS code
 , mtgset.mtgo_code AS mtgo_code
@@ -65,8 +79,9 @@ FROM lore.mtgset
         }else{
 
                 $sql = "
-SELECT 
- mtgset.id AS id
+SELECT
+mtgset.id 
+$joined_select_field_sql
 , mtgset.scryfall_id AS scryfall_id
 , mtgset.code AS code
 , mtgset.mtgo_code AS mtgo_code
@@ -94,7 +109,6 @@ WHERE mtgset.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -107,12 +121,37 @@ WHERE mtgset.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\mtgset::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/mtgset/$id'>$id</a>";
+
+
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
 
 
 

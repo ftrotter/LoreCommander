@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=42ee1017fccc8d00bb9af56cf735aaa3
+FILE_SIG=dfb77a931b0af2712c9012e9f40e7614
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,33 +28,69 @@ class DURC_classofcreature_cardface extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$cardface_field = \App\cardface::getNameField();
-$classofcreature_field = \App\classofcreature::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\classofcreature_cardface::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$cardface_field = \App\cardface::getNameField();	
+	$joined_select_field_sql .= "
+, A_cardface.$cardface_field  AS $cardface_field
+"; 
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_cardface.$cardface_img_field  AS $cardface_img_field
+"; 
+	}
+
+	$classofcreature_field = \App\classofcreature::getNameField();	
+	$joined_select_field_sql .= "
+, B_classofcreature.$classofcreature_field  AS $classofcreature_field
+"; 
+	$classofcreature_img_field = \App\classofcreature::getImgField();
+	if(!is_null($classofcreature_img_field)){
+		if($is_debug){echo "classofcreature has an image field of: |$classofcreature_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_classofcreature.$classofcreature_img_field  AS $classofcreature_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- classofcreature_cardface.id AS id
-, B_cardface.$cardface_field AS $cardface_field
-, C_classofcreature.$classofcreature_field AS $classofcreature_field
-, classofcreature_cardface.created_at AS created_at
-, classofcreature_cardface.updated_at AS updated_at
+SELECT
+classofcreature_cardface.id
+$joined_select_field_sql 
 , classofcreature_cardface.cardface_id AS cardface_id
 , classofcreature_cardface.classofcreature_id AS classofcreature_id
+, classofcreature_cardface.created_at AS created_at
+, classofcreature_cardface.updated_at AS updated_at
 
 FROM lore.classofcreature_cardface
 
-LEFT JOIN lore.cardface AS B_cardface ON 
-	B_cardface.id =
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
 	classofcreature_cardface.cardface_id
 
-LEFT JOIN lore.classofcreature AS C_classofcreature ON 
-	C_classofcreature.id =
+LEFT JOIN lore.classofcreature AS B_classofcreature ON 
+	B_classofcreature.id =
 	classofcreature_cardface.classofcreature_id
 
 ";
@@ -62,23 +98,22 @@ LEFT JOIN lore.classofcreature AS C_classofcreature ON
         }else{
 
                 $sql = "
-SELECT 
- classofcreature_cardface.id AS id
-, B_cardface.$cardface_field AS $cardface_field
-, C_classofcreature.$classofcreature_field AS $classofcreature_field
-, classofcreature_cardface.created_at AS created_at
-, classofcreature_cardface.updated_at AS updated_at
+SELECT
+classofcreature_cardface.id 
+$joined_select_field_sql
 , classofcreature_cardface.cardface_id AS cardface_id
 , classofcreature_cardface.classofcreature_id AS classofcreature_id
+, classofcreature_cardface.created_at AS created_at
+, classofcreature_cardface.updated_at AS updated_at
  
 FROM lore.classofcreature_cardface 
 
-LEFT JOIN lore.cardface AS B_cardface ON 
-	B_cardface.id =
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
 	classofcreature_cardface.cardface_id
 
-LEFT JOIN lore.classofcreature AS C_classofcreature ON 
-	C_classofcreature.id =
+LEFT JOIN lore.classofcreature AS B_classofcreature ON 
+	B_classofcreature.id =
 	classofcreature_cardface.classofcreature_id
 
 WHERE classofcreature_cardface.id = $index
@@ -86,7 +121,6 @@ WHERE classofcreature_cardface.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -99,26 +133,87 @@ WHERE classofcreature_cardface.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$cardface_field = \App\cardface::getNameField();
-$classofcreature_field = \App\classofcreature::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\classofcreature_cardface::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$cardface_field = \App\cardface::getNameField();	
+	$joined_select_field_sql .= "
+, A_cardface.$cardface_field  AS $cardface_field
+"; 
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_cardface.$cardface_img_field  AS $cardface_img_field
+"; 
+	}
+
+	$classofcreature_field = \App\classofcreature::getNameField();	
+	$joined_select_field_sql .= "
+, B_classofcreature.$classofcreature_field  AS $classofcreature_field
+"; 
+	$classofcreature_img_field = \App\classofcreature::getImgField();
+	if(!is_null($classofcreature_img_field)){
+		if($is_debug){echo "classofcreature has an image field of: |$classofcreature_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_classofcreature.$classofcreature_img_field  AS $classofcreature_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/classofcreature_cardface/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $cardface_tmp = ''.$cardface_field;
-$cardface_label = $row[$cardface_tmp];
 if(isset($cardface_tmp)){
-	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_label</a>";
+	$cardface_data = $row[$cardface_tmp];
+	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_data</a>";
+}
+
+$cardface_img_tmp = ''.$cardface_img_field;
+if(isset($cardface_img_tmp) && strlen($cardface_img_tmp) > 0){
+	$cardface_img_data = $row[$cardface_img_tmp];
+	$row[$cardface_img_tmp] = "<img width='200px' src='$cardface_img_data'>";
 }
 
 $classofcreature_tmp = ''.$classofcreature_field;
-$classofcreature_label = $row[$classofcreature_tmp];
 if(isset($classofcreature_tmp)){
-	$row[$classofcreature_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofcreature/$classofcreature_id'>$classofcreature_label</a>";
+	$classofcreature_data = $row[$classofcreature_tmp];
+	$row[$classofcreature_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofcreature/$classofcreature_id'>$classofcreature_data</a>";
+}
+
+$classofcreature_img_tmp = ''.$classofcreature_img_field;
+if(isset($classofcreature_img_tmp) && strlen($classofcreature_img_tmp) > 0){
+	$classofcreature_img_data = $row[$classofcreature_img_tmp];
+	$row[$classofcreature_img_tmp] = "<img width='200px' src='$classofcreature_img_data'>";
 }
 
 
@@ -677,6 +772,16 @@ array (
       ),
       2 => 
       array (
+        'column_name' => 'classofcreature_img_uri',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      3 => 
+      array (
         'column_name' => 'is_mega_class',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
@@ -685,7 +790,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      3 => 
+      4 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -695,7 +800,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      4 => 
+      5 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
