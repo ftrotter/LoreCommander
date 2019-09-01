@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e8b61d5b3ad4c7773c14147b736f2dc0
+FILE_SIG=081dfd40477cf6ee361d9f96bc387e33
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -41,9 +41,9 @@ $tag_field = \App\tag::getNameField();
                 $sql = "
 SELECT 
  person_creature_tag.id AS id
-, person.$person_field AS $person_field
-, creature.$creature_field AS $creature_field
-, tag.$tag_field AS $tag_field
+, B_person.$person_field AS $person_field
+, C_creature.$creature_field AS $creature_field
+, D_tag.$tag_field AS $tag_field
 , person_creature_tag.is_bulk_linker AS is_bulk_linker
 , person_creature_tag.link_note AS link_note
 , person_creature_tag.created_at AS created_at
@@ -54,16 +54,16 @@ SELECT
 
 FROM lore.person_creature_tag
 
-LEFT JOIN lore.person ON 
-	person.id =
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
 	person_creature_tag.person_id
 
-LEFT JOIN lore.creature ON 
-	creature.id =
+LEFT JOIN lore.creature AS C_creature ON 
+	C_creature.id =
 	person_creature_tag.creature_id
 
-LEFT JOIN lore.tag ON 
-	tag.id =
+LEFT JOIN lore.tag AS D_tag ON 
+	D_tag.id =
 	person_creature_tag.tag_id
 
 ";
@@ -73,9 +73,9 @@ LEFT JOIN lore.tag ON
                 $sql = "
 SELECT 
  person_creature_tag.id AS id
-, person.$person_field AS $person_field
-, creature.$creature_field AS $creature_field
-, tag.$tag_field AS $tag_field
+, B_person.$person_field AS $person_field
+, C_creature.$creature_field AS $creature_field
+, D_tag.$tag_field AS $tag_field
 , person_creature_tag.is_bulk_linker AS is_bulk_linker
 , person_creature_tag.link_note AS link_note
 , person_creature_tag.created_at AS created_at
@@ -85,7 +85,20 @@ SELECT
 , person_creature_tag.tag_id AS tag_id
  
 FROM lore.person_creature_tag 
-WHERE id = $index
+
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
+	person_creature_tag.person_id
+
+LEFT JOIN lore.creature AS C_creature ON 
+	C_creature.id =
+	person_creature_tag.creature_id
+
+LEFT JOIN lore.tag AS D_tag ON 
+	D_tag.id =
+	person_creature_tag.tag_id
+
+WHERE person_creature_tag.id = $index
 ";
 
         }
@@ -114,19 +127,22 @@ $tag_field = \App\tag::getNameField();
         $row['id'] = "<a href='/DURC/person_creature_tag/$id'>$id</a>";
 
 
-$person_tmp = $$person_field;
+$person_tmp = ''.$person_field;
+$person_label = $row[$person_tmp];
 if(isset($person_tmp)){
-	$row[$person_field] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_tmp</a>";
+	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_label</a>";
 }
 
-$creature_tmp = $$creature_field;
+$creature_tmp = ''.$creature_field;
+$creature_label = $row[$creature_tmp];
 if(isset($creature_tmp)){
-	$row[$creature_field] = "<a target='_blank' href='/Zermelo/DURC_creature/$creature_id'>$creature_tmp</a>";
+	$row[$creature_tmp] = "<a target='_blank' href='/Zermelo/DURC_creature/$creature_id'>$creature_label</a>";
 }
 
-$tag_tmp = $$tag_field;
+$tag_tmp = ''.$tag_field;
+$tag_label = $row[$tag_tmp];
 if(isset($tag_tmp)){
-	$row[$tag_field] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_tmp</a>";
+	$row[$tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_label</a>";
 }
 
 

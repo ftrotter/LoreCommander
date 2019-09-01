@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1d0b9195c8adfdb2bf5fb185c5af5869
+FILE_SIG=3ccf587e122e5578594d96388c1ec8ba
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -88,7 +88,8 @@ SELECT
 , mtgset.updated_at AS updated_at
  
 FROM lore.mtgset 
-WHERE id = $index
+
+WHERE mtgset.id = $index
 ";
 
         }

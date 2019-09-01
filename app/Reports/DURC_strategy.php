@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=5f1003e1ec5dfba4d654e46c1abbd758
+FILE_SIG=b3fdf835145acbdd214ab3e172e2bbaa
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -31,7 +31,7 @@ class DURC_strategy extends AbstractTabularReport
         $index = $this->getCode();
 
 
-$wincon_cardface_field = \App\cardface::getNameField();
+$cardface_field = \App\cardface::getNameField();
 
 
         if(is_null($index)){
@@ -42,7 +42,7 @@ SELECT
 , strategy.strategy_name AS strategy_name
 , strategy.strategy_description AS strategy_description
 , strategy.strategy_url AS strategy_url
-, cardface.$wincon_cardface_field AS $wincon_cardface_field
+, B_cardface.$cardface_field AS wincon_$cardface_field
 , strategy.WOTC_rule_reference AS WOTC_rule_reference
 , strategy.created_at AS created_at
 , strategy.updated_at AS updated_at
@@ -50,8 +50,8 @@ SELECT
 
 FROM lore.strategy
 
-LEFT JOIN lore.cardface ON 
-	cardface.id =
+LEFT JOIN lore.cardface AS B_cardface ON 
+	B_cardface.id =
 	strategy.wincon_cardface_id
 
 ";
@@ -64,14 +64,19 @@ SELECT
 , strategy.strategy_name AS strategy_name
 , strategy.strategy_description AS strategy_description
 , strategy.strategy_url AS strategy_url
-, cardface.$wincon_cardface_field AS $wincon_cardface_field
+, B_cardface.$cardface_field AS wincon_$cardface_field
 , strategy.WOTC_rule_reference AS WOTC_rule_reference
 , strategy.created_at AS created_at
 , strategy.updated_at AS updated_at
 , strategy.wincon_cardface_id AS wincon_cardface_id
  
 FROM lore.strategy 
-WHERE id = $index
+
+LEFT JOIN lore.cardface AS B_cardface ON 
+	B_cardface.id =
+	strategy.wincon_cardface_id
+
+WHERE strategy.id = $index
 ";
 
         }
@@ -90,7 +95,7 @@ WHERE id = $index
     {
 
 
-$wincon_cardface_field = \App\cardface::getNameField();
+$cardface_field = \App\cardface::getNameField();
 
         extract($row);
 
@@ -98,9 +103,10 @@ $wincon_cardface_field = \App\cardface::getNameField();
         $row['id'] = "<a href='/DURC/strategy/$id'>$id</a>";
 
 
-$wincon_cardface_tmp = $$wincon_cardface_field;
+$wincon_cardface_tmp = 'wincon_'.$cardface_field;
+$wincon_cardface_label = $row[$wincon_cardface_tmp];
 if(isset($wincon_cardface_tmp)){
-	$row[$wincon_cardface_field] = "<a target='_blank' href='/Zermelo/DURC_wincon_cardface/$wincon_cardface_id'>$wincon_cardface_tmp</a>";
+	$row[$wincon_cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$wincon_cardface_id'>$wincon_cardface_label</a>";
 }
 
 
