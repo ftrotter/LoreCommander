@@ -44,6 +44,7 @@ class classofcreature extends DURCModel{
 	static $field_type_map = [
 		'id' => 'int',
 		'classofcreature_name' => 'varchar',
+		'classofcreature_img_uri' => 'varchar',
 		'is_mega_class' => 'tinyint',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
@@ -104,6 +105,7 @@ class classofcreature extends DURCModel{
 CREATE TABLE `lore`.`classofcreature` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `classofcreature_name` varchar(255) NOT NULL,
+  `classofcreature_img_uri` varchar(255) DEFAULT NULL,
   `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),

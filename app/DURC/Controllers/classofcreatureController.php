@@ -220,6 +220,7 @@ class classofcreatureController extends DURCController
 	$tmp_classofcreature = $myNewclassofcreature;
 			$tmp_classofcreature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_classofcreature->classofcreature_name = DURC::formatForStorage( 'classofcreature_name', 'varchar', $request->classofcreature_name ); 
+		$tmp_classofcreature->classofcreature_img_uri = DURC::formatForStorage( 'classofcreature_img_uri', 'varchar', $request->classofcreature_img_uri ); 
 		$tmp_classofcreature->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
 		$tmp_classofcreature->save();
 
@@ -335,6 +336,7 @@ class classofcreatureController extends DURCController
 	$tmp_classofcreature = $classofcreature;
 			$tmp_classofcreature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_classofcreature->classofcreature_name = DURC::formatForStorage( 'classofcreature_name', 'varchar', $request->classofcreature_name ); 
+		$tmp_classofcreature->classofcreature_img_uri = DURC::formatForStorage( 'classofcreature_img_uri', 'varchar', $request->classofcreature_img_uri ); 
 		$tmp_classofcreature->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
 		$tmp_classofcreature->save();
 
