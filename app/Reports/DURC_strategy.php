@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b3fdf835145acbdd214ab3e172e2bbaa
+FILE_SIG=b3233c305cf48b61ef730061d3e87903
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,30 +28,55 @@ class DURC_strategy extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$cardface_field = \App\cardface::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\strategy::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$cardface_field = \App\cardface::getNameField();	
+	$joined_select_field_sql .= "
+, A_cardface.$cardface_field  AS wincon_$cardface_field
+"; 
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_cardface.$cardface_img_field  AS wincon_$cardface_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- strategy.id AS id
+SELECT
+strategy.id
+$joined_select_field_sql 
 , strategy.strategy_name AS strategy_name
 , strategy.strategy_description AS strategy_description
 , strategy.strategy_url AS strategy_url
-, B_cardface.$cardface_field AS wincon_$cardface_field
+, strategy.wincon_cardface_id AS wincon_cardface_id
 , strategy.WOTC_rule_reference AS WOTC_rule_reference
 , strategy.created_at AS created_at
 , strategy.updated_at AS updated_at
-, strategy.wincon_cardface_id AS wincon_cardface_id
 
 FROM lore.strategy
 
-LEFT JOIN lore.cardface AS B_cardface ON 
-	B_cardface.id =
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
 	strategy.wincon_cardface_id
 
 ";
@@ -59,21 +84,21 @@ LEFT JOIN lore.cardface AS B_cardface ON
         }else{
 
                 $sql = "
-SELECT 
- strategy.id AS id
+SELECT
+strategy.id 
+$joined_select_field_sql
 , strategy.strategy_name AS strategy_name
 , strategy.strategy_description AS strategy_description
 , strategy.strategy_url AS strategy_url
-, B_cardface.$cardface_field AS wincon_$cardface_field
+, strategy.wincon_cardface_id AS wincon_cardface_id
 , strategy.WOTC_rule_reference AS WOTC_rule_reference
 , strategy.created_at AS created_at
 , strategy.updated_at AS updated_at
-, strategy.wincon_cardface_id AS wincon_cardface_id
  
 FROM lore.strategy 
 
-LEFT JOIN lore.cardface AS B_cardface ON 
-	B_cardface.id =
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
 	strategy.wincon_cardface_id
 
 WHERE strategy.id = $index
@@ -81,7 +106,6 @@ WHERE strategy.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -94,19 +118,62 @@ WHERE strategy.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$cardface_field = \App\cardface::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\strategy::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$cardface_field = \App\cardface::getNameField();	
+	$joined_select_field_sql .= "
+, A_cardface.$cardface_field  AS wincon_$cardface_field
+"; 
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_cardface.$cardface_img_field  AS wincon_$cardface_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/strategy/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $wincon_cardface_tmp = 'wincon_'.$cardface_field;
-$wincon_cardface_label = $row[$wincon_cardface_tmp];
 if(isset($wincon_cardface_tmp)){
-	$row[$wincon_cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$wincon_cardface_id'>$wincon_cardface_label</a>";
+	$wincon_cardface_data = $row[$wincon_cardface_tmp];
+	$row[$wincon_cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$wincon_cardface_id'>$wincon_cardface_data</a>";
+}
+
+$wincon_cardface_img_tmp = 'wincon_'.$cardface_img_field;
+if(isset($wincon_cardface_img_tmp) && strlen($wincon_cardface_img_tmp) > 0){
+	$wincon_cardface_img_data = $row[$wincon_cardface_img_tmp];
+	$row[$wincon_cardface_img_tmp] = "<img width='200px' src='$wincon_cardface_img_data'>";
 }
 
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=763d5b3483b62f2081cd2bcad9befce3
+FILE_SIG=44492b19d50a10caf21b94e0c0a446b6
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,42 +28,89 @@ class DURC_cardface_person_atag extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$cardface_field = \App\cardface::getNameField();
-$person_field = \App\person::getNameField();
-$atag_field = \App\atag::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\cardface_person_atag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$cardface_field = \App\cardface::getNameField();	
+	$joined_select_field_sql .= "
+, A_cardface.$cardface_field  AS $cardface_field
+"; 
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_cardface.$cardface_img_field  AS $cardface_img_field
+"; 
+	}
+
+	$person_field = \App\person::getNameField();	
+	$joined_select_field_sql .= "
+, B_person.$person_field  AS $person_field
+"; 
+	$person_img_field = \App\person::getImgField();
+	if(!is_null($person_img_field)){
+		if($is_debug){echo "person has an image field of: |$person_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_person.$person_img_field  AS $person_img_field
+"; 
+	}
+
+	$atag_field = \App\atag::getNameField();	
+	$joined_select_field_sql .= "
+, C_atag.$atag_field  AS $atag_field
+"; 
+	$atag_img_field = \App\atag::getImgField();
+	if(!is_null($atag_img_field)){
+		if($is_debug){echo "atag has an image field of: |$atag_img_field|
+";}
+		$joined_select_field_sql .= "
+, C_atag.$atag_img_field  AS $atag_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- cardface_person_atag.id AS id
-, B_cardface.$cardface_field AS $cardface_field
-, C_person.$person_field AS $person_field
-, D_atag.$atag_field AS $atag_field
+SELECT
+cardface_person_atag.id
+$joined_select_field_sql 
+, cardface_person_atag.cardface_id AS cardface_id
+, cardface_person_atag.person_id AS person_id
+, cardface_person_atag.atag_id AS atag_id
 , cardface_person_atag.is_bulk_linker AS is_bulk_linker
 , cardface_person_atag.link_note AS link_note
 , cardface_person_atag.created_at AS created_at
 , cardface_person_atag.updated_at AS updated_at
-, cardface_person_atag.cardface_id AS cardface_id
-, cardface_person_atag.person_id AS person_id
-, cardface_person_atag.atag_id AS atag_id
 
 FROM lore.cardface_person_atag
 
-LEFT JOIN lore.cardface AS B_cardface ON 
-	B_cardface.id =
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
 	cardface_person_atag.cardface_id
 
-LEFT JOIN lore.person AS C_person ON 
-	C_person.id =
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
 	cardface_person_atag.person_id
 
-LEFT JOIN lore.atag AS D_atag ON 
-	D_atag.id =
+LEFT JOIN lore.atag AS C_atag ON 
+	C_atag.id =
 	cardface_person_atag.atag_id
 
 ";
@@ -71,31 +118,29 @@ LEFT JOIN lore.atag AS D_atag ON
         }else{
 
                 $sql = "
-SELECT 
- cardface_person_atag.id AS id
-, B_cardface.$cardface_field AS $cardface_field
-, C_person.$person_field AS $person_field
-, D_atag.$atag_field AS $atag_field
+SELECT
+cardface_person_atag.id 
+$joined_select_field_sql
+, cardface_person_atag.cardface_id AS cardface_id
+, cardface_person_atag.person_id AS person_id
+, cardface_person_atag.atag_id AS atag_id
 , cardface_person_atag.is_bulk_linker AS is_bulk_linker
 , cardface_person_atag.link_note AS link_note
 , cardface_person_atag.created_at AS created_at
 , cardface_person_atag.updated_at AS updated_at
-, cardface_person_atag.cardface_id AS cardface_id
-, cardface_person_atag.person_id AS person_id
-, cardface_person_atag.atag_id AS atag_id
  
 FROM lore.cardface_person_atag 
 
-LEFT JOIN lore.cardface AS B_cardface ON 
-	B_cardface.id =
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
 	cardface_person_atag.cardface_id
 
-LEFT JOIN lore.person AS C_person ON 
-	C_person.id =
+LEFT JOIN lore.person AS B_person ON 
+	B_person.id =
 	cardface_person_atag.person_id
 
-LEFT JOIN lore.atag AS D_atag ON 
-	D_atag.id =
+LEFT JOIN lore.atag AS C_atag ON 
+	C_atag.id =
 	cardface_person_atag.atag_id
 
 WHERE cardface_person_atag.id = $index
@@ -103,7 +148,6 @@ WHERE cardface_person_atag.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -116,33 +160,112 @@ WHERE cardface_person_atag.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$cardface_field = \App\cardface::getNameField();
-$person_field = \App\person::getNameField();
-$atag_field = \App\atag::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\cardface_person_atag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$cardface_field = \App\cardface::getNameField();	
+	$joined_select_field_sql .= "
+, A_cardface.$cardface_field  AS $cardface_field
+"; 
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_cardface.$cardface_img_field  AS $cardface_img_field
+"; 
+	}
+
+	$person_field = \App\person::getNameField();	
+	$joined_select_field_sql .= "
+, B_person.$person_field  AS $person_field
+"; 
+	$person_img_field = \App\person::getImgField();
+	if(!is_null($person_img_field)){
+		if($is_debug){echo "person has an image field of: |$person_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_person.$person_img_field  AS $person_img_field
+"; 
+	}
+
+	$atag_field = \App\atag::getNameField();	
+	$joined_select_field_sql .= "
+, C_atag.$atag_field  AS $atag_field
+"; 
+	$atag_img_field = \App\atag::getImgField();
+	if(!is_null($atag_img_field)){
+		if($is_debug){echo "atag has an image field of: |$atag_img_field|
+";}
+		$joined_select_field_sql .= "
+, C_atag.$atag_img_field  AS $atag_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/cardface_person_atag/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $cardface_tmp = ''.$cardface_field;
-$cardface_label = $row[$cardface_tmp];
 if(isset($cardface_tmp)){
-	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_label</a>";
+	$cardface_data = $row[$cardface_tmp];
+	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_data</a>";
+}
+
+$cardface_img_tmp = ''.$cardface_img_field;
+if(isset($cardface_img_tmp) && strlen($cardface_img_tmp) > 0){
+	$cardface_img_data = $row[$cardface_img_tmp];
+	$row[$cardface_img_tmp] = "<img width='200px' src='$cardface_img_data'>";
 }
 
 $person_tmp = ''.$person_field;
-$person_label = $row[$person_tmp];
 if(isset($person_tmp)){
-	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_label</a>";
+	$person_data = $row[$person_tmp];
+	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_data</a>";
+}
+
+$person_img_tmp = ''.$person_img_field;
+if(isset($person_img_tmp) && strlen($person_img_tmp) > 0){
+	$person_img_data = $row[$person_img_tmp];
+	$row[$person_img_tmp] = "<img width='200px' src='$person_img_data'>";
 }
 
 $atag_tmp = ''.$atag_field;
-$atag_label = $row[$atag_tmp];
 if(isset($atag_tmp)){
-	$row[$atag_tmp] = "<a target='_blank' href='/Zermelo/DURC_atag/$atag_id'>$atag_label</a>";
+	$atag_data = $row[$atag_tmp];
+	$row[$atag_tmp] = "<a target='_blank' href='/Zermelo/DURC_atag/$atag_id'>$atag_data</a>";
+}
+
+$atag_img_tmp = ''.$atag_img_field;
+if(isset($atag_img_tmp) && strlen($atag_img_tmp) > 0){
+	$atag_img_data = $row[$atag_img_tmp];
+	$row[$atag_img_tmp] = "<img width='200px' src='$atag_img_data'>";
 }
 
 

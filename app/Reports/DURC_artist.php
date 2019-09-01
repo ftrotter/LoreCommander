@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c289764f97d857ab293f071d065260e8
+FILE_SIG=a347b1b44ed3c4a0077c05afd6f54cb6
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,7 +28,20 @@ class DURC_artist extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\artist::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
 
 
 
@@ -36,8 +49,9 @@ class DURC_artist extends AbstractTabularReport
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- artist.id AS id
+SELECT
+artist.id
+$joined_select_field_sql 
 , artist.artist_name AS artist_name
 , artist.created_at AS created_at
 , artist.updated_at AS updated_at
@@ -49,8 +63,9 @@ FROM lore.artist
         }else{
 
                 $sql = "
-SELECT 
- artist.id AS id
+SELECT
+artist.id 
+$joined_select_field_sql
 , artist.artist_name AS artist_name
 , artist.created_at AS created_at
 , artist.updated_at AS updated_at
@@ -62,7 +77,6 @@ WHERE artist.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -75,12 +89,37 @@ WHERE artist.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\artist::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/artist/$id'>$id</a>";
+
+
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=6dff5639429f958fb96408967c59e83a
+FILE_SIG=3ed77f2edb87bce05f518f3b86a8d480
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,42 +28,89 @@ class DURC_person_strategy_tag extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$person_field = \App\person::getNameField();
-$strategy_field = \App\strategy::getNameField();
-$tag_field = \App\tag::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\person_strategy_tag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$person_field = \App\person::getNameField();	
+	$joined_select_field_sql .= "
+, A_person.$person_field  AS $person_field
+"; 
+	$person_img_field = \App\person::getImgField();
+	if(!is_null($person_img_field)){
+		if($is_debug){echo "person has an image field of: |$person_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_person.$person_img_field  AS $person_img_field
+"; 
+	}
+
+	$strategy_field = \App\strategy::getNameField();	
+	$joined_select_field_sql .= "
+, B_strategy.$strategy_field  AS $strategy_field
+"; 
+	$strategy_img_field = \App\strategy::getImgField();
+	if(!is_null($strategy_img_field)){
+		if($is_debug){echo "strategy has an image field of: |$strategy_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_strategy.$strategy_img_field  AS $strategy_img_field
+"; 
+	}
+
+	$tag_field = \App\tag::getNameField();	
+	$joined_select_field_sql .= "
+, C_tag.$tag_field  AS $tag_field
+"; 
+	$tag_img_field = \App\tag::getImgField();
+	if(!is_null($tag_img_field)){
+		if($is_debug){echo "tag has an image field of: |$tag_img_field|
+";}
+		$joined_select_field_sql .= "
+, C_tag.$tag_img_field  AS $tag_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- person_strategy_tag.id AS id
-, B_person.$person_field AS $person_field
-, C_strategy.$strategy_field AS $strategy_field
-, D_tag.$tag_field AS $tag_field
+SELECT
+person_strategy_tag.id
+$joined_select_field_sql 
+, person_strategy_tag.person_id AS person_id
+, person_strategy_tag.strategy_id AS strategy_id
+, person_strategy_tag.tag_id AS tag_id
 , person_strategy_tag.is_bulk_linker AS is_bulk_linker
 , person_strategy_tag.link_note AS link_note
 , person_strategy_tag.created_at AS created_at
 , person_strategy_tag.updated_at AS updated_at
-, person_strategy_tag.person_id AS person_id
-, person_strategy_tag.strategy_id AS strategy_id
-, person_strategy_tag.tag_id AS tag_id
 
 FROM lore.person_strategy_tag
 
-LEFT JOIN lore.person AS B_person ON 
-	B_person.id =
+LEFT JOIN lore.person AS A_person ON 
+	A_person.id =
 	person_strategy_tag.person_id
 
-LEFT JOIN lore.strategy AS C_strategy ON 
-	C_strategy.id =
+LEFT JOIN lore.strategy AS B_strategy ON 
+	B_strategy.id =
 	person_strategy_tag.strategy_id
 
-LEFT JOIN lore.tag AS D_tag ON 
-	D_tag.id =
+LEFT JOIN lore.tag AS C_tag ON 
+	C_tag.id =
 	person_strategy_tag.tag_id
 
 ";
@@ -71,31 +118,29 @@ LEFT JOIN lore.tag AS D_tag ON
         }else{
 
                 $sql = "
-SELECT 
- person_strategy_tag.id AS id
-, B_person.$person_field AS $person_field
-, C_strategy.$strategy_field AS $strategy_field
-, D_tag.$tag_field AS $tag_field
+SELECT
+person_strategy_tag.id 
+$joined_select_field_sql
+, person_strategy_tag.person_id AS person_id
+, person_strategy_tag.strategy_id AS strategy_id
+, person_strategy_tag.tag_id AS tag_id
 , person_strategy_tag.is_bulk_linker AS is_bulk_linker
 , person_strategy_tag.link_note AS link_note
 , person_strategy_tag.created_at AS created_at
 , person_strategy_tag.updated_at AS updated_at
-, person_strategy_tag.person_id AS person_id
-, person_strategy_tag.strategy_id AS strategy_id
-, person_strategy_tag.tag_id AS tag_id
  
 FROM lore.person_strategy_tag 
 
-LEFT JOIN lore.person AS B_person ON 
-	B_person.id =
+LEFT JOIN lore.person AS A_person ON 
+	A_person.id =
 	person_strategy_tag.person_id
 
-LEFT JOIN lore.strategy AS C_strategy ON 
-	C_strategy.id =
+LEFT JOIN lore.strategy AS B_strategy ON 
+	B_strategy.id =
 	person_strategy_tag.strategy_id
 
-LEFT JOIN lore.tag AS D_tag ON 
-	D_tag.id =
+LEFT JOIN lore.tag AS C_tag ON 
+	C_tag.id =
 	person_strategy_tag.tag_id
 
 WHERE person_strategy_tag.id = $index
@@ -103,7 +148,6 @@ WHERE person_strategy_tag.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -116,33 +160,112 @@ WHERE person_strategy_tag.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$person_field = \App\person::getNameField();
-$strategy_field = \App\strategy::getNameField();
-$tag_field = \App\tag::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\person_strategy_tag::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$person_field = \App\person::getNameField();	
+	$joined_select_field_sql .= "
+, A_person.$person_field  AS $person_field
+"; 
+	$person_img_field = \App\person::getImgField();
+	if(!is_null($person_img_field)){
+		if($is_debug){echo "person has an image field of: |$person_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_person.$person_img_field  AS $person_img_field
+"; 
+	}
+
+	$strategy_field = \App\strategy::getNameField();	
+	$joined_select_field_sql .= "
+, B_strategy.$strategy_field  AS $strategy_field
+"; 
+	$strategy_img_field = \App\strategy::getImgField();
+	if(!is_null($strategy_img_field)){
+		if($is_debug){echo "strategy has an image field of: |$strategy_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_strategy.$strategy_img_field  AS $strategy_img_field
+"; 
+	}
+
+	$tag_field = \App\tag::getNameField();	
+	$joined_select_field_sql .= "
+, C_tag.$tag_field  AS $tag_field
+"; 
+	$tag_img_field = \App\tag::getImgField();
+	if(!is_null($tag_img_field)){
+		if($is_debug){echo "tag has an image field of: |$tag_img_field|
+";}
+		$joined_select_field_sql .= "
+, C_tag.$tag_img_field  AS $tag_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/person_strategy_tag/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $person_tmp = ''.$person_field;
-$person_label = $row[$person_tmp];
 if(isset($person_tmp)){
-	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_label</a>";
+	$person_data = $row[$person_tmp];
+	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_data</a>";
+}
+
+$person_img_tmp = ''.$person_img_field;
+if(isset($person_img_tmp) && strlen($person_img_tmp) > 0){
+	$person_img_data = $row[$person_img_tmp];
+	$row[$person_img_tmp] = "<img width='200px' src='$person_img_data'>";
 }
 
 $strategy_tmp = ''.$strategy_field;
-$strategy_label = $row[$strategy_tmp];
 if(isset($strategy_tmp)){
-	$row[$strategy_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_label</a>";
+	$strategy_data = $row[$strategy_tmp];
+	$row[$strategy_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_data</a>";
+}
+
+$strategy_img_tmp = ''.$strategy_img_field;
+if(isset($strategy_img_tmp) && strlen($strategy_img_tmp) > 0){
+	$strategy_img_data = $row[$strategy_img_tmp];
+	$row[$strategy_img_tmp] = "<img width='200px' src='$strategy_img_data'>";
 }
 
 $tag_tmp = ''.$tag_field;
-$tag_label = $row[$tag_tmp];
 if(isset($tag_tmp)){
-	$row[$tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_label</a>";
+	$tag_data = $row[$tag_tmp];
+	$row[$tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_data</a>";
+}
+
+$tag_img_tmp = ''.$tag_img_field;
+if(isset($tag_img_tmp) && strlen($tag_img_tmp) > 0){
+	$tag_img_data = $row[$tag_img_tmp];
+	$row[$tag_img_tmp] = "<img width='200px' src='$tag_img_data'>";
 }
 
 

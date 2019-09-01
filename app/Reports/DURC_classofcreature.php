@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=dfb8756e0ee1e2d558bc3ecf658d71d2
+FILE_SIG=1fa673e97f2a06e1dde4d01d428dfc09
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,7 +28,20 @@ class DURC_classofcreature extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\classofcreature::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
 
 
 
@@ -36,9 +49,11 @@ class DURC_classofcreature extends AbstractTabularReport
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- classofcreature.id AS id
+SELECT
+classofcreature.id
+$joined_select_field_sql 
 , classofcreature.classofcreature_name AS classofcreature_name
+, classofcreature.classofcreature_img_uri AS classofcreature_img_uri
 , classofcreature.is_mega_class AS is_mega_class
 , classofcreature.created_at AS created_at
 , classofcreature.updated_at AS updated_at
@@ -50,9 +65,11 @@ FROM lore.classofcreature
         }else{
 
                 $sql = "
-SELECT 
- classofcreature.id AS id
+SELECT
+classofcreature.id 
+$joined_select_field_sql
 , classofcreature.classofcreature_name AS classofcreature_name
+, classofcreature.classofcreature_img_uri AS classofcreature_img_uri
 , classofcreature.is_mega_class AS is_mega_class
 , classofcreature.created_at AS created_at
 , classofcreature.updated_at AS updated_at
@@ -64,7 +81,6 @@ WHERE classofcreature.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -77,12 +93,37 @@ WHERE classofcreature.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\classofcreature::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/classofcreature/$id'>$id</a>";
+
+
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
 
 
 
@@ -144,6 +185,16 @@ array (
   ),
   2 => 
   array (
+    'column_name' => 'classofcreature_img_uri',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  3 => 
+  array (
     'column_name' => 'is_mega_class',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
@@ -152,7 +203,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  3 => 
+  4 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -162,7 +213,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  4 => 
+  5 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

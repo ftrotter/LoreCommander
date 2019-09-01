@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a150c4f8426991b4310e85ee59de6f66
+FILE_SIG=a6eed697b737b0e2559ced96001be3c3
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,18 +28,44 @@ class DURC_cardface extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$card_field = \App\card::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\cardface::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$card_field = \App\card::getNameField();	
+	$joined_select_field_sql .= "
+, A_card.$card_field  AS $card_field
+"; 
+	$card_img_field = \App\card::getImgField();
+	if(!is_null($card_img_field)){
+		if($is_debug){echo "card has an image field of: |$card_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_card.$card_img_field  AS $card_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- cardface.id AS id
-, B_card.$card_field AS $card_field
+SELECT
+cardface.id
+$joined_select_field_sql 
+, cardface.card_id AS card_id
 , cardface.cardface_index AS cardface_index
 , cardface.illustration_id AS illustration_id
 , cardface.artist AS artist
@@ -80,12 +106,11 @@ SELECT
 , cardface.has_phyrexian_mana AS has_phyrexian_mana
 , cardface.created_at AS created_at
 , cardface.updated_at AS updated_at
-, cardface.card_id AS card_id
 
 FROM lore.cardface
 
-LEFT JOIN lore.card AS B_card ON 
-	B_card.id =
+LEFT JOIN lore.card AS A_card ON 
+	A_card.id =
 	cardface.card_id
 
 ";
@@ -93,9 +118,10 @@ LEFT JOIN lore.card AS B_card ON
         }else{
 
                 $sql = "
-SELECT 
- cardface.id AS id
-, B_card.$card_field AS $card_field
+SELECT
+cardface.id 
+$joined_select_field_sql
+, cardface.card_id AS card_id
 , cardface.cardface_index AS cardface_index
 , cardface.illustration_id AS illustration_id
 , cardface.artist AS artist
@@ -136,12 +162,11 @@ SELECT
 , cardface.has_phyrexian_mana AS has_phyrexian_mana
 , cardface.created_at AS created_at
 , cardface.updated_at AS updated_at
-, cardface.card_id AS card_id
  
 FROM lore.cardface 
 
-LEFT JOIN lore.card AS B_card ON 
-	B_card.id =
+LEFT JOIN lore.card AS A_card ON 
+	A_card.id =
 	cardface.card_id
 
 WHERE cardface.id = $index
@@ -149,7 +174,6 @@ WHERE cardface.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -162,19 +186,62 @@ WHERE cardface.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$card_field = \App\card::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\cardface::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$card_field = \App\card::getNameField();	
+	$joined_select_field_sql .= "
+, A_card.$card_field  AS $card_field
+"; 
+	$card_img_field = \App\card::getImgField();
+	if(!is_null($card_img_field)){
+		if($is_debug){echo "card has an image field of: |$card_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_card.$card_img_field  AS $card_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/cardface/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $card_tmp = ''.$card_field;
-$card_label = $row[$card_tmp];
 if(isset($card_tmp)){
-	$row[$card_tmp] = "<a target='_blank' href='/Zermelo/DURC_card/$card_id'>$card_label</a>";
+	$card_data = $row[$card_tmp];
+	$row[$card_tmp] = "<a target='_blank' href='/Zermelo/DURC_card/$card_id'>$card_data</a>";
+}
+
+$card_img_tmp = ''.$card_img_field;
+if(isset($card_img_tmp) && strlen($card_img_tmp) > 0){
+	$card_img_data = $row[$card_img_tmp];
+	$row[$card_img_tmp] = "<img width='200px' src='$card_img_data'>";
 }
 
 

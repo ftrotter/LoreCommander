@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d532f24ce85e2b9cbff298f55f2c52a1
+FILE_SIG=288e47e6d6fe8a7cd1289777d5c5f25a
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -28,17 +28,43 @@ class DURC_card extends AbstractTabularReport
     public function GetSQL()
     {
 
+        $is_debug = false; //lots of debugging echos will be show instead of the report
+
         $index = $this->getCode();
 
 
-$mtgset_field = \App\mtgset::getNameField();
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\card::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$mtgset_field = \App\mtgset::getNameField();	
+	$joined_select_field_sql .= "
+, A_mtgset.$mtgset_field  AS $mtgset_field
+"; 
+	$mtgset_img_field = \App\mtgset::getImgField();
+	if(!is_null($mtgset_img_field)){
+		if($is_debug){echo "mtgset has an image field of: |$mtgset_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_mtgset.$mtgset_img_field  AS $mtgset_img_field
+"; 
+	}
 
 
         if(is_null($index)){
 
                 $sql = "
-SELECT 
- card.id AS id
+SELECT
+card.id
+$joined_select_field_sql 
 , card.scryfall_id AS scryfall_id
 , card.lang AS lang
 , card.oracle_id AS oracle_id
@@ -50,7 +76,7 @@ SELECT
 , card.released_at AS released_at
 , card.set_name AS set_name
 , card.set_type AS set_type
-, B_mtgset.$mtgset_field AS $mtgset_field
+, card.mtgset_id AS mtgset_id
 , card.variation_of_scryfall_id AS variation_of_scryfall_id
 , card.edhrec_rank AS edhrec_rank
 , card.is_promo AS is_promo
@@ -75,12 +101,11 @@ SELECT
 , card.legal_standard AS legal_standard
 , card.created_at AS created_at
 , card.updated_at AS updated_at
-, card.mtgset_id AS mtgset_id
 
 FROM lore.card
 
-LEFT JOIN lore.mtgset AS B_mtgset ON 
-	B_mtgset.id =
+LEFT JOIN lore.mtgset AS A_mtgset ON 
+	A_mtgset.id =
 	card.mtgset_id
 
 ";
@@ -88,8 +113,9 @@ LEFT JOIN lore.mtgset AS B_mtgset ON
         }else{
 
                 $sql = "
-SELECT 
- card.id AS id
+SELECT
+card.id 
+$joined_select_field_sql
 , card.scryfall_id AS scryfall_id
 , card.lang AS lang
 , card.oracle_id AS oracle_id
@@ -101,7 +127,7 @@ SELECT
 , card.released_at AS released_at
 , card.set_name AS set_name
 , card.set_type AS set_type
-, B_mtgset.$mtgset_field AS $mtgset_field
+, card.mtgset_id AS mtgset_id
 , card.variation_of_scryfall_id AS variation_of_scryfall_id
 , card.edhrec_rank AS edhrec_rank
 , card.is_promo AS is_promo
@@ -126,12 +152,11 @@ SELECT
 , card.legal_standard AS legal_standard
 , card.created_at AS created_at
 , card.updated_at AS updated_at
-, card.mtgset_id AS mtgset_id
  
 FROM lore.card 
 
-LEFT JOIN lore.mtgset AS B_mtgset ON 
-	B_mtgset.id =
+LEFT JOIN lore.mtgset AS A_mtgset ON 
+	A_mtgset.id =
 	card.mtgset_id
 
 WHERE card.id = $index
@@ -139,7 +164,6 @@ WHERE card.id = $index
 
         }
 
-        $is_debug = false;
         if($is_debug){
                 echo "<pre>$sql";
                 exit();
@@ -152,19 +176,62 @@ WHERE card.id = $index
     public function MapRow(array $row, int $row_number) :array
     {
 
-
-$mtgset_field = \App\mtgset::getNameField();
-
+	$is_debug = false;
+	
+	//we think it is safe to extract here because we are getting this from the DB and not a user directly..
         extract($row);
+
+
+	//get the local image field for this report... null if not found..
+	$img_field_name = \App\card::getImgField();
+	if(isset($$img_field_name)){
+		$img_field = $$img_field_name;
+	}else{
+		$img_field = null;
+	}
+
+	$joined_select_field_sql  = '';
+
+
+
+	$mtgset_field = \App\mtgset::getNameField();	
+	$joined_select_field_sql .= "
+, A_mtgset.$mtgset_field  AS $mtgset_field
+"; 
+	$mtgset_img_field = \App\mtgset::getImgField();
+	if(!is_null($mtgset_img_field)){
+		if($is_debug){echo "mtgset has an image field of: |$mtgset_img_field|
+";}
+		$joined_select_field_sql .= "
+, A_mtgset.$mtgset_img_field  AS $mtgset_img_field
+"; 
+	}
+
+
 
         //link this row to its DURC editor
         $row['id'] = "<a href='/DURC/card/$id'>$id</a>";
 
 
+
+	if(isset($$img_field_name)){  //is it set
+		if(strlen($img_field) > 0){ //and it is it really a url..
+			$row[$img_field_name] = "<img width='300' src='$img_field'>";
+		}
+	}
+
+
+
 $mtgset_tmp = ''.$mtgset_field;
-$mtgset_label = $row[$mtgset_tmp];
 if(isset($mtgset_tmp)){
-	$row[$mtgset_tmp] = "<a target='_blank' href='/Zermelo/DURC_mtgset/$mtgset_id'>$mtgset_label</a>";
+	$mtgset_data = $row[$mtgset_tmp];
+	$row[$mtgset_tmp] = "<a target='_blank' href='/Zermelo/DURC_mtgset/$mtgset_id'>$mtgset_data</a>";
+}
+
+$mtgset_img_tmp = ''.$mtgset_img_field;
+if(isset($mtgset_img_tmp) && strlen($mtgset_img_tmp) > 0){
+	$mtgset_img_data = $row[$mtgset_img_tmp];
+	$row[$mtgset_img_tmp] = "<img width='200px' src='$mtgset_img_data'>";
 }
 
 
