@@ -56,6 +56,7 @@ INSERT IGNORE lore.creature
 SELECT DISTINCT
 	NULL AS id,
     	TRIM(SUBSTRING_INDEX(type_line,'—',-1)) AS creature_name,
+	NULL AS creature_image_url,
 	CURRENT_TIME AS created_at,
 	CURRENT_TIME AS updated_at
 FROM lore.cardface 
@@ -227,7 +228,63 @@ WHERE
 		}
 	}
 
-	echo "\nFinished linking creature classes with specific cards\n";
+	//now we repeat the whole process for all creature types which are in lore.creature
+	//first load them into memory...
+	$all_creature_type_sql = "
+SELECT * FROM lore.creature
+";
+	
+	$results = DB::select($all_creature_class_sql);
+	//put them into a local array indexed by id
+
+	//create an array where they will live...
+	$all_creature = [];
+	foreach($results as $this_row){
+		$all_creature[$this_row->id]  = [
+				'id' =>  $this_row->id,
+				'creature_name' => $this_row->classofcreature_name,
+			];
+	}
+
+	$c_links_total = 0;
+	//now lets link the cardfaces to the creatures
+	foreach($all_creature as $c_id => $creature_array){
+		$name = $creature_array['creature_name'];
+		//this SQL will link all of the cardfaces that have the mention of the creature name...
+		//and avoid token and the funny card sets...
+		$insert_sql = "
+INSERT IGNORE lore.creature_cardface
+SELECT 
+	NULL AS id,
+	cardface.id AS cardface_id,
+	$c_id AS creature_id,
+	CURRENT_TIME AS created_at,
+	CURRENT_TIME AS updated_at
+FROM lore.cardface
+JOIN lore.card ON 
+	cardface.card_id =
+	card.id
+JOIN lore.mtgset ON 
+	mtgset.id =
+	mtgset_id
+WHERE 
+	`type_line` LIKE '%creature%' 
+	AND type_line NOT LIKE '%Token%'
+	AND mtgset.set_type != 'funny'
+	AND cardface.type_line LIKE '%$name%'
+";
+
+	
+		$count  =  $pdo->exec($insert_sql);
+		if($count > 0){
+			$c_links_total += $count;
+			echo 'c';
+		}
+		
+	}
+
+
+	echo "\nFinished linking creature with specific cards made $c_links_total new connections\n";
 
 
 

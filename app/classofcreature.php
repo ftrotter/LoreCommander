@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=0c72df8f34ae5892d4c8f667f93ed806
+FILE_SIG=c8685feae0ebf9f3a26c974a5c551d2a
 */
 namespace App;
 /*
@@ -30,6 +30,7 @@ class classofcreature extends \App\DURC\Models\classofcreature
 			//'id', //int
 			//'classofcreature_name', //varchar
 			//'classofcreature_img_uri', //varchar
+			//'classofcreature_wiki_url', //varchar
 			//'is_mega_class', //tinyint
 			//'created_at', //datetime
 			//'updated_at', //datetime
@@ -84,6 +85,7 @@ CREATE TABLE `lore`.`classofcreature` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `classofcreature_name` varchar(255) NOT NULL,
   `classofcreature_img_uri` varchar(255) DEFAULT NULL,
+  `classofcreature_wiki_url` varchar(255) DEFAULT NULL,
   `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),

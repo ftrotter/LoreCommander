@@ -84,6 +84,13 @@ Route::get("/DURC/json/creature/", 'creatureController@jsonall');
 Route::get("/DURC/searchjson/creature/", 'creatureController@search');
 
  
+//DURC->	lore.creature_cardface
+Route::resource("/DURC/creature_cardface", 'creature_cardfaceController');
+Route::get("/DURC/json/creature_cardface/{creature_cardface_id}", 'creature_cardfaceController@jsonone');
+Route::get("/DURC/json/creature_cardface/", 'creature_cardfaceController@jsonall');
+Route::get("/DURC/searchjson/creature_cardface/", 'creature_cardfaceController@search');
+
+ 
 //DURC->	lore.mtgset
 Route::resource("/DURC/mtgset", 'mtgsetController');
 Route::get("/DURC/json/mtgset/{mtgset_id}", 'mtgsetController@jsonone');

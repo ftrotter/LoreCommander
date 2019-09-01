@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1ed0600e9eea7d073fca62868c32f1a2
+FILE_SIG=ad53941aa673bf37a8f7fb366674418b
 */
 namespace App;
 /*
@@ -32,6 +32,9 @@ class person extends \App\DURC\Models\person
 			//'last_name', //varchar
 			//'first_name', //varchar
 			//'image_uri', //varchar
+			//'wallpaper_download_url', //varchar
+			//'mtgwiki_url', //varchar
+			//'wizards_story_url', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -95,6 +98,9 @@ CREATE TABLE `lore`.`person` (
   `last_name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `image_uri` varchar(255) DEFAULT NULL,
+  `wallpaper_download_url` varchar(500) DEFAULT NULL,
+  `mtgwiki_url` varchar(255) DEFAULT NULL,
+  `wizards_story_url` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

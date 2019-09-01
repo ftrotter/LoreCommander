@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1fa673e97f2a06e1dde4d01d428dfc09
+FILE_SIG=fffe37788ba210bf8203edcf634be3e0
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -54,6 +54,7 @@ classofcreature.id
 $joined_select_field_sql 
 , classofcreature.classofcreature_name AS classofcreature_name
 , classofcreature.classofcreature_img_uri AS classofcreature_img_uri
+, classofcreature.classofcreature_wiki_url AS classofcreature_wiki_url
 , classofcreature.is_mega_class AS is_mega_class
 , classofcreature.created_at AS created_at
 , classofcreature.updated_at AS updated_at
@@ -70,6 +71,7 @@ classofcreature.id
 $joined_select_field_sql
 , classofcreature.classofcreature_name AS classofcreature_name
 , classofcreature.classofcreature_img_uri AS classofcreature_img_uri
+, classofcreature.classofcreature_wiki_url AS classofcreature_wiki_url
 , classofcreature.is_mega_class AS is_mega_class
 , classofcreature.created_at AS created_at
 , classofcreature.updated_at AS updated_at
@@ -195,6 +197,16 @@ array (
   ),
   3 => 
   array (
+    'column_name' => 'classofcreature_wiki_url',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  4 => 
+  array (
     'column_name' => 'is_mega_class',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
@@ -203,7 +215,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  4 => 
+  5 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -213,7 +225,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  5 => 
+  6 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

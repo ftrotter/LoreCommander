@@ -28,6 +28,7 @@ class cardface extends DURCModel{
 			'cardface_classofcreature_atag', //from from many
 			'cardface_person_atag', //from from many
 			'classofcreature_cardface', //from from many
+			'creature_cardface', //from from many
 			'wincon_strategy', //from from many
 			'card', //from belongs to
 		];
@@ -115,6 +116,14 @@ class cardface extends DURCModel{
 */
 	public function classofcreature_cardface(){
 		return $this->hasMany('App\classofcreature_cardface','cardface_id','id');
+	}
+
+
+/**
+*	get all the creature_cardface for this cardface
+*/
+	public function creature_cardface(){
+		return $this->hasMany('App\creature_cardface','cardface_id','id');
 	}
 
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8a3e08c256cd329e56e5f09c64ebc331
+FILE_SIG=5f4aab37e31f9c489ab3d963186a1317
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -443,6 +443,36 @@ array (
       ),
       4 => 
       array (
+        'column_name' => 'wallpaper_download_url',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'mtgwiki_url',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'wizards_story_url',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
+      array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
         'is_primary_key' => false,
@@ -451,7 +481,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      5 => 
+      8 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
@@ -504,6 +534,16 @@ array (
       ),
       3 => 
       array (
+        'column_name' => 'classofcreature_wiki_url',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      4 => 
+      array (
         'column_name' => 'is_mega_class',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
@@ -512,7 +552,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      4 => 
+      5 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -522,7 +562,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      5 => 
+      6 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',

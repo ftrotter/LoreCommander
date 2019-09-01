@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=dfb77a931b0af2712c9012e9f40e7614
+FILE_SIG=16405b099bad6af5a1fa820aae1a3732
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -782,6 +782,16 @@ array (
       ),
       3 => 
       array (
+        'column_name' => 'classofcreature_wiki_url',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      4 => 
+      array (
         'column_name' => 'is_mega_class',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
@@ -790,7 +800,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      4 => 
+      5 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -800,7 +810,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      5 => 
+      6 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
