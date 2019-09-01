@@ -70,9 +70,13 @@ class CardFaceSearch extends AbstractTabularReport
 		'type_line',
 		
 		];
+
+
 	
 
 
+	//the old way makes a series of static LIKE WHERE statemeents that we "or" together to support  search across fields
+/*
 	if(!is_null($search_term)){
 		$general_search_where = '';
 		$or = '';
@@ -94,6 +98,9 @@ class CardFaceSearch extends AbstractTabularReport
 	}else{
 		$where_sql = '';
 	}
+*/
+
+
 
        $sql = 
 "
