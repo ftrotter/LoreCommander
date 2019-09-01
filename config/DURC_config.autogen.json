@@ -1408,6 +1408,15 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "creature_image_uri",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "created_at",
                     "data_type": "datetime",
                     "is_primary_key": false,
@@ -1442,7 +1451,7 @@
                     "from_column": "creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creature_name` (`creature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `creature_image_uri` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creature_name` (`creature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "mtgset": {
             "table_name": "mtgset",

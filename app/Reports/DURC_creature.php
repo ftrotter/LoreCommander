@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a394f87a777ea95488cc85fcc3b006cd
+FILE_SIG=97add09d2ee78bb6a47ae4635c3ecca0
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -53,6 +53,7 @@ SELECT
 creature.id
 $joined_select_field_sql 
 , creature.creature_name AS creature_name
+, creature.creature_image_uri AS creature_image_uri
 , creature.created_at AS created_at
 , creature.updated_at AS updated_at
 
@@ -67,6 +68,7 @@ SELECT
 creature.id 
 $joined_select_field_sql
 , creature.creature_name AS creature_name
+, creature.creature_image_uri AS creature_image_uri
 , creature.created_at AS created_at
 , creature.updated_at AS updated_at
  
@@ -181,6 +183,16 @@ array (
   ),
   2 => 
   array (
+    'column_name' => 'creature_image_uri',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  3 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -189,7 +201,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  3 => 
+  4 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

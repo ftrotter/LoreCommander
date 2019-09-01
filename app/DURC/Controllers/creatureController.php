@@ -220,6 +220,7 @@ class creatureController extends DURCController
 	$tmp_creature = $myNewcreature;
 			$tmp_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_creature->creature_name = DURC::formatForStorage( 'creature_name', 'varchar', $request->creature_name ); 
+		$tmp_creature->creature_image_uri = DURC::formatForStorage( 'creature_image_uri', 'varchar', $request->creature_image_uri ); 
 		$tmp_creature->save();
 
 
@@ -334,6 +335,7 @@ class creatureController extends DURCController
 	$tmp_creature = $creature;
 			$tmp_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_creature->creature_name = DURC::formatForStorage( 'creature_name', 'varchar', $request->creature_name ); 
+		$tmp_creature->creature_image_uri = DURC::formatForStorage( 'creature_image_uri', 'varchar', $request->creature_image_uri ); 
 		$tmp_creature->save();
 
 
