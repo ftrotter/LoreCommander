@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=20afa3317cd33c240701b07eca5c171e
+FILE_SIG=9f12e21a4df97897f33780e85383ef06
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -104,6 +104,7 @@ $joined_select_field_sql
 , cardface.color_count AS color_count
 , cardface.is_snow AS is_snow
 , cardface.has_phyrexian_mana AS has_phyrexian_mana
+, cardface.for_fulltext_search AS for_fulltext_search
 , cardface.created_at AS created_at
 , cardface.updated_at AS updated_at
 
@@ -160,6 +161,7 @@ $joined_select_field_sql
 , cardface.color_count AS color_count
 , cardface.is_snow AS is_snow
 , cardface.has_phyrexian_mana AS has_phyrexian_mana
+, cardface.for_fulltext_search AS for_fulltext_search
 , cardface.created_at AS created_at
 , cardface.updated_at AS updated_at
  
@@ -683,6 +685,16 @@ array (
   ),
   40 => 
   array (
+    'column_name' => 'for_fulltext_search',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  41 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -691,7 +703,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  41 => 
+  42 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

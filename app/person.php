@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=ad53941aa673bf37a8f7fb366674418b
+FILE_SIG=f867cb6a47b8337094210c4bbfdae9a6
 */
 namespace App;
 /*
@@ -95,8 +95,8 @@ class person extends \App\DURC\Models\person
 /*
 CREATE TABLE `lore`.`person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
   `image_uri` varchar(255) DEFAULT NULL,
   `wallpaper_download_url` varchar(500) DEFAULT NULL,
   `mtgwiki_url` varchar(255) DEFAULT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `lore`.`person` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `last_name` (`last_name`)
+  UNIQUE KEY `last_name` (`last_name`,`first_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
