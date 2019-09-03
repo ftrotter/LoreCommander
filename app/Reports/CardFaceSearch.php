@@ -76,7 +76,7 @@ class CardFaceSearch extends AbstractTabularReport
 
 
 	//the old way makes a series of static LIKE WHERE statemeents that we "or" together to support  search across fields
-/*
+
 	if(!is_null($search_term)){
 		$general_search_where = '';
 		$or = '';
@@ -98,10 +98,10 @@ class CardFaceSearch extends AbstractTabularReport
 	}else{
 		$where_sql = '';
 	}
-*/
 
 
 
+//this function works, with REGEX_REPLACE
        $sql = 
 "
 SELECT
@@ -128,6 +128,36 @@ $where_sql
 GROUP BY illustration_id
 
 ";
+// but without them.. this fails on the following searches: 
+// 
+       $sql = 
+"
+SELECT
+GROUP_CONCAT(cardface.id) AS cardface_ids, 
+name
+,artist
+,`mana_cost`
+,type_line
+
+, power
+, GROUP_CONCAT(DISTINCT(set_name)) AS set_names
+, GROUP_CONCAT(DISTINCT(oracle_text)) AS oracle_texts
+, GROUP_CONCAT(DISTINCT(flavor_text)) AS flavor_texts
+,`color`, rarity , `color_identity`
+,scryfall_web_uri
+, rulings_uri  
+,`image_uri_small`,
+image_uri_art_crop
+FROM lore.cardface
+JOIN lore.card ON 
+	card.id =
+    	cardface.card_id
+$where_sql
+GROUP BY illustration_id
+
+";
+
+
 
 	$is_debug = false;
 	if($is_debug){

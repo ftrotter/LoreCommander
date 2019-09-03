@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=96ceba7a5def46bb1a6ae554aaceb9fb
+FILE_SIG=b02579b0f098bed0eab7d8b077ecfae3
 */
 namespace App;
 /*
@@ -14,6 +14,14 @@ this is safe to edit.
 */
 class strategytag extends \App\DURC\Models\strategytag
 {
+	//this controls what is downloaded in the json for this object under card_body.. 
+	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
+	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
+	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
+	public function getCardFace() {
+		return parent::getCardFace(); //just use the standard one unless a user over-rides this..
+	}
+
 
 	//You may need to change these for 'one to very very many' relationships.
 /*
