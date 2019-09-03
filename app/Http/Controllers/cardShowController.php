@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use MySQLHandler\MySQLHandler;
 
 class cardShowController extends Controller
 {
@@ -27,6 +28,17 @@ class cardShowController extends Controller
 
         	$pusher->trigger( $channel_id, 'show_this_card',  ['multiverse_id' => $multiverse_id] );
 
+		//lets log this:
+
+		$pdo = \DB::connection()->getPdo();
+		$mySQLHandler = new MySQLHandler($pdo, "lore_log.log", array('multiverse_id'), \Monolog\Logger::DEBUG);
+	
+		$logger = new \Monolog\Logger([]);
+
+		$logger->pushHandler($mySQLHandler);
+
+		$logger->addWarning("this is a great message",['multiverse_id' => $multiverse_id]);
+		
 		return("Showing card $multiverse_id");
 
 	}
