@@ -66,7 +66,7 @@ SELECT
     'MTG Person' AS source_group,
     0 AS source_latitude,
     0 AS source_longitude,
-    image_uri AS source_img,
+    '' AS source_img,
     classofcreature_id AS target_id,
     classofcreature_name AS target_name,
     50 AS target_size,
@@ -74,7 +74,7 @@ SELECT
     'Class of Creature' AS target_group,
     0 AS target_latitude,
     0 AS target_longitude,
-    classofcreature_img_uri AS target_img,
+    '' AS target_img,
     50 AS weight,
     'any' AS link_type,
     1 AS query_num
