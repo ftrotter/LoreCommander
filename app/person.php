@@ -18,8 +18,39 @@ class person extends \App\DURC\Models\person
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
 	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
-	public function getCardFace() {
-		return parent::getCardFace(); //just use the standard one unless a user over-rides this..
+	public function getCardBody() {
+
+		$my_name = "$this->first_name $this->last_name";
+		$ue_first_name = urlencode($this->first_name);
+		$person_blurb = $this->person_blurb;
+		
+		$link_fields = [
+			'MTG Wiki' => $this->mtgwiki_url,
+			'WOtC Story' => $this->wizards_story_url,
+			'Scryfall Search' => "https://scryfall.com/search?q=$ue_first_name",
+			'Wallpaper' => $this->wallpaper_download_url,
+		];
+		$li_html = '';
+		foreach($link_fields as $label => $url){
+			if(!is_null($url)){
+				$li_html .= "<li class='list-group-item'><a target='_blank' href='$url'>$label</a>";
+			}
+		}
+
+		$html  =  "
+    <h5 class='card-title'>$my_name</h5>
+    <p class='card-text'>
+$person_blurb
+</p>
+  </div>
+  <ul class='list-group list-group-flush'>
+	$li_html
+  </ul>
+  <div class='card-body'>
+";
+
+		return($html);
+
 	}
 
 
