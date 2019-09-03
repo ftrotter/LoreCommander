@@ -20,9 +20,10 @@
         <link type="text/css" rel="stylesheet" href="/css/floating.feedback.css"/>
 
     	<!-- standard javascript -->
-    	<script type="text/javascript" language="javascript" src="/js/jquery-2.1.0.min.js"></script>
+    	<script type="text/javascript" language="javascript" src="/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.4.3.1.min.js"></script>
 
-  <script type='text/javascript' language='javascript' src='//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+  <script type='text/javascript' language='javascript' src='/js/d3.3.5.17.min.js'></script>
 	<script type="text/javascript" src="/js/saveSvgAsPng.js"></script>
 
 
