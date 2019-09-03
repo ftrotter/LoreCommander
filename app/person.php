@@ -21,13 +21,16 @@ class person extends \App\DURC\Models\person
 	public function getCardBody() {
 
 		$my_name = "$this->first_name $this->last_name";
-		$ue_first_name = urlencode($this->first_name);
+		$ue_name = urlencode($this->first_name);
+		if(strlen(trim($ue_name)) == 0){
+			$ue_name = urlencode($this->last_name);
+		}
 		$person_blurb = $this->person_blurb;
 		
 		$link_fields = [
 			'MTG Wiki' => $this->mtgwiki_url,
 			'WOtC Story' => $this->wizards_story_url,
-			'Scryfall Search' => "https://scryfall.com/search?q=$ue_first_name",
+			'Scryfall Search' => "https://scryfall.com/search?q=$ue_name",
 			'Wallpaper' => $this->wallpaper_download_url,
 		];
 		$li_html = '';
