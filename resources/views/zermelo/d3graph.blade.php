@@ -1,64 +1,20 @@
 
 
-<div class='visible-print-block'>
-<p class='text-center'>
-<small>
-Copyright © CareSet 2019
-</small>
-<p>
-</div>
-
-
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-              <li ><a href="/dashboard">Dashboard</a></li>
-                              <li    ><a href="/search/person/">Search</a></li>
-                                            <li   ><a href="/CARESETREPORT/Groupings/Recent/">Groupings</a></li>
-                                            <li   ><a href="/npinotes/">Notes</a></li>
-                                            <li   ><a href="/reports_dashboard/">Reports</a></li>
-                                            <li   ><a href="/tools/">Tools</a></li>
-              		
-	 </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-	<li><a href='/careset/quickfolder/'><span class="glyphicon glyphicon-folder-open"></span> </a></li>
-        <li><a href='#' class='disabled'>fred.trotter@gmail.com</a></li>
-	<li> <a href="/logout">Logout</a> </li>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
 		  <div class="container-fluid">
 	  <div class="row">
       <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-body">
+        <div class="card">
+          <div class="card-body">
 {{ $presenter->getReport()->getReportName() }}
             <hr>
 
 
-            <form method="POST">
 
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           Data Options
         </button>
       </h2>
@@ -187,7 +143,7 @@ TODO re-implement using Socket/Wrench
 >
     <input type="radio" name="options" id="option3" autocomplete="off"> 
       <span class="glyphicon glyphicon-transfer"></span>Group Gravity
-
+  </label>
 <!-- Animation Options Form -->
 
       </div>
@@ -207,137 +163,6 @@ TODO re-implement using Socket/Wrench
                 </small></span>
 
 
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-    Data Options
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-
-<a href='#loadModal' class="btn btn-primary btn-block" 
-   data-toggle="modal" 
-   data-target="#dataOptionsModal">Data Source</a>
-<br>
-
-
-        <div class="col-md-12">
-              <input type="submit" class="btn  btn-primary btn-block" value="Reload">
-  </div>
-Patient Flow Threshold:<br>
-<div class ="row">
-      <div class="col-md-3">
-    <label class="radio-inline" for="threshold-0">
-      <input type="radio" name="threshold" id="threshold-0" value="10" checked="checked" >
-      10
-    </label>
-</div> 
-      <div class="col-md-3">
-    <label class="radio-inline" for="threshold-1">
-      <input type="radio" name="threshold" id="threshold-1" value="50"   >
-      50
-    </label>
-</div> 
-      <div class="col-md-4">
-    <label class="radio-inline" for="threshold-2">
-      <input type="radio" name="threshold" id="threshold-2" value="100"  >
-      100
-    </label> 
-</div>    
-      <div class="col-md-3">
-<label class="radio-inline" for="threshold-3">
-      <input type="radio" name="threshold" id="threshold-3" value="500"  >
-      500
-    </label>
-</div>
-      <div class="col-md-3">
-    <label class="radio-inline" for="threshold-4">
-      <input type="radio" name="threshold" id="threshold-4" value="1000"  >
-      1k
-    </label> 
-    </div>
-      <div class="col-md-3">
-  <label class="radio-inline" for="threshold-5">
-      <input type="radio" name="threshold" id="threshold-5" value="2000"  >
-      2k
-    </label>
-   </div>
-      <div class="col-md-12">
-    <label class="radio-inline" for="threshold-6">
-      <input type="radio" name="threshold" id="threshold-6" value="5000"  >
-      5k
-    </label>
-    </div>
-</div>
-<br>
-
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-    Layout Options
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-
-
-      <div class="panel-body">
-
-  <div class ="row">
-  <input type="hidden"  name="tax_id" id="tax_id" value="" >
-
-</div>              
-<div class='hidden-sm hidden-xs'>
-  
-  
-
-      </div>
-    </div>
-
-    </div>
-  </div>
-
-
-
-
-
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-   Animation Options
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-
-
-      <div class="panel-body">
-
-      </div>
-    </div>
-
-    </div>
-  </div>
-
-</div>
-
-              <div class="btn-group-verticali hidden-sm hidden-xs">
-                </div>
-            </form>
 
 <div id="node_left_panel">
 <!-- this gets replaced by the dust panel templates when a node is clicked -->
@@ -355,24 +180,39 @@ Patient Flow Threshold:<br>
 </div>
 <!-- resuming the bootstrap parts -->
 
+</div> <!-- end left side main card div --> 
+
 <div class='col-md-10'>
+<div class='row'>
+	<div class='col-md-6'>
         			<ol class="breadcrumb">
 					
-						  						<li>{{ $presenter->getReport()->getReportName() }}</li>
-						  						<li class="active">{{ $presenter->getReport()->getReportDescription() }}</li>
-								<form style='float: right' class="form-inline" onsubmit="event.preventDefault(); return false;">
-  <div class="form-group">
+						  						<li class='breadcrumb-item'>{{ $presenter->getReport()->getReportName() }}</li>
+						  						<li class="breadcrumb-item active">{{ $presenter->getReport()->getReportDescription() }}</li>
+          			</ol>   
+<!-- 
+  <div class="form-group float-righ">
 					    	<input class="form-control" id="nodeTextMatch" name="nodeTextMatch" type="text" />
-    						<button class='btn btn-default btn-xs' onclick="searchNodeText();">search</button>
-    						<button class='btn btn-default btn-xs' onclick="restoreSearch();">restore graph</button>
 			</div></form>
 		
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Button</label>
+-->
+	</div>
+	<div class='col-md-6'>
+<!-- the graph search form --> 
+<form onsubmit="event.preventDefault(); return false;">
+  <div class="float-left form-group row">
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="nodeTextMatch" name='nodeTextMatch'  placeholder="search the graph">
+    </div>
+    						<button class='btn btn-primary btn-xs' onclick="searchNodeText();">search</button>
+&nbsp;
+    						<button class='btn btn-primary btn-xs' onclick="restoreSearch();">restore graph</button>
+  </div>
+</form>
+</div> <!-- ending the row --> 
 
-          			</ol>   
-
-</div>
-
-<div id='right_pane' class='col-md-10'>
+<div id='right_pane' class='col-md-12'>
 	<div id='loading_div' class="row">
 <div id='inner_loading'>
   <div class="col-md-3"></div>
@@ -400,8 +240,9 @@ Patient Flow Threshold:<br>
   <div class="col-md-2"></div>
 </div>
 </div>
+		<!-- this is where the svg is going to live in the end -->
 
-		<div style='height: 1000px' id='viz'> 
+		<div style='height: 1000px; display: none;' id='viz'> 
 		</div>
 		<script>
 var svgCSS = "\n\n.emphasis_node {\n        font-size: 27px;\n        stroke:  black;\n        stroke-width:  2px;\n        stroke-opacity:  1;\n        fill:  black;\n        fill-opacity:  1;\n\n	}\n\n.emphasis_nodetext {\n	transform: rotate(-35deg);\n        font-size: 27px;\n        stroke:  black;\n        stroke-width:  2px;\n        stroke-opacity:  1;\n        fill:  black;\n        fill-opacity:  1;\n\n}\n\n.emphasis_link {\n        stroke-opacity:  .9;\n}\n\n.emphasis_link_red {\n        stroke:  red;\n        stroke-opacity:  .9;\n}\n\n.light_node {\n        font-size:  17px;\n        stroke: grey;\n        stroke-width: 2px;\n        stroke-opacity: 0.2;\n        fill: grey;\n        fill-opacity: 0.2;\n}\n\n.light_nodetext {\n	transform: rotate(-35deg);\n        font-size:  17px;\n        stroke: grey;\n        stroke-width: 2px;\n        stroke-opacity: 0.2;\n        fill: grey;\n        fill-opacity: 0.2;\n}\n\n.light_link {\n        stroke-opacity: .2;\n}\n\n.default_node {\n        font-size: 22px;\n        stroke: dimgrey;\n        stroke-width: 2px;\n        stroke-opacity: 0.8;\n        fill: black;\n        fill-opacity: 0.8;\n}\n\n.default_nodetext {\n	transform: rotate(-35deg);\n        font-size: 22px;\n        stroke: dimgrey;\n        stroke-width: 2px;\n        stroke-opacity: 0.8;\n        fill: black;\n        fill-opacity: 0.8;\n}\n\n.default_link {\n        stroke-opacity: .5;\n        stroke-linecap: round;\n\n}\n";
@@ -1030,8 +871,8 @@ var starting_tick_ignore, tick_ignore_countdown = 200;
 			tick_ignore_countdown--;
 	});
 
-
 	$('#loading_div').toggle();
+	$('#viz').toggle();
 
 },'json').fail( function() {
 	//this means the json did not load...
@@ -1616,6 +1457,15 @@ function strlenFromPHP(the_string) {
 </div>
 </div>
 
+</div> <!-- end main container-fluid --> 
+
+<div class='visible-print-block'>
+<p class='text-center'>
+<small>
+Copyright © CareSet 2019
+</small>
+<p>
+</div>
 
 
 
