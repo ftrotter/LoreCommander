@@ -39,6 +39,7 @@
 			<li> <b><a href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
 			<li> <b><a href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
 			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'></a>Card Search Using Card Display</b>: This shows cards using the bootstrap 4 card layout  </li>
+			<li> <b><a href='/ZermeloGraph/PersonCreature'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
@@ -48,6 +49,10 @@
 		<ul>
 			<li> <b><a href='/Zermelo/DURC_person'>DURC_person</a></b> auto generated report on our database of MTG characters </li>
 			<li> <b><a href='/Zermelo/DURC_creature'>DURC_creature</a></b>  </li>
+			<li> <b><a href='/Zermelo/DURC_person_classofcreature_tag'>DURC_person_classofcreature_tag</a></b>: Shows how persons related to creatures  </li>
+			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a href=''></a></b>:  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
