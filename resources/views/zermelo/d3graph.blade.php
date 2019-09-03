@@ -102,44 +102,44 @@ TODO re-implement using Socket/Wrench
       <div class="card-body">
 
 <!-- Animation Options Form -->
-<div class="btn-group-vertical btn-block" data-toggle="buttons">
-  <label class="btn btn-primary btn-block success"
+<div class="btn-group-vertical btn-group-toogle" data-toggle="buttons">
+  <label class="btn btn-primary"
   onClick="true_unfreeze();" >
     <input type="radio" name="options" id="option1" autocomplete="off" checked> 
                 <span class="glyphicon glyphicon-play"></span> Animate Graph
   </label>
-  <label class="btn btn-primary btn-block success"
+  <label class="btn btn-primary"
   onClick="force.stop();" >
     <input type="radio" name="options" id="option1" autocomplete="off" checked> 
                 <span class="glyphicon glyphicon-pause"></span> Freeze Graph
   </label>
 
-  <label class="btn btn-primary btn-block success"
+  <label class="btn btn-primary"
   onClick="free_nodes();" >
     <input type="radio" name="options" id="option1" autocomplete="off" checked> 
                 <span class="glyphicon glyphicon-random"></span> Unfix All Nodes
   </label>
 
-  <label class="btn btn-primary btn-block active "
-  onClick="console.log('trying right'); gravityMode = 'centered'; force_settle('3000','gravity right');"
+  <label class="btn btn-primary"
+  onClick="console.log('trying center'); gravityMode = 'centered'; force_settle('3000','gravity center');"
 >
     <input type="radio" name="options" id="option1" autocomplete="off" checked> 
     <span class="glyphicon glyphicon-play"></span> Center Gravity
   </label>
-  <label class="btn btn-primary btn-block"
+  <label class="btn btn-primary"
   onClick="console.log('trying right'); gravityMode = 'right'; force_settle('3000','gravity right');"
 >
     <input type="radio" name="options" id="option2" autocomplete="off"> 
     <span class="glyphicon glyphicon-arrow-right"></span>Right Gravity
   </label>
-  <label class="btn btn-primary btn-block"
-  onClick="console.log('trying right'); gravityMode = 'left'; force_settle('3000','gravity left');"
+  <label class="btn btn-primary"
+  onClick="console.log('trying left'); gravityMode = 'left'; force_settle('3000','gravity left');"
 >
     <input type="radio" name="options" id="option3" autocomplete="off"> 
     <span class="glyphicon glyphicon-arrow-left"></span>Left Gravity
   </label>
-  <label class="btn btn-primary btn-block"
-  onClick="console.log('trying right'); gravityMode = 'group'; force_settle('3000','gravity group');"
+  <label class="btn btn-primary"
+  onClick="console.log('trying group'); gravityMode = 'group'; force_settle('3000','gravity group');"
 >
     <input type="radio" name="options" id="option3" autocomplete="off"> 
       <span class="glyphicon glyphicon-transfer"></span>Group Gravity
@@ -153,6 +153,8 @@ TODO re-implement using Socket/Wrench
 
 <hr>
 <a class='btn btn-primary btn-block' id='down_svg_link' onclick='downloadSVG();'>Download Image</a>
+<!-- TODO consider reimplementing ? -->
+<!-- 
 <hr>
         	<h5> Admin Only Menu </h5>
                 <span><small>
@@ -161,8 +163,9 @@ TODO re-implement using Socket/Wrench
 		<li><a target='_blank' id='debug_link' href="$presenter->getGraphUri()">json contents (includes JSON POST results)</a></li>
 		</ul>
                 </small></span>
-
-
+-->
+<br>
+<hr>
 
 <div id="node_left_panel">
 <!-- this gets replaced by the literal panel templates when a node is clicked -->
@@ -706,9 +709,12 @@ var image_strings = ['.png' , '.jpg', '.svg', '.gif'];
 
 		node.on('mousedown', function(d) {
 
-
-			console.log('rethinking dust');
-			console.log(d.json_url);
+			//it is not a requirement to have a actual url..
+			//if you put the blank string... we just do nothing..
+			if(d.json_url.length == 0){
+				console.log('no json_url found, not attempting to build node card');
+				return;
+			}
 
 			this_url = d.json_url;
 
