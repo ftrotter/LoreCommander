@@ -59,7 +59,7 @@ class PersonCreatureGraph extends AbstractGraphReport
 
         $sql = "
 SELECT 
-    person_id AS source_id,
+    CONCAT('person_',person_id) AS source_id,
     CONCAT(first_name, ' ', last_name) AS source_name,
     500 AS source_size,
     'MTG Person'  AS source_type,
@@ -67,7 +67,7 @@ SELECT
     0 AS source_latitude,
     0 AS source_longitude,
     '' AS source_img,
-    classofcreature_id AS target_id,
+    CONCAT('classofcreature_',classofcreature_id) AS target_id,
     classofcreature_name AS target_name,
     500 AS target_size,
     'Class of Creature' AS target_type,
