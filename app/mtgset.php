@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c49b0dafcb50c669a7c629a757caf4cf
+FILE_SIG=d42988c1933e478fd2b66dfc1f7da9d6
 */
 namespace App;
 /*
@@ -18,8 +18,8 @@ class mtgset extends \App\DURC\Models\mtgset
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
 	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
-	public function getCardFace() {
-		return parent::getCardFace(); //just use the standard one unless a user over-rides this..
+	public function getCardBody() {
+		return parent::getCardBody(); //just use the standard one unless a user over-rides this..
 	}
 
 

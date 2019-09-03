@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b52d182483bcd6c4790605ead733b20a
+FILE_SIG=7a7228e27c969fb80ce2e26516bb42ea
 */
 namespace App;
 /*
@@ -18,8 +18,8 @@ class cardface_classofcreature_atag extends \App\DURC\Models\cardface_classofcre
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
 	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
-	public function getCardFace() {
-		return parent::getCardFace(); //just use the standard one unless a user over-rides this..
+	public function getCardBody() {
+		return parent::getCardBody(); //just use the standard one unless a user over-rides this..
 	}
 
 

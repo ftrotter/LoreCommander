@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=24a0632a0c167a8a68760e522ae012a9
+FILE_SIG=8ba02ca294b2ea88c3b6666f6c0b72ca
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -54,6 +54,7 @@ person.id
 $joined_select_field_sql 
 , person.last_name AS last_name
 , person.first_name AS first_name
+, person.person_blurb AS person_blurb
 , person.image_uri AS image_uri
 , person.wallpaper_download_url AS wallpaper_download_url
 , person.mtgwiki_url AS mtgwiki_url
@@ -73,6 +74,7 @@ person.id
 $joined_select_field_sql
 , person.last_name AS last_name
 , person.first_name AS first_name
+, person.person_blurb AS person_blurb
 , person.image_uri AS image_uri
 , person.wallpaper_download_url AS wallpaper_download_url
 , person.mtgwiki_url AS mtgwiki_url
@@ -201,7 +203,7 @@ array (
   ),
   3 => 
   array (
-    'column_name' => 'image_uri',
+    'column_name' => 'person_blurb',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -211,7 +213,7 @@ array (
   ),
   4 => 
   array (
-    'column_name' => 'wallpaper_download_url',
+    'column_name' => 'image_uri',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -221,7 +223,7 @@ array (
   ),
   5 => 
   array (
-    'column_name' => 'mtgwiki_url',
+    'column_name' => 'wallpaper_download_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -231,7 +233,7 @@ array (
   ),
   6 => 
   array (
-    'column_name' => 'wizards_story_url',
+    'column_name' => 'mtgwiki_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -241,6 +243,16 @@ array (
   ),
   7 => 
   array (
+    'column_name' => 'wizards_story_url',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  8 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -249,7 +261,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  8 => 
+  9 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

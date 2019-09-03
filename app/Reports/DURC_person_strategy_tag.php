@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=40af162519aefc2b37e73baa5749a70f
+FILE_SIG=37f52c35825b6cf02a60bf06d4d8f436
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -433,7 +433,7 @@ array (
       ),
       3 => 
       array (
-        'column_name' => 'image_uri',
+        'column_name' => 'person_blurb',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -443,7 +443,7 @@ array (
       ),
       4 => 
       array (
-        'column_name' => 'wallpaper_download_url',
+        'column_name' => 'image_uri',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -453,7 +453,7 @@ array (
       ),
       5 => 
       array (
-        'column_name' => 'mtgwiki_url',
+        'column_name' => 'wallpaper_download_url',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -463,7 +463,7 @@ array (
       ),
       6 => 
       array (
-        'column_name' => 'wizards_story_url',
+        'column_name' => 'mtgwiki_url',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -473,6 +473,16 @@ array (
       ),
       7 => 
       array (
+        'column_name' => 'wizards_story_url',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      8 => 
+      array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
         'is_primary_key' => false,
@@ -481,7 +491,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      8 => 
+      9 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
