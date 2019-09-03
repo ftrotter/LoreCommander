@@ -284,23 +284,15 @@ class cardController extends DURCController
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
 		$img_uri_field = \App\card::getImgField();
 		if(!is_null($img_uri_field)){ //then this object has an image link..
-			if(!isset($return_me_array['card-img-top'])){ //allow the user to use this as a field without pestering..
-				$return_me_array['card-img-top'] = $card->$img_uri_field;
+			if(!isset($return_me_array['card_img_top'])){ //allow the user to use this as a field without pestering..
+				$return_me_array['card_img_top'] = $card->$img_uri_field;
 			}
 		}
 
-		//lets see if can calculate the same for a card title... which is actually inside a card-body.. so we will be building a little html snippet...
-		$name_field = \App\card::getNameField();
-		if($name_field){ //then this object has a name
-			if(!isset($return_me_array['card-img-body'])){ //allow the user to use this as a field without pestering..
-				$display_name = $card->$name_field;
-				$return_me_array['card-img-body'] = "
-  <div class='card-body'>
-    <h5 class='card-title'>$display_name</h5>
-  </div>
-";
-
-			}
+		//lets get a card_body from the DURC mode class!!
+		if(!isset($return_me_array['card_body'])){ //allow the user to use this as a field without pestering..
+			//this is simply the name unless someone has put work into this...
+			$return_me_array['card_body'] = $card->getCardBody();
 		}
 		
 		return response()->json($return_me_array);

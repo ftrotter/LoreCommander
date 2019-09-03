@@ -165,13 +165,13 @@ TODO re-implement using Socket/Wrench
 
 
 <div id="node_left_panel">
-<!-- this gets replaced by the dust panel templates when a node is clicked -->
+<!-- this gets replaced by the literal panel templates when a node is clicked -->
 </div>
 <div id="node_admin_left_panel">
-<!-- this gets replaced by the dust panel templates when a node is clicked -->
+<!-- this gets replaced by the literal panel templates when a node is clicked -->
 </div>
 <div id='node_menu_left_panel'>
-<!-- this gets replaced by the all_node_dust.dust panel -->
+<!-- this gets replaced by a different literal  panel -->
 </div>
         
   </div> <!-- end left panel -->
@@ -706,20 +706,39 @@ var image_strings = ['.png' , '.jpg', '.svg', '.gif'];
 
 		node.on('mousedown', function(d) {
 
-			this_url_stub = graph.types[d.type].data_url_stub;
-			this_url = this_url_stub + d.id;
-			this_dust = graph.types[d.type].dust;
+
+			console.log('rethinking dust');
+			console.log(d.json_url);
+
+			this_url = d.json_url;
 
   			$('#node_left_panel').fadeOut("fast");
 			//populate REST-born data for the custom node panel
 			$.getJSON(this_url, function( data) {
+				
+				/*
+					//the old way
                                         dust.render(this_dust, data, function(err, out){
   							$('#node_left_panel').html(out);
   							$('#node_left_panel').fadeIn("slow");
                                                  });
+				*/
 
+					//the new way just uses literal templates https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+					card_html = `
+<div class='card' style='width: 97%'>
+  <img class='card-img-top' src="${data.card_img_top}">
+  <div class="card-body">
+	${data.card_body}
+  </div>
+`;
+
+  					$('#node_left_panel').html(card_html);
+  					$('#node_left_panel').fadeIn("slow");
 				
-								
+				
+			// TODO reimplement?
+			/*					
 					//this js exists because is_admin = true...
 
 					this_admin_dust = 'admin.' + this_dust;
@@ -728,18 +747,22 @@ var image_strings = ['.png' , '.jpg', '.svg', '.gif'];
   							$('#node_admin_left_panel').fadeIn("slow");
                                                  });
 											
-							
+			*/				
 								
 					
                                          }); 
 			//populate the generic node panel from the existing node data
 			//first we need printable versions of the type and group
+
+			//TODO reimplement using literals!!
+		/*
 			d.type_print = graph.types[d.type].label;
 			d.group_print = graph.groups[d.group].name;
 			dust.render('all_node_dust',d,function(err,out){
   					$('#node_menu_left_panel').html(out);
 				});
 	
+		*/
 		});
 
 		node.on('dblclick', function(d) {
