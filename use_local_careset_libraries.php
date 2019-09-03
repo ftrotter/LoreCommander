@@ -10,36 +10,51 @@
 	IT is critical when using this script to remember that local copies of these libraries must be updated to be effective...
 	
 */
-// get the listing of the careset composer directory, without the dots https://www.php.net/manual/en/function.scandir.php#107215
-$careset_dir_listing = array_diff(scandir('./vendor/careset/'),['..','.']);
 
-//the differnce between the github projec names and the composer directory names is just letter case...
-//so we can quickly find the mapping between what we have under vendor and what we have under ../ by also ignoring case...
 
-$parent_dir_list = array_diff(scandir('../'),['..','.']);
+$repos = [
+	'ftrotter',
+	'docgraph',
+	'careset',
+	];
 
-$ln_map = [];
+foreach($repos as $this_repo){
 
-foreach($parent_dir_list as $this_parent_dir){
-	$lower_case_dir_name = strtolower($this_parent_dir);
-	if(in_array($lower_case_dir_name,$careset_dir_listing)){
-		//then we have a match...
-		$ln_map["vendor/careset/$lower_case_dir_name"] = realpath("../$this_parent_dir");
-	}
+	$vendor_dir = "./vendor/$this_repo/";
+
+	if(file_exists($vendor_dir)){
+
+		// get the listing of the careset composer directory, without the dots https://www.php.net/manual/en/function.scandir.php#107215
+		$local_dir_listing = array_diff(scandir($vendor_dir),['..','.']);
+
+		//the differnce between the github projec names and the composer directory names is just letter case...
+		//so we can quickly find the mapping between what we have under vendor and what we have under ../ by also ignoring case...
+
+		$parent_dir_list = array_diff(scandir('../'),['..','.']);
+
+		$ln_map = [];
+
+		foreach($parent_dir_list as $this_parent_dir){
+			$lower_case_dir_name = strtolower($this_parent_dir);
+			if(in_array($lower_case_dir_name,$local_dir_listing)){
+				//then we have a match...
+				$ln_map["vendor/$this_repo/$lower_case_dir_name"] = realpath("../$this_parent_dir");
+			}
+		}
+
+
+		$cmd = [];
+
+		foreach($ln_map as $vendor_dir => $local_library_dir){
+
+			$cmd["removing the current $vendor_dir"] = "rm -rf $vendor_dir";
+			$cmd["linking $vendor_dir to $local_library_dir"] = "ln -s $local_library_dir $vendor_dir"; 
+
+		}
+
+		foreach($cmd as $label => $to_run){
+			echo "Running $label with\n\t$to_run\n";
+			system($to_run);
+		}
+	}//end if exists
 }
-
-
-$cmd = [];
-
-foreach($ln_map as $vendor_dir => $local_library_dir){
-
-	$cmd["removing the current $vendor_dir"] = "rm -rf $vendor_dir";
-	$cmd["linking $vendor_dir to $local_library_dir"] = "ln -s $local_library_dir $vendor_dir"; 
-
-}
-
-foreach($cmd as $label => $to_run){
-	echo "Running $label with\n\t$to_run\n";
-	system($to_run);
-}
-

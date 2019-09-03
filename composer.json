@@ -33,6 +33,7 @@
         "tymon/jwt-auth": "^0.5.12",
         "vlucas/phpdotenv": "^2.4",
         "wamania/php-stemmer": "^1.2",
+        "ftrotter/two-table-monolog-mysql": "dev-master",
         "wrapi/slack": "^1.0"
     },
     "require-dev": {
