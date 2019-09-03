@@ -3,7 +3,7 @@
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Graph\AbstractGraphReport;
 
-class GraphTest extends AbstractGraphReport
+class PersonCreature extends AbstractGraphReport
 {
 
 
@@ -54,22 +54,39 @@ class GraphTest extends AbstractGraphReport
      **/
     public function GetSQL()
     {
+
+
+
         $sql = "
-SELECT
-	`source_id`, `source_name`, `source_size`, 
-	`source_type`, `source_group`, 
-	`source_longitude`, `source_latitude`, 
-	`source_img`, 
-	`target_id`, `target_name`, `target_size`, 
-	`target_type`, `target_group`, 
-	`target_longitude`, `target_latitude`, 
-	`target_img`, 
-	`weight`, `link_type`, 
-	`query_num`
-
-
-FROM graph_testdata.graphdata_nodetypetests
+SELECT 
+    person_id AS source_id,
+    CONCAT(first_name, ' ', last_name) AS source_name,
+    50 AS source_size,
+    'MTG Person'  AS source_type,
+    'MTG Person' AS source_group,
+    0 AS source_latitude,
+    0 AS source_longitude,
+    image_uri AS source_img,
+    classofcreature_id AS target_id,
+    classofcreature_name AS target_name,
+    50 AS target_size,
+    'Class of Creature' AS target_type,
+    'Class of Creature' AS target_group,
+    0 AS target_latitude,
+    0 AS target_longitude,
+    classofcreature_img_uri AS target_img,
+    50 AS weight,
+    'any' AS link_type,
+    1 AS query_num
+FROM lore.person_classofcreature_tag
+LEFT JOIN lore.person ON 
+	person.id =
+    	person_id
+LEFT JOIN lore.classofcreature ON 
+	classofcreature.id =
+    	classofcreature_id
 ";
+
         return $sql;
     }
 
