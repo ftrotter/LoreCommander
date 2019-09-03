@@ -1781,6 +1781,15 @@
                     "foreign_table": null
                 },
                 {
+                    "column_name": "person_blurb",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
                     "column_name": "image_uri",
                     "data_type": "varchar",
                     "is_primary_key": false,
@@ -1872,7 +1881,7 @@
                     "from_column": "person_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(100) NOT NULL,\n  `first_name` varchar(100) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `wallpaper_download_url` varchar(500) DEFAULT NULL,\n  `mtgwiki_url` varchar(255) DEFAULT NULL,\n  `wizards_story_url` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`,`first_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(100) NOT NULL,\n  `first_name` varchar(100) NOT NULL,\n  `person_blurb` varchar(2000) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `wallpaper_download_url` varchar(500) DEFAULT NULL,\n  `mtgwiki_url` varchar(255) DEFAULT NULL,\n  `wizards_story_url` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`,`first_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "person_classofcreature_tag": {
             "table_name": "person_classofcreature_tag",
