@@ -1,1 +1,0 @@
-(function(dust){dust.register("sortedtable",body_0);function body_0(chk,ctx){return chk.w("<table style='font-size: 90%'  id='").f(ctx.get(["table_id"], false),ctx,"h").w("' class='table table-striped tablesorter-bootstrap'>");}body_0.__dustBody=!0;return body_0;})(dust);
