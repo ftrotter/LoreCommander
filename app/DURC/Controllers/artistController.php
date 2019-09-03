@@ -245,7 +245,31 @@ class artistController extends DURCController
     public function jsonone(Request $request, $artist_id){
 		$artist = \App\artist::find($artist_id);
 		$artist = $artist->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($artist->toArray());
+		$return_me_array = $artist->toArray();
+		
+		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
+		$img_uri_field = \App\artist::getImgField();
+		if(!is_null($img_uri_field)){ //then this object has an image link..
+			if(!isset($return_me_array['card-img-top'])){ //allow the user to use this as a field without pestering..
+				$return_me_array['card-img-top'] = $artist->$img_uri_field;
+			}
+		}
+
+		//lets see if can calculate the same for a card title... which is actually inside a card-body.. so we will be building a little html snippet...
+		$name_field = \App\artist::getNameField();
+		if($name_field){ //then this object has a name
+			if(!isset($return_me_array['card-img-body'])){ //allow the user to use this as a field without pestering..
+				$display_name = $artist->$name_field;
+				$return_me_array['card-img-body'] = "
+  <div class='card-body'>
+    <h5 class='card-title'>$display_name</h5>
+  </div>
+";
+
+			}
+		}
+		
+		return response()->json($return_me_array);
  	}
 
 

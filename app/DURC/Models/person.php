@@ -116,8 +116,8 @@ class person extends DURCModel{
 /*
 CREATE TABLE `lore`.`person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
   `image_uri` varchar(255) DEFAULT NULL,
   `wallpaper_download_url` varchar(500) DEFAULT NULL,
   `mtgwiki_url` varchar(255) DEFAULT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE `lore`.`person` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `last_name` (`last_name`)
+  UNIQUE KEY `last_name` (`last_name`,`first_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 

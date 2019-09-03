@@ -252,7 +252,31 @@ class person_creature_tagController extends DURCController
     public function jsonone(Request $request, $person_creature_tag_id){
 		$person_creature_tag = \App\person_creature_tag::find($person_creature_tag_id);
 		$person_creature_tag = $person_creature_tag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		return response()->json($person_creature_tag->toArray());
+		$return_me_array = $person_creature_tag->toArray();
+		
+		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
+		$img_uri_field = \App\person_creature_tag::getImgField();
+		if(!is_null($img_uri_field)){ //then this object has an image link..
+			if(!isset($return_me_array['card-img-top'])){ //allow the user to use this as a field without pestering..
+				$return_me_array['card-img-top'] = $person_creature_tag->$img_uri_field;
+			}
+		}
+
+		//lets see if can calculate the same for a card title... which is actually inside a card-body.. so we will be building a little html snippet...
+		$name_field = \App\person_creature_tag::getNameField();
+		if($name_field){ //then this object has a name
+			if(!isset($return_me_array['card-img-body'])){ //allow the user to use this as a field without pestering..
+				$display_name = $person_creature_tag->$name_field;
+				$return_me_array['card-img-body'] = "
+  <div class='card-body'>
+    <h5 class='card-title'>$display_name</h5>
+  </div>
+";
+
+			}
+		}
+		
+		return response()->json($return_me_array);
  	}
 
 

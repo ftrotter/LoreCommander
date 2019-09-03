@@ -84,6 +84,7 @@ class cardface extends DURCModel{
 		'color_count' => 'int',
 		'is_snow' => 'tinyint',
 		'has_phyrexian_mana' => 'tinyint',
+		'for_fulltext_search' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 			]; //end field_type_map
@@ -196,6 +197,7 @@ CREATE TABLE `lore`.`cardface` (
   `color_count` int(11) NOT NULL DEFAULT 0,
   `is_snow` tinyint(1) NOT NULL,
   `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,
+  `for_fulltext_search` varchar(2000) DEFAULT '''''',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -209,7 +211,9 @@ CREATE TABLE `lore`.`cardface` (
   FULLTEXT KEY `artist` (`artist`),
   FULLTEXT KEY `flavor_text` (`flavor_text`),
   FULLTEXT KEY `oracle_text` (`oracle_text`),
-  FULLTEXT KEY `type_line` (`type_line`)
+  FULLTEXT KEY `type_line` (`type_line`),
+  FULLTEXT KEY `name` (`name`),
+  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
