@@ -59,14 +59,18 @@ Copyright © CareSet 2019
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
+          Data Options
         </button>
       </h2>
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+<p>
+TODO re-implement using Socket/Wrench
+<br>
+    <input type="checkbox" name="hideLonelyNode" id="hideLonelyNode"  onchange="updateForce();" value="1"> Hide Lonely Node <br/><br/>
+</p>
       </div>
     </div>
   </div>
@@ -74,13 +78,59 @@ Copyright © CareSet 2019
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
+	Layout Options
         </button>
       </h2>
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+    Gravity<br>
+              <input id="gravitySlider" type="range" onchange="updateForce();" min="0" max="0.17" step="0.001" value="0.04">
+              <input type="hidden" name='gravityInput'  id="gravityInput" value="0.04"><br>
+    Charge<br>
+              <input id="chargeSlider" type="range" onchange="updateForce();" min="-15000" max="0" step="10" value="-3000">
+              <input type="hidden" name='chargeInput'  id="chargeInput" value="-3000">
+    Zoom<br>
+              <input id="zoomSlider" type="range" onchange="updateForce();" min="0.5" max="5" step="0.05" value="1.7">
+              <input type="hidden" name='zoomInput'  id="zoomInput" value="1.7">
+              <br/>
+
+
+
+
+<button class="btn btn-xs btn-primary" type="button" data-toggle="collapse" data-target="#advancedControls" aria-expanded="false" aria-controls="collapseExample">
+  Show Advanced Controls
+</button>
+
+    <div class='collapse' id='advancedControls'>
+    <div style='display: none'>
+                linkDistance<br>
+              <input id="linkDistanceSlider" type="range" onchange="updateForce();" min="1" max="200" step="1" value="30">
+              <input type="hidden" name='linkDistanceInput' id="linkDistanceInput" value="30">
+    </div>
+
+                linkStrength<br>
+              <input id="linkStrengthSlider" type="range" onchange="updateForce();" min="0.001" max="1" step=".01" value="0.55">
+              <input type="hidden" name='linkStrengthInput' id="linkStrengthInput" value="0.55">
+    Friction<br>
+              <input id="frictionSlider" type="range" onchange="updateForce();" min="0.01" max="1" step=".05" value="0.7">
+              <input type="hidden" name='frictionInput' id="frictionInput" value="0.7">
+    Charge Distance<br>
+              <input id="chargeDistanceSlider" type="range" onchange="updateForce();" min="1" max="1000" step="1" value="300">
+              <input type="hidden" name='chargeDistanceInput'  id="chargeDistanceInput" value="300">
+    Theta<br>
+              <input id="thetaSlider" type="range" onchange="updateForce();" min="0.01" max="1" step=".05" value="0.35">
+              <input type="hidden" name='thetaInput'  id="thetaInput" value="0.35">
+    Alpha<br>
+              <input id="alphaSlider" type="range" onchange="updateForce();" min="0.01" max="2" step=".1" value="0.5">
+              <input type="hidden"  name='alphaInput' id="alphaInput" value="0.5">
+    </div>
+        <div class="checkbox">
+    <label>
+      <input id='reset_parameters' name='reset_parameters' value='off' type="checkbox"> Reset Parameters
+    </label>
+  </div>
       </div>
     </div>
   </div>
@@ -88,17 +138,73 @@ Copyright © CareSet 2019
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
+	Animation Options
         </button>
       </h2>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+<!-- Animation Options Form -->
+<div class="btn-group-vertical btn-block" data-toggle="buttons">
+  <label class="btn btn-primary btn-block success"
+  onClick="true_unfreeze();" >
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
+                <span class="glyphicon glyphicon-play"></span> Animate Graph
+  </label>
+  <label class="btn btn-primary btn-block success"
+  onClick="force.stop();" >
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
+                <span class="glyphicon glyphicon-pause"></span> Freeze Graph
+  </label>
+
+  <label class="btn btn-primary btn-block success"
+  onClick="free_nodes();" >
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
+                <span class="glyphicon glyphicon-random"></span> Unfix All Nodes
+  </label>
+
+  <label class="btn btn-primary btn-block active "
+  onClick="console.log('trying right'); gravityMode = 'centered'; force_settle('3000','gravity right');"
+>
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
+    <span class="glyphicon glyphicon-play"></span> Center Gravity
+  </label>
+  <label class="btn btn-primary btn-block"
+  onClick="console.log('trying right'); gravityMode = 'right'; force_settle('3000','gravity right');"
+>
+    <input type="radio" name="options" id="option2" autocomplete="off"> 
+    <span class="glyphicon glyphicon-arrow-right"></span>Right Gravity
+  </label>
+  <label class="btn btn-primary btn-block"
+  onClick="console.log('trying right'); gravityMode = 'left'; force_settle('3000','gravity left');"
+>
+    <input type="radio" name="options" id="option3" autocomplete="off"> 
+    <span class="glyphicon glyphicon-arrow-left"></span>Left Gravity
+  </label>
+  <label class="btn btn-primary btn-block"
+  onClick="console.log('trying right'); gravityMode = 'group'; force_settle('3000','gravity group');"
+>
+    <input type="radio" name="options" id="option3" autocomplete="off"> 
+      <span class="glyphicon glyphicon-transfer"></span>Group Gravity
+
+<!-- Animation Options Form -->
+
       </div>
     </div>
   </div>
 </div>
+
+<hr>
+<a class='btn btn-primary btn-block' id='down_svg_link' onclick='downloadSVG();'>Download Image</a>
+<hr>
+        	<h5> Admin Only Menu </h5>
+                <span><small>
+		<ul>
+		<li><a target='_blank' id='get_debug_link' href="">json url</a></li>
+		<li><a target='_blank' id='debug_link' href="$presenter->getGraphUri()">json contents (includes JSON POST results)</a></li>
+		</ul>
+                </small></span>
 
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -170,7 +276,6 @@ Patient Flow Threshold:<br>
 </div>
 <br>
 
-    <input type="checkbox" name="hideLonelyNode" id="hideLonelyNode"  onchange="updateForce();" value="1"> Hide Lonely Node <br/><br/>
       </div>
     </div>
   </div>
@@ -196,52 +301,6 @@ Patient Flow Threshold:<br>
 </div>              
 <div class='hidden-sm hidden-xs'>
   
-    Gravity<br>
-              <input id="gravitySlider" type="range" onchange="updateForce();" min="0" max="0.17" step="0.001" value="0.04">
-              <input type="hidden" name='gravityInput'  id="gravityInput" value="0.04"><br>
-    Charge<br>
-              <input id="chargeSlider" type="range" onchange="updateForce();" min="-15000" max="0" step="10" value="-3000">
-              <input type="hidden" name='chargeInput'  id="chargeInput" value="-3000">
-    Zoom<br>
-              <input id="zoomSlider" type="range" onchange="updateForce();" min="0.5" max="5" step="0.05" value="1.7">
-              <input type="hidden" name='zoomInput'  id="zoomInput" value="1.7">
-              <br/>
-
-
-
-
-<button class="btn btn-xs btn-primary" type="button" data-toggle="collapse" data-target="#advancedControls" aria-expanded="false" aria-controls="collapseExample">
-  Show Advanced Controls
-</button>
-
-    <div class='collapse' id='advancedControls'>
-    <div style='display: none'>
-                linkDistance<br>
-              <input id="linkDistanceSlider" type="range" onchange="updateForce();" min="1" max="200" step="1" value="30">
-              <input type="hidden" name='linkDistanceInput' id="linkDistanceInput" value="30">
-    </div>
-
-                linkStrength<br>
-              <input id="linkStrengthSlider" type="range" onchange="updateForce();" min="0.001" max="1" step=".01" value="0.55">
-              <input type="hidden" name='linkStrengthInput' id="linkStrengthInput" value="0.55">
-    Friction<br>
-              <input id="frictionSlider" type="range" onchange="updateForce();" min="0.01" max="1" step=".05" value="0.7">
-              <input type="hidden" name='frictionInput' id="frictionInput" value="0.7">
-    Charge Distance<br>
-              <input id="chargeDistanceSlider" type="range" onchange="updateForce();" min="1" max="1000" step="1" value="300">
-              <input type="hidden" name='chargeDistanceInput'  id="chargeDistanceInput" value="300">
-    Theta<br>
-              <input id="thetaSlider" type="range" onchange="updateForce();" min="0.01" max="1" step=".05" value="0.35">
-              <input type="hidden" name='thetaInput'  id="thetaInput" value="0.35">
-    Alpha<br>
-              <input id="alphaSlider" type="range" onchange="updateForce();" min="0.01" max="2" step=".1" value="0.5">
-              <input type="hidden"  name='alphaInput' id="alphaInput" value="0.5">
-    </div>
-        <div class="checkbox">
-    <label>
-      <input id='reset_parameters' name='reset_parameters' value='off' type="checkbox"> Reset Parameters
-    </label>
-  </div>
   
 
       </div>
@@ -268,51 +327,6 @@ Patient Flow Threshold:<br>
 
       <div class="panel-body">
 
-<div class="btn-group-vertical btn-block" data-toggle="buttons">
-  <label class="btn btn-primary btn-block success"
-  onClick="true_unfreeze();" >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-                <span class="glyphicon glyphicon-play"></span> Animate Graph
-  </label>
-  <label class="btn btn-primary btn-block success"
-  onClick="force.stop();" >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-                <span class="glyphicon glyphicon-pause"></span> Freeze Graph
-  </label>
-
-  <label class="btn btn-primary btn-block success"
-  onClick="free_nodes();" >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-                <span class="glyphicon glyphicon-random"></span> Unfix All Nodes
-  </label>
-
-
-
-  <label class="btn btn-primary btn-block active "
-  onClick="console.log('trying right'); gravityMode = 'centered'; force_settle('3000','gravity right');"
->
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-    <span class="glyphicon glyphicon-play"></span> Center Gravity
-  </label>
-  <label class="btn btn-primary btn-block"
-  onClick="console.log('trying right'); gravityMode = 'right'; force_settle('3000','gravity right');"
->
-    <input type="radio" name="options" id="option2" autocomplete="off"> 
-    <span class="glyphicon glyphicon-arrow-right"></span>Right Gravity
-  </label>
-  <label class="btn btn-primary btn-block"
-  onClick="console.log('trying right'); gravityMode = 'left'; force_settle('3000','gravity left');"
->
-    <input type="radio" name="options" id="option3" autocomplete="off"> 
-    <span class="glyphicon glyphicon-arrow-left"></span>Left Gravity
-  </label>
-  <label class="btn btn-primary btn-block"
-  onClick="console.log('trying right'); gravityMode = 'group'; force_settle('3000','gravity group');"
->
-    <input type="radio" name="options" id="option3" autocomplete="off"> 
-      <span class="glyphicon glyphicon-transfer"></span>Group Gravity
-
-
       </div>
     </div>
 
@@ -321,9 +335,6 @@ Patient Flow Threshold:<br>
 
 </div>
 
-<hr>
-<a class='btn btn-primary btn-block' id='down_svg_link' onclick='downloadSVG();'>Download Image</a>
-<hr>
               <div class="btn-group-verticali hidden-sm hidden-xs">
                 </div>
             </form>
@@ -337,14 +348,6 @@ Patient Flow Threshold:<br>
 <div id='node_menu_left_panel'>
 <!-- this gets replaced by the all_node_dust.dust panel -->
 </div>
-        	<h5> Admin Only Menu </h5>
-                <span><small>
-		<ul>
-		<li><a target='_blank' id='get_debug_link' href="">json url</a></li>
-		<li><a target='_blank' id='debug_link' href="$presenter->getGraphUri()">json contents (includes JSON POST results)</a></li>
-		</ul>
-                </small></span>
-
         
   </div> <!-- end left panel -->
 </div>
@@ -375,7 +378,7 @@ Patient Flow Threshold:<br>
   <div class="col-md-3"></div>
   <div class="col-md-7">
     <h1>
-      <i class='fa fa-refresh fa-spin fa-3x'></i>
+	<i class="fas fa-circle-notch fa-spin"></i>
       Loading your results
     </h1>
 <h3> Please be patient. This is harder than it looks ;)</h3>
@@ -1220,7 +1223,8 @@ function post_static_positions(static_position_array){
 
 	//console.log('Attempting Save Position with: ');
 	//console.log(send_me);
-
+	//TODO repliment.
+	/*
 	$.ajax({
     		type: "POST",
     		url: "/FORCEPOSITIONS/",
@@ -1230,7 +1234,8 @@ function post_static_positions(static_position_array){
     		success: function(got_this_back){
         		//console.log(got_this_back);
     		}
-});
+	});
+	*/
 
 }
 
@@ -1671,210 +1676,6 @@ function strlenFromPHP(the_string) {
 </script>
 
 
-
-<div class="modal" id="dataOptionsModal">  
-        <div class="modal-dialog modal-lg">  
-      <div class="modal-content" id='dataOptionsModalContent'>  
-        <div class="modal-header">  
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>  
-          <h4 class="modal-title">Data Options</h4>  
-        <div class="modal-body"> 
-<div id='modal_data_chooser'> 
-
-</div>
-<div id='modal_tax_chooser'> 
-        <i class='fa fa-refresh fa-spin fa-2x'></i>  
-        Loading Data Options 
-        </div>  
-</div>
-        <div class="modal-footer">  
-          <a href="#" data-dismiss="modal" class="btn">Close</a>  
-        </div>  
-        </div>  
-      </div>  
-    </div>  
-</div>  
-
-
-
-
-  
-
-<div class="modal" id="universalModal">
-	<div class="modal-dialog">
-      <div class="modal-content" id='universalModalContent'>
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Loading Documentation</h4>
-        <div class="modal-body">
-	<i class='fa fa-refresh fa-spin fa-2x'></i>
-	Loading Documentation
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-        </div>
-        </div>
-      </div>
-    </div>
-</div>
-
-<div id="feedback_hover">
-    <a href="#" type="button" class="">
-    <span class="rotate">feedback</span>
-    </a>
-</div>
-<div class="modal fade" id="feedback_dialog" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header modal-header-feedback">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Feedback</h4>
-      </div>
-      <div class="modal-body">
-      <form class="form-horizontal">
-        <input type="hidden" name="screenshot" value="" />
-        <input type="hidden" name="url" value="cube.careset.com/FORCE/dandelion_simple/1114904687" />
-        <div class="control-group">
-          <label class="control-label col-xs-2">
-          Subject
-          </label>
-          <div class="col-xs-10">
-            <input type="textbox" value="Feedback" name="subject" class="form-control">
-          </div>
-        </div>
-        <div class="control-group">&nbsp;</div>
-        <div class="control-group">
-          <label class="control-label col-xs-2">
-          Feedback
-          </label>
-          <div class="col-xs-10">
-            <textarea placeholder="Feedback" name="comment" class="form-control" style="min-height: 100px"></textarea>
-          </div>
-        </div>
-        <div class="control-group">&nbsp;</div>
-        <div class="control-group">
-          <label class="control-label col-xs-2">
-          Screenshot
-          </label>
-          <div class="col-xs-10">
-            <img src="" class="feedback-image" style="width:100%; border: 1px solid #ccc" />
-          </div>
-        </div>
-      </form>
-      <div class="clearfix"></div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name='btn-submit'>Submit</button>
-      </div>
-    </div>
-    
-  </div>
-</div>
-<div class="modal fade" id="feedback_confirmation_dialog" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header modal-header-feedback">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Feedback</h4>
-      </div>
-      <div class="modal-body">
-
-      <p style="font-size: 18px; font-weight: 200">Thank you for your feedback, we will be contacting you soon.</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-    
-  </div>
-</div>
-<script>
-$(function() {
-
-  var last_snapshot = null;
-
-
-function display_spinner()
-{
-  $("body").append('<div style="" id="feedback-loader-spinner-wrapper"><div class="modal-backdrop in" style="height: 100%;  z-index: 1000000;"></div><div style="position: fixed;top: 40%;left: 0;right: 0; z-index: 1000001;" id="feedback-loader-spinner" class="loader-spinner-wrapper text-center"><div class="loader-spinner center-block"></div></div></div>');
-}
-
-function remove_spinner()
-{
-  $("#feedback-loader-spinner-wrapper").remove();
-}
-
-
-$('#feedback_dialog').on('show.bs.modal', function(e) {
-  remove_spinner();
-    var target = $(e.relatedTarget);
-    $(e.currentTarget).find('img.feedback-image').attr('src',last_snapshot);
-    $(e.currentTarget).find('input[name=screenshot]').val(last_snapshot);
-
-
-
-    var btnsubmit = $(e.relatedTarget);
-    console.log(btnsubmit);
-
-});
-
-$("#feedback_dialog").on('click','button[name=btn-submit]',function(e) {
-  e.preventDefault();
-  $("#feedback_dialog form").submit();
-  return false;
-});
-
-$("#feedback_dialog form").submit(function(e) {
-  e.preventDefault();
-
-  $('#feedback_dialog button[name=btn-submit]').addClass('disabled');
-  display_spinner();
-  $.post('/feedback/submit',$(this).serialize(),function(data)
-  {
-    remove_spinner();
-    $('#feedback_dialog button[name=btn-submit]').removeClass('disabled');
-    $(this).find('[name=comment]').text('');
-    $('#feedback_dialog').modal('hide');
-    $('#feedback_confirmation_dialog').modal('show');
-  });
-
-  return false;
-});
-
-  $("#feedback_hover a").click(function(e) {
-    e.preventDefault();
-    take_screenshot();
-    return false;
-  });
-
-  function supportsToDataURL()
-  {
-      var c = document.createElement("canvas");
-      var data = c.toDataURL("image/png");
-      return (data.indexOf("data:image/png") == 0);
-  }
-
-  function take_screenshot()
-  {
-    setTimeout(function() { 
-          html2canvas(document.body, {
-            onrendered: function(canvas) {
-              last_snapshot = canvas.toDataURL("image/jpeg");
-              $('#feedback_dialog').modal('show');
-            }
-        });
-          }, 0 );
-
-    setTimeout(function() {
-        display_spinner();
-      }, 10);
-  }
-
-});
-</script>
 
 
 
