@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=f867cb6a47b8337094210c4bbfdae9a6
+FILE_SIG=876f3cee61071ef2388f2bbb277685f8
 */
 namespace App;
 /*
@@ -14,6 +14,14 @@ this is safe to edit.
 */
 class person extends \App\DURC\Models\person
 {
+	//this controls what is downloaded in the json for this object under card_body.. 
+	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
+	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
+	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
+	public function getCardFace() {
+		return parent::getCardFace(); //just use the standard one unless a user over-rides this..
+	}
+
 
 	//You may need to change these for 'one to very very many' relationships.
 /*
