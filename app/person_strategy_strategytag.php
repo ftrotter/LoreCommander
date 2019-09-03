@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=57cb05d53a87b15bcd615845cb101e71
+FILE_SIG=c1703f6caa0eed44a1e79b4ff4b52fd8
 */
 namespace App;
 /*
@@ -18,8 +18,8 @@ class person_strategy_strategytag extends \App\DURC\Models\person_strategy_strat
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
 	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
-	public function getCardFace() {
-		return parent::getCardFace(); //just use the standard one unless a user over-rides this..
+	public function getCardBody() {
+		return parent::getCardBody(); //just use the standard one unless a user over-rides this..
 	}
 
 
