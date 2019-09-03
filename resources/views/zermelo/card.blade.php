@@ -135,21 +135,54 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 				//making the card gracefully simplify as data reduces...
 
 				if(isset(this_card.card_img_top)){
+
+					//sometimes images have alttext something they have links..
+					//this sorts all of this out
+
+					//by default do nothing..					
+					card_alt_text = '';
+					card_anchor_open = '';
+					card_anchor_close = '';
+
+					//if there is altext, use it
 					if(isset(this_card.card_img_top_alttext)){
-						card_img_top = `<img style="width: ${card_width}" class="card-img-top" src="${this_card.card_img_top}" alt="${this_card.card_img_top_alttext}">`
-					}else{
-						card_img_top = `<img style="width: ${card_width}" class="card-img-top" src="${this_card.card_img_top}">`
+						card_alt_text = ` alt="${this_card.card_img_top_alttext}" `;
 					}
+					//if there an an anchor use it
+					if(isset(this_card.card_img_top_anchor)){
+						card_anchor_open  = `<a target='_blank' href="${this_card.card_img_top_anchor}"> `;
+						card_anchor_close  = `<\a>`;
+					}
+
+					//this could be complex or simple depending on the above logic
+					card_img_top = `${card_anchor_open} <img ${card_alt_text} style="width: ${card_width}" class="card-img-top" src="${this_card.card_img_top}"> ${card_anchor_close}`;
 				}else{
 					card_img_top = '';
 				}
 	
-				if(isset(this_card.card_img_bottom)){
+
+				if(isset(this_card.card_bottom)){
+
+					//sometimes images have alttext something they have links..
+					//this sorts all of this out
+
+					//by default do nothing..					
+					card_alt_text = '';
+					card_anchor_open = '';
+					card_anchor_close = '';
+
+					//if there is altext, use it
 					if(isset(this_card.card_img_bottom_alttext)){
-						card_img_bottom = `<img style="width: ${card_width}"  class="card-img-top" src="${this_card.card_img_bottom}" alt="${this_card.card_img_bottom_alttext}">`
-					}else{
-						card_img_bottom = `<img style="width: ${card_width}"  class="card-img-top" src="${this_card.card_img_bottom}">`
+						card_alt_text = ` alt="${this_card.card_img_top_alttext}" `;
 					}
+					//if there an an anchor use it
+					if(isset(this_card.card_img_bottom_anchor)){
+						card_anchor_open  = `<a target='_blank' href="${this_card.card_img_top_anchor}"> `;
+						card_anchor_close  = `<\a>`;
+					}
+
+					//this could be complex or simple depending on the above logic
+					card_img_bottom = `${card_anchor_open} <img ${card_alt_text} style="width: ${card_width}" class="card-img-top" src="${this_card.card_img_top}"> ${card_anchor_close}`;
 				}else{
 					card_img_bottom = '';
 				}
@@ -157,25 +190,42 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 				if(isset(this_card.card_header)){
 					real_card_header = `<div class="card-header text-center">${this_card.card_header}</div>`;
 				}else{
-					real_card_header = ''
+					real_card_header = '';
 				}
 
 				if(isset(this_card.card_footer)){
 					real_card_footer = `<div class="card-header text-center">${this_card.card_footer}</div>`;
 				}else{
-					real_card_footer = ''
+					real_card_footer = '';
 				}
 
+				if(isset(this_card.card_title)){
+					real_card_title = `<h5 class='card-title'> ${this_card.card_title}</h5>`;
+				}else{
+					real_card_title = '';
+				}
+
+				if(isset(this_card.card_text)){
+					real_card_text = `<p class="card-text">${this_card.card_text}</p>`;
+				}else{
+					real_card_text = '';
+				}
+
+				text_plus_title = real_card_text + real_card_title;
+				text_plus_title = text_plus_title.trim(); //should make an empty string if they are both blank..
+				if(text_plus_title.length == 0){
+					//then we do not need the card-body at all..
+					real_card_body = '';
+				}else{
+					real_card_body = `<div class="card-body"> ${real_card_title} ${real_card_text}  </div>`;
+				}
 
 				cards_html += `
 <div class="col-auto mb-3">
 	<div style='width: ${card_width}' class="card" >
 		${card_img_top}
   		${real_card_header}
-  		<div class="card-body">
-    			<h5 class="card-title">${this_card.card_title}</h5>
-    			<p class="card-text">${this_card.card_text}</p>
-  		</div>
+		${real_card_body}
     		${real_card_footer}
 		${card_img_bottom}
 	</div>
