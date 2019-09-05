@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=328fefc76d4afbacbe754568680547b9
+FILE_SIG=ed2f2e7e520797f568d8cca9695b07f0
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -696,7 +696,7 @@ array (
 //many_many
 NULL
 //many_through
-NULL*\
+NULL*/
 
 
 ?>

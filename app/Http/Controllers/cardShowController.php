@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use MySQLHandler\MySQLHandler;
+use TwoMySQLHandler\TwoMySQLHandler;
 
 class cardShowController extends Controller
 {
@@ -31,13 +31,13 @@ class cardShowController extends Controller
 		//lets log this:
 
 		$pdo = \DB::connection()->getPdo();
-		$mySQLHandler = new MySQLHandler($pdo, "lore_log.log", array('multiverse_id'), \Monolog\Logger::DEBUG);
+		$mySQLHandler = new TwoMySQLHandler($pdo, "lore_log", "log_message", "log_context", [], \Monolog\Logger::DEBUG);
 	
-		$logger = new \Monolog\Logger([]);
+		$logger = new \Monolog\Logger('CardViewer');
 
 		$logger->pushHandler($mySQLHandler);
 
-		$logger->addWarning("this is a great message",['multiverse_id' => $multiverse_id]);
+		$logger->addInfo("Showing Card",['multiverse_id' => $multiverse_id]);
 		
 		return("Showing card $multiverse_id");
 

@@ -17,7 +17,9 @@
         "careset/zermelobladecard": "dev-master",
         "careset/zermelobladegraph": "dev-master",
         "careset/zermelobladetabular": "dev-master",
+        "careset/zermelobladetreecard": "dev-master",
         "fideloper/proxy": "~3.3",
+        "ftrotter/two-table-monolog-mysql": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
@@ -33,7 +35,6 @@
         "tymon/jwt-auth": "^0.5.12",
         "vlucas/phpdotenv": "^2.4",
         "wamania/php-stemmer": "^1.2",
-        "ftrotter/two-table-monolog-mysql": "dev-master",
         "wrapi/slack": "^1.0"
     },
     "require-dev": {

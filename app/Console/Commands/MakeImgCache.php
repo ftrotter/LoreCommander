@@ -39,14 +39,14 @@ class MakeImgCache extends Command
     public function handle()
     {
         
-
+		//downloading everything takes too much space
                 $urls_to_hash = [
-                //        'image_uri_small'  => 'image_hash_small',
-                 //       'image_uri_normal'  => 'image_hash_normal',
-                        'image_uri_large' => 'image_hash_large',
+                  //    'image_uri_small'  => 'image_hash_small',
+                        'image_uri_normal'  => 'image_hash_normal',
+                    //    'image_uri_large' => 'image_hash_large',
                     //    'image_uri_png' => 'image_hash_png',
                         'image_uri_art_crop'  => 'image_hash_art_crop',
-                    //    'image_uri_border_crop'  =>'image_hash_border_crop',
+                  //      'image_uri_border_crop'  =>'image_hash_border_crop',
                 ];
 
 		//this is just a test for valid img urls overall... we are not nessecarily just getting the image_uri_large fields...
