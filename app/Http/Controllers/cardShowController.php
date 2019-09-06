@@ -28,17 +28,23 @@ class cardShowController extends Controller
 
         	$pusher->trigger( $channel_id, 'show_this_card',  ['multiverse_id' => $multiverse_id] );
 
-		//lets log this:
 
+		//lets log this  using the generic logger, because we need to learn to use this.. 
 		$pdo = \DB::connection()->getPdo();
-		$mySQLHandler = new TwoMySQLHandler($pdo, "lore_log", "log_message", "log_context", [], \Monolog\Logger::DEBUG);
-	
+		$mySQLHandler = new TwoMySQLHandler($pdo, "lore_log", "log_message", "log_context", [], \Monolog\Logger::DEBUG);	
 		$logger = new \Monolog\Logger('CardViewer');
-
 		$logger->pushHandler($mySQLHandler);
-
 		$logger->addInfo("Showing Card",['multiverse_id' => $multiverse_id]);
 		
+
+		//lets also have an entry into 
+		$scanhistory = \App\scanhistory::create([
+								'viewchannel' => $channel_id,
+								'multiverse_id' => $multiverse_id,
+						]);
+
+		$scanhistory->save();
+
 		return("Showing card $multiverse_id");
 
 	}
