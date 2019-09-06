@@ -88,6 +88,10 @@ Route::get('durctest', function () {
  			'/DURC/person_strategy_tag/create', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1/edit', //from: lore.person_strategy_tag 
+ 			'/DURC/scanhistory', //from: lore.scanhistory 
+ 			'/DURC/scanhistory/create', //from: lore.scanhistory 
+ 			'/DURC/scanhistory/1', //from: lore.scanhistory 
+ 			'/DURC/scanhistory/1/edit', //from: lore.scanhistory 
  			'/DURC/strategy', //from: lore.strategy 
  			'/DURC/strategy/create', //from: lore.strategy 
  			'/DURC/strategy/1', //from: lore.strategy 

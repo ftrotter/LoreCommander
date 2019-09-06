@@ -1,8 +1,8 @@
 <?php
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
+use CareSet\Zermelo\Reports\Tree\AbstractTreeReport;
 
-class TreeCardTest extends AbstractCardsReport
+class TreeCardTest extends AbstractTreeReport
 {
 
     public function GetReportName(): string { return('Tree Card Test'); }
