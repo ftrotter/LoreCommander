@@ -173,6 +173,13 @@ Route::get("/DURC/json/person_strategy_tag/", 'person_strategy_tagController@jso
 Route::get("/DURC/searchjson/person_strategy_tag/", 'person_strategy_tagController@search');
 
  
+//DURC->	lore.scanhistory
+Route::resource("/DURC/scanhistory", 'scanhistoryController');
+Route::get("/DURC/json/scanhistory/{scanhistory_id}", 'scanhistoryController@jsonone');
+Route::get("/DURC/json/scanhistory/", 'scanhistoryController@jsonall');
+Route::get("/DURC/searchjson/scanhistory/", 'scanhistoryController@search');
+
+ 
 //DURC->	lore.strategy
 Route::resource("/DURC/strategy", 'strategyController');
 Route::get("/DURC/json/strategy/{strategy_id}", 'strategyController@jsonone');
