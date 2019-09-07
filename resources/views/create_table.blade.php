@@ -30,10 +30,9 @@ But if you want to actually create a new linking system, then:
 </ul>
 				</p>
 			</div>
-<pre>{{{ $create_table_sql}}}
+<pre>{{{ $message }}}
 </pre>
 			<p>
-				<a class="btn" href="#">View details »</a>
 			</p>
 		</div>
 	</div>

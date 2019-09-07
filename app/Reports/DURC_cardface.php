@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=88ab5a0db85f6a3a5a1e72db16868e3c
+FILE_SIG=ca473a74c0cb285028073c8f7dcc464d
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -716,11 +716,11 @@ array (
 )
 //has_many
 array (
-  'cardface_classofcreature_atag' => 
+  'cardface_classofc_atag' => 
   array (
     'prefix' => NULL,
-    'type' => 'cardface_classofcreature_atag',
-    'from_table' => 'cardface_classofcreature_atag',
+    'type' => 'cardface_classofc_atag',
+    'from_table' => 'cardface_classofc_atag',
     'from_db' => 'lore',
     'from_column' => 'cardface_id',
     'other_columns' => 
@@ -747,13 +747,13 @@ array (
       ),
       2 => 
       array (
-        'column_name' => 'classofcreature_id',
+        'column_name' => 'classofc_id',
         'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => true,
         'is_linked_key' => true,
         'foreign_db' => 'lore',
-        'foreign_table' => 'classofcreature',
+        'foreign_table' => 'classofc',
       ),
       3 => 
       array (
@@ -898,11 +898,11 @@ array (
       ),
     ),
   ),
-  'classofcreature_cardface' => 
+  'classofc_cardface' => 
   array (
     'prefix' => NULL,
-    'type' => 'classofcreature_cardface',
-    'from_table' => 'classofcreature_cardface',
+    'type' => 'classofc_cardface',
+    'from_table' => 'classofc_cardface',
     'from_db' => 'lore',
     'from_column' => 'cardface_id',
     'other_columns' => 
@@ -929,13 +929,13 @@ array (
       ),
       2 => 
       array (
-        'column_name' => 'classofcreature_id',
+        'column_name' => 'classofc_id',
         'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => true,
         'is_linked_key' => true,
         'foreign_db' => 'lore',
-        'foreign_table' => 'classofcreature',
+        'foreign_table' => 'classofc',
       ),
       3 => 
       array (
@@ -1009,6 +1009,97 @@ array (
         'foreign_table' => NULL,
       ),
       4 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+  'person_classofc_cardface' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'person_classofc_cardface',
+    'from_table' => 'person_classofc_cardface',
+    'from_db' => 'lore',
+    'from_column' => 'cardface_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'person_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'person',
+      ),
+      2 => 
+      array (
+        'column_name' => 'classofc_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'classofc',
+      ),
+      3 => 
+      array (
+        'column_name' => 'cardface_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'cardface',
+      ),
+      4 => 
+      array (
+        'column_name' => 'is_bulk_linker',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'link_note',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',

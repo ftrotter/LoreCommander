@@ -107,8 +107,29 @@ class GenericLinker extends Controller
 			//so the class does not exist yet. Thats fine.
 			//we support autolinking as long as the left, right and tag tables exist...
 			//so see if we have a database table.
+
+			//so it is possible that the table could exist  at this point..
+			$test_sql  =  "
+SELECT COUNT(*) as table_count
+FROM information_schema.tables
+WHERE table_schema = '$db' 
+    AND table_name = '$link_table'
+";
+
+			$stmt = $pdo->query($test_sql);
+	
+			$is_db_exists = false;	
+			while($this_row = $stmt->fetch()){
+				if($this_row['table_count'] > 0){
+					$is_db_exists = true;
+				}
+			}
+
+			if($is_db_exists){
+				$message = "The linking table exists, but the DURC classes do not. Run the DURC generator";
+			}else{
 		
-			$create_table_sql = "
+				$message = "
 CREATE TABLE IF NOT EXISTS $db.$link_table  ( 
 	`id` INT(11) NOT NULL AUTO_INCREMENT ,  
 	`$durc_type_left"."_id` INT(11) NOT NULL ,  
@@ -123,11 +144,11 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 	) ENGINE = MyISAM 
 ;
 ";
-
+			}
 			// this is horribly risky from a security standpoint... leading to obvious DOS
 			//instead we throw this back to the user...
-			//$pdo->query($create_table_sql);
-			return view('create_table',['create_table_sql' => $create_table_sql]);	
+			//$pdo->query($messageg);
+			return view('create_table',['message' => $message]);	
 		}
 
 		//here we know that we have DURC classes for all 4 of the relevant data contructs...

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b7c8ac99240fee88c8f308050e324eea
+FILE_SIG=87017fc5de461825af518dd5e22f664e
 */
 namespace App;
 /*
@@ -26,10 +26,11 @@ class cardface extends \App\DURC\Models\cardface
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'cardface_classofcreature_atag', //from from many
+			'cardface_classofc_atag', //from from many
 			'cardface_person_atag', //from from many
-			'classofcreature_cardface', //from from many
+			'classofc_cardface', //from from many
 			'creature_cardface', //from from many
+			'person_classofc_cardface', //from from many
 			'wincon_strategy', //from from many
 			'card', //from belongs to
 		];
@@ -86,11 +87,11 @@ class cardface extends \App\DURC\Models\cardface
 //DURC HAS_MANY SECTION
 
 /**
-*	DURC is handling the cardface_classofcreature_atag for this cardface in cardface
+*	DURC is handling the cardface_classofc_atag for this cardface in cardface
 *       but you can extend or override the defaults by editing this function...
 */
-	public function cardface_classofcreature_atag(){
-		return parent::cardface_classofcreature_atag();
+	public function cardface_classofc_atag(){
+		return parent::cardface_classofc_atag();
 	}
 
 
@@ -104,11 +105,11 @@ class cardface extends \App\DURC\Models\cardface
 
 
 /**
-*	DURC is handling the classofcreature_cardface for this cardface in cardface
+*	DURC is handling the classofc_cardface for this cardface in cardface
 *       but you can extend or override the defaults by editing this function...
 */
-	public function classofcreature_cardface(){
-		return parent::classofcreature_cardface();
+	public function classofc_cardface(){
+		return parent::classofc_cardface();
 	}
 
 
@@ -118,6 +119,15 @@ class cardface extends \App\DURC\Models\cardface
 */
 	public function creature_cardface(){
 		return parent::creature_cardface();
+	}
+
+
+/**
+*	DURC is handling the person_classofc_cardface for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function person_classofc_cardface(){
+		return parent::person_classofc_cardface();
 	}
 
 

@@ -36,26 +36,26 @@ Route::get('durctest', function () {
  			'/DURC/cardface/create', //from: lore.cardface 
  			'/DURC/cardface/1', //from: lore.cardface 
  			'/DURC/cardface/1/edit', //from: lore.cardface 
- 			'/DURC/cardface_classofcreature_atag', //from: lore.cardface_classofcreature_atag 
- 			'/DURC/cardface_classofcreature_atag/create', //from: lore.cardface_classofcreature_atag 
- 			'/DURC/cardface_classofcreature_atag/1', //from: lore.cardface_classofcreature_atag 
- 			'/DURC/cardface_classofcreature_atag/1/edit', //from: lore.cardface_classofcreature_atag 
+ 			'/DURC/cardface_classofc_atag', //from: lore.cardface_classofc_atag 
+ 			'/DURC/cardface_classofc_atag/create', //from: lore.cardface_classofc_atag 
+ 			'/DURC/cardface_classofc_atag/1', //from: lore.cardface_classofc_atag 
+ 			'/DURC/cardface_classofc_atag/1/edit', //from: lore.cardface_classofc_atag 
  			'/DURC/cardface_person_atag', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/create', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/1', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/1/edit', //from: lore.cardface_person_atag 
- 			'/DURC/classofcreature', //from: lore.classofcreature 
- 			'/DURC/classofcreature/create', //from: lore.classofcreature 
- 			'/DURC/classofcreature/1', //from: lore.classofcreature 
- 			'/DURC/classofcreature/1/edit', //from: lore.classofcreature 
- 			'/DURC/classofcreature_cardface', //from: lore.classofcreature_cardface 
- 			'/DURC/classofcreature_cardface/create', //from: lore.classofcreature_cardface 
- 			'/DURC/classofcreature_cardface/1', //from: lore.classofcreature_cardface 
- 			'/DURC/classofcreature_cardface/1/edit', //from: lore.classofcreature_cardface 
- 			'/DURC/classofcreature_creature', //from: lore.classofcreature_creature 
- 			'/DURC/classofcreature_creature/create', //from: lore.classofcreature_creature 
- 			'/DURC/classofcreature_creature/1', //from: lore.classofcreature_creature 
- 			'/DURC/classofcreature_creature/1/edit', //from: lore.classofcreature_creature 
+ 			'/DURC/classofc', //from: lore.classofc 
+ 			'/DURC/classofc/create', //from: lore.classofc 
+ 			'/DURC/classofc/1', //from: lore.classofc 
+ 			'/DURC/classofc/1/edit', //from: lore.classofc 
+ 			'/DURC/classofc_cardface', //from: lore.classofc_cardface 
+ 			'/DURC/classofc_cardface/create', //from: lore.classofc_cardface 
+ 			'/DURC/classofc_cardface/1', //from: lore.classofc_cardface 
+ 			'/DURC/classofc_cardface/1/edit', //from: lore.classofc_cardface 
+ 			'/DURC/classofc_creature', //from: lore.classofc_creature 
+ 			'/DURC/classofc_creature/create', //from: lore.classofc_creature 
+ 			'/DURC/classofc_creature/1', //from: lore.classofc_creature 
+ 			'/DURC/classofc_creature/1/edit', //from: lore.classofc_creature 
  			'/DURC/creature', //from: lore.creature 
  			'/DURC/creature/create', //from: lore.creature 
  			'/DURC/creature/1', //from: lore.creature 
@@ -72,10 +72,14 @@ Route::get('durctest', function () {
  			'/DURC/person/create', //from: lore.person 
  			'/DURC/person/1', //from: lore.person 
  			'/DURC/person/1/edit', //from: lore.person 
- 			'/DURC/person_classofcreature_tag', //from: lore.person_classofcreature_tag 
- 			'/DURC/person_classofcreature_tag/create', //from: lore.person_classofcreature_tag 
- 			'/DURC/person_classofcreature_tag/1', //from: lore.person_classofcreature_tag 
- 			'/DURC/person_classofcreature_tag/1/edit', //from: lore.person_classofcreature_tag 
+ 			'/DURC/person_classofc_cardface', //from: lore.person_classofc_cardface 
+ 			'/DURC/person_classofc_cardface/create', //from: lore.person_classofc_cardface 
+ 			'/DURC/person_classofc_cardface/1', //from: lore.person_classofc_cardface 
+ 			'/DURC/person_classofc_cardface/1/edit', //from: lore.person_classofc_cardface 
+ 			'/DURC/person_classofc_tag', //from: lore.person_classofc_tag 
+ 			'/DURC/person_classofc_tag/create', //from: lore.person_classofc_tag 
+ 			'/DURC/person_classofc_tag/1', //from: lore.person_classofc_tag 
+ 			'/DURC/person_classofc_tag/1/edit', //from: lore.person_classofc_tag 
  			'/DURC/person_creature_tag', //from: lore.person_creature_tag 
  			'/DURC/person_creature_tag/create', //from: lore.person_creature_tag 
  			'/DURC/person_creature_tag/1', //from: lore.person_creature_tag 

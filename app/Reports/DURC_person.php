@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=05af6a0b4e5b57b483115e128a274cad
+FILE_SIG=526097e966a1f32c0479137a0354236c
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -365,11 +365,11 @@ array (
       ),
     ),
   ),
-  'person_classofcreature_tag' => 
+  'person_classofc_cardface' => 
   array (
     'prefix' => NULL,
-    'type' => 'person_classofcreature_tag',
-    'from_table' => 'person_classofcreature_tag',
+    'type' => 'person_classofc_cardface',
+    'from_table' => 'person_classofc_cardface',
     'from_db' => 'lore',
     'from_column' => 'person_id',
     'other_columns' => 
@@ -396,13 +396,104 @@ array (
       ),
       2 => 
       array (
-        'column_name' => 'classofcreature_id',
+        'column_name' => 'classofc_id',
         'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => true,
         'is_linked_key' => true,
         'foreign_db' => 'lore',
-        'foreign_table' => 'classofcreature',
+        'foreign_table' => 'classofc',
+      ),
+      3 => 
+      array (
+        'column_name' => 'cardface_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'cardface',
+      ),
+      4 => 
+      array (
+        'column_name' => 'is_bulk_linker',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'link_note',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+  'person_classofc_tag' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'person_classofc_tag',
+    'from_table' => 'person_classofc_tag',
+    'from_db' => 'lore',
+    'from_column' => 'person_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'person_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'person',
+      ),
+      2 => 
+      array (
+        'column_name' => 'classofc_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'classofc',
       ),
       3 => 
       array (

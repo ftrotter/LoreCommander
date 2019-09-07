@@ -28,6 +28,7 @@ class classofcreature extends DURCModel{
 			'cardface_classofcreature_atag', //from from many
 			'classofcreature_cardface', //from from many
 			'classofcreature_creature', //from from many
+			'person_classofcreature_cardface', //from from many
 			'person_classofcreature_tag', //from from many
 		];
 
@@ -79,6 +80,14 @@ class classofcreature extends DURCModel{
 */
 	public function classofcreature_creature(){
 		return $this->hasMany('App\classofcreature_creature','classofcreature_id','id');
+	}
+
+
+/**
+*	get all the person_classofcreature_cardface for this classofcreature
+*/
+	public function person_classofcreature_cardface(){
+		return $this->hasMany('App\person_classofcreature_cardface','classofcreature_id','id');
 	}
 
 
