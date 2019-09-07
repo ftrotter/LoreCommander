@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1549209ab927302945bd0cadfc0ad288
+FILE_SIG=bbbe9734dd02bea6b3f34a49bb425eba
 */
 namespace App;
 /*
@@ -54,7 +54,7 @@ CREATE TABLE `lore`.`scanhistory` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 	//your stuff goes here..

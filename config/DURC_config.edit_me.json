@@ -155,10 +155,10 @@
                 }
             ],
             "has_many": {
-                "cardface_classofcreature_atag": {
+                "cardface_classofc_atag": {
                     "prefix": null,
-                    "type": "cardface_classofcreature_atag",
-                    "from_table": "cardface_classofcreature_atag",
+                    "type": "cardface_classofc_atag",
+                    "from_table": "cardface_classofc_atag",
                     "from_db": "lore",
                     "from_column": "atag_id"
                 },
@@ -932,10 +932,10 @@
                 }
             },
             "has_many": {
-                "cardface_classofcreature_atag": {
+                "cardface_classofc_atag": {
                     "prefix": null,
-                    "type": "cardface_classofcreature_atag",
-                    "from_table": "cardface_classofcreature_atag",
+                    "type": "cardface_classofc_atag",
+                    "from_table": "cardface_classofc_atag",
                     "from_db": "lore",
                     "from_column": "cardface_id"
                 },
@@ -946,10 +946,10 @@
                     "from_db": "lore",
                     "from_column": "cardface_id"
                 },
-                "classofcreature_cardface": {
+                "classofc_cardface": {
                     "prefix": null,
-                    "type": "classofcreature_cardface",
-                    "from_table": "classofcreature_cardface",
+                    "type": "classofc_cardface",
+                    "from_table": "classofc_cardface",
                     "from_db": "lore",
                     "from_column": "cardface_id"
                 },
@@ -957,6 +957,13 @@
                     "prefix": null,
                     "type": "creature_cardface",
                     "from_table": "creature_cardface",
+                    "from_db": "lore",
+                    "from_column": "cardface_id"
+                },
+                "person_classofc_cardface": {
+                    "prefix": null,
+                    "type": "person_classofc_cardface",
+                    "from_table": "person_classofc_cardface",
                     "from_db": "lore",
                     "from_column": "cardface_id"
                 },
@@ -970,8 +977,8 @@
             },
             "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "cardface_classofcreature_atag": {
-            "table_name": "cardface_classofcreature_atag",
+        "cardface_classofc_atag": {
+            "table_name": "cardface_classofc_atag",
             "db": "lore",
             "column_data": [
                 {
@@ -993,13 +1000,13 @@
                     "foreign_table": "cardface"
                 },
                 {
-                    "column_name": "classofcreature_id",
+                    "column_name": "classofc_id",
                     "data_type": "int",
                     "is_primary_key": false,
                     "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
-                    "foreign_table": "classofcreature"
+                    "foreign_table": "classofc"
                 },
                 {
                     "column_name": "atag_id",
@@ -1055,12 +1062,12 @@
                     "to_db": "lore",
                     "local_key": "cardface_id"
                 },
-                "classofcreature": {
+                "classofc": {
                     "prefix": null,
-                    "type": "classofcreature",
-                    "to_table": "classofcreature",
+                    "type": "classofc",
+                    "to_table": "classofc",
                     "to_db": "lore",
-                    "local_key": "classofcreature_id"
+                    "local_key": "classofc_id"
                 },
                 "atag": {
                     "prefix": null,
@@ -1070,7 +1077,7 @@
                     "local_key": "atag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface_classofcreature_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofcreature_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofcreature_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface_classofc_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface_person_atag": {
             "table_name": "cardface_person_atag",
@@ -1174,8 +1181,8 @@
             },
             "create_table_sql": "CREATE TABLE `lore`.`cardface_person_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `person_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "classofcreature": {
-            "table_name": "classofcreature",
+        "classofc": {
+            "table_name": "classofc",
             "db": "lore",
             "column_data": [
                 {
@@ -1188,7 +1195,7 @@
                     "foreign_table": null
                 },
                 {
-                    "column_name": "classofcreature_name",
+                    "column_name": "classofc_name",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": true,
@@ -1197,7 +1204,7 @@
                     "foreign_table": null
                 },
                 {
-                    "column_name": "classofcreature_img_uri",
+                    "column_name": "classofc_img_uri",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -1206,7 +1213,7 @@
                     "foreign_table": null
                 },
                 {
-                    "column_name": "classofcreature_wiki_url",
+                    "column_name": "classofc_wiki_url",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -1243,39 +1250,46 @@
                 }
             ],
             "has_many": {
-                "cardface_classofcreature_atag": {
+                "cardface_classofc_atag": {
                     "prefix": null,
-                    "type": "cardface_classofcreature_atag",
-                    "from_table": "cardface_classofcreature_atag",
+                    "type": "cardface_classofc_atag",
+                    "from_table": "cardface_classofc_atag",
                     "from_db": "lore",
-                    "from_column": "classofcreature_id"
+                    "from_column": "classofc_id"
                 },
-                "classofcreature_cardface": {
+                "classofc_cardface": {
                     "prefix": null,
-                    "type": "classofcreature_cardface",
-                    "from_table": "classofcreature_cardface",
+                    "type": "classofc_cardface",
+                    "from_table": "classofc_cardface",
                     "from_db": "lore",
-                    "from_column": "classofcreature_id"
+                    "from_column": "classofc_id"
                 },
-                "classofcreature_creature": {
+                "classofc_creature": {
                     "prefix": null,
-                    "type": "classofcreature_creature",
-                    "from_table": "classofcreature_creature",
+                    "type": "classofc_creature",
+                    "from_table": "classofc_creature",
                     "from_db": "lore",
-                    "from_column": "classofcreature_id"
+                    "from_column": "classofc_id"
                 },
-                "person_classofcreature_tag": {
+                "person_classofc_cardface": {
                     "prefix": null,
-                    "type": "person_classofcreature_tag",
-                    "from_table": "person_classofcreature_tag",
+                    "type": "person_classofc_cardface",
+                    "from_table": "person_classofc_cardface",
                     "from_db": "lore",
-                    "from_column": "classofcreature_id"
+                    "from_column": "classofc_id"
+                },
+                "person_classofc_tag": {
+                    "prefix": null,
+                    "type": "person_classofc_tag",
+                    "from_table": "person_classofc_tag",
+                    "from_db": "lore",
+                    "from_column": "classofc_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofcreature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofcreature_name` varchar(255) NOT NULL,\n  `classofcreature_img_uri` varchar(255) DEFAULT NULL,\n  `classofcreature_wiki_url` varchar(255) DEFAULT NULL,\n  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creatureclass_name` (`classofcreature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_name` varchar(255) NOT NULL,\n  `classofc_img_uri` varchar(255) DEFAULT NULL,\n  `classofc_wiki_url` varchar(255) DEFAULT NULL,\n  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creatureclass_name` (`classofc_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "classofcreature_cardface": {
-            "table_name": "classofcreature_cardface",
+        "classofc_cardface": {
+            "table_name": "classofc_cardface",
             "db": "lore",
             "column_data": [
                 {
@@ -1297,13 +1311,13 @@
                     "foreign_table": "cardface"
                 },
                 {
-                    "column_name": "classofcreature_id",
+                    "column_name": "classofc_id",
                     "data_type": "int",
                     "is_primary_key": false,
                     "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
-                    "foreign_table": "classofcreature"
+                    "foreign_table": "classofc"
                 },
                 {
                     "column_name": "created_at",
@@ -1332,18 +1346,18 @@
                     "to_db": "lore",
                     "local_key": "cardface_id"
                 },
-                "classofcreature": {
+                "classofc": {
                     "prefix": null,
-                    "type": "classofcreature",
-                    "to_table": "classofcreature",
+                    "type": "classofc",
+                    "to_table": "classofc",
                     "to_db": "lore",
-                    "local_key": "classofcreature_id"
+                    "local_key": "classofc_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofcreature_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofcreature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofcreature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "classofcreature_creature": {
-            "table_name": "classofcreature_creature",
+        "classofc_creature": {
+            "table_name": "classofc_creature",
             "db": "lore",
             "column_data": [
                 {
@@ -1356,13 +1370,13 @@
                     "foreign_table": null
                 },
                 {
-                    "column_name": "classofcreature_id",
+                    "column_name": "classofc_id",
                     "data_type": "int",
                     "is_primary_key": false,
                     "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
-                    "foreign_table": "classofcreature"
+                    "foreign_table": "classofc"
                 },
                 {
                     "column_name": "creature_id",
@@ -1393,12 +1407,12 @@
                 }
             ],
             "belongs_to": {
-                "classofcreature": {
+                "classofc": {
                     "prefix": null,
-                    "type": "classofcreature",
-                    "to_table": "classofcreature",
+                    "type": "classofc",
+                    "to_table": "classofc",
                     "to_db": "lore",
-                    "local_key": "classofcreature_id"
+                    "local_key": "classofc_id"
                 },
                 "creature": {
                     "prefix": null,
@@ -1408,7 +1422,7 @@
                     "local_key": "creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofcreature_creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofcreature_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofcreature_id` (`classofcreature_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofcreature_id` (`classofc_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "creature": {
             "table_name": "creature",
@@ -1461,10 +1475,10 @@
                 }
             ],
             "has_many": {
-                "classofcreature_creature": {
+                "classofc_creature": {
                     "prefix": null,
-                    "type": "classofcreature_creature",
-                    "from_table": "classofcreature_creature",
+                    "type": "classofc_creature",
+                    "from_table": "classofc_creature",
                     "from_db": "lore",
                     "from_column": "creature_id"
                 },
@@ -1852,10 +1866,17 @@
                     "from_db": "lore",
                     "from_column": "person_id"
                 },
-                "person_classofcreature_tag": {
+                "person_classofc_cardface": {
                     "prefix": null,
-                    "type": "person_classofcreature_tag",
-                    "from_table": "person_classofcreature_tag",
+                    "type": "person_classofc_cardface",
+                    "from_table": "person_classofc_cardface",
+                    "from_db": "lore",
+                    "from_column": "person_id"
+                },
+                "person_classofc_tag": {
+                    "prefix": null,
+                    "type": "person_classofc_tag",
+                    "from_table": "person_classofc_tag",
                     "from_db": "lore",
                     "from_column": "person_id"
                 },
@@ -1883,8 +1904,8 @@
             },
             "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(100) NOT NULL,\n  `first_name` varchar(100) NOT NULL,\n  `person_blurb` varchar(2000) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `wallpaper_download_url` varchar(500) DEFAULT NULL,\n  `mtgwiki_url` varchar(255) DEFAULT NULL,\n  `wizards_story_url` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`,`first_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "person_classofcreature_tag": {
-            "table_name": "person_classofcreature_tag",
+        "person_classofc_cardface": {
+            "table_name": "person_classofc_cardface",
             "db": "lore",
             "column_data": [
                 {
@@ -1906,13 +1927,115 @@
                     "foreign_table": "person"
                 },
                 {
-                    "column_name": "classofcreature_id",
+                    "column_name": "classofc_id",
                     "data_type": "int",
                     "is_primary_key": false,
                     "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
-                    "foreign_table": "classofcreature"
+                    "foreign_table": "classofc"
+                },
+                {
+                    "column_name": "cardface_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "cardface"
+                },
+                {
+                    "column_name": "is_bulk_linker",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "link_note",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "belongs_to": {
+                "person": {
+                    "prefix": null,
+                    "type": "person",
+                    "to_table": "person",
+                    "to_db": "lore",
+                    "local_key": "person_id"
+                },
+                "classofc": {
+                    "prefix": null,
+                    "type": "classofc",
+                    "to_table": "classofc",
+                    "to_db": "lore",
+                    "local_key": "classofc_id"
+                },
+                "cardface": {
+                    "prefix": null,
+                    "type": "cardface",
+                    "to_table": "cardface",
+                    "to_db": "lore",
+                    "local_key": "cardface_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`person_classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `cardface_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`cardface_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+        },
+        "person_classofc_tag": {
+            "table_name": "person_classofc_tag",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "person_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "person"
+                },
+                {
+                    "column_name": "classofc_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "classofc"
                 },
                 {
                     "column_name": "tag_id",
@@ -1968,12 +2091,12 @@
                     "to_db": "lore",
                     "local_key": "person_id"
                 },
-                "classofcreature": {
+                "classofc": {
                     "prefix": null,
-                    "type": "classofcreature",
-                    "to_table": "classofcreature",
+                    "type": "classofc",
+                    "to_table": "classofc",
                     "to_db": "lore",
-                    "local_key": "classofcreature_id"
+                    "local_key": "classofc_id"
                 },
                 "tag": {
                     "prefix": null,
@@ -1983,7 +2106,7 @@
                     "local_key": "tag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_classofcreature_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofcreature_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofcreature_id`,`tag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_classofc_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`tag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "person_creature_tag": {
             "table_name": "person_creature_tag",
@@ -2341,7 +2464,7 @@
                     "foreign_table": null
                 }
             ],
-            "create_table_sql": "CREATE TABLE `lore`.`scanhistory` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `multiverse_id` int(11) NOT NULL,\n  `viewchannel` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`scanhistory` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `multiverse_id` int(11) NOT NULL,\n  `viewchannel` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "strategy": {
             "table_name": "strategy",
@@ -2559,10 +2682,10 @@
                 }
             ],
             "has_many": {
-                "person_classofcreature_tag": {
+                "person_classofc_tag": {
                     "prefix": null,
-                    "type": "person_classofcreature_tag",
-                    "from_table": "person_classofcreature_tag",
+                    "type": "person_classofc_tag",
+                    "from_table": "person_classofc_tag",
                     "from_db": "lore",
                     "from_column": "tag_id"
                 },

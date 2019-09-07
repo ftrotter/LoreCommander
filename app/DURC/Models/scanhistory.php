@@ -73,7 +73,7 @@ CREATE TABLE `lore`.`scanhistory` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=3f0ab11a0ae0c9cdf5c89f17ad66b4bd
+FILE_SIG=c854bda3c22d810ca3799426ae81c0d9
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -226,11 +226,11 @@ array (
 )
 //has_many
 array (
-  'cardface_classofcreature_atag' => 
+  'cardface_classofc_atag' => 
   array (
     'prefix' => NULL,
-    'type' => 'cardface_classofcreature_atag',
-    'from_table' => 'cardface_classofcreature_atag',
+    'type' => 'cardface_classofc_atag',
+    'from_table' => 'cardface_classofc_atag',
     'from_db' => 'lore',
     'from_column' => 'atag_id',
     'other_columns' => 
@@ -257,13 +257,13 @@ array (
       ),
       2 => 
       array (
-        'column_name' => 'classofcreature_id',
+        'column_name' => 'classofc_id',
         'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => true,
         'is_linked_key' => true,
         'foreign_db' => 'lore',
-        'foreign_table' => 'classofcreature',
+        'foreign_table' => 'classofc',
       ),
       3 => 
       array (

@@ -1,0 +1,360 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/classofc' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/classofc/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>classofc</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/DURC/classofc/'>Return to classofc list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/classofc/create'>Create new classofc </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-2 col-form-label'>id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{classofc_name_row_class}}'>
+    <label for='classofc_name' class='col-sm-2 col-form-label'>classofc_name</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='classofc_name' name='classofc_name' placeholder='' value='{{classofc_name}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{classofc_img_uri_row_class}}'>
+    <label for='classofc_img_uri' class='col-sm-2 col-form-label'>classofc_img_uri</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{classofc_wiki_url_row_class}}'>
+    <label for='classofc_wiki_url' class='col-sm-2 col-form-label'>classofc_wiki_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{is_mega_class_row_class}}'>
+    <div class='col-sm-2'><label>is_mega_class</label></div>
+    <div class='col-sm-10'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}} >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-10'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/classofc/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='classofc' class='do-soft-delete btn btn-outline-danger'>Hard Delete classofc</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many cardface_classofc_atag ( <a href='/DURC/cardface_classofc_atag/'>see all</a> )
+{{^cardface_classofc_atag}}
+(no values)
+{{/cardface_classofc_atag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_cardface_classofc_atag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> classofc_id </th>
+			<th> atag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#cardface_classofc_atag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface_classofc_atag/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{atag_id_DURClabel}} ({{atag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/cardface_classofc_atag}}
+</tbody>
+</table>
+</div></div> <!-- end cardface_classofc_atag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofc_cardface ( <a href='/DURC/classofc_cardface/'>see all</a> )
+{{^classofc_cardface}}
+(no values)
+{{/classofc_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofc_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> classofc_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofc_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofc_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofc_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end classofc_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofc_creature ( <a href='/DURC/classofc_creature/'>see all</a> )
+{{^classofc_creature}}
+(no values)
+{{/classofc_creature}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofc_creature' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> classofc_id </th>
+			<th> creature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofc_creature}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofc_creature/{{id}}'>{{id}}</a></td>
+			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofc_creature}}
+</tbody>
+</table>
+</div></div> <!-- end classofc_creature card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_classofc_cardface ( <a href='/DURC/person_classofc_cardface/'>see all</a> )
+{{^person_classofc_cardface}}
+(no values)
+{{/person_classofc_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_classofc_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> classofc_id </th>
+			<th> cardface_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_classofc_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_classofc_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_classofc_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end person_classofc_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_classofc_tag ( <a href='/DURC/person_classofc_tag/'>see all</a> )
+{{^person_classofc_tag}}
+(no values)
+{{/person_classofc_tag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_classofc_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> classofc_id </th>
+			<th> tag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_classofc_tag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_classofc_tag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_classofc_tag}}
+</tbody>
+</table>
+</div></div> <!-- end person_classofc_tag card-->
+<br>
+</div></div> <!--end has many card-->
+<br>
