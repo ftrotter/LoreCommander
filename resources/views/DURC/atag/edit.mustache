@@ -149,3 +149,92 @@
 
 
 <br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many cardface_classofc_atag ( <a href='/DURC/cardface_classofc_atag/'>see all</a> )
+{{^cardface_classofc_atag}}
+(no values)
+{{/cardface_classofc_atag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_cardface_classofc_atag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> classofc_id </th>
+			<th> atag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#cardface_classofc_atag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface_classofc_atag/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{atag_id_DURClabel}} ({{atag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/cardface_classofc_atag}}
+</tbody>
+</table>
+</div></div> <!-- end cardface_classofc_atag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many cardface_person_atag ( <a href='/DURC/cardface_person_atag/'>see all</a> )
+{{^cardface_person_atag}}
+(no values)
+{{/cardface_person_atag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_cardface_person_atag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> person_id </th>
+			<th> atag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#cardface_person_atag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface_person_atag/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{atag_id_DURClabel}} ({{atag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/cardface_person_atag}}
+</tbody>
+</table>
+</div></div> <!-- end cardface_person_atag card-->
+<br>
+</div></div> <!--end has many card-->
+<br>

@@ -37,12 +37,14 @@ Create <a href='/DURC/scanhistory/create/'>new scanhistory</a><br>
 <table id='table_scanhistory' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
 <th scope='col'>#</th><th scope='col'>multiverse_id</th>
+<th scope='col'>viewchannel</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
 </tr></thead>
 <tfoot><tr>
 <th scope='col'>#</th><th scope='col'>multiverse_id</th>
+<th scope='col'>viewchannel</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -50,7 +52,8 @@ Create <a href='/DURC/scanhistory/create/'>new scanhistory</a><br>
 <tbody>
   {{#data}}
     <tr>
-	<th scope='row'><a href='/DURC/scanhistory/{{id}}/'> {{id}} </a></th>			<td>{{created_at}}</td>
+	<th scope='row'><a href='/DURC/scanhistory/{{id}}/'> {{id}} </a></th>			<td>{{viewchannel}}</td>
+			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 
     </tr>

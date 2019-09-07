@@ -163,6 +163,20 @@ $('.select2_card_id').select2({
     </div>
   </div>
 
+  <div class='form-group row {{image_uri_art_crop_row_class}}'>
+    <label for='image_uri_art_crop' class='col-sm-2 col-form-label'>image_uri_art_crop</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='image_uri_art_crop' name='image_uri_art_crop' placeholder='' value='{{image_uri_art_crop}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{image_hash_art_crop_row_class}}'>
+    <label for='image_hash_art_crop' class='col-sm-2 col-form-label'>image_hash_art_crop</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='image_hash_art_crop' name='image_hash_art_crop' placeholder='' value='{{image_hash_art_crop}}'>
+    </div>
+  </div>
+
   <div class='form-group row {{image_uri_small_row_class}}'>
     <label for='image_uri_small' class='col-sm-2 col-form-label'>image_uri_small</label>
     <div class='col-sm-10'>
@@ -216,20 +230,6 @@ $('.select2_card_id').select2({
     <label for='image_hash_png' class='col-sm-2 col-form-label'>image_hash_png</label>
     <div class='col-sm-10'>
       <input type='text' class='form-control' id='image_hash_png' name='image_hash_png' placeholder='' value='{{image_hash_png}}'>
-    </div>
-  </div>
-
-  <div class='form-group row {{image_uri_art_crop_row_class}}'>
-    <label for='image_uri_art_crop' class='col-sm-2 col-form-label'>image_uri_art_crop</label>
-    <div class='col-sm-10'>
-      <input type='text' class='form-control' id='image_uri_art_crop' name='image_uri_art_crop' placeholder='' value='{{image_uri_art_crop}}'>
-    </div>
-  </div>
-
-  <div class='form-group row {{image_hash_art_crop_row_class}}'>
-    <label for='image_hash_art_crop' class='col-sm-2 col-form-label'>image_hash_art_crop</label>
-    <div class='col-sm-10'>
-      <input type='text' class='form-control' id='image_hash_art_crop' name='image_hash_art_crop' placeholder='' value='{{image_hash_art_crop}}'>
     </div>
   </div>
 
@@ -353,6 +353,13 @@ $('.select2_card_id').select2({
     </div>
   </div>
 
+  <div class='form-group row {{for_fulltext_search_row_class}}'>
+    <label for='for_fulltext_search' class='col-sm-2 col-form-label'>for_fulltext_search</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='for_fulltext_search' name='for_fulltext_search' placeholder='' value='{{for_fulltext_search}}'>
+    </div>
+  </div>
+
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
     <div class='col-sm-10'>
@@ -445,38 +452,197 @@ $('.select2_card_id').select2({
 
 <div class='card'>
   <div class='card-header'>
-    Has many classofcreature_cardface ( <a href='/DURC/classofcreature_cardface/'>see all</a> )
-{{^classofcreature_cardface}}
+    Has many cardface_classofc_atag ( <a href='/DURC/cardface_classofc_atag/'>see all</a> )
+{{^cardface_classofc_atag}}
 (no values)
-{{/classofcreature_cardface}}
+{{/cardface_classofc_atag}}
   </div>
 <div class='card-body'>
 
-<table id='table_classofcreature_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_cardface_classofc_atag' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
 			<th> cardface_id </th>
-			<th> classofcreature_id </th>
+			<th> classofc_id </th>
+			<th> atag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
 			<th> created_at </th>
 			<th> updated_at </th>
 
 </tr>
 </thead>
 <tbody>
-{{#classofcreature_cardface}}
+{{#cardface_classofc_atag}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/classofcreature_cardface/{{id}}'>{{id}}</a></td>
-			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{created_at}}</td>
+			<td><a href='/DURC/cardface_classofc_atag/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{atag_id_DURClabel}} ({{atag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/classofcreature_cardface}}
+{{/cardface_classofc_atag}}
 </tbody>
 </table>
-</div></div> <!-- end classofcreature_cardface card-->
+</div></div> <!-- end cardface_classofc_atag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many cardface_person_atag ( <a href='/DURC/cardface_person_atag/'>see all</a> )
+{{^cardface_person_atag}}
+(no values)
+{{/cardface_person_atag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_cardface_person_atag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> person_id </th>
+			<th> atag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#cardface_person_atag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface_person_atag/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{atag_id_DURClabel}} ({{atag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/cardface_person_atag}}
+</tbody>
+</table>
+</div></div> <!-- end cardface_person_atag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofc_cardface ( <a href='/DURC/classofc_cardface/'>see all</a> )
+{{^classofc_cardface}}
+(no values)
+{{/classofc_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofc_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> classofc_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofc_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofc_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofc_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end classofc_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many creature_cardface ( <a href='/DURC/creature_cardface/'>see all</a> )
+{{^creature_cardface}}
+(no values)
+{{/creature_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_creature_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> creature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#creature_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/creature_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/creature_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end creature_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_classofc_cardface ( <a href='/DURC/person_classofc_cardface/'>see all</a> )
+{{^person_classofc_cardface}}
+(no values)
+{{/person_classofc_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_classofc_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> classofc_id </th>
+			<th> cardface_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_classofc_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_classofc_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_classofc_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end person_classofc_cardface card-->
 <br>
 
 <div class='card'>

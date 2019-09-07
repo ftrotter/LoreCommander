@@ -56,6 +56,41 @@
     </div>
   </div>
 
+  <div class='form-group row {{person_blurb_row_class}}'>
+    <label for='person_blurb' class='col-sm-2 col-form-label'>person_blurb</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='person_blurb' name='person_blurb' placeholder='' value='{{person_blurb}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{image_uri_row_class}}'>
+    <label for='image_uri' class='col-sm-2 col-form-label'>image_uri</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{wallpaper_download_url_row_class}}'>
+    <label for='wallpaper_download_url' class='col-sm-2 col-form-label'>wallpaper_download_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='' value='{{wallpaper_download_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{mtgwiki_url_row_class}}'>
+    <label for='mtgwiki_url' class='col-sm-2 col-form-label'>mtgwiki_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='mtgwiki_url' name='mtgwiki_url' placeholder='' value='{{mtgwiki_url}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{wizards_story_url_row_class}}'>
+    <label for='wizards_story_url' class='col-sm-2 col-form-label'>wizards_story_url</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='wizards_story_url' name='wizards_story_url' placeholder='' value='{{wizards_story_url}}'>
+    </div>
+  </div>
+
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
     <div class='col-sm-10'>
@@ -148,19 +183,101 @@
 
 <div class='card'>
   <div class='card-header'>
-    Has many person_classofcreature_tag ( <a href='/DURC/person_classofcreature_tag/'>see all</a> )
-{{^person_classofcreature_tag}}
+    Has many cardface_person_atag ( <a href='/DURC/cardface_person_atag/'>see all</a> )
+{{^cardface_person_atag}}
 (no values)
-{{/person_classofcreature_tag}}
+{{/cardface_person_atag}}
   </div>
 <div class='card-body'>
 
-<table id='table_person_classofcreature_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_cardface_person_atag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> person_id </th>
+			<th> atag_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#cardface_person_atag}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface_person_atag/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{atag_id_DURClabel}} ({{atag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/cardface_person_atag}}
+</tbody>
+</table>
+</div></div> <!-- end cardface_person_atag card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_classofc_cardface ( <a href='/DURC/person_classofc_cardface/'>see all</a> )
+{{^person_classofc_cardface}}
+(no values)
+{{/person_classofc_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_classofc_cardface' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
 			<th> person_id </th>
-			<th> classofcreature_id </th>
+			<th> classofc_id </th>
+			<th> cardface_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#person_classofc_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person_classofc_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/person_classofc_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end person_classofc_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many person_classofc_tag ( <a href='/DURC/person_classofc_tag/'>see all</a> )
+{{^person_classofc_tag}}
+(no values)
+{{/person_classofc_tag}}
+  </div>
+<div class='card-body'>
+
+<table id='table_person_classofc_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> person_id </th>
+			<th> classofc_id </th>
 			<th> tag_id </th>
 			<th> is_bulk_linker </th>
 			<th> link_note </th>
@@ -170,21 +287,21 @@
 </tr>
 </thead>
 <tbody>
-{{#person_classofcreature_tag}}
+{{#person_classofc_tag}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/person_classofcreature_tag/{{id}}'>{{id}}</a></td>
-			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td><a href='/DURC/person_classofc_tag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
 			<td>{{link_note}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/person_classofcreature_tag}}
+{{/person_classofc_tag}}
 </tbody>
 </table>
-</div></div> <!-- end person_classofcreature_tag card-->
+</div></div> <!-- end person_classofc_tag card-->
 <br>
 
 <div class='card'>

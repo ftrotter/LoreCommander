@@ -49,6 +49,13 @@
     </div>
   </div>
 
+  <div class='form-group row {{creature_image_uri_row_class}}'>
+    <label for='creature_image_uri' class='col-sm-2 col-form-label'>creature_image_uri</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='creature_image_uri' name='creature_image_uri' placeholder='' value='{{creature_image_uri}}'>
+    </div>
+  </div>
+
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
     <div class='col-sm-10'>
@@ -141,18 +148,18 @@
 
 <div class='card'>
   <div class='card-header'>
-    Has many classofcreature_creature ( <a href='/DURC/classofcreature_creature/'>see all</a> )
-{{^classofcreature_creature}}
+    Has many classofc_creature ( <a href='/DURC/classofc_creature/'>see all</a> )
+{{^classofc_creature}}
 (no values)
-{{/classofcreature_creature}}
+{{/classofc_creature}}
   </div>
 <div class='card-body'>
 
-<table id='table_classofcreature_creature' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_classofc_creature' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
-			<th> classofcreature_id </th>
+			<th> classofc_id </th>
 			<th> creature_id </th>
 			<th> created_at </th>
 			<th> updated_at </th>
@@ -160,19 +167,55 @@
 </tr>
 </thead>
 <tbody>
-{{#classofcreature_creature}}
+{{#classofc_creature}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/classofcreature_creature/{{id}}'>{{id}}</a></td>
-			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
+			<td><a href='/DURC/classofc_creature/{{id}}'>{{id}}</a></td>
+			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/classofcreature_creature}}
+{{/classofc_creature}}
 </tbody>
 </table>
-</div></div> <!-- end classofcreature_creature card-->
+</div></div> <!-- end classofc_creature card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many creature_cardface ( <a href='/DURC/creature_cardface/'>see all</a> )
+{{^creature_cardface}}
+(no values)
+{{/creature_cardface}}
+  </div>
+<div class='card-body'>
+
+<table id='table_creature_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> cardface_id </th>
+			<th> creature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#creature_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/creature_cardface/{{id}}'>{{id}}</a></td>
+			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/creature_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end creature_cardface card-->
 <br>
 
 <div class='card'>

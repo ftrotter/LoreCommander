@@ -108,6 +108,10 @@ Route::get('durctest', function () {
  			'/DURC/tag/create', //from: lore.tag 
  			'/DURC/tag/1', //from: lore.tag 
  			'/DURC/tag/1/edit', //from: lore.tag 
+ 			'/DURC/vspack', //from: lore.vspack 
+ 			'/DURC/vspack/create', //from: lore.vspack 
+ 			'/DURC/vspack/1', //from: lore.vspack 
+ 			'/DURC/vspack/1/edit', //from: lore.vspack 
 
 
 	]; //end route_list

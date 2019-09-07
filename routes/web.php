@@ -207,6 +207,13 @@ Route::get("/DURC/json/tag/{tag_id}", 'tagController@jsonone');
 Route::get("/DURC/json/tag/", 'tagController@jsonall');
 Route::get("/DURC/searchjson/tag/", 'tagController@search');
 
+ 
+//DURC->	lore.vspack
+Route::resource("/DURC/vspack", 'vspackController');
+Route::get("/DURC/json/vspack/{vspack_id}", 'vspackController@jsonone');
+Route::get("/DURC/json/vspack/", 'vspackController@jsonall');
+Route::get("/DURC/searchjson/vspack/", 'vspackController@search');
+
 
 
 
