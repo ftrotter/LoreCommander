@@ -173,19 +173,19 @@ $('.select2_excludes_tag_id').select2({
 
 <div class='card'>
   <div class='card-header'>
-    Has many person_classofcreature_tag ( <a href='/DURC/person_classofcreature_tag/'>see all</a> )
-{{^person_classofcreature_tag}}
+    Has many person_classofc_tag ( <a href='/DURC/person_classofc_tag/'>see all</a> )
+{{^person_classofc_tag}}
 (no values)
-{{/person_classofcreature_tag}}
+{{/person_classofc_tag}}
   </div>
 <div class='card-body'>
 
-<table id='table_person_classofcreature_tag' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_person_classofc_tag' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
 			<th> person_id </th>
-			<th> classofcreature_id </th>
+			<th> classofc_id </th>
 			<th> tag_id </th>
 			<th> is_bulk_linker </th>
 			<th> link_note </th>
@@ -195,21 +195,21 @@ $('.select2_excludes_tag_id').select2({
 </tr>
 </thead>
 <tbody>
-{{#person_classofcreature_tag}}
+{{#person_classofc_tag}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/person_classofcreature_tag/{{id}}'>{{id}}</a></td>
-			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofcreature_id_DURClabel}} ({{classofcreature_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td><a href='/DURC/person_classofc_tag/{{id}}'>{{id}}</a></td>
+			<td>{{person_id_DURClabel}} ({{person_id}}) </td>			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{tag_id_DURClabel}} ({{tag_id}}) </td>			<td>{{is_bulk_linker}}</td>
 			<td>{{link_note}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/person_classofcreature_tag}}
+{{/person_classofc_tag}}
 </tbody>
 </table>
-</div></div> <!-- end person_classofcreature_tag card-->
+</div></div> <!-- end person_classofc_tag card-->
 <br>
 
 <div class='card'>

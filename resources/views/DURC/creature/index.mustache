@@ -37,12 +37,14 @@ Create <a href='/DURC/creature/create/'>new creature</a><br>
 <table id='table_creature' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
 <th scope='col'>#</th><th scope='col'>creature_name</th>
+<th scope='col'>creature_image_uri</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
 </tr></thead>
 <tfoot><tr>
 <th scope='col'>#</th><th scope='col'>creature_name</th>
+<th scope='col'>creature_image_uri</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -51,6 +53,7 @@ Create <a href='/DURC/creature/create/'>new creature</a><br>
   {{#data}}
     <tr>
 	<th scope='row'><a href='/DURC/creature/{{id}}/'> {{id}} </a></th>			<td>{{creature_name}}</td>
+			<td>{{creature_image_uri}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 

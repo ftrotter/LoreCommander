@@ -41,7 +41,7 @@ This interface allows you to quickly tag sets of objects...
 	{{ csrf_field() }}
 
 	<div class='row'>
-		<div class='col-md-5'>
+		<div class='col-md-4'>
 			<h3> {{$durc_type_left}} </h3>
 			<a href='/DURC/{{$durc_type_left}}' target='_blank'>Add {{$durc_type_left}} entries</a><br>
 
@@ -50,7 +50,7 @@ This interface allows you to quickly tag sets of objects...
 
 		</div>
 
-		<div class='col-md-2'>
+		<div class='col-md-4'>
 			<h3> {{$durc_type_tag}} </h3>
 			<a href='/DURC/{{$durc_type_tag}}' target='_blank'>Add {{$durc_type_tag}} entries</a><br>
 
@@ -58,7 +58,7 @@ This interface allows you to quickly tag sets of objects...
 			</select>
 
 		</div>
-		<div class='col-md-5'>
+		<div class='col-md-4'>
 			<h3> {{$durc_type_right}} </h3>
 			<a href='/DURC/{{$durc_type_right}}' target='_blank'>Add {{$durc_type_right}} entries</a><br>
 
@@ -66,7 +66,6 @@ This interface allows you to quickly tag sets of objects...
 			</select>
 
 		</div>
-		<div class='col-md-1'></div>
 	</div>
 </div>
 <div class='container'>
