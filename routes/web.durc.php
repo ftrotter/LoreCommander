@@ -70,6 +70,13 @@ Route::get("/DURC/json/classofc_cardface/", 'classofc_cardfaceController@jsonall
 Route::get("/DURC/searchjson/classofc_cardface/", 'classofc_cardfaceController@search');
 
  
+//DURC->	lore.classofc_classofc_vspack
+Route::resource("/DURC/classofc_classofc_vspack", 'classofc_classofc_vspackController');
+Route::get("/DURC/json/classofc_classofc_vspack/{classofc_classofc_vspack_id}", 'classofc_classofc_vspackController@jsonone');
+Route::get("/DURC/json/classofc_classofc_vspack/", 'classofc_classofc_vspackController@jsonall');
+Route::get("/DURC/searchjson/classofc_classofc_vspack/", 'classofc_classofc_vspackController@search');
+
+ 
 //DURC->	lore.classofc_creature
 Route::resource("/DURC/classofc_creature", 'classofc_creatureController');
 Route::get("/DURC/json/classofc_creature/{classofc_creature_id}", 'classofc_creatureController@jsonone');
@@ -96,6 +103,13 @@ Route::resource("/DURC/mtgset", 'mtgsetController');
 Route::get("/DURC/json/mtgset/{mtgset_id}", 'mtgsetController@jsonone');
 Route::get("/DURC/json/mtgset/", 'mtgsetController@jsonall');
 Route::get("/DURC/searchjson/mtgset/", 'mtgsetController@search');
+
+ 
+//DURC->	lore.pack
+Route::resource("/DURC/pack", 'packController');
+Route::get("/DURC/json/pack/{pack_id}", 'packController@jsonone');
+Route::get("/DURC/json/pack/", 'packController@jsonall');
+Route::get("/DURC/searchjson/pack/", 'packController@search');
 
  
 //DURC->	lore.person

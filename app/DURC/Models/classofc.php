@@ -27,6 +27,8 @@ class classofc extends DURCModel{
 		protected $DURC_selfish_with = [ 
 			'cardface_classofc_atag', //from from many
 			'classofc_cardface', //from from many
+			'classofc_classofc_vspack', //from from many
+			'second_classofc_classofc_vspack', //from from many
 			'classofc_creature', //from from many
 			'person_classofc_cardface', //from from many
 			'person_classofc_tag', //from from many
@@ -72,6 +74,22 @@ class classofc extends DURCModel{
 */
 	public function classofc_cardface(){
 		return $this->hasMany('App\classofc_cardface','classofc_id','id');
+	}
+
+
+/**
+*	get all the classofc_classofc_vspack for this classofc
+*/
+	public function classofc_classofc_vspack(){
+		return $this->hasMany('App\classofc_classofc_vspack','classofc_id','id');
+	}
+
+
+/**
+*	get all the second_classofc_classofc_vspack for this classofc
+*/
+	public function second_classofc_classofc_vspack(){
+		return $this->hasMany('App\classofc_classofc_vspack','second_classofc_id','id');
 	}
 
 

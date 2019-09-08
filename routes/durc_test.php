@@ -52,6 +52,10 @@ Route::get('durctest', function () {
  			'/DURC/classofc_cardface/create', //from: lore.classofc_cardface 
  			'/DURC/classofc_cardface/1', //from: lore.classofc_cardface 
  			'/DURC/classofc_cardface/1/edit', //from: lore.classofc_cardface 
+ 			'/DURC/classofc_classofc_vspack', //from: lore.classofc_classofc_vspack 
+ 			'/DURC/classofc_classofc_vspack/create', //from: lore.classofc_classofc_vspack 
+ 			'/DURC/classofc_classofc_vspack/1', //from: lore.classofc_classofc_vspack 
+ 			'/DURC/classofc_classofc_vspack/1/edit', //from: lore.classofc_classofc_vspack 
  			'/DURC/classofc_creature', //from: lore.classofc_creature 
  			'/DURC/classofc_creature/create', //from: lore.classofc_creature 
  			'/DURC/classofc_creature/1', //from: lore.classofc_creature 
@@ -68,6 +72,10 @@ Route::get('durctest', function () {
  			'/DURC/mtgset/create', //from: lore.mtgset 
  			'/DURC/mtgset/1', //from: lore.mtgset 
  			'/DURC/mtgset/1/edit', //from: lore.mtgset 
+ 			'/DURC/pack', //from: lore.pack 
+ 			'/DURC/pack/create', //from: lore.pack 
+ 			'/DURC/pack/1', //from: lore.pack 
+ 			'/DURC/pack/1/edit', //from: lore.pack 
  			'/DURC/person', //from: lore.person 
  			'/DURC/person/create', //from: lore.person 
  			'/DURC/person/1', //from: lore.person 

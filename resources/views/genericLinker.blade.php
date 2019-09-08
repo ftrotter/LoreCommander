@@ -45,7 +45,7 @@ This interface allows you to quickly tag sets of objects...
 			<h3> {{$durc_type_left}} </h3>
 			<a href='/DURC/{{$durc_type_left}}' target='_blank'>Add {{$durc_type_left}} entries</a><br>
 
-			<select class='{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_type_left}}_id' name='{{$durc_type_left}}_id[]'>
+			<select class='{{$durc_type_left}}_id form-control' multiple='' id='{{$durc_left_id}}' name='{{$durc_left_id}}[]'>
 			</select>
 
 		</div>
@@ -54,7 +54,7 @@ This interface allows you to quickly tag sets of objects...
 			<h3> {{$durc_type_tag}} </h3>
 			<a href='/DURC/{{$durc_type_tag}}' target='_blank'>Add {{$durc_type_tag}} entries</a><br>
 
-			<select class='{{$durc_type_tag}}_id form-control' multiple='' id='{{$durc_type_tag}}_id' name='{{$durc_type_tag}}_id[]'>
+			<select class='{{$durc_type_tag}}_id form-control' multiple='' id='{{$durc_tag_id}}' name='{{$durc_tag_id}}[]'>
 			</select>
 
 		</div>
@@ -62,7 +62,7 @@ This interface allows you to quickly tag sets of objects...
 			<h3> {{$durc_type_right}} </h3>
 			<a href='/DURC/{{$durc_type_right}}' target='_blank'>Add {{$durc_type_right}} entries</a><br>
 
-			<select class='{{$durc_type_right}}_id form-control' multiple='' id='{{$durc_type_right}}_id' name='{{$durc_type_right}}_id[]'>
+			<select class='{{$durc_right_id}} form-control' multiple='' id='{{$durc_right_id}}' name='{{$durc_right_id}}[]'>
 			</select>
 
 		</div>
@@ -108,7 +108,7 @@ function token_template(search_result,container,query) {
 }
 
 
-$('.{{$durc_type_left}}_id').select2({
+$('.{{$durc_left_id}}').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_left}}/',
     	dataType: 'json'
@@ -119,7 +119,7 @@ $('.{{$durc_type_left}}_id').select2({
     escapeMarkup: function(m) { return m; }	
 });
 
-$('.{{$durc_type_right}}_id').select2({
+$('.{{$durc_right_id}}').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_right}}/',
     	dataType: 'json'
@@ -130,7 +130,7 @@ $('.{{$durc_type_right}}_id').select2({
     escapeMarkup: function(m) { return m; }	
 });
 
-$('.{{$durc_type_tag}}_id').select2({
+$('.{{$durc_tag_id}}').select2({
   ajax: {
     	url: '/DURC/searchjson/{{$durc_type_tag}}/',
     	dataType: 'json'

@@ -1264,6 +1264,20 @@
                     "from_db": "lore",
                     "from_column": "classofc_id"
                 },
+                "classofc_classofc_vspack": {
+                    "prefix": null,
+                    "type": "classofc_classofc_vspack",
+                    "from_table": "classofc_classofc_vspack",
+                    "from_db": "lore",
+                    "from_column": "classofc_id"
+                },
+                "second_classofc_classofc_vspack": {
+                    "prefix": "second",
+                    "type": "classofc_classofc_vspack",
+                    "from_table": "classofc_classofc_vspack",
+                    "from_db": "lore",
+                    "from_column": "second_classofc_id"
+                },
                 "classofc_creature": {
                     "prefix": null,
                     "type": "classofc_creature",
@@ -1355,6 +1369,108 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+        },
+        "classofc_classofc_vspack": {
+            "table_name": "classofc_classofc_vspack",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "classofc_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "classofc"
+                },
+                {
+                    "column_name": "second_classofc_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "classofc"
+                },
+                {
+                    "column_name": "vspack_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "vspack"
+                },
+                {
+                    "column_name": "is_bulk_linker",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "link_note",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "belongs_to": {
+                "classofc": {
+                    "prefix": null,
+                    "type": "classofc",
+                    "to_table": "classofc",
+                    "to_db": "lore",
+                    "local_key": "classofc_id"
+                },
+                "second_classofc": {
+                    "prefix": "second",
+                    "type": "classofc",
+                    "to_table": "classofc",
+                    "to_db": "lore",
+                    "local_key": "second_classofc_id"
+                },
+                "vspack": {
+                    "prefix": null,
+                    "type": "vspack",
+                    "to_table": "vspack",
+                    "to_db": "lore",
+                    "local_key": "vspack_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_classofc_vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `second_classofc_id` int(11) NOT NULL,\n  `vspack_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofc_id` (`classofc_id`,`second_classofc_id`,`vspack_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
         },
         "classofc_creature": {
             "table_name": "classofc_creature",
@@ -1762,6 +1878,76 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` varchar(255) NOT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+        },
+        "pack": {
+            "table_name": "pack",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "pack_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "pack_wizards_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "pack_wiki_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "pack_img_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `lore`.`pack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `pack_name` varchar(255) NOT NULL,\n  `pack_wizards_url` varchar(2000) NOT NULL,\n  `pack_wiki_url` varchar(2000) NOT NULL,\n  `pack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "person": {
             "table_name": "person",
@@ -2790,6 +2976,15 @@
                     "foreign_table": null
                 }
             ],
+            "has_many": {
+                "classofc_classofc_vspack": {
+                    "prefix": null,
+                    "type": "classofc_classofc_vspack",
+                    "from_table": "classofc_classofc_vspack",
+                    "from_db": "lore",
+                    "from_column": "vspack_id"
+                }
+            },
             "create_table_sql": "CREATE TABLE `lore`.`vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `vspack_name` varchar(255) NOT NULL,\n  `vspack_wizards_url` varchar(2000) NOT NULL,\n  `vspack_wiki_url` varchar(2000) NOT NULL,\n  `vspack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         }
     }
