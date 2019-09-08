@@ -1,18 +1,18 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=20fbacbe4da045b1c04de51f7b9b7625
+FILE_SIG=93c3c179609dac9c456ee8f264a12968
 */
 namespace App;
 /*
-	vspack: controls lore.vspack
+	pack: controls lore.pack
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class vspack extends \App\DURC\Models\vspack
+class pack extends \App\DURC\Models\pack
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
@@ -26,45 +26,35 @@ class vspack extends \App\DURC\Models\vspack
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'classofc_classofc_vspack', //from from many
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'vspack_name', //varchar
-			//'vspack_wizards_url', //varchar
-			//'vspack_wiki_url', //varchar
-			//'vspack_img_url', //varchar
+			//'pack_name', //varchar
+			//'pack_wizards_url', //varchar
+			//'pack_wiki_url', //varchar
+			//'pack_img_url', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
 
 
 //DURC HAS_MANY SECTION
-
-/**
-*	DURC is handling the classofc_classofc_vspack for this vspack in vspack
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function classofc_classofc_vspack(){
-		return parent::classofc_classofc_vspack();
-	}
-
-
+			//DURC did not detect any has_many relationships
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
 
 // Last generated SQL Schema
 /*
-CREATE TABLE `lore`.`vspack` (
+CREATE TABLE `lore`.`pack` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vspack_name` varchar(255) NOT NULL,
-  `vspack_wizards_url` varchar(2000) NOT NULL,
-  `vspack_wiki_url` varchar(2000) NOT NULL,
-  `vspack_img_url` varchar(2000) NOT NULL,
+  `pack_name` varchar(255) NOT NULL,
+  `pack_wizards_url` varchar(2000) NOT NULL,
+  `pack_wiki_url` varchar(2000) NOT NULL,
+  `pack_img_url` varchar(2000) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -74,4 +64,4 @@ CREATE TABLE `lore`.`vspack` (
 	//your stuff goes here..
 	
 
-}//end vspack
+}//end pack

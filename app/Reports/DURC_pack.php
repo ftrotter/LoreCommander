@@ -1,25 +1,25 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e28b10527bc80f28b8b259fcfc99d240
+FILE_SIG=c6ebb07534989de6b213b17ec2cf44d6
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 
-class DURC_vspack extends AbstractTabularReport
+class DURC_pack extends AbstractTabularReport
 {
 
     //returns the name of the report
     public function GetReportName(): string {
-        $report_name = "vspack Report";
+        $report_name = "pack Report";
         return($report_name);
     }
 
     //returns the description of the report. HTML is allowed here.
     public function GetReportDescription(): ?string {
-        $desc = "View the vspack data
+        $desc = "View the pack data
 			<br>
-			<a href='/DURC/vspack/create'>Add new vspack</a>
+			<a href='/DURC/pack/create'>Add new pack</a>
 ";
         return($desc);
     }
@@ -34,7 +34,7 @@ class DURC_vspack extends AbstractTabularReport
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\vspack::getImgField();
+	$img_field_name = \App\pack::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -50,16 +50,16 @@ class DURC_vspack extends AbstractTabularReport
 
                 $sql = "
 SELECT
-vspack.id
+pack.id
 $joined_select_field_sql 
-, vspack.vspack_name AS vspack_name
-, vspack.vspack_wizards_url AS vspack_wizards_url
-, vspack.vspack_wiki_url AS vspack_wiki_url
-, vspack.vspack_img_url AS vspack_img_url
-, vspack.created_at AS created_at
-, vspack.updated_at AS updated_at
+, pack.pack_name AS pack_name
+, pack.pack_wizards_url AS pack_wizards_url
+, pack.pack_wiki_url AS pack_wiki_url
+, pack.pack_img_url AS pack_img_url
+, pack.created_at AS created_at
+, pack.updated_at AS updated_at
 
-FROM lore.vspack
+FROM lore.pack
 
 ";
 
@@ -67,18 +67,18 @@ FROM lore.vspack
 
                 $sql = "
 SELECT
-vspack.id 
+pack.id 
 $joined_select_field_sql
-, vspack.vspack_name AS vspack_name
-, vspack.vspack_wizards_url AS vspack_wizards_url
-, vspack.vspack_wiki_url AS vspack_wiki_url
-, vspack.vspack_img_url AS vspack_img_url
-, vspack.created_at AS created_at
-, vspack.updated_at AS updated_at
+, pack.pack_name AS pack_name
+, pack.pack_wizards_url AS pack_wizards_url
+, pack.pack_wiki_url AS pack_wiki_url
+, pack.pack_img_url AS pack_img_url
+, pack.created_at AS created_at
+, pack.updated_at AS updated_at
  
-FROM lore.vspack 
+FROM lore.pack 
 
-WHERE vspack.id = $index
+WHERE pack.id = $index
 ";
 
         }
@@ -102,7 +102,7 @@ WHERE vspack.id = $index
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\vspack::getImgField();
+	$img_field_name = \App\pack::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -116,7 +116,7 @@ WHERE vspack.id = $index
 
 
         //link this row to its DURC editor
-        $row['id'] = "<a href='/DURC/vspack/$id'>$id</a>";
+        $row['id'] = "<a href='/DURC/pack/$id'>$id</a>";
 
 
 
@@ -177,7 +177,7 @@ array (
   ),
   1 => 
   array (
-    'column_name' => 'vspack_name',
+    'column_name' => 'pack_name',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -187,7 +187,7 @@ array (
   ),
   2 => 
   array (
-    'column_name' => 'vspack_wizards_url',
+    'column_name' => 'pack_wizards_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -197,7 +197,7 @@ array (
   ),
   3 => 
   array (
-    'column_name' => 'vspack_wiki_url',
+    'column_name' => 'pack_wiki_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -207,7 +207,7 @@ array (
   ),
   4 => 
   array (
-    'column_name' => 'vspack_img_url',
+    'column_name' => 'pack_img_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -237,99 +237,7 @@ array (
   ),
 )
 //has_many
-array (
-  'classofc_classofc_vspack' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'classofc_classofc_vspack',
-    'from_table' => 'classofc_classofc_vspack',
-    'from_db' => 'lore',
-    'from_column' => 'vspack_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      1 => 
-      array (
-        'column_name' => 'classofc_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'lore',
-        'foreign_table' => 'classofc',
-      ),
-      2 => 
-      array (
-        'column_name' => 'second_classofc_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'lore',
-        'foreign_table' => 'classofc',
-      ),
-      3 => 
-      array (
-        'column_name' => 'vspack_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'lore',
-        'foreign_table' => 'vspack',
-      ),
-      4 => 
-      array (
-        'column_name' => 'is_bulk_linker',
-        'data_type' => 'tinyint',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      5 => 
-      array (
-        'column_name' => 'link_note',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      6 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-      7 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-      ),
-    ),
-  ),
-)
+NULL
 //has_one
 NULL
 //belongs_to

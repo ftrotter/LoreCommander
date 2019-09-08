@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2165a2e0d7a63175e40d61959e1e4a12
+FILE_SIG=a9c30c24f5c0e7143f480f3f845a7b93
 */
 namespace App;
 /*
@@ -28,6 +28,8 @@ class classofc extends \App\DURC\Models\classofc
 		protected $DURC_selfish_with = [ 
 			'cardface_classofc_atag', //from from many
 			'classofc_cardface', //from from many
+			'classofc_classofc_vspack', //from from many
+			'second_classofc_classofc_vspack', //from from many
 			'classofc_creature', //from from many
 			'person_classofc_cardface', //from from many
 			'person_classofc_tag', //from from many
@@ -63,6 +65,24 @@ class classofc extends \App\DURC\Models\classofc
 */
 	public function classofc_cardface(){
 		return parent::classofc_cardface();
+	}
+
+
+/**
+*	DURC is handling the classofc_classofc_vspack for this classofc in classofc
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function classofc_classofc_vspack(){
+		return parent::classofc_classofc_vspack();
+	}
+
+
+/**
+*	DURC is handling the second_classofc_classofc_vspack for this classofc in classofc
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function second_classofc_classofc_vspack(){
+		return parent::second_classofc_classofc_vspack();
 	}
 
 

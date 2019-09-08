@@ -15,18 +15,28 @@ class GenericLinker extends Controller
 	
 		$error_msg = "Error: ";
 		$has_error = false;
+
+		$left_id = $durc_type_left."_id";
+		$right_id = $durc_type_right."_id";
+		$tag_id = $durc_type_tag."_id";
+
+		if($left_id == $right_id){
+			//then we rename the same way we did when we setup the table..
+			$right_id = 'second_' . $durc_type_right . '_id';
+		}
 	
-		$left_ids = $request->input($durc_type_left."_id");
+	
+		$left_ids = $request->input($left_id);
 		if(is_null($left_ids)){
 			$has_error = true;
 			$error_msg .= "Nothing on the left to link...\n";
 		}
-		$right_ids = $request->input($durc_type_right."_id");
+		$right_ids = $request->input($right_id);
 		if(is_null($right_ids)){
 			$has_error = true;
 			$error_msg .= "Nothing on the right to link...\n";
 		}
-		$tag_ids = $request->input($durc_type_tag."_id");
+		$tag_ids = $request->input($tag_id);
 		if(is_null($tag_ids)){
 			$has_error = true;
 			$error_msg .= "No tags to link...\n";
@@ -39,12 +49,12 @@ class GenericLinker extends Controller
 			exit();
 		}	
 
-		$left_id = $durc_type_left."_id";
-		$right_id = $durc_type_right."_id";
-		$tag_id = $durc_type_tag."_id";
 
 		$total_links_created = 0;
-		
+	
+	
+		$all_linkers = [];	
+	
 		foreach($left_ids as $this_left_id){
 			foreach($right_ids as $this_right_id){
 				foreach($tag_ids as $this_tag_id){
@@ -63,15 +73,19 @@ class GenericLinker extends Controller
 					$class_name = "\App\\$link_table";
 
 					$linker_object = $class_name::updateOrCreate($find_array,$data_array);
-	
+					$all_linkers[] = $linker_object;
 					$total_links_created++;
 
 				}
 			}
 		}
 
+		$go_back_url  = "/genericLinkerForm/$durc_type_left/$durc_type_right/$durc_type_tag";
 
-		return("Created $total_links_created");
+		return view('link_created',[
+			'total_links_created' => $total_links_created,
+			'go_back_url' => $go_back_url,
+		]);	
 
 
 
@@ -103,6 +117,18 @@ class GenericLinker extends Controller
 
 		$link_table = $durc_type_left."_$durc_type_right"."_$durc_type_tag";
 
+
+		$durc_tag_id = $durc_type_tag . '_id';
+		$durc_left_id = $durc_type_left . '_id';
+		$durc_right_id = $durc_type_right . '_id';
+
+		
+		if($durc_type_right == $durc_type_left){
+			//this is OK, but the field names need to be changed.
+			$durc_right_id = 'second_' . $durc_type_right . '_id';
+		}
+
+
 		if(!class_exists("\App\\$link_table")){
 			//so the class does not exist yet. Thats fine.
 			//we support autolinking as long as the left, right and tag tables exist...
@@ -128,19 +154,32 @@ WHERE table_schema = '$db'
 			if($is_db_exists){
 				$message = "The linking table exists, but the DURC classes do not. Run the DURC generator";
 			}else{
-		
+
+				$is_tag_distinct = true;
+				if($durc_type_left  == $durc_type_tag){
+					$is_tag_distinct = false;
+				}
+				if($durc_type_right  == $durc_type_tag){
+					$is_tag_distinct = false;
+				}
+
+				if(!$is_tag_distinct){
+					echo "Error: While it is possible to have the same table on the left and right of the linker, the tag column must not be the same as either the left or the right";
+					exit();
+				}
+
 				$message = "
 CREATE TABLE IF NOT EXISTS $db.$link_table  ( 
 	`id` INT(11) NOT NULL AUTO_INCREMENT ,  
-	`$durc_type_left"."_id` INT(11) NOT NULL ,  
-	`$durc_type_right"."_id` INT(11) NOT NULL ,  
-	`$durc_type_tag"."_id` INT(11) NOT NULL ,  
+	`$durc_left_id` INT(11) NOT NULL ,  
+	`$durc_right_id` INT(11) NOT NULL ,  
+	`$durc_tag_id` INT(11) NOT NULL ,  
 	`is_bulk_linker` TINYINT(1) NOT NULL DEFAULT '0' ,  
 	`link_note` VARCHAR(255) DEFAULT NULL ,  
 	`created_at` DATETIME NOT NULL ,  
 	`updated_at` DATETIME NOT NULL ,    
 	PRIMARY KEY  (`id`),
-	UNIQUE KEY( $durc_type_left"."_id, $durc_type_right"."_id, $durc_type_tag"."_id )
+	UNIQUE KEY( $durc_left_id, $durc_right_id, $durc_tag_id )
 	) ENGINE = MyISAM 
 ;
 ";
@@ -154,11 +193,17 @@ CREATE TABLE IF NOT EXISTS $db.$link_table  (
 		//here we know that we have DURC classes for all 4 of the relevant data contructs...
 		//the list of tags, the object that sits to the right and the left of the tag relation...
 		//we are ready to show the Select2 heavy interface that will allow for really fast tagging...
+
+		
 		
 		$view_data = [
 			'durc_type_left' => $durc_type_left,
 			'durc_type_right' => $durc_type_right,
 			'durc_type_tag' => $durc_type_tag,
+			'durc_left_id' => $durc_left_id,
+			'durc_right_id' => $durc_right_id,
+			'durc_tag_id' => $durc_tag_id,
+			'durc_linker' => $link_table,
 			'durc_linker' => $link_table,
 		];
 
