@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=0bb136c3499032cd06f2c9ec86b05ce7
+FILE_SIG=9e662ecf634454ed524ffbfbf38b2211
 */
 namespace App;
 /*
@@ -74,11 +74,12 @@ CREATE TABLE `lore`.`cardprice` (
   `card_id` int(11) NOT NULL,
   `scryfall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pricetype_id` int(11) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `card_id` (`card_id`)
+  KEY `card_id` (`card_id`),
+  KEY `created_at` (`created_at`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 */
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d42988c1933e478fd2b66dfc1f7da9d6
+FILE_SIG=4c66a7c91bcca8bd394a45f5a509ba54
 */
 namespace App;
 /*
@@ -36,6 +36,7 @@ class mtgset extends \App\DURC\Models\mtgset
 			//'scryfall_id', //varchar
 			//'code', //varchar
 			//'mtgo_code', //varchar
+			//'arena_code', //varchar
 			//'tcgplayer_id', //int
 			//'name', //varchar
 			//'set_type', //varchar
@@ -77,6 +78,7 @@ CREATE TABLE `lore`.`mtgset` (
   `scryfall_id` varchar(255) NOT NULL,
   `code` varchar(10) NOT NULL,
   `mtgo_code` varchar(255) DEFAULT NULL,
+  `arena_code` varchar(255) DEFAULT NULL,
   `tcgplayer_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `set_type` varchar(255) NOT NULL,
