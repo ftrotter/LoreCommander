@@ -52,4 +52,24 @@ $app->singleton(
 |
 */
 
+//this is where we do our custom logging
+
+$app->configureMonologUsing(function ($monolog) {
+
+	$pdo = \DB::connection()->getPdo();
+
+
+	$extra_fields = []; //this is not really nessecary anymore should redesign the logger not to use it..
+	//Create MysqlHandler
+	$mySQLHandler = new TwoMySQLHandler($pdo,"lore_log", "log_message", "log_context", $extra_fields, \Monolog\Logger::WARNING);
+
+	$channel = 'Laravel System Logs';
+	//Create logger
+	$logger = new \Monolog\Logger($channel);
+
+    	$monolog->pushHandler($logger);
+});
+
+
+
 return $app;
