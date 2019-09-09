@@ -48,26 +48,26 @@ SELECT
     0 AS source_longitude,
     CONCAT('/DURC/json/person/',person.id) AS source_json_url,
     person.image_uri AS source_img,
-    CONCAT('classofcreature_',classofcreature_id) AS target_id,
-    classofcreature_name AS target_name,
+    CONCAT('classofc_',classofc_id) AS target_id,
+    classofc_name AS target_name,
     1500 AS target_size,
     'Class of Creature' AS target_type,
     'Class of Creature' AS target_group,
     0 AS target_latitude,
     0 AS target_longitude,
-    CONCAT('/DURC/json/classofcreature/',classofcreature.id) AS target_json_url,
-    classofcreature_img_uri AS target_img,
+    CONCAT('/DURC/json/classofc/',classofc.id) AS target_json_url,
+    classofc_img_uri AS target_img,
     50 AS weight,
     'any' AS link_type,
     1 AS query_num
-FROM lore.person_classofcreature_tag
+FROM lore.person_classofc_tag
 LEFT JOIN lore.person ON 
 	person.id =
     	person_id
-LEFT JOIN lore.classofcreature ON 
-	classofcreature.id =
-    	classofcreature_id
-GROUP BY classofcreature_id, person_id
+LEFT JOIN lore.classofc ON 
+	classofc.id =
+    	classofc_id
+GROUP BY classofc_id, person_id
 ";
 
         return $sql;

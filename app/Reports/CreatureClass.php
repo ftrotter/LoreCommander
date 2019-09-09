@@ -42,24 +42,24 @@ class CreatureClass extends AbstractTabularReport
 
 	       $sql = "
 SELECT 
-	classofcreature_name AS creature_class_name,
-	classofcreature.id AS class_id,
+	classofc_name AS creature_class_name,
+	classofc.id AS class_id,
 	COUNT(DISTINCT(creature.id)) AS creature_type_count,
 	COUNT(DISTINCT(cardface.id)) AS card_count
-FROM lore.classofcreature 
-JOIN lore.classofcreature_creature ON 
-	classofcreature_id =
-	classofcreature.id
+FROM lore.classofc 
+JOIN lore.classofc_creature ON 
+	classofc_id =
+	classofc.id
 JOIN lore.creature ON 
 	creature.id =
-	classofcreature_creature.creature_id
-JOIN lore.classofcreature_cardface ON 
-	classofcreature_cardface.classofcreature_id =
-	classofcreature.id
+	classofc_creature.creature_id
+JOIN lore.classofc_cardface ON 
+	classofc_cardface.classofc_id =
+	classofc.id
 JOIN lore.cardface ON 
 	cardface.id =
-	classofcreature_cardface.cardface_id
-GROUP BY classofcreature.id
+	classofc_cardface.cardface_id
+GROUP BY classofc.id
 
 ";
 	}else{
@@ -70,16 +70,16 @@ GROUP BY classofcreature.id
 
 		$sql = "
 SELECT 
-	classofcreature_name AS creature_class_name,
+	classofc_name AS creature_class_name,
 	creature_name AS creature_name
-FROM lore.classofcreature
-JOIN lore.classofcreature_creature ON
-        classofcreature_id =
-        classofcreature.id
+FROM lore.classofc
+JOIN lore.classofc_creature ON
+        classofc_id =
+        classofc.id
 JOIN lore.creature ON
         creature.id =
-        classofcreature_creature.creature_id
-WHERE classofcreature.id = '$class_id'
+        classofc_creature.creature_id
+WHERE classofc.id = '$class_id'
 ";
 	
 

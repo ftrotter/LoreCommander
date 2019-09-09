@@ -39,7 +39,7 @@ SELECT
 	first_name,
 	image_uri
 FROM lore.person
-LEFT JOIN lore.person_classofcreature_tag AS link ON 
+LEFT JOIN lore.person_classofc_tag AS link ON 
 	link.person_id =
 	person.id
 WHERE link.id IS NULL
