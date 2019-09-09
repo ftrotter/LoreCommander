@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=fe030bca3c84ef66b0e48c5a7c9cfc55
+FILE_SIG=52617a83e655ffdf4fc3bc3c9e140f4c
 */
 namespace App;
 /*
@@ -27,6 +27,7 @@ class card extends \App\DURC\Models\card
 /*
 		protected $DURC_selfish_with = [ 
 			'cardface', //from from many
+			'cardprice', //from from many
 			'mtgset', //from belongs to
 		];
 
@@ -81,6 +82,15 @@ class card extends \App\DURC\Models\card
 */
 	public function cardface(){
 		return parent::cardface();
+	}
+
+
+/**
+*	DURC is handling the cardprice for this card in card
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function cardprice(){
+		return parent::cardprice();
 	}
 
 

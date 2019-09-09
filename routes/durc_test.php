@@ -44,6 +44,10 @@ Route::get('durctest', function () {
  			'/DURC/cardface_person_atag/create', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/1', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/1/edit', //from: lore.cardface_person_atag 
+ 			'/DURC/cardprice', //from: lore.cardprice 
+ 			'/DURC/cardprice/create', //from: lore.cardprice 
+ 			'/DURC/cardprice/1', //from: lore.cardprice 
+ 			'/DURC/cardprice/1/edit', //from: lore.cardprice 
  			'/DURC/classofc', //from: lore.classofc 
  			'/DURC/classofc/create', //from: lore.classofc 
  			'/DURC/classofc/1', //from: lore.classofc 
@@ -100,6 +104,10 @@ Route::get('durctest', function () {
  			'/DURC/person_strategy_tag/create', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1/edit', //from: lore.person_strategy_tag 
+ 			'/DURC/pricetype', //from: lore.pricetype 
+ 			'/DURC/pricetype/create', //from: lore.pricetype 
+ 			'/DURC/pricetype/1', //from: lore.pricetype 
+ 			'/DURC/pricetype/1/edit', //from: lore.pricetype 
  			'/DURC/scanhistory', //from: lore.scanhistory 
  			'/DURC/scanhistory/create', //from: lore.scanhistory 
  			'/DURC/scanhistory/1', //from: lore.scanhistory 

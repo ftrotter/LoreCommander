@@ -1,0 +1,325 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/cardprice' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/cardprice/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>cardprice</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/DURC/cardprice/'>Return to cardprice list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/cardprice/create'>Create new cardprice </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-2 col-form-label'>id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{card_id_row_class}}'>
+    <label for='card_id' class='col-sm-2 col-form-label'>card_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{card_id}} (see below for lookup value)<br>
+	<select class='select2_card_id form-control' id='card_id' name='card_id' form-control'>
+	<option value='{{card_id}}' selected='selected'>{{card_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_card_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/card/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{scryfall_id_row_class}}'>
+    <label for='scryfall_id' class='col-sm-2 col-form-label'>scryfall_id</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{pricetype_id_row_class}}'>
+    <label for='pricetype_id' class='col-sm-2 col-form-label'>pricetype_id</label>
+    <div class='col-sm-10'>
+	Current id value: {{pricetype_id}} (see below for lookup value)<br>
+	<select class='select2_pricetype_id form-control' id='pricetype_id' name='pricetype_id' form-control'>
+	<option value='{{pricetype_id}}' selected='selected'>{{pricetype_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_pricetype_id').select2({
+  ajax: {
+    	url: '/DURC/searchjson/pricetype/',
+    	dataType: 'json'
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{price_row_class}}'>
+    <label for='price' class='col-sm-2 col-form-label'>price</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='price' name='price' placeholder='' value='{{price}}'>
+    </div>
+  </div>
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
+    <div class='col-sm-10'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-10'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/cardprice/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='cardprice' class='do-soft-delete btn btn-outline-danger'>Hard Delete cardprice</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    card ( <a href='/DURC/card/'>see all</a> )
+{{^card}}
+(no values)
+{{/card}}
+  </div>
+<div class='card-body'>
+<table id='table_card' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> scryfall_id </th>
+			<th> lang </th>
+			<th> oracle_id </th>
+			<th> rulings_uri </th>
+			<th> scryfall_web_uri </th>
+			<th> scryfall_api_uri </th>
+			<th> layout </th>
+			<th> rarity </th>
+			<th> released_at </th>
+			<th> set_name </th>
+			<th> set_type </th>
+			<th> mtgset_id </th>
+			<th> variation_of_scryfall_id </th>
+			<th> edhrec_rank </th>
+			<th> is_promo </th>
+			<th> is_reserved </th>
+			<th> is_story_spotlight </th>
+			<th> is_reprint </th>
+			<th> is_variation </th>
+			<th> is_game_paper </th>
+			<th> is_game_mtgo </th>
+			<th> is_game_arena </th>
+			<th> legal_oldschool </th>
+			<th> legal_duel </th>
+			<th> legal_commander </th>
+			<th> legal_brawl </th>
+			<th> legal_penny </th>
+			<th> legal_vintage </th>
+			<th> legal_pauper </th>
+			<th> legal_legacy </th>
+			<th> legal_modern </th>
+			<th> legal_frontier </th>
+			<th> legal_future </th>
+			<th> legal_standard </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#card}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/card/{{id}}'>{{id}}</a></td>
+			<td>{{scryfall_id_DURClabel}} ({{scryfall_id}}) </td>			<td>{{lang}}</td>
+			<td>{{oracle_id_DURClabel}} ({{oracle_id}}) </td>			<td>{{rulings_uri}}</td>
+			<td>{{scryfall_web_uri}}</td>
+			<td>{{scryfall_api_uri}}</td>
+			<td>{{layout}}</td>
+			<td>{{rarity}}</td>
+			<td>{{released_at}}</td>
+			<td>{{set_name}}</td>
+			<td>{{set_type}}</td>
+			<td>{{mtgset_id_DURClabel}} ({{mtgset_id}}) </td>			<td>{{variation_of_scryfall_id_DURClabel}} ({{variation_of_scryfall_id}}) </td>			<td>{{edhrec_rank}}</td>
+			<td>{{is_promo}}</td>
+			<td>{{is_reserved}}</td>
+			<td>{{is_story_spotlight}}</td>
+			<td>{{is_reprint}}</td>
+			<td>{{is_variation}}</td>
+			<td>{{is_game_paper}}</td>
+			<td>{{is_game_mtgo}}</td>
+			<td>{{is_game_arena}}</td>
+			<td>{{legal_oldschool}}</td>
+			<td>{{legal_duel}}</td>
+			<td>{{legal_commander}}</td>
+			<td>{{legal_brawl}}</td>
+			<td>{{legal_penny}}</td>
+			<td>{{legal_vintage}}</td>
+			<td>{{legal_pauper}}</td>
+			<td>{{legal_legacy}}</td>
+			<td>{{legal_modern}}</td>
+			<td>{{legal_frontier}}</td>
+			<td>{{legal_future}}</td>
+			<td>{{legal_standard}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/card}}
+</tbody>
+</table>
+</div></div> <!-- end card card-->
+
+<div class='card'>
+  <div class='card-header'>
+    pricetype ( <a href='/DURC/pricetype/'>see all</a> )
+{{^pricetype}}
+(no values)
+{{/pricetype}}
+  </div>
+<div class='card-body'>
+<table id='table_pricetype' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> pricetype_name </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#pricetype}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/pricetype/{{id}}'>{{id}}</a></td>
+			<td>{{pricetype_name}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/pricetype}}
+</tbody>
+</table>
+</div></div> <!-- end pricetype card-->
+</div></div> <!--end belongs to card-->
+<br>

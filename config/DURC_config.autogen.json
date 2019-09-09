@@ -526,6 +526,13 @@
                     "from_table": "cardface",
                     "from_db": "lore",
                     "from_column": "card_id"
+                },
+                "cardprice": {
+                    "prefix": null,
+                    "type": "cardprice",
+                    "from_table": "cardprice",
+                    "from_db": "lore",
+                    "from_column": "card_id"
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` int(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
@@ -1181,6 +1188,92 @@
             },
             "create_table_sql": "CREATE TABLE `lore`.`cardface_person_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `person_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
+        "cardprice": {
+            "table_name": "cardprice",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "bigint",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "card_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "card"
+                },
+                {
+                    "column_name": "scryfall_id",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "pricetype_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "pricetype"
+                },
+                {
+                    "column_name": "price",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "belongs_to": {
+                "card": {
+                    "prefix": null,
+                    "type": "card",
+                    "to_table": "card",
+                    "to_db": "lore",
+                    "local_key": "card_id"
+                },
+                "pricetype": {
+                    "prefix": null,
+                    "type": "pricetype",
+                    "to_table": "pricetype",
+                    "to_db": "lore",
+                    "local_key": "pricetype_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        },
         "classofc": {
             "table_name": "classofc",
             "db": "lore",
@@ -1470,7 +1563,7 @@
                     "local_key": "vspack_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofc_classofc_vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `second_classofc_id` int(11) NOT NULL,\n  `vspack_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofc_id` (`classofc_id`,`second_classofc_id`,`vspack_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_classofc_vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `second_classofc_id` int(11) NOT NULL,\n  `vspack_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofc_id` (`classofc_id`,`second_classofc_id`,`vspack_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "classofc_creature": {
             "table_name": "classofc_creature",
@@ -2599,6 +2692,58 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`person_strategy_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `strategy_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`tag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+        },
+        "pricetype": {
+            "table_name": "pricetype",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "pricetype_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null
+                }
+            ],
+            "has_many": {
+                "cardprice": {
+                    "prefix": null,
+                    "type": "cardprice",
+                    "from_table": "cardprice",
+                    "from_db": "lore",
+                    "from_column": "pricetype_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`pricetype` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `pricetype_name` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `pricetype_name` (`pricetype_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "scanhistory": {
             "table_name": "scanhistory",

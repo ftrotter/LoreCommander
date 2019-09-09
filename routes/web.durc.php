@@ -56,6 +56,13 @@ Route::get("/DURC/json/cardface_person_atag/", 'cardface_person_atagController@j
 Route::get("/DURC/searchjson/cardface_person_atag/", 'cardface_person_atagController@search');
 
  
+//DURC->	lore.cardprice
+Route::resource("/DURC/cardprice", 'cardpriceController');
+Route::get("/DURC/json/cardprice/{cardprice_id}", 'cardpriceController@jsonone');
+Route::get("/DURC/json/cardprice/", 'cardpriceController@jsonall');
+Route::get("/DURC/searchjson/cardprice/", 'cardpriceController@search');
+
+ 
 //DURC->	lore.classofc
 Route::resource("/DURC/classofc", 'classofcController');
 Route::get("/DURC/json/classofc/{classofc_id}", 'classofcController@jsonone');
@@ -152,6 +159,13 @@ Route::resource("/DURC/person_strategy_tag", 'person_strategy_tagController');
 Route::get("/DURC/json/person_strategy_tag/{person_strategy_tag_id}", 'person_strategy_tagController@jsonone');
 Route::get("/DURC/json/person_strategy_tag/", 'person_strategy_tagController@jsonall');
 Route::get("/DURC/searchjson/person_strategy_tag/", 'person_strategy_tagController@search');
+
+ 
+//DURC->	lore.pricetype
+Route::resource("/DURC/pricetype", 'pricetypeController');
+Route::get("/DURC/json/pricetype/{pricetype_id}", 'pricetypeController@jsonone');
+Route::get("/DURC/json/pricetype/", 'pricetypeController@jsonall');
+Route::get("/DURC/searchjson/pricetype/", 'pricetypeController@search');
 
  
 //DURC->	lore.scanhistory
