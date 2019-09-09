@@ -89,6 +89,12 @@ class  ScryfallSaver {
                         'border_crop',
                 ];
 
+		public static $pricetype_lookup  = [
+			'usd' => 1,
+			'usd_foil' => 2,
+			'eur' => 3,
+			'tix' => 4,
+		];
 
 	public static  function saveCardList($cards){
 
@@ -250,6 +256,18 @@ class  ScryfallSaver {
 								]);
 								$DURC_cardface->fill($cardface_fill);
 				$DURC_cardface->save();
+
+
+				$prices  = $this_card['prices'];
+				
+				foreach($prices as $this_type => $price_amount){
+					$priceObj = new \App\cardprice;
+					$priceObj->price = $price_amount;
+					$priceObj->card_id = $card_id;
+					$priceObj->scryfall_id = $scryfall_id;
+					$priceObj->pricetype_id = self::$pricetype_lookup[$this_type]; 
+					$priceObj->save();	
+				}
 	
 			} //end of cardface loop
 	
