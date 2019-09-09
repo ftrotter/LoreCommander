@@ -51,7 +51,7 @@ class CreaturesInClass extends AbstractTabularReport
 
 		$sql = "
 SELECT
-	classofcreature_name AS creature_class_name,
+	classofc_name AS creature_class_name,
 `name`
 ,`mana_cost`
 , REGEXP_REPLACE(type_line,'[^a-zA-Z0-9]',' ') AS type_line
@@ -72,16 +72,16 @@ SELECT
 image_uri_art_crop
 
 FROM lore.cardface
-JOIN lore.classofcreature_cardface ON 
+JOIN lore.classofc_cardface ON 
 	cardface.id =
-	classofcreature_cardface.cardface_id
-JOIN lore.classofcreature ON 
-	classofcreature.id =
-	classofcreature_cardface.classofcreature_id
+	classofc_cardface.cardface_id
+JOIN lore.classofc ON 
+	classofc.id =
+	classofc_cardface.classofc_id
 JOIN lore.card ON
         card.id =
         cardface.card_id
-WHERE classofcreature.id = '$class_id'
+WHERE classofc.id = '$class_id'
 GROUP BY oracle_id
 ";
 	

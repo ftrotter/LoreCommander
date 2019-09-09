@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=0f462c05057c8057f7e45e38984cd6db
+FILE_SIG=1a85e7bc905c6caadb84832af752bf9c
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -55,6 +55,7 @@ $joined_select_field_sql
 , mtgset.scryfall_id AS scryfall_id
 , mtgset.code AS code
 , mtgset.mtgo_code AS mtgo_code
+, mtgset.arena_code AS arena_code
 , mtgset.tcgplayer_id AS tcgplayer_id
 , mtgset.name AS name
 , mtgset.set_type AS set_type
@@ -85,6 +86,7 @@ $joined_select_field_sql
 , mtgset.scryfall_id AS scryfall_id
 , mtgset.code AS code
 , mtgset.mtgo_code AS mtgo_code
+, mtgset.arena_code AS arena_code
 , mtgset.tcgplayer_id AS tcgplayer_id
 , mtgset.name AS name
 , mtgset.set_type AS set_type
@@ -233,6 +235,16 @@ array (
   ),
   4 => 
   array (
+    'column_name' => 'arena_code',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  5 => 
+  array (
     'column_name' => 'tcgplayer_id',
     'data_type' => 'int',
     'is_primary_key' => false,
@@ -241,7 +253,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  5 => 
+  6 => 
   array (
     'column_name' => 'name',
     'data_type' => 'varchar',
@@ -251,7 +263,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  6 => 
+  7 => 
   array (
     'column_name' => 'set_type',
     'data_type' => 'varchar',
@@ -261,7 +273,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  7 => 
+  8 => 
   array (
     'column_name' => 'released_at',
     'data_type' => 'varchar',
@@ -271,7 +283,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  8 => 
+  9 => 
   array (
     'column_name' => 'block_code',
     'data_type' => 'varchar',
@@ -281,7 +293,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  9 => 
+  10 => 
   array (
     'column_name' => 'block',
     'data_type' => 'varchar',
@@ -291,7 +303,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  10 => 
+  11 => 
   array (
     'column_name' => 'parent_set_code',
     'data_type' => 'varchar',
@@ -301,7 +313,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  11 => 
+  12 => 
   array (
     'column_name' => 'card_count',
     'data_type' => 'int',
@@ -311,7 +323,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  12 => 
+  13 => 
   array (
     'column_name' => 'is_digital',
     'data_type' => 'tinyint',
@@ -321,7 +333,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  13 => 
+  14 => 
   array (
     'column_name' => 'is_foil_only',
     'data_type' => 'tinyint',
@@ -331,7 +343,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  14 => 
+  15 => 
   array (
     'column_name' => 'scryfall_uri',
     'data_type' => 'varchar',
@@ -341,7 +353,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  15 => 
+  16 => 
   array (
     'column_name' => 'mtgset_uri',
     'data_type' => 'varchar',
@@ -351,7 +363,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  16 => 
+  17 => 
   array (
     'column_name' => 'icon_svg_uri',
     'data_type' => 'varchar',
@@ -361,7 +373,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  17 => 
+  18 => 
   array (
     'column_name' => 'search_uri',
     'data_type' => 'varchar',
@@ -371,7 +383,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  18 => 
+  19 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -381,7 +393,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  19 => 
+  20 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',
