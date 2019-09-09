@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7b49b40c5bff63e52e9026a2fad3e817
+FILE_SIG=a1f46c1725bce55a5388f88b6017c1a9
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -1074,6 +1074,87 @@ array (
         'foreign_table' => NULL,
       ),
       42 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+  'cardprice' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'cardprice',
+    'from_table' => 'cardprice',
+    'from_db' => 'lore',
+    'from_column' => 'card_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'bigint',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'card_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'card',
+      ),
+      2 => 
+      array (
+        'column_name' => 'scryfall_id',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      3 => 
+      array (
+        'column_name' => 'pricetype_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'pricetype',
+      ),
+      4 => 
+      array (
+        'column_name' => 'price',
+        'data_type' => 'decimal',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      5 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      6 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
