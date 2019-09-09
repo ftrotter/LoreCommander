@@ -222,6 +222,7 @@ class mtgsetController extends DURCController
 		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
 		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code ); 
 		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code ); 
+		$tmp_mtgset->arena_code = DURC::formatForStorage( 'arena_code', 'varchar', $request->arena_code ); 
 		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
 		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
@@ -368,6 +369,7 @@ class mtgsetController extends DURCController
 		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
 		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code ); 
 		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code ); 
+		$tmp_mtgset->arena_code = DURC::formatForStorage( 'arena_code', 'varchar', $request->arena_code ); 
 		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
 		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 

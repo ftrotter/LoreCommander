@@ -61,13 +61,9 @@ $app->configureMonologUsing(function ($monolog) {
 
 	$extra_fields = []; //this is not really nessecary anymore should redesign the logger not to use it..
 	//Create MysqlHandler
-	$mySQLHandler = new TwoMySQLHandler($pdo,"lore_log", "log_message", "log_context", $extra_fields, \Monolog\Logger::WARNING);
+	$mySQLHandler = new \TwoMySQLHandler\TwoMySQLHandler($pdo,"lore_log", "log_message", "log_context", $extra_fields, \Monolog\Logger::WARNING);
 
-	$channel = 'Laravel System Logs';
-	//Create logger
-	$logger = new \Monolog\Logger($channel);
-
-    	$monolog->pushHandler($logger);
+    	$monolog->pushHandler($mySQLHandler);
 });
 
 
