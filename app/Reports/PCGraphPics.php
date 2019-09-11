@@ -41,7 +41,7 @@ class PCGraphPics extends AbstractGraphReport
 SELECT 
     CONCAT('person_',person_id) AS source_id,
     CONCAT(first_name, ' ', last_name) AS source_name,
-    2000 AS source_size,
+    1200 AS source_size,
     'MTG Person'  AS source_type,
     'MTG Person' AS source_group,
     0 AS source_latitude,
@@ -50,7 +50,7 @@ SELECT
     person.image_uri AS source_img,
     CONCAT('classofc_',classofc_id) AS target_id,
     classofc_name AS target_name,
-    1500 AS target_size,
+    1200 AS target_size,
     'Class of Creature' AS target_type,
     'Class of Creature' AS target_group,
     0 AS target_latitude,
