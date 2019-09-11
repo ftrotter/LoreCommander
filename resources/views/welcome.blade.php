@@ -30,8 +30,12 @@
 				</li>
 			<li> <b><a href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
 			<li> <b><a href='/genericLinkerForm/classofc/classofc/vspack'>Use VS packs to model creature class relationships</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm//person/strategy/tag'>Person to Strategy Linking</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/person/strategy/tag'>Person to Strategy Regular Tag Linker</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/person/strategy/strategytag'>Person to Strategy Strategy Tag Linker</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/cardface/classofc/atag'>Card to Creature Class atag Linker</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/cardface/person/atag'>Card to Person atag Linker</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/person/classofc/cardface'>Person to Creature Class using Cards</a></b>: First experiment to use cards as the tag class  </li>
+			<li> <b><a href='/genericLinkerForm/person/creature/tag'>Person to Creature Tag</a></b>: This is specific creature types, and not classes  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
@@ -41,8 +45,11 @@
 			<li> <b><a href='/Zermelo/CardSearch'>Card Search</a></b>: Search Cards based on several factors </li>
 			<li> <b><a href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
 			<li> <b><a href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
-			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'></a>Card Search Using Card Display</b>: This shows cards using the bootstrap 4 card layout  </li>
+			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
+			<li> <b><a href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
 			<li> <b><a href='/ZermeloGraph/PersonCreatureGraph'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
+			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a href=''></a></b>:  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
