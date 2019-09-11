@@ -28,6 +28,10 @@
 				Turn your TV into a pretty decent ScryFall data viewer  with
 				the <a href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
 				</li>
+			<li> <b><a href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/classofc/classofc/vspack'>Use VS packs to model creature class relationships</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
+			<li> <b><a href='/genericLinkerForm//person/strategy/tag'>Person to Strategy Linking</a></b>:  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
