@@ -48,7 +48,7 @@
 			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
 			<li> <b><a href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
 			<li> <b><a href='/ZermeloGraph/PersonCreatureGraph'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
-			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a href='/Zermelo/CreatureClass'>Creature Class Summary Report</a></b>: Links to both sub-types and creatures  </li>
 			<li> <b><a href=''></a></b>:  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
