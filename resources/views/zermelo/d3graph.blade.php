@@ -5,7 +5,7 @@
       <div class="col-md-2">
         <div class="card">
           <div class="card-body">
-{{ $presenter->getReport()->getReportName() }}
+{{ $report->getReportName() }}
             <hr>
 
 
@@ -160,7 +160,7 @@ TODO re-implement using Socket/Wrench
                 <span><small>
 		<ul>
 		<li><a target='_blank' id='get_debug_link' href="">json url</a></li>
-		<li><a target='_blank' id='debug_link' href="$presenter->getGraphUri()">json contents (includes JSON POST results)</a></li>
+		<li><a target='_blank' id='debug_link' href="{{$graph_uri}}">json contents (includes JSON POST results)</a></li>
 		</ul>
                 </small></span>
 -->
@@ -190,8 +190,8 @@ TODO re-implement using Socket/Wrench
 	<div class='col-md-6'>
         			<ol class="breadcrumb">
 					
-						  						<li class='breadcrumb-item'>{{ $presenter->getReport()->getReportName() }}</li>
-						  						<li class="breadcrumb-item active">{{ $presenter->getReport()->getReportDescription() }}</li>
+						  						<li class='breadcrumb-item'>{{ $report->getReportName() }}</li>
+						  						<li class="breadcrumb-item active">{{ $report->getReportDescription() }}</li>
           			</ol>   
 <!-- 
   <div class="form-group float-righ">
@@ -272,7 +272,7 @@ var 	virtual_height = real_height * zoom_factor;
 
 var 	gravityMode = 'centered';
 
-var json_url = '{{ $presenter->getGraphUri() }}';
+var json_url = '{{ $graph_uri }}';
 
 var color = d3.scale.category10();
 

@@ -24,58 +24,60 @@
 		<div class='col-md-4'>
 		<h4> Bespoke Tools </h4>
 		<ul>
-			<li> <b><a href='/showCard/fredTV'>TV Card View</a></b>: 
+			<li> <b><a target='_blank' href='/showCard/fredTV'>TV Card View</a></b>: 
 				Turn your TV into a pretty decent ScryFall data viewer  with
-				the <a href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
+				the <a target='_blank' href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
 				</li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
 		<h4> Data Linking </h4>
 			<ul>
-			<li> <b><a href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/classofc/classofc/vspack'>Use VS packs to model creature class relationships</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/person/strategy/tag'>Person to Strategy Regular Tag Linker</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/person/strategy/strategytag'>Person to Strategy Strategy Tag Linker</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/cardface/classofc/atag'>Card to Creature Class atag Linker</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/cardface/person/atag'>Card to Person atag Linker</a></b>:  </li>
-			<li> <b><a href='/genericLinkerForm/person/classofc/cardface'>Person to Creature Class using Cards</a></b>: First experiment to use cards as the tag class  </li>
-			<li> <b><a href='/genericLinkerForm/person/creature/tag'>Person to Creature Tag</a></b>: This is specific creature types, and not classes  </li>
-			<li> <b><a href='/Zermelo/CreatureClass'>Creature Class Summary Report</a></b>: Links to both sub-types and creatures  </li>
-			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/classofc/classofc/vspack'>Use VS packs to model creature class relationships</a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/person/strategy/tag'>Person to Strategy Regular Tag Linker</a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/person/strategy/strategytag'>Person to Strategy Strategy Tag Linker</a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/cardface/classofc/atag'>Card to Creature Class atag Linker</a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/cardface/person/atag'>Card to Person atag Linker</a></b>:  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/person/classofc/cardface'>Person to Creature Class using Cards</a></b>: First experiment to use cards as the tag class  </li>
+			<li> <b><a target='_blank' href='/genericLinkerForm/person/creature/tag'>Person to Creature Tag</a></b>: This is specific creature types, and not classes  </li>
+			<li> <b><a target='_blank' href='/Zermelo/CreatureClass'>Creature Class Summary Report</a></b>: Links to both sub-types and creatures  </li>
+			<li> <b><a target='_blank' href=''></a></b>:  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
 		<h4>  Tabular Reports </h4>
 		<ul>
-			<li> <b><a href='/Zermelo/CardSearch'>Card Search</a></b>: Search Cards based on several factors </li>
-			<li> <b><a href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
-			<li> <b><a href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
+			<li> <b><a target='_blank' href='/Zermelo/CardSearch'>Card Search</a></b>: Search Cards based on several factors </li>
+			<li> <b><a target='_blank' href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
+			<li> <b><a target='_blank' href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
 		<h4>  Cards  Reports </h4>
-			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
-			<li> <b><a href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
+			<li> <b><a target='_blank' href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
+			<li> <b><a target='_blank' href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
 		<h4>  Graph  Reports </h4>
-			<li> <b><a href='/ZermeloGraph/PersonCreatureGraph'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
-			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a target='_blank' href='/ZermeloGraph/PersonCreatureGraph'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
+			<li> <b><a target='_blank' href='/ZermeloGraph/PCGraphPics'>P <-> C with Pictures</a></b>: Same as above but with pictures for the nodes  </li>
+			<li> <b><a target='_blank' href='/ZermeloGraph/CardRelations'>Card Relations</a></b>: Shows card relationships  </li>
+			<li> <b><a target='_blank' href=''></a></b>:  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
 
 		<h4> DURC-built Tabular Reports </h4>
 		<ul>
-			<li> <b><a href='/Zermelo/DURC_person'>DURC_person</a></b> auto generated report on our database of MTG characters </li>
-			<li> <b><a href='/Zermelo/DURC_creature'>DURC_creature</a></b>  </li>
-			<li> <b><a href='/Zermelo/DURC_person_classofcreature_tag'>DURC_person_classofcreature_tag</a></b>: Shows how persons related to creatures  </li>
-			<li> <b><a href='/Zermelo/DURC_classofc_classofc_vspack'>DURC classofc_classofc_vspack</a></b>: When WoTC releases a vs pack, it establishes a formal rivalry between two tribes of creatures  </li>
-			<li> <b><a href=''></a></b>:  </li>
-			<li> <b><a href=''></a></b>:  </li>
-			<li> <b><a href=''></a></b>:  </li>
+			<li> <b><a target='_blank' href='/Zermelo/DURC_person'>DURC_person</a></b> auto generated report on our database of MTG characters </li>
+			<li> <b><a target='_blank' href='/Zermelo/DURC_creature'>DURC_creature</a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/DURC_person_classofcreature_tag'>DURC_person_classofcreature_tag</a></b>: Shows how persons related to creatures  </li>
+			<li> <b><a target='_blank' href='/Zermelo/DURC_classofc_classofc_vspack'>DURC classofc_classofc_vspack</a></b>: When WoTC releases a vs pack, it establishes a formal rivalry between two tribes of creatures  </li>
+			<li> <b><a target='_blank' href=''></a></b>:  </li>
+			<li> <b><a target='_blank' href=''></a></b>:  </li>
+			<li> <b><a target='_blank' href=''></a></b>:  </li>
 		</ul>
 		</div>
 	</div>
@@ -85,7 +87,7 @@
 		</div>	
 		<div class='col-md-3'>
 		<h3> Cancel <small> (from Zendikar block) </small> </h3>
-		<a href='https://scryfall.com/card/zen/44/cancel?utm_source=api'>
+		<a target='_blank' href='https://scryfall.com/card/zen/44/cancel?utm_source=api'>
 			<img width='400px' src='https://img.scryfall.com/cards/art_crop/front/9/e/9e557f54-3d9d-4610-a0d0-5874feacc76e.jpg?1562614848'>
 		</a>
 		</div>
@@ -98,7 +100,7 @@
 <h1> Concept </h1>
 <p>
 The most powerful decks in MTG will always those that prioritize the power of cards and their combinations above every other aspect of game play. 
-Making the most powerful deck no-matter what is interesting, but contrary to my (<a href='https://fredtrotter.com'>fred</a>) notion of fun. 
+Making the most powerful deck no-matter what is interesting, but contrary to my (<a target='_blank' href='https://fredtrotter.com'>fred</a>) notion of fun. 
 For me it is more fun to try and make a deck that honors the lore of the game, which now has decades of official content available. 
 Not to mention a thriving fan art community making token cards, play mats and custom art to go along with the cards.
 But it is also not fun to play a deck like that against any deck that was made without such constraints. 
@@ -114,19 +116,19 @@ It is pretty simple to build a set of tools to think about that data differently
 </p>
 <p>
 To be clear, this is a hobby project, mostly intended for me to test data tools that I work on at work, and to enable those tools to have a public dataset 
-to show the underlying power of the approaches that we take. <a href='https://careset.com'>CareSet</a> works with patient data, so it is hard to show our
+to show the underlying power of the approaches that we take. <a target='_blank' href='https://careset.com'>CareSet</a> works with patient data, so it is hard to show our
 data approaches to the public with the data that we work with from day to day, which very frequently has privacy conrstraints. MTG is the perfect, already public dataset with lots of nuances to explore. For now, please to not expect any stability with this website, since its purpose is to learn and test approaches, I expect that it will break frequently. 
 </p>
 		<h1 > Thanks </h1>
-		<p> Thanks to <a href='https://scryfall.com'>ScryFall</a> for all of the wonderful data 
-and to <a href='https://company.wizards.com/'>WoTC</a> for the wonderful game. 
-Also to Gamepedia for making the comprehenisve <a href='https://mtg.gamepedia.com/Main_Page'>MTG Wiki</a> 
+		<p> Thanks to <a target='_blank' href='https://scryfall.com'>ScryFall</a> for all of the wonderful data 
+and to <a target='_blank' href='https://company.wizards.com/'>WoTC</a> for the wonderful game. 
+Also to Gamepedia for making the comprehenisve <a target='_blank' href='https://mtg.gamepedia.com/Main_Page'>MTG Wiki</a> 
 where the entire knowledge-base of a whole community of enthusiasts is mainted and updated!!
 </p>
 <p>
-This site is an experiment from <a href='https://fredtrotter.com'>Fred Trotter</a> to test out the <a href='https://github.com/CareSet/Zermelo'>Zermelo</a> and 
-<a href='https://github.com/CareSet/DURC'>DURC</a> data processing and reporting systems 
-both sponsored and released from <a href='https://careset.com'>CareSet</a>.
+This site is an experiment from <a target='_blank' href='https://fredtrotter.com'>Fred Trotter</a> to test out the <a target='_blank' href='https://github.com/CareSet/Zermelo'>Zermelo</a> and 
+<a target='_blank' href='https://github.com/CareSet/DURC'>DURC</a> data processing and reporting systems 
+both sponsored and released from <a target='_blank' href='https://careset.com'>CareSet</a>.
 The goal is it to eventually become a fully fledged method of examining the lore-compatibility of specific decks of MTG cards. 
 </p>
 <p>

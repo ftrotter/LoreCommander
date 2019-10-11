@@ -13,9 +13,9 @@ return [
 
     /**
      * If the api route has a prefix, use this prefix when pre-pend to the uri
-     * By default, laravel uses the api prefix in their api.php file
+     * By default, laravel uses the zapi prefix so that it doesn't conflict with existing APIs
      */
-    'API_PREFIX'=>env("API_PREFIX","api"),
+    'API_PREFIX'=>env("API_PREFIX","zapi"),
 
     /**
      * This is the prefix for the tabular API routes for retrieving data formatted
@@ -53,11 +53,6 @@ return [
         'ITALIC',
         'RIGHT'
     ],
-
-    /**
-     * Bootstrap CSS file, you may overwrite the default here.
-     */
-    'BOOTSTRAP_CSS_LOCATION' => 'vendor/CareSet/bootstrap/css/bootstrap.min.css',
 
     /**
      * Database path where all the cache table will be stored.
