@@ -57,8 +57,11 @@
 		<h4>  Cards  Reports </h4>
 			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
 			<li> <b><a href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
+		</ul>
+		</div>
+		<div class='col-md-4'>
+		<h4>  Graph  Reports </h4>
 			<li> <b><a href='/ZermeloGraph/PersonCreatureGraph'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
-			<li> <b><a href=''></a></b>:  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
@@ -95,11 +98,11 @@
 <h1> Concept </h1>
 <p>
 The most powerful decks in MTG will always those that prioritize the power of cards and their combinations above every other aspect of game play. 
-Making the most powerful deck no-matter what is interesting, but contrary to my (freds) notion of fun. 
+Making the most powerful deck no-matter what is interesting, but contrary to my (<a href='https://fredtrotter.com'>fred</a>) notion of fun. 
 For me it is more fun to try and make a deck that honors the lore of the game, which now has decades of official content available. 
 Not to mention a thriving fan art community making token cards, play mats and custom art to go along with the cards.
 But it is also not fun to play a deck like that against any deck that was made without such constraints. 
-Losing, for sure and no matter what, is not good time. Playing, and wondering if you are going to win, is much more of challenge and much more interesting to me personally. 
+Losing, for sure and no matter what, is not good time. Wondering if you are going to win, based on your own brewing efforts, is much more of challenge and much more interesting to me personally. 
 (this is why I prefer Limited formats like Booster Draft, over other formats where professional or near-professional deck designers have already 
 demonstrated the best way of designing a deck and figuring out how to play it well. 
 </p>
