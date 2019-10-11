@@ -13,6 +13,7 @@
     "require": {
         "php": ">=7.0.0",
         "bestmomo/nice-artisan": "^1.1",
+        "careset/zermelo_installer": "dev-master",
         "careset/zermelo": "dev-master",
         "careset/zermelobladecard": "dev-master",
         "careset/zermelobladegraph": "dev-master",

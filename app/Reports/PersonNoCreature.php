@@ -48,7 +48,6 @@ WHERE link.id IS NULL
     }
 
     /**
-    * Each row content will be passed to MapRow.
     * Values and header names can be changed.
     * Columns cannot be added or removed
     * You can decorate fields with html, with bootstrap css styling
@@ -57,6 +56,7 @@ WHERE link.id IS NULL
     public function MapRow(array $row, int $row_number) :array
     {
 	extract($row);
+
 
 	$row['image_uri'] = "<img width='200px' src='$image_uri'>";
 
