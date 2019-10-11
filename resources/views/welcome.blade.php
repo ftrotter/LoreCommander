@@ -28,6 +28,11 @@
 				Turn your TV into a pretty decent ScryFall data viewer  with
 				the <a href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
 				</li>
+		</ul>
+		</div>
+		<div class='col-md-4'>
+		<h4> Data Linking </h4>
+			<ul>
 			<li> <b><a href='/genericLinkerForm/person/classofc/tag'>Person to Creature Class Link Builder</a></b>:  </li>
 			<li> <b><a href='/genericLinkerForm/classofc/classofc/vspack'>Use VS packs to model creature class relationships</a></b>:  </li>
 			<li> <b><a href='/genericLinkerForm/person/strategy/tag'>Person to Strategy Regular Tag Linker</a></b>:  </li>
@@ -36,26 +41,30 @@
 			<li> <b><a href='/genericLinkerForm/cardface/person/atag'>Card to Person atag Linker</a></b>:  </li>
 			<li> <b><a href='/genericLinkerForm/person/classofc/cardface'>Person to Creature Class using Cards</a></b>: First experiment to use cards as the tag class  </li>
 			<li> <b><a href='/genericLinkerForm/person/creature/tag'>Person to Creature Tag</a></b>: This is specific creature types, and not classes  </li>
+			<li> <b><a href='/Zermelo/CreatureClass'>Creature Class Summary Report</a></b>: Links to both sub-types and creatures  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
-		<h4>  Custom Zermelo </h4>
+		<h4>  Tabular Reports </h4>
 		<ul>
 			<li> <b><a href='/Zermelo/CardSearch'>Card Search</a></b>: Search Cards based on several factors </li>
 			<li> <b><a href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
 			<li> <b><a href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
+		</ul>
+		</div>
+		<div class='col-md-4'>
+		<h4>  Cards  Reports </h4>
 			<li> <b><a href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
 			<li> <b><a href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
 			<li> <b><a href='/ZermeloGraph/PersonCreatureGraph'>Person to Creature Graph</a></b>: This is the graph view of the Person to Creature relationship  </li>
-			<li> <b><a href='/Zermelo/CreatureClass'>Creature Class Summary Report</a></b>: Links to both sub-types and creatures  </li>
 			<li> <b><a href=''></a></b>:  </li>
 			<li> <b><a href=''></a></b>:  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
 
-		<h4> DURC-built Zermelo </h4>
+		<h4> DURC-built Tabular Reports </h4>
 		<ul>
 			<li> <b><a href='/Zermelo/DURC_person'>DURC_person</a></b> auto generated report on our database of MTG characters </li>
 			<li> <b><a href='/Zermelo/DURC_creature'>DURC_creature</a></b>  </li>
