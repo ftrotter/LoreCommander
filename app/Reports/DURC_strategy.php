@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=498cd1c3d4f8c0e714ac4e69965d3c11
+FILE_SIG=203525abe208a37699c394e36d4df00a
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -165,13 +165,13 @@ WHERE strategy.id = $index
 
 
 $wincon_cardface_tmp = 'wincon_'.$cardface_field;
-if(isset($wincon_cardface_tmp)){
+if(isset($row[$wincon_cardface_tmp])){
 	$wincon_cardface_data = $row[$wincon_cardface_tmp];
 	$row[$wincon_cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$wincon_cardface_id'>$wincon_cardface_data</a>";
 }
 
 $wincon_cardface_img_tmp = 'wincon_'.$cardface_img_field;
-if(isset($wincon_cardface_img_tmp) && strlen($wincon_cardface_img_tmp) > 0){
+if(isset($row[$wincon_cardface_img_tmp]) && strlen($wincon_cardface_img_tmp) > 0){
 	$wincon_cardface_img_data = $row[$wincon_cardface_img_tmp];
 	$row[$wincon_cardface_img_tmp] = "<img width='200px' src='$wincon_cardface_img_data'>";
 }

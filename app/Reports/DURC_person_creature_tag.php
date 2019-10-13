@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e84871d9ec68497ef105fa2ec0cc1200
+FILE_SIG=97e252ef46dee5fa449052ffebbd6ad4
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -233,37 +233,37 @@ WHERE person_creature_tag.id = $index
 
 
 $person_tmp = ''.$person_field;
-if(isset($person_tmp)){
+if(isset($row[$person_tmp])){
 	$person_data = $row[$person_tmp];
 	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_data</a>";
 }
 
 $person_img_tmp = ''.$person_img_field;
-if(isset($person_img_tmp) && strlen($person_img_tmp) > 0){
+if(isset($row[$person_img_tmp]) && strlen($person_img_tmp) > 0){
 	$person_img_data = $row[$person_img_tmp];
 	$row[$person_img_tmp] = "<img width='200px' src='$person_img_data'>";
 }
 
 $creature_tmp = ''.$creature_field;
-if(isset($creature_tmp)){
+if(isset($row[$creature_tmp])){
 	$creature_data = $row[$creature_tmp];
 	$row[$creature_tmp] = "<a target='_blank' href='/Zermelo/DURC_creature/$creature_id'>$creature_data</a>";
 }
 
 $creature_img_tmp = ''.$creature_img_field;
-if(isset($creature_img_tmp) && strlen($creature_img_tmp) > 0){
+if(isset($row[$creature_img_tmp]) && strlen($creature_img_tmp) > 0){
 	$creature_img_data = $row[$creature_img_tmp];
 	$row[$creature_img_tmp] = "<img width='200px' src='$creature_img_data'>";
 }
 
 $tag_tmp = ''.$tag_field;
-if(isset($tag_tmp)){
+if(isset($row[$tag_tmp])){
 	$tag_data = $row[$tag_tmp];
 	$row[$tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$tag_id'>$tag_data</a>";
 }
 
 $tag_img_tmp = ''.$tag_img_field;
-if(isset($tag_img_tmp) && strlen($tag_img_tmp) > 0){
+if(isset($row[$tag_img_tmp]) && strlen($tag_img_tmp) > 0){
 	$tag_img_data = $row[$tag_img_tmp];
 	$row[$tag_img_tmp] = "<img width='200px' src='$tag_img_data'>";
 }

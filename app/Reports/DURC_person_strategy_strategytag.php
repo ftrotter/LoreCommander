@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b76925573394c7572c110601eb3ea31e
+FILE_SIG=d1e63f6a434ba83fe3290d8f68f27665
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -233,37 +233,37 @@ WHERE person_strategy_strategytag.id = $index
 
 
 $person_tmp = ''.$person_field;
-if(isset($person_tmp)){
+if(isset($row[$person_tmp])){
 	$person_data = $row[$person_tmp];
 	$row[$person_tmp] = "<a target='_blank' href='/Zermelo/DURC_person/$person_id'>$person_data</a>";
 }
 
 $person_img_tmp = ''.$person_img_field;
-if(isset($person_img_tmp) && strlen($person_img_tmp) > 0){
+if(isset($row[$person_img_tmp]) && strlen($person_img_tmp) > 0){
 	$person_img_data = $row[$person_img_tmp];
 	$row[$person_img_tmp] = "<img width='200px' src='$person_img_data'>";
 }
 
 $strategy_tmp = ''.$strategy_field;
-if(isset($strategy_tmp)){
+if(isset($row[$strategy_tmp])){
 	$strategy_data = $row[$strategy_tmp];
 	$row[$strategy_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategy/$strategy_id'>$strategy_data</a>";
 }
 
 $strategy_img_tmp = ''.$strategy_img_field;
-if(isset($strategy_img_tmp) && strlen($strategy_img_tmp) > 0){
+if(isset($row[$strategy_img_tmp]) && strlen($strategy_img_tmp) > 0){
 	$strategy_img_data = $row[$strategy_img_tmp];
 	$row[$strategy_img_tmp] = "<img width='200px' src='$strategy_img_data'>";
 }
 
 $strategytag_tmp = ''.$strategytag_field;
-if(isset($strategytag_tmp)){
+if(isset($row[$strategytag_tmp])){
 	$strategytag_data = $row[$strategytag_tmp];
 	$row[$strategytag_tmp] = "<a target='_blank' href='/Zermelo/DURC_strategytag/$strategytag_id'>$strategytag_data</a>";
 }
 
 $strategytag_img_tmp = ''.$strategytag_img_field;
-if(isset($strategytag_img_tmp) && strlen($strategytag_img_tmp) > 0){
+if(isset($row[$strategytag_img_tmp]) && strlen($strategytag_img_tmp) > 0){
 	$strategytag_img_data = $row[$strategytag_img_tmp];
 	$row[$strategytag_img_tmp] = "<img width='200px' src='$strategytag_img_data'>";
 }

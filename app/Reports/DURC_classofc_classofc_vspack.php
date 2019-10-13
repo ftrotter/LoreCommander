@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d9356315171297c4ff7acb00f3b3798f
+FILE_SIG=37be003ff99879478595f59be65d8f52
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -233,37 +233,37 @@ WHERE classofc_classofc_vspack.id = $index
 
 
 $classofc_tmp = ''.$classofc_field;
-if(isset($classofc_tmp)){
+if(isset($row[$classofc_tmp])){
 	$classofc_data = $row[$classofc_tmp];
 	$row[$classofc_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofc/$classofc_id'>$classofc_data</a>";
 }
 
 $classofc_img_tmp = ''.$classofc_img_field;
-if(isset($classofc_img_tmp) && strlen($classofc_img_tmp) > 0){
+if(isset($row[$classofc_img_tmp]) && strlen($classofc_img_tmp) > 0){
 	$classofc_img_data = $row[$classofc_img_tmp];
 	$row[$classofc_img_tmp] = "<img width='200px' src='$classofc_img_data'>";
 }
 
 $second_classofc_tmp = 'second_'.$classofc_field;
-if(isset($second_classofc_tmp)){
+if(isset($row[$second_classofc_tmp])){
 	$second_classofc_data = $row[$second_classofc_tmp];
 	$row[$second_classofc_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofc/$second_classofc_id'>$second_classofc_data</a>";
 }
 
 $second_classofc_img_tmp = 'second_'.$classofc_img_field;
-if(isset($second_classofc_img_tmp) && strlen($second_classofc_img_tmp) > 0){
+if(isset($row[$second_classofc_img_tmp]) && strlen($second_classofc_img_tmp) > 0){
 	$second_classofc_img_data = $row[$second_classofc_img_tmp];
 	$row[$second_classofc_img_tmp] = "<img width='200px' src='$second_classofc_img_data'>";
 }
 
 $vspack_tmp = ''.$vspack_field;
-if(isset($vspack_tmp)){
+if(isset($row[$vspack_tmp])){
 	$vspack_data = $row[$vspack_tmp];
 	$row[$vspack_tmp] = "<a target='_blank' href='/Zermelo/DURC_vspack/$vspack_id'>$vspack_data</a>";
 }
 
 $vspack_img_tmp = ''.$vspack_img_field;
-if(isset($vspack_img_tmp) && strlen($vspack_img_tmp) > 0){
+if(isset($row[$vspack_img_tmp]) && strlen($vspack_img_tmp) > 0){
 	$vspack_img_data = $row[$vspack_img_tmp];
 	$row[$vspack_img_tmp] = "<img width='200px' src='$vspack_img_data'>";
 }
