@@ -53,11 +53,11 @@ $app->singleton(
 */
 
 //this is where we do our custom logging
-
+//this is for Laravel 5.5 logging and needs to be updated to laravel 6.x
+/*
 $app->configureMonologUsing(function ($monolog) {
 
 	$pdo = \DB::connection()->getPdo();
-
 
 	$extra_fields = []; //this is not really nessecary anymore should redesign the logger not to use it..
 	//Create MysqlHandler
@@ -65,7 +65,7 @@ $app->configureMonologUsing(function ($monolog) {
 
     	$monolog->pushHandler($mySQLHandler);
 });
-
+*/
 
 
 return $app;
