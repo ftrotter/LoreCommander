@@ -1272,7 +1272,7 @@
                     "local_key": "pricetype_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`),\n  KEY `created_at` (`created_at`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `lore`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`),\n  KEY `created_at` (`created_at`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "classofc": {
             "table_name": "classofc",

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=afdd13d49cfcca5608a27be711f58d2f
+FILE_SIG=b9fd17c75b26b32cfe10bfbebf028610
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -223,13 +223,13 @@ WHERE card.id = $index
 
 
 $mtgset_tmp = ''.$mtgset_field;
-if(isset($mtgset_tmp)){
+if(isset($row[$mtgset_tmp])){
 	$mtgset_data = $row[$mtgset_tmp];
 	$row[$mtgset_tmp] = "<a target='_blank' href='/Zermelo/DURC_mtgset/$mtgset_id'>$mtgset_data</a>";
 }
 
 $mtgset_img_tmp = ''.$mtgset_img_field;
-if(isset($mtgset_img_tmp) && strlen($mtgset_img_tmp) > 0){
+if(isset($row[$mtgset_img_tmp]) && strlen($mtgset_img_tmp) > 0){
 	$mtgset_img_data = $row[$mtgset_img_tmp];
 	$row[$mtgset_img_tmp] = "<img width='200px' src='$mtgset_img_data'>";
 }

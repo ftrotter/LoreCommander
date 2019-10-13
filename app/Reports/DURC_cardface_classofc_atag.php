@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=eb5288146d885b033ebc2ad60482e42b
+FILE_SIG=fd98b88e8a0357ce6dde36a82a14a32b
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -233,37 +233,37 @@ WHERE cardface_classofc_atag.id = $index
 
 
 $cardface_tmp = ''.$cardface_field;
-if(isset($cardface_tmp)){
+if(isset($row[$cardface_tmp])){
 	$cardface_data = $row[$cardface_tmp];
 	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_data</a>";
 }
 
 $cardface_img_tmp = ''.$cardface_img_field;
-if(isset($cardface_img_tmp) && strlen($cardface_img_tmp) > 0){
+if(isset($row[$cardface_img_tmp]) && strlen($cardface_img_tmp) > 0){
 	$cardface_img_data = $row[$cardface_img_tmp];
 	$row[$cardface_img_tmp] = "<img width='200px' src='$cardface_img_data'>";
 }
 
 $classofc_tmp = ''.$classofc_field;
-if(isset($classofc_tmp)){
+if(isset($row[$classofc_tmp])){
 	$classofc_data = $row[$classofc_tmp];
 	$row[$classofc_tmp] = "<a target='_blank' href='/Zermelo/DURC_classofc/$classofc_id'>$classofc_data</a>";
 }
 
 $classofc_img_tmp = ''.$classofc_img_field;
-if(isset($classofc_img_tmp) && strlen($classofc_img_tmp) > 0){
+if(isset($row[$classofc_img_tmp]) && strlen($classofc_img_tmp) > 0){
 	$classofc_img_data = $row[$classofc_img_tmp];
 	$row[$classofc_img_tmp] = "<img width='200px' src='$classofc_img_data'>";
 }
 
 $atag_tmp = ''.$atag_field;
-if(isset($atag_tmp)){
+if(isset($row[$atag_tmp])){
 	$atag_data = $row[$atag_tmp];
 	$row[$atag_tmp] = "<a target='_blank' href='/Zermelo/DURC_atag/$atag_id'>$atag_data</a>";
 }
 
 $atag_img_tmp = ''.$atag_img_field;
-if(isset($atag_img_tmp) && strlen($atag_img_tmp) > 0){
+if(isset($row[$atag_img_tmp]) && strlen($atag_img_tmp) > 0){
 	$atag_img_data = $row[$atag_img_tmp];
 	$row[$atag_img_tmp] = "<img width='200px' src='$atag_img_data'>";
 }

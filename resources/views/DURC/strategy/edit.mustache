@@ -36,36 +36,36 @@
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 	
   <div class='form-group row {{id_row_class}}'>
-    <label for='id' class='col-sm-2 col-form-label'>id</label>
-    <div class='col-sm-10'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
     </div>
   </div>
 
   <div class='form-group row {{strategy_name_row_class}}'>
-    <label for='strategy_name' class='col-sm-2 col-form-label'>strategy_name</label>
-    <div class='col-sm-10'>
+    <label for='strategy_name' class='col-sm-4 col-form-label'>strategy_name</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='strategy_name' name='strategy_name' placeholder='' value='{{strategy_name}}'>
     </div>
   </div>
 
   <div class='form-group row {{strategy_description_row_class}}'>
-    <label for='strategy_description' class='col-sm-2 col-form-label'>strategy_description</label>
-    <div class='col-sm-10'>
+    <label for='strategy_description' class='col-sm-4 col-form-label'>strategy_description</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='strategy_description' name='strategy_description' placeholder='' value='{{strategy_description}}'>
     </div>
   </div>
 
   <div class='form-group row {{strategy_url_row_class}}'>
-    <label for='strategy_url' class='col-sm-2 col-form-label'>strategy_url</label>
-    <div class='col-sm-10'>
+    <label for='strategy_url' class='col-sm-4 col-form-label'>strategy_url</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='strategy_url' name='strategy_url' placeholder='' value='{{strategy_url}}'>
     </div>
   </div>
 
   <div class='form-group row {{wincon_cardface_id_row_class}}'>
-    <label for='wincon_cardface_id' class='col-sm-2 col-form-label'>wincon_cardface_id</label>
-    <div class='col-sm-10'>
+    <label for='wincon_cardface_id' class='col-sm-4 col-form-label'>wincon_cardface_id</label>
+    <div class='col-sm-8'>
 	Current id value: {{wincon_cardface_id}} (see below for lookup value)<br>
 	<select class='select2_wincon_cardface_id form-control' id='wincon_cardface_id' name='wincon_cardface_id' form-control'>
 	<option value='{{wincon_cardface_id}}' selected='selected'>{{wincon_cardface_id}}</option>
@@ -87,15 +87,15 @@ $('.select2_wincon_cardface_id').select2({
 
 
   <div class='form-group row {{WOTC_rule_reference_row_class}}'>
-    <label for='WOTC_rule_reference' class='col-sm-2 col-form-label'>WOTC_rule_reference</label>
-    <div class='col-sm-10'>
+    <label for='WOTC_rule_reference' class='col-sm-4 col-form-label'>WOTC_rule_reference</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='' value='{{WOTC_rule_reference}}'>
     </div>
   </div>
 
   <div class='form-group row {{created_at_row_class}}'>
-    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
-    <div class='col-sm-10'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
@@ -124,8 +124,8 @@ $('.select2_wincon_cardface_id').select2({
   </div>
 
   <div class='form-group row {{updated_at_row_class}}'>
-    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
-    <div class='col-sm-10'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
@@ -154,7 +154,7 @@ $('.select2_wincon_cardface_id').select2({
   </div>
 
   <div class='form-group row'>
-    <div class='col-sm-10'>
+    <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>

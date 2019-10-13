@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=dd255e24a7d65a82f535672d55a25dd2
+FILE_SIG=944ba03a1d6e322e3a4329aa6c117120
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -197,25 +197,25 @@ WHERE cardprice.id = $index
 
 
 $card_tmp = ''.$card_field;
-if(isset($card_tmp)){
+if(isset($row[$card_tmp])){
 	$card_data = $row[$card_tmp];
 	$row[$card_tmp] = "<a target='_blank' href='/Zermelo/DURC_card/$card_id'>$card_data</a>";
 }
 
 $card_img_tmp = ''.$card_img_field;
-if(isset($card_img_tmp) && strlen($card_img_tmp) > 0){
+if(isset($row[$card_img_tmp]) && strlen($card_img_tmp) > 0){
 	$card_img_data = $row[$card_img_tmp];
 	$row[$card_img_tmp] = "<img width='200px' src='$card_img_data'>";
 }
 
 $pricetype_tmp = ''.$pricetype_field;
-if(isset($pricetype_tmp)){
+if(isset($row[$pricetype_tmp])){
 	$pricetype_data = $row[$pricetype_tmp];
 	$row[$pricetype_tmp] = "<a target='_blank' href='/Zermelo/DURC_pricetype/$pricetype_id'>$pricetype_data</a>";
 }
 
 $pricetype_img_tmp = ''.$pricetype_img_field;
-if(isset($pricetype_img_tmp) && strlen($pricetype_img_tmp) > 0){
+if(isset($row[$pricetype_img_tmp]) && strlen($pricetype_img_tmp) > 0){
 	$pricetype_img_data = $row[$pricetype_img_tmp];
 	$row[$pricetype_img_tmp] = "<img width='200px' src='$pricetype_img_data'>";
 }

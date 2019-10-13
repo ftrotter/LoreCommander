@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e0a527aa6cf3cc3609019b8ce85e8611
+FILE_SIG=6af18d33cd12cd92f4b2503400e74a2b
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -161,13 +161,13 @@ WHERE tag.id = $index
 
 
 $excludes_tag_tmp = 'excludes_'.$tag_field;
-if(isset($excludes_tag_tmp)){
+if(isset($row[$excludes_tag_tmp])){
 	$excludes_tag_data = $row[$excludes_tag_tmp];
 	$row[$excludes_tag_tmp] = "<a target='_blank' href='/Zermelo/DURC_tag/$excludes_tag_id'>$excludes_tag_data</a>";
 }
 
 $excludes_tag_img_tmp = 'excludes_'.$tag_img_field;
-if(isset($excludes_tag_img_tmp) && strlen($excludes_tag_img_tmp) > 0){
+if(isset($row[$excludes_tag_img_tmp]) && strlen($excludes_tag_img_tmp) > 0){
 	$excludes_tag_img_data = $row[$excludes_tag_img_tmp];
 	$row[$excludes_tag_img_tmp] = "<img width='200px' src='$excludes_tag_img_data'>";
 }

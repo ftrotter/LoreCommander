@@ -36,36 +36,36 @@
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 	
   <div class='form-group row {{id_row_class}}'>
-    <label for='id' class='col-sm-2 col-form-label'>id</label>
-    <div class='col-sm-10'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
     </div>
   </div>
 
   <div class='form-group row {{classofc_name_row_class}}'>
-    <label for='classofc_name' class='col-sm-2 col-form-label'>classofc_name</label>
-    <div class='col-sm-10'>
+    <label for='classofc_name' class='col-sm-4 col-form-label'>classofc_name</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='classofc_name' name='classofc_name' placeholder='' value='{{classofc_name}}'>
     </div>
   </div>
 
   <div class='form-group row {{classofc_img_uri_row_class}}'>
-    <label for='classofc_img_uri' class='col-sm-2 col-form-label'>classofc_img_uri</label>
-    <div class='col-sm-10'>
+    <label for='classofc_img_uri' class='col-sm-4 col-form-label'>classofc_img_uri</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}'>
     </div>
   </div>
 
   <div class='form-group row {{classofc_wiki_url_row_class}}'>
-    <label for='classofc_wiki_url' class='col-sm-2 col-form-label'>classofc_wiki_url</label>
-    <div class='col-sm-10'>
+    <label for='classofc_wiki_url' class='col-sm-4 col-form-label'>classofc_wiki_url</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}'>
     </div>
   </div>
 
   <div class='form-group row {{is_mega_class_row_class}}'>
-    <div class='col-sm-2'><label>is_mega_class</label></div>
-    <div class='col-sm-10'>
+    <div class='col-sm-4'><label>is_mega_class</label></div>
+    <div class='col-sm-8'>
         <div class='checkbox'>
             <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}} >
        </div> 
@@ -73,8 +73,8 @@
   </div>
 
   <div class='form-group row {{created_at_row_class}}'>
-    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
-    <div class='col-sm-10'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
@@ -103,8 +103,8 @@
   </div>
 
   <div class='form-group row {{updated_at_row_class}}'>
-    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
-    <div class='col-sm-10'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
@@ -133,7 +133,7 @@
   </div>
 
   <div class='form-group row'>
-    <div class='col-sm-10'>
+    <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>
@@ -237,6 +237,88 @@
 </tbody>
 </table>
 </div></div> <!-- end classofc_cardface card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofc_classofc_vspack ( <a href='/DURC/classofc_classofc_vspack/'>see all</a> )
+{{^classofc_classofc_vspack}}
+(no values)
+{{/classofc_classofc_vspack}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofc_classofc_vspack' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> classofc_id </th>
+			<th> second_classofc_id </th>
+			<th> vspack_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofc_classofc_vspack}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofc_classofc_vspack/{{id}}'>{{id}}</a></td>
+			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{second_classofc_id_DURClabel}} ({{second_classofc_id}}) </td>			<td>{{vspack_id_DURClabel}} ({{vspack_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofc_classofc_vspack}}
+</tbody>
+</table>
+</div></div> <!-- end classofc_classofc_vspack card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many second_classofc_classofc_vspack ( <a href='/DURC/classofc_classofc_vspack/'>see all</a> )
+{{^second_classofc_classofc_vspack}}
+(no values)
+{{/second_classofc_classofc_vspack}}
+  </div>
+<div class='card-body'>
+
+<table id='table_second_classofc_classofc_vspack' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> classofc_id </th>
+			<th> second_classofc_id </th>
+			<th> vspack_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#second_classofc_classofc_vspack}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofc_classofc_vspack/{{id}}'>{{id}}</a></td>
+			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{second_classofc_id_DURClabel}} ({{second_classofc_id}}) </td>			<td>{{vspack_id_DURClabel}} ({{vspack_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/second_classofc_classofc_vspack}}
+</tbody>
+</table>
+</div></div> <!-- end second_classofc_classofc_vspack card-->
 <br>
 
 <div class='card'>

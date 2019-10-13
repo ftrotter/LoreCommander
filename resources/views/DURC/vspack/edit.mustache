@@ -36,43 +36,43 @@
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 	
   <div class='form-group row {{id_row_class}}'>
-    <label for='id' class='col-sm-2 col-form-label'>id</label>
-    <div class='col-sm-10'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
     </div>
   </div>
 
   <div class='form-group row {{vspack_name_row_class}}'>
-    <label for='vspack_name' class='col-sm-2 col-form-label'>vspack_name</label>
-    <div class='col-sm-10'>
+    <label for='vspack_name' class='col-sm-4 col-form-label'>vspack_name</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='vspack_name' name='vspack_name' placeholder='' value='{{vspack_name}}'>
     </div>
   </div>
 
   <div class='form-group row {{vspack_wizards_url_row_class}}'>
-    <label for='vspack_wizards_url' class='col-sm-2 col-form-label'>vspack_wizards_url</label>
-    <div class='col-sm-10'>
+    <label for='vspack_wizards_url' class='col-sm-4 col-form-label'>vspack_wizards_url</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='vspack_wizards_url' name='vspack_wizards_url' placeholder='' value='{{vspack_wizards_url}}'>
     </div>
   </div>
 
   <div class='form-group row {{vspack_wiki_url_row_class}}'>
-    <label for='vspack_wiki_url' class='col-sm-2 col-form-label'>vspack_wiki_url</label>
-    <div class='col-sm-10'>
+    <label for='vspack_wiki_url' class='col-sm-4 col-form-label'>vspack_wiki_url</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='vspack_wiki_url' name='vspack_wiki_url' placeholder='' value='{{vspack_wiki_url}}'>
     </div>
   </div>
 
   <div class='form-group row {{vspack_img_url_row_class}}'>
-    <label for='vspack_img_url' class='col-sm-2 col-form-label'>vspack_img_url</label>
-    <div class='col-sm-10'>
+    <label for='vspack_img_url' class='col-sm-4 col-form-label'>vspack_img_url</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='vspack_img_url' name='vspack_img_url' placeholder='' value='{{vspack_img_url}}'>
     </div>
   </div>
 
   <div class='form-group row {{created_at_row_class}}'>
-    <label for='created_at' class='col-sm-2 col-form-label'>created_at</label>
-    <div class='col-sm-10'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
@@ -101,8 +101,8 @@
   </div>
 
   <div class='form-group row {{updated_at_row_class}}'>
-    <label for='updated_at' class='col-sm-2 col-form-label'>updated_at</label>
-    <div class='col-sm-10'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-8'>
       <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
@@ -131,7 +131,7 @@
   </div>
 
   <div class='form-group row'>
-    <div class='col-sm-10'>
+    <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>
@@ -153,4 +153,52 @@
             </div>
 
 
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many classofc_classofc_vspack ( <a href='/DURC/classofc_classofc_vspack/'>see all</a> )
+{{^classofc_classofc_vspack}}
+(no values)
+{{/classofc_classofc_vspack}}
+  </div>
+<div class='card-body'>
+
+<table id='table_classofc_classofc_vspack' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> classofc_id </th>
+			<th> second_classofc_id </th>
+			<th> vspack_id </th>
+			<th> is_bulk_linker </th>
+			<th> link_note </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#classofc_classofc_vspack}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/classofc_classofc_vspack/{{id}}'>{{id}}</a></td>
+			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{second_classofc_id_DURClabel}} ({{second_classofc_id}}) </td>			<td>{{vspack_id_DURClabel}} ({{vspack_id}}) </td>			<td>{{is_bulk_linker}}</td>
+			<td>{{link_note}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/classofc_classofc_vspack}}
+</tbody>
+</table>
+</div></div> <!-- end classofc_classofc_vspack card-->
+<br>
+</div></div> <!--end has many card-->
 <br>
