@@ -2,15 +2,15 @@
 
 		  <div class="container-fluid">
 	  <div class="row">
-      <div class="col-md-2">
-        <div class="card">
+      <div style='flex: 0 0 265px;' class="col-md-2">
+        <div style='width: 264px' class="card">
           <div class="card-body">
 {{ $report->getReportName() }}
             <hr>
 
 
 
-<div class="accordion" id="accordionExample">
+<div  class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
@@ -23,9 +23,13 @@
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
 <p>
-TODO re-implement using Socket/Wrench
+Data Options popup link goes here..
 <br>
+<!--
+Lonely node needs to be reimplemented using a permenant data option TODO
     <input type="checkbox" name="hideLonelyNode" id="hideLonelyNode"  onchange="updateForce();" value="1"> Hide Lonely Node <br/><br/>
+-->
+
 </p>
       </div>
     </div>
@@ -56,7 +60,7 @@ TODO re-implement using Socket/Wrench
 
 
 <button class="btn btn-xs btn-primary" type="button" data-toggle="collapse" data-target="#advancedControls" aria-expanded="false" aria-controls="collapseExample">
-  Show Advanced Controls
+  Advanced Controls
 </button>
 
     <div class='collapse' id='advancedControls'>
@@ -84,7 +88,9 @@ TODO re-implement using Socket/Wrench
     </div>
         <div class="checkbox">
     <label>
+<!-- not sure why this does not have any javascript... but lets remove it until it does..
       <input id='reset_parameters' name='reset_parameters' value='off' type="checkbox"> Reset Parameters
+-->
     </label>
   </div>
       </div>
