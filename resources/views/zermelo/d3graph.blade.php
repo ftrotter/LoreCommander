@@ -111,44 +111,51 @@ Lonely node needs to be reimplemented using a permenant data option TODO
 <div class="btn-group-vertical btn-group-toogle" data-toggle="buttons">
   <label class="btn btn-primary"
   onClick="true_unfreeze();" >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-                <span class="glyphicon glyphicon-play"></span> Animate Graph
+    <input style='display: none;' type="radio" name="options" id="option1" autocomplete="off" checked> 
+		<i style='float: left' class="fas fa-play"></i> 
+		Animate Graph
   </label>
   <label class="btn btn-primary"
   onClick="force.stop();" >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-                <span class="glyphicon glyphicon-pause"></span> Freeze Graph
+    <input style='display: none;' type="radio" name="options" id="option1" autocomplete="off" checked> 
+		<i style='float: left' class="fas fa-pause"></i> 
+		Freeze Graph
   </label>
 
   <label class="btn btn-primary"
   onClick="free_nodes();" >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-                <span class="glyphicon glyphicon-random"></span> Unfix All Nodes
+    <input style='display: none;' type="radio" name="options" id="option1" autocomplete="off" checked> 
+		<i style='float: left' class="fas fa-recycle"></i> 
+		Unfix Nodes
   </label>
 
   <label class="btn btn-primary"
   onClick="console.log('trying center'); gravityMode = 'centered'; force_settle('3000','gravity center');"
 >
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> 
-    <span class="glyphicon glyphicon-play"></span> Center Gravity
+    <input style='display: none;' type="radio" name="options" id="option1" autocomplete="off" checked> 
+		<i style='float: left' class="fas fa-chevron-down"></i> 
+		Center Gravity
   </label>
   <label class="btn btn-primary"
   onClick="console.log('trying right'); gravityMode = 'right'; force_settle('3000','gravity right');"
 >
-    <input type="radio" name="options" id="option2" autocomplete="off"> 
-    <span class="glyphicon glyphicon-arrow-right"></span>Right Gravity
+    <input style='display: none;' type="radio" name="options" id="option2" autocomplete="off"> 
+		<i style='float: left' class="fas fa-chevron-right"></i> 
+		Right Gravity
   </label>
   <label class="btn btn-primary"
   onClick="console.log('trying left'); gravityMode = 'left'; force_settle('3000','gravity left');"
 >
-    <input type="radio" name="options" id="option3" autocomplete="off"> 
-    <span class="glyphicon glyphicon-arrow-left"></span>Left Gravity
+    <input style='display: none;' type="radio" name="options" id="option3" autocomplete="off"> 
+		<i style='float: left' class="fas fa-chevron-left"></i> 
+		Left Gravity
   </label>
   <label class="btn btn-primary"
   onClick="console.log('trying group'); gravityMode = 'group'; force_settle('3000','gravity group');"
 >
-    <input type="radio" name="options" id="option3" autocomplete="off"> 
-      <span class="glyphicon glyphicon-transfer"></span>Group Gravity
+    <input style='display: none;' type="radio" name="options" id="option3" autocomplete="off"> 
+		<i style='float: left' class="fas fa-dice-six"></i> 
+		Group Gravity
   </label>
 <!-- Animation Options Form -->
 
