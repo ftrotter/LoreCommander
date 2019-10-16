@@ -5,19 +5,12 @@ use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 
 class TabularArtisanTest extends AbstractTabularReport
 {
+    // define the report name
+    public function GetReportName(): string { return("TabularArtisanTest"); }
 
-    /*
-    * Get the Report Name
-    */
-    public function GetReportName(): string {
-	return("ENTER YOUR REPORT NAME HERE");
-    }
-
-    /*
-    * Get the Report Description, bootstrap styled html is OK
-    */
+    // define the report description, HTML is ok here.
     public function GetReportDescription(): ?string {
-	$desc = "ENTER YOUR REPORT DESCRIPTION, OR CUSTOMIZE WITH OTHER HTML HERE!!"; 
+	$desc = "TabularArtisanTest DESCRIPTION, OR CUSTOMIZE WITH OTHER HTML HERE!!"; 
 	return($desc);
     }
 
@@ -41,6 +34,7 @@ SELECT
 	`ORDINAL_POSITION` AS column_order,
 	`COLUMN_TYPE`
 FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA != 'mysql' AND TABLE_SCHEMA != 'information_schema'
 ";
     	return $sql;
     }
