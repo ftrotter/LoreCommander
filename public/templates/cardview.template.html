@@ -1,18 +1,18 @@
 <script id="tpl-cardview" type="text/html">
-
 <div class='row'> 
 	<div class='col-12'>
-		<h3> {{name }} <small> {{mana_cost}} {{rarity}} </small></h3>
+		<h3> {{name }} <small> {{mana_cost}} {{rarity}} <a target='_blank' href='{{source_scryfall_url}}'>json</a> </small></h3>
 	</div>
 </div>
 <div class='row'> 
-
-	<div class='col-6'> 
+<div class='col-9'>
+  <div class='row'>
+	<div class='col-7 small'> 
 		<img class="img-fluid" src='{{image_uris.art_crop}}'> 
         	<dt>Artist</dt>
         	<dd>{{artist}}</dd>
 	</div> 
-	<div class='col-3 small'> 
+	<div class='col-5 small'> 
 		<p> {{oracle_text}} </p> 
         <dt>Set Name</dt>
         <dd>{{set_name}}</dd>
@@ -46,7 +46,16 @@
 		</ul>	
 		{{/prices}}	
 	</dd>
-	</div>  
+	</div> 
+  </div>
+<div class='row'>
+	<div class='col-12'> 
+	{{#ill_img_list}}
+<img style='padding: 6px;' width='250px' src='{{.}}' class="rounded float-left">
+	{{/ill_img_list}}
+	</div>
+</div>
+</div> 
 	<div class='col-3 small'> 
 		<img src='{{image_uris.small}}'> 
 		<br>
@@ -61,19 +70,5 @@
 		{{/rulings_list}}
 		</ul>
 	</div> 
-</div>
-<div class='row'>
-	<div class='col-1'> 
-
-	</div>
-
-	<div class='col-10'> 
-	{{#ill_img_list}}
-<img style='padding: 6px;' width='250px' src='{{.}}' class="rounded float-left">
-	{{/ill_img_list}}
-	</div>
-	<div class='col-1'> 
-
-	</div>
 </div>
 </script>
