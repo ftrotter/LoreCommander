@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
 
-  <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+  <script src="/js/pusher-4.4.min.js"></script>
   <script src='/js/mustache.3.0.1.js'></script>
   <script>
 
@@ -47,11 +47,48 @@
 						await sleep(2000); //doing this as the simplest way to ensure that my ill_img_list is really set
 						myData.ill_img_list = ill_img_list;
 						myData.rulings_list = rulings_list;
+						myData.source_scryfall_url = scryfall_url
 						//console.log('before mustache to_html');
 						//console.log(myData);
 						var card_html = Mustache.to_html(tpl, myData);
 						console.log('before html');
 						$('#cardView').html(card_html);
+
+						//now we sort out the background color
+							//defaul tis...
+						back_color = 'goldenrod'; //asume multi colored
+						if(myData.color_identity.length == 0){
+							back_color = 'lightgrey'; //grey for no color
+						}	
+
+						if(myData.color_identity.length > 1){
+							//do nothing keep the default...
+							
+						}else{
+							card_color = myData.color_identity[0];
+				
+							switch(card_color){
+								case 'W': 
+									back_color = 'white';
+									break;
+								case 'R':
+									back_color = 'salmon';
+									break;
+								case 'B':
+									back_color = 'lightgrey';
+									break;
+								case 'G':
+									back_color = 'green';
+									break;
+								case 'U':
+									back_color = 'lightskyblue';
+									break;	
+							}
+
+						}
+
+						document.body.style.background = back_color;
+
 					});
 			}); // end get template
 		});  //end pusher channel bind
@@ -102,13 +139,39 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+
 
   </script>
 </head>
 <body>
-<div id='cardView' class='container-fluid' style='padding: 3% 3%;'>
+<div id='cardView' class='container-fluid' style='padding: 3% 3%;background-color: light-grey;' >
 <h3> Delver URL: https://lore.ft1.us/changeCard/{{$channel_id}}/$multiverse_id </h3>
 <a href='/templates/cardview.template.html'>reload card view template</a>
+<input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen(document.body)">
 </div>
 </body>
 
