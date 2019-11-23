@@ -18,12 +18,6 @@
 
 		<table class="display table table-bordered table-condensed table-striped table-hover" id="report_datatable" style="width:100%;"></table>
 
-		<div id="loader" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm modal-dialog-centered">
-				<div class="loader"></div>
-			</div>
-		</div>
-
 	</div>
 
 	<div id="bottom_locator" style="
@@ -272,9 +266,6 @@
         var passthrough_params = {!! $report->getRequestFormInput( true ) !!};
         var param = decodeURIComponent( $.param(passthrough_params) );
 
-        // Before we call the API to build headers, show the processing indicator
-        $('#loader').modal();
-
         // This is the summary API call that will get the column headers
 		// If this call succeeds, we call the server to get the data
         $.getJSON(
@@ -411,7 +402,10 @@
                         return title;
                     },
                     titleAttr: 'Print',
-                    init: function ( dt, node, config ) { $(node).tooltip(); }
+                    init: function ( dt, node, config ) { $(node).tooltip(); },
+					exportOptions: {
+                        stripHtml: false // Do not strip HTML so font-awesome icons and other html are printed (#31)
+					}
                 },
                 {
                     extend: 'collection',
@@ -621,7 +615,8 @@
                 columns: columnHeaders,
 
 				language: {
-                    "emptyTable": emptyTableString
+                    "emptyTable": emptyTableString,
+					"processing": '<div class="loader"></div>'
 				},
 
                 /*
@@ -629,9 +624,6 @@
                     Pass over the sort, filter, and what records to fetch
                 */
                 ajax: function (data, callback, settings) {
-
-                    // if our loader is hidden, show it
-                    $('#loader').modal('show');
 
                     var columns = data.columns;
                     var order = data.order;
@@ -732,10 +724,7 @@
 						// This text will replace the default "No data available in table"
                         var search_filters = zermelo.getSearchFilters();
                         if (search_filters.length > 0) {
-                            var emptyTableString = "<h4> No data in table </h4> <div class='container fixed-bottom'> <div class='row'> <div class='col-md-5'> <div class='card'><div class='card-header'> <h3> Clear Filters </h3></div> <div class='card-body'>"; 
-                            emptyTableString += "<p class='card-text'><button class='btn btn-primary clear-all-search-filters' href='#'>Clear Filters</button>";
-
-			    emptyTableString += "<br> You can use this button to remove the filtes and reload the table. <br>  It is possible you are seeing no data because you have the following search filters applied: <ul class='list-group'>";
+                            var emptyTableString = "<p>No data available in table, possibly because you have the following search filters applied:</p>";
                             $.each(zermelo.getSearchFilters(), function (key, option) {
                                 var name =  '';
                                 var value = '';
@@ -743,15 +732,11 @@
                                     name = i;
                                     value = option[i];
                                 }
-                                emptyTableString += "<li class='list-group-item'>" + name + "=>" + value + "</li>";
+                                emptyTableString += "<p>" + name + "=>" + value + "</p>";
                             });
-
-			    emptyTableString += "</ul></p></div></div></div></div><div class='row'><br>&nbsp;<br>&nbsp;<br></div></div>";
-
+                            emptyTableString += "<p>Click to clear all filters and reload table</p><p><button class='btn btn-primary clear-all-search-filters' href='#'>Clear Filters</button></p>";
                             $("#emptyTableString").html(emptyTableString);
                         }
-
-                        $('#loader').modal('hide'); // Hide the laoder
                     });
                 },
 
@@ -760,8 +745,9 @@
                     Send all processing to server side
                 */
                 serverSide: true,
-                processing: false, // Set to false because we use our own loading indicator that starts when headers are being generated
-                paging: true,
+                processing: true,
+
+				paging: true,
 
 
                 initComplete: function(settings, json) {
