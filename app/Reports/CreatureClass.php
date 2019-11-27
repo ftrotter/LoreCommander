@@ -43,9 +43,14 @@ class CreatureClass extends AbstractTabularReport
 	       $sql = "
 SELECT 
 	classofc_name AS creature_class_name,
-	classofc.id AS class_id,
 	COUNT(DISTINCT(creature.id)) AS creature_type_count,
-	COUNT(DISTINCT(cardface.id)) AS card_count
+	COUNT(DISTINCT(oracle_id)) AS card_count,
+	(COUNT(DISTINCT(IF(cardface.is_color_green,oracle_id,NULL)))/COUNT(DISTINCT(oracle_id))) AS green_percent,
+	(COUNT(DISTINCT(IF(cardface.is_color_red,oracle_id,NULL)))/COUNT(DISTINCT(oracle_id))) AS red_percent,
+	(COUNT(DISTINCT(IF(cardface.is_color_blue,oracle_id,NULL)))/COUNT(DISTINCT(oracle_id))) AS blue_percent,
+	(COUNT(DISTINCT(IF(cardface.is_color_black,oracle_id,NULL)))/COUNT(DISTINCT(oracle_id))) AS black_percent,
+	(COUNT(DISTINCT(IF(cardface.is_color_white,oracle_id,NULL)))/COUNT(DISTINCT(oracle_id))) AS white_percent,
+	classofc.id AS class_id
 FROM lore.classofc 
 JOIN lore.classofc_creature ON 
 	classofc_id =
@@ -59,6 +64,9 @@ JOIN lore.classofc_cardface ON
 JOIN lore.cardface ON 
 	cardface.id =
 	classofc_cardface.cardface_id
+JOIN lore.card ON 
+	card_id =
+	card.id
 GROUP BY classofc.id
 
 ";
