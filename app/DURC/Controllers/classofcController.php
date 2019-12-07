@@ -223,11 +223,18 @@ class classofcController extends DURCController
 		$tmp_classofc->classofc_img_uri = DURC::formatForStorage( 'classofc_img_uri', 'varchar', $request->classofc_img_uri ); 
 		$tmp_classofc->classofc_wiki_url = DURC::formatForStorage( 'classofc_wiki_url', 'varchar', $request->classofc_wiki_url ); 
 		$tmp_classofc->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
-		$tmp_classofc->save();
 
+	
+	try {
+	    		$tmp_classofc->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewclassofc->id;
-
+	
 	return redirect("/DURC/classofc/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -356,10 +363,17 @@ class classofcController extends DURCController
 		$tmp_classofc->classofc_img_uri = DURC::formatForStorage( 'classofc_img_uri', 'varchar', $request->classofc_img_uri ); 
 		$tmp_classofc->classofc_wiki_url = DURC::formatForStorage( 'classofc_wiki_url', 'varchar', $request->classofc_wiki_url ); 
 		$tmp_classofc->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
-		$tmp_classofc->save();
 
 
 	$id = $classofc->id;
+	
+    try {
+	    		$tmp_classofc->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/classofc/$id")->with('status', 'Data Saved!');
         

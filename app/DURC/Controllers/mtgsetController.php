@@ -237,11 +237,18 @@ class mtgsetController extends DURCController
 		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri ); 
 		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri ); 
 		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri ); 
-		$tmp_mtgset->save();
 
+	
+	try {
+	    		$tmp_mtgset->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/mtgset/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewmtgset->id;
-
+	
 	return redirect("/DURC/mtgset/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -384,10 +391,17 @@ class mtgsetController extends DURCController
 		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri ); 
 		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri ); 
 		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri ); 
-		$tmp_mtgset->save();
 
 
 	$id = $mtgset->id;
+	
+    try {
+	    		$tmp_mtgset->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/mtgset/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/mtgset/$id")->with('status', 'Data Saved!');
         

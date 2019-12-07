@@ -223,11 +223,18 @@ class packController extends DURCController
 		$tmp_pack->pack_wizards_url = DURC::formatForStorage( 'pack_wizards_url', 'varchar', $request->pack_wizards_url ); 
 		$tmp_pack->pack_wiki_url = DURC::formatForStorage( 'pack_wiki_url', 'varchar', $request->pack_wiki_url ); 
 		$tmp_pack->pack_img_url = DURC::formatForStorage( 'pack_img_url', 'varchar', $request->pack_img_url ); 
-		$tmp_pack->save();
 
+	
+	try {
+	    		$tmp_pack->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/pack/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewpack->id;
-
+	
 	return redirect("/DURC/pack/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -356,10 +363,17 @@ class packController extends DURCController
 		$tmp_pack->pack_wizards_url = DURC::formatForStorage( 'pack_wizards_url', 'varchar', $request->pack_wizards_url ); 
 		$tmp_pack->pack_wiki_url = DURC::formatForStorage( 'pack_wiki_url', 'varchar', $request->pack_wiki_url ); 
 		$tmp_pack->pack_img_url = DURC::formatForStorage( 'pack_img_url', 'varchar', $request->pack_img_url ); 
-		$tmp_pack->save();
 
 
 	$id = $pack->id;
+	
+    try {
+	    		$tmp_pack->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/pack/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/pack/$id")->with('status', 'Data Saved!');
         

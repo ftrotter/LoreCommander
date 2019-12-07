@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=20fbacbe4da045b1c04de51f7b9b7625
+FILE_SIG=d83f603b54f0a16dfc243699a01ae110
 */
 namespace App;
 /*
@@ -56,20 +56,27 @@ class vspack extends \App\DURC\Models\vspack
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`vspack` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vspack_name` varchar(255) NOT NULL,
-  `vspack_wizards_url` varchar(2000) NOT NULL,
-  `vspack_wiki_url` varchar(2000) NOT NULL,
-  `vspack_img_url` varchar(2000) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

@@ -23,7 +23,7 @@
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/atag/'>Return to atag list</a> </li>
+<li> <a href='/Zermelo/DURC_atag/'>Return to atag list</a> </li>
 {{^is_new}}
 <li> <a href='/DURC/atag/create'>Create new atag </a> </li>
 {{/is_new}}
@@ -38,14 +38,14 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}' >
     </div>
   </div>
 
   <div class='form-group row {{arttag_name_row_class}}'>
     <label for='arttag_name' class='col-sm-4 col-form-label'>arttag_name</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='arttag_name' name='arttag_name' placeholder='' value='{{arttag_name}}'>
+      <input type='text' class='form-control' id='arttag_name' name='arttag_name' placeholder='' value='{{arttag_name}}' >
     </div>
   </div>
 
@@ -53,7 +53,7 @@
     <div class='col-sm-4'><label>is_directed</label></div>
     <div class='col-sm-8'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_directed' name='is_directed' {{is_directed}} >
+            <input type='checkbox' id='is_directed' name='is_directed' {{is_directed}}  >
        </div> 
     </div>
   </div>
@@ -61,14 +61,14 @@
   <div class='form-group row {{excludes_arttag_id_row_class}}'>
     <label for='excludes_arttag_id' class='col-sm-4 col-form-label'>excludes_arttag_id</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='' value='{{excludes_arttag_id}}'>
+      <input type='text' class='form-control' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='' value='{{excludes_arttag_id}}' >
     </div>
   </div>
 
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -98,7 +98,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

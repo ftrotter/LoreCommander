@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=688d712e9015d31209285593dba930c1
+FILE_SIG=e9e8d637ba579c55aca35f9ac8d4e80c
 */
 namespace App;
 /*
@@ -87,20 +87,27 @@ class tag extends \App\DURC\Models\tag
 		//DURC would have added excludes_tag but it was already used in has_many. 
 		//You will have to resolve these recursive relationships in your code.
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tag_name` varchar(255) NOT NULL,
-  `is_directed` tinyint(1) NOT NULL DEFAULT 0,
-  `excludes_tag_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_name` (`tag_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

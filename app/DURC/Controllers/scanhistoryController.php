@@ -221,11 +221,18 @@ class scanhistoryController extends DURCController
 			$tmp_scanhistory->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_scanhistory->multiverse_id = DURC::formatForStorage( 'multiverse_id', 'int', $request->multiverse_id ); 
 		$tmp_scanhistory->viewchannel = DURC::formatForStorage( 'viewchannel', 'varchar', $request->viewchannel ); 
-		$tmp_scanhistory->save();
 
+	
+	try {
+	    		$tmp_scanhistory->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/scanhistory/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewscanhistory->id;
-
+	
 	return redirect("/DURC/scanhistory/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -352,10 +359,17 @@ class scanhistoryController extends DURCController
 			$tmp_scanhistory->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_scanhistory->multiverse_id = DURC::formatForStorage( 'multiverse_id', 'int', $request->multiverse_id ); 
 		$tmp_scanhistory->viewchannel = DURC::formatForStorage( 'viewchannel', 'varchar', $request->viewchannel ); 
-		$tmp_scanhistory->save();
 
 
 	$id = $scanhistory->id;
+	
+    try {
+	    		$tmp_scanhistory->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/scanhistory/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/scanhistory/$id")->with('status', 'Data Saved!');
         

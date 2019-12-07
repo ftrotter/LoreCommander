@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=af333074a98ce964627fa470a4403f5e
+FILE_SIG=a654554f9e05366ae3bd6283ebb87428
 */
 namespace App;
 /*
@@ -77,22 +77,27 @@ class cardface_person_atag extends \App\DURC\Models\cardface_person_atag
 
 
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`cardface_person_atag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cardface_id` int(11) NOT NULL,
-  `person_id` int(11) NOT NULL,
-  `atag_id` int(11) NOT NULL,
-  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,
-  `link_note` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

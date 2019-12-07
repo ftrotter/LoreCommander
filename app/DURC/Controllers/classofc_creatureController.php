@@ -223,11 +223,18 @@ class classofc_creatureController extends DURCController
 			$tmp_classofc_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_classofc_creature->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
 		$tmp_classofc_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
-		$tmp_classofc_creature->save();
 
+	
+	try {
+	    		$tmp_classofc_creature->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc_creature/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewclassofc_creature->id;
-
+	
 	return redirect("/DURC/classofc_creature/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -354,10 +361,17 @@ class classofc_creatureController extends DURCController
 			$tmp_classofc_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_classofc_creature->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
 		$tmp_classofc_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
-		$tmp_classofc_creature->save();
 
 
 	$id = $classofc_creature->id;
+	
+    try {
+	    		$tmp_classofc_creature->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc_creature/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/classofc_creature/$id")->with('status', 'Data Saved!');
         

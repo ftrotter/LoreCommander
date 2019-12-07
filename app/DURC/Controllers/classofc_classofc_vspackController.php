@@ -227,11 +227,18 @@ class classofc_classofc_vspackController extends DURCController
 		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id ); 
 		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_classofc_classofc_vspack->save();
 
+	
+	try {
+	    		$tmp_classofc_classofc_vspack->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc_classofc_vspack/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewclassofc_classofc_vspack->id;
-
+	
 	return redirect("/DURC/classofc_classofc_vspack/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -361,10 +368,17 @@ class classofc_classofc_vspackController extends DURCController
 		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id ); 
 		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_classofc_classofc_vspack->save();
 
 
 	$id = $classofc_classofc_vspack->id;
+	
+    try {
+	    		$tmp_classofc_classofc_vspack->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc_classofc_vspack/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/classofc_classofc_vspack/$id")->with('status', 'Data Saved!');
         

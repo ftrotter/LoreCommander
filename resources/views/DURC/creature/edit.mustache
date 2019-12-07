@@ -23,7 +23,7 @@
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/creature/'>Return to creature list</a> </li>
+<li> <a href='/Zermelo/DURC_creature/'>Return to creature list</a> </li>
 {{^is_new}}
 <li> <a href='/DURC/creature/create'>Create new creature </a> </li>
 {{/is_new}}
@@ -38,28 +38,28 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}' >
     </div>
   </div>
 
   <div class='form-group row {{creature_name_row_class}}'>
     <label for='creature_name' class='col-sm-4 col-form-label'>creature_name</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='creature_name' name='creature_name' placeholder='' value='{{creature_name}}'>
+      <input type='text' class='form-control' id='creature_name' name='creature_name' placeholder='' value='{{creature_name}}' >
     </div>
   </div>
 
   <div class='form-group row {{creature_image_uri_row_class}}'>
     <label for='creature_image_uri' class='col-sm-4 col-form-label'>creature_image_uri</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='creature_image_uri' name='creature_image_uri' placeholder='' value='{{creature_image_uri}}'>
+      <input type='text' class='form-control' id='creature_image_uri' name='creature_image_uri' placeholder='' value='{{creature_image_uri}}' >
     </div>
   </div>
 
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -89,7 +89,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

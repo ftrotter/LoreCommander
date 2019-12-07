@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=43999a96b4b7529c7568a1de1b9952d7
+FILE_SIG=3a9bea72d09f897d169c8f1c09436aa7
 */
 namespace App;
 /*
@@ -77,21 +77,27 @@ class strategy extends \App\DURC\Models\strategy
 
 
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`strategy` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `strategy_name` varchar(255) NOT NULL,
-  `strategy_description` varchar(2000) NOT NULL,
-  `strategy_url` varchar(500) NOT NULL,
-  `wincon_cardface_id` int(11) DEFAULT NULL,
-  `WOTC_rule_reference` varchar(10) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4c66a7c91bcca8bd394a45f5a509ba54
+FILE_SIG=14c3d13ef5554bbd3605000e2889606d
 */
 namespace App;
 /*
@@ -70,35 +70,27 @@ class mtgset extends \App\DURC\Models\mtgset
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`mtgset` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `scryfall_id` varchar(255) NOT NULL,
-  `code` varchar(10) NOT NULL,
-  `mtgo_code` varchar(255) DEFAULT NULL,
-  `arena_code` varchar(255) DEFAULT NULL,
-  `tcgplayer_id` int(11) DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `set_type` varchar(255) NOT NULL,
-  `released_at` varchar(255) NOT NULL,
-  `block_code` varchar(255) DEFAULT NULL,
-  `block` varchar(255) DEFAULT NULL,
-  `parent_set_code` varchar(255) DEFAULT NULL,
-  `card_count` int(11) NOT NULL,
-  `is_digital` tinyint(1) NOT NULL,
-  `is_foil_only` tinyint(1) NOT NULL,
-  `scryfall_uri` varchar(255) NOT NULL,
-  `mtgset_uri` varchar(255) NOT NULL,
-  `icon_svg_uri` varchar(255) NOT NULL,
-  `search_uri` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `scryfall_id` (`scryfall_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

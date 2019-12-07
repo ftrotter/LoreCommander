@@ -11,7 +11,6 @@
     <title>DURC Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="/css/anytime.5.2.0.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -65,8 +64,6 @@ h1 {
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="/js/anytime.5.2.0.js"></script>
 <script src="/js/simplemde.min.js"></script>
@@ -84,7 +81,7 @@ h1 {
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="DURC/">DURC <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/Zermelo/DURC/">DURC <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
@@ -93,125 +90,10 @@ h1 {
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <ul class="nav nav-pills flex-column">
 
 
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/artist/'>artist</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/artistcredit/'>artistcredit</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/atag/'>atag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/card/'>card</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/cardface/'>cardface</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/cardface_classofc_atag/'>cardface_classofc_atag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/cardface_person_atag/'>cardface_person_atag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/cardprice/'>cardprice</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/classofc/'>classofc</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/classofc_cardface/'>classofc_cardface</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/classofc_classofc_vspack/'>classofc_classofc_vspack</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/classofc_creature/'>classofc_creature</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/creature/'>creature</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/creature_cardface/'>creature_cardface</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/mtgset/'>mtgset</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/pack/'>pack</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/person/'>person</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/person_classofc_cardface/'>person_classofc_cardface</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/person_classofc_tag/'>person_classofc_tag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/person_creature_tag/'>person_creature_tag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/person_strategy_strategytag/'>person_strategy_strategytag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/person_strategy_tag/'>person_strategy_tag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/pricetype/'>pricetype</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/scanhistory/'>scanhistory</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/strategy/'>strategy</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/strategytag/'>strategytag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/tag/'>tag</a>
-            </li>
-
-            <li class='nav-item'>
-              <a class='nav-link' href='/DURC/vspack/'>vspack</a>
-            </li>
-
-          </ul>
-        </nav>
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+	<div class="col-md-1"></div>
+        <main role="main" class="ml-sm-auto col-md-11 pt-3">
                 {{{content}}}
         </main>
       </div>

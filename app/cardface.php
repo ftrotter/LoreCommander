@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=87017fc5de461825af518dd5e22f664e
+FILE_SIG=1a03c3a6bbfa8770d57b1bbe0ce95017
 */
 namespace App;
 /*
@@ -152,69 +152,27 @@ class cardface extends \App\DURC\Models\cardface
 
 
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`cardface` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `card_id` int(11) NOT NULL,
-  `cardface_index` int(11) NOT NULL,
-  `illustration_id` varchar(255) NOT NULL,
-  `artist` varchar(255) DEFAULT NULL,
-  `color` varchar(255) DEFAULT NULL,
-  `color_identity` varchar(255) DEFAULT NULL,
-  `flavor_text` varchar(1000) DEFAULT NULL,
-  `image_uri` varchar(255) NOT NULL,
-  `mana_cost` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `oracle_text` varchar(1000) NOT NULL,
-  `power` varchar(255) DEFAULT NULL,
-  `toughness` varchar(255) DEFAULT NULL,
-  `type_line` varchar(255) NOT NULL,
-  `border_color` varchar(255) NOT NULL,
-  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',
-  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',
-  `image_uri_small` varchar(500) DEFAULT NULL,
-  `image_hash_small` varchar(32) DEFAULT NULL,
-  `image_uri_normal` varchar(500) DEFAULT NULL,
-  `image_hash_normal` varchar(32) DEFAULT NULL,
-  `image_uri_large` varchar(500) DEFAULT NULL,
-  `image_hash_large` varchar(32) DEFAULT NULL,
-  `image_uri_png` varchar(500) DEFAULT NULL,
-  `image_hash_png` varchar(32) DEFAULT NULL,
-  `image_uri_border_crop` varchar(500) DEFAULT NULL,
-  `image_hash_border_crop` varchar(32) DEFAULT NULL,
-  `is_foil` tinyint(1) NOT NULL,
-  `is_nonfoil` tinyint(1) NOT NULL,
-  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_green` tinyint(1) NOT NULL,
-  `is_color_red` tinyint(1) NOT NULL,
-  `is_color_blue` tinyint(1) NOT NULL,
-  `is_color_black` tinyint(1) NOT NULL,
-  `is_color_white` tinyint(1) NOT NULL,
-  `is_colorless` tinyint(1) NOT NULL,
-  `color_count` int(11) NOT NULL DEFAULT 0,
-  `is_snow` tinyint(1) NOT NULL,
-  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,
-  `for_fulltext_search` varchar(2000) DEFAULT '''''',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`,`card_id`),
-  KEY `is_color_green` (`is_color_green`),
-  KEY `is_color_red` (`is_color_red`),
-  KEY `is_color_blue` (`is_color_blue`),
-  KEY `is_color_black` (`is_color_black`),
-  KEY `is_color_white` (`is_color_white`),
-  KEY `is_colorless` (`is_colorless`),
-  FULLTEXT KEY `artist` (`artist`),
-  FULLTEXT KEY `flavor_text` (`flavor_text`),
-  FULLTEXT KEY `oracle_text` (`oracle_text`),
-  FULLTEXT KEY `type_line` (`type_line`),
-  FULLTEXT KEY `name` (`name`),
-  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

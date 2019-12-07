@@ -23,7 +23,7 @@
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/cardface_classofc_atag/'>Return to cardface_classofc_atag list</a> </li>
+<li> <a href='/Zermelo/DURC_cardface_classofc_atag/'>Return to cardface_classofc_atag list</a> </li>
 {{^is_new}}
 <li> <a href='/DURC/cardface_classofc_atag/create'>Create new cardface_classofc_atag </a> </li>
 {{/is_new}}
@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}' >
     </div>
   </div>
 
@@ -46,7 +46,7 @@
     <label for='cardface_id' class='col-sm-4 col-form-label'>cardface_id</label>
     <div class='col-sm-8'>
 	Current id value: {{cardface_id}} (see below for lookup value)<br>
-	<select class='select2_cardface_id form-control' id='cardface_id' name='cardface_id' form-control'>
+	<select class='select2_cardface_id form-control' id='cardface_id' name='cardface_id'  >
 	<option value='{{cardface_id}}' selected='selected'>{{cardface_id}}</option>
 	</select>
     </div>
@@ -56,7 +56,8 @@
 
 $('.select2_cardface_id').select2({
   ajax: {
-    	url: '/DURC/searchjson/cardface/',
+    	url: '/DURC/searchjson/cardface',
+	delay: 1000,
     	dataType: 'json'
   }
 });
@@ -69,7 +70,7 @@ $('.select2_cardface_id').select2({
     <label for='classofc_id' class='col-sm-4 col-form-label'>classofc_id</label>
     <div class='col-sm-8'>
 	Current id value: {{classofc_id}} (see below for lookup value)<br>
-	<select class='select2_classofc_id form-control' id='classofc_id' name='classofc_id' form-control'>
+	<select class='select2_classofc_id form-control' id='classofc_id' name='classofc_id'  >
 	<option value='{{classofc_id}}' selected='selected'>{{classofc_id}}</option>
 	</select>
     </div>
@@ -79,7 +80,8 @@ $('.select2_cardface_id').select2({
 
 $('.select2_classofc_id').select2({
   ajax: {
-    	url: '/DURC/searchjson/classofc/',
+    	url: '/DURC/searchjson/classofc',
+	delay: 1000,
     	dataType: 'json'
   }
 });
@@ -92,7 +94,7 @@ $('.select2_classofc_id').select2({
     <label for='atag_id' class='col-sm-4 col-form-label'>atag_id</label>
     <div class='col-sm-8'>
 	Current id value: {{atag_id}} (see below for lookup value)<br>
-	<select class='select2_atag_id form-control' id='atag_id' name='atag_id' form-control'>
+	<select class='select2_atag_id form-control' id='atag_id' name='atag_id'  >
 	<option value='{{atag_id}}' selected='selected'>{{atag_id}}</option>
 	</select>
     </div>
@@ -102,7 +104,8 @@ $('.select2_classofc_id').select2({
 
 $('.select2_atag_id').select2({
   ajax: {
-    	url: '/DURC/searchjson/atag/',
+    	url: '/DURC/searchjson/atag',
+	delay: 1000,
     	dataType: 'json'
   }
 });
@@ -115,7 +118,7 @@ $('.select2_atag_id').select2({
     <div class='col-sm-4'><label>is_bulk_linker</label></div>
     <div class='col-sm-8'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_bulk_linker' name='is_bulk_linker' {{is_bulk_linker}} >
+            <input type='checkbox' id='is_bulk_linker' name='is_bulk_linker' {{is_bulk_linker}}  >
        </div> 
     </div>
   </div>
@@ -123,14 +126,14 @@ $('.select2_atag_id').select2({
   <div class='form-group row {{link_note_row_class}}'>
     <label for='link_note' class='col-sm-4 col-form-label'>link_note</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='link_note' name='link_note' placeholder='' value='{{link_note}}'>
+      <input type='text' class='form-control' id='link_note' name='link_note' placeholder='' value='{{link_note}}' >
     </div>
   </div>
 
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -160,7 +163,7 @@ $('.select2_atag_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

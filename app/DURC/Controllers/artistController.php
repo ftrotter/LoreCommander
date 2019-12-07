@@ -220,11 +220,18 @@ class artistController extends DURCController
 	$tmp_artist = $myNewartist;
 			$tmp_artist->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_artist->artist_name = DURC::formatForStorage( 'artist_name', 'varchar', $request->artist_name ); 
-		$tmp_artist->save();
 
+	
+	try {
+	    		$tmp_artist->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/artist/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewartist->id;
-
+	
 	return redirect("/DURC/artist/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -350,10 +357,17 @@ class artistController extends DURCController
 	$tmp_artist = $artist;
 			$tmp_artist->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_artist->artist_name = DURC::formatForStorage( 'artist_name', 'varchar', $request->artist_name ); 
-		$tmp_artist->save();
 
 
 	$id = $artist->id;
+	
+    try {
+	    		$tmp_artist->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/artist/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/artist/$id")->with('status', 'Data Saved!');
         

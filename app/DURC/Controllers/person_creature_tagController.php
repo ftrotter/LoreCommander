@@ -227,11 +227,18 @@ class person_creature_tagController extends DURCController
 		$tmp_person_creature_tag->tag_id = DURC::formatForStorage( 'tag_id', 'int', $request->tag_id ); 
 		$tmp_person_creature_tag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_person_creature_tag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_person_creature_tag->save();
 
+	
+	try {
+	    		$tmp_person_creature_tag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/person_creature_tag/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewperson_creature_tag->id;
-
+	
 	return redirect("/DURC/person_creature_tag/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -361,10 +368,17 @@ class person_creature_tagController extends DURCController
 		$tmp_person_creature_tag->tag_id = DURC::formatForStorage( 'tag_id', 'int', $request->tag_id ); 
 		$tmp_person_creature_tag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_person_creature_tag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_person_creature_tag->save();
 
 
 	$id = $person_creature_tag->id;
+	
+    try {
+	    		$tmp_person_creature_tag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/person_creature_tag/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/person_creature_tag/$id")->with('status', 'Data Saved!');
         

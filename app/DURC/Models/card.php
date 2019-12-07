@@ -76,6 +76,8 @@ class card extends DURCModel{
 		'legal_frontier' => 'tinyint',
 		'legal_future' => 'tinyint',
 		'legal_standard' => 'tinyint',
+		'legal_historic' => 'tinyint',
+		'legal_pioneer' => 'tinyint',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 			]; //end field_type_map
@@ -159,6 +161,8 @@ CREATE TABLE `lore`.`card` (
   `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,
   `legal_future` tinyint(1) NOT NULL DEFAULT 0,
   `legal_standard` tinyint(1) NOT NULL DEFAULT 0,
+  `legal_historic` tinyint(11) NOT NULL,
+  `legal_pioneer` tinyint(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),

@@ -23,7 +23,7 @@
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/DURC/classofc/'>Return to classofc list</a> </li>
+<li> <a href='/Zermelo/DURC_classofc/'>Return to classofc list</a> </li>
 {{^is_new}}
 <li> <a href='/DURC/classofc/create'>Create new classofc </a> </li>
 {{/is_new}}
@@ -38,28 +38,28 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}' >
     </div>
   </div>
 
   <div class='form-group row {{classofc_name_row_class}}'>
     <label for='classofc_name' class='col-sm-4 col-form-label'>classofc_name</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='classofc_name' name='classofc_name' placeholder='' value='{{classofc_name}}'>
+      <input type='text' class='form-control' id='classofc_name' name='classofc_name' placeholder='' value='{{classofc_name}}' >
     </div>
   </div>
 
   <div class='form-group row {{classofc_img_uri_row_class}}'>
     <label for='classofc_img_uri' class='col-sm-4 col-form-label'>classofc_img_uri</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}'>
+      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}' >
     </div>
   </div>
 
   <div class='form-group row {{classofc_wiki_url_row_class}}'>
     <label for='classofc_wiki_url' class='col-sm-4 col-form-label'>classofc_wiki_url</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}'>
+      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}' >
     </div>
   </div>
 
@@ -67,7 +67,7 @@
     <div class='col-sm-4'><label>is_mega_class</label></div>
     <div class='col-sm-8'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}} >
+            <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}}  >
        </div> 
     </div>
   </div>
@@ -75,7 +75,7 @@
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -105,7 +105,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
