@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=876f3cee61071ef2388f2bbb277685f8
+FILE_SIG=029cd66ebee4a5805bc5bb89215e6785
 */
 namespace App;
 /*
@@ -19,41 +19,39 @@ class person extends \App\DURC\Models\person
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
 	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
 	public function getCardBody() {
+                $my_name = "$this->first_name $this->last_name";
+                $ue_name = urlencode($this->first_name);
+                if(strlen(trim($ue_name)) == 0){
+                        $ue_name = urlencode($this->last_name);
+                }
+                $person_blurb = $this->person_blurb;
 
-		$my_name = "$this->first_name $this->last_name";
-		$ue_name = urlencode($this->first_name);
-		if(strlen(trim($ue_name)) == 0){
-			$ue_name = urlencode($this->last_name);
-		}
-		$person_blurb = $this->person_blurb;
-		
-		$link_fields = [
-			'MTG Wiki' => $this->mtgwiki_url,
-			'WOtC Story' => $this->wizards_story_url,
-			'Scryfall Search' => "https://scryfall.com/search?q=$ue_name",
-			'Wallpaper' => $this->wallpaper_download_url,
-		];
-		$li_html = '';
-		foreach($link_fields as $label => $url){
-			if(!is_null($url)){
-				$li_html .= "<li class='list-group-item'><a target='_blank' href='$url'>$label</a>";
-			}
-		}
+                $link_fields = [
+                        'MTG Wiki' => $this->mtgwiki_url,
+                        'WOtC Story' => $this->wizards_story_url,
+                        'Scryfall Search' => "https://scryfall.com/search?q=$ue_name",
+                        'Wallpaper' => $this->wallpaper_download_url,
+                ];
+                $li_html = '';
+                foreach($link_fields as $label => $url){
+                        if(!is_null($url)){
+                                $li_html .= "<li class='list-group-item'><a target='_blank' href='$url'>$label</a>";
+                        }
+                }
 
-		$html  =  "
+                $html  =  "
     <h5 class='card-title'>$my_name</h5>
     <p class='card-text'>
 $person_blurb
 </p>
   </div>
   <ul class='list-group list-group-flush'>
-	$li_html
+        $li_html
   </ul>
   <div class='card-body'>
 ";
 
-		return($html);
-
+                return($html);
 	}
 
 
@@ -61,7 +59,8 @@ $person_blurb
 /*
 		protected $DURC_selfish_with = [ 
 			'cardface_person_atag', //from from many
-			'person_classofcreature_tag', //from from many
+			'person_classofc_cardface', //from from many
+			'person_classofc_tag', //from from many
 			'person_creature_tag', //from from many
 			'person_strategy_strategytag', //from from many
 			'person_strategy_tag', //from from many
@@ -73,6 +72,7 @@ $person_blurb
 			//'id', //int
 			//'last_name', //varchar
 			//'first_name', //varchar
+			//'person_blurb', //varchar
 			//'image_uri', //varchar
 			//'wallpaper_download_url', //varchar
 			//'mtgwiki_url', //varchar
@@ -94,11 +94,20 @@ $person_blurb
 
 
 /**
-*	DURC is handling the person_classofcreature_tag for this person in person
+*	DURC is handling the person_classofc_cardface for this person in person
 *       but you can extend or override the defaults by editing this function...
 */
-	public function person_classofcreature_tag(){
-		return parent::person_classofcreature_tag();
+	public function person_classofc_cardface(){
+		return parent::person_classofc_cardface();
+	}
+
+
+/**
+*	DURC is handling the person_classofc_tag for this person in person
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function person_classofc_tag(){
+		return parent::person_classofc_tag();
 	}
 
 
@@ -132,23 +141,27 @@ $person_blurb
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`person` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_name` varchar(100) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `image_uri` varchar(255) DEFAULT NULL,
-  `wallpaper_download_url` varchar(500) DEFAULT NULL,
-  `mtgwiki_url` varchar(255) DEFAULT NULL,
-  `wizards_story_url` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `last_name` (`last_name`,`first_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	
