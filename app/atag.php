@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2129777ba8a2f5c09b1f5a0c23d22236
+FILE_SIG=332c623a5152dc345e9c7ebdf35f5f16
 */
 namespace App;
 /*
@@ -65,20 +65,27 @@ class atag extends \App\DURC\Models\atag
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`atag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `arttag_name` varchar(255) NOT NULL,
-  `is_directed` tinyint(1) NOT NULL DEFAULT 0,
-  `excludes_arttag_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_name` (`arttag_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

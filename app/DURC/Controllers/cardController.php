@@ -254,11 +254,20 @@ class cardController extends DURCController
 		$tmp_card->legal_frontier = DURC::formatForStorage( 'legal_frontier', 'tinyint', $request->legal_frontier ); 
 		$tmp_card->legal_future = DURC::formatForStorage( 'legal_future', 'tinyint', $request->legal_future ); 
 		$tmp_card->legal_standard = DURC::formatForStorage( 'legal_standard', 'tinyint', $request->legal_standard ); 
-		$tmp_card->save();
+		$tmp_card->legal_historic = DURC::formatForStorage( 'legal_historic', 'tinyint', $request->legal_historic ); 
+		$tmp_card->legal_pioneer = DURC::formatForStorage( 'legal_pioneer', 'tinyint', $request->legal_pioneer ); 
 
+	
+	try {
+	    		$tmp_card->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/card/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewcard->id;
-
+	
 	return redirect("/DURC/card/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -417,10 +426,19 @@ class cardController extends DURCController
 		$tmp_card->legal_frontier = DURC::formatForStorage( 'legal_frontier', 'tinyint', $request->legal_frontier ); 
 		$tmp_card->legal_future = DURC::formatForStorage( 'legal_future', 'tinyint', $request->legal_future ); 
 		$tmp_card->legal_standard = DURC::formatForStorage( 'legal_standard', 'tinyint', $request->legal_standard ); 
-		$tmp_card->save();
+		$tmp_card->legal_historic = DURC::formatForStorage( 'legal_historic', 'tinyint', $request->legal_historic ); 
+		$tmp_card->legal_pioneer = DURC::formatForStorage( 'legal_pioneer', 'tinyint', $request->legal_pioneer ); 
 
 
 	$id = $card->id;
+	
+    try {
+	    		$tmp_card->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/card/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/card/$id")->with('status', 'Data Saved!');
         

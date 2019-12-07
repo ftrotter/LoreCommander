@@ -223,11 +223,18 @@ class classofc_cardfaceController extends DURCController
 			$tmp_classofc_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_classofc_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
 		$tmp_classofc_cardface->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_classofc_cardface->save();
 
+	
+	try {
+	    		$tmp_classofc_cardface->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc_cardface/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewclassofc_cardface->id;
-
+	
 	return redirect("/DURC/classofc_cardface/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -354,10 +361,17 @@ class classofc_cardfaceController extends DURCController
 			$tmp_classofc_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_classofc_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
 		$tmp_classofc_cardface->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_classofc_cardface->save();
 
 
 	$id = $classofc_cardface->id;
+	
+    try {
+	    		$tmp_classofc_cardface->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/classofc_cardface/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/classofc_cardface/$id")->with('status', 'Data Saved!');
         

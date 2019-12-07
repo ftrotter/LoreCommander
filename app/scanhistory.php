@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=bbbe9734dd02bea6b3f34a49bb425eba
+FILE_SIG=823ae25fc6f13c1f8c73ad46407d0178
 */
 namespace App;
 /*
@@ -44,18 +44,27 @@ class scanhistory extends \App\DURC\Models\scanhistory
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`scanhistory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `multiverse_id` int(11) NOT NULL,
-  `viewchannel` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

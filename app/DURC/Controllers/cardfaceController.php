@@ -260,11 +260,18 @@ class cardfaceController extends DURCController
 		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
 		$tmp_cardface->has_phyrexian_mana = DURC::formatForStorage( 'has_phyrexian_mana', 'tinyint', $request->has_phyrexian_mana ); 
 		$tmp_cardface->for_fulltext_search = DURC::formatForStorage( 'for_fulltext_search', 'varchar', $request->for_fulltext_search ); 
-		$tmp_cardface->save();
 
+	
+	try {
+	    		$tmp_cardface->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/cardface/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewcardface->id;
-
+	
 	return redirect("/DURC/cardface/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -429,10 +436,17 @@ class cardfaceController extends DURCController
 		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
 		$tmp_cardface->has_phyrexian_mana = DURC::formatForStorage( 'has_phyrexian_mana', 'tinyint', $request->has_phyrexian_mana ); 
 		$tmp_cardface->for_fulltext_search = DURC::formatForStorage( 'for_fulltext_search', 'varchar', $request->for_fulltext_search ); 
-		$tmp_cardface->save();
 
 
 	$id = $cardface->id;
+	
+    try {
+	    		$tmp_cardface->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/cardface/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/cardface/$id")->with('status', 'Data Saved!');
         

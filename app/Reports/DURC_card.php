@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b9fd17c75b26b32cfe10bfbebf028610
+FILE_SIG=cb32c463c4fcf7077634ae7e19e9d70d
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -99,6 +99,8 @@ $joined_select_field_sql
 , card.legal_frontier AS legal_frontier
 , card.legal_future AS legal_future
 , card.legal_standard AS legal_standard
+, card.legal_historic AS legal_historic
+, card.legal_pioneer AS legal_pioneer
 , card.created_at AS created_at
 , card.updated_at AS updated_at
 
@@ -150,6 +152,8 @@ $joined_select_field_sql
 , card.legal_frontier AS legal_frontier
 , card.legal_future AS legal_future
 , card.legal_standard AS legal_standard
+, card.legal_historic AS legal_historic
+, card.legal_pioneer AS legal_pioneer
 , card.created_at AS created_at
 , card.updated_at AS updated_at
  
@@ -623,6 +627,26 @@ array (
   ),
   35 => 
   array (
+    'column_name' => 'legal_historic',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  36 => 
+  array (
+    'column_name' => 'legal_pioneer',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  37 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -631,7 +655,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  36 => 
+  38 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

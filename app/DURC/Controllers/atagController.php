@@ -222,11 +222,18 @@ class atagController extends DURCController
 		$tmp_atag->arttag_name = DURC::formatForStorage( 'arttag_name', 'varchar', $request->arttag_name ); 
 		$tmp_atag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
 		$tmp_atag->excludes_arttag_id = DURC::formatForStorage( 'excludes_arttag_id', 'int', $request->excludes_arttag_id ); 
-		$tmp_atag->save();
 
+	
+	try {
+	    		$tmp_atag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/atag/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewatag->id;
-
+	
 	return redirect("/DURC/atag/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -354,10 +361,17 @@ class atagController extends DURCController
 		$tmp_atag->arttag_name = DURC::formatForStorage( 'arttag_name', 'varchar', $request->arttag_name ); 
 		$tmp_atag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
 		$tmp_atag->excludes_arttag_id = DURC::formatForStorage( 'excludes_arttag_id', 'int', $request->excludes_arttag_id ); 
-		$tmp_atag->save();
 
 
 	$id = $atag->id;
+	
+    try {
+	    		$tmp_atag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/atag/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/atag/$id")->with('status', 'Data Saved!');
         

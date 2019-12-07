@@ -1,4 +1,5 @@
 #!/bin/bash
+rm resources/views/DURC/* -rf
 php artisan DURC:mine --squash --DB=lore
 php artisan DURC:write  
 cp routes/starting.web.php routes/web.php

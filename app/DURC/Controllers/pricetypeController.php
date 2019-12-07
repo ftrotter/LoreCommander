@@ -220,11 +220,18 @@ class pricetypeController extends DURCController
 	$tmp_pricetype = $myNewpricetype;
 			$tmp_pricetype->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_pricetype->pricetype_name = DURC::formatForStorage( 'pricetype_name', 'varchar', $request->pricetype_name ); 
-		$tmp_pricetype->save();
 
+	
+	try {
+	    		$tmp_pricetype->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/pricetype/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewpricetype->id;
-
+	
 	return redirect("/DURC/pricetype/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -350,10 +357,17 @@ class pricetypeController extends DURCController
 	$tmp_pricetype = $pricetype;
 			$tmp_pricetype->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_pricetype->pricetype_name = DURC::formatForStorage( 'pricetype_name', 'varchar', $request->pricetype_name ); 
-		$tmp_pricetype->save();
 
 
 	$id = $pricetype->id;
+	
+    try {
+	    		$tmp_pricetype->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/pricetype/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/pricetype/$id")->with('status', 'Data Saved!');
         

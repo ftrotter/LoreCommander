@@ -223,11 +223,18 @@ class tagController extends DURCController
 		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name ); 
 		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
 		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id ); 
-		$tmp_tag->save();
 
+	
+	try {
+	    		$tmp_tag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/tag/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewtag->id;
-
+	
 	return redirect("/DURC/tag/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -355,10 +362,17 @@ class tagController extends DURCController
 		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name ); 
 		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
 		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id ); 
-		$tmp_tag->save();
 
 
 	$id = $tag->id;
+	
+    try {
+	    		$tmp_tag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/tag/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/tag/$id")->with('status', 'Data Saved!');
         

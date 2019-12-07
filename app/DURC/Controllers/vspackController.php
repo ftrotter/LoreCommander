@@ -223,11 +223,18 @@ class vspackController extends DURCController
 		$tmp_vspack->vspack_wizards_url = DURC::formatForStorage( 'vspack_wizards_url', 'varchar', $request->vspack_wizards_url ); 
 		$tmp_vspack->vspack_wiki_url = DURC::formatForStorage( 'vspack_wiki_url', 'varchar', $request->vspack_wiki_url ); 
 		$tmp_vspack->vspack_img_url = DURC::formatForStorage( 'vspack_img_url', 'varchar', $request->vspack_img_url ); 
-		$tmp_vspack->save();
 
+	
+	try {
+	    		$tmp_vspack->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/vspack/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewvspack->id;
-
+	
 	return redirect("/DURC/vspack/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -356,10 +363,17 @@ class vspackController extends DURCController
 		$tmp_vspack->vspack_wizards_url = DURC::formatForStorage( 'vspack_wizards_url', 'varchar', $request->vspack_wizards_url ); 
 		$tmp_vspack->vspack_wiki_url = DURC::formatForStorage( 'vspack_wiki_url', 'varchar', $request->vspack_wiki_url ); 
 		$tmp_vspack->vspack_img_url = DURC::formatForStorage( 'vspack_img_url', 'varchar', $request->vspack_img_url ); 
-		$tmp_vspack->save();
 
 
 	$id = $vspack->id;
+	
+    try {
+	    		$tmp_vspack->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/vspack/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/vspack/$id")->with('status', 'Data Saved!');
         

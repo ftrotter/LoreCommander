@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e21c709b37a43fa2c8ab455068503cea
+FILE_SIG=1fb84802ff564c00dbc8a588136339e7
 */
 namespace App;
 /*
@@ -64,19 +64,27 @@ class classofc_cardface extends \App\DURC\Models\classofc_cardface
 
 
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`classofc_cardface` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cardface_id` int(11) NOT NULL,
-  `classofc_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

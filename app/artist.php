@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=3d9000062a97b5b69fc689b076e7ae53
+FILE_SIG=28048f6b332da59c62def7174050e55a
 */
 namespace App;
 /*
@@ -43,18 +43,27 @@ class artist extends \App\DURC\Models\artist
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`artist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `artist_name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `artist_name` (`artist_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

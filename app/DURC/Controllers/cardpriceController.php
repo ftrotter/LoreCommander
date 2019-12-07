@@ -225,11 +225,18 @@ class cardpriceController extends DURCController
 		$tmp_cardprice->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
 		$tmp_cardprice->pricetype_id = DURC::formatForStorage( 'pricetype_id', 'int', $request->pricetype_id ); 
 		$tmp_cardprice->price = DURC::formatForStorage( 'price', 'decimal', $request->price ); 
-		$tmp_cardprice->save();
 
+	
+	try {
+	    		$tmp_cardprice->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/cardprice/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewcardprice->id;
-
+	
 	return redirect("/DURC/cardprice/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -358,10 +365,17 @@ class cardpriceController extends DURCController
 		$tmp_cardprice->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
 		$tmp_cardprice->pricetype_id = DURC::formatForStorage( 'pricetype_id', 'int', $request->pricetype_id ); 
 		$tmp_cardprice->price = DURC::formatForStorage( 'price', 'decimal', $request->price ); 
-		$tmp_cardprice->save();
 
 
 	$id = $cardprice->id;
+	
+    try {
+	    		$tmp_cardprice->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/cardprice/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/cardprice/$id")->with('status', 'Data Saved!');
         

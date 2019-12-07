@@ -227,11 +227,18 @@ class cardface_classofc_atagController extends DURCController
 		$tmp_cardface_classofc_atag->atag_id = DURC::formatForStorage( 'atag_id', 'int', $request->atag_id ); 
 		$tmp_cardface_classofc_atag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_cardface_classofc_atag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_cardface_classofc_atag->save();
 
+	
+	try {
+	    		$tmp_cardface_classofc_atag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/cardface_classofc_atag/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewcardface_classofc_atag->id;
-
+	
 	return redirect("/DURC/cardface_classofc_atag/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -361,10 +368,17 @@ class cardface_classofc_atagController extends DURCController
 		$tmp_cardface_classofc_atag->atag_id = DURC::formatForStorage( 'atag_id', 'int', $request->atag_id ); 
 		$tmp_cardface_classofc_atag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
 		$tmp_cardface_classofc_atag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
-		$tmp_cardface_classofc_atag->save();
 
 
 	$id = $cardface_classofc_atag->id;
+	
+    try {
+	    		$tmp_cardface_classofc_atag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/cardface_classofc_atag/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/cardface_classofc_atag/$id")->with('status', 'Data Saved!');
         

@@ -221,11 +221,18 @@ class artistcreditController extends DURCController
 			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name ); 
 		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit ); 
-		$tmp_artistcredit->save();
 
+	
+	try {
+	    		$tmp_artistcredit->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/artistcredit/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewartistcredit->id;
-
+	
 	return redirect("/DURC/artistcredit/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -352,10 +359,17 @@ class artistcreditController extends DURCController
 			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name ); 
 		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit ); 
-		$tmp_artistcredit->save();
 
 
 	$id = $artistcredit->id;
+	
+    try {
+	    		$tmp_artistcredit->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/artistcredit/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/artistcredit/$id")->with('status', 'Data Saved!');
         

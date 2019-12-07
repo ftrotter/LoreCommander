@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=207409bbe3da0b2974acb92b0c90d0e2
+FILE_SIG=8324bff4579b899a6d76b73d05bf5e1d
 */
 namespace App;
 /*
@@ -53,18 +53,27 @@ class pricetype extends \App\DURC\Models\pricetype
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
+	//look in the parent class for the SQL used to generate the underlying table
 
-// Last generated SQL Schema
-/*
-CREATE TABLE `lore`.`pricetype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pricetype_name` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `pricetype_name` (`pricetype_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
-*/
+	//add fields here to entirely hide them in the default DURC web interface.
+        public static $UX_hidden_col = [
+        ];
+
+        public static function isFieldHiddenInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_hidden_col)){
+                        return(true);
+                }
+        }
+
+	//add fields here to make them view-only in the default DURC web interface
+        public static $UX_view_only_col = [
+        ];
+
+        public static function isFieldViewOnlyInGenericDurcEditor($field){
+                if(in_array($field,self::$UX_view_only_col)){
+                        return(true);
+                }
+        }
 
 	//your stuff goes here..
 	

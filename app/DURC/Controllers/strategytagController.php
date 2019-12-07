@@ -220,11 +220,18 @@ class strategytagController extends DURCController
 	$tmp_strategytag = $myNewstrategytag;
 			$tmp_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_strategytag->strategytag_name = DURC::formatForStorage( 'strategytag_name', 'varchar', $request->strategytag_name ); 
-		$tmp_strategytag->save();
 
+	
+	try {
+	    		$tmp_strategytag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/strategytag/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewstrategytag->id;
-
+	
 	return redirect("/DURC/strategytag/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -350,10 +357,17 @@ class strategytagController extends DURCController
 	$tmp_strategytag = $strategytag;
 			$tmp_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
 		$tmp_strategytag->strategytag_name = DURC::formatForStorage( 'strategytag_name', 'varchar', $request->strategytag_name ); 
-		$tmp_strategytag->save();
 
 
 	$id = $strategytag->id;
+	
+    try {
+	    		$tmp_strategytag->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/strategytag/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/strategytag/$id")->with('status', 'Data Saved!');
         

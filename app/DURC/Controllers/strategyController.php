@@ -225,11 +225,18 @@ class strategyController extends DURCController
 		$tmp_strategy->strategy_url = DURC::formatForStorage( 'strategy_url', 'varchar', $request->strategy_url ); 
 		$tmp_strategy->wincon_cardface_id = DURC::formatForStorage( 'wincon_cardface_id', 'int', $request->wincon_cardface_id ); 
 		$tmp_strategy->WOTC_rule_reference = DURC::formatForStorage( 'WOTC_rule_reference', 'varchar', $request->WOTC_rule_reference ); 
-		$tmp_strategy->save();
 
+	
+	try {
+	    		$tmp_strategy->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/strategy/create")->with('status', 'There was an error in your data.');
+
+	}
 
 	$new_id = $myNewstrategy->id;
-
+	
 	return redirect("/DURC/strategy/$new_id")->with('status', 'Data Saved!');
     }//end store function
 
@@ -359,10 +366,17 @@ class strategyController extends DURCController
 		$tmp_strategy->strategy_url = DURC::formatForStorage( 'strategy_url', 'varchar', $request->strategy_url ); 
 		$tmp_strategy->wincon_cardface_id = DURC::formatForStorage( 'wincon_cardface_id', 'int', $request->wincon_cardface_id ); 
 		$tmp_strategy->WOTC_rule_reference = DURC::formatForStorage( 'WOTC_rule_reference', 'varchar', $request->WOTC_rule_reference ); 
-		$tmp_strategy->save();
 
 
 	$id = $strategy->id;
+	
+    try {
+	    		$tmp_strategy->save();
+
+	} catch (\Exception $e) {
+	          return redirect("/DURC/strategy/{$id}")->with('status', 'There was an error in your data.');
+
+	}
 
 	return redirect("/DURC/strategy/$id")->with('status', 'Data Saved!');
         
