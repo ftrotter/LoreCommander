@@ -107,7 +107,7 @@ SELECT id, creature_name FROM lore.creature
 	];
 
 	//now we need to save the creature tokens to the database...
-	//as classofcreature entries...
+	//as classofc(reature) entries...
 
 	$token_map = [];
 	foreach($creature_tokens as $this_token){
@@ -122,7 +122,7 @@ SELECT id, creature_name FROM lore.creature
 
 			$insert_sql = "
 INSERT IGNORE INTO 
-lore.classofcreature (`id`, `classofcreature_name`, `created_at`, `updated_at`) 
+lore.classofc (`id`, `classofc_name`, `created_at`, `updated_at`) 
 	VALUES 
 (NULL, TRIM($q_this_token), CURRENT_TIME(), CURRENT_TIME());
 ";
@@ -138,12 +138,12 @@ lore.classofcreature (`id`, `classofcreature_name`, `created_at`, `updated_at`)
 
 	echo "Done inserting new class of creature";
 
-	//now we want  to build the links between the creatures and the classofcreature
+	//now we want  to build the links between the creatures and the classofc(reature)
 
 
 	//we need all the classes
 	$all_creature_class_sql = "
-SELECT * FROM lore.classofcreature
+SELECT * FROM lore.classofc
 ";
 	
 	$results = DB::select($all_creature_class_sql);
@@ -153,7 +153,7 @@ SELECT * FROM lore.classofcreature
 	foreach($results as $this_row){
 		$all_class_of_creature[$this_row->id]  = [
 				'id' =>  $this_row->id,
-				'classofcreature_name' => $this_row->classofcreature_name,
+				'classofc_name' => $this_row->classofc_name,
 				'is_mega_class' => $this_row->is_mega_class,
 			];
 	}
@@ -165,12 +165,12 @@ SELECT * FROM lore.classofcreature
 
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
 		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
-			$name = $class_of_creature_array['classofcreature_name'];
+			$name = $class_of_creature_array['classofc_name'];
 			$insert_sql = "
-INSERT IGNORE lore.classofcreature_creature
+INSERT IGNORE lore.classofc_creature
 SELECT 
 	NULL AS id,
-	$coc_id AS classofcreature_id,
+	$coc_id AS classofc_id,
 	creature.id AS creature_id,
 	CURRENT_TIME AS created_at,
 	CURRENT_TIME AS updated_at
@@ -196,13 +196,13 @@ WHERE creature.creature_name LIKE '%$name%'
 
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
 		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
-			$name = $class_of_creature_array['classofcreature_name'];
+			$name = $class_of_creature_array['classofc_name'];
 			$insert_sql = "
-INSERT IGNORE lore.classofcreature_cardface
+INSERT IGNORE lore.classofc_cardface
 SELECT 
 	NULL AS id,
 	cardface.id AS cardface_id,
-	$coc_id AS classofcreature_id,
+	$coc_id AS classofc_id,
 	CURRENT_TIME AS created_at,
 	CURRENT_TIME AS updated_at
 FROM lore.cardface
@@ -242,7 +242,7 @@ SELECT * FROM lore.creature
 	foreach($results as $this_row){
 		$all_creature[$this_row->id]  = [
 				'id' =>  $this_row->id,
-				'creature_name' => $this_row->classofcreature_name,
+				'creature_name' => $this_row->classofc_name,
 			];
 	}
 
