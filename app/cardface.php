@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7433082f01448e802f5b356218fd484b
+FILE_SIG=a64c1235ae8d6f576d80f6463bbef72d
 */
 namespace App;
 /*
@@ -49,6 +49,7 @@ class cardface extends \App\DURC\Models\cardface
 			//'flavor_text', //varchar
 			//'image_uri', //varchar
 			//'mana_cost', //varchar
+			//'cmc', //decimal
 			//'name', //varchar
 			//'oracle_text', //varchar
 			//'power', //varchar

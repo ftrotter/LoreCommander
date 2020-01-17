@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7af479566659463da00b9153b4f13f46
+FILE_SIG=e5db87ff57c2abe1452613436c30b15a
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -695,8 +695,8 @@ array (
       ),
       10 => 
       array (
-        'column_name' => 'name',
-        'data_type' => 'varchar',
+        'column_name' => 'cmc',
+        'data_type' => 'decimal',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -705,7 +705,7 @@ array (
       ),
       11 => 
       array (
-        'column_name' => 'oracle_text',
+        'column_name' => 'name',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -715,7 +715,7 @@ array (
       ),
       12 => 
       array (
-        'column_name' => 'power',
+        'column_name' => 'oracle_text',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -725,7 +725,7 @@ array (
       ),
       13 => 
       array (
-        'column_name' => 'toughness',
+        'column_name' => 'power',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -735,7 +735,7 @@ array (
       ),
       14 => 
       array (
-        'column_name' => 'type_line',
+        'column_name' => 'toughness',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -745,7 +745,7 @@ array (
       ),
       15 => 
       array (
-        'column_name' => 'border_color',
+        'column_name' => 'type_line',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -755,7 +755,7 @@ array (
       ),
       16 => 
       array (
-        'column_name' => 'image_uri_art_crop',
+        'column_name' => 'border_color',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -765,7 +765,7 @@ array (
       ),
       17 => 
       array (
-        'column_name' => 'image_hash_art_crop',
+        'column_name' => 'image_uri_art_crop',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -775,7 +775,7 @@ array (
       ),
       18 => 
       array (
-        'column_name' => 'image_uri_small',
+        'column_name' => 'image_hash_art_crop',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -785,7 +785,7 @@ array (
       ),
       19 => 
       array (
-        'column_name' => 'image_hash_small',
+        'column_name' => 'image_uri_small',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -795,7 +795,7 @@ array (
       ),
       20 => 
       array (
-        'column_name' => 'image_uri_normal',
+        'column_name' => 'image_hash_small',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -805,7 +805,7 @@ array (
       ),
       21 => 
       array (
-        'column_name' => 'image_hash_normal',
+        'column_name' => 'image_uri_normal',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -815,7 +815,7 @@ array (
       ),
       22 => 
       array (
-        'column_name' => 'image_uri_large',
+        'column_name' => 'image_hash_normal',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -825,7 +825,7 @@ array (
       ),
       23 => 
       array (
-        'column_name' => 'image_hash_large',
+        'column_name' => 'image_uri_large',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -835,7 +835,7 @@ array (
       ),
       24 => 
       array (
-        'column_name' => 'image_uri_png',
+        'column_name' => 'image_hash_large',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -845,7 +845,7 @@ array (
       ),
       25 => 
       array (
-        'column_name' => 'image_hash_png',
+        'column_name' => 'image_uri_png',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -855,7 +855,7 @@ array (
       ),
       26 => 
       array (
-        'column_name' => 'image_uri_border_crop',
+        'column_name' => 'image_hash_png',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -865,7 +865,7 @@ array (
       ),
       27 => 
       array (
-        'column_name' => 'image_hash_border_crop',
+        'column_name' => 'image_uri_border_crop',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -875,8 +875,8 @@ array (
       ),
       28 => 
       array (
-        'column_name' => 'is_foil',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_hash_border_crop',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -885,7 +885,7 @@ array (
       ),
       29 => 
       array (
-        'column_name' => 'is_nonfoil',
+        'column_name' => 'is_foil',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -895,7 +895,7 @@ array (
       ),
       30 => 
       array (
-        'column_name' => 'is_oversized',
+        'column_name' => 'is_nonfoil',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -905,7 +905,7 @@ array (
       ),
       31 => 
       array (
-        'column_name' => 'is_color_green',
+        'column_name' => 'is_oversized',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -915,7 +915,7 @@ array (
       ),
       32 => 
       array (
-        'column_name' => 'is_color_red',
+        'column_name' => 'is_color_green',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -925,7 +925,7 @@ array (
       ),
       33 => 
       array (
-        'column_name' => 'is_color_blue',
+        'column_name' => 'is_color_red',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -935,7 +935,7 @@ array (
       ),
       34 => 
       array (
-        'column_name' => 'is_color_black',
+        'column_name' => 'is_color_blue',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -945,7 +945,7 @@ array (
       ),
       35 => 
       array (
-        'column_name' => 'is_color_white',
+        'column_name' => 'is_color_black',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -955,7 +955,7 @@ array (
       ),
       36 => 
       array (
-        'column_name' => 'is_colorless',
+        'column_name' => 'is_color_white',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -965,6 +965,16 @@ array (
       ),
       37 => 
       array (
+        'column_name' => 'is_colorless',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      38 => 
+      array (
         'column_name' => 'color_count',
         'data_type' => 'int',
         'is_primary_key' => false,
@@ -973,7 +983,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      38 => 
+      39 => 
       array (
         'column_name' => 'is_snow',
         'data_type' => 'tinyint',
@@ -983,7 +993,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      39 => 
+      40 => 
       array (
         'column_name' => 'has_phyrexian_mana',
         'data_type' => 'tinyint',
@@ -993,7 +1003,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      40 => 
+      41 => 
       array (
         'column_name' => 'for_fulltext_search',
         'data_type' => 'varchar',
@@ -1003,7 +1013,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      41 => 
+      42 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -1013,7 +1023,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
       ),
-      42 => 
+      43 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
