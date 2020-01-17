@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=95fc3e7ea0aa236c48be0fc58472b278
+FILE_SIG=0d7f5d40326c9c4ffaf1813766f1750d
 */
 namespace App;
 /*
@@ -29,6 +29,7 @@ class creature extends \App\DURC\Models\creature
 			'classofc_creature', //from from many
 			'creature_cardface', //from from many
 			'person_creature_tag', //from from many
+			'emblematic_theme', //from from many
 		];
 
 */
@@ -68,6 +69,15 @@ class creature extends \App\DURC\Models\creature
 */
 	public function person_creature_tag(){
 		return parent::person_creature_tag();
+	}
+
+
+/**
+*	DURC is handling the emblematic_theme for this creature in creature
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function emblematic_theme(){
+		return parent::emblematic_theme();
 	}
 
 

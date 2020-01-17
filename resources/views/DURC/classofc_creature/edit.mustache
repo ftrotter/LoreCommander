@@ -56,9 +56,18 @@
 
 $('.select2_classofc_id').select2({
   ajax: {
-    	url: '/DURC/searchjson/classofc',
-	delay: 1000,
-    	dataType: 'json'
+    url: '/DURC/searchjson/classofc',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
   }
 });
 
@@ -80,9 +89,18 @@ $('.select2_classofc_id').select2({
 
 $('.select2_creature_id').select2({
   ajax: {
-    	url: '/DURC/searchjson/creature',
-	delay: 1000,
-    	dataType: 'json'
+    url: '/DURC/searchjson/creature',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
   }
 });
 

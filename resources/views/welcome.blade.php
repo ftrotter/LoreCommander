@@ -24,7 +24,11 @@
 		<div class='col-md-4'>
 		<h4> Bespoke Tools </h4>
 		<ul>
-			<li> <b><a target='_blank' href='/showCard/fredTV'>TV Card View</a></b>: 
+			<li> <b><a target='_blank' href='/showJustCard/fredTV'>TV Card Simple View</a></b>: 
+				Turn your TV into a pretty decent ScryFall data viewer  with
+				the <a target='_blank' href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
+				</li>
+			<li> <b><a target='_blank' href='/showCard/fredTV'>TV Card Complex View</a></b>: 
 				Turn your TV into a pretty decent ScryFall data viewer  with
 				the <a target='_blank' href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
 				</li>

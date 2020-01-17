@@ -28,6 +28,7 @@ class creature extends DURCModel{
 			'classofc_creature', //from from many
 			'creature_cardface', //from from many
 			'person_creature_tag', //from from many
+			'emblematic_theme', //from from many
 		];
 
 
@@ -76,6 +77,14 @@ class creature extends DURCModel{
 */
 	public function person_creature_tag(){
 		return $this->hasMany('App\person_creature_tag','creature_id','id');
+	}
+
+
+/**
+*	get all the emblematic_theme for this creature
+*/
+	public function emblematic_theme(){
+		return $this->hasMany('App\theme','emblematic_creature_id','id');
 	}
 
 

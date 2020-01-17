@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c0c4640db6ce9223037a6b922b12af92
+FILE_SIG=bdabb62e19e8023fceea5a7e2cd942d2
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -1179,6 +1179,97 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+      ),
+      6 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      7 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+    ),
+  ),
+  'emblematic_theme' => 
+  array (
+    'prefix' => 'emblematic',
+    'type' => 'theme',
+    'from_table' => 'theme',
+    'from_db' => 'lore',
+    'from_column' => 'emblematic_cardface_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      1 => 
+      array (
+        'column_name' => 'theme_name',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      2 => 
+      array (
+        'column_name' => 'theme_description',
+        'data_type' => 'text',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+      ),
+      3 => 
+      array (
+        'column_name' => 'emblematic_person_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'person',
+      ),
+      4 => 
+      array (
+        'column_name' => 'emblematic_cardface_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'cardface',
+      ),
+      5 => 
+      array (
+        'column_name' => 'emblematic_creature_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'creature',
       ),
       6 => 
       array (

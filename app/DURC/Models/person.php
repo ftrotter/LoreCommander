@@ -31,6 +31,7 @@ class person extends DURCModel{
 			'person_creature_tag', //from from many
 			'person_strategy_strategytag', //from from many
 			'person_strategy_tag', //from from many
+			'emblematic_theme', //from from many
 		];
 
 
@@ -108,6 +109,14 @@ class person extends DURCModel{
 */
 	public function person_strategy_tag(){
 		return $this->hasMany('App\person_strategy_tag','person_id','id');
+	}
+
+
+/**
+*	get all the emblematic_theme for this person
+*/
+	public function emblematic_theme(){
+		return $this->hasMany('App\theme','emblematic_person_id','id');
 	}
 
 

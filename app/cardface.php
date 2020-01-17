@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1a03c3a6bbfa8770d57b1bbe0ce95017
+FILE_SIG=7433082f01448e802f5b356218fd484b
 */
 namespace App;
 /*
@@ -32,6 +32,7 @@ class cardface extends \App\DURC\Models\cardface
 			'creature_cardface', //from from many
 			'person_classofc_cardface', //from from many
 			'wincon_strategy', //from from many
+			'emblematic_theme', //from from many
 			'card', //from belongs to
 		];
 
@@ -137,6 +138,15 @@ class cardface extends \App\DURC\Models\cardface
 */
 	public function wincon_strategy(){
 		return parent::wincon_strategy();
+	}
+
+
+/**
+*	DURC is handling the emblematic_theme for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function emblematic_theme(){
+		return parent::emblematic_theme();
 	}
 
 

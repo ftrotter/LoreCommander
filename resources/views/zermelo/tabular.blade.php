@@ -18,6 +18,11 @@
 
 		<table class="display table table-bordered table-condensed table-striped table-hover" id="report_datatable" style="width:100%;"></table>
 
+
+		<footer class="{{ $report->GetReportFooterClass() }}">
+			{!! $report->GetReportFooter() !!}
+		</footer>
+
 	</div>
 
 	<div id="bottom_locator" style="
@@ -167,7 +172,17 @@
             }
         });
 
+        // Our dataTable instance
+        var ReportTable = null;
+
+        // Object that represents options passed to datables, this is saved in it's own variable should
+		// we have to re-instansiate the table, as in the case of fixed columns
+		var dataTableOptions = {};
+
+		// Stores our column header and meta data
         var columnMap = [];
+
+        // How many columns to the left should be "anchored" when scrolling horizontally
         var fixedColumns = null;
 
         // Socket API payload
@@ -213,6 +228,9 @@
                     socketLabel: socketLabel
                 });
             });
+
+            // Tell the api (for download)
+            zermelo.setSockets(sockets);
 		}
 
         $("#save-sockets").click( function(e) {
@@ -303,6 +321,41 @@
 
             }
 
+            /**
+			 * The only way to reset the number of fixed columns is to destroy and re-initiailize the table,
+			 * This method does that with a value of how many columns to anchor. If it's greater than Zero,
+			 * We use the value to initialize the number of columns fixed to the left
+			 *
+			 * TODO This is not used, but left here for future development, and the button that invokes
+			 * this function is commented out.
+			 * */
+            function refreshFixedColumns(value)
+			{
+                if (fixedColumns !== null) {
+					// We have to destroy the datatable and recreate it if we are changing the fixed-columns
+                    ReportTable.destroy();
+                    fixedColumns = null;
+
+                    // Reinitialize the table
+                    ReportTable = $('#report_datatable').DataTable( dataTableOptions );
+
+                    ReportTable.on( 'column-reorder', function () {
+                        if(fixedColumns !== null) {
+                            $("#report_datatable").dataTable().api().fixedColumns().update();
+                        }
+                    } );
+
+                    yadcf.init(ReportTable,filter_array);
+
+                }
+
+                if (value > 0 ) {
+                    fixedColumns = new $.fn.dataTable.FixedColumns( ReportTable, {
+                        leftColumns: value
+                    });
+                }
+			}
+
             var formatHeader = function (header_data, columnIdx) {
                 var jHtmlObject = jQuery('<p>' + header_data + '</p>');
                 var parent = jQuery("<p>").append(jHtmlObject);
@@ -324,8 +377,59 @@
                     extend: 'colvis',
                     text: '&nbsp;<span class="fa fa-columns"></span>&nbsp;',
                     titleAttr: 'Column Visibility',
-                   // init: function ( dt, node, config ) { $(node).tooltip(); }
+					init: function ( dt, node, config ) { $(node).tooltip(); }
                 },
+				/*
+                TODO removing the Fixed-Colum icon for now, which fixes a colum, or columns to the left of the table
+                so the user can scroll off the screen to columns on the right, and keep the left-most columns in view.
+                This mostly works, but there is an issue with column filtering interacting with the fixed-column behavior.
+            	See: https://github.com/CareSet/Zermelo/issues/56
+            	*/
+				/*
+                {
+                    extend: 'collection',
+					name: 'fixedcols',
+					attr: {
+                        id: 'report_table_freeze_selector'
+					},
+                    autoClose: true,
+                    text: '&nbsp;<span id="fixedcols-icon" class="fa fa-anchor"></span>&nbsp;',
+                    titleAttr: 'Number of columns to anchor to the left',
+                    className: 'fixedcols',
+                    init: function ( dt, node, config ) { $(node).tooltip(); },
+                    buttons : [
+                        {
+                            text: 'None',
+                            action: function ( e, dt, node, config ) {
+								refreshFixedColumns(0);
+                            }
+                        },
+                        {
+                            text: '1',
+                            action: function ( e, dt, node, config ) {
+                                refreshFixedColumns(1);
+                            }
+                        },
+                        {
+                            text: '2',
+                            action: function ( e, dt, node, config ) {
+                                refreshFixedColumns(2);
+                            }
+                        },
+                        {
+                            text: '3',
+                            action: function ( e, dt, node, config ) {
+                                refreshFixedColumns(3);
+                            }
+                        },
+                        {
+                            text: '4',
+                            action: function ( e, dt, node, config ) {
+                                refreshFixedColumns(4);
+                            }
+                        },
+                    ]
+                },*/
                 {
                     name: 'Expand',
                     text: '&nbsp;<span class="fa fa-expand"></span>&nbsp;',
@@ -467,7 +571,7 @@
                         }
 					]
                 }
-            ];
+            ]; // End of buttons array
 
             var columnHeaders = []; /* for DataTables */
             var index = 0;
@@ -581,15 +685,15 @@
             var emptyTableString = "<span id='emptyTableString'>No data available in table</span>";
 
             var detailRows = [];
-            var ReportTable = $('#report_datatable').DataTable( {
+            dataTableOptions = {
 
                 dom: '<"report-table-wrapper"<"table-control"<"float-left control-box"Blf<"after-menu-addition">><"float-right"ip><"clearfix"><"#report_menu_wrapper">>tr>',
 
-				/*
-				 * Save state in local storage, including the
-				 * current data filters and sort order
-				 */
-				stateSave: true,
+                /*
+                 * Save state in local storage, including the
+                 * current data filters and sort order
+                 */
+                stateSave: true,
                 colReorder: true,
                 scrollX: true,
                 scrollY: '200px',
@@ -614,10 +718,10 @@
                 */
                 columns: columnHeaders,
 
-				language: {
+                language: {
                     "emptyTable": emptyTableString,
-					"processing": '<div class="loader"></div>'
-				},
+                    "processing": '<div class="loader"></div>'
+                },
 
                 /*
                     Override every ajax call to the server.
@@ -661,9 +765,9 @@
                     if ( data.length != "undefined" ) {
                         page = (data.start / data.length) + 1;
                         length = data.length;
-					}
+                    }
 
-					// Get the parameters passed in via URI
+                    // Get the parameters passed in via URI
                     var passthrough_params = zermelo.getPassthroughParams();
 
                     // Set up the ajax API parameters
@@ -673,8 +777,8 @@
                         "order": callbackOrder,
                         "length": parseInt(length),
                         "filter": zermelo.getSearchFilters(),
-						"clear_cache": $("#clear_cache").val() ,
-						"sockets": sockets // Pass sockets for "Data Options"
+                        "clear_cache": $("#clear_cache").val() ,
+                        "sockets": sockets // Pass sockets for "Data Options"
                     };
 
                     // Merge the URI Parameters with the ajax parameters
@@ -721,7 +825,7 @@
                         $("#cache-meta-button").attr("data-original-title", info);
 
                         // If we have zero results, and we have search filters applied, let the user know
-						// This text will replace the default "No data available in table"
+                        // This text will replace the default "No data available in table"
                         var search_filters = zermelo.getSearchFilters();
                         if (search_filters.length > 0) {
                             var emptyTableString = "<p>No data available in table, possibly because you have the following search filters applied:</p>";
@@ -747,7 +851,7 @@
                 serverSide: true,
                 processing: true,
 
-				paging: true,
+                paging: true,
 
 
                 initComplete: function(settings, json) {
@@ -828,21 +932,17 @@
                 } /* end rowCallback */
 
 
-            }); /* end DataTable */
+            } // End of dataTable Options
+
+
+			// Initialize our dataTable with the "original" options
+            ReportTable = $('#report_datatable').DataTable( dataTableOptions );
 
             ReportTable.on( 'column-reorder', function () {
-                if(fixedColumns !== null)
-                {
+                if(fixedColumns !== null) {
                     $("#report_datatable").dataTable().api().fixedColumns().update();
                 }
-            } );
-
-//            $("body").on( 'click', '.dt-button', function() {
-//                if(fixedColumns !== null)
-//                {
-//                    $("#report_table_freeze_selector").trigger("click");
-//                }
-//            });
+            });
 
             yadcf.init(ReportTable,filter_array);
 
@@ -855,26 +955,6 @@
                 // Use the yadcf API to reset all filters
                 yadcf.exResetAllFilters(ReportTable);
             });
-
-
-            $("body").on("change","#report_table_freeze_selector",function()
-            {
-                if(fixedColumns !== null)
-                {
-                    fixedColumns.destroy();
-                    fixedColumns = null;
-                }
-                var val = $(this).val()*1;
-
-                if(val > 0)
-                {
-                    fixedColumns = new $.fn.dataTable.FixedColumns( $("#report_datatable").dataTable() , {
-                        leftColumns: val
-                    } );
-
-                }
-            });
-
 
 
             $('#report_datatable tbody').on( 'click', 'tr td.details-control', function () {
@@ -912,4 +992,7 @@
 
 
     });
+</script>
+<script type="text/javascript">
+	{!! $report->GetReportJS() !!}
 </script>

@@ -31,6 +31,7 @@ class cardface extends DURCModel{
 			'creature_cardface', //from from many
 			'person_classofc_cardface', //from from many
 			'wincon_strategy', //from from many
+			'emblematic_theme', //from from many
 			'card', //from belongs to
 		];
 
@@ -142,6 +143,14 @@ class cardface extends DURCModel{
 */
 	public function wincon_strategy(){
 		return $this->hasMany('App\strategy','wincon_cardface_id','id');
+	}
+
+
+/**
+*	get all the emblematic_theme for this cardface
+*/
+	public function emblematic_theme(){
+		return $this->hasMany('App\theme','emblematic_cardface_id','id');
 	}
 
 

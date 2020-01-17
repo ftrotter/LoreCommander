@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('changeCard/{channel_id}/{multiverse_id}', 'cardShowController@sendCardPush');
 Route::get('showCard/{channel_id}', 'cardShowController@showCard');
+Route::get('showJustCard/{channel_id}', 'cardShowController@showJustCard');
 
 Route::get('genericLinkerForm/{durc_type_left}/{durc_type_right}/{durc_type_link}','GenericLinker@linkForm');
 Route::post('genericLinkerSave/{durc_type_left}/{durc_type_right}/{durc_type_link}','GenericLinker@linkSaver');
@@ -234,6 +235,13 @@ Route::resource("/DURC/tag", 'tagController');
 Route::get("/DURC/json/tag/{tag_id}", 'tagController@jsonone');
 Route::get("/DURC/json/tag/", 'tagController@jsonall');
 Route::get("/DURC/searchjson/tag/", 'tagController@search');
+
+ 
+//DURC->	lore.theme
+Route::resource("/DURC/theme", 'themeController');
+Route::get("/DURC/json/theme/{theme_id}", 'themeController@jsonone');
+Route::get("/DURC/json/theme/", 'themeController@jsonall');
+Route::get("/DURC/searchjson/theme/", 'themeController@search');
 
  
 //DURC->	lore.vspack

@@ -16,6 +16,11 @@ class cardShowController extends Controller
 		
 	}
 
+	public function showJustCard($channel_id){
+
+		return view('show_just_card',['channel_id'  => $channel_id]);
+		
+	}
 
 	public function sendCardPush($channel_id,$multiverse_id){
 
