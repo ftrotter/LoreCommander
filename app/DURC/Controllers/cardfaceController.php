@@ -264,6 +264,12 @@ class cardfaceController extends DURCController
 		$tmp_cardface->is_color_white = DURC::formatForStorage( 'is_color_white', 'tinyint', $request->is_color_white ); 
 		$tmp_cardface->is_colorless = DURC::formatForStorage( 'is_colorless', 'tinyint', $request->is_colorless ); 
 		$tmp_cardface->color_count = DURC::formatForStorage( 'color_count', 'int', $request->color_count ); 
+		$tmp_cardface->is_color_identity_green = DURC::formatForStorage( 'is_color_identity_green', 'tinyint', $request->is_color_identity_green ); 
+		$tmp_cardface->is_color_identity_red = DURC::formatForStorage( 'is_color_identity_red', 'tinyint', $request->is_color_identity_red ); 
+		$tmp_cardface->is_color_identity_blue = DURC::formatForStorage( 'is_color_identity_blue', 'tinyint', $request->is_color_identity_blue ); 
+		$tmp_cardface->is_color_identity_black = DURC::formatForStorage( 'is_color_identity_black', 'tinyint', $request->is_color_identity_black ); 
+		$tmp_cardface->is_color_identity_white = DURC::formatForStorage( 'is_color_identity_white', 'tinyint', $request->is_color_identity_white ); 
+		$tmp_cardface->color_identity_count = DURC::formatForStorage( 'color_identity_count', 'int', $request->color_identity_count ); 
 		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
 		$tmp_cardface->has_phyrexian_mana = DURC::formatForStorage( 'has_phyrexian_mana', 'tinyint', $request->has_phyrexian_mana ); 
 		$tmp_cardface->for_fulltext_search = DURC::formatForStorage( 'for_fulltext_search', 'varchar', $request->for_fulltext_search ); 
@@ -441,6 +447,12 @@ class cardfaceController extends DURCController
 		$tmp_cardface->is_color_white = DURC::formatForStorage( 'is_color_white', 'tinyint', $request->is_color_white ); 
 		$tmp_cardface->is_colorless = DURC::formatForStorage( 'is_colorless', 'tinyint', $request->is_colorless ); 
 		$tmp_cardface->color_count = DURC::formatForStorage( 'color_count', 'int', $request->color_count ); 
+		$tmp_cardface->is_color_identity_green = DURC::formatForStorage( 'is_color_identity_green', 'tinyint', $request->is_color_identity_green ); 
+		$tmp_cardface->is_color_identity_red = DURC::formatForStorage( 'is_color_identity_red', 'tinyint', $request->is_color_identity_red ); 
+		$tmp_cardface->is_color_identity_blue = DURC::formatForStorage( 'is_color_identity_blue', 'tinyint', $request->is_color_identity_blue ); 
+		$tmp_cardface->is_color_identity_black = DURC::formatForStorage( 'is_color_identity_black', 'tinyint', $request->is_color_identity_black ); 
+		$tmp_cardface->is_color_identity_white = DURC::formatForStorage( 'is_color_identity_white', 'tinyint', $request->is_color_identity_white ); 
+		$tmp_cardface->color_identity_count = DURC::formatForStorage( 'color_identity_count', 'int', $request->color_identity_count ); 
 		$tmp_cardface->is_snow = DURC::formatForStorage( 'is_snow', 'tinyint', $request->is_snow ); 
 		$tmp_cardface->has_phyrexian_mana = DURC::formatForStorage( 'has_phyrexian_mana', 'tinyint', $request->has_phyrexian_mana ); 
 		$tmp_cardface->for_fulltext_search = DURC::formatForStorage( 'for_fulltext_search', 'varchar', $request->for_fulltext_search ); 

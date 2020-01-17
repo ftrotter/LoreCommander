@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=ab4099f82006525fcd76caf72dc33085
+FILE_SIG=4440a058cb5970156b6a928ddf95b5f8
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -103,6 +103,12 @@ $joined_select_field_sql
 , cardface.is_color_white AS is_color_white
 , cardface.is_colorless AS is_colorless
 , cardface.color_count AS color_count
+, cardface.is_color_identity_green AS is_color_identity_green
+, cardface.is_color_identity_red AS is_color_identity_red
+, cardface.is_color_identity_blue AS is_color_identity_blue
+, cardface.is_color_identity_black AS is_color_identity_black
+, cardface.is_color_identity_white AS is_color_identity_white
+, cardface.color_identity_count AS color_identity_count
 , cardface.is_snow AS is_snow
 , cardface.has_phyrexian_mana AS has_phyrexian_mana
 , cardface.for_fulltext_search AS for_fulltext_search
@@ -161,6 +167,12 @@ $joined_select_field_sql
 , cardface.is_color_white AS is_color_white
 , cardface.is_colorless AS is_colorless
 , cardface.color_count AS color_count
+, cardface.is_color_identity_green AS is_color_identity_green
+, cardface.is_color_identity_red AS is_color_identity_red
+, cardface.is_color_identity_blue AS is_color_identity_blue
+, cardface.is_color_identity_black AS is_color_identity_black
+, cardface.is_color_identity_white AS is_color_identity_white
+, cardface.color_identity_count AS color_identity_count
 , cardface.is_snow AS is_snow
 , cardface.has_phyrexian_mana AS has_phyrexian_mana
 , cardface.for_fulltext_search AS for_fulltext_search
@@ -677,7 +689,7 @@ array (
   ),
   39 => 
   array (
-    'column_name' => 'is_snow',
+    'column_name' => 'is_color_identity_green',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -687,7 +699,7 @@ array (
   ),
   40 => 
   array (
-    'column_name' => 'has_phyrexian_mana',
+    'column_name' => 'is_color_identity_red',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -697,6 +709,66 @@ array (
   ),
   41 => 
   array (
+    'column_name' => 'is_color_identity_blue',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  42 => 
+  array (
+    'column_name' => 'is_color_identity_black',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  43 => 
+  array (
+    'column_name' => 'is_color_identity_white',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  44 => 
+  array (
+    'column_name' => 'color_identity_count',
+    'data_type' => 'int',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  45 => 
+  array (
+    'column_name' => 'is_snow',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  46 => 
+  array (
+    'column_name' => 'has_phyrexian_mana',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+  ),
+  47 => 
+  array (
     'column_name' => 'for_fulltext_search',
     'data_type' => 'varchar',
     'is_primary_key' => false,
@@ -705,7 +777,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  42 => 
+  48 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -715,7 +787,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
   ),
-  43 => 
+  49 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',
