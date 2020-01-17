@@ -239,7 +239,7 @@ class  ScryfallSaver {
 				}
 			
 				$color_count = 0;
-				foreach($this_card['color'] as $has_this_color){
+				foreach($this_card['colors'] as $has_this_color){
 					$color_name = self::$color_lookup[$has_this_color];
 					$cardface_fill["is_color_$color_name"] = 1;				
 	
