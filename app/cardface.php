@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a64c1235ae8d6f576d80f6463bbef72d
+FILE_SIG=60b30e0b07df02b8bdcdd093441eda23
 */
 namespace App;
 /*
@@ -78,6 +78,12 @@ class cardface extends \App\DURC\Models\cardface
 			//'is_color_white', //tinyint
 			//'is_colorless', //tinyint
 			//'color_count', //int
+			//'is_color_identity_green', //tinyint
+			//'is_color_identity_red', //tinyint
+			//'is_color_identity_blue', //tinyint
+			//'is_color_identity_black', //tinyint
+			//'is_color_identity_white', //tinyint
+			//'color_identity_count', //int
 			//'is_snow', //tinyint
 			//'has_phyrexian_mana', //tinyint
 			//'for_fulltext_search', //varchar

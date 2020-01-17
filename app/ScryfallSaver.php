@@ -230,21 +230,30 @@ class  ScryfallSaver {
 	
 				//now we calculate our is_color variables...
 				$has_color = false;
-				$color_count = 0;
+				$color_identity_count = 0;
 				foreach($this_card['color_identity'] as $has_this_color){
+					$color_name = self::$color_lookup[$has_this_color];
+					$cardface_fill["is_color_identity_$color_name"] = 1;				
+	
+					$color_identity_count++;
+				}
+			
+				$color_count = 0;
+				foreach($this_card['color'] as $has_this_color){
 					$color_name = self::$color_lookup[$has_this_color];
 					$cardface_fill["is_color_$color_name"] = 1;				
 	
 					$color_count++;
 					$has_color = true;
 				}
-			
+
 				if(!$has_color){
 					$cardface_fill["is_colorless"] = true;
 				}
 	
 	
 				$cardface_fill['color_count'] = $color_count;
+				$cardface_fill['color_identity_count'] = $color_identity_count;
 	
 				foreach($this_card['image_uris'] as $image_type => $image_url){
 					$cardface_fill["image_uri_$image_type"] = $image_url;
