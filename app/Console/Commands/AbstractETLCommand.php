@@ -9,7 +9,7 @@ abstract class AbstractETLCommand  extends Command
 {
 
 
-	private function run_sql_loop($sql, $is_echo_full_sql = false, $start_time = null){
+	protected function run_sql_loop($sql, $is_echo_full_sql = false, $start_time = null){
 	
 		//we need raw database access. No reason to go through Eloquent.
 		$pdo = DB::connection()->getPdo();
