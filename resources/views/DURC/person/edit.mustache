@@ -426,5 +426,46 @@
 </table>
 </div></div> <!-- end person_strategy_tag card-->
 <br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many emblematic_theme ( <a href='/DURC/theme/'>see all</a> )
+{{^emblematic_theme}}
+(no values)
+{{/emblematic_theme}}
+  </div>
+<div class='card-body'>
+
+<table id='table_emblematic_theme' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> theme_name </th>
+			<th> theme_description </th>
+			<th> emblematic_person_id </th>
+			<th> emblematic_cardface_id </th>
+			<th> emblematic_creature_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#emblematic_theme}}
+	<tr>
+		{{#.}}
+			<td>{{id}}</td>
+			<td>{{theme_name}}</td>
+			<td>{{theme_description}}</td>
+			<td>{{emblematic_person_id_DURClabel}} ({{emblematic_person_id}}) </td>			<td>{{emblematic_cardface_id_DURClabel}} ({{emblematic_cardface_id}}) </td>			<td>{{emblematic_creature_id_DURClabel}} ({{emblematic_creature_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/emblematic_theme}}
+</tbody>
+</table>
+</div></div> <!-- end emblematic_theme card-->
+<br>
 </div></div> <!--end has many card-->
 <br>

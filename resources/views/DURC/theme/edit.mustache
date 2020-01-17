@@ -1,0 +1,440 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/theme' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/theme/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>theme</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_theme/'>Return to theme list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/theme/create'>Create new theme </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-8'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}' >
+    </div>
+  </div>
+
+  <div class='form-group row {{theme_name_row_class}}'>
+    <label for='theme_name' class='col-sm-4 col-form-label'>theme_name</label>
+    <div class='col-sm-8'>
+      <input type='text' class='form-control' id='theme_name' name='theme_name' placeholder='' value='{{theme_name}}' >
+    </div>
+  </div>
+
+  <div class='form-group row {{theme_description_row_class}}'>
+    <label for='theme_description' class='col-sm-4 col-form-label'>theme_description</label>
+    <div class='col-sm-8'>
+      <input type='text' class='form-control' id='theme_description' name='theme_description' placeholder='' value='{{theme_description}}' >
+    </div>
+  </div>
+
+  <div class='form-group row {{emblematic_person_id_row_class}}'>
+    <label for='emblematic_person_id' class='col-sm-4 col-form-label'>emblematic_person_id</label>
+    <div class='col-sm-8'>
+	Current id value: {{emblematic_person_id}} (see below for lookup value)<br>
+	<select class='select2_emblematic_person_id form-control' id='emblematic_person_id' name='emblematic_person_id'  >
+	<option value='{{emblematic_person_id}}' selected='selected'>{{emblematic_person_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_emblematic_person_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/person',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{emblematic_cardface_id_row_class}}'>
+    <label for='emblematic_cardface_id' class='col-sm-4 col-form-label'>emblematic_cardface_id</label>
+    <div class='col-sm-8'>
+	Current id value: {{emblematic_cardface_id}} (see below for lookup value)<br>
+	<select class='select2_emblematic_cardface_id form-control' id='emblematic_cardface_id' name='emblematic_cardface_id'  >
+	<option value='{{emblematic_cardface_id}}' selected='selected'>{{emblematic_cardface_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_emblematic_cardface_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/cardface',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{emblematic_creature_id_row_class}}'>
+    <label for='emblematic_creature_id' class='col-sm-4 col-form-label'>emblematic_creature_id</label>
+    <div class='col-sm-8'>
+	Current id value: {{emblematic_creature_id}} (see below for lookup value)<br>
+	<select class='select2_emblematic_creature_id form-control' id='emblematic_creature_id' name='emblematic_creature_id'  >
+	<option value='{{emblematic_creature_id}}' selected='selected'>{{emblematic_creature_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_emblematic_creature_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/creature',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-8'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-8'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/theme/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='theme' class='do-soft-delete btn btn-outline-danger'>Hard Delete theme</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    emblematic_person ( <a href='/DURC/person/'>see all</a> )
+{{^emblematic_person}}
+(no values)
+{{/emblematic_person}}
+  </div>
+<div class='card-body'>
+<table id='table_emblematic_person' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> last_name </th>
+			<th> first_name </th>
+			<th> person_blurb </th>
+			<th> image_uri </th>
+			<th> wallpaper_download_url </th>
+			<th> mtgwiki_url </th>
+			<th> wizards_story_url </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#emblematic_person}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/person/{{id}}'>{{id}}</a></td>
+			<td>{{last_name}}</td>
+			<td>{{first_name}}</td>
+			<td>{{person_blurb}}</td>
+			<td>{{image_uri}}</td>
+			<td>{{wallpaper_download_url}}</td>
+			<td>{{mtgwiki_url}}</td>
+			<td>{{wizards_story_url}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/emblematic_person}}
+</tbody>
+</table>
+</div></div> <!-- end emblematic_person card-->
+
+<div class='card'>
+  <div class='card-header'>
+    emblematic_cardface ( <a href='/DURC/cardface/'>see all</a> )
+{{^emblematic_cardface}}
+(no values)
+{{/emblematic_cardface}}
+  </div>
+<div class='card-body'>
+<table id='table_emblematic_cardface' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> card_id </th>
+			<th> cardface_index </th>
+			<th> illustration_id </th>
+			<th> artist </th>
+			<th> color </th>
+			<th> color_identity </th>
+			<th> flavor_text </th>
+			<th> image_uri </th>
+			<th> mana_cost </th>
+			<th> name </th>
+			<th> oracle_text </th>
+			<th> power </th>
+			<th> toughness </th>
+			<th> type_line </th>
+			<th> border_color </th>
+			<th> image_uri_art_crop </th>
+			<th> image_hash_art_crop </th>
+			<th> image_uri_small </th>
+			<th> image_hash_small </th>
+			<th> image_uri_normal </th>
+			<th> image_hash_normal </th>
+			<th> image_uri_large </th>
+			<th> image_hash_large </th>
+			<th> image_uri_png </th>
+			<th> image_hash_png </th>
+			<th> image_uri_border_crop </th>
+			<th> image_hash_border_crop </th>
+			<th> is_foil </th>
+			<th> is_nonfoil </th>
+			<th> is_oversized </th>
+			<th> is_color_green </th>
+			<th> is_color_red </th>
+			<th> is_color_blue </th>
+			<th> is_color_black </th>
+			<th> is_color_white </th>
+			<th> is_colorless </th>
+			<th> color_count </th>
+			<th> is_snow </th>
+			<th> has_phyrexian_mana </th>
+			<th> for_fulltext_search </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#emblematic_cardface}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/cardface/{{id}}'>{{id}}</a></td>
+			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{cardface_index}}</td>
+			<td>{{illustration_id_DURClabel}} ({{illustration_id}}) </td>			<td>{{artist}}</td>
+			<td>{{color}}</td>
+			<td>{{color_identity}}</td>
+			<td>{{flavor_text}}</td>
+			<td>{{image_uri}}</td>
+			<td>{{mana_cost}}</td>
+			<td>{{name}}</td>
+			<td>{{oracle_text}}</td>
+			<td>{{power}}</td>
+			<td>{{toughness}}</td>
+			<td>{{type_line}}</td>
+			<td>{{border_color}}</td>
+			<td>{{image_uri_art_crop}}</td>
+			<td>{{image_hash_art_crop}}</td>
+			<td>{{image_uri_small}}</td>
+			<td>{{image_hash_small}}</td>
+			<td>{{image_uri_normal}}</td>
+			<td>{{image_hash_normal}}</td>
+			<td>{{image_uri_large}}</td>
+			<td>{{image_hash_large}}</td>
+			<td>{{image_uri_png}}</td>
+			<td>{{image_hash_png}}</td>
+			<td>{{image_uri_border_crop}}</td>
+			<td>{{image_hash_border_crop}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{is_nonfoil}}</td>
+			<td>{{is_oversized}}</td>
+			<td>{{is_color_green}}</td>
+			<td>{{is_color_red}}</td>
+			<td>{{is_color_blue}}</td>
+			<td>{{is_color_black}}</td>
+			<td>{{is_color_white}}</td>
+			<td>{{is_colorless}}</td>
+			<td>{{color_count}}</td>
+			<td>{{is_snow}}</td>
+			<td>{{has_phyrexian_mana}}</td>
+			<td>{{for_fulltext_search}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/emblematic_cardface}}
+</tbody>
+</table>
+</div></div> <!-- end emblematic_cardface card-->
+
+<div class='card'>
+  <div class='card-header'>
+    emblematic_creature ( <a href='/DURC/creature/'>see all</a> )
+{{^emblematic_creature}}
+(no values)
+{{/emblematic_creature}}
+  </div>
+<div class='card-body'>
+<table id='table_emblematic_creature' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> creature_name </th>
+			<th> creature_image_uri </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#emblematic_creature}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/creature/{{id}}'>{{id}}</a></td>
+			<td>{{creature_name}}</td>
+			<td>{{creature_image_uri}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/emblematic_creature}}
+</tbody>
+</table>
+</div></div> <!-- end emblematic_creature card-->
+</div></div> <!--end belongs to card-->
+<br>

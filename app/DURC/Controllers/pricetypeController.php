@@ -120,6 +120,7 @@ class pricetypeController extends DURCController
    	public function search(Request $request){
 
 		$q = $request->input('q');
+		$page = $request->input('page');
 
 		//TODO we need to escape this query string to avoid SQL injection.
 
@@ -137,12 +138,17 @@ class pricetypeController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = pricetype::whereRaw($where_sql)
+		$query = pricetype::whereRaw($where_sql);
+		            
+		$count = $query->count();			
+		$these = $query
+		            ->skip(20*($page-1))
 					->take(20)
 					->get();
+					
+        $more = $count > $page * 20;
 
-
-		$return_me['pagination'] = ['more' => false];
+		$return_me['pagination'] = ['more' => $more];
 		$raw_array = $these->toArray();
 
 		$real_array = [];

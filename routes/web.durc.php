@@ -196,6 +196,13 @@ Route::get("/DURC/json/tag/", 'tagController@jsonall');
 Route::get("/DURC/searchjson/tag/", 'tagController@search');
 
  
+//DURC->	lore.theme
+Route::resource("/DURC/theme", 'themeController');
+Route::get("/DURC/json/theme/{theme_id}", 'themeController@jsonone');
+Route::get("/DURC/json/theme/", 'themeController@jsonall');
+Route::get("/DURC/searchjson/theme/", 'themeController@search');
+
+ 
 //DURC->	lore.vspack
 Route::resource("/DURC/vspack", 'vspackController');
 Route::get("/DURC/json/vspack/{vspack_id}", 'vspackController@jsonone');

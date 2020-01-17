@@ -123,6 +123,7 @@ class person_classofc_tagController extends DURCController
    	public function search(Request $request){
 
 		$q = $request->input('q');
+		$page = $request->input('page');
 
 		//TODO we need to escape this query string to avoid SQL injection.
 
@@ -140,12 +141,17 @@ class person_classofc_tagController extends DURCController
 			$or = ' OR ';
 		}
 
-		$these = person_classofc_tag::whereRaw($where_sql)
+		$query = person_classofc_tag::whereRaw($where_sql);
+		            
+		$count = $query->count();			
+		$these = $query
+		            ->skip(20*($page-1))
 					->take(20)
 					->get();
+					
+        $more = $count > $page * 20;
 
-
-		$return_me['pagination'] = ['more' => false];
+		$return_me['pagination'] = ['more' => $more];
 		$raw_array = $these->toArray();
 
 		$real_array = [];
