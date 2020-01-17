@@ -93,7 +93,6 @@ SELECT DISTINCT
 	image_uri,
 	oracle_text,
 	mana_cost,
-	FLOOR(cmc) AS cmc,
 	power,
 	toughness,
 	type_line
@@ -119,6 +118,7 @@ SELECT DISTINCT
 	IF(type_line LIKE '%basic%',1,0) AS is_basic_land
 FROM $db.card
 WHERE type_line LIKE '%land%'
+GROUP BY card_name
 ";
 
 	$sql['drop mo creature card'] = "
@@ -158,6 +158,17 @@ WHERE creature_score = 0
 	$sql['drop mo walker'] = "
 DROP TABLE IF EXISTS $db.mo_NotCreatureCard
 ";
+
+
+	$missing_where = "
+WHERE type_line NOT LIKE '%land%' 
+AND type_line NOT LIKE '%creature%'
+AND type_line NOT LIKE '%Planeswalker%'
+
+";
+	//note we actually WANT to have every card in the database in this so that the creature and plaeswalker table
+	//actually show up... but with 0s in all of the logic columns...
+	//this highlights a design choice
 	
 	$sql['create mo walker'] = "
 CREATE TABLE $db.mo_NotCreatureCard 
