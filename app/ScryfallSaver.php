@@ -11,7 +11,11 @@ namespace App;
 
 class  ScryfallSaver {
 
-
+		//the idea of the card_field_mirror and the cardface_field_mirror is that generally, we just want to put 
+		//the typical per-card data into either a cardface or a card.. and rather than manually copying each value
+		//we just loop over the values and say "Just put this data directly into the database as it appears in the JSON
+		//while other values we might want to massage the data, or perhaps change the column name or do something else...
+		//these values can just be safely saved straight to the database.
                 public static  $card_field_mirror = [
                         'lang',
                         'oracle_id',
@@ -24,6 +28,7 @@ class  ScryfallSaver {
 
                 public static $cardface_field_mirror = [
                         'artist',
+			'cmc',
                         'flavor_text',
                         'border_color',
                         'type_line',
