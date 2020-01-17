@@ -235,6 +235,7 @@ class cardfaceController extends DURCController
 		$tmp_cardface->flavor_text = DURC::formatForStorage( 'flavor_text', 'varchar', $request->flavor_text ); 
 		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
 		$tmp_cardface->mana_cost = DURC::formatForStorage( 'mana_cost', 'varchar', $request->mana_cost ); 
+		$tmp_cardface->cmc = DURC::formatForStorage( 'cmc', 'decimal', $request->cmc ); 
 		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
 		$tmp_cardface->power = DURC::formatForStorage( 'power', 'varchar', $request->power ); 
@@ -411,6 +412,7 @@ class cardfaceController extends DURCController
 		$tmp_cardface->flavor_text = DURC::formatForStorage( 'flavor_text', 'varchar', $request->flavor_text ); 
 		$tmp_cardface->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
 		$tmp_cardface->mana_cost = DURC::formatForStorage( 'mana_cost', 'varchar', $request->mana_cost ); 
+		$tmp_cardface->cmc = DURC::formatForStorage( 'cmc', 'decimal', $request->cmc ); 
 		$tmp_cardface->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_cardface->oracle_text = DURC::formatForStorage( 'oracle_text', 'varchar', $request->oracle_text ); 
 		$tmp_cardface->power = DURC::formatForStorage( 'power', 'varchar', $request->power ); 
