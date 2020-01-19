@@ -163,6 +163,9 @@ class mtgsetController extends DURCController
 			}
 			$tmp['text'] = trim($tmp_text);
 
+			//show the id of the data at the end of the select..
+			$tmp['text'] .= ' ('.$this_row['id'].')';;
+
 			if(!is_null($img_field)){ //then there is an image for this entry
 				$tmp['img_field'] = $img_field;
 				if(isset($this_row[$img_field])){
@@ -232,7 +235,7 @@ class mtgsetController extends DURCController
 		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
 		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
-		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at ); 
+		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'date', $request->released_at ); 
 		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code ); 
 		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block ); 
 		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code ); 
@@ -386,7 +389,7 @@ class mtgsetController extends DURCController
 		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
 		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
 		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
-		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at ); 
+		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'date', $request->released_at ); 
 		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code ); 
 		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block ); 
 		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code ); 

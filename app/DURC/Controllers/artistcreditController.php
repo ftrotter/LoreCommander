@@ -163,6 +163,9 @@ class artistcreditController extends DURCController
 			}
 			$tmp['text'] = trim($tmp_text);
 
+			//show the id of the data at the end of the select..
+			$tmp['text'] .= ' ('.$this_row['id'].')';;
+
 			if(!is_null($img_field)){ //then there is an image for this entry
 				$tmp['img_field'] = $img_field;
 				if(isset($this_row[$img_field])){

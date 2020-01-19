@@ -94,7 +94,30 @@
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
     <div class='col-sm-8'>
-      <input type='text' class='form-control' id='released_at' name='released_at' placeholder='' value='{{released_at}}' >
+      <input type='text' class='form-control' id='released_at' name='released_at' placeholder='' value='{{released_at}}'  >
+
+<button type='button' class='btn btn-primary' id='released_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='released_at_TodayNow'> Today </button>
+
+<script>
+	var released_atConv = new AnyTime.Converter({format: '%Y-%m-%d'});
+  	$('#released_at_TodayNow').click( function(e) {
+      		$('#released_at').val(released_atConv.format(new Date())).change(); } );
+
+    	$('#released_at_FontPicker').click(
+      		function(e) {
+        		$('#released_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
     </div>
   </div>
 

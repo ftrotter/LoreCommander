@@ -1949,7 +1949,7 @@
                 },
                 {
                     "column_name": "released_at",
-                    "data_type": "varchar",
+                    "data_type": "date",
                     "is_primary_key": false,
                     "is_foreign_key": false,
                     "is_linked_key": false,
@@ -2074,7 +2074,7 @@
                     "from_column": "mtgset_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `arena_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` varchar(255) NOT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `arena_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` date DEFAULT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "pack": {
             "table_name": "pack",

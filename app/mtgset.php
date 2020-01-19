@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=14c3d13ef5554bbd3605000e2889606d
+FILE_SIG=cffc778767efaf3922288c8cf676968c
 */
 namespace App;
 /*
@@ -40,7 +40,7 @@ class mtgset extends \App\DURC\Models\mtgset
 			//'tcgplayer_id', //int
 			//'name', //varchar
 			//'set_type', //varchar
-			//'released_at', //varchar
+			//'released_at', //date
 			//'block_code', //varchar
 			//'block', //varchar
 			//'parent_set_code', //varchar
