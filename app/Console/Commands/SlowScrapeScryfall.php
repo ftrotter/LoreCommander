@@ -56,11 +56,12 @@ class SlowScrapeScryfall extends Command
 
 		foreach($to_check as $check_me){
 			if(!isset($this_set[$check_me])){
-				$this_set[$check_me] = null; //we want somethi
+				$this_set[$check_me] = null; //we want a placeholder
 			}
 		}
 
 			
+
 	
 		$this_set['scryfall_id'] = $this_set['id'];
 		$this_set['mtgset_uri'] = $this_set['uri'];
@@ -73,10 +74,10 @@ class SlowScrapeScryfall extends Command
 			$this_set['is_foil_only'] = 0;
 		}
 
-		if($this_set['foil_only']){
-			$this_set['is_foil_only'] = 1;
+		if($this_set['digital']){
+			$this_set['is_digital'] = 1;
 		}else{
-			$this_set['is_foil_only'] = 0;
+			$this_set['is_digital'] = 0;
 		}
 
 		unset($this_set['id']); //we have our own id.

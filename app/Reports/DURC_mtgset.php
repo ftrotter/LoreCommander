@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=adda1ae0767cdf69948f025e89343e3f
+FILE_SIG=91f16af0e5f3d95d4b011b58bf637577
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -276,7 +276,7 @@ array (
   8 => 
   array (
     'column_name' => 'released_at',
-    'data_type' => 'varchar',
+    'data_type' => 'date',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
