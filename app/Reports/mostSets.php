@@ -50,9 +50,9 @@ JOIN lore.mtgset ON
 	mtgset.id =
 	card.mtgset_id
 WHERE type_line NOT LIKE '%Basic Land%' AND type_line NOT LIKE '%Token%'
-GROUP BY oracle_id, illustration_id
+GROUP BY oracle_id
 HAVING set_count >= 10  
-ORDER BY mtgset.released_at  DESC
+ORDER BY set_count DESC
 
 ";
     	return $sql;
