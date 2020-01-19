@@ -107,9 +107,10 @@ SELECT
    	image_uri_art_crop,
     	image_hash_art_crop,
         image_uri AS card_img_top,
-	cardface.name AS card_title,
+	CONCAT(cardface.name, ' (',common_set_count,' total sets)')  AS card_layout_block_label,
+	card.scryfall_web_uri AS card_layout_block_url,
     	GROUP_CONCAT(mtgset.code,' ',YEAR(mtgset.released_at) ORDER BY mtgset.released_at ASC SEPARATOR '<br>') AS card_text,
-	CONCAT(common_set_count, ' total sets') card_footer,
+	CONCAT(COUNT(DISTINCT(mtgset.id)), ' sets with image') card_footer,
         image_uri,
     	scryfall_web_uri
 
