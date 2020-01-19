@@ -55,12 +55,14 @@
 			<li> <b><a target='_blank' href='/Zermelo/CardSearch'>Card Search</a></b>: Search Cards based on several factors </li>
 			<li> <b><a target='_blank' href='/Zermelo/CardFaceSearch'>Card Face Search</a></b>: Search distinct card faces and card variations </li>
 			<li> <b><a target='_blank' href='/Zermelo/PersonNoCreature'>Person without any Class Of Creature Affiliations</a></b>: Ensures that we can easily tag our planeswalkers with their partnering tribes  </li>
+			<li> <b><a target='_blank' href='/Zermelo/mostReleasedArt'>Most Released Art</a></b>: What is the most commonly released art through the years </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
-		<h4>  Cards  Reports </h4>
+		<h4>  Card layout  Reports </h4>
 			<li> <b><a target='_blank' href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
 			<li> <b><a target='_blank' href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
+			<li> <b><a target='_blank' href='/ZermeloCard/cardMostSets'>Classic Card viewer</a></b>: Shows the cards that keep getting reprinted and updated. These are the classics.  </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
