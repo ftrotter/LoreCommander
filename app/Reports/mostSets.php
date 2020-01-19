@@ -29,16 +29,16 @@ class mostSets extends AbstractTabularReport
     public function GetSQL()
     {
 
-	$this->setDefaultSortOrder([['set_count' => 'desc'],['illustration_count' => 'asc']]);
+	$this->setDefaultSortOrder([['set_count' => 'desc']]);
 
 	//replace with your own SQL
         $sql = 
 "
 SELECT 
-    `name` AS card_name,
+    cardface.name AS card_name,
     type_line,
-    COUNT(DISTINCT(mtgset_id)) AS set_count,
-    COUNT(DISTINCT(illustration_id)) AS illustration_count,
+    GROUP_CONCAT(mtgset.name,' ',mtgset.released_at ORDER BY mtgset.released_at ASC SEPARATOR '<br>') AS set_list,
+    COUNT(DISTINCT(mtgset.id)) AS set_count,
     image_uri_art_crop,
     scryfall_web_uri
 
@@ -46,10 +46,13 @@ FROM lore.cardface
 JOIN lore.card ON 
     card.id =
     cardface.card_id
+JOIN lore.mtgset ON 
+	mtgset.id =
+	card.mtgset_id
 WHERE type_line NOT LIKE '%Basic Land%' AND type_line NOT LIKE '%Token%'
-GROUP BY oracle_id
+GROUP BY oracle_id, illustration_id
 HAVING set_count >= 10  
-ORDER BY `set_count`  DESC
+ORDER BY mtgset.released_at  DESC
 
 ";
     	return $sql;
