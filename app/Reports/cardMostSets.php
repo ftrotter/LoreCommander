@@ -56,7 +56,7 @@ class cardMostSets extends AbstractCardsReport
 
     public function cardWidth()
     {
-        return "200px";
+        return "300px";
     }
 
 
@@ -103,11 +103,13 @@ SELECT
     	COUNT(DISTINCT(mtgset.id)) AS image_set_count,
     	MAX(mtgset.released_at) AS latest_release_date,
     	MIN(mtgset.released_at) AS first_release_date,
+	card.oracle_id AS card_layout_block_id,
    	image_uri_art_crop,
     	image_hash_art_crop,
         image_uri AS card_img_top,
 	cardface.name AS card_title,
-    	GROUP_CONCAT(mtgset.name,' ',YEAR(mtgset.released_at) ORDER BY mtgset.released_at ASC SEPARATOR '<br>') AS card_text,
+    	GROUP_CONCAT(mtgset.code,' ',YEAR(mtgset.released_at) ORDER BY mtgset.released_at ASC SEPARATOR '<br>') AS card_text,
+	CONCAT(common_set_count, ' total sets') card_footer,
         image_uri,
     	scryfall_web_uri
 
@@ -124,6 +126,7 @@ FROM (
                 GROUP BY oracle_id
                 HAVING common_set_count >= 10
                 ORDER BY common_set_count DESC
+		LIMIT 0, 100
 ) AS most_frequent_cards
 JOIN lore.card ON
         card.oracle_id =
