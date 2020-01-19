@@ -56,7 +56,7 @@ class cardMostSets extends AbstractCardsReport
 
     public function cardWidth()
     {
-        return "100px";
+        return "200px";
     }
 
 
@@ -88,26 +88,54 @@ ORDER BY name ASC
 ";
 */
 
+	$this->setDefaultSortOrder([['common_set_count' => 'desc'],['card_name' => 'asc'],['first_release_date' => 'asc']]);
+/*
+	We have to do a pretty complex sub-query to get the frequency of the card overall, without considering the specific image.
+	Once we have that list which is in terms of oracle_id, we can sort out the different 
+
+
+*/
 	$sql  = "
 SELECT
-    `name` AS card_name,
-    type_line,
-    COUNT(DISTINCT(mtgset_id)) AS set_count,
-    COUNT(DISTINCT(illustration_id)) AS illustration_count,
-    image_uri_art_crop,
-    image_uri AS card_img_top,
-    image_uri,
-    image_hash_art_crop,
-    scryfall_web_uri
+   	cardface.name AS card_name,
+    	type_line,
+    	common_set_count,
+    	COUNT(DISTINCT(mtgset.id)) AS image_set_count,
+    	MAX(mtgset.released_at) AS latest_release_date,
+    	MIN(mtgset.released_at) AS first_release_date,
+   	image_uri_art_crop,
+    	image_hash_art_crop,
+        image_uri AS card_img_top,
+	cardface.name AS card_title,
+    	GROUP_CONCAT(mtgset.name,' ',YEAR(mtgset.released_at) ORDER BY mtgset.released_at ASC SEPARATOR '<br>') AS card_text,
+        image_uri,
+    	scryfall_web_uri
 
-FROM lore.cardface
+FROM (
+                SELECT
+                        oracle_id AS common_oracle_id,
+                        cardface.name AS common_card_name,
+                        COUNT(DISTINCT(mtgset_id)) AS common_set_count
+                FROM lore.card
+                JOIN lore.cardface ON
+                        cardface.card_id =
+                        card.id
+                WHERE type_line NOT LIKE '%Basic Land%' AND type_line NOT LIKE '%Token%'
+                GROUP BY oracle_id
+                HAVING common_set_count >= 10
+                ORDER BY common_set_count DESC
+) AS most_frequent_cards
 JOIN lore.card ON
-    card.id =
-    cardface.card_id
-WHERE type_line NOT LIKE '%Basic Land%' AND type_line NOT LIKE '%Token%'
-GROUP BY oracle_id
-HAVING set_count >= 10
-ORDER BY `set_count`  DESC
+        card.oracle_id =
+        most_frequent_cards.common_oracle_id
+JOIN lore.cardface ON
+        cardface.card_id =
+        card.id
+JOIN lore.mtgset ON
+        mtgset.id =
+        card.mtgset_id
+GROUP BY illustration_id
+ORDER BY common_set_count DESC, first_release_date
 ";
 
 
