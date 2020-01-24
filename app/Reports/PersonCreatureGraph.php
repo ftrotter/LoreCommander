@@ -67,7 +67,7 @@ LEFT JOIN lore.person ON
 LEFT JOIN lore.classofc ON 
 	classofc.id =
     	classofc_id
-GROUP BY classofc_id, person_id
+GROUP BY person_id, first_name, last_name, person.id, classofc_id, classofc_name, classofc.id 
 ";
 
         return $sql;
