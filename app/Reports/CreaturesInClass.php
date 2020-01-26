@@ -40,8 +40,7 @@ class CreaturesInClass extends AbstractTabularReport
 	if(is_null($class_id)){ 
 		//then this is the class-level summary..
 
-		echo "Error: Need a valid class_id\n";
-		exit();
+		throw new \Exception("Error: Need a valid class_id");
 
 	}else{
 		if(!is_numeric($class_id)){
