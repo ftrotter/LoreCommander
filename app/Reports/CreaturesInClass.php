@@ -212,5 +212,19 @@ GROUP BY oracle_id
         return(1200); //twenty minutes by default
    }
 
+	//this report does not work without a classofc ideentifier
+   public static function testMeWithThis(){
+
+		$return_me = [
+				[
+					'Code' => 6, //for an Angel
+					'Parameters' => [], // no parameters
+					'Input' => [], //no input
+				],
+			];
+
+
+		return($return_me);
+   }
 
 }

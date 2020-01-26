@@ -54,7 +54,7 @@ class CardRelations extends AbstractGraphReport
      **/
     public function GetSQL()
     {
-        $sql = "SELECT * FROM zermelo_docgraph.docgraph";
+        $sql = "SELECT * FROM lore.creature";
         return $sql;
     }
 
