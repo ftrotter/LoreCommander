@@ -135,11 +135,11 @@ $and (
 
         $sql = "
 SELECT 
-	image_uri AS card_img_top,
-	image_uri,
-	image_hash_art_crop,
-	cardface.name AS card_img_top_alttext,
-	scryfall_web_uri AS card_img_top_anchor
+	MAX(image_uri) AS card_img_top,
+	MAX(image_uri) AS image_uri,
+	MAX(image_hash_art_crop) AS image_hash_art_crop,
+	MAX(cardface.name) AS card_img_top_alttext,
+	MAX(scryfall_web_uri) AS card_img_top_anchor
 FROM lore.cardface
 JOIN lore.card ON 
 	card.id =
@@ -147,7 +147,6 @@ JOIN lore.card ON
 WHERE $match_sql
 GROUP BY illustration_id
 ORDER BY name ASC
-
 ";
 
 	//$this->setInput('order',[0 => ['match_rank' => 'desc']]);
