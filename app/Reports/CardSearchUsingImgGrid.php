@@ -85,7 +85,7 @@ class CardSearchUsingImgGrid extends AbstractCardsReport
 
     public function cardWidth()
     {
-        return "50px";
+        return "75px";
     }
 
 
@@ -146,7 +146,7 @@ JOIN lore.card ON
 	cardface.card_id
 WHERE $match_sql
 GROUP BY illustration_id
-ORDER BY name ASC
+ORDER BY name ASC, illustration_id
 ";
 
 	//$this->setInput('order',[0 => ['match_rank' => 'desc']]);
