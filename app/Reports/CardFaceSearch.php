@@ -106,20 +106,22 @@ class CardFaceSearch extends AbstractTabularReport
 "
 SELECT
 GROUP_CONCAT(cardface.id) AS cardface_ids, 
-REGEXP_REPLACE(name,'[^a-zA-Z0-9]',' ') AS name
-,REGEXP_REPLACE(artist,'[^a-zA-Z0-9]',' ') AS artist
-,`mana_cost`
-,REGEXP_REPLACE(type_line,'[^a-zA-Z0-9]',' ') AS type_line
+REGEXP_REPLACE(MAX(name),'[^a-zA-Z0-9]',' ') AS name
+,REGEXP_REPLACE(MAX(artist),'[^a-zA-Z0-9]',' ') AS artist
+,MAX(mana_cost) AS mana_cost
+,REGEXP_REPLACE(MAX(type_line),'[^a-zA-Z0-9]',' ') AS type_line
 
-, power
+, MAX(power) AS power
 , GROUP_CONCAT(DISTINCT(REGEXP_REPLACE(set_name,'[^a-zA-Z0-9]',' '))) AS set_names
 , GROUP_CONCAT(DISTINCT(REGEXP_REPLACE(oracle_text,'[^a-zA-Z0-9]',' '))) AS oracle_texts
 , GROUP_CONCAT(DISTINCT(REGEXP_REPLACE(flavor_text,'[^a-zA-Z0-9]',' '))) AS flavor_texts
-,`color`, rarity , `color_identity`
-,scryfall_web_uri
-, rulings_uri  
-,`image_uri_small`,
-image_uri_art_crop
+, MAX(color) AS color
+, MAX(rarity) AS rarity 
+, MAX(color_identity) AS color_identity
+, MAX(scryfall_web_uri) AS scryfall_web_uri
+, MAX(rulings_uri) AS rulings_uri  
+, MAX(image_uri_small) AS image_uri_small
+, MAX(image_uri_art_crop) AS image_uri_art_crop
 FROM lore.cardface
 JOIN lore.card ON 
 	card.id =
@@ -133,21 +135,22 @@ GROUP BY illustration_id
        $sql = 
 "
 SELECT
-GROUP_CONCAT(cardface.id) AS cardface_ids, 
-name
-,artist
-,`mana_cost`
-,type_line
-
-, power
+	GROUP_CONCAT(cardface.id) AS cardface_ids
+	, MAX(name) AS name
+	, MAX(artist) AS artist
+	, MAX(mana_cost) AS mana_cost
+	, MAX(type_line) AS type_line
+	, MAX(power) AS power
 , GROUP_CONCAT(DISTINCT(set_name)) AS set_names
 , GROUP_CONCAT(DISTINCT(oracle_text)) AS oracle_texts
 , GROUP_CONCAT(DISTINCT(flavor_text)) AS flavor_texts
-,`color`, rarity , `color_identity`
-,scryfall_web_uri
-, rulings_uri  
-,`image_uri_small`,
-image_uri_art_crop
+, MAX(color) AS color
+, MAX(rarity) AS rarity 
+, MAX(color_identity) AS color_identity
+, MAX(scryfall_web_uri) AS scryfall_web_uri
+, MAX(rulings_uri) AS rulings_uri  
+, MAX(image_uri_small) AS image_uri_small
+, MAX(image_uri_art_crop) AS image_uri_art_crop
 FROM lore.cardface
 JOIN lore.card ON 
 	card.id =
