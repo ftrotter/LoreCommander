@@ -126,6 +126,9 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 			var is_empty = true;
 
 			var card_width = '{{ $report->cardWidth() }}';
+			var real_card_new_row = '';
+			var real_card_group_label = '';
+			var block_class = '';
 
 			data.data.forEach(function(this_card) {
 				is_empty = false; //we hqve at least one.
