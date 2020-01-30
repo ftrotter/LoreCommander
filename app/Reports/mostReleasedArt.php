@@ -35,13 +35,13 @@ class mostReleasedArt extends AbstractTabularReport
         $sql = 
 "
 SELECT 
-    cardface.name AS card_name,
-    oracle_text,
-    type_line,
+    MAX(cardface.name) AS card_name,
+    MAX(oracle_text) AS oracle_text,
+    MAX(type_line) AS one_type_line,
     GROUP_CONCAT(mtgset.name,' ',mtgset.released_at ORDER BY mtgset.released_at ASC SEPARATOR '<br>') AS set_list,
     COUNT(DISTINCT(mtgset.id)) AS set_count,
-    image_uri_art_crop,
-    scryfall_web_uri
+    MAX(image_uri_art_crop) AS image_uri_art_crop,
+    MAX(scryfall_web_uri) AS scryfall_web_uri
 
 FROM lore.cardface
 JOIN lore.card ON 
@@ -55,7 +55,7 @@ WHERE
 	type_line NOT LIKE '%Token%'
 GROUP BY oracle_id, illustration_id
 HAVING set_count >= 10  
-ORDER BY mtgset.released_at  DESC
+ORDER BY MAX(mtgset.released_at)  DESC
 
 ";
     	return $sql;
