@@ -58,6 +58,13 @@ HAVING set_count >= 10
 ORDER BY MAX(mtgset.released_at)  DESC
 
 ";
+
+	$is_debug = false;
+	if($is_debug){
+		echo "<pre>$sql<pre>";
+		exit();
+	}
+
     	return $sql;
     }
 
