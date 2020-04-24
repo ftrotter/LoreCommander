@@ -227,15 +227,15 @@ class artistController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_artist = $myNewartist;
-			$tmp_artist->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_artist->artist_name = DURC::formatForStorage( 'artist_name', 'varchar', $request->artist_name ); 
+			$tmp_artist->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_artist ); 
+		$tmp_artist->artist_name = DURC::formatForStorage( 'artist_name', 'varchar', $request->artist_name, $tmp_artist ); 
 
 	
 	try {
 	    		$tmp_artist->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/artist/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/artist/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -333,6 +333,12 @@ class artistController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($artist->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -364,8 +370,8 @@ class artistController extends DURCController
     public function update(Request $request, artist $artist){
 
 	$tmp_artist = $artist;
-			$tmp_artist->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_artist->artist_name = DURC::formatForStorage( 'artist_name', 'varchar', $request->artist_name ); 
+			$tmp_artist->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_artist ); 
+		$tmp_artist->artist_name = DURC::formatForStorage( 'artist_name', 'varchar', $request->artist_name, $tmp_artist ); 
 
 
 	$id = $artist->id;
@@ -374,7 +380,7 @@ class artistController extends DURCController
 	    		$tmp_artist->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/artist/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/artist/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

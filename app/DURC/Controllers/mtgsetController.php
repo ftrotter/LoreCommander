@@ -227,32 +227,32 @@ class mtgsetController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_mtgset = $myNewmtgset;
-			$tmp_mtgset->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
-		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code ); 
-		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code ); 
-		$tmp_mtgset->arena_code = DURC::formatForStorage( 'arena_code', 'varchar', $request->arena_code ); 
-		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
-		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
-		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
-		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'date', $request->released_at ); 
-		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code ); 
-		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block ); 
-		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code ); 
-		$tmp_mtgset->card_count = DURC::formatForStorage( 'card_count', 'int', $request->card_count ); 
-		$tmp_mtgset->is_digital = DURC::formatForStorage( 'is_digital', 'tinyint', $request->is_digital ); 
-		$tmp_mtgset->is_foil_only = DURC::formatForStorage( 'is_foil_only', 'tinyint', $request->is_foil_only ); 
-		$tmp_mtgset->scryfall_uri = DURC::formatForStorage( 'scryfall_uri', 'varchar', $request->scryfall_uri ); 
-		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri ); 
-		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri ); 
-		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri ); 
+			$tmp_mtgset->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_mtgset ); 
+		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id, $tmp_mtgset ); 
+		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code, $tmp_mtgset ); 
+		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code, $tmp_mtgset ); 
+		$tmp_mtgset->arena_code = DURC::formatForStorage( 'arena_code', 'varchar', $request->arena_code, $tmp_mtgset ); 
+		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id, $tmp_mtgset ); 
+		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name, $tmp_mtgset ); 
+		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type, $tmp_mtgset ); 
+		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'date', $request->released_at, $tmp_mtgset ); 
+		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code, $tmp_mtgset ); 
+		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block, $tmp_mtgset ); 
+		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code, $tmp_mtgset ); 
+		$tmp_mtgset->card_count = DURC::formatForStorage( 'card_count', 'int', $request->card_count, $tmp_mtgset ); 
+		$tmp_mtgset->is_digital = DURC::formatForStorage( 'is_digital', 'tinyint', $request->is_digital, $tmp_mtgset ); 
+		$tmp_mtgset->is_foil_only = DURC::formatForStorage( 'is_foil_only', 'tinyint', $request->is_foil_only, $tmp_mtgset ); 
+		$tmp_mtgset->scryfall_uri = DURC::formatForStorage( 'scryfall_uri', 'varchar', $request->scryfall_uri, $tmp_mtgset ); 
+		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri, $tmp_mtgset ); 
+		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri, $tmp_mtgset ); 
+		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri, $tmp_mtgset ); 
 
 	
 	try {
 	    		$tmp_mtgset->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/mtgset/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/mtgset/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -350,6 +350,12 @@ class mtgsetController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($mtgset->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -381,25 +387,25 @@ class mtgsetController extends DURCController
     public function update(Request $request, mtgset $mtgset){
 
 	$tmp_mtgset = $mtgset;
-			$tmp_mtgset->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
-		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code ); 
-		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code ); 
-		$tmp_mtgset->arena_code = DURC::formatForStorage( 'arena_code', 'varchar', $request->arena_code ); 
-		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id ); 
-		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name ); 
-		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type ); 
-		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'date', $request->released_at ); 
-		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code ); 
-		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block ); 
-		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code ); 
-		$tmp_mtgset->card_count = DURC::formatForStorage( 'card_count', 'int', $request->card_count ); 
-		$tmp_mtgset->is_digital = DURC::formatForStorage( 'is_digital', 'tinyint', $request->is_digital ); 
-		$tmp_mtgset->is_foil_only = DURC::formatForStorage( 'is_foil_only', 'tinyint', $request->is_foil_only ); 
-		$tmp_mtgset->scryfall_uri = DURC::formatForStorage( 'scryfall_uri', 'varchar', $request->scryfall_uri ); 
-		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri ); 
-		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri ); 
-		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri ); 
+			$tmp_mtgset->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_mtgset ); 
+		$tmp_mtgset->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id, $tmp_mtgset ); 
+		$tmp_mtgset->code = DURC::formatForStorage( 'code', 'varchar', $request->code, $tmp_mtgset ); 
+		$tmp_mtgset->mtgo_code = DURC::formatForStorage( 'mtgo_code', 'varchar', $request->mtgo_code, $tmp_mtgset ); 
+		$tmp_mtgset->arena_code = DURC::formatForStorage( 'arena_code', 'varchar', $request->arena_code, $tmp_mtgset ); 
+		$tmp_mtgset->tcgplayer_id = DURC::formatForStorage( 'tcgplayer_id', 'int', $request->tcgplayer_id, $tmp_mtgset ); 
+		$tmp_mtgset->name = DURC::formatForStorage( 'name', 'varchar', $request->name, $tmp_mtgset ); 
+		$tmp_mtgset->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type, $tmp_mtgset ); 
+		$tmp_mtgset->released_at = DURC::formatForStorage( 'released_at', 'date', $request->released_at, $tmp_mtgset ); 
+		$tmp_mtgset->block_code = DURC::formatForStorage( 'block_code', 'varchar', $request->block_code, $tmp_mtgset ); 
+		$tmp_mtgset->block = DURC::formatForStorage( 'block', 'varchar', $request->block, $tmp_mtgset ); 
+		$tmp_mtgset->parent_set_code = DURC::formatForStorage( 'parent_set_code', 'varchar', $request->parent_set_code, $tmp_mtgset ); 
+		$tmp_mtgset->card_count = DURC::formatForStorage( 'card_count', 'int', $request->card_count, $tmp_mtgset ); 
+		$tmp_mtgset->is_digital = DURC::formatForStorage( 'is_digital', 'tinyint', $request->is_digital, $tmp_mtgset ); 
+		$tmp_mtgset->is_foil_only = DURC::formatForStorage( 'is_foil_only', 'tinyint', $request->is_foil_only, $tmp_mtgset ); 
+		$tmp_mtgset->scryfall_uri = DURC::formatForStorage( 'scryfall_uri', 'varchar', $request->scryfall_uri, $tmp_mtgset ); 
+		$tmp_mtgset->mtgset_uri = DURC::formatForStorage( 'mtgset_uri', 'varchar', $request->mtgset_uri, $tmp_mtgset ); 
+		$tmp_mtgset->icon_svg_uri = DURC::formatForStorage( 'icon_svg_uri', 'varchar', $request->icon_svg_uri, $tmp_mtgset ); 
+		$tmp_mtgset->search_uri = DURC::formatForStorage( 'search_uri', 'varchar', $request->search_uri, $tmp_mtgset ); 
 
 
 	$id = $mtgset->id;
@@ -408,7 +414,7 @@ class mtgsetController extends DURCController
 	    		$tmp_mtgset->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/mtgset/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/mtgset/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

@@ -229,16 +229,16 @@ class classofc_creatureController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_classofc_creature = $myNewclassofc_creature;
-			$tmp_classofc_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofc_creature->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_classofc_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+			$tmp_classofc_creature->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc_creature ); 
+		$tmp_classofc_creature->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_classofc_creature ); 
+		$tmp_classofc_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id, $tmp_classofc_creature ); 
 
 	
 	try {
 	    		$tmp_classofc_creature->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc_creature/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/classofc_creature/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -336,6 +336,12 @@ class classofc_creatureController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($classofc_creature->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -367,9 +373,9 @@ class classofc_creatureController extends DURCController
     public function update(Request $request, classofc_creature $classofc_creature){
 
 	$tmp_classofc_creature = $classofc_creature;
-			$tmp_classofc_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofc_creature->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_classofc_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+			$tmp_classofc_creature->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc_creature ); 
+		$tmp_classofc_creature->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_classofc_creature ); 
+		$tmp_classofc_creature->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id, $tmp_classofc_creature ); 
 
 
 	$id = $classofc_creature->id;
@@ -378,7 +384,7 @@ class classofc_creatureController extends DURCController
 	    		$tmp_classofc_creature->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc_creature/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/classofc_creature/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

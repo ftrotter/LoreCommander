@@ -227,16 +227,16 @@ class artistcreditController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_artistcredit = $myNewartistcredit;
-			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name ); 
-		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit ); 
+			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_artistcredit ); 
+		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name, $tmp_artistcredit ); 
+		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit, $tmp_artistcredit ); 
 
 	
 	try {
 	    		$tmp_artistcredit->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/artistcredit/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/artistcredit/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -334,6 +334,12 @@ class artistcreditController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($artistcredit->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -365,9 +371,9 @@ class artistcreditController extends DURCController
     public function update(Request $request, artistcredit $artistcredit){
 
 	$tmp_artistcredit = $artistcredit;
-			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name ); 
-		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit ); 
+			$tmp_artistcredit->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_artistcredit ); 
+		$tmp_artistcredit->artistcredit_name = DURC::formatForStorage( 'artistcredit_name', 'varchar', $request->artistcredit_name, $tmp_artistcredit ); 
+		$tmp_artistcredit->is_plain_credit = DURC::formatForStorage( 'is_plain_credit', 'tinyint', $request->is_plain_credit, $tmp_artistcredit ); 
 
 
 	$id = $artistcredit->id;
@@ -376,7 +382,7 @@ class artistcreditController extends DURCController
 	    		$tmp_artistcredit->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/artistcredit/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/artistcredit/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

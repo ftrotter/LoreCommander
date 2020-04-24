@@ -46,7 +46,15 @@ class creature_cardface extends DURCModel{
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 			]; //end field_type_map
+		
+    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    protected $non_nullable_fields = [
+			]; // End of nullable fields
 
+    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $attributes = [
+			]; // End of attributes
+        
 		//everything is fillable by default
 		protected $guarded = [];
 

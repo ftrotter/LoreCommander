@@ -227,18 +227,18 @@ class vspackController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_vspack = $myNewvspack;
-			$tmp_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_vspack->vspack_name = DURC::formatForStorage( 'vspack_name', 'varchar', $request->vspack_name ); 
-		$tmp_vspack->vspack_wizards_url = DURC::formatForStorage( 'vspack_wizards_url', 'varchar', $request->vspack_wizards_url ); 
-		$tmp_vspack->vspack_wiki_url = DURC::formatForStorage( 'vspack_wiki_url', 'varchar', $request->vspack_wiki_url ); 
-		$tmp_vspack->vspack_img_url = DURC::formatForStorage( 'vspack_img_url', 'varchar', $request->vspack_img_url ); 
+			$tmp_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_vspack ); 
+		$tmp_vspack->vspack_name = DURC::formatForStorage( 'vspack_name', 'varchar', $request->vspack_name, $tmp_vspack ); 
+		$tmp_vspack->vspack_wizards_url = DURC::formatForStorage( 'vspack_wizards_url', 'varchar', $request->vspack_wizards_url, $tmp_vspack ); 
+		$tmp_vspack->vspack_wiki_url = DURC::formatForStorage( 'vspack_wiki_url', 'varchar', $request->vspack_wiki_url, $tmp_vspack ); 
+		$tmp_vspack->vspack_img_url = DURC::formatForStorage( 'vspack_img_url', 'varchar', $request->vspack_img_url, $tmp_vspack ); 
 
 	
 	try {
 	    		$tmp_vspack->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/vspack/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/vspack/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -336,6 +336,12 @@ class vspackController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($vspack->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -367,11 +373,11 @@ class vspackController extends DURCController
     public function update(Request $request, vspack $vspack){
 
 	$tmp_vspack = $vspack;
-			$tmp_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_vspack->vspack_name = DURC::formatForStorage( 'vspack_name', 'varchar', $request->vspack_name ); 
-		$tmp_vspack->vspack_wizards_url = DURC::formatForStorage( 'vspack_wizards_url', 'varchar', $request->vspack_wizards_url ); 
-		$tmp_vspack->vspack_wiki_url = DURC::formatForStorage( 'vspack_wiki_url', 'varchar', $request->vspack_wiki_url ); 
-		$tmp_vspack->vspack_img_url = DURC::formatForStorage( 'vspack_img_url', 'varchar', $request->vspack_img_url ); 
+			$tmp_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_vspack ); 
+		$tmp_vspack->vspack_name = DURC::formatForStorage( 'vspack_name', 'varchar', $request->vspack_name, $tmp_vspack ); 
+		$tmp_vspack->vspack_wizards_url = DURC::formatForStorage( 'vspack_wizards_url', 'varchar', $request->vspack_wizards_url, $tmp_vspack ); 
+		$tmp_vspack->vspack_wiki_url = DURC::formatForStorage( 'vspack_wiki_url', 'varchar', $request->vspack_wiki_url, $tmp_vspack ); 
+		$tmp_vspack->vspack_img_url = DURC::formatForStorage( 'vspack_img_url', 'varchar', $request->vspack_img_url, $tmp_vspack ); 
 
 
 	$id = $vspack->id;
@@ -380,7 +386,7 @@ class vspackController extends DURCController
 	    		$tmp_vspack->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/vspack/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/vspack/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

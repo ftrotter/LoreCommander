@@ -227,16 +227,16 @@ class scanhistoryController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_scanhistory = $myNewscanhistory;
-			$tmp_scanhistory->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_scanhistory->multiverse_id = DURC::formatForStorage( 'multiverse_id', 'int', $request->multiverse_id ); 
-		$tmp_scanhistory->viewchannel = DURC::formatForStorage( 'viewchannel', 'varchar', $request->viewchannel ); 
+			$tmp_scanhistory->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_scanhistory ); 
+		$tmp_scanhistory->multiverse_id = DURC::formatForStorage( 'multiverse_id', 'int', $request->multiverse_id, $tmp_scanhistory ); 
+		$tmp_scanhistory->viewchannel = DURC::formatForStorage( 'viewchannel', 'varchar', $request->viewchannel, $tmp_scanhistory ); 
 
 	
 	try {
 	    		$tmp_scanhistory->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/scanhistory/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/scanhistory/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -334,6 +334,12 @@ class scanhistoryController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($scanhistory->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -365,9 +371,9 @@ class scanhistoryController extends DURCController
     public function update(Request $request, scanhistory $scanhistory){
 
 	$tmp_scanhistory = $scanhistory;
-			$tmp_scanhistory->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_scanhistory->multiverse_id = DURC::formatForStorage( 'multiverse_id', 'int', $request->multiverse_id ); 
-		$tmp_scanhistory->viewchannel = DURC::formatForStorage( 'viewchannel', 'varchar', $request->viewchannel ); 
+			$tmp_scanhistory->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_scanhistory ); 
+		$tmp_scanhistory->multiverse_id = DURC::formatForStorage( 'multiverse_id', 'int', $request->multiverse_id, $tmp_scanhistory ); 
+		$tmp_scanhistory->viewchannel = DURC::formatForStorage( 'viewchannel', 'varchar', $request->viewchannel, $tmp_scanhistory ); 
 
 
 	$id = $scanhistory->id;
@@ -376,7 +382,7 @@ class scanhistoryController extends DURCController
 	    		$tmp_scanhistory->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/scanhistory/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/scanhistory/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

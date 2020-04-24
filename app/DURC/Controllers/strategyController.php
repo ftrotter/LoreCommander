@@ -228,19 +228,19 @@ class strategyController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_strategy = $myNewstrategy;
-			$tmp_strategy->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_strategy->strategy_name = DURC::formatForStorage( 'strategy_name', 'varchar', $request->strategy_name ); 
-		$tmp_strategy->strategy_description = DURC::formatForStorage( 'strategy_description', 'varchar', $request->strategy_description ); 
-		$tmp_strategy->strategy_url = DURC::formatForStorage( 'strategy_url', 'varchar', $request->strategy_url ); 
-		$tmp_strategy->wincon_cardface_id = DURC::formatForStorage( 'wincon_cardface_id', 'int', $request->wincon_cardface_id ); 
-		$tmp_strategy->WOTC_rule_reference = DURC::formatForStorage( 'WOTC_rule_reference', 'varchar', $request->WOTC_rule_reference ); 
+			$tmp_strategy->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_strategy ); 
+		$tmp_strategy->strategy_name = DURC::formatForStorage( 'strategy_name', 'varchar', $request->strategy_name, $tmp_strategy ); 
+		$tmp_strategy->strategy_description = DURC::formatForStorage( 'strategy_description', 'varchar', $request->strategy_description, $tmp_strategy ); 
+		$tmp_strategy->strategy_url = DURC::formatForStorage( 'strategy_url', 'varchar', $request->strategy_url, $tmp_strategy ); 
+		$tmp_strategy->wincon_cardface_id = DURC::formatForStorage( 'wincon_cardface_id', 'int', $request->wincon_cardface_id, $tmp_strategy ); 
+		$tmp_strategy->WOTC_rule_reference = DURC::formatForStorage( 'WOTC_rule_reference', 'varchar', $request->WOTC_rule_reference, $tmp_strategy ); 
 
 	
 	try {
 	    		$tmp_strategy->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/strategy/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/strategy/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -338,6 +338,12 @@ class strategyController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($strategy->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -369,12 +375,12 @@ class strategyController extends DURCController
     public function update(Request $request, strategy $strategy){
 
 	$tmp_strategy = $strategy;
-			$tmp_strategy->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_strategy->strategy_name = DURC::formatForStorage( 'strategy_name', 'varchar', $request->strategy_name ); 
-		$tmp_strategy->strategy_description = DURC::formatForStorage( 'strategy_description', 'varchar', $request->strategy_description ); 
-		$tmp_strategy->strategy_url = DURC::formatForStorage( 'strategy_url', 'varchar', $request->strategy_url ); 
-		$tmp_strategy->wincon_cardface_id = DURC::formatForStorage( 'wincon_cardface_id', 'int', $request->wincon_cardface_id ); 
-		$tmp_strategy->WOTC_rule_reference = DURC::formatForStorage( 'WOTC_rule_reference', 'varchar', $request->WOTC_rule_reference ); 
+			$tmp_strategy->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_strategy ); 
+		$tmp_strategy->strategy_name = DURC::formatForStorage( 'strategy_name', 'varchar', $request->strategy_name, $tmp_strategy ); 
+		$tmp_strategy->strategy_description = DURC::formatForStorage( 'strategy_description', 'varchar', $request->strategy_description, $tmp_strategy ); 
+		$tmp_strategy->strategy_url = DURC::formatForStorage( 'strategy_url', 'varchar', $request->strategy_url, $tmp_strategy ); 
+		$tmp_strategy->wincon_cardface_id = DURC::formatForStorage( 'wincon_cardface_id', 'int', $request->wincon_cardface_id, $tmp_strategy ); 
+		$tmp_strategy->WOTC_rule_reference = DURC::formatForStorage( 'WOTC_rule_reference', 'varchar', $request->WOTC_rule_reference, $tmp_strategy ); 
 
 
 	$id = $strategy->id;
@@ -383,7 +389,7 @@ class strategyController extends DURCController
 	    		$tmp_strategy->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/strategy/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/strategy/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

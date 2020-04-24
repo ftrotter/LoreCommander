@@ -230,19 +230,19 @@ class themeController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_theme = $myNewtheme;
-			$tmp_theme->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_theme->theme_name = DURC::formatForStorage( 'theme_name', 'varchar', $request->theme_name ); 
-		$tmp_theme->theme_description = DURC::formatForStorage( 'theme_description', 'text', $request->theme_description ); 
-		$tmp_theme->emblematic_person_id = DURC::formatForStorage( 'emblematic_person_id', 'int', $request->emblematic_person_id ); 
-		$tmp_theme->emblematic_cardface_id = DURC::formatForStorage( 'emblematic_cardface_id', 'int', $request->emblematic_cardface_id ); 
-		$tmp_theme->emblematic_creature_id = DURC::formatForStorage( 'emblematic_creature_id', 'int', $request->emblematic_creature_id ); 
+			$tmp_theme->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_theme ); 
+		$tmp_theme->theme_name = DURC::formatForStorage( 'theme_name', 'varchar', $request->theme_name, $tmp_theme ); 
+		$tmp_theme->theme_description = DURC::formatForStorage( 'theme_description', 'text', $request->theme_description, $tmp_theme ); 
+		$tmp_theme->emblematic_person_id = DURC::formatForStorage( 'emblematic_person_id', 'int', $request->emblematic_person_id, $tmp_theme ); 
+		$tmp_theme->emblematic_cardface_id = DURC::formatForStorage( 'emblematic_cardface_id', 'int', $request->emblematic_cardface_id, $tmp_theme ); 
+		$tmp_theme->emblematic_creature_id = DURC::formatForStorage( 'emblematic_creature_id', 'int', $request->emblematic_creature_id, $tmp_theme ); 
 
 	
 	try {
 	    		$tmp_theme->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/theme/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/theme/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -340,6 +340,12 @@ class themeController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($theme->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -371,12 +377,12 @@ class themeController extends DURCController
     public function update(Request $request, theme $theme){
 
 	$tmp_theme = $theme;
-			$tmp_theme->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_theme->theme_name = DURC::formatForStorage( 'theme_name', 'varchar', $request->theme_name ); 
-		$tmp_theme->theme_description = DURC::formatForStorage( 'theme_description', 'text', $request->theme_description ); 
-		$tmp_theme->emblematic_person_id = DURC::formatForStorage( 'emblematic_person_id', 'int', $request->emblematic_person_id ); 
-		$tmp_theme->emblematic_cardface_id = DURC::formatForStorage( 'emblematic_cardface_id', 'int', $request->emblematic_cardface_id ); 
-		$tmp_theme->emblematic_creature_id = DURC::formatForStorage( 'emblematic_creature_id', 'int', $request->emblematic_creature_id ); 
+			$tmp_theme->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_theme ); 
+		$tmp_theme->theme_name = DURC::formatForStorage( 'theme_name', 'varchar', $request->theme_name, $tmp_theme ); 
+		$tmp_theme->theme_description = DURC::formatForStorage( 'theme_description', 'text', $request->theme_description, $tmp_theme ); 
+		$tmp_theme->emblematic_person_id = DURC::formatForStorage( 'emblematic_person_id', 'int', $request->emblematic_person_id, $tmp_theme ); 
+		$tmp_theme->emblematic_cardface_id = DURC::formatForStorage( 'emblematic_cardface_id', 'int', $request->emblematic_cardface_id, $tmp_theme ); 
+		$tmp_theme->emblematic_creature_id = DURC::formatForStorage( 'emblematic_creature_id', 'int', $request->emblematic_creature_id, $tmp_theme ); 
 
 
 	$id = $theme->id;
@@ -385,7 +391,7 @@ class themeController extends DURCController
 	    		$tmp_theme->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/theme/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/theme/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

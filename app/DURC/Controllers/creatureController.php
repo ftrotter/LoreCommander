@@ -227,16 +227,16 @@ class creatureController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_creature = $myNewcreature;
-			$tmp_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_creature->creature_name = DURC::formatForStorage( 'creature_name', 'varchar', $request->creature_name ); 
-		$tmp_creature->creature_image_uri = DURC::formatForStorage( 'creature_image_uri', 'varchar', $request->creature_image_uri ); 
+			$tmp_creature->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_creature ); 
+		$tmp_creature->creature_name = DURC::formatForStorage( 'creature_name', 'varchar', $request->creature_name, $tmp_creature ); 
+		$tmp_creature->creature_image_uri = DURC::formatForStorage( 'creature_image_uri', 'varchar', $request->creature_image_uri, $tmp_creature ); 
 
 	
 	try {
 	    		$tmp_creature->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/creature/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/creature/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -334,6 +334,12 @@ class creatureController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($creature->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -365,9 +371,9 @@ class creatureController extends DURCController
     public function update(Request $request, creature $creature){
 
 	$tmp_creature = $creature;
-			$tmp_creature->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_creature->creature_name = DURC::formatForStorage( 'creature_name', 'varchar', $request->creature_name ); 
-		$tmp_creature->creature_image_uri = DURC::formatForStorage( 'creature_image_uri', 'varchar', $request->creature_image_uri ); 
+			$tmp_creature->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_creature ); 
+		$tmp_creature->creature_name = DURC::formatForStorage( 'creature_name', 'varchar', $request->creature_name, $tmp_creature ); 
+		$tmp_creature->creature_image_uri = DURC::formatForStorage( 'creature_image_uri', 'varchar', $request->creature_image_uri, $tmp_creature ); 
 
 
 	$id = $creature->id;
@@ -376,7 +382,7 @@ class creatureController extends DURCController
 	    		$tmp_creature->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/creature/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/creature/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

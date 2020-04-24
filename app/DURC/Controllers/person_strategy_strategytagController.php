@@ -230,19 +230,19 @@ class person_strategy_strategytagController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_person_strategy_strategytag = $myNewperson_strategy_strategytag;
-			$tmp_person_strategy_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person_strategy_strategytag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_person_strategy_strategytag->strategy_id = DURC::formatForStorage( 'strategy_id', 'int', $request->strategy_id ); 
-		$tmp_person_strategy_strategytag->strategytag_id = DURC::formatForStorage( 'strategytag_id', 'int', $request->strategytag_id ); 
-		$tmp_person_strategy_strategytag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_person_strategy_strategytag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_person_strategy_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->strategy_id = DURC::formatForStorage( 'strategy_id', 'int', $request->strategy_id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->strategytag_id = DURC::formatForStorage( 'strategytag_id', 'int', $request->strategytag_id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_person_strategy_strategytag ); 
 
 	
 	try {
 	    		$tmp_person_strategy_strategytag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/person_strategy_strategytag/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/person_strategy_strategytag/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -340,6 +340,12 @@ class person_strategy_strategytagController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($person_strategy_strategytag->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -371,12 +377,12 @@ class person_strategy_strategytagController extends DURCController
     public function update(Request $request, person_strategy_strategytag $person_strategy_strategytag){
 
 	$tmp_person_strategy_strategytag = $person_strategy_strategytag;
-			$tmp_person_strategy_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person_strategy_strategytag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_person_strategy_strategytag->strategy_id = DURC::formatForStorage( 'strategy_id', 'int', $request->strategy_id ); 
-		$tmp_person_strategy_strategytag->strategytag_id = DURC::formatForStorage( 'strategytag_id', 'int', $request->strategytag_id ); 
-		$tmp_person_strategy_strategytag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_person_strategy_strategytag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_person_strategy_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->strategy_id = DURC::formatForStorage( 'strategy_id', 'int', $request->strategy_id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->strategytag_id = DURC::formatForStorage( 'strategytag_id', 'int', $request->strategytag_id, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_person_strategy_strategytag ); 
+		$tmp_person_strategy_strategytag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_person_strategy_strategytag ); 
 
 
 	$id = $person_strategy_strategytag->id;
@@ -385,7 +391,7 @@ class person_strategy_strategytagController extends DURCController
 	    		$tmp_person_strategy_strategytag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/person_strategy_strategytag/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/person_strategy_strategytag/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

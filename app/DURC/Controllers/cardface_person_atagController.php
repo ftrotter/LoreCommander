@@ -230,19 +230,19 @@ class cardface_person_atagController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_cardface_person_atag = $myNewcardface_person_atag;
-			$tmp_cardface_person_atag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_cardface_person_atag->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_cardface_person_atag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_cardface_person_atag->atag_id = DURC::formatForStorage( 'atag_id', 'int', $request->atag_id ); 
-		$tmp_cardface_person_atag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_cardface_person_atag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_cardface_person_atag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->atag_id = DURC::formatForStorage( 'atag_id', 'int', $request->atag_id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_cardface_person_atag ); 
 
 	
 	try {
 	    		$tmp_cardface_person_atag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/cardface_person_atag/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/cardface_person_atag/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -340,6 +340,12 @@ class cardface_person_atagController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($cardface_person_atag->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -371,12 +377,12 @@ class cardface_person_atagController extends DURCController
     public function update(Request $request, cardface_person_atag $cardface_person_atag){
 
 	$tmp_cardface_person_atag = $cardface_person_atag;
-			$tmp_cardface_person_atag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_cardface_person_atag->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_cardface_person_atag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_cardface_person_atag->atag_id = DURC::formatForStorage( 'atag_id', 'int', $request->atag_id ); 
-		$tmp_cardface_person_atag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_cardface_person_atag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_cardface_person_atag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->atag_id = DURC::formatForStorage( 'atag_id', 'int', $request->atag_id, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_cardface_person_atag ); 
+		$tmp_cardface_person_atag->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_cardface_person_atag ); 
 
 
 	$id = $cardface_person_atag->id;
@@ -385,7 +391,7 @@ class cardface_person_atagController extends DURCController
 	    		$tmp_cardface_person_atag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/cardface_person_atag/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/cardface_person_atag/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
