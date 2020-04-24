@@ -230,19 +230,19 @@ class classofc_classofc_vspackController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_classofc_classofc_vspack = $myNewclassofc_classofc_vspack;
-			$tmp_classofc_classofc_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofc_classofc_vspack->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_classofc_classofc_vspack->second_classofc_id = DURC::formatForStorage( 'second_classofc_id', 'int', $request->second_classofc_id ); 
-		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id ); 
-		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_classofc_classofc_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->second_classofc_id = DURC::formatForStorage( 'second_classofc_id', 'int', $request->second_classofc_id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_classofc_classofc_vspack ); 
 
 	
 	try {
 	    		$tmp_classofc_classofc_vspack->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc_classofc_vspack/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/classofc_classofc_vspack/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -340,6 +340,12 @@ class classofc_classofc_vspackController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($classofc_classofc_vspack->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -371,12 +377,12 @@ class classofc_classofc_vspackController extends DURCController
     public function update(Request $request, classofc_classofc_vspack $classofc_classofc_vspack){
 
 	$tmp_classofc_classofc_vspack = $classofc_classofc_vspack;
-			$tmp_classofc_classofc_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofc_classofc_vspack->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_classofc_classofc_vspack->second_classofc_id = DURC::formatForStorage( 'second_classofc_id', 'int', $request->second_classofc_id ); 
-		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id ); 
-		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_classofc_classofc_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->second_classofc_id = DURC::formatForStorage( 'second_classofc_id', 'int', $request->second_classofc_id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_classofc_classofc_vspack ); 
+		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_classofc_classofc_vspack ); 
 
 
 	$id = $classofc_classofc_vspack->id;
@@ -385,7 +391,7 @@ class classofc_classofc_vspackController extends DURCController
 	    		$tmp_classofc_classofc_vspack->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc_classofc_vspack/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/classofc_classofc_vspack/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

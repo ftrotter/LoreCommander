@@ -228,17 +228,17 @@ class tagController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_tag = $myNewtag;
-			$tmp_tag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name ); 
-		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
-		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id ); 
+			$tmp_tag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_tag ); 
+		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name, $tmp_tag ); 
+		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed, $tmp_tag ); 
+		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id, $tmp_tag ); 
 
 	
 	try {
 	    		$tmp_tag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/tag/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/tag/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -336,6 +336,12 @@ class tagController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($tag->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -367,10 +373,10 @@ class tagController extends DURCController
     public function update(Request $request, tag $tag){
 
 	$tmp_tag = $tag;
-			$tmp_tag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name ); 
-		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed ); 
-		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id ); 
+			$tmp_tag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_tag ); 
+		$tmp_tag->tag_name = DURC::formatForStorage( 'tag_name', 'varchar', $request->tag_name, $tmp_tag ); 
+		$tmp_tag->is_directed = DURC::formatForStorage( 'is_directed', 'tinyint', $request->is_directed, $tmp_tag ); 
+		$tmp_tag->excludes_tag_id = DURC::formatForStorage( 'excludes_tag_id', 'int', $request->excludes_tag_id, $tmp_tag ); 
 
 
 	$id = $tag->id;
@@ -379,7 +385,7 @@ class tagController extends DURCController
 	    		$tmp_tag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/tag/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/tag/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

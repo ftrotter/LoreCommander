@@ -227,15 +227,15 @@ class strategytagController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_strategytag = $myNewstrategytag;
-			$tmp_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_strategytag->strategytag_name = DURC::formatForStorage( 'strategytag_name', 'varchar', $request->strategytag_name ); 
+			$tmp_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_strategytag ); 
+		$tmp_strategytag->strategytag_name = DURC::formatForStorage( 'strategytag_name', 'varchar', $request->strategytag_name, $tmp_strategytag ); 
 
 	
 	try {
 	    		$tmp_strategytag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/strategytag/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/strategytag/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -333,6 +333,12 @@ class strategytagController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($strategytag->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -364,8 +370,8 @@ class strategytagController extends DURCController
     public function update(Request $request, strategytag $strategytag){
 
 	$tmp_strategytag = $strategytag;
-			$tmp_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_strategytag->strategytag_name = DURC::formatForStorage( 'strategytag_name', 'varchar', $request->strategytag_name ); 
+			$tmp_strategytag->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_strategytag ); 
+		$tmp_strategytag->strategytag_name = DURC::formatForStorage( 'strategytag_name', 'varchar', $request->strategytag_name, $tmp_strategytag ); 
 
 
 	$id = $strategytag->id;
@@ -374,7 +380,7 @@ class strategytagController extends DURCController
 	    		$tmp_strategytag->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/strategytag/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/strategytag/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

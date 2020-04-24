@@ -229,16 +229,16 @@ class creature_cardfaceController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_creature_cardface = $myNewcreature_cardface;
-			$tmp_creature_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_creature_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_creature_cardface->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+			$tmp_creature_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_creature_cardface ); 
+		$tmp_creature_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id, $tmp_creature_cardface ); 
+		$tmp_creature_cardface->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id, $tmp_creature_cardface ); 
 
 	
 	try {
 	    		$tmp_creature_cardface->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/creature_cardface/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/creature_cardface/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -336,6 +336,12 @@ class creature_cardfaceController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($creature_cardface->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -367,9 +373,9 @@ class creature_cardfaceController extends DURCController
     public function update(Request $request, creature_cardface $creature_cardface){
 
 	$tmp_creature_cardface = $creature_cardface;
-			$tmp_creature_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_creature_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_creature_cardface->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id ); 
+			$tmp_creature_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_creature_cardface ); 
+		$tmp_creature_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id, $tmp_creature_cardface ); 
+		$tmp_creature_cardface->creature_id = DURC::formatForStorage( 'creature_id', 'int', $request->creature_id, $tmp_creature_cardface ); 
 
 
 	$id = $creature_cardface->id;
@@ -378,7 +384,7 @@ class creature_cardfaceController extends DURCController
 	    		$tmp_creature_cardface->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/creature_cardface/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/creature_cardface/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

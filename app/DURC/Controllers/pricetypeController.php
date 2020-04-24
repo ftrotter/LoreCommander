@@ -227,15 +227,15 @@ class pricetypeController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_pricetype = $myNewpricetype;
-			$tmp_pricetype->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_pricetype->pricetype_name = DURC::formatForStorage( 'pricetype_name', 'varchar', $request->pricetype_name ); 
+			$tmp_pricetype->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_pricetype ); 
+		$tmp_pricetype->pricetype_name = DURC::formatForStorage( 'pricetype_name', 'varchar', $request->pricetype_name, $tmp_pricetype ); 
 
 	
 	try {
 	    		$tmp_pricetype->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/pricetype/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/pricetype/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -333,6 +333,12 @@ class pricetypeController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($pricetype->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -364,8 +370,8 @@ class pricetypeController extends DURCController
     public function update(Request $request, pricetype $pricetype){
 
 	$tmp_pricetype = $pricetype;
-			$tmp_pricetype->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_pricetype->pricetype_name = DURC::formatForStorage( 'pricetype_name', 'varchar', $request->pricetype_name ); 
+			$tmp_pricetype->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_pricetype ); 
+		$tmp_pricetype->pricetype_name = DURC::formatForStorage( 'pricetype_name', 'varchar', $request->pricetype_name, $tmp_pricetype ); 
 
 
 	$id = $pricetype->id;
@@ -374,7 +380,7 @@ class pricetypeController extends DURCController
 	    		$tmp_pricetype->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/pricetype/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/pricetype/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

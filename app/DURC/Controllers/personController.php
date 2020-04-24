@@ -227,21 +227,21 @@ class personController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_person = $myNewperson;
-			$tmp_person->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name ); 
-		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name ); 
-		$tmp_person->person_blurb = DURC::formatForStorage( 'person_blurb', 'varchar', $request->person_blurb ); 
-		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
-		$tmp_person->wallpaper_download_url = DURC::formatForStorage( 'wallpaper_download_url', 'varchar', $request->wallpaper_download_url ); 
-		$tmp_person->mtgwiki_url = DURC::formatForStorage( 'mtgwiki_url', 'varchar', $request->mtgwiki_url ); 
-		$tmp_person->wizards_story_url = DURC::formatForStorage( 'wizards_story_url', 'varchar', $request->wizards_story_url ); 
+			$tmp_person->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_person ); 
+		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name, $tmp_person ); 
+		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name, $tmp_person ); 
+		$tmp_person->person_blurb = DURC::formatForStorage( 'person_blurb', 'varchar', $request->person_blurb, $tmp_person ); 
+		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri, $tmp_person ); 
+		$tmp_person->wallpaper_download_url = DURC::formatForStorage( 'wallpaper_download_url', 'varchar', $request->wallpaper_download_url, $tmp_person ); 
+		$tmp_person->mtgwiki_url = DURC::formatForStorage( 'mtgwiki_url', 'varchar', $request->mtgwiki_url, $tmp_person ); 
+		$tmp_person->wizards_story_url = DURC::formatForStorage( 'wizards_story_url', 'varchar', $request->wizards_story_url, $tmp_person ); 
 
 	
 	try {
 	    		$tmp_person->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/person/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/person/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -339,6 +339,12 @@ class personController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($person->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -370,14 +376,14 @@ class personController extends DURCController
     public function update(Request $request, person $person){
 
 	$tmp_person = $person;
-			$tmp_person->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name ); 
-		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name ); 
-		$tmp_person->person_blurb = DURC::formatForStorage( 'person_blurb', 'varchar', $request->person_blurb ); 
-		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri ); 
-		$tmp_person->wallpaper_download_url = DURC::formatForStorage( 'wallpaper_download_url', 'varchar', $request->wallpaper_download_url ); 
-		$tmp_person->mtgwiki_url = DURC::formatForStorage( 'mtgwiki_url', 'varchar', $request->mtgwiki_url ); 
-		$tmp_person->wizards_story_url = DURC::formatForStorage( 'wizards_story_url', 'varchar', $request->wizards_story_url ); 
+			$tmp_person->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_person ); 
+		$tmp_person->last_name = DURC::formatForStorage( 'last_name', 'varchar', $request->last_name, $tmp_person ); 
+		$tmp_person->first_name = DURC::formatForStorage( 'first_name', 'varchar', $request->first_name, $tmp_person ); 
+		$tmp_person->person_blurb = DURC::formatForStorage( 'person_blurb', 'varchar', $request->person_blurb, $tmp_person ); 
+		$tmp_person->image_uri = DURC::formatForStorage( 'image_uri', 'varchar', $request->image_uri, $tmp_person ); 
+		$tmp_person->wallpaper_download_url = DURC::formatForStorage( 'wallpaper_download_url', 'varchar', $request->wallpaper_download_url, $tmp_person ); 
+		$tmp_person->mtgwiki_url = DURC::formatForStorage( 'mtgwiki_url', 'varchar', $request->mtgwiki_url, $tmp_person ); 
+		$tmp_person->wizards_story_url = DURC::formatForStorage( 'wizards_story_url', 'varchar', $request->wizards_story_url, $tmp_person ); 
 
 
 	$id = $person->id;
@@ -386,7 +392,7 @@ class personController extends DURCController
 	    		$tmp_person->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/person/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/person/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

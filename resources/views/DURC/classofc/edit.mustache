@@ -37,35 +37,27 @@
 	
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
-    <div class='col-sm-8'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}' >
-    </div>
-  </div>
-
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+    </div></div>
   <div class='form-group row {{classofc_name_row_class}}'>
     <label for='classofc_name' class='col-sm-4 col-form-label'>classofc_name</label>
-    <div class='col-sm-8'>
-      <input type='text' class='form-control' id='classofc_name' name='classofc_name' placeholder='' value='{{classofc_name}}' >
-    </div>
-  </div>
-
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='classofc_name' name='classofc_name' placeholder='' value='{{classofc_name}}'  required>
+    </div></div>
   <div class='form-group row {{classofc_img_uri_row_class}}'>
     <label for='classofc_img_uri' class='col-sm-4 col-form-label'>classofc_img_uri</label>
-    <div class='col-sm-8'>
-      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}' >
-    </div>
-  </div>
-
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}'  required>
+    </div></div>
   <div class='form-group row {{classofc_wiki_url_row_class}}'>
     <label for='classofc_wiki_url' class='col-sm-4 col-form-label'>classofc_wiki_url</label>
-    <div class='col-sm-8'>
-      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}' >
-    </div>
-  </div>
-
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}'  required>
+    </div></div>
   <div class='form-group row {{is_mega_class_row_class}}'>
     <div class='col-sm-4'><label>is_mega_class</label></div>
-    <div class='col-sm-8'>
+    <div class='col-sm-7'>
         <div class='checkbox'>
             <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}}  >
        </div> 
@@ -74,7 +66,7 @@
 
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
-    <div class='col-sm-8'>
+    <div class='col-sm-7'>
       <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
@@ -104,7 +96,7 @@
 
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
-    <div class='col-sm-8'>
+    <div class='col-sm-7'>
       <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
@@ -440,3 +432,36 @@
 <br>
 </div></div> <!--end has many card-->
 <br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

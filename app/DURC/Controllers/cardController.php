@@ -228,50 +228,50 @@ class cardController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_card = $myNewcard;
-			$tmp_card->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_card->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
-		$tmp_card->lang = DURC::formatForStorage( 'lang', 'varchar', $request->lang ); 
-		$tmp_card->oracle_id = DURC::formatForStorage( 'oracle_id', 'varchar', $request->oracle_id ); 
-		$tmp_card->rulings_uri = DURC::formatForStorage( 'rulings_uri', 'varchar', $request->rulings_uri ); 
-		$tmp_card->scryfall_web_uri = DURC::formatForStorage( 'scryfall_web_uri', 'varchar', $request->scryfall_web_uri ); 
-		$tmp_card->scryfall_api_uri = DURC::formatForStorage( 'scryfall_api_uri', 'varchar', $request->scryfall_api_uri ); 
-		$tmp_card->layout = DURC::formatForStorage( 'layout', 'varchar', $request->layout ); 
-		$tmp_card->rarity = DURC::formatForStorage( 'rarity', 'varchar', $request->rarity ); 
-		$tmp_card->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at ); 
-		$tmp_card->set_name = DURC::formatForStorage( 'set_name', 'varchar', $request->set_name ); 
-		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'int', $request->set_type ); 
-		$tmp_card->mtgset_id = DURC::formatForStorage( 'mtgset_id', 'int', $request->mtgset_id ); 
-		$tmp_card->variation_of_scryfall_id = DURC::formatForStorage( 'variation_of_scryfall_id', 'varchar', $request->variation_of_scryfall_id ); 
-		$tmp_card->edhrec_rank = DURC::formatForStorage( 'edhrec_rank', 'int', $request->edhrec_rank ); 
-		$tmp_card->is_promo = DURC::formatForStorage( 'is_promo', 'tinyint', $request->is_promo ); 
-		$tmp_card->is_reserved = DURC::formatForStorage( 'is_reserved', 'tinyint', $request->is_reserved ); 
-		$tmp_card->is_story_spotlight = DURC::formatForStorage( 'is_story_spotlight', 'tinyint', $request->is_story_spotlight ); 
-		$tmp_card->is_reprint = DURC::formatForStorage( 'is_reprint', 'int', $request->is_reprint ); 
-		$tmp_card->is_variation = DURC::formatForStorage( 'is_variation', 'tinyint', $request->is_variation ); 
-		$tmp_card->is_game_paper = DURC::formatForStorage( 'is_game_paper', 'tinyint', $request->is_game_paper ); 
-		$tmp_card->is_game_mtgo = DURC::formatForStorage( 'is_game_mtgo', 'tinyint', $request->is_game_mtgo ); 
-		$tmp_card->is_game_arena = DURC::formatForStorage( 'is_game_arena', 'tinyint', $request->is_game_arena ); 
-		$tmp_card->legal_oldschool = DURC::formatForStorage( 'legal_oldschool', 'tinyint', $request->legal_oldschool ); 
-		$tmp_card->legal_duel = DURC::formatForStorage( 'legal_duel', 'tinyint', $request->legal_duel ); 
-		$tmp_card->legal_commander = DURC::formatForStorage( 'legal_commander', 'tinyint', $request->legal_commander ); 
-		$tmp_card->legal_brawl = DURC::formatForStorage( 'legal_brawl', 'tinyint', $request->legal_brawl ); 
-		$tmp_card->legal_penny = DURC::formatForStorage( 'legal_penny', 'tinyint', $request->legal_penny ); 
-		$tmp_card->legal_vintage = DURC::formatForStorage( 'legal_vintage', 'tinyint', $request->legal_vintage ); 
-		$tmp_card->legal_pauper = DURC::formatForStorage( 'legal_pauper', 'tinyint', $request->legal_pauper ); 
-		$tmp_card->legal_legacy = DURC::formatForStorage( 'legal_legacy', 'tinyint', $request->legal_legacy ); 
-		$tmp_card->legal_modern = DURC::formatForStorage( 'legal_modern', 'tinyint', $request->legal_modern ); 
-		$tmp_card->legal_frontier = DURC::formatForStorage( 'legal_frontier', 'tinyint', $request->legal_frontier ); 
-		$tmp_card->legal_future = DURC::formatForStorage( 'legal_future', 'tinyint', $request->legal_future ); 
-		$tmp_card->legal_standard = DURC::formatForStorage( 'legal_standard', 'tinyint', $request->legal_standard ); 
-		$tmp_card->legal_historic = DURC::formatForStorage( 'legal_historic', 'tinyint', $request->legal_historic ); 
-		$tmp_card->legal_pioneer = DURC::formatForStorage( 'legal_pioneer', 'tinyint', $request->legal_pioneer ); 
+			$tmp_card->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_card ); 
+		$tmp_card->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id, $tmp_card ); 
+		$tmp_card->lang = DURC::formatForStorage( 'lang', 'varchar', $request->lang, $tmp_card ); 
+		$tmp_card->oracle_id = DURC::formatForStorage( 'oracle_id', 'varchar', $request->oracle_id, $tmp_card ); 
+		$tmp_card->rulings_uri = DURC::formatForStorage( 'rulings_uri', 'varchar', $request->rulings_uri, $tmp_card ); 
+		$tmp_card->scryfall_web_uri = DURC::formatForStorage( 'scryfall_web_uri', 'varchar', $request->scryfall_web_uri, $tmp_card ); 
+		$tmp_card->scryfall_api_uri = DURC::formatForStorage( 'scryfall_api_uri', 'varchar', $request->scryfall_api_uri, $tmp_card ); 
+		$tmp_card->layout = DURC::formatForStorage( 'layout', 'varchar', $request->layout, $tmp_card ); 
+		$tmp_card->rarity = DURC::formatForStorage( 'rarity', 'varchar', $request->rarity, $tmp_card ); 
+		$tmp_card->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at, $tmp_card ); 
+		$tmp_card->set_name = DURC::formatForStorage( 'set_name', 'varchar', $request->set_name, $tmp_card ); 
+		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'int', $request->set_type, $tmp_card ); 
+		$tmp_card->mtgset_id = DURC::formatForStorage( 'mtgset_id', 'int', $request->mtgset_id, $tmp_card ); 
+		$tmp_card->variation_of_scryfall_id = DURC::formatForStorage( 'variation_of_scryfall_id', 'varchar', $request->variation_of_scryfall_id, $tmp_card ); 
+		$tmp_card->edhrec_rank = DURC::formatForStorage( 'edhrec_rank', 'int', $request->edhrec_rank, $tmp_card ); 
+		$tmp_card->is_promo = DURC::formatForStorage( 'is_promo', 'tinyint', $request->is_promo, $tmp_card ); 
+		$tmp_card->is_reserved = DURC::formatForStorage( 'is_reserved', 'tinyint', $request->is_reserved, $tmp_card ); 
+		$tmp_card->is_story_spotlight = DURC::formatForStorage( 'is_story_spotlight', 'tinyint', $request->is_story_spotlight, $tmp_card ); 
+		$tmp_card->is_reprint = DURC::formatForStorage( 'is_reprint', 'int', $request->is_reprint, $tmp_card ); 
+		$tmp_card->is_variation = DURC::formatForStorage( 'is_variation', 'tinyint', $request->is_variation, $tmp_card ); 
+		$tmp_card->is_game_paper = DURC::formatForStorage( 'is_game_paper', 'tinyint', $request->is_game_paper, $tmp_card ); 
+		$tmp_card->is_game_mtgo = DURC::formatForStorage( 'is_game_mtgo', 'tinyint', $request->is_game_mtgo, $tmp_card ); 
+		$tmp_card->is_game_arena = DURC::formatForStorage( 'is_game_arena', 'tinyint', $request->is_game_arena, $tmp_card ); 
+		$tmp_card->legal_oldschool = DURC::formatForStorage( 'legal_oldschool', 'tinyint', $request->legal_oldschool, $tmp_card ); 
+		$tmp_card->legal_duel = DURC::formatForStorage( 'legal_duel', 'tinyint', $request->legal_duel, $tmp_card ); 
+		$tmp_card->legal_commander = DURC::formatForStorage( 'legal_commander', 'tinyint', $request->legal_commander, $tmp_card ); 
+		$tmp_card->legal_brawl = DURC::formatForStorage( 'legal_brawl', 'tinyint', $request->legal_brawl, $tmp_card ); 
+		$tmp_card->legal_penny = DURC::formatForStorage( 'legal_penny', 'tinyint', $request->legal_penny, $tmp_card ); 
+		$tmp_card->legal_vintage = DURC::formatForStorage( 'legal_vintage', 'tinyint', $request->legal_vintage, $tmp_card ); 
+		$tmp_card->legal_pauper = DURC::formatForStorage( 'legal_pauper', 'tinyint', $request->legal_pauper, $tmp_card ); 
+		$tmp_card->legal_legacy = DURC::formatForStorage( 'legal_legacy', 'tinyint', $request->legal_legacy, $tmp_card ); 
+		$tmp_card->legal_modern = DURC::formatForStorage( 'legal_modern', 'tinyint', $request->legal_modern, $tmp_card ); 
+		$tmp_card->legal_frontier = DURC::formatForStorage( 'legal_frontier', 'tinyint', $request->legal_frontier, $tmp_card ); 
+		$tmp_card->legal_future = DURC::formatForStorage( 'legal_future', 'tinyint', $request->legal_future, $tmp_card ); 
+		$tmp_card->legal_standard = DURC::formatForStorage( 'legal_standard', 'tinyint', $request->legal_standard, $tmp_card ); 
+		$tmp_card->legal_historic = DURC::formatForStorage( 'legal_historic', 'tinyint', $request->legal_historic, $tmp_card ); 
+		$tmp_card->legal_pioneer = DURC::formatForStorage( 'legal_pioneer', 'tinyint', $request->legal_pioneer, $tmp_card ); 
 
 	
 	try {
 	    		$tmp_card->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/card/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/card/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -369,6 +369,12 @@ class cardController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($card->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -400,43 +406,43 @@ class cardController extends DURCController
     public function update(Request $request, card $card){
 
 	$tmp_card = $card;
-			$tmp_card->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_card->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id ); 
-		$tmp_card->lang = DURC::formatForStorage( 'lang', 'varchar', $request->lang ); 
-		$tmp_card->oracle_id = DURC::formatForStorage( 'oracle_id', 'varchar', $request->oracle_id ); 
-		$tmp_card->rulings_uri = DURC::formatForStorage( 'rulings_uri', 'varchar', $request->rulings_uri ); 
-		$tmp_card->scryfall_web_uri = DURC::formatForStorage( 'scryfall_web_uri', 'varchar', $request->scryfall_web_uri ); 
-		$tmp_card->scryfall_api_uri = DURC::formatForStorage( 'scryfall_api_uri', 'varchar', $request->scryfall_api_uri ); 
-		$tmp_card->layout = DURC::formatForStorage( 'layout', 'varchar', $request->layout ); 
-		$tmp_card->rarity = DURC::formatForStorage( 'rarity', 'varchar', $request->rarity ); 
-		$tmp_card->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at ); 
-		$tmp_card->set_name = DURC::formatForStorage( 'set_name', 'varchar', $request->set_name ); 
-		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'int', $request->set_type ); 
-		$tmp_card->mtgset_id = DURC::formatForStorage( 'mtgset_id', 'int', $request->mtgset_id ); 
-		$tmp_card->variation_of_scryfall_id = DURC::formatForStorage( 'variation_of_scryfall_id', 'varchar', $request->variation_of_scryfall_id ); 
-		$tmp_card->edhrec_rank = DURC::formatForStorage( 'edhrec_rank', 'int', $request->edhrec_rank ); 
-		$tmp_card->is_promo = DURC::formatForStorage( 'is_promo', 'tinyint', $request->is_promo ); 
-		$tmp_card->is_reserved = DURC::formatForStorage( 'is_reserved', 'tinyint', $request->is_reserved ); 
-		$tmp_card->is_story_spotlight = DURC::formatForStorage( 'is_story_spotlight', 'tinyint', $request->is_story_spotlight ); 
-		$tmp_card->is_reprint = DURC::formatForStorage( 'is_reprint', 'int', $request->is_reprint ); 
-		$tmp_card->is_variation = DURC::formatForStorage( 'is_variation', 'tinyint', $request->is_variation ); 
-		$tmp_card->is_game_paper = DURC::formatForStorage( 'is_game_paper', 'tinyint', $request->is_game_paper ); 
-		$tmp_card->is_game_mtgo = DURC::formatForStorage( 'is_game_mtgo', 'tinyint', $request->is_game_mtgo ); 
-		$tmp_card->is_game_arena = DURC::formatForStorage( 'is_game_arena', 'tinyint', $request->is_game_arena ); 
-		$tmp_card->legal_oldschool = DURC::formatForStorage( 'legal_oldschool', 'tinyint', $request->legal_oldschool ); 
-		$tmp_card->legal_duel = DURC::formatForStorage( 'legal_duel', 'tinyint', $request->legal_duel ); 
-		$tmp_card->legal_commander = DURC::formatForStorage( 'legal_commander', 'tinyint', $request->legal_commander ); 
-		$tmp_card->legal_brawl = DURC::formatForStorage( 'legal_brawl', 'tinyint', $request->legal_brawl ); 
-		$tmp_card->legal_penny = DURC::formatForStorage( 'legal_penny', 'tinyint', $request->legal_penny ); 
-		$tmp_card->legal_vintage = DURC::formatForStorage( 'legal_vintage', 'tinyint', $request->legal_vintage ); 
-		$tmp_card->legal_pauper = DURC::formatForStorage( 'legal_pauper', 'tinyint', $request->legal_pauper ); 
-		$tmp_card->legal_legacy = DURC::formatForStorage( 'legal_legacy', 'tinyint', $request->legal_legacy ); 
-		$tmp_card->legal_modern = DURC::formatForStorage( 'legal_modern', 'tinyint', $request->legal_modern ); 
-		$tmp_card->legal_frontier = DURC::formatForStorage( 'legal_frontier', 'tinyint', $request->legal_frontier ); 
-		$tmp_card->legal_future = DURC::formatForStorage( 'legal_future', 'tinyint', $request->legal_future ); 
-		$tmp_card->legal_standard = DURC::formatForStorage( 'legal_standard', 'tinyint', $request->legal_standard ); 
-		$tmp_card->legal_historic = DURC::formatForStorage( 'legal_historic', 'tinyint', $request->legal_historic ); 
-		$tmp_card->legal_pioneer = DURC::formatForStorage( 'legal_pioneer', 'tinyint', $request->legal_pioneer ); 
+			$tmp_card->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_card ); 
+		$tmp_card->scryfall_id = DURC::formatForStorage( 'scryfall_id', 'varchar', $request->scryfall_id, $tmp_card ); 
+		$tmp_card->lang = DURC::formatForStorage( 'lang', 'varchar', $request->lang, $tmp_card ); 
+		$tmp_card->oracle_id = DURC::formatForStorage( 'oracle_id', 'varchar', $request->oracle_id, $tmp_card ); 
+		$tmp_card->rulings_uri = DURC::formatForStorage( 'rulings_uri', 'varchar', $request->rulings_uri, $tmp_card ); 
+		$tmp_card->scryfall_web_uri = DURC::formatForStorage( 'scryfall_web_uri', 'varchar', $request->scryfall_web_uri, $tmp_card ); 
+		$tmp_card->scryfall_api_uri = DURC::formatForStorage( 'scryfall_api_uri', 'varchar', $request->scryfall_api_uri, $tmp_card ); 
+		$tmp_card->layout = DURC::formatForStorage( 'layout', 'varchar', $request->layout, $tmp_card ); 
+		$tmp_card->rarity = DURC::formatForStorage( 'rarity', 'varchar', $request->rarity, $tmp_card ); 
+		$tmp_card->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at, $tmp_card ); 
+		$tmp_card->set_name = DURC::formatForStorage( 'set_name', 'varchar', $request->set_name, $tmp_card ); 
+		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'int', $request->set_type, $tmp_card ); 
+		$tmp_card->mtgset_id = DURC::formatForStorage( 'mtgset_id', 'int', $request->mtgset_id, $tmp_card ); 
+		$tmp_card->variation_of_scryfall_id = DURC::formatForStorage( 'variation_of_scryfall_id', 'varchar', $request->variation_of_scryfall_id, $tmp_card ); 
+		$tmp_card->edhrec_rank = DURC::formatForStorage( 'edhrec_rank', 'int', $request->edhrec_rank, $tmp_card ); 
+		$tmp_card->is_promo = DURC::formatForStorage( 'is_promo', 'tinyint', $request->is_promo, $tmp_card ); 
+		$tmp_card->is_reserved = DURC::formatForStorage( 'is_reserved', 'tinyint', $request->is_reserved, $tmp_card ); 
+		$tmp_card->is_story_spotlight = DURC::formatForStorage( 'is_story_spotlight', 'tinyint', $request->is_story_spotlight, $tmp_card ); 
+		$tmp_card->is_reprint = DURC::formatForStorage( 'is_reprint', 'int', $request->is_reprint, $tmp_card ); 
+		$tmp_card->is_variation = DURC::formatForStorage( 'is_variation', 'tinyint', $request->is_variation, $tmp_card ); 
+		$tmp_card->is_game_paper = DURC::formatForStorage( 'is_game_paper', 'tinyint', $request->is_game_paper, $tmp_card ); 
+		$tmp_card->is_game_mtgo = DURC::formatForStorage( 'is_game_mtgo', 'tinyint', $request->is_game_mtgo, $tmp_card ); 
+		$tmp_card->is_game_arena = DURC::formatForStorage( 'is_game_arena', 'tinyint', $request->is_game_arena, $tmp_card ); 
+		$tmp_card->legal_oldschool = DURC::formatForStorage( 'legal_oldschool', 'tinyint', $request->legal_oldschool, $tmp_card ); 
+		$tmp_card->legal_duel = DURC::formatForStorage( 'legal_duel', 'tinyint', $request->legal_duel, $tmp_card ); 
+		$tmp_card->legal_commander = DURC::formatForStorage( 'legal_commander', 'tinyint', $request->legal_commander, $tmp_card ); 
+		$tmp_card->legal_brawl = DURC::formatForStorage( 'legal_brawl', 'tinyint', $request->legal_brawl, $tmp_card ); 
+		$tmp_card->legal_penny = DURC::formatForStorage( 'legal_penny', 'tinyint', $request->legal_penny, $tmp_card ); 
+		$tmp_card->legal_vintage = DURC::formatForStorage( 'legal_vintage', 'tinyint', $request->legal_vintage, $tmp_card ); 
+		$tmp_card->legal_pauper = DURC::formatForStorage( 'legal_pauper', 'tinyint', $request->legal_pauper, $tmp_card ); 
+		$tmp_card->legal_legacy = DURC::formatForStorage( 'legal_legacy', 'tinyint', $request->legal_legacy, $tmp_card ); 
+		$tmp_card->legal_modern = DURC::formatForStorage( 'legal_modern', 'tinyint', $request->legal_modern, $tmp_card ); 
+		$tmp_card->legal_frontier = DURC::formatForStorage( 'legal_frontier', 'tinyint', $request->legal_frontier, $tmp_card ); 
+		$tmp_card->legal_future = DURC::formatForStorage( 'legal_future', 'tinyint', $request->legal_future, $tmp_card ); 
+		$tmp_card->legal_standard = DURC::formatForStorage( 'legal_standard', 'tinyint', $request->legal_standard, $tmp_card ); 
+		$tmp_card->legal_historic = DURC::formatForStorage( 'legal_historic', 'tinyint', $request->legal_historic, $tmp_card ); 
+		$tmp_card->legal_pioneer = DURC::formatForStorage( 'legal_pioneer', 'tinyint', $request->legal_pioneer, $tmp_card ); 
 
 
 	$id = $card->id;
@@ -445,7 +451,7 @@ class cardController extends DURCController
 	    		$tmp_card->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/card/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/card/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

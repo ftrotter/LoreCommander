@@ -227,18 +227,18 @@ class classofcController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_classofc = $myNewclassofc;
-			$tmp_classofc->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofc->classofc_name = DURC::formatForStorage( 'classofc_name', 'varchar', $request->classofc_name ); 
-		$tmp_classofc->classofc_img_uri = DURC::formatForStorage( 'classofc_img_uri', 'varchar', $request->classofc_img_uri ); 
-		$tmp_classofc->classofc_wiki_url = DURC::formatForStorage( 'classofc_wiki_url', 'varchar', $request->classofc_wiki_url ); 
-		$tmp_classofc->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
+			$tmp_classofc->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc ); 
+		$tmp_classofc->classofc_name = DURC::formatForStorage( 'classofc_name', 'varchar', $request->classofc_name, $tmp_classofc ); 
+		$tmp_classofc->classofc_img_uri = DURC::formatForStorage( 'classofc_img_uri', 'varchar', $request->classofc_img_uri, $tmp_classofc ); 
+		$tmp_classofc->classofc_wiki_url = DURC::formatForStorage( 'classofc_wiki_url', 'varchar', $request->classofc_wiki_url, $tmp_classofc ); 
+		$tmp_classofc->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class, $tmp_classofc ); 
 
 	
 	try {
 	    		$tmp_classofc->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/classofc/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -336,6 +336,12 @@ class classofcController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($classofc->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -367,11 +373,11 @@ class classofcController extends DURCController
     public function update(Request $request, classofc $classofc){
 
 	$tmp_classofc = $classofc;
-			$tmp_classofc->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_classofc->classofc_name = DURC::formatForStorage( 'classofc_name', 'varchar', $request->classofc_name ); 
-		$tmp_classofc->classofc_img_uri = DURC::formatForStorage( 'classofc_img_uri', 'varchar', $request->classofc_img_uri ); 
-		$tmp_classofc->classofc_wiki_url = DURC::formatForStorage( 'classofc_wiki_url', 'varchar', $request->classofc_wiki_url ); 
-		$tmp_classofc->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class ); 
+			$tmp_classofc->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc ); 
+		$tmp_classofc->classofc_name = DURC::formatForStorage( 'classofc_name', 'varchar', $request->classofc_name, $tmp_classofc ); 
+		$tmp_classofc->classofc_img_uri = DURC::formatForStorage( 'classofc_img_uri', 'varchar', $request->classofc_img_uri, $tmp_classofc ); 
+		$tmp_classofc->classofc_wiki_url = DURC::formatForStorage( 'classofc_wiki_url', 'varchar', $request->classofc_wiki_url, $tmp_classofc ); 
+		$tmp_classofc->is_mega_class = DURC::formatForStorage( 'is_mega_class', 'tinyint', $request->is_mega_class, $tmp_classofc ); 
 
 
 	$id = $classofc->id;
@@ -380,7 +386,7 @@ class classofcController extends DURCController
 	    		$tmp_classofc->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/classofc/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 

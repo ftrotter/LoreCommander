@@ -230,19 +230,19 @@ class person_classofc_cardfaceController extends DURCController
 
 	//the games we play to easily auto-generate code..
 	$tmp_person_classofc_cardface = $myNewperson_classofc_cardface;
-			$tmp_person_classofc_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person_classofc_cardface->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_person_classofc_cardface->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_person_classofc_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_person_classofc_cardface->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_person_classofc_cardface->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_person_classofc_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_person_classofc_cardface ); 
 
 	
 	try {
 	    		$tmp_person_classofc_cardface->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/person_classofc_cardface/create")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/person_classofc_cardface/create")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
@@ -340,6 +340,12 @@ class person_classofc_cardfaceController extends DURCController
             } else {
                 $this->view_data[$key] = $value;
             }
+            
+            // If this is a nullable field, see whether null checkbox should be checked by default
+			if ($person_classofc_cardface->isFieldNullable($key) &&
+                $value == null) {
+			    $this->view_data["{$key}_checked"] = "checked";
+            }
 		}
 
 		//what is this object called?
@@ -371,12 +377,12 @@ class person_classofc_cardfaceController extends DURCController
     public function update(Request $request, person_classofc_cardface $person_classofc_cardface){
 
 	$tmp_person_classofc_cardface = $person_classofc_cardface;
-			$tmp_person_classofc_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id ); 
-		$tmp_person_classofc_cardface->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id ); 
-		$tmp_person_classofc_cardface->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id ); 
-		$tmp_person_classofc_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id ); 
-		$tmp_person_classofc_cardface->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker ); 
-		$tmp_person_classofc_cardface->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note ); 
+			$tmp_person_classofc_cardface->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->person_id = DURC::formatForStorage( 'person_id', 'int', $request->person_id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->cardface_id = DURC::formatForStorage( 'cardface_id', 'int', $request->cardface_id, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_person_classofc_cardface ); 
+		$tmp_person_classofc_cardface->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_person_classofc_cardface ); 
 
 
 	$id = $person_classofc_cardface->id;
@@ -385,7 +391,7 @@ class person_classofc_cardfaceController extends DURCController
 	    		$tmp_person_classofc_cardface->save();
 
 	} catch (\Exception $e) {
-	          return redirect("/DURC/person_classofc_cardface/{$id}")->with('status', 'There was an error in your data.');
+	          return redirect("/DURC/person_classofc_cardface/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
 
 	}
 
