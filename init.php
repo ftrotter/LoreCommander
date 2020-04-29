@@ -54,13 +54,27 @@
 		"sudo chown $real_user:$real_user $composer_config_dir -R",
 		"sudo -u $real_user composer update",
 		"sudo -u $real_user php artisan key:generate",
-		"sudo -u $real_user cp ./templates/ReadMe.template.md README.md",
+//		"sudo -u $real_user cp ./templates/ReadMe.template.md README.md",
 		"sudo -u $real_user php artisan vendor:publish --provider='CareSet\DURC\DURCServiceProvider'",
-		"sudo -u $real_user php artisan vendor:publish --tag=laravel-handlebars",
+//		"sudo -u $real_user php artisan vendor:publish --tag=laravel-handlebars",
 		"chmod g+w storage/* -R", //this will actually be run as root!! and 
 		"chown $real_user:www-data storage/* -R", //this will 
 		"usermod -a -G www-data $real_user",
 		];
+
+
+	//lets only overwrite the readme, if it is has not already been overwritten...
+	$readme_text = file_get_contents('./README.md');
+
+	if(strpos($readme_text,'sudo php init.php') !== false){
+		//then this current readme is the one saying "start by using init.php"
+		//if it says anything else... it should NOT be overwritten...
+		//but if we are in this block, then the readme does need to be replaced!!!
+		$cmds[] = "sudo -u $real_user cp ./templates/ReadMe.template.md README.md";
+	
+	}else{
+		echo "The README looks custom, we are leaving it alone...\n";
+	}
 
 
 	if(!file_exists('.env')){
