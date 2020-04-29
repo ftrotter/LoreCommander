@@ -12,13 +12,24 @@ class cardShowController extends Controller
 
 	public function showCard($channel_id){
 
-		return view('show_card',['channel_id'  => $channel_id]);
+		$url = url()->full();
+
+		return view('show_card',[
+				'channel_id'  => $channel_id,
+				'base_url' => $url,
+				]);
 		
 	}
 
 	public function showJustCard($channel_id){
 
-		return view('show_just_card',['channel_id'  => $channel_id]);
+
+		$url = url()->full();
+
+		return view('show_just_card',[
+			'channel_id'  => $channel_id,
+			'base_url' => $url,
+			]);
 		
 	}
 

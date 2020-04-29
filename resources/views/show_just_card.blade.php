@@ -169,7 +169,7 @@ function toggleFullScreen(elem) {
 </head>
 <body>
 <div id='cardView' class='container-fluid' style='padding: 3% 3%;background-color: light-grey;' >
-<h3> Delver URL: https://lore.ft1.us/changeCard/{{$channel_id}}/$multiverseid </h3>
+<h3> Delver URL: {{$base_url}}/changeCard/{{$channel_id}}/$multiverseid </h3>
 <a href='/templates/justcardview.template.html'>reload card view template</a>
 <input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen(document.body)">
 </div>
