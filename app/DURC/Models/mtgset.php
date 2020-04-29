@@ -64,10 +64,45 @@ class mtgset extends DURCModel{
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
+		'id',
+		'scryfall_id',
+		'code',
+		'name',
+		'set_type',
+		'card_count',
+		'is_digital',
+		'is_foil_only',
+		'scryfall_uri',
+		'mtgset_uri',
+		'icon_svg_uri',
+		'search_uri',
+		'created_at',
+		'updated_at',
 			]; // End of nullable fields
 
     // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $attributes = [
+		'id' => null,
+		'scryfall_id' => null,
+		'code' => null,
+		'mtgo_code' => 'NULL',
+		'arena_code' => 'NULL',
+		'tcgplayer_id' => 'NULL',
+		'name' => null,
+		'set_type' => null,
+		'released_at' => 'NULL',
+		'block_code' => 'NULL',
+		'block' => 'NULL',
+		'parent_set_code' => 'NULL',
+		'card_count' => null,
+		'is_digital' => null,
+		'is_foil_only' => null,
+		'scryfall_uri' => null,
+		'mtgset_uri' => null,
+		'icon_svg_uri' => null,
+		'search_uri' => null,
+		'created_at' => null,
+		'updated_at' => null,
 			]; // End of attributes
         
 		//everything is fillable by default

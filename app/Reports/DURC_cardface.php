@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=4440a058cb5970156b6a928ddf95b5f8
+FILE_SIG=755b74b9595822ad6d6d384c19c30e91
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -306,6 +306,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => true,
   ),
   1 => 
   array (
@@ -316,6 +319,9 @@ array (
     'is_linked_key' => true,
     'foreign_db' => 'lore',
     'foreign_table' => 'card',
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   2 => 
   array (
@@ -326,6 +332,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   3 => 
   array (
@@ -336,6 +345,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   4 => 
   array (
@@ -346,6 +358,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   5 => 
   array (
@@ -356,6 +371,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   6 => 
   array (
@@ -366,6 +384,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   7 => 
   array (
@@ -376,6 +397,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   8 => 
   array (
@@ -386,6 +410,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   9 => 
   array (
@@ -396,6 +423,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   10 => 
   array (
@@ -406,6 +436,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   11 => 
   array (
@@ -416,6 +449,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   12 => 
   array (
@@ -426,6 +462,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   13 => 
   array (
@@ -436,6 +475,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   14 => 
   array (
@@ -446,6 +488,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   15 => 
   array (
@@ -456,6 +501,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   16 => 
   array (
@@ -466,6 +514,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   17 => 
   array (
@@ -476,6 +527,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   18 => 
   array (
@@ -486,6 +540,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   19 => 
   array (
@@ -496,6 +553,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   20 => 
   array (
@@ -506,6 +566,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   21 => 
   array (
@@ -516,6 +579,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   22 => 
   array (
@@ -526,6 +592,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   23 => 
   array (
@@ -536,6 +605,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   24 => 
   array (
@@ -546,6 +618,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   25 => 
   array (
@@ -556,6 +631,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   26 => 
   array (
@@ -566,6 +644,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   27 => 
   array (
@@ -576,6 +657,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   28 => 
   array (
@@ -586,6 +670,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   29 => 
   array (
@@ -596,6 +683,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   30 => 
   array (
@@ -606,6 +696,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   31 => 
   array (
@@ -616,6 +709,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   32 => 
   array (
@@ -626,6 +722,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   33 => 
   array (
@@ -636,6 +735,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   34 => 
   array (
@@ -646,6 +748,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   35 => 
   array (
@@ -656,6 +761,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   36 => 
   array (
@@ -666,6 +774,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   37 => 
   array (
@@ -676,6 +787,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   38 => 
   array (
@@ -686,6 +800,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   39 => 
   array (
@@ -696,6 +813,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   40 => 
   array (
@@ -706,6 +826,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   41 => 
   array (
@@ -716,6 +839,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   42 => 
   array (
@@ -726,6 +852,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   43 => 
   array (
@@ -736,6 +865,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   44 => 
   array (
@@ -746,6 +878,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   45 => 
   array (
@@ -756,6 +891,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   46 => 
   array (
@@ -766,6 +904,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
   ),
   47 => 
   array (
@@ -776,6 +917,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
   ),
   48 => 
   array (
@@ -786,6 +930,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   49 => 
   array (
@@ -796,6 +943,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
 )
 //has_many
@@ -818,6 +968,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -828,6 +981,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -838,6 +994,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'classofc',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -848,6 +1007,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'atag',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -858,6 +1020,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -868,6 +1033,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -878,6 +1046,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       7 => 
       array (
@@ -888,6 +1059,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -909,6 +1083,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -919,6 +1096,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -929,6 +1109,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'person',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -939,6 +1122,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'atag',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -949,6 +1135,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -959,6 +1148,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -969,6 +1161,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       7 => 
       array (
@@ -979,6 +1174,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -1000,6 +1198,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -1010,6 +1211,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -1020,6 +1224,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'classofc',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -1030,6 +1237,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -1040,6 +1250,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -1061,6 +1274,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -1071,6 +1287,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -1081,6 +1300,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'creature',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -1091,6 +1313,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -1101,6 +1326,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -1122,6 +1350,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -1132,6 +1363,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'person',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -1142,6 +1376,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'classofc',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -1152,6 +1389,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -1162,6 +1402,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -1172,6 +1415,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -1182,6 +1428,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       7 => 
       array (
@@ -1192,6 +1441,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -1213,6 +1465,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -1223,6 +1478,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -1233,6 +1491,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -1243,6 +1504,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -1253,6 +1517,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -1263,6 +1530,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -1273,6 +1543,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
       7 => 
       array (
@@ -1283,6 +1556,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -1304,6 +1580,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       1 => 
       array (
@@ -1314,6 +1593,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -1324,6 +1606,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -1334,6 +1619,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'person',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -1344,6 +1632,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -1354,6 +1645,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'creature',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -1364,6 +1658,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
       7 => 
       array (
@@ -1374,6 +1671,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -1400,6 +1700,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -1410,6 +1713,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -1420,6 +1726,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -1430,6 +1739,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -1440,6 +1752,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -1450,6 +1765,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -1460,6 +1778,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       7 => 
       array (
@@ -1470,6 +1791,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       8 => 
       array (
@@ -1480,6 +1804,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       9 => 
       array (
@@ -1490,6 +1817,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       10 => 
       array (
@@ -1500,16 +1830,22 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       11 => 
       array (
         'column_name' => 'set_type',
-        'data_type' => 'int',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       12 => 
       array (
@@ -1520,6 +1856,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'mtgset',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       13 => 
       array (
@@ -1530,6 +1869,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       14 => 
       array (
@@ -1540,6 +1882,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       15 => 
       array (
@@ -1550,6 +1895,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       16 => 
       array (
@@ -1560,6 +1908,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       17 => 
       array (
@@ -1570,6 +1921,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       18 => 
       array (
@@ -1580,6 +1934,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       19 => 
       array (
@@ -1590,6 +1947,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       20 => 
       array (
@@ -1600,6 +1960,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       21 => 
       array (
@@ -1610,6 +1973,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       22 => 
       array (
@@ -1620,6 +1986,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       23 => 
       array (
@@ -1630,6 +1999,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       24 => 
       array (
@@ -1640,6 +2012,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       25 => 
       array (
@@ -1650,6 +2025,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       26 => 
       array (
@@ -1660,6 +2038,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       27 => 
       array (
@@ -1670,6 +2051,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       28 => 
       array (
@@ -1680,6 +2064,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       29 => 
       array (
@@ -1690,6 +2077,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       30 => 
       array (
@@ -1700,6 +2090,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       31 => 
       array (
@@ -1710,6 +2103,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       32 => 
       array (
@@ -1720,6 +2116,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       33 => 
       array (
@@ -1730,6 +2129,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       34 => 
       array (
@@ -1740,6 +2142,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       35 => 
       array (
@@ -1750,6 +2155,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       36 => 
       array (
@@ -1760,6 +2168,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       37 => 
       array (
@@ -1770,6 +2181,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       38 => 
       array (
@@ -1780,6 +2194,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
     ),
   ),

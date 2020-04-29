@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=caedd6e6a63a4e2d70fdcf053e4b5286
+FILE_SIG=8e17c913ac7f61ec271421cb998590aa
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -262,6 +262,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => true,
   ),
   1 => 
   array (
@@ -272,6 +275,9 @@ array (
     'is_linked_key' => true,
     'foreign_db' => 'lore',
     'foreign_table' => 'classofc',
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   2 => 
   array (
@@ -282,6 +288,9 @@ array (
     'is_linked_key' => true,
     'foreign_db' => 'lore',
     'foreign_table' => 'creature',
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   3 => 
   array (
@@ -292,6 +301,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => 'current_timestamp()',
+    'is_auto_increment' => false,
   ),
   4 => 
   array (
@@ -302,6 +314,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => 'current_timestamp()',
+    'is_auto_increment' => false,
   ),
 )
 //has_many
@@ -328,6 +343,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -338,6 +356,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -348,6 +369,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -358,6 +382,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -368,6 +395,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
       ),
       5 => 
       array (
@@ -378,6 +408,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
       6 => 
       array (
@@ -388,6 +421,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
     ),
   ),
@@ -409,6 +445,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
@@ -419,6 +458,9 @@ array (
         'is_linked_key' => true,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
       ),
       2 => 
       array (
@@ -429,6 +471,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
       ),
       3 => 
       array (
@@ -439,6 +484,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
       4 => 
       array (
@@ -449,6 +497,9 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
       ),
     ),
   ),

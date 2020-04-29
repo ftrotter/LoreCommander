@@ -1,0 +1,259 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/employeeprivilege' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/employeeprivilege/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>employeeprivilege</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_employeeprivilege/'>Return to employeeprivilege list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/employeeprivilege/create'>Create new employeeprivilege </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{employee_id_row_class}}'>
+    <label for='employee_id' class='col-sm-4 col-form-label'>employee_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{employee_id}} (see below for lookup value)<br>
+	<select class='select2_employee_id form-control' id='employee_id' name='employee_id'  >
+	<option value='{{employee_id}}' selected='selected'>{{employee_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{privilege_id_row_class}}'>
+    <label for='privilege_id' class='col-sm-4 col-form-label'>privilege_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{privilege_id}} (see below for lookup value)<br>
+	<select class='select2_privilege_id form-control' id='privilege_id' name='privilege_id'  >
+	<option value='{{privilege_id}}' selected='selected'>{{privilege_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_privilege_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/privilege',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/employeeprivilege/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='employeeprivilege' class='do-soft-delete btn btn-outline-danger'>Hard Delete employeeprivilege</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    employee ( <a href='/DURC/employee/'>see all</a> )
+{{^employee}}
+(no values)
+{{/employee}}
+  </div>
+<div class='card-body'>
+<table id='table_employee' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> company </th>
+			<th> lastName </th>
+			<th> firstName </th>
+			<th> emailAddress </th>
+			<th> jobTitle </th>
+			<th> businessPhone </th>
+			<th> homePhone </th>
+			<th> mobilePhone </th>
+			<th> faxNumber </th>
+			<th> address </th>
+			<th> city </th>
+			<th> stateProvince </th>
+			<th> zipPostalCode </th>
+			<th> countryRegion </th>
+			<th> webPage </th>
+			<th> notes </th>
+			<th> attachments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#employee}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/employee/{{id}}'>{{id}}</a></td>
+			<td>{{company}}</td>
+			<td>{{lastName}}</td>
+			<td>{{firstName}}</td>
+			<td>{{emailAddress}}</td>
+			<td>{{jobTitle}}</td>
+			<td>{{businessPhone}}</td>
+			<td>{{homePhone}}</td>
+			<td>{{mobilePhone}}</td>
+			<td>{{faxNumber}}</td>
+			<td>{{address}}</td>
+			<td>{{city}}</td>
+			<td>{{stateProvince}}</td>
+			<td>{{zipPostalCode}}</td>
+			<td>{{countryRegion}}</td>
+			<td>{{webPage}}</td>
+			<td>{{notes}}</td>
+			<td>{{attachments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/employee}}
+</tbody>
+</table>
+</div></div> <!-- end employee card-->
+
+<div class='card'>
+  <div class='card-header'>
+    privilege ( <a href='/DURC/privilege/'>see all</a> )
+{{^privilege}}
+(no values)
+{{/privilege}}
+  </div>
+<div class='card-body'>
+<table id='table_privilege' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> privilegeName </th>
+
+</tr>
+</thead>
+<tbody>
+{{#privilege}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/privilege/{{id}}'>{{id}}</a></td>
+			<td>{{privilegeName}}</td>
+		
+		{{/.}}
+	</tr>
+{{/privilege}}
+</tbody>
+</table>
+</div></div> <!-- end privilege card-->
+</div></div> <!--end belongs to card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

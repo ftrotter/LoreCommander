@@ -53,10 +53,25 @@ class classofc_classofc_vspack extends DURCModel{
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
+		'id',
+		'classofc_id',
+		'second_classofc_id',
+		'vspack_id',
+		'is_bulk_linker',
+		'created_at',
+		'updated_at',
 			]; // End of nullable fields
 
     // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $attributes = [
+		'id' => null,
+		'classofc_id' => null,
+		'second_classofc_id' => null,
+		'vspack_id' => null,
+		'is_bulk_linker' => '0',
+		'link_note' => 'NULL',
+		'created_at' => null,
+		'updated_at' => null,
 			]; // End of attributes
         
 		//everything is fillable by default

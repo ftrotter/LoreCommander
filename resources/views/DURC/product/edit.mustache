@@ -1,0 +1,331 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/product' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/product/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>product</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_product/'>Return to product list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/product/create'>Create new product </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{supplier_ids_row_class}}'>
+    <label for='supplier_ids' class='col-sm-4 col-form-label'>supplier_ids</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='supplier_ids' name='supplier_idsNull' id='supplier_idsNull' value='supplier_idsNull' {{supplier_ids_checked}}>
+                    <label class='form-check-label' for='supplier_idsNull'>null</label>
+                </div></div>
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+    </div></div>
+  <div class='form-group row {{productCode_row_class}}'>
+    <label for='productCode' class='col-sm-4 col-form-label'>productCode</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='productCode' name='productCodeNull' id='productCodeNull' value='productCodeNull' {{productCode_checked}}>
+                    <label class='form-check-label' for='productCodeNull'>null</label>
+                </div></div>
+  <div class='form-group row {{productName_row_class}}'>
+    <label for='productName' class='col-sm-4 col-form-label'>productName</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='productName' name='productName' placeholder='NULL' value='{{productName}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='productName' name='productNameNull' id='productNameNull' value='productNameNull' {{productName_checked}}>
+                    <label class='form-check-label' for='productNameNull'>null</label>
+                </div></div>
+  <div class='form-group row {{description_row_class}}'>
+    <label for='description' class='col-sm-4 col-form-label'>description</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='description' name='description' placeholder='NULL' value='{{description}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='description' name='descriptionNull' id='descriptionNull' value='descriptionNull' {{description_checked}}>
+                    <label class='form-check-label' for='descriptionNull'>null</label>
+                </div></div>
+  <div class='form-group row {{standardCost_row_class}}'>
+    <label for='standardCost' class='col-sm-4 col-form-label'>standardCost</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='standardCost' name='standardCostNull' id='standardCostNull' value='standardCostNull' {{standardCost_checked}}>
+                    <label class='form-check-label' for='standardCostNull'>null</label>
+                </div></div>
+  <div class='form-group row {{listPrice_row_class}}'>
+    <label for='listPrice' class='col-sm-4 col-form-label'>listPrice</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}'  >
+    </div></div>
+  <div class='form-group row {{reorderLevel_row_class}}'>
+    <label for='reorderLevel' class='col-sm-4 col-form-label'>reorderLevel</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='reorderLevel' name='reorderLevelNull' id='reorderLevelNull' value='reorderLevelNull' {{reorderLevel_checked}}>
+                    <label class='form-check-label' for='reorderLevelNull'>null</label>
+                </div></div>
+  <div class='form-group row {{targetLevel_row_class}}'>
+    <label for='targetLevel' class='col-sm-4 col-form-label'>targetLevel</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='targetLevel' name='targetLevelNull' id='targetLevelNull' value='targetLevelNull' {{targetLevel_checked}}>
+                    <label class='form-check-label' for='targetLevelNull'>null</label>
+                </div></div>
+  <div class='form-group row {{quantityPerUnit_row_class}}'>
+    <label for='quantityPerUnit' class='col-sm-4 col-form-label'>quantityPerUnit</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='quantityPerUnit' name='quantityPerUnitNull' id='quantityPerUnitNull' value='quantityPerUnitNull' {{quantityPerUnit_checked}}>
+                    <label class='form-check-label' for='quantityPerUnitNull'>null</label>
+                </div></div>
+  <div class='form-group row {{discontinued_row_class}}'>
+    <label for='discontinued' class='col-sm-4 col-form-label'>discontinued</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}'  >
+    </div></div>
+  <div class='form-group row {{minimumReorderQuantity_row_class}}'>
+    <label for='minimumReorderQuantity' class='col-sm-4 col-form-label'>minimumReorderQuantity</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='minimumReorderQuantity' name='minimumReorderQuantityNull' id='minimumReorderQuantityNull' value='minimumReorderQuantityNull' {{minimumReorderQuantity_checked}}>
+                    <label class='form-check-label' for='minimumReorderQuantityNull'>null</label>
+                </div></div>
+  <div class='form-group row {{category_row_class}}'>
+    <label for='category' class='col-sm-4 col-form-label'>category</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='category' name='category' placeholder='NULL' value='{{category}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='category' name='categoryNull' id='categoryNull' value='categoryNull' {{category_checked}}>
+                    <label class='form-check-label' for='categoryNull'>null</label>
+                </div></div>
+  <div class='form-group row {{attachments_row_class}}'>
+    <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='attachments' name='attachmentsNull' id='attachmentsNull' value='attachmentsNull' {{attachments_checked}}>
+                    <label class='form-check-label' for='attachmentsNull'>null</label>
+                </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/product/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='product' class='do-soft-delete btn btn-outline-danger'>Hard Delete product</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many inventorytransaction ( <a href='/DURC/inventorytransaction/'>see all</a> )
+{{^inventorytransaction}}
+(no values)
+{{/inventorytransaction}}
+  </div>
+<div class='card-body'>
+
+<table id='table_inventorytransaction' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> transactionType </th>
+			<th> transactionCreatedDate </th>
+			<th> transactionModifiedDate </th>
+			<th> product_id </th>
+			<th> quantity </th>
+			<th> purchaseOrder_id </th>
+			<th> customerOrder_id </th>
+			<th> comments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#inventorytransaction}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/inventorytransaction/{{id}}'>{{id}}</a></td>
+			<td>{{transactionType}}</td>
+			<td>{{transactionCreatedDate}}</td>
+			<td>{{transactionModifiedDate}}</td>
+			<td>{{product_id_DURClabel}} ({{product_id}}) </td>			<td>{{quantity}}</td>
+			<td>{{purchaseOrder_id_DURClabel}} ({{purchaseOrder_id}}) </td>			<td>{{customerOrder_id_DURClabel}} ({{customerOrder_id}}) </td>			<td>{{comments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/inventorytransaction}}
+</tbody>
+</table>
+</div></div> <!-- end inventorytransaction card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many orderdetail ( <a href='/DURC/orderdetail/'>see all</a> )
+{{^orderdetail}}
+(no values)
+{{/orderdetail}}
+  </div>
+<div class='card-body'>
+
+<table id='table_orderdetail' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> order_id </th>
+			<th> product_id </th>
+			<th> quantity </th>
+			<th> unitPrice </th>
+			<th> discount </th>
+			<th> status_id </th>
+			<th> dateAllocated </th>
+			<th> PurchaseOrder_id </th>
+			<th> inventory_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#orderdetail}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/orderdetail/{{id}}'>{{id}}</a></td>
+			<td>{{order_id_DURClabel}} ({{order_id}}) </td>			<td>{{product_id_DURClabel}} ({{product_id}}) </td>			<td>{{quantity}}</td>
+			<td>{{unitPrice}}</td>
+			<td>{{discount}}</td>
+			<td>{{status_id_DURClabel}} ({{status_id}}) </td>			<td>{{dateAllocated}}</td>
+			<td>{{PurchaseOrder_id_DURClabel}} ({{PurchaseOrder_id}}) </td>			<td>{{inventory_id_DURClabel}} ({{inventory_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/orderdetail}}
+</tbody>
+</table>
+</div></div> <!-- end orderdetail card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many purchaseorderdetail ( <a href='/DURC/purchaseorderdetail/'>see all</a> )
+{{^purchaseorderdetail}}
+(no values)
+{{/purchaseorderdetail}}
+  </div>
+<div class='card-body'>
+
+<table id='table_purchaseorderdetail' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> purchaseOrder_id </th>
+			<th> product_id </th>
+			<th> quantity </th>
+			<th> unitCost </th>
+			<th> dateReceived </th>
+			<th> postedToInventory </th>
+			<th> inventory_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#purchaseorderdetail}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/purchaseorderdetail/{{id}}'>{{id}}</a></td>
+			<td>{{purchaseOrder_id_DURClabel}} ({{purchaseOrder_id}}) </td>			<td>{{product_id_DURClabel}} ({{product_id}}) </td>			<td>{{quantity}}</td>
+			<td>{{unitCost}}</td>
+			<td>{{dateReceived}}</td>
+			<td>{{postedToInventory}}</td>
+			<td>{{inventory_id_DURClabel}} ({{inventory_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/purchaseorderdetail}}
+</tbody>
+</table>
+</div></div> <!-- end purchaseorderdetail card-->
+<br>
+</div></div> <!--end has many card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

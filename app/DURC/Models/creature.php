@@ -51,10 +51,19 @@ class creature extends DURCModel{
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
+		'id',
+		'creature_name',
+		'created_at',
+		'updated_at',
 			]; // End of nullable fields
 
     // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $attributes = [
+		'id' => null,
+		'creature_name' => null,
+		'creature_image_uri' => 'NULL',
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 			]; // End of attributes
         
 		//everything is fillable by default

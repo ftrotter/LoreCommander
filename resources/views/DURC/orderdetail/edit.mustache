@@ -1,0 +1,462 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/orderdetail' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/orderdetail/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>orderdetail</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_orderdetail/'>Return to orderdetail list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/orderdetail/create'>Create new orderdetail </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+    </div></div>
+  <div class='form-group row {{order_id_row_class}}'>
+    <label for='order_id' class='col-sm-4 col-form-label'>order_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{order_id}} (see below for lookup value)<br>
+	<select class='select2_order_id form-control' id='order_id' name='order_id'  >
+	<option value='{{order_id}}' selected='selected'>{{order_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_order_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/order',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{product_id_row_class}}'>
+    <label for='product_id' class='col-sm-4 col-form-label'>product_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{product_id}} (see below for lookup value)<br>
+	<select class='select2_product_id form-control' id='product_id' name='product_id'  >
+	<option value='{{product_id}}' selected='selected'>{{product_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_product_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/product',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{quantity_row_class}}'>
+    <label for='quantity' class='col-sm-4 col-form-label'>quantity</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='quantity' name='quantity' placeholder='0.0000' value='{{quantity}}'  >
+    </div></div>
+  <div class='form-group row {{unitPrice_row_class}}'>
+    <label for='unitPrice' class='col-sm-4 col-form-label'>unitPrice</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='unitPrice' name='unitPrice' placeholder='0.0000' value='{{unitPrice}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='unitPrice' name='unitPriceNull' id='unitPriceNull' value='unitPriceNull' {{unitPrice_checked}}>
+                    <label class='form-check-label' for='unitPriceNull'>null</label>
+                </div></div>
+  <div class='form-group row {{discount_row_class}}'>
+    <label for='discount' class='col-sm-4 col-form-label'>discount</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='discount' name='discount' placeholder='0' value='{{discount}}'  >
+    </div></div>
+  <div class='form-group row {{status_id_row_class}}'>
+    <label for='status_id' class='col-sm-4 col-form-label'>status_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{status_id}} (see below for lookup value)<br>
+	<select class='select2_status_id form-control' id='status_id' name='status_id'  >
+	<option value='{{status_id}}' selected='selected'>{{status_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_status_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/orderDetailStatus',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{dateAllocated_row_class}}'>
+    <label for='dateAllocated' class='col-sm-4 col-form-label'>dateAllocated</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='dateAllocated' name='dateAllocated' placeholder='' value='{{dateAllocated}}'  >
+
+<button type='button' class='btn btn-primary' id='dateAllocated_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='dateAllocated_TodayNow'> Today and Now</button>
+
+<script>
+	var dateAllocatedConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#dateAllocated_TodayNow').click( function(e) {
+      		$('#dateAllocated').val(dateAllocatedConv.format(new Date())).change(); } );
+
+    	$('#dateAllocated_FontPicker').click(
+      		function(e) {
+        		$('#dateAllocated').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{PurchaseOrder_id_row_class}}'>
+    <label for='PurchaseOrder_id' class='col-sm-4 col-form-label'>PurchaseOrder_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{PurchaseOrder_id}} (see below for lookup value)<br>
+	<select class='select2_PurchaseOrder_id form-control' id='PurchaseOrder_id' name='PurchaseOrder_id'  >
+	<option value='{{PurchaseOrder_id}}' selected='selected'>{{PurchaseOrder_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_PurchaseOrder_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/purchaseOrder',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{inventory_id_row_class}}'>
+    <label for='inventory_id' class='col-sm-4 col-form-label'>inventory_id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='inventory_id' name='inventory_id' placeholder='NULL' value='{{inventory_id}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='inventory_id' name='inventory_idNull' id='inventory_idNull' value='inventory_idNull' {{inventory_id_checked}}>
+                    <label class='form-check-label' for='inventory_idNull'>null</label>
+                </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/orderdetail/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='orderdetail' class='do-soft-delete btn btn-outline-danger'>Hard Delete orderdetail</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    order ( <a href='/DURC/order/'>see all</a> )
+{{^order}}
+(no values)
+{{/order}}
+  </div>
+<div class='card-body'>
+<table id='table_order' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> employee_id </th>
+			<th> customer_id </th>
+			<th> orderDate </th>
+			<th> shippedDate </th>
+			<th> shipper_id </th>
+			<th> shipName </th>
+			<th> shipAddress </th>
+			<th> shipCity </th>
+			<th> shipStateProvince </th>
+			<th> shipZipPostalCode </th>
+			<th> shipCountryRegion </th>
+			<th> shippingFee </th>
+			<th> taxes </th>
+			<th> paymentType </th>
+			<th> paidDate </th>
+			<th> notes </th>
+			<th> taxRate </th>
+			<th> taxStatus_id </th>
+			<th> status_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#order}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/order/{{id}}'>{{id}}</a></td>
+			<td>{{employee_id_DURClabel}} ({{employee_id}}) </td>			<td>{{customer_id_DURClabel}} ({{customer_id}}) </td>			<td>{{orderDate}}</td>
+			<td>{{shippedDate}}</td>
+			<td>{{shipper_id_DURClabel}} ({{shipper_id}}) </td>			<td>{{shipName}}</td>
+			<td>{{shipAddress}}</td>
+			<td>{{shipCity}}</td>
+			<td>{{shipStateProvince}}</td>
+			<td>{{shipZipPostalCode}}</td>
+			<td>{{shipCountryRegion}}</td>
+			<td>{{shippingFee}}</td>
+			<td>{{taxes}}</td>
+			<td>{{paymentType}}</td>
+			<td>{{paidDate}}</td>
+			<td>{{notes}}</td>
+			<td>{{taxRate}}</td>
+			<td>{{taxStatus_id_DURClabel}} ({{taxStatus_id}}) </td>			<td>{{status_id_DURClabel}} ({{status_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/order}}
+</tbody>
+</table>
+</div></div> <!-- end order card-->
+
+<div class='card'>
+  <div class='card-header'>
+    product ( <a href='/DURC/product/'>see all</a> )
+{{^product}}
+(no values)
+{{/product}}
+  </div>
+<div class='card-body'>
+<table id='table_product' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> supplier_ids </th>
+			<th> id </th>
+			<th> productCode </th>
+			<th> productName </th>
+			<th> description </th>
+			<th> standardCost </th>
+			<th> listPrice </th>
+			<th> reorderLevel </th>
+			<th> targetLevel </th>
+			<th> quantityPerUnit </th>
+			<th> discontinued </th>
+			<th> minimumReorderQuantity </th>
+			<th> category </th>
+			<th> attachments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#product}}
+	<tr>
+		{{#.}}
+			<td>{{supplier_ids}}</td>
+			<td><a href='/DURC/product/{{id}}'>{{id}}</a></td>
+			<td>{{productCode}}</td>
+			<td>{{productName}}</td>
+			<td>{{description}}</td>
+			<td>{{standardCost}}</td>
+			<td>{{listPrice}}</td>
+			<td>{{reorderLevel}}</td>
+			<td>{{targetLevel}}</td>
+			<td>{{quantityPerUnit}}</td>
+			<td>{{discontinued}}</td>
+			<td>{{minimumReorderQuantity}}</td>
+			<td>{{category}}</td>
+			<td>{{attachments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/product}}
+</tbody>
+</table>
+</div></div> <!-- end product card-->
+
+<div class='card'>
+  <div class='card-header'>
+    purchaseorder ( <a href='/DURC/purchaseorder/'>see all</a> )
+{{^purchaseorder}}
+(no values)
+{{/purchaseorder}}
+  </div>
+<div class='card-body'>
+<table id='table_purchaseorder' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> supplier_id </th>
+			<th> createdBy_employee_id </th>
+			<th> submittedDate </th>
+			<th> creationDate </th>
+			<th> status_id </th>
+			<th> expectedDate </th>
+			<th> shippingFee </th>
+			<th> taxes </th>
+			<th> paymentDate </th>
+			<th> paymentAmount </th>
+			<th> paymentMethod </th>
+			<th> notes </th>
+			<th> approvedBy_employee_id </th>
+			<th> approvedDate </th>
+			<th> submittedBy_employee_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#purchaseorder}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/purchaseorder/{{id}}'>{{id}}</a></td>
+			<td>{{supplier_id_DURClabel}} ({{supplier_id}}) </td>			<td>{{createdBy_employee_id_DURClabel}} ({{createdBy_employee_id}}) </td>			<td>{{submittedDate}}</td>
+			<td>{{creationDate}}</td>
+			<td>{{status_id_DURClabel}} ({{status_id}}) </td>			<td>{{expectedDate}}</td>
+			<td>{{shippingFee}}</td>
+			<td>{{taxes}}</td>
+			<td>{{paymentDate}}</td>
+			<td>{{paymentAmount}}</td>
+			<td>{{paymentMethod}}</td>
+			<td>{{notes}}</td>
+			<td>{{approvedBy_employee_id_DURClabel}} ({{approvedBy_employee_id}}) </td>			<td>{{approvedDate}}</td>
+			<td>{{submittedBy_employee_id_DURClabel}} ({{submittedBy_employee_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/purchaseorder}}
+</tbody>
+</table>
+</div></div> <!-- end purchaseorder card-->
+</div></div> <!--end belongs to card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

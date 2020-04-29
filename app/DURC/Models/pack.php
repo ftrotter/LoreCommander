@@ -49,10 +49,24 @@ class pack extends DURCModel{
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
+		'id',
+		'pack_name',
+		'pack_wizards_url',
+		'pack_wiki_url',
+		'pack_img_url',
+		'created_at',
+		'updated_at',
 			]; // End of nullable fields
 
     // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $attributes = [
+		'id' => null,
+		'pack_name' => null,
+		'pack_wizards_url' => null,
+		'pack_wiki_url' => null,
+		'pack_img_url' => null,
+		'created_at' => null,
+		'updated_at' => null,
 			]; // End of attributes
         
 		//everything is fillable by default

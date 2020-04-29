@@ -1,0 +1,297 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/supplier' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/supplier/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>supplier</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_supplier/'>Return to supplier list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/supplier/create'>Create new supplier </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+    </div></div>
+  <div class='form-group row {{company_row_class}}'>
+    <label for='company' class='col-sm-4 col-form-label'>company</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='company' name='company' placeholder='NULL' value='{{company}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='company' name='companyNull' id='companyNull' value='companyNull' {{company_checked}}>
+                    <label class='form-check-label' for='companyNull'>null</label>
+                </div></div>
+  <div class='form-group row {{lastName_row_class}}'>
+    <label for='lastName' class='col-sm-4 col-form-label'>lastName</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='lastName' name='lastName' placeholder='NULL' value='{{lastName}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='lastName' name='lastNameNull' id='lastNameNull' value='lastNameNull' {{lastName_checked}}>
+                    <label class='form-check-label' for='lastNameNull'>null</label>
+                </div></div>
+  <div class='form-group row {{firstName_row_class}}'>
+    <label for='firstName' class='col-sm-4 col-form-label'>firstName</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='firstName' name='firstName' placeholder='NULL' value='{{firstName}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='firstName' name='firstNameNull' id='firstNameNull' value='firstNameNull' {{firstName_checked}}>
+                    <label class='form-check-label' for='firstNameNull'>null</label>
+                </div></div>
+  <div class='form-group row {{emailAddress_row_class}}'>
+    <label for='emailAddress' class='col-sm-4 col-form-label'>emailAddress</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='emailAddress' name='emailAddress' placeholder='NULL' value='{{emailAddress}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='emailAddress' name='emailAddressNull' id='emailAddressNull' value='emailAddressNull' {{emailAddress_checked}}>
+                    <label class='form-check-label' for='emailAddressNull'>null</label>
+                </div></div>
+  <div class='form-group row {{jobTitle_row_class}}'>
+    <label for='jobTitle' class='col-sm-4 col-form-label'>jobTitle</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='jobTitle' name='jobTitle' placeholder='NULL' value='{{jobTitle}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='jobTitle' name='jobTitleNull' id='jobTitleNull' value='jobTitleNull' {{jobTitle_checked}}>
+                    <label class='form-check-label' for='jobTitleNull'>null</label>
+                </div></div>
+  <div class='form-group row {{businessPhone_row_class}}'>
+    <label for='businessPhone' class='col-sm-4 col-form-label'>businessPhone</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='businessPhone' name='businessPhone' placeholder='NULL' value='{{businessPhone}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='businessPhone' name='businessPhoneNull' id='businessPhoneNull' value='businessPhoneNull' {{businessPhone_checked}}>
+                    <label class='form-check-label' for='businessPhoneNull'>null</label>
+                </div></div>
+  <div class='form-group row {{homePhone_row_class}}'>
+    <label for='homePhone' class='col-sm-4 col-form-label'>homePhone</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='homePhone' name='homePhone' placeholder='NULL' value='{{homePhone}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='homePhone' name='homePhoneNull' id='homePhoneNull' value='homePhoneNull' {{homePhone_checked}}>
+                    <label class='form-check-label' for='homePhoneNull'>null</label>
+                </div></div>
+  <div class='form-group row {{mobilePhone_row_class}}'>
+    <label for='mobilePhone' class='col-sm-4 col-form-label'>mobilePhone</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='mobilePhone' name='mobilePhone' placeholder='NULL' value='{{mobilePhone}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='mobilePhone' name='mobilePhoneNull' id='mobilePhoneNull' value='mobilePhoneNull' {{mobilePhone_checked}}>
+                    <label class='form-check-label' for='mobilePhoneNull'>null</label>
+                </div></div>
+  <div class='form-group row {{faxNumber_row_class}}'>
+    <label for='faxNumber' class='col-sm-4 col-form-label'>faxNumber</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='faxNumber' name='faxNumber' placeholder='NULL' value='{{faxNumber}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='faxNumber' name='faxNumberNull' id='faxNumberNull' value='faxNumberNull' {{faxNumber_checked}}>
+                    <label class='form-check-label' for='faxNumberNull'>null</label>
+                </div></div>
+  <div class='form-group row {{address_row_class}}'>
+    <label for='address' class='col-sm-4 col-form-label'>address</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='address' name='address' placeholder='NULL' value='{{address}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='address' name='addressNull' id='addressNull' value='addressNull' {{address_checked}}>
+                    <label class='form-check-label' for='addressNull'>null</label>
+                </div></div>
+  <div class='form-group row {{city_row_class}}'>
+    <label for='city' class='col-sm-4 col-form-label'>city</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='city' name='city' placeholder='NULL' value='{{city}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='city' name='cityNull' id='cityNull' value='cityNull' {{city_checked}}>
+                    <label class='form-check-label' for='cityNull'>null</label>
+                </div></div>
+  <div class='form-group row {{stateProvince_row_class}}'>
+    <label for='stateProvince' class='col-sm-4 col-form-label'>stateProvince</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='stateProvince' name='stateProvince' placeholder='NULL' value='{{stateProvince}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='stateProvince' name='stateProvinceNull' id='stateProvinceNull' value='stateProvinceNull' {{stateProvince_checked}}>
+                    <label class='form-check-label' for='stateProvinceNull'>null</label>
+                </div></div>
+  <div class='form-group row {{zipPostalCode_row_class}}'>
+    <label for='zipPostalCode' class='col-sm-4 col-form-label'>zipPostalCode</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='zipPostalCode' name='zipPostalCode' placeholder='NULL' value='{{zipPostalCode}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='zipPostalCode' name='zipPostalCodeNull' id='zipPostalCodeNull' value='zipPostalCodeNull' {{zipPostalCode_checked}}>
+                    <label class='form-check-label' for='zipPostalCodeNull'>null</label>
+                </div></div>
+  <div class='form-group row {{countryRegion_row_class}}'>
+    <label for='countryRegion' class='col-sm-4 col-form-label'>countryRegion</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='countryRegion' name='countryRegion' placeholder='NULL' value='{{countryRegion}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='countryRegion' name='countryRegionNull' id='countryRegionNull' value='countryRegionNull' {{countryRegion_checked}}>
+                    <label class='form-check-label' for='countryRegionNull'>null</label>
+                </div></div>
+  <div class='form-group row {{webPage_row_class}}'>
+    <label for='webPage' class='col-sm-4 col-form-label'>webPage</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='webPage' name='webPage' placeholder='NULL' value='{{webPage}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='webPage' name='webPageNull' id='webPageNull' value='webPageNull' {{webPage_checked}}>
+                    <label class='form-check-label' for='webPageNull'>null</label>
+                </div></div>
+  <div class='form-group row {{notes_row_class}}'>
+    <label for='notes' class='col-sm-4 col-form-label'>notes</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='notes' name='notesNull' id='notesNull' value='notesNull' {{notes_checked}}>
+                    <label class='form-check-label' for='notesNull'>null</label>
+                </div></div>
+  <div class='form-group row {{attachments_row_class}}'>
+    <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='attachments' name='attachmentsNull' id='attachmentsNull' value='attachmentsNull' {{attachments_checked}}>
+                    <label class='form-check-label' for='attachmentsNull'>null</label>
+                </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/supplier/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='supplier' class='do-soft-delete btn btn-outline-danger'>Hard Delete supplier</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many purchaseorder ( <a href='/DURC/purchaseorder/'>see all</a> )
+{{^purchaseorder}}
+(no values)
+{{/purchaseorder}}
+  </div>
+<div class='card-body'>
+
+<table id='table_purchaseorder' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> supplier_id </th>
+			<th> createdBy_employee_id </th>
+			<th> submittedDate </th>
+			<th> creationDate </th>
+			<th> status_id </th>
+			<th> expectedDate </th>
+			<th> shippingFee </th>
+			<th> taxes </th>
+			<th> paymentDate </th>
+			<th> paymentAmount </th>
+			<th> paymentMethod </th>
+			<th> notes </th>
+			<th> approvedBy_employee_id </th>
+			<th> approvedDate </th>
+			<th> submittedBy_employee_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#purchaseorder}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/purchaseorder/{{id}}'>{{id}}</a></td>
+			<td>{{supplier_id_DURClabel}} ({{supplier_id}}) </td>			<td>{{createdBy_employee_id_DURClabel}} ({{createdBy_employee_id}}) </td>			<td>{{submittedDate}}</td>
+			<td>{{creationDate}}</td>
+			<td>{{status_id_DURClabel}} ({{status_id}}) </td>			<td>{{expectedDate}}</td>
+			<td>{{shippingFee}}</td>
+			<td>{{taxes}}</td>
+			<td>{{paymentDate}}</td>
+			<td>{{paymentAmount}}</td>
+			<td>{{paymentMethod}}</td>
+			<td>{{notes}}</td>
+			<td>{{approvedBy_employee_id_DURClabel}} ({{approvedBy_employee_id}}) </td>			<td>{{approvedDate}}</td>
+			<td>{{submittedBy_employee_id_DURClabel}} ({{submittedBy_employee_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/purchaseorder}}
+</tbody>
+</table>
+</div></div> <!-- end purchaseorder card-->
+<br>
+</div></div> <!--end has many card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

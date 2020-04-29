@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
     </div></div>
   <div class='form-group row {{scryfall_id_row_class}}'>
     <label for='scryfall_id' class='col-sm-4 col-form-label'>scryfall_id</label>
@@ -53,18 +53,27 @@
   <div class='form-group row {{mtgo_code_row_class}}'>
     <label for='mtgo_code' class='col-sm-4 col-form-label'>mtgo_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mtgo_code' name='mtgo_code' placeholder='' value='{{mtgo_code}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='mtgo_code' name='mtgo_codeNull' id='mtgo_codeNull' value='mtgo_codeNull' {{mtgo_code_checked}}>
+                    <label class='form-check-label' for='mtgo_codeNull'>null</label>
+                </div></div>
   <div class='form-group row {{arena_code_row_class}}'>
     <label for='arena_code' class='col-sm-4 col-form-label'>arena_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='arena_code' name='arena_code' placeholder='' value='{{arena_code}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='arena_code' name='arena_codeNull' id='arena_codeNull' value='arena_codeNull' {{arena_code_checked}}>
+                    <label class='form-check-label' for='arena_codeNull'>null</label>
+                </div></div>
   <div class='form-group row {{tcgplayer_id_row_class}}'>
     <label for='tcgplayer_id' class='col-sm-4 col-form-label'>tcgplayer_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='tcgplayer_id' name='tcgplayer_id' placeholder='' value='{{tcgplayer_id}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='tcgplayer_id' name='tcgplayer_idNull' id='tcgplayer_idNull' value='tcgplayer_idNull' {{tcgplayer_id_checked}}>
+                    <label class='form-check-label' for='tcgplayer_idNull'>null</label>
+                </div></div>
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
@@ -108,18 +117,27 @@
   <div class='form-group row {{block_code_row_class}}'>
     <label for='block_code' class='col-sm-4 col-form-label'>block_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='block_code' name='block_code' placeholder='' value='{{block_code}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='block_code' name='block_codeNull' id='block_codeNull' value='block_codeNull' {{block_code_checked}}>
+                    <label class='form-check-label' for='block_codeNull'>null</label>
+                </div></div>
   <div class='form-group row {{block_row_class}}'>
     <label for='block' class='col-sm-4 col-form-label'>block</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='block' name='block' placeholder='' value='{{block}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='block' name='block' placeholder='NULL' value='{{block}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='block' name='blockNull' id='blockNull' value='blockNull' {{block_checked}}>
+                    <label class='form-check-label' for='blockNull'>null</label>
+                </div></div>
   <div class='form-group row {{parent_set_code_row_class}}'>
     <label for='parent_set_code' class='col-sm-4 col-form-label'>parent_set_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='parent_set_code' name='parent_set_code' placeholder='' value='{{parent_set_code}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='parent_set_code' name='parent_set_codeNull' id='parent_set_codeNull' value='parent_set_codeNull' {{parent_set_code_checked}}>
+                    <label class='form-check-label' for='parent_set_codeNull'>null</label>
+                </div></div>
   <div class='form-group row {{card_count_row_class}}'>
     <label for='card_count' class='col-sm-4 col-form-label'>card_count</label>
     <div class='col-sm-7'>

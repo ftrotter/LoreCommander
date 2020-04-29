@@ -7,6 +7,160 @@ this will be automatically overwritten by future DURC runs.
 */
 
  
+//DURC->	DURC_aaa.magicField
+Route::resource("/DURC/magicfield", 'magicfieldController');
+Route::get("/DURC/json/magicfield/{magicfield_id}", 'magicfieldController@jsonone');
+Route::get("/DURC/json/magicfield/", 'magicfieldController@jsonall');
+Route::get("/DURC/searchjson/magicfield/", 'magicfieldController@search');
+Route::get("/DURC/magicfield/restore/{id}", 'magicfieldController@restore');
+ 
+//DURC->	DURC_irs.nonprofitcorp
+Route::resource("/DURC/nonprofitcorp", 'nonprofitcorpController');
+Route::get("/DURC/json/nonprofitcorp/{nonprofitcorp_id}", 'nonprofitcorpController@jsonone');
+Route::get("/DURC/json/nonprofitcorp/", 'nonprofitcorpController@jsonall');
+Route::get("/DURC/searchjson/nonprofitcorp/", 'nonprofitcorpController@search');
+
+ 
+//DURC->	DURC_northwind_data.inventoryTransaction
+Route::resource("/DURC/inventorytransaction", 'inventorytransactionController');
+Route::get("/DURC/json/inventorytransaction/{inventorytransaction_id}", 'inventorytransactionController@jsonone');
+Route::get("/DURC/json/inventorytransaction/", 'inventorytransactionController@jsonall');
+Route::get("/DURC/searchjson/inventorytransaction/", 'inventorytransactionController@search');
+
+ 
+//DURC->	DURC_northwind_data.invoice
+Route::resource("/DURC/invoice", 'invoiceController');
+Route::get("/DURC/json/invoice/{invoice_id}", 'invoiceController@jsonone');
+Route::get("/DURC/json/invoice/", 'invoiceController@jsonall');
+Route::get("/DURC/searchjson/invoice/", 'invoiceController@search');
+
+ 
+//DURC->	DURC_northwind_data.order
+Route::resource("/DURC/order", 'orderController');
+Route::get("/DURC/json/order/{order_id}", 'orderController@jsonone');
+Route::get("/DURC/json/order/", 'orderController@jsonall');
+Route::get("/DURC/searchjson/order/", 'orderController@search');
+
+ 
+//DURC->	DURC_northwind_data.orderDetail
+Route::resource("/DURC/orderdetail", 'orderdetailController');
+Route::get("/DURC/json/orderdetail/{orderdetail_id}", 'orderdetailController@jsonone');
+Route::get("/DURC/json/orderdetail/", 'orderdetailController@jsonall');
+Route::get("/DURC/searchjson/orderdetail/", 'orderdetailController@search');
+
+ 
+//DURC->	DURC_northwind_data.purchaseOrder
+Route::resource("/DURC/purchaseorder", 'purchaseorderController');
+Route::get("/DURC/json/purchaseorder/{purchaseorder_id}", 'purchaseorderController@jsonone');
+Route::get("/DURC/json/purchaseorder/", 'purchaseorderController@jsonall');
+Route::get("/DURC/searchjson/purchaseorder/", 'purchaseorderController@search');
+
+ 
+//DURC->	DURC_northwind_data.purchaseOrderDetail
+Route::resource("/DURC/purchaseorderdetail", 'purchaseorderdetailController');
+Route::get("/DURC/json/purchaseorderdetail/{purchaseorderdetail_id}", 'purchaseorderdetailController@jsonone');
+Route::get("/DURC/json/purchaseorderdetail/", 'purchaseorderdetailController@jsonall');
+Route::get("/DURC/searchjson/purchaseorderdetail/", 'purchaseorderdetailController@search');
+
+ 
+//DURC->	DURC_northwind_model.appstring
+Route::resource("/DURC/appstring", 'appstringController');
+Route::get("/DURC/json/appstring/{appstring_id}", 'appstringController@jsonone');
+Route::get("/DURC/json/appstring/", 'appstringController@jsonall');
+Route::get("/DURC/searchjson/appstring/", 'appstringController@search');
+
+ 
+//DURC->	DURC_northwind_model.customer
+Route::resource("/DURC/customer", 'customerController');
+Route::get("/DURC/json/customer/{customer_id}", 'customerController@jsonone');
+Route::get("/DURC/json/customer/", 'customerController@jsonall');
+Route::get("/DURC/searchjson/customer/", 'customerController@search');
+Route::get("/DURC/customer/restore/{id}", 'customerController@restore');
+ 
+//DURC->	DURC_northwind_model.employee
+Route::resource("/DURC/employee", 'employeeController');
+Route::get("/DURC/json/employee/{employee_id}", 'employeeController@jsonone');
+Route::get("/DURC/json/employee/", 'employeeController@jsonall');
+Route::get("/DURC/searchjson/employee/", 'employeeController@search');
+
+ 
+//DURC->	DURC_northwind_model.employeePrivilege
+Route::resource("/DURC/employeeprivilege", 'employeeprivilegeController');
+Route::get("/DURC/json/employeeprivilege/{employeeprivilege_id}", 'employeeprivilegeController@jsonone');
+Route::get("/DURC/json/employeeprivilege/", 'employeeprivilegeController@jsonall');
+Route::get("/DURC/searchjson/employeeprivilege/", 'employeeprivilegeController@search');
+
+ 
+//DURC->	DURC_northwind_model.inventoryTransactionType
+Route::resource("/DURC/inventorytransactiontype", 'inventorytransactiontypeController');
+Route::get("/DURC/json/inventorytransactiontype/{inventorytransactiontype_id}", 'inventorytransactiontypeController@jsonone');
+Route::get("/DURC/json/inventorytransactiontype/", 'inventorytransactiontypeController@jsonall');
+Route::get("/DURC/searchjson/inventorytransactiontype/", 'inventorytransactiontypeController@search');
+
+ 
+//DURC->	DURC_northwind_model.orderDetailStat
+Route::resource("/DURC/orderdetailstat", 'orderdetailstatController');
+Route::get("/DURC/json/orderdetailstat/{orderdetailstat_id}", 'orderdetailstatController@jsonone');
+Route::get("/DURC/json/orderdetailstat/", 'orderdetailstatController@jsonall');
+Route::get("/DURC/searchjson/orderdetailstat/", 'orderdetailstatController@search');
+
+ 
+//DURC->	DURC_northwind_model.orderStat
+Route::resource("/DURC/orderstat", 'orderstatController');
+Route::get("/DURC/json/orderstat/{orderstat_id}", 'orderstatController@jsonone');
+Route::get("/DURC/json/orderstat/", 'orderstatController@jsonall');
+Route::get("/DURC/searchjson/orderstat/", 'orderstatController@search');
+
+ 
+//DURC->	DURC_northwind_model.orderTaxStat
+Route::resource("/DURC/ordertaxstat", 'ordertaxstatController');
+Route::get("/DURC/json/ordertaxstat/{ordertaxstat_id}", 'ordertaxstatController@jsonone');
+Route::get("/DURC/json/ordertaxstat/", 'ordertaxstatController@jsonall');
+Route::get("/DURC/searchjson/ordertaxstat/", 'ordertaxstatController@search');
+
+ 
+//DURC->	DURC_northwind_model.privilege
+Route::resource("/DURC/privilege", 'privilegeController');
+Route::get("/DURC/json/privilege/{privilege_id}", 'privilegeController@jsonone');
+Route::get("/DURC/json/privilege/", 'privilegeController@jsonall');
+Route::get("/DURC/searchjson/privilege/", 'privilegeController@search');
+
+ 
+//DURC->	DURC_northwind_model.product
+Route::resource("/DURC/product", 'productController');
+Route::get("/DURC/json/product/{product_id}", 'productController@jsonone');
+Route::get("/DURC/json/product/", 'productController@jsonall');
+Route::get("/DURC/searchjson/product/", 'productController@search');
+
+ 
+//DURC->	DURC_northwind_model.purchaseOrderStat
+Route::resource("/DURC/purchaseorderstat", 'purchaseorderstatController');
+Route::get("/DURC/json/purchaseorderstat/{purchaseorderstat_id}", 'purchaseorderstatController@jsonone');
+Route::get("/DURC/json/purchaseorderstat/", 'purchaseorderstatController@jsonall');
+Route::get("/DURC/searchjson/purchaseorderstat/", 'purchaseorderstatController@search');
+
+ 
+//DURC->	DURC_northwind_model.salesReport
+Route::resource("/DURC/salesreport", 'salesreportController');
+Route::get("/DURC/json/salesreport/{salesreport_id}", 'salesreportController@jsonone');
+Route::get("/DURC/json/salesreport/", 'salesreportController@jsonall');
+Route::get("/DURC/searchjson/salesreport/", 'salesreportController@search');
+
+ 
+//DURC->	DURC_northwind_model.shipper
+Route::resource("/DURC/shipper", 'shipperController');
+Route::get("/DURC/json/shipper/{shipper_id}", 'shipperController@jsonone');
+Route::get("/DURC/json/shipper/", 'shipperController@jsonall');
+Route::get("/DURC/searchjson/shipper/", 'shipperController@search');
+
+ 
+//DURC->	DURC_northwind_model.supplier
+Route::resource("/DURC/supplier", 'supplierController');
+Route::get("/DURC/json/supplier/{supplier_id}", 'supplierController@jsonone');
+Route::get("/DURC/json/supplier/", 'supplierController@jsonall');
+Route::get("/DURC/searchjson/supplier/", 'supplierController@search');
+
+ 
 //DURC->	lore.artist
 Route::resource("/DURC/artist", 'artistController');
 Route::get("/DURC/json/artist/{artist_id}", 'artistController@jsonone');

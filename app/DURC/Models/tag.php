@@ -52,10 +52,21 @@ class tag extends DURCModel{
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
+		'id',
+		'tag_name',
+		'is_directed',
+		'created_at',
+		'updated_at',
 			]; // End of nullable fields
 
     // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $attributes = [
+		'id' => null,
+		'tag_name' => null,
+		'is_directed' => '0',
+		'excludes_tag_id' => 'NULL',
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 			]; // End of attributes
         
 		//everything is fillable by default

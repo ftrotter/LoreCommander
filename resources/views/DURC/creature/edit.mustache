@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
     </div></div>
   <div class='form-group row {{creature_name_row_class}}'>
     <label for='creature_name' class='col-sm-4 col-form-label'>creature_name</label>
@@ -48,8 +48,11 @@
   <div class='form-group row {{creature_image_uri_row_class}}'>
     <label for='creature_image_uri' class='col-sm-4 col-form-label'>creature_image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='creature_image_uri' name='creature_image_uri' placeholder='' value='{{creature_image_uri}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='creature_image_uri' name='creature_image_uri' placeholder='NULL' value='{{creature_image_uri}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='creature_image_uri' name='creature_image_uriNull' id='creature_image_uriNull' value='creature_image_uriNull' {{creature_image_uri_checked}}>
+                    <label class='form-check-label' for='creature_image_uriNull'>null</label>
+                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
