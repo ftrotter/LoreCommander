@@ -1,0 +1,837 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/purchaseorder' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/purchaseorder/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>purchaseorder</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_purchaseorder/'>Return to purchaseorder list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/purchaseorder/create'>Create new purchaseorder </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+    </div></div>
+  <div class='form-group row {{supplier_id_row_class}}'>
+    <label for='supplier_id' class='col-sm-4 col-form-label'>supplier_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{supplier_id}} (see below for lookup value)<br>
+	<select class='select2_supplier_id form-control' id='supplier_id' name='supplier_id'  >
+	<option value='{{supplier_id}}' selected='selected'>{{supplier_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_supplier_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/supplier',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{createdBy_employee_id_row_class}}'>
+    <label for='createdBy_employee_id' class='col-sm-4 col-form-label'>createdBy_employee_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{createdBy_employee_id}} (see below for lookup value)<br>
+	<select class='select2_createdBy_employee_id form-control' id='createdBy_employee_id' name='createdBy_employee_id'  >
+	<option value='{{createdBy_employee_id}}' selected='selected'>{{createdBy_employee_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_createdBy_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{submittedDate_row_class}}'>
+    <label for='submittedDate' class='col-sm-4 col-form-label'>submittedDate</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='submittedDate' name='submittedDate' placeholder='' value='{{submittedDate}}'  >
+
+<button type='button' class='btn btn-primary' id='submittedDate_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='submittedDate_TodayNow'> Today and Now</button>
+
+<script>
+	var submittedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#submittedDate_TodayNow').click( function(e) {
+      		$('#submittedDate').val(submittedDateConv.format(new Date())).change(); } );
+
+    	$('#submittedDate_FontPicker').click(
+      		function(e) {
+        		$('#submittedDate').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{creationDate_row_class}}'>
+    <label for='creationDate' class='col-sm-4 col-form-label'>creationDate</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='creationDate' name='creationDate' placeholder='' value='{{creationDate}}'  >
+
+<button type='button' class='btn btn-primary' id='creationDate_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='creationDate_TodayNow'> Today and Now</button>
+
+<script>
+	var creationDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#creationDate_TodayNow').click( function(e) {
+      		$('#creationDate').val(creationDateConv.format(new Date())).change(); } );
+
+    	$('#creationDate_FontPicker').click(
+      		function(e) {
+        		$('#creationDate').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{status_id_row_class}}'>
+    <label for='status_id' class='col-sm-4 col-form-label'>status_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{status_id}} (see below for lookup value)<br>
+	<select class='select2_status_id form-control' id='status_id' name='status_id'  >
+	<option value='{{status_id}}' selected='selected'>{{status_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_status_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/purchaseOrderStatus',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{expectedDate_row_class}}'>
+    <label for='expectedDate' class='col-sm-4 col-form-label'>expectedDate</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='expectedDate' name='expectedDate' placeholder='' value='{{expectedDate}}'  >
+
+<button type='button' class='btn btn-primary' id='expectedDate_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='expectedDate_TodayNow'> Today and Now</button>
+
+<script>
+	var expectedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#expectedDate_TodayNow').click( function(e) {
+      		$('#expectedDate').val(expectedDateConv.format(new Date())).change(); } );
+
+    	$('#expectedDate_FontPicker').click(
+      		function(e) {
+        		$('#expectedDate').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{shippingFee_row_class}}'>
+    <label for='shippingFee' class='col-sm-4 col-form-label'>shippingFee</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}'  >
+    </div></div>
+  <div class='form-group row {{taxes_row_class}}'>
+    <label for='taxes' class='col-sm-4 col-form-label'>taxes</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}'  >
+    </div></div>
+  <div class='form-group row {{paymentDate_row_class}}'>
+    <label for='paymentDate' class='col-sm-4 col-form-label'>paymentDate</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='paymentDate' name='paymentDate' placeholder='' value='{{paymentDate}}'  >
+
+<button type='button' class='btn btn-primary' id='paymentDate_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='paymentDate_TodayNow'> Today and Now</button>
+
+<script>
+	var paymentDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#paymentDate_TodayNow').click( function(e) {
+      		$('#paymentDate').val(paymentDateConv.format(new Date())).change(); } );
+
+    	$('#paymentDate_FontPicker').click(
+      		function(e) {
+        		$('#paymentDate').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{paymentAmount_row_class}}'>
+    <label for='paymentAmount' class='col-sm-4 col-form-label'>paymentAmount</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='paymentAmount' name='paymentAmount' placeholder='0.0000' value='{{paymentAmount}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='paymentAmount' name='paymentAmountNull' id='paymentAmountNull' value='paymentAmountNull' {{paymentAmount_checked}}>
+                    <label class='form-check-label' for='paymentAmountNull'>null</label>
+                </div></div>
+  <div class='form-group row {{paymentMethod_row_class}}'>
+    <label for='paymentMethod' class='col-sm-4 col-form-label'>paymentMethod</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='paymentMethod' name='paymentMethod' placeholder='NULL' value='{{paymentMethod}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='paymentMethod' name='paymentMethodNull' id='paymentMethodNull' value='paymentMethodNull' {{paymentMethod_checked}}>
+                    <label class='form-check-label' for='paymentMethodNull'>null</label>
+                </div></div>
+  <div class='form-group row {{notes_row_class}}'>
+    <label for='notes' class='col-sm-4 col-form-label'>notes</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='notes' name='notesNull' id='notesNull' value='notesNull' {{notes_checked}}>
+                    <label class='form-check-label' for='notesNull'>null</label>
+                </div></div>
+  <div class='form-group row {{approvedBy_employee_id_row_class}}'>
+    <label for='approvedBy_employee_id' class='col-sm-4 col-form-label'>approvedBy_employee_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{approvedBy_employee_id}} (see below for lookup value)<br>
+	<select class='select2_approvedBy_employee_id form-control' id='approvedBy_employee_id' name='approvedBy_employee_id'  >
+	<option value='{{approvedBy_employee_id}}' selected='selected'>{{approvedBy_employee_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_approvedBy_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{approvedDate_row_class}}'>
+    <label for='approvedDate' class='col-sm-4 col-form-label'>approvedDate</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='approvedDate' name='approvedDate' placeholder='' value='{{approvedDate}}'  >
+
+<button type='button' class='btn btn-primary' id='approvedDate_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='approvedDate_TodayNow'> Today and Now</button>
+
+<script>
+	var approvedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#approvedDate_TodayNow').click( function(e) {
+      		$('#approvedDate').val(approvedDateConv.format(new Date())).change(); } );
+
+    	$('#approvedDate_FontPicker').click(
+      		function(e) {
+        		$('#approvedDate').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{submittedBy_employee_id_row_class}}'>
+    <label for='submittedBy_employee_id' class='col-sm-4 col-form-label'>submittedBy_employee_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{submittedBy_employee_id}} (see below for lookup value)<br>
+	<select class='select2_submittedBy_employee_id form-control' id='submittedBy_employee_id' name='submittedBy_employee_id'  >
+	<option value='{{submittedBy_employee_id}}' selected='selected'>{{submittedBy_employee_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_submittedBy_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/purchaseorder/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='purchaseorder' class='do-soft-delete btn btn-outline-danger'>Hard Delete purchaseorder</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many inventorytransaction ( <a href='/DURC/inventorytransaction/'>see all</a> )
+{{^inventorytransaction}}
+(no values)
+{{/inventorytransaction}}
+  </div>
+<div class='card-body'>
+
+<table id='table_inventorytransaction' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> transactionType </th>
+			<th> transactionCreatedDate </th>
+			<th> transactionModifiedDate </th>
+			<th> product_id </th>
+			<th> quantity </th>
+			<th> purchaseOrder_id </th>
+			<th> customerOrder_id </th>
+			<th> comments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#inventorytransaction}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/inventorytransaction/{{id}}'>{{id}}</a></td>
+			<td>{{transactionType}}</td>
+			<td>{{transactionCreatedDate}}</td>
+			<td>{{transactionModifiedDate}}</td>
+			<td>{{product_id_DURClabel}} ({{product_id}}) </td>			<td>{{quantity}}</td>
+			<td>{{purchaseOrder_id_DURClabel}} ({{purchaseOrder_id}}) </td>			<td>{{customerOrder_id_DURClabel}} ({{customerOrder_id}}) </td>			<td>{{comments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/inventorytransaction}}
+</tbody>
+</table>
+</div></div> <!-- end inventorytransaction card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many orderdetail ( <a href='/DURC/orderdetail/'>see all</a> )
+{{^orderdetail}}
+(no values)
+{{/orderdetail}}
+  </div>
+<div class='card-body'>
+
+<table id='table_orderdetail' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> order_id </th>
+			<th> product_id </th>
+			<th> quantity </th>
+			<th> unitPrice </th>
+			<th> discount </th>
+			<th> status_id </th>
+			<th> dateAllocated </th>
+			<th> PurchaseOrder_id </th>
+			<th> inventory_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#orderdetail}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/orderdetail/{{id}}'>{{id}}</a></td>
+			<td>{{order_id_DURClabel}} ({{order_id}}) </td>			<td>{{product_id_DURClabel}} ({{product_id}}) </td>			<td>{{quantity}}</td>
+			<td>{{unitPrice}}</td>
+			<td>{{discount}}</td>
+			<td>{{status_id_DURClabel}} ({{status_id}}) </td>			<td>{{dateAllocated}}</td>
+			<td>{{PurchaseOrder_id_DURClabel}} ({{PurchaseOrder_id}}) </td>			<td>{{inventory_id_DURClabel}} ({{inventory_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/orderdetail}}
+</tbody>
+</table>
+</div></div> <!-- end orderdetail card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many purchaseorderdetail ( <a href='/DURC/purchaseorderdetail/'>see all</a> )
+{{^purchaseorderdetail}}
+(no values)
+{{/purchaseorderdetail}}
+  </div>
+<div class='card-body'>
+
+<table id='table_purchaseorderdetail' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> purchaseOrder_id </th>
+			<th> product_id </th>
+			<th> quantity </th>
+			<th> unitCost </th>
+			<th> dateReceived </th>
+			<th> postedToInventory </th>
+			<th> inventory_id </th>
+
+</tr>
+</thead>
+<tbody>
+{{#purchaseorderdetail}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/purchaseorderdetail/{{id}}'>{{id}}</a></td>
+			<td>{{purchaseOrder_id_DURClabel}} ({{purchaseOrder_id}}) </td>			<td>{{product_id_DURClabel}} ({{product_id}}) </td>			<td>{{quantity}}</td>
+			<td>{{unitCost}}</td>
+			<td>{{dateReceived}}</td>
+			<td>{{postedToInventory}}</td>
+			<td>{{inventory_id_DURClabel}} ({{inventory_id}}) </td>		
+		{{/.}}
+	</tr>
+{{/purchaseorderdetail}}
+</tbody>
+</table>
+</div></div> <!-- end purchaseorderdetail card-->
+<br>
+</div></div> <!--end has many card-->
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    supplier ( <a href='/DURC/supplier/'>see all</a> )
+{{^supplier}}
+(no values)
+{{/supplier}}
+  </div>
+<div class='card-body'>
+<table id='table_supplier' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> company </th>
+			<th> lastName </th>
+			<th> firstName </th>
+			<th> emailAddress </th>
+			<th> jobTitle </th>
+			<th> businessPhone </th>
+			<th> homePhone </th>
+			<th> mobilePhone </th>
+			<th> faxNumber </th>
+			<th> address </th>
+			<th> city </th>
+			<th> stateProvince </th>
+			<th> zipPostalCode </th>
+			<th> countryRegion </th>
+			<th> webPage </th>
+			<th> notes </th>
+			<th> attachments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#supplier}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/supplier/{{id}}'>{{id}}</a></td>
+			<td>{{company}}</td>
+			<td>{{lastName}}</td>
+			<td>{{firstName}}</td>
+			<td>{{emailAddress}}</td>
+			<td>{{jobTitle}}</td>
+			<td>{{businessPhone}}</td>
+			<td>{{homePhone}}</td>
+			<td>{{mobilePhone}}</td>
+			<td>{{faxNumber}}</td>
+			<td>{{address}}</td>
+			<td>{{city}}</td>
+			<td>{{stateProvince}}</td>
+			<td>{{zipPostalCode}}</td>
+			<td>{{countryRegion}}</td>
+			<td>{{webPage}}</td>
+			<td>{{notes}}</td>
+			<td>{{attachments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/supplier}}
+</tbody>
+</table>
+</div></div> <!-- end supplier card-->
+
+<div class='card'>
+  <div class='card-header'>
+    created_by_employee ( <a href='/DURC/employee/'>see all</a> )
+{{^created_by_employee}}
+(no values)
+{{/created_by_employee}}
+  </div>
+<div class='card-body'>
+<table id='table_created_by_employee' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> company </th>
+			<th> lastName </th>
+			<th> firstName </th>
+			<th> emailAddress </th>
+			<th> jobTitle </th>
+			<th> businessPhone </th>
+			<th> homePhone </th>
+			<th> mobilePhone </th>
+			<th> faxNumber </th>
+			<th> address </th>
+			<th> city </th>
+			<th> stateProvince </th>
+			<th> zipPostalCode </th>
+			<th> countryRegion </th>
+			<th> webPage </th>
+			<th> notes </th>
+			<th> attachments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#created_by_employee}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/employee/{{id}}'>{{id}}</a></td>
+			<td>{{company}}</td>
+			<td>{{lastName}}</td>
+			<td>{{firstName}}</td>
+			<td>{{emailAddress}}</td>
+			<td>{{jobTitle}}</td>
+			<td>{{businessPhone}}</td>
+			<td>{{homePhone}}</td>
+			<td>{{mobilePhone}}</td>
+			<td>{{faxNumber}}</td>
+			<td>{{address}}</td>
+			<td>{{city}}</td>
+			<td>{{stateProvince}}</td>
+			<td>{{zipPostalCode}}</td>
+			<td>{{countryRegion}}</td>
+			<td>{{webPage}}</td>
+			<td>{{notes}}</td>
+			<td>{{attachments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/created_by_employee}}
+</tbody>
+</table>
+</div></div> <!-- end created_by_employee card-->
+
+<div class='card'>
+  <div class='card-header'>
+    approved_by_employee ( <a href='/DURC/employee/'>see all</a> )
+{{^approved_by_employee}}
+(no values)
+{{/approved_by_employee}}
+  </div>
+<div class='card-body'>
+<table id='table_approved_by_employee' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> company </th>
+			<th> lastName </th>
+			<th> firstName </th>
+			<th> emailAddress </th>
+			<th> jobTitle </th>
+			<th> businessPhone </th>
+			<th> homePhone </th>
+			<th> mobilePhone </th>
+			<th> faxNumber </th>
+			<th> address </th>
+			<th> city </th>
+			<th> stateProvince </th>
+			<th> zipPostalCode </th>
+			<th> countryRegion </th>
+			<th> webPage </th>
+			<th> notes </th>
+			<th> attachments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#approved_by_employee}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/employee/{{id}}'>{{id}}</a></td>
+			<td>{{company}}</td>
+			<td>{{lastName}}</td>
+			<td>{{firstName}}</td>
+			<td>{{emailAddress}}</td>
+			<td>{{jobTitle}}</td>
+			<td>{{businessPhone}}</td>
+			<td>{{homePhone}}</td>
+			<td>{{mobilePhone}}</td>
+			<td>{{faxNumber}}</td>
+			<td>{{address}}</td>
+			<td>{{city}}</td>
+			<td>{{stateProvince}}</td>
+			<td>{{zipPostalCode}}</td>
+			<td>{{countryRegion}}</td>
+			<td>{{webPage}}</td>
+			<td>{{notes}}</td>
+			<td>{{attachments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/approved_by_employee}}
+</tbody>
+</table>
+</div></div> <!-- end approved_by_employee card-->
+
+<div class='card'>
+  <div class='card-header'>
+    submitted_by_employee ( <a href='/DURC/employee/'>see all</a> )
+{{^submitted_by_employee}}
+(no values)
+{{/submitted_by_employee}}
+  </div>
+<div class='card-body'>
+<table id='table_submitted_by_employee' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> company </th>
+			<th> lastName </th>
+			<th> firstName </th>
+			<th> emailAddress </th>
+			<th> jobTitle </th>
+			<th> businessPhone </th>
+			<th> homePhone </th>
+			<th> mobilePhone </th>
+			<th> faxNumber </th>
+			<th> address </th>
+			<th> city </th>
+			<th> stateProvince </th>
+			<th> zipPostalCode </th>
+			<th> countryRegion </th>
+			<th> webPage </th>
+			<th> notes </th>
+			<th> attachments </th>
+
+</tr>
+</thead>
+<tbody>
+{{#submitted_by_employee}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/employee/{{id}}'>{{id}}</a></td>
+			<td>{{company}}</td>
+			<td>{{lastName}}</td>
+			<td>{{firstName}}</td>
+			<td>{{emailAddress}}</td>
+			<td>{{jobTitle}}</td>
+			<td>{{businessPhone}}</td>
+			<td>{{homePhone}}</td>
+			<td>{{mobilePhone}}</td>
+			<td>{{faxNumber}}</td>
+			<td>{{address}}</td>
+			<td>{{city}}</td>
+			<td>{{stateProvince}}</td>
+			<td>{{zipPostalCode}}</td>
+			<td>{{countryRegion}}</td>
+			<td>{{webPage}}</td>
+			<td>{{notes}}</td>
+			<td>{{attachments}}</td>
+		
+		{{/.}}
+	</tr>
+{{/submitted_by_employee}}
+</tbody>
+</table>
+</div></div> <!-- end submitted_by_employee card-->
+</div></div> <!--end belongs to card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

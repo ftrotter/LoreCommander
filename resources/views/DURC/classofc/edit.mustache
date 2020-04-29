@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
     </div></div>
   <div class='form-group row {{classofc_name_row_class}}'>
     <label for='classofc_name' class='col-sm-4 col-form-label'>classofc_name</label>
@@ -48,13 +48,19 @@
   <div class='form-group row {{classofc_img_uri_row_class}}'>
     <label for='classofc_img_uri' class='col-sm-4 col-form-label'>classofc_img_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='' value='{{classofc_img_uri}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='classofc_img_uri' name='classofc_img_uri' placeholder='NULL' value='{{classofc_img_uri}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='classofc_img_uri' name='classofc_img_uriNull' id='classofc_img_uriNull' value='classofc_img_uriNull' {{classofc_img_uri_checked}}>
+                    <label class='form-check-label' for='classofc_img_uriNull'>null</label>
+                </div></div>
   <div class='form-group row {{classofc_wiki_url_row_class}}'>
     <label for='classofc_wiki_url' class='col-sm-4 col-form-label'>classofc_wiki_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='' value='{{classofc_wiki_url}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='classofc_wiki_url' name='classofc_wiki_url' placeholder='NULL' value='{{classofc_wiki_url}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='classofc_wiki_url' name='classofc_wiki_urlNull' id='classofc_wiki_urlNull' value='classofc_wiki_urlNull' {{classofc_wiki_url_checked}}>
+                    <label class='form-check-label' for='classofc_wiki_urlNull'>null</label>
+                </div></div>
   <div class='form-group row {{is_mega_class_row_class}}'>
     <div class='col-sm-4'><label>is_mega_class</label></div>
     <div class='col-sm-7'>

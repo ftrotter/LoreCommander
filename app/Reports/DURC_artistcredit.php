@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=983760c678df5c794d9686841ba93aff
+FILE_SIG=e721ed51840089dffc9ba1f7bab660aa
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -170,6 +170,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => true,
   ),
   1 => 
   array (
@@ -180,6 +183,9 @@ array (
     'is_linked_key' => true,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
   ),
   2 => 
   array (
@@ -190,6 +196,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '1',
+    'is_auto_increment' => false,
   ),
   3 => 
   array (
@@ -200,6 +209,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => 'current_timestamp()',
+    'is_auto_increment' => false,
   ),
   4 => 
   array (
@@ -210,6 +222,9 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => 'current_timestamp()',
+    'is_auto_increment' => false,
   ),
 )
 //has_many

@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
     </div></div>
   <div class='form-group row {{strategy_name_row_class}}'>
     <label for='strategy_name' class='col-sm-4 col-form-label'>strategy_name</label>
@@ -91,8 +91,11 @@ $('.select2_wincon_cardface_id').select2({
   <div class='form-group row {{WOTC_rule_reference_row_class}}'>
     <label for='WOTC_rule_reference' class='col-sm-4 col-form-label'>WOTC_rule_reference</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='' value='{{WOTC_rule_reference}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='NULL' value='{{WOTC_rule_reference}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='WOTC_rule_reference' name='WOTC_rule_referenceNull' id='WOTC_rule_referenceNull' value='WOTC_rule_referenceNull' {{WOTC_rule_reference_checked}}>
+                    <label class='form-check-label' for='WOTC_rule_referenceNull'>null</label>
+                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>

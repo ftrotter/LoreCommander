@@ -239,7 +239,7 @@ class cardController extends DURCController
 		$tmp_card->rarity = DURC::formatForStorage( 'rarity', 'varchar', $request->rarity, $tmp_card ); 
 		$tmp_card->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at, $tmp_card ); 
 		$tmp_card->set_name = DURC::formatForStorage( 'set_name', 'varchar', $request->set_name, $tmp_card ); 
-		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'int', $request->set_type, $tmp_card ); 
+		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type, $tmp_card ); 
 		$tmp_card->mtgset_id = DURC::formatForStorage( 'mtgset_id', 'int', $request->mtgset_id, $tmp_card ); 
 		$tmp_card->variation_of_scryfall_id = DURC::formatForStorage( 'variation_of_scryfall_id', 'varchar', $request->variation_of_scryfall_id, $tmp_card ); 
 		$tmp_card->edhrec_rank = DURC::formatForStorage( 'edhrec_rank', 'int', $request->edhrec_rank, $tmp_card ); 
@@ -417,7 +417,7 @@ class cardController extends DURCController
 		$tmp_card->rarity = DURC::formatForStorage( 'rarity', 'varchar', $request->rarity, $tmp_card ); 
 		$tmp_card->released_at = DURC::formatForStorage( 'released_at', 'varchar', $request->released_at, $tmp_card ); 
 		$tmp_card->set_name = DURC::formatForStorage( 'set_name', 'varchar', $request->set_name, $tmp_card ); 
-		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'int', $request->set_type, $tmp_card ); 
+		$tmp_card->set_type = DURC::formatForStorage( 'set_type', 'varchar', $request->set_type, $tmp_card ); 
 		$tmp_card->mtgset_id = DURC::formatForStorage( 'mtgset_id', 'int', $request->mtgset_id, $tmp_card ); 
 		$tmp_card->variation_of_scryfall_id = DURC::formatForStorage( 'variation_of_scryfall_id', 'varchar', $request->variation_of_scryfall_id, $tmp_card ); 
 		$tmp_card->edhrec_rank = DURC::formatForStorage( 'edhrec_rank', 'int', $request->edhrec_rank, $tmp_card ); 

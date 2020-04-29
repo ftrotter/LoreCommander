@@ -1,0 +1,348 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. <a href='/DURC/magicfield/restore/{{id}}' data-id='{{id}}' data-controller='magicfield' class='do-recover btn btn-secondary'>Undo</a>
+            </div>
+
+{{#is_new}}
+<form action='/DURC/magicfield' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/magicfield/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>magicfield</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_magicfield/'>Return to magicfield list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/magicfield/create'>Create new magicfield </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+    </div></div>
+  <div class='form-group row {{editsome_markdown_row_class}}'>
+    <label for='editsome_markdown' class='col-sm-4 col-form-label'>editsome_markdown</label>
+    <div class='col-sm-7'>
+	<textarea id='editsome_markdown' name='editsome_markdown'  >{{editsome_markdown}}</textarea>
+    </div>
+  </div>
+<script>
+	new SimpleMDE({
+		element: document.getElementById('editsome_markdown'),
+		spellChecker: true,
+	});
+</script>
+
+  <div class='form-group row {{typesome_sql_code_row_class}}'>
+    <label for='typesome_sql_code' class='col-sm-4 col-form-label'>typesome_sql_code</label>
+    <div class='col-sm-7'>
+	<textarea style='height: auto;'  id='typesome_sql_code' name='typesome_sql_code' >{{typesome_sql_code}}
+
+</textarea>
+    </div>
+  </div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/sql/sql.js'></script>
+<script>
+
+      var editor_typesome_sql_code = CodeMirror.fromTextArea(document.getElementById('typesome_sql_code'), {
+        lineNumbers: true,
+	viewportMargin: Infinity,
+	theme: 'lesser-dark' 
+	, mode: 'text/x-sql'
+      });
+
+</script>
+
+  <div class='form-group row {{typesome_php_code_row_class}}'>
+    <label for='typesome_php_code' class='col-sm-4 col-form-label'>typesome_php_code</label>
+    <div class='col-sm-7'>
+	<textarea style='height: auto;'  id='typesome_php_code' name='typesome_php_code' >{{typesome_php_code}}
+
+</textarea>
+    </div>
+  </div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/php/php.js'></script>
+<script>
+
+      var editor_typesome_php_code = CodeMirror.fromTextArea(document.getElementById('typesome_php_code'), {
+        lineNumbers: true,
+	viewportMargin: Infinity,
+	theme: 'lesser-dark' 
+	, mode: 'php'
+      });
+
+</script>
+
+  <div class='form-group row {{typesome_python_code_row_class}}'>
+    <label for='typesome_python_code' class='col-sm-4 col-form-label'>typesome_python_code</label>
+    <div class='col-sm-7'>
+	<textarea style='height: auto;'  id='typesome_python_code' name='typesome_python_code' >{{typesome_python_code}}
+
+</textarea>
+    </div>
+  </div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/python/python.js'></script>
+<script>
+
+      var editor_typesome_python_code = CodeMirror.fromTextArea(document.getElementById('typesome_python_code'), {
+        lineNumbers: true,
+	viewportMargin: Infinity,
+	theme: 'lesser-dark' 
+	, mode: 'python'
+      });
+
+</script>
+
+  <div class='form-group row {{typesome_javascript_code_row_class}}'>
+    <label for='typesome_javascript_code' class='col-sm-4 col-form-label'>typesome_javascript_code</label>
+    <div class='col-sm-7'>
+	<textarea style='height: auto;'  id='typesome_javascript_code' name='typesome_javascript_code' >{{typesome_javascript_code}}
+
+</textarea>
+    </div>
+  </div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/javascript/javascript.js'></script>
+<script>
+
+      var editor_typesome_javascript_code = CodeMirror.fromTextArea(document.getElementById('typesome_javascript_code'), {
+        lineNumbers: true,
+	viewportMargin: Infinity,
+	theme: 'lesser-dark' 
+	, mode: 'javascript'
+      });
+
+</script>
+
+  <div class='form-group row {{this_datetime_row_class}}'>
+    <label for='this_datetime' class='col-sm-4 col-form-label'>this_datetime</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='this_datetime' name='this_datetime' placeholder='' value='{{this_datetime}}'  >
+
+<button type='button' class='btn btn-primary' id='this_datetime_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='this_datetime_TodayNow'> Today and Now</button>
+
+<script>
+	var this_datetimeConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#this_datetime_TodayNow').click( function(e) {
+      		$('#this_datetime').val(this_datetimeConv.format(new Date())).change(); } );
+
+    	$('#this_datetime_FontPicker').click(
+      		function(e) {
+        		$('#this_datetime').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{this_date_row_class}}'>
+    <label for='this_date' class='col-sm-4 col-form-label'>this_date</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='this_date' name='this_date' placeholder='' value='{{this_date}}'  >
+
+<button type='button' class='btn btn-primary' id='this_date_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='this_date_TodayNow'> Today </button>
+
+<script>
+	var this_dateConv = new AnyTime.Converter({format: '%Y-%m-%d'});
+  	$('#this_date_TodayNow').click( function(e) {
+      		$('#this_date').val(this_dateConv.format(new Date())).change(); } );
+
+    	$('#this_date_FontPicker').click(
+      		function(e) {
+        		$('#this_date').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{deleted_at_row_class}}'>
+    <label for='deleted_at' class='col-sm-4 col-form-label'>deleted_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='deleted_at' name='deleted_at' placeholder='' value='{{deleted_at}}'  >
+
+<button type='button' class='btn btn-primary' id='deleted_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='deleted_at_TodayNow'> Today and Now</button>
+
+<script>
+	var deleted_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#deleted_at_TodayNow').click( function(e) {
+      		$('#deleted_at').val(deleted_atConv.format(new Date())).change(); } );
+
+    	$('#deleted_at_FontPicker').click(
+      		function(e) {
+        		$('#deleted_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  
+{{#is_new}}
+<form action='/DURC/magicfield' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/magicfield/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+<div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+              <button type='button' data-id='{{id}}' data-controller='magicfield' class='do-soft-delete btn btn-outline-danger'>Delete</button>
+              </div>
+            </div>
+</form>
+
+
+
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

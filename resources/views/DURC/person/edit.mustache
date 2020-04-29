@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
     </div></div>
   <div class='form-group row {{last_name_row_class}}'>
     <label for='last_name' class='col-sm-4 col-form-label'>last_name</label>
@@ -58,23 +58,35 @@
   <div class='form-group row {{image_uri_row_class}}'>
     <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri' name='image_uriNull' id='image_uriNull' value='image_uriNull' {{image_uri_checked}}>
+                    <label class='form-check-label' for='image_uriNull'>null</label>
+                </div></div>
   <div class='form-group row {{wallpaper_download_url_row_class}}'>
     <label for='wallpaper_download_url' class='col-sm-4 col-form-label'>wallpaper_download_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='' value='{{wallpaper_download_url}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='NULL' value='{{wallpaper_download_url}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='wallpaper_download_url' name='wallpaper_download_urlNull' id='wallpaper_download_urlNull' value='wallpaper_download_urlNull' {{wallpaper_download_url_checked}}>
+                    <label class='form-check-label' for='wallpaper_download_urlNull'>null</label>
+                </div></div>
   <div class='form-group row {{mtgwiki_url_row_class}}'>
     <label for='mtgwiki_url' class='col-sm-4 col-form-label'>mtgwiki_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mtgwiki_url' name='mtgwiki_url' placeholder='' value='{{mtgwiki_url}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='mtgwiki_url' name='mtgwiki_url' placeholder='NULL' value='{{mtgwiki_url}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='mtgwiki_url' name='mtgwiki_urlNull' id='mtgwiki_urlNull' value='mtgwiki_urlNull' {{mtgwiki_url_checked}}>
+                    <label class='form-check-label' for='mtgwiki_urlNull'>null</label>
+                </div></div>
   <div class='form-group row {{wizards_story_url_row_class}}'>
     <label for='wizards_story_url' class='col-sm-4 col-form-label'>wizards_story_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='wizards_story_url' name='wizards_story_url' placeholder='' value='{{wizards_story_url}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='wizards_story_url' name='wizards_story_url' placeholder='NULL' value='{{wizards_story_url}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='wizards_story_url' name='wizards_story_urlNull' id='wizards_story_urlNull' value='wizards_story_urlNull' {{wizards_story_url_checked}}>
+                    <label class='form-check-label' for='wizards_story_urlNull'>null</label>
+                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>

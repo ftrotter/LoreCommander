@@ -59,10 +59,26 @@ class person extends DURCModel{
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
+		'id',
+		'last_name',
+		'first_name',
+		'person_blurb',
+		'created_at',
+		'updated_at',
 			]; // End of nullable fields
 
     // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $attributes = [
+		'id' => null,
+		'last_name' => null,
+		'first_name' => null,
+		'person_blurb' => null,
+		'image_uri' => 'NULL',
+		'wallpaper_download_url' => 'NULL',
+		'mtgwiki_url' => 'NULL',
+		'wizards_story_url' => 'NULL',
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 			]; // End of attributes
         
 		//everything is fillable by default

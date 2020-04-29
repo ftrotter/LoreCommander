@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
     </div></div>
   <div class='form-group row {{arttag_name_row_class}}'>
     <label for='arttag_name' class='col-sm-4 col-form-label'>arttag_name</label>
@@ -57,8 +57,11 @@
   <div class='form-group row {{excludes_arttag_id_row_class}}'>
     <label for='excludes_arttag_id' class='col-sm-4 col-form-label'>excludes_arttag_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='' value='{{excludes_arttag_id}}'  required>
-    </div></div>
+      <input type='text' class='form-control' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='NULL' value='{{excludes_arttag_id}}'  >
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='excludes_arttag_id' name='excludes_arttag_idNull' id='excludes_arttag_idNull' value='excludes_arttag_idNull' {{excludes_arttag_id_checked}}>
+                    <label class='form-check-label' for='excludes_arttag_idNull'>null</label>
+                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
