@@ -48,7 +48,7 @@ class creature_cardface extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'cardface_id',
@@ -72,8 +72,8 @@ class creature_cardface extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'cardface_id' => 'integer|required',
-		'creature_id' => 'integer|required',
+		'cardface_id' => 'integer|present',
+		'creature_id' => 'integer|present',
 	]; // End of validation rules
 		
         

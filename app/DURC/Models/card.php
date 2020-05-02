@@ -83,7 +83,7 @@ class card extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'scryfall_id',
@@ -161,8 +161,8 @@ class card extends DURCModel{
 		'legal_standard' => '0',
 		'legal_historic' => null,
 		'legal_pioneer' => null,
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -171,27 +171,25 @@ class card extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'scryfall_id' => 'required',
-		'lang' => 'required',
-		'oracle_id' => 'required',
-		'rulings_uri' => 'required',
-		'scryfall_web_uri' => 'required',
-		'scryfall_api_uri' => 'required',
-		'layout' => 'required',
-		'rarity' => 'required',
+		'scryfall_id' => 'present',
+		'lang' => 'present',
+		'oracle_id' => 'present',
+		'rulings_uri' => 'present',
+		'scryfall_web_uri' => 'present',
+		'scryfall_api_uri' => 'present',
+		'layout' => 'present',
+		'rarity' => 'present',
 		'released_at' => 'nullable',
-		'set_name' => 'required',
-		'set_type' => 'required',
-		'mtgset_id' => 'integer|required',
+		'set_name' => 'present',
+		'set_type' => 'present',
+		'mtgset_id' => 'integer|present',
 		'variation_of_scryfall_id' => 'nullable',
 		'edhrec_rank' => 'integer|nullable',
-		'is_promo' => 'required',
+		'is_promo' => 'present',
 		'is_reserved' => 'nullable',
 		'is_reprint' => 'integer',
-		'legal_historic' => 'required',
-		'legal_pioneer' => 'required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'legal_historic' => 'present',
+		'legal_pioneer' => 'present',
 	]; // End of validation rules
 		
         
@@ -744,8 +742,8 @@ CREATE TABLE `lore`.`card` (
   `legal_standard` tinyint(1) NOT NULL DEFAULT 0,
   `legal_historic` tinyint(11) NOT NULL,
   `legal_pioneer` tinyint(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),
   KEY `set_name` (`set_name`),

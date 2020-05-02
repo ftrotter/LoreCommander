@@ -80,6 +80,9 @@ class SlowScrapeScryfall extends Command
 			$this_set['is_digital'] = 0;
 		}
 
+		$this_set['is_digital'] = 0;
+		$this_set['is_foil_only'] = 0;
+
 		unset($this_set['id']); //we have our own id.
 		unset($this_set['object']);//this is always 'set' and we do not care
 		unset($this_set['uri']); //this variable name was too vauge
@@ -89,7 +92,8 @@ class SlowScrapeScryfall extends Command
 		if(isset($this_set['arena_code'])){
 			var_export($this_set);
 		}
-	
+
+
 		$DURCmtgset = \App\mtgset::firstOrNew(['scryfall_id' => $scryfall_id]);
 		$DURCmtgset->fill($this_set);
 		$DURCmtgset->save();

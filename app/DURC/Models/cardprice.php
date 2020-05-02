@@ -50,7 +50,7 @@ class cardprice extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'card_id',
@@ -76,9 +76,9 @@ class cardprice extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'card_id' => 'integer|required',
-		'scryfall_id' => 'required',
-		'pricetype_id' => 'integer|required',
+		'card_id' => 'integer|present',
+		'scryfall_id' => 'present',
+		'pricetype_id' => 'integer|present',
 		'price' => 'nullable',
 	]; // End of validation rules
 		

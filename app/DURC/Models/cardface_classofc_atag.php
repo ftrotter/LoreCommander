@@ -52,7 +52,7 @@ class cardface_classofc_atag extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'cardface_id',
@@ -81,12 +81,12 @@ class cardface_classofc_atag extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'cardface_id' => 'integer|required',
-		'classofc_id' => 'integer|required',
-		'atag_id' => 'integer|required',
+		'cardface_id' => 'integer|present',
+		'classofc_id' => 'integer|present',
+		'atag_id' => 'integer|present',
 		'link_note' => 'nullable',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'created_at' => 'present',
+		'updated_at' => 'present',
 	]; // End of validation rules
 		
         

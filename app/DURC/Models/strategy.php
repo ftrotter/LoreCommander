@@ -52,7 +52,7 @@ class strategy extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'strategy_name',
@@ -80,9 +80,9 @@ class strategy extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'strategy_name' => 'required',
-		'strategy_description' => 'required',
-		'strategy_url' => 'required',
+		'strategy_name' => 'present',
+		'strategy_description' => 'present',
+		'strategy_url' => 'present',
 		'wincon_cardface_id' => 'integer|nullable',
 		'WOTC_rule_reference' => 'nullable',
 	]; // End of validation rules

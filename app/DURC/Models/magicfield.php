@@ -54,7 +54,7 @@ class magicfield extends DURCModel{
 		'deleted_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'editsome_markdown',
@@ -89,13 +89,13 @@ class magicfield extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'editsome_markdown' => 'required',
-		'typesome_sql_code' => 'required',
-		'typesome_php_code' => 'required',
-		'typesome_python_code' => 'required',
-		'typesome_javascript_code' => 'required',
-		'this_datetime' => 'required',
-		'this_date' => 'required',
+		'editsome_markdown' => 'present',
+		'typesome_sql_code' => 'present',
+		'typesome_php_code' => 'present',
+		'typesome_python_code' => 'present',
+		'typesome_javascript_code' => 'present',
+		'this_datetime' => 'present',
+		'this_date' => 'present',
 		'deleted_at' => 'nullable',
 	]; // End of validation rules
 		

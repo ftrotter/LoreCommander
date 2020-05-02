@@ -55,6 +55,13 @@ Route::get("/DURC/json/magicfield/", 'magicfieldController@jsonall');
 Route::get("/DURC/searchjson/magicfield/", 'magicfieldController@search');
 Route::get("/DURC/magicfield/restore/{id}", 'magicfieldController@restore');
  
+//DURC->	DURC_aaa.validationTest
+Route::resource("/DURC/validationtest", 'validationtestController');
+Route::get("/DURC/json/validationtest/{validationtest_id}", 'validationtestController@jsonone');
+Route::get("/DURC/json/validationtest/", 'validationtestController@jsonall');
+Route::get("/DURC/searchjson/validationtest/", 'validationtestController@search');
+
+ 
 //DURC->	DURC_irs.nonprofitcorp
 Route::resource("/DURC/nonprofitcorp", 'nonprofitcorpController');
 Route::get("/DURC/json/nonprofitcorp/{nonprofitcorp_id}", 'nonprofitcorpController@jsonone');

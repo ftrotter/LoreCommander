@@ -67,7 +67,7 @@ class order extends DURCModel{
 		'status_id' => 'tinyint',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'orderDate',

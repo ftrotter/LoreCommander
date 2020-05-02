@@ -52,7 +52,7 @@ class classofc_classofc_vspack extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'classofc_id',
@@ -81,12 +81,12 @@ class classofc_classofc_vspack extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'classofc_id' => 'integer|required',
-		'second_classofc_id' => 'integer|required',
-		'vspack_id' => 'integer|required',
+		'classofc_id' => 'integer|present',
+		'second_classofc_id' => 'integer|present',
+		'vspack_id' => 'integer|present',
 		'link_note' => 'nullable',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'created_at' => 'present',
+		'updated_at' => 'present',
 	]; // End of validation rules
 		
         

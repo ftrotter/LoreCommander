@@ -45,7 +45,7 @@ class nonprofitcorp extends DURCModel{
 		'TAXPAYER_NAME' => 'varchar',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'EIN',
@@ -63,7 +63,7 @@ class nonprofitcorp extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|required',
+		'id' => 'integer|present',
 		'EIN' => 'integer',
 		'TAXPAYER_NAME' => 'nullable',
 	]; // End of validation rules

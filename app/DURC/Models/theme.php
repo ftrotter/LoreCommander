@@ -52,7 +52,7 @@ class theme extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'theme_name',
@@ -81,12 +81,12 @@ class theme extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|required',
-		'theme_name' => 'required',
-		'theme_description' => 'required',
-		'emblematic_person_id' => 'integer|required',
-		'emblematic_cardface_id' => 'integer|required',
-		'emblematic_creature_id' => 'integer|required',
+		'id' => 'integer|present',
+		'theme_name' => 'present',
+		'theme_description' => 'present',
+		'emblematic_person_id' => 'integer|present',
+		'emblematic_cardface_id' => 'integer|present',
+		'emblematic_creature_id' => 'integer|present',
 	]; // End of validation rules
 		
         

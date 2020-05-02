@@ -51,7 +51,7 @@ class tag extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'tag_name',
@@ -76,7 +76,7 @@ class tag extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'tag_name' => 'required',
+		'tag_name' => 'present',
 		'excludes_tag_id' => 'integer|nullable',
 	]; // End of validation rules
 		

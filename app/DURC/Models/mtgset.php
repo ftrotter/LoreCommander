@@ -63,7 +63,7 @@ class mtgset extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'scryfall_id',
@@ -102,8 +102,8 @@ class mtgset extends DURCModel{
 		'mtgset_uri' => null,
 		'icon_svg_uri' => null,
 		'search_uri' => null,
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -112,26 +112,24 @@ class mtgset extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'scryfall_id' => 'required',
-		'code' => 'required',
+		'scryfall_id' => 'present',
+		'code' => 'present',
 		'mtgo_code' => 'nullable',
 		'arena_code' => 'nullable',
 		'tcgplayer_id' => 'integer|nullable',
-		'name' => 'required',
-		'set_type' => 'required',
+		'name' => 'present',
+		'set_type' => 'present',
 		'released_at' => 'nullable',
 		'block_code' => 'nullable',
 		'block' => 'nullable',
 		'parent_set_code' => 'nullable',
-		'card_count' => 'integer|required',
-		'is_digital' => 'required',
-		'is_foil_only' => 'required',
-		'scryfall_uri' => 'required',
-		'mtgset_uri' => 'required',
-		'icon_svg_uri' => 'required',
-		'search_uri' => 'required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'card_count' => 'integer|present',
+		'is_digital' => 'present',
+		'is_foil_only' => 'present',
+		'scryfall_uri' => 'present',
+		'mtgset_uri' => 'present',
+		'icon_svg_uri' => 'present',
+		'search_uri' => 'present',
 	]; // End of validation rules
 		
         
@@ -435,8 +433,8 @@ CREATE TABLE `lore`.`mtgset` (
   `mtgset_uri` varchar(255) NOT NULL,
   `icon_svg_uri` varchar(255) NOT NULL,
   `search_uri` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8

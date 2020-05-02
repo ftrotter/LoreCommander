@@ -48,7 +48,7 @@ class pack extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'pack_name',
@@ -76,12 +76,12 @@ class pack extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'pack_name' => 'required',
-		'pack_wizards_url' => 'required',
-		'pack_wiki_url' => 'required',
-		'pack_img_url' => 'required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'pack_name' => 'present',
+		'pack_wizards_url' => 'present',
+		'pack_wiki_url' => 'present',
+		'pack_img_url' => 'present',
+		'created_at' => 'present',
+		'updated_at' => 'present',
 	]; // End of validation rules
 		
         
