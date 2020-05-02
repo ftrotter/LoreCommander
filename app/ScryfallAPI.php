@@ -85,8 +85,8 @@ class  ScryfallAPI {
 			if(count($this_data['data']) == $page_size){
 				//get the next page of data..
 				$new_page = $page_id +  1;
-				echo "Calling $new_page page of the data for $full_url \n";
-				$new_data = ScryfallAPI::getAllAnything($full_url,$new_page);
+				echo "Recursive Calling $new_page page of the data for $url \n";
+				$new_data = ScryfallAPI::getAllAnything($url,$new_page);
 				$all_data = array_merge($new_data,$this_data['data']);
 				return($all_data);
 			}
