@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d78d849975671578084f146d4c40cad5
+FILE_SIG=b8efe4e137a431b4b1b1c6e85dcadfa0
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class nonprofitcorpController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class nonprofitcorpController extends DURCParentController
      * @param  \App\$nonprofitcorp  $nonprofitcorp
      * @return \Illuminate\Http\Response
      */
-    public function show(nonprofitcorp $nonprofitcorp){
+    public function show(Request $request, nonprofitcorp $nonprofitcorp){
         // enter your stuff here if you want...
-	return(parent::show($nonprofitcorp));
+	return(parent::show($request, $nonprofitcorp));
     }
 
     /**
@@ -63,9 +63,9 @@ class nonprofitcorpController extends DURCParentController
      * @param  \App\nonprofitcorp  $nonprofitcorp
      * @return \Illuminate\Http\Response
      */
-    public function edit(nonprofitcorp $nonprofitcorp, $is_new = false){
+    public function edit(Request $request, nonprofitcorp $nonprofitcorp, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($nonprofitcorp));
+	return(parent::edit($request, $nonprofitcorp));
     }
 
     /**

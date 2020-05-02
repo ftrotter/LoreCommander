@@ -38,17 +38,32 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{creature_name_row_class}}'>
     <label for='creature_name' class='col-sm-4 col-form-label'>creature_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='creature_name' name='creature_name' placeholder='' value='{{creature_name}}'  required>
+      <input type='text' class='form-control {{#errors.creature_name}}is-invalid{{/errors.creature_name}}' id='creature_name' name='creature_name' placeholder='' value='{{creature_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.creature_name}}<li>{{.}}</li>{{/errors.creature_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{creature_image_uri_row_class}}'>
     <label for='creature_image_uri' class='col-sm-4 col-form-label'>creature_image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='creature_image_uri' name='creature_image_uri' placeholder='NULL' value='{{creature_image_uri}}'  >
+      <input type='text' class='form-control {{#errors.creature_image_uri}}is-invalid{{/errors.creature_image_uri}}' id='creature_image_uri' name='creature_image_uri' placeholder='NULL' value='{{creature_image_uri}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.creature_image_uri}}<li>{{.}}</li>{{/errors.creature_image_uri}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='creature_image_uri' name='creature_image_uriNull' id='creature_image_uriNull' value='creature_image_uriNull' {{creature_image_uri_checked}}>
                     <label class='form-check-label' for='creature_image_uriNull'>null</label>

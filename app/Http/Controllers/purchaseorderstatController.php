@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7b534a36c4865e53a3d122c59f9dcc45
+FILE_SIG=e7362ea5bc68e5137f4b197292252d69
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class purchaseorderstatController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class purchaseorderstatController extends DURCParentController
      * @param  \App\$purchaseorderstat  $purchaseorderstat
      * @return \Illuminate\Http\Response
      */
-    public function show(purchaseorderstat $purchaseorderstat){
+    public function show(Request $request, purchaseorderstat $purchaseorderstat){
         // enter your stuff here if you want...
-	return(parent::show($purchaseorderstat));
+	return(parent::show($request, $purchaseorderstat));
     }
 
     /**
@@ -63,9 +63,9 @@ class purchaseorderstatController extends DURCParentController
      * @param  \App\purchaseorderstat  $purchaseorderstat
      * @return \Illuminate\Http\Response
      */
-    public function edit(purchaseorderstat $purchaseorderstat, $is_new = false){
+    public function edit(Request $request, purchaseorderstat $purchaseorderstat, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($purchaseorderstat));
+	return(parent::edit($request, $purchaseorderstat));
     }
 
     /**

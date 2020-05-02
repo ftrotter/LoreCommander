@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=6cde7ec36eecaf2ca319cdd2eae6d874
+FILE_SIG=81b5c0e9f98386142122d09d4e93d46a
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class cardfaceController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class cardfaceController extends DURCParentController
      * @param  \App\$cardface  $cardface
      * @return \Illuminate\Http\Response
      */
-    public function show(cardface $cardface){
+    public function show(Request $request, cardface $cardface){
         // enter your stuff here if you want...
-	return(parent::show($cardface));
+	return(parent::show($request, $cardface));
     }
 
     /**
@@ -63,9 +63,9 @@ class cardfaceController extends DURCParentController
      * @param  \App\cardface  $cardface
      * @return \Illuminate\Http\Response
      */
-    public function edit(cardface $cardface, $is_new = false){
+    public function edit(Request $request, cardface $cardface, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($cardface));
+	return(parent::edit($request, $cardface));
     }
 
     /**

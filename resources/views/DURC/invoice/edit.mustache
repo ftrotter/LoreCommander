@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{order_id_row_class}}'>
     <label for='order_id' class='col-sm-4 col-form-label'>order_id</label>
@@ -136,7 +141,12 @@ $('.select2_order_id').select2({
   <div class='form-group row {{tax_row_class}}'>
     <label for='tax' class='col-sm-4 col-form-label'>tax</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='tax' name='tax' placeholder='0.0000' value='{{tax}}'  >
+      <input type='text' class='form-control {{#errors.tax}}is-invalid{{/errors.tax}}' id='tax' name='tax' placeholder='0.0000' value='{{tax}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.tax}}<li>{{.}}</li>{{/errors.tax}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='tax' name='taxNull' id='taxNull' value='taxNull' {{tax_checked}}>
                     <label class='form-check-label' for='taxNull'>null</label>
@@ -144,7 +154,12 @@ $('.select2_order_id').select2({
   <div class='form-group row {{shipping_row_class}}'>
     <label for='shipping' class='col-sm-4 col-form-label'>shipping</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipping' name='shipping' placeholder='0.0000' value='{{shipping}}'  >
+      <input type='text' class='form-control {{#errors.shipping}}is-invalid{{/errors.shipping}}' id='shipping' name='shipping' placeholder='0.0000' value='{{shipping}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipping}}<li>{{.}}</li>{{/errors.shipping}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipping' name='shippingNull' id='shippingNull' value='shippingNull' {{shipping_checked}}>
                     <label class='form-check-label' for='shippingNull'>null</label>
@@ -152,7 +167,12 @@ $('.select2_order_id').select2({
   <div class='form-group row {{amountDue_row_class}}'>
     <label for='amountDue' class='col-sm-4 col-form-label'>amountDue</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='amountDue' name='amountDue' placeholder='0.0000' value='{{amountDue}}'  >
+      <input type='text' class='form-control {{#errors.amountDue}}is-invalid{{/errors.amountDue}}' id='amountDue' name='amountDue' placeholder='0.0000' value='{{amountDue}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.amountDue}}<li>{{.}}</li>{{/errors.amountDue}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='amountDue' name='amountDueNull' id='amountDueNull' value='amountDueNull' {{amountDue_checked}}>
                     <label class='form-check-label' for='amountDueNull'>null</label>

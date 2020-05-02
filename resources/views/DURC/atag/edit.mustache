@@ -38,12 +38,22 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{arttag_name_row_class}}'>
     <label for='arttag_name' class='col-sm-4 col-form-label'>arttag_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='arttag_name' name='arttag_name' placeholder='' value='{{arttag_name}}'  required>
+      <input type='text' class='form-control {{#errors.arttag_name}}is-invalid{{/errors.arttag_name}}' id='arttag_name' name='arttag_name' placeholder='' value='{{arttag_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.arttag_name}}<li>{{.}}</li>{{/errors.arttag_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{is_directed_row_class}}'>
     <div class='col-sm-4'><label>is_directed</label></div>
@@ -57,7 +67,12 @@
   <div class='form-group row {{excludes_arttag_id_row_class}}'>
     <label for='excludes_arttag_id' class='col-sm-4 col-form-label'>excludes_arttag_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='NULL' value='{{excludes_arttag_id}}'  >
+      <input type='text' class='form-control {{#errors.excludes_arttag_id}}is-invalid{{/errors.excludes_arttag_id}}' id='excludes_arttag_id' name='excludes_arttag_id' placeholder='NULL' value='{{excludes_arttag_id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.excludes_arttag_id}}<li>{{.}}</li>{{/errors.excludes_arttag_id}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='excludes_arttag_id' name='excludes_arttag_idNull' id='excludes_arttag_idNull' value='excludes_arttag_idNull' {{excludes_arttag_id_checked}}>
                     <label class='form-check-label' for='excludes_arttag_idNull'>null</label>

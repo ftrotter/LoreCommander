@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a2375d649e842f0d8909551cbe56ab3c
+FILE_SIG=3be423a5bb5eb4b86bb2b6ea785ccae1
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class classofcController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class classofcController extends DURCParentController
      * @param  \App\$classofc  $classofc
      * @return \Illuminate\Http\Response
      */
-    public function show(classofc $classofc){
+    public function show(Request $request, classofc $classofc){
         // enter your stuff here if you want...
-	return(parent::show($classofc));
+	return(parent::show($request, $classofc));
     }
 
     /**
@@ -63,9 +63,9 @@ class classofcController extends DURCParentController
      * @param  \App\classofc  $classofc
      * @return \Illuminate\Http\Response
      */
-    public function edit(classofc $classofc, $is_new = false){
+    public function edit(Request $request, classofc $classofc, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($classofc));
+	return(parent::edit($request, $classofc));
     }
 
     /**

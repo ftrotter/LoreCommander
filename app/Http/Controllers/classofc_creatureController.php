@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=64d5b7776946cefb048cb9ae11d8edab
+FILE_SIG=239f439d3186b0adddec9f12de98ac0b
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class classofc_creatureController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class classofc_creatureController extends DURCParentController
      * @param  \App\$classofc_creature  $classofc_creature
      * @return \Illuminate\Http\Response
      */
-    public function show(classofc_creature $classofc_creature){
+    public function show(Request $request, classofc_creature $classofc_creature){
         // enter your stuff here if you want...
-	return(parent::show($classofc_creature));
+	return(parent::show($request, $classofc_creature));
     }
 
     /**
@@ -63,9 +63,9 @@ class classofc_creatureController extends DURCParentController
      * @param  \App\classofc_creature  $classofc_creature
      * @return \Illuminate\Http\Response
      */
-    public function edit(classofc_creature $classofc_creature, $is_new = false){
+    public function edit(Request $request, classofc_creature $classofc_creature, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($classofc_creature));
+	return(parent::edit($request, $classofc_creature));
     }
 
     /**

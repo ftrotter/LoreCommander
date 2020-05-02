@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7254b01f03b8085a20277b7bf3a45b20
+FILE_SIG=ba4c4e1d50c3c9911a99da4183607eb6
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class employeeController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class employeeController extends DURCParentController
      * @param  \App\$employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(employee $employee){
+    public function show(Request $request, employee $employee){
         // enter your stuff here if you want...
-	return(parent::show($employee));
+	return(parent::show($request, $employee));
     }
 
     /**
@@ -63,9 +63,9 @@ class employeeController extends DURCParentController
      * @param  \App\employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(employee $employee, $is_new = false){
+    public function edit(Request $request, employee $employee, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($employee));
+	return(parent::edit($request, $employee));
     }
 
     /**

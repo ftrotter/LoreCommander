@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class inventorytransactiontypeController extends DURCController
 {
@@ -69,18 +70,18 @@ class inventorytransactiontypeController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -200,17 +201,17 @@ class inventorytransactiontypeController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.inventorytransactiontype.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.inventorytransactiontype.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -221,25 +222,29 @@ class inventorytransactiontypeController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewinventorytransactiontype = new inventorytransactiontype();
+        $myNewinventorytransactiontype = new inventorytransactiontype();
 
-	//the games we play to easily auto-generate code..
-	$tmp_inventorytransactiontype = $myNewinventorytransactiontype;
-			$tmp_inventorytransactiontype->id = DURC::formatForStorage( 'id', 'tinyint', $request->id, $tmp_inventorytransactiontype ); 
-		$tmp_inventorytransactiontype->typeName = DURC::formatForStorage( 'typeName', 'varchar', $request->typeName, $tmp_inventorytransactiontype ); 
+        //the games we play to easily auto-generate code..
+        $tmp_inventorytransactiontype = $myNewinventorytransactiontype;
+        
+        $tmp_inventorytransactiontype->id = $request->id;
+        $tmp_inventorytransactiontype->typeName = $request->typeName;
 
-	
-	try {
-	    		$tmp_inventorytransactiontype->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/inventorytransactiontype/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_inventorytransactiontype->save();
 
-	}
+        $new_id = $myNewinventorytransactiontype->id;
+        return redirect("/DURC/inventorytransactiontype/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_inventorytransactiontype->getErrors());
 
-	$new_id = $myNewinventorytransactiontype->id;
-	
-	return redirect("/DURC/inventorytransactiontype/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/inventorytransactiontype/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -247,8 +252,8 @@ class inventorytransactiontypeController extends DURCController
      * @param  \App\$inventorytransactiontype  $inventorytransactiontype
      * @return \Illuminate\Http\Response
      */
-    public function show(inventorytransactiontype $inventorytransactiontype){
-	return($this->edit($inventorytransactiontype));
+    public function show(Request $request, inventorytransactiontype $inventorytransactiontype){
+	return($this->edit($request, $inventorytransactiontype));
     }
 
     /**
@@ -283,10 +288,10 @@ class inventorytransactiontypeController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new inventorytransactiontype();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new inventorytransactiontype();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -295,68 +300,89 @@ class inventorytransactiontypeController extends DURCController
      * @param  \App\inventorytransactiontype  $inventorytransactiontype
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventorytransactiontype $inventorytransactiontype){
+    public function edit(Request $request, inventorytransactiontype $inventorytransactiontype){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( inventorytransactiontype::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($inventorytransactiontype->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$inventorytransactiontype = $inventorytransactiontype->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($inventorytransactiontype->toArray() as $key => $value){
-			if ( isset( inventorytransactiontype::$field_type_map[$key] ) ) {
-                $field_type = inventorytransactiontype::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( inventorytransactiontype::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($inventorytransactiontype->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $inventorytransactiontype = $inventorytransactiontype->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($inventorytransactiontype->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($inventorytransactiontype->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( inventorytransactiontype::$field_type_map[$key] ) ) {
+                    $field_type = inventorytransactiontype::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($inventorytransactiontype->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $inventorytransactiontype->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $inventorytransactiontype->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.inventorytransactiontype.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $inventorytransactiontype->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $inventorytransactiontype->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.inventorytransactiontype.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -367,23 +393,24 @@ class inventorytransactiontypeController extends DURCController
      */
     public function update(Request $request, inventorytransactiontype $inventorytransactiontype){
 
-	$tmp_inventorytransactiontype = $inventorytransactiontype;
-			$tmp_inventorytransactiontype->id = DURC::formatForStorage( 'id', 'tinyint', $request->id, $tmp_inventorytransactiontype ); 
-		$tmp_inventorytransactiontype->typeName = DURC::formatForStorage( 'typeName', 'varchar', $request->typeName, $tmp_inventorytransactiontype ); 
-
-
-	$id = $inventorytransactiontype->id;
-	
-    try {
-	    		$tmp_inventorytransactiontype->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/inventorytransactiontype/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/inventorytransactiontype/$id")->with('status', 'Data Saved!');
+        $tmp_inventorytransactiontype = $inventorytransactiontype;
         
+        $tmp_inventorytransactiontype->id = $request->id;
+        $tmp_inventorytransactiontype->typeName = $request->typeName;
+
+        $id = $inventorytransactiontype->id;
+        
+        try {
+            $tmp_inventorytransactiontype->save();
+
+            return redirect("/DURC/inventorytransactiontype/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_inventorytransactiontype->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/inventorytransactiontype/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

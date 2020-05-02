@@ -38,17 +38,32 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{theme_name_row_class}}'>
     <label for='theme_name' class='col-sm-4 col-form-label'>theme_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='theme_name' name='theme_name' placeholder='' value='{{theme_name}}'  required>
+      <input type='text' class='form-control {{#errors.theme_name}}is-invalid{{/errors.theme_name}}' id='theme_name' name='theme_name' placeholder='' value='{{theme_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.theme_name}}<li>{{.}}</li>{{/errors.theme_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{theme_description_row_class}}'>
     <label for='theme_description' class='col-sm-4 col-form-label'>theme_description</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='theme_description' name='theme_description' placeholder='' value='{{theme_description}}'  required>
+      <input type='text' class='form-control {{#errors.theme_description}}is-invalid{{/errors.theme_description}}' id='theme_description' name='theme_description' placeholder='' value='{{theme_description}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.theme_description}}<li>{{.}}</li>{{/errors.theme_description}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{emblematic_person_id_row_class}}'>
     <label for='emblematic_person_id' class='col-sm-4 col-form-label'>emblematic_person_id</label>

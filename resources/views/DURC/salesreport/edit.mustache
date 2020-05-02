@@ -38,12 +38,22 @@
   <div class='form-group row {{groupBy_row_class}}'>
     <label for='groupBy' class='col-sm-4 col-form-label'>groupBy</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='groupBy' name='groupBy' placeholder='' value='{{groupBy}}'  required>
+      <input type='text' class='form-control {{#errors.groupBy}}is-invalid{{/errors.groupBy}}' id='groupBy' name='groupBy' placeholder='' value='{{groupBy}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.groupBy}}<li>{{.}}</li>{{/errors.groupBy}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{display_row_class}}'>
     <label for='display' class='col-sm-4 col-form-label'>display</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='display' name='display' placeholder='NULL' value='{{display}}'  >
+      <input type='text' class='form-control {{#errors.display}}is-invalid{{/errors.display}}' id='display' name='display' placeholder='NULL' value='{{display}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.display}}<li>{{.}}</li>{{/errors.display}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='display' name='displayNull' id='displayNull' value='displayNull' {{display_checked}}>
                     <label class='form-check-label' for='displayNull'>null</label>
@@ -51,7 +61,12 @@
   <div class='form-group row {{title_row_class}}'>
     <label for='title' class='col-sm-4 col-form-label'>title</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='title' name='title' placeholder='NULL' value='{{title}}'  >
+      <input type='text' class='form-control {{#errors.title}}is-invalid{{/errors.title}}' id='title' name='title' placeholder='NULL' value='{{title}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.title}}<li>{{.}}</li>{{/errors.title}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='title' name='titleNull' id='titleNull' value='titleNull' {{title_checked}}>
                     <label class='form-check-label' for='titleNull'>null</label>
@@ -59,7 +74,12 @@
   <div class='form-group row {{filterRowSource_row_class}}'>
     <label for='filterRowSource' class='col-sm-4 col-form-label'>filterRowSource</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='filterRowSource' name='filterRowSource' placeholder='NULL' value='{{filterRowSource}}'  >
+      <input type='text' class='form-control {{#errors.filterRowSource}}is-invalid{{/errors.filterRowSource}}' id='filterRowSource' name='filterRowSource' placeholder='NULL' value='{{filterRowSource}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.filterRowSource}}<li>{{.}}</li>{{/errors.filterRowSource}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='filterRowSource' name='filterRowSourceNull' id='filterRowSourceNull' value='filterRowSourceNull' {{filterRowSource_checked}}>
                     <label class='form-check-label' for='filterRowSourceNull'>null</label>
@@ -67,7 +87,12 @@
   <div class='form-group row {{default_row_class}}'>
     <label for='default' class='col-sm-4 col-form-label'>default</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='default' name='default' placeholder='0' value='{{default}}'  >
+      <input type='text' class='form-control {{#errors.default}}is-invalid{{/errors.default}}' id='default' name='default' placeholder='0' value='{{default}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.default}}<li>{{.}}</li>{{/errors.default}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>

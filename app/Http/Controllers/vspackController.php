@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8c896066b16fa33daccb04c343b072b3
+FILE_SIG=01073a093df35492c9db68c752194930
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class vspackController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class vspackController extends DURCParentController
      * @param  \App\$vspack  $vspack
      * @return \Illuminate\Http\Response
      */
-    public function show(vspack $vspack){
+    public function show(Request $request, vspack $vspack){
         // enter your stuff here if you want...
-	return(parent::show($vspack));
+	return(parent::show($request, $vspack));
     }
 
     /**
@@ -63,9 +63,9 @@ class vspackController extends DURCParentController
      * @param  \App\vspack  $vspack
      * @return \Illuminate\Http\Response
      */
-    public function edit(vspack $vspack, $is_new = false){
+    public function edit(Request $request, vspack $vspack, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($vspack));
+	return(parent::edit($request, $vspack));
     }
 
     /**

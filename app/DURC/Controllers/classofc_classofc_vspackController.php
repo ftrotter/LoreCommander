@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class classofc_classofc_vspackController extends DURCController
 {
@@ -74,18 +75,18 @@ class classofc_classofc_vspackController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -205,17 +206,17 @@ class classofc_classofc_vspackController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.classofc_classofc_vspack.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.classofc_classofc_vspack.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -226,29 +227,33 @@ class classofc_classofc_vspackController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewclassofc_classofc_vspack = new classofc_classofc_vspack();
+        $myNewclassofc_classofc_vspack = new classofc_classofc_vspack();
 
-	//the games we play to easily auto-generate code..
-	$tmp_classofc_classofc_vspack = $myNewclassofc_classofc_vspack;
-			$tmp_classofc_classofc_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->second_classofc_id = DURC::formatForStorage( 'second_classofc_id', 'int', $request->second_classofc_id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_classofc_classofc_vspack ); 
+        //the games we play to easily auto-generate code..
+        $tmp_classofc_classofc_vspack = $myNewclassofc_classofc_vspack;
+        
+        $tmp_classofc_classofc_vspack->id = $request->id;
+        $tmp_classofc_classofc_vspack->classofc_id = $request->classofc_id;
+        $tmp_classofc_classofc_vspack->second_classofc_id = $request->second_classofc_id;
+        $tmp_classofc_classofc_vspack->vspack_id = $request->vspack_id;
+        $tmp_classofc_classofc_vspack->is_bulk_linker = $request->is_bulk_linker;
+        $tmp_classofc_classofc_vspack->link_note = $request->link_note;
 
-	
-	try {
-	    		$tmp_classofc_classofc_vspack->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc_classofc_vspack/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_classofc_classofc_vspack->save();
 
-	}
+        $new_id = $myNewclassofc_classofc_vspack->id;
+        return redirect("/DURC/classofc_classofc_vspack/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_classofc_classofc_vspack->getErrors());
 
-	$new_id = $myNewclassofc_classofc_vspack->id;
-	
-	return redirect("/DURC/classofc_classofc_vspack/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/classofc_classofc_vspack/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -256,8 +261,8 @@ class classofc_classofc_vspackController extends DURCController
      * @param  \App\$classofc_classofc_vspack  $classofc_classofc_vspack
      * @return \Illuminate\Http\Response
      */
-    public function show(classofc_classofc_vspack $classofc_classofc_vspack){
-	return($this->edit($classofc_classofc_vspack));
+    public function show(Request $request, classofc_classofc_vspack $classofc_classofc_vspack){
+	return($this->edit($request, $classofc_classofc_vspack));
     }
 
     /**
@@ -292,10 +297,10 @@ class classofc_classofc_vspackController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new classofc_classofc_vspack();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new classofc_classofc_vspack();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -304,68 +309,89 @@ class classofc_classofc_vspackController extends DURCController
      * @param  \App\classofc_classofc_vspack  $classofc_classofc_vspack
      * @return \Illuminate\Http\Response
      */
-    public function edit(classofc_classofc_vspack $classofc_classofc_vspack){
+    public function edit(Request $request, classofc_classofc_vspack $classofc_classofc_vspack){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( classofc_classofc_vspack::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($classofc_classofc_vspack->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$classofc_classofc_vspack = $classofc_classofc_vspack->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($classofc_classofc_vspack->toArray() as $key => $value){
-			if ( isset( classofc_classofc_vspack::$field_type_map[$key] ) ) {
-                $field_type = classofc_classofc_vspack::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( classofc_classofc_vspack::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($classofc_classofc_vspack->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $classofc_classofc_vspack = $classofc_classofc_vspack->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($classofc_classofc_vspack->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($classofc_classofc_vspack->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( classofc_classofc_vspack::$field_type_map[$key] ) ) {
+                    $field_type = classofc_classofc_vspack::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($classofc_classofc_vspack->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $classofc_classofc_vspack->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $classofc_classofc_vspack->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.classofc_classofc_vspack.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $classofc_classofc_vspack->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $classofc_classofc_vspack->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.classofc_classofc_vspack.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -376,27 +402,28 @@ class classofc_classofc_vspackController extends DURCController
      */
     public function update(Request $request, classofc_classofc_vspack $classofc_classofc_vspack){
 
-	$tmp_classofc_classofc_vspack = $classofc_classofc_vspack;
-			$tmp_classofc_classofc_vspack->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->classofc_id = DURC::formatForStorage( 'classofc_id', 'int', $request->classofc_id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->second_classofc_id = DURC::formatForStorage( 'second_classofc_id', 'int', $request->second_classofc_id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->vspack_id = DURC::formatForStorage( 'vspack_id', 'int', $request->vspack_id, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->is_bulk_linker = DURC::formatForStorage( 'is_bulk_linker', 'tinyint', $request->is_bulk_linker, $tmp_classofc_classofc_vspack ); 
-		$tmp_classofc_classofc_vspack->link_note = DURC::formatForStorage( 'link_note', 'varchar', $request->link_note, $tmp_classofc_classofc_vspack ); 
-
-
-	$id = $classofc_classofc_vspack->id;
-	
-    try {
-	    		$tmp_classofc_classofc_vspack->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/classofc_classofc_vspack/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/classofc_classofc_vspack/$id")->with('status', 'Data Saved!');
+        $tmp_classofc_classofc_vspack = $classofc_classofc_vspack;
         
+        $tmp_classofc_classofc_vspack->id = $request->id;
+        $tmp_classofc_classofc_vspack->classofc_id = $request->classofc_id;
+        $tmp_classofc_classofc_vspack->second_classofc_id = $request->second_classofc_id;
+        $tmp_classofc_classofc_vspack->vspack_id = $request->vspack_id;
+        $tmp_classofc_classofc_vspack->is_bulk_linker = $request->is_bulk_linker;
+        $tmp_classofc_classofc_vspack->link_note = $request->link_note;
+
+        $id = $classofc_classofc_vspack->id;
+        
+        try {
+            $tmp_classofc_classofc_vspack->save();
+
+            return redirect("/DURC/classofc_classofc_vspack/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_classofc_classofc_vspack->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/classofc_classofc_vspack/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

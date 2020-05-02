@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class supplierController extends DURCController
 {
@@ -69,18 +70,18 @@ class supplierController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -200,17 +201,17 @@ class supplierController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.supplier.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.supplier.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -221,41 +222,45 @@ class supplierController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewsupplier = new supplier();
+        $myNewsupplier = new supplier();
 
-	//the games we play to easily auto-generate code..
-	$tmp_supplier = $myNewsupplier;
-			$tmp_supplier->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_supplier ); 
-		$tmp_supplier->company = DURC::formatForStorage( 'company', 'varchar', $request->company, $tmp_supplier ); 
-		$tmp_supplier->lastName = DURC::formatForStorage( 'lastName', 'varchar', $request->lastName, $tmp_supplier ); 
-		$tmp_supplier->firstName = DURC::formatForStorage( 'firstName', 'varchar', $request->firstName, $tmp_supplier ); 
-		$tmp_supplier->emailAddress = DURC::formatForStorage( 'emailAddress', 'varchar', $request->emailAddress, $tmp_supplier ); 
-		$tmp_supplier->jobTitle = DURC::formatForStorage( 'jobTitle', 'varchar', $request->jobTitle, $tmp_supplier ); 
-		$tmp_supplier->businessPhone = DURC::formatForStorage( 'businessPhone', 'varchar', $request->businessPhone, $tmp_supplier ); 
-		$tmp_supplier->homePhone = DURC::formatForStorage( 'homePhone', 'varchar', $request->homePhone, $tmp_supplier ); 
-		$tmp_supplier->mobilePhone = DURC::formatForStorage( 'mobilePhone', 'varchar', $request->mobilePhone, $tmp_supplier ); 
-		$tmp_supplier->faxNumber = DURC::formatForStorage( 'faxNumber', 'varchar', $request->faxNumber, $tmp_supplier ); 
-		$tmp_supplier->address = DURC::formatForStorage( 'address', 'longtext', $request->address, $tmp_supplier ); 
-		$tmp_supplier->city = DURC::formatForStorage( 'city', 'varchar', $request->city, $tmp_supplier ); 
-		$tmp_supplier->stateProvince = DURC::formatForStorage( 'stateProvince', 'varchar', $request->stateProvince, $tmp_supplier ); 
-		$tmp_supplier->zipPostalCode = DURC::formatForStorage( 'zipPostalCode', 'varchar', $request->zipPostalCode, $tmp_supplier ); 
-		$tmp_supplier->countryRegion = DURC::formatForStorage( 'countryRegion', 'varchar', $request->countryRegion, $tmp_supplier ); 
-		$tmp_supplier->webPage = DURC::formatForStorage( 'webPage', 'longtext', $request->webPage, $tmp_supplier ); 
-		$tmp_supplier->notes = DURC::formatForStorage( 'notes', 'longtext', $request->notes, $tmp_supplier ); 
-		$tmp_supplier->attachments = DURC::formatForStorage( 'attachments', 'longblob', $request->attachments, $tmp_supplier ); 
+        //the games we play to easily auto-generate code..
+        $tmp_supplier = $myNewsupplier;
+        
+        $tmp_supplier->id = $request->id;
+        $tmp_supplier->company = $request->company;
+        $tmp_supplier->lastName = $request->lastName;
+        $tmp_supplier->firstName = $request->firstName;
+        $tmp_supplier->emailAddress = $request->emailAddress;
+        $tmp_supplier->jobTitle = $request->jobTitle;
+        $tmp_supplier->businessPhone = $request->businessPhone;
+        $tmp_supplier->homePhone = $request->homePhone;
+        $tmp_supplier->mobilePhone = $request->mobilePhone;
+        $tmp_supplier->faxNumber = $request->faxNumber;
+        $tmp_supplier->address = $request->address;
+        $tmp_supplier->city = $request->city;
+        $tmp_supplier->stateProvince = $request->stateProvince;
+        $tmp_supplier->zipPostalCode = $request->zipPostalCode;
+        $tmp_supplier->countryRegion = $request->countryRegion;
+        $tmp_supplier->webPage = $request->webPage;
+        $tmp_supplier->notes = $request->notes;
+        $tmp_supplier->attachments = $request->attachments;
 
-	
-	try {
-	    		$tmp_supplier->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/supplier/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_supplier->save();
 
-	}
+        $new_id = $myNewsupplier->id;
+        return redirect("/DURC/supplier/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_supplier->getErrors());
 
-	$new_id = $myNewsupplier->id;
-	
-	return redirect("/DURC/supplier/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/supplier/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -263,8 +268,8 @@ class supplierController extends DURCController
      * @param  \App\$supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(supplier $supplier){
-	return($this->edit($supplier));
+    public function show(Request $request, supplier $supplier){
+	return($this->edit($request, $supplier));
     }
 
     /**
@@ -299,10 +304,10 @@ class supplierController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new supplier();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new supplier();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -311,68 +316,89 @@ class supplierController extends DURCController
      * @param  \App\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(supplier $supplier){
+    public function edit(Request $request, supplier $supplier){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( supplier::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($supplier->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$supplier = $supplier->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($supplier->toArray() as $key => $value){
-			if ( isset( supplier::$field_type_map[$key] ) ) {
-                $field_type = supplier::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( supplier::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($supplier->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $supplier = $supplier->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($supplier->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($supplier->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( supplier::$field_type_map[$key] ) ) {
+                    $field_type = supplier::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($supplier->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $supplier->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $supplier->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.supplier.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $supplier->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $supplier->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.supplier.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -383,39 +409,40 @@ class supplierController extends DURCController
      */
     public function update(Request $request, supplier $supplier){
 
-	$tmp_supplier = $supplier;
-			$tmp_supplier->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_supplier ); 
-		$tmp_supplier->company = DURC::formatForStorage( 'company', 'varchar', $request->company, $tmp_supplier ); 
-		$tmp_supplier->lastName = DURC::formatForStorage( 'lastName', 'varchar', $request->lastName, $tmp_supplier ); 
-		$tmp_supplier->firstName = DURC::formatForStorage( 'firstName', 'varchar', $request->firstName, $tmp_supplier ); 
-		$tmp_supplier->emailAddress = DURC::formatForStorage( 'emailAddress', 'varchar', $request->emailAddress, $tmp_supplier ); 
-		$tmp_supplier->jobTitle = DURC::formatForStorage( 'jobTitle', 'varchar', $request->jobTitle, $tmp_supplier ); 
-		$tmp_supplier->businessPhone = DURC::formatForStorage( 'businessPhone', 'varchar', $request->businessPhone, $tmp_supplier ); 
-		$tmp_supplier->homePhone = DURC::formatForStorage( 'homePhone', 'varchar', $request->homePhone, $tmp_supplier ); 
-		$tmp_supplier->mobilePhone = DURC::formatForStorage( 'mobilePhone', 'varchar', $request->mobilePhone, $tmp_supplier ); 
-		$tmp_supplier->faxNumber = DURC::formatForStorage( 'faxNumber', 'varchar', $request->faxNumber, $tmp_supplier ); 
-		$tmp_supplier->address = DURC::formatForStorage( 'address', 'longtext', $request->address, $tmp_supplier ); 
-		$tmp_supplier->city = DURC::formatForStorage( 'city', 'varchar', $request->city, $tmp_supplier ); 
-		$tmp_supplier->stateProvince = DURC::formatForStorage( 'stateProvince', 'varchar', $request->stateProvince, $tmp_supplier ); 
-		$tmp_supplier->zipPostalCode = DURC::formatForStorage( 'zipPostalCode', 'varchar', $request->zipPostalCode, $tmp_supplier ); 
-		$tmp_supplier->countryRegion = DURC::formatForStorage( 'countryRegion', 'varchar', $request->countryRegion, $tmp_supplier ); 
-		$tmp_supplier->webPage = DURC::formatForStorage( 'webPage', 'longtext', $request->webPage, $tmp_supplier ); 
-		$tmp_supplier->notes = DURC::formatForStorage( 'notes', 'longtext', $request->notes, $tmp_supplier ); 
-		$tmp_supplier->attachments = DURC::formatForStorage( 'attachments', 'longblob', $request->attachments, $tmp_supplier ); 
-
-
-	$id = $supplier->id;
-	
-    try {
-	    		$tmp_supplier->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/supplier/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/supplier/$id")->with('status', 'Data Saved!');
+        $tmp_supplier = $supplier;
         
+        $tmp_supplier->id = $request->id;
+        $tmp_supplier->company = $request->company;
+        $tmp_supplier->lastName = $request->lastName;
+        $tmp_supplier->firstName = $request->firstName;
+        $tmp_supplier->emailAddress = $request->emailAddress;
+        $tmp_supplier->jobTitle = $request->jobTitle;
+        $tmp_supplier->businessPhone = $request->businessPhone;
+        $tmp_supplier->homePhone = $request->homePhone;
+        $tmp_supplier->mobilePhone = $request->mobilePhone;
+        $tmp_supplier->faxNumber = $request->faxNumber;
+        $tmp_supplier->address = $request->address;
+        $tmp_supplier->city = $request->city;
+        $tmp_supplier->stateProvince = $request->stateProvince;
+        $tmp_supplier->zipPostalCode = $request->zipPostalCode;
+        $tmp_supplier->countryRegion = $request->countryRegion;
+        $tmp_supplier->webPage = $request->webPage;
+        $tmp_supplier->notes = $request->notes;
+        $tmp_supplier->attachments = $request->attachments;
+
+        $id = $supplier->id;
+        
+        try {
+            $tmp_supplier->save();
+
+            return redirect("/DURC/supplier/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_supplier->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/supplier/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

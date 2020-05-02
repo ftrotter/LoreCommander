@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{card_id_row_class}}'>
     <label for='card_id' class='col-sm-4 col-form-label'>card_id</label>
@@ -76,7 +81,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{scryfall_id_row_class}}'>
     <label for='scryfall_id' class='col-sm-4 col-form-label'>scryfall_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_id}}is-invalid{{/errors.scryfall_id}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_id}}<li>{{.}}</li>{{/errors.scryfall_id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{pricetype_id_row_class}}'>
     <label for='pricetype_id' class='col-sm-4 col-form-label'>pricetype_id</label>
@@ -114,7 +124,12 @@ $('.select2_pricetype_id').select2({
   <div class='form-group row {{price_row_class}}'>
     <label for='price' class='col-sm-4 col-form-label'>price</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='price' name='price' placeholder='NULL' value='{{price}}'  >
+      <input type='text' class='form-control {{#errors.price}}is-invalid{{/errors.price}}' id='price' name='price' placeholder='NULL' value='{{price}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.price}}<li>{{.}}</li>{{/errors.price}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='price' name='priceNull' id='priceNull' value='priceNull' {{price_checked}}>
                     <label class='form-check-label' for='priceNull'>null</label>

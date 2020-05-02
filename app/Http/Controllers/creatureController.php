@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d94998ceaa8648cb80b2d3eed264de2a
+FILE_SIG=747ed88499fcd4ccf127a3fb20b456e7
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class creatureController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class creatureController extends DURCParentController
      * @param  \App\$creature  $creature
      * @return \Illuminate\Http\Response
      */
-    public function show(creature $creature){
+    public function show(Request $request, creature $creature){
         // enter your stuff here if you want...
-	return(parent::show($creature));
+	return(parent::show($request, $creature));
     }
 
     /**
@@ -63,9 +63,9 @@ class creatureController extends DURCParentController
      * @param  \App\creature  $creature
      * @return \Illuminate\Http\Response
      */
-    public function edit(creature $creature, $is_new = false){
+    public function edit(Request $request, creature $creature, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($creature));
+	return(parent::edit($request, $creature));
     }
 
     /**

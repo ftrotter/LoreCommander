@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7eef2206c3bd356bf7f4760e6cbafb8b
+FILE_SIG=ecb5540bbf9b75493427da8d483f0cfe
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class inventorytransactiontypeController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class inventorytransactiontypeController extends DURCParentController
      * @param  \App\$inventorytransactiontype  $inventorytransactiontype
      * @return \Illuminate\Http\Response
      */
-    public function show(inventorytransactiontype $inventorytransactiontype){
+    public function show(Request $request, inventorytransactiontype $inventorytransactiontype){
         // enter your stuff here if you want...
-	return(parent::show($inventorytransactiontype));
+	return(parent::show($request, $inventorytransactiontype));
     }
 
     /**
@@ -63,9 +63,9 @@ class inventorytransactiontypeController extends DURCParentController
      * @param  \App\inventorytransactiontype  $inventorytransactiontype
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventorytransactiontype $inventorytransactiontype, $is_new = false){
+    public function edit(Request $request, inventorytransactiontype $inventorytransactiontype, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($inventorytransactiontype));
+	return(parent::edit($request, $inventorytransactiontype));
     }
 
     /**

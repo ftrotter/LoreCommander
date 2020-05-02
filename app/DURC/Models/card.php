@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -80,7 +81,7 @@ class card extends DURCModel{
 		'legal_pioneer' => 'tinyint',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -119,10 +120,10 @@ class card extends DURCModel{
 		'legal_pioneer',
 		'created_at',
 		'updated_at',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'scryfall_id' => null,
 		'lang' => null,
@@ -162,12 +163,510 @@ class card extends DURCModel{
 		'legal_pioneer' => null,
 		'created_at' => null,
 		'updated_at' => null,
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'scryfall_id' => 'required',
+		'lang' => 'required',
+		'oracle_id' => 'required',
+		'rulings_uri' => 'required',
+		'scryfall_web_uri' => 'required',
+		'scryfall_api_uri' => 'required',
+		'layout' => 'required',
+		'rarity' => 'required',
+		'released_at' => 'nullable',
+		'set_name' => 'required',
+		'set_type' => 'required',
+		'mtgset_id' => 'integer|required',
+		'variation_of_scryfall_id' => 'nullable',
+		'edhrec_rank' => 'integer|nullable',
+		'is_promo' => 'required',
+		'is_reserved' => 'nullable',
+		'is_reprint' => 'integer',
+		'legal_historic' => 'required',
+		'legal_pioneer' => 'required',
+		'created_at' => 'required',
+		'updated_at' => 'required',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getScryfallIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setScryfallIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('scryfall_id', 'varchar', $value, $this);
+		$this->attributes['scryfall_id'] = $formatted_value;
+	}
+
+	public function getLangAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLangAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('lang', 'varchar', $value, $this);
+		$this->attributes['lang'] = $formatted_value;
+	}
+
+	public function getOracleIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setOracleIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('oracle_id', 'varchar', $value, $this);
+		$this->attributes['oracle_id'] = $formatted_value;
+	}
+
+	public function getRulingsUriAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setRulingsUriAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('rulings_uri', 'varchar', $value, $this);
+		$this->attributes['rulings_uri'] = $formatted_value;
+	}
+
+	public function getScryfallWebUriAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setScryfallWebUriAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('scryfall_web_uri', 'varchar', $value, $this);
+		$this->attributes['scryfall_web_uri'] = $formatted_value;
+	}
+
+	public function getScryfallApiUriAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setScryfallApiUriAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('scryfall_api_uri', 'varchar', $value, $this);
+		$this->attributes['scryfall_api_uri'] = $formatted_value;
+	}
+
+	public function getLayoutAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLayoutAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('layout', 'varchar', $value, $this);
+		$this->attributes['layout'] = $formatted_value;
+	}
+
+	public function getRarityAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setRarityAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('rarity', 'varchar', $value, $this);
+		$this->attributes['rarity'] = $formatted_value;
+	}
+
+	public function getReleasedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setReleasedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('released_at', 'varchar', $value, $this);
+		$this->attributes['released_at'] = $formatted_value;
+	}
+
+	public function getSetNameAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setSetNameAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('set_name', 'varchar', $value, $this);
+		$this->attributes['set_name'] = $formatted_value;
+	}
+
+	public function getSetTypeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setSetTypeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('set_type', 'varchar', $value, $this);
+		$this->attributes['set_type'] = $formatted_value;
+	}
+
+	public function getMtgsetIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setMtgsetIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('mtgset_id', 'int', $value, $this);
+		$this->attributes['mtgset_id'] = $formatted_value;
+	}
+
+	public function getVariationOfScryfallIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setVariationOfScryfallIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('variation_of_scryfall_id', 'varchar', $value, $this);
+		$this->attributes['variation_of_scryfall_id'] = $formatted_value;
+	}
+
+	public function getEdhrecRankAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setEdhrecRankAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('edhrec_rank', 'int', $value, $this);
+		$this->attributes['edhrec_rank'] = $formatted_value;
+	}
+
+	public function getIsPromoAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsPromoAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_promo', 'tinyint', $value, $this);
+		$this->attributes['is_promo'] = $formatted_value;
+	}
+
+	public function getIsReservedAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsReservedAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_reserved', 'tinyint', $value, $this);
+		$this->attributes['is_reserved'] = $formatted_value;
+	}
+
+	public function getIsStorySpotlightAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsStorySpotlightAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_story_spotlight', 'tinyint', $value, $this);
+		$this->attributes['is_story_spotlight'] = $formatted_value;
+	}
+
+	public function getIsReprintAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsReprintAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_reprint', 'int', $value, $this);
+		$this->attributes['is_reprint'] = $formatted_value;
+	}
+
+	public function getIsVariationAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsVariationAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_variation', 'tinyint', $value, $this);
+		$this->attributes['is_variation'] = $formatted_value;
+	}
+
+	public function getIsGamePaperAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsGamePaperAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_game_paper', 'tinyint', $value, $this);
+		$this->attributes['is_game_paper'] = $formatted_value;
+	}
+
+	public function getIsGameMtgoAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsGameMtgoAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_game_mtgo', 'tinyint', $value, $this);
+		$this->attributes['is_game_mtgo'] = $formatted_value;
+	}
+
+	public function getIsGameArenaAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsGameArenaAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_game_arena', 'tinyint', $value, $this);
+		$this->attributes['is_game_arena'] = $formatted_value;
+	}
+
+	public function getLegalOldschoolAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalOldschoolAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_oldschool', 'tinyint', $value, $this);
+		$this->attributes['legal_oldschool'] = $formatted_value;
+	}
+
+	public function getLegalDuelAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalDuelAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_duel', 'tinyint', $value, $this);
+		$this->attributes['legal_duel'] = $formatted_value;
+	}
+
+	public function getLegalCommanderAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalCommanderAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_commander', 'tinyint', $value, $this);
+		$this->attributes['legal_commander'] = $formatted_value;
+	}
+
+	public function getLegalBrawlAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalBrawlAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_brawl', 'tinyint', $value, $this);
+		$this->attributes['legal_brawl'] = $formatted_value;
+	}
+
+	public function getLegalPennyAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalPennyAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_penny', 'tinyint', $value, $this);
+		$this->attributes['legal_penny'] = $formatted_value;
+	}
+
+	public function getLegalVintageAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalVintageAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_vintage', 'tinyint', $value, $this);
+		$this->attributes['legal_vintage'] = $formatted_value;
+	}
+
+	public function getLegalPauperAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalPauperAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_pauper', 'tinyint', $value, $this);
+		$this->attributes['legal_pauper'] = $formatted_value;
+	}
+
+	public function getLegalLegacyAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalLegacyAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_legacy', 'tinyint', $value, $this);
+		$this->attributes['legal_legacy'] = $formatted_value;
+	}
+
+	public function getLegalModernAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalModernAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_modern', 'tinyint', $value, $this);
+		$this->attributes['legal_modern'] = $formatted_value;
+	}
+
+	public function getLegalFrontierAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalFrontierAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_frontier', 'tinyint', $value, $this);
+		$this->attributes['legal_frontier'] = $formatted_value;
+	}
+
+	public function getLegalFutureAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalFutureAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_future', 'tinyint', $value, $this);
+		$this->attributes['legal_future'] = $formatted_value;
+	}
+
+	public function getLegalStandardAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalStandardAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_standard', 'tinyint', $value, $this);
+		$this->attributes['legal_standard'] = $formatted_value;
+	}
+
+	public function getLegalHistoricAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalHistoricAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_historic', 'tinyint', $value, $this);
+		$this->attributes['legal_historic'] = $formatted_value;
+	}
+
+	public function getLegalPioneerAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setLegalPioneerAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('legal_pioneer', 'tinyint', $value, $this);
+		$this->attributes['legal_pioneer'] = $formatted_value;
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
+		$this->attributes['created_at'] = $formatted_value;
+	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUpdatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
+		$this->attributes['updated_at'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

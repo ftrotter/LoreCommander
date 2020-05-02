@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7bd49ed6e7ba7cd729bbd2a6255d5c86
+FILE_SIG=ed35fc68d07a0f2dd9a1489164d02ee8
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class appstringController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class appstringController extends DURCParentController
      * @param  \App\$appstring  $appstring
      * @return \Illuminate\Http\Response
      */
-    public function show(appstring $appstring){
+    public function show(Request $request, appstring $appstring){
         // enter your stuff here if you want...
-	return(parent::show($appstring));
+	return(parent::show($request, $appstring));
     }
 
     /**
@@ -63,9 +63,9 @@ class appstringController extends DURCParentController
      * @param  \App\appstring  $appstring
      * @return \Illuminate\Http\Response
      */
-    public function edit(appstring $appstring, $is_new = false){
+    public function edit(Request $request, appstring $appstring, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($appstring));
+	return(parent::edit($request, $appstring));
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=0f6702a38c0b7d0a58ce29d69aebd390
+FILE_SIG=ea6eb8fd461eb4a1edae274c5b9b8515
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class classofc_classofc_vspackController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class classofc_classofc_vspackController extends DURCParentController
      * @param  \App\$classofc_classofc_vspack  $classofc_classofc_vspack
      * @return \Illuminate\Http\Response
      */
-    public function show(classofc_classofc_vspack $classofc_classofc_vspack){
+    public function show(Request $request, classofc_classofc_vspack $classofc_classofc_vspack){
         // enter your stuff here if you want...
-	return(parent::show($classofc_classofc_vspack));
+	return(parent::show($request, $classofc_classofc_vspack));
     }
 
     /**
@@ -63,9 +63,9 @@ class classofc_classofc_vspackController extends DURCParentController
      * @param  \App\classofc_classofc_vspack  $classofc_classofc_vspack
      * @return \Illuminate\Http\Response
      */
-    public function edit(classofc_classofc_vspack $classofc_classofc_vspack, $is_new = false){
+    public function edit(Request $request, classofc_classofc_vspack $classofc_classofc_vspack, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($classofc_classofc_vspack));
+	return(parent::edit($request, $classofc_classofc_vspack));
     }
 
     /**

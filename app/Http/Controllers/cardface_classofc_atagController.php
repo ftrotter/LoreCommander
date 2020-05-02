@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=982b25fc3aa307141aed5fba535f5471
+FILE_SIG=431ca680a65c4d06937a0c70a69087da
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class cardface_classofc_atagController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class cardface_classofc_atagController extends DURCParentController
      * @param  \App\$cardface_classofc_atag  $cardface_classofc_atag
      * @return \Illuminate\Http\Response
      */
-    public function show(cardface_classofc_atag $cardface_classofc_atag){
+    public function show(Request $request, cardface_classofc_atag $cardface_classofc_atag){
         // enter your stuff here if you want...
-	return(parent::show($cardface_classofc_atag));
+	return(parent::show($request, $cardface_classofc_atag));
     }
 
     /**
@@ -63,9 +63,9 @@ class cardface_classofc_atagController extends DURCParentController
      * @param  \App\cardface_classofc_atag  $cardface_classofc_atag
      * @return \Illuminate\Http\Response
      */
-    public function edit(cardface_classofc_atag $cardface_classofc_atag, $is_new = false){
+    public function edit(Request $request, cardface_classofc_atag $cardface_classofc_atag, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($cardface_classofc_atag));
+	return(parent::edit($request, $cardface_classofc_atag));
     }
 
     /**

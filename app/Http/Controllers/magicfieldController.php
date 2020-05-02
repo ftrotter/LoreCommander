@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=269f41f6aaaa212e1cc471726b2c3627
+FILE_SIG=02ac2ecfdf462112f004768b946e166f
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class magicfieldController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class magicfieldController extends DURCParentController
      * @param  \App\$magicfield  $magicfield
      * @return \Illuminate\Http\Response
      */
-    public function show(magicfield $magicfield){
+    public function show(Request $request, magicfield $magicfield){
         // enter your stuff here if you want...
-	return(parent::show($magicfield));
+	return(parent::show($request, $magicfield));
     }
 
     /**
@@ -63,9 +63,9 @@ class magicfieldController extends DURCParentController
      * @param  \App\magicfield  $magicfield
      * @return \Illuminate\Http\Response
      */
-    public function edit(magicfield $magicfield, $is_new = false){
+    public function edit(Request $request, magicfield $magicfield, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($magicfield));
+	return(parent::edit($request, $magicfield));
     }
 
     /**

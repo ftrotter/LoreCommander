@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -45,7 +46,7 @@ class pack extends DURCModel{
 		'pack_img_url' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -56,10 +57,10 @@ class pack extends DURCModel{
 		'pack_img_url',
 		'created_at',
 		'updated_at',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'pack_name' => null,
 		'pack_wizards_url' => null,
@@ -67,12 +68,111 @@ class pack extends DURCModel{
 		'pack_img_url' => null,
 		'created_at' => null,
 		'updated_at' => null,
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'pack_name' => 'required',
+		'pack_wizards_url' => 'required',
+		'pack_wiki_url' => 'required',
+		'pack_img_url' => 'required',
+		'created_at' => 'required',
+		'updated_at' => 'required',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getPackNameAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPackNameAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('pack_name', 'varchar', $value, $this);
+		$this->attributes['pack_name'] = $formatted_value;
+	}
+
+	public function getPackWizardsUrlAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPackWizardsUrlAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('pack_wizards_url', 'varchar', $value, $this);
+		$this->attributes['pack_wizards_url'] = $formatted_value;
+	}
+
+	public function getPackWikiUrlAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPackWikiUrlAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('pack_wiki_url', 'varchar', $value, $this);
+		$this->attributes['pack_wiki_url'] = $formatted_value;
+	}
+
+	public function getPackImgUrlAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPackImgUrlAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('pack_img_url', 'varchar', $value, $this);
+		$this->attributes['pack_img_url'] = $formatted_value;
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
+		$this->attributes['created_at'] = $formatted_value;
+	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUpdatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
+		$this->attributes['updated_at'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

@@ -38,12 +38,22 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{privilegeName_row_class}}'>
     <label for='privilegeName' class='col-sm-4 col-form-label'>privilegeName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='privilegeName' name='privilegeName' placeholder='NULL' value='{{privilegeName}}'  >
+      <input type='text' class='form-control {{#errors.privilegeName}}is-invalid{{/errors.privilegeName}}' id='privilegeName' name='privilegeName' placeholder='NULL' value='{{privilegeName}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.privilegeName}}<li>{{.}}</li>{{/errors.privilegeName}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='privilegeName' name='privilegeNameNull' id='privilegeNameNull' value='privilegeNameNull' {{privilegeName_checked}}>
                     <label class='form-check-label' for='privilegeNameNull'>null</label>

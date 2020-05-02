@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -47,16 +48,16 @@ class invoice extends DURCModel{
 		'tax' => 'decimal',
 		'shipping' => 'decimal',
 		'amountDue' => 'decimal',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
 		'id',
 		'invoiceDate',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'order_id' => 'NULL',
 		'invoiceDate' => 'current_timestamp()',
@@ -64,12 +65,110 @@ class invoice extends DURCModel{
 		'tax' => '0.0000',
 		'shipping' => '0.0000',
 		'amountDue' => '0.0000',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'order_id' => 'integer|nullable',
+		'dueDate' => 'nullable',
+		'tax' => 'nullable',
+		'shipping' => 'nullable',
+		'amountDue' => 'nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getOrderIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setOrderIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('order_id', 'int', $value, $this);
+		$this->attributes['order_id'] = $formatted_value;
+	}
+
+	public function getInvoiceDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setInvoiceDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('invoiceDate', 'datetime', $value, $this);
+		$this->attributes['invoiceDate'] = $formatted_value;
+	}
+
+	public function getDueDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setDueDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('dueDate', 'datetime', $value, $this);
+		$this->attributes['dueDate'] = $formatted_value;
+	}
+
+	public function getTaxAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTaxAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('tax', 'decimal', $value, $this);
+		$this->attributes['tax'] = $formatted_value;
+	}
+
+	public function getShippingAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShippingAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipping', 'decimal', $value, $this);
+		$this->attributes['shipping'] = $formatted_value;
+	}
+
+	public function getAmountDueAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setAmountDueAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('amountDue', 'decimal', $value, $this);
+		$this->attributes['amountDue'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

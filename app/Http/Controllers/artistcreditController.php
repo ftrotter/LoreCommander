@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=785ab65d9b79201331478887fd4a7438
+FILE_SIG=b5d0253508b3c78966c95cde527bbc38
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class artistcreditController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class artistcreditController extends DURCParentController
      * @param  \App\$artistcredit  $artistcredit
      * @return \Illuminate\Http\Response
      */
-    public function show(artistcredit $artistcredit){
+    public function show(Request $request, artistcredit $artistcredit){
         // enter your stuff here if you want...
-	return(parent::show($artistcredit));
+	return(parent::show($request, $artistcredit));
     }
 
     /**
@@ -63,9 +63,9 @@ class artistcreditController extends DURCParentController
      * @param  \App\artistcredit  $artistcredit
      * @return \Illuminate\Http\Response
      */
-    public function edit(artistcredit $artistcredit, $is_new = false){
+    public function edit(Request $request, artistcredit $artistcredit, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($artistcredit));
+	return(parent::edit($request, $artistcredit));
     }
 
     /**

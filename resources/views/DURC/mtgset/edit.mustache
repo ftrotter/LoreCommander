@@ -38,22 +38,42 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{scryfall_id_row_class}}'>
     <label for='scryfall_id' class='col-sm-4 col-form-label'>scryfall_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_id}}is-invalid{{/errors.scryfall_id}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_id}}<li>{{.}}</li>{{/errors.scryfall_id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{code_row_class}}'>
     <label for='code' class='col-sm-4 col-form-label'>code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='code' name='code' placeholder='' value='{{code}}'  required>
+      <input type='text' class='form-control {{#errors.code}}is-invalid{{/errors.code}}' id='code' name='code' placeholder='' value='{{code}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.code}}<li>{{.}}</li>{{/errors.code}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{mtgo_code_row_class}}'>
     <label for='mtgo_code' class='col-sm-4 col-form-label'>mtgo_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}'  >
+      <input type='text' class='form-control {{#errors.mtgo_code}}is-invalid{{/errors.mtgo_code}}' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.mtgo_code}}<li>{{.}}</li>{{/errors.mtgo_code}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='mtgo_code' name='mtgo_codeNull' id='mtgo_codeNull' value='mtgo_codeNull' {{mtgo_code_checked}}>
                     <label class='form-check-label' for='mtgo_codeNull'>null</label>
@@ -61,7 +81,12 @@
   <div class='form-group row {{arena_code_row_class}}'>
     <label for='arena_code' class='col-sm-4 col-form-label'>arena_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}'  >
+      <input type='text' class='form-control {{#errors.arena_code}}is-invalid{{/errors.arena_code}}' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.arena_code}}<li>{{.}}</li>{{/errors.arena_code}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='arena_code' name='arena_codeNull' id='arena_codeNull' value='arena_codeNull' {{arena_code_checked}}>
                     <label class='form-check-label' for='arena_codeNull'>null</label>
@@ -69,7 +94,12 @@
   <div class='form-group row {{tcgplayer_id_row_class}}'>
     <label for='tcgplayer_id' class='col-sm-4 col-form-label'>tcgplayer_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}'  >
+      <input type='text' class='form-control {{#errors.tcgplayer_id}}is-invalid{{/errors.tcgplayer_id}}' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.tcgplayer_id}}<li>{{.}}</li>{{/errors.tcgplayer_id}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='tcgplayer_id' name='tcgplayer_idNull' id='tcgplayer_idNull' value='tcgplayer_idNull' {{tcgplayer_id_checked}}>
                     <label class='form-check-label' for='tcgplayer_idNull'>null</label>
@@ -77,12 +107,22 @@
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='name' name='name' placeholder='' value='{{name}}'  required>
+      <input type='text' class='form-control {{#errors.name}}is-invalid{{/errors.name}}' id='name' name='name' placeholder='' value='{{name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.name}}<li>{{.}}</li>{{/errors.name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{set_type_row_class}}'>
     <label for='set_type' class='col-sm-4 col-form-label'>set_type</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='set_type' name='set_type' placeholder='' value='{{set_type}}'  required>
+      <input type='text' class='form-control {{#errors.set_type}}is-invalid{{/errors.set_type}}' id='set_type' name='set_type' placeholder='' value='{{set_type}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.set_type}}<li>{{.}}</li>{{/errors.set_type}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
@@ -117,7 +157,12 @@
   <div class='form-group row {{block_code_row_class}}'>
     <label for='block_code' class='col-sm-4 col-form-label'>block_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}'  >
+      <input type='text' class='form-control {{#errors.block_code}}is-invalid{{/errors.block_code}}' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.block_code}}<li>{{.}}</li>{{/errors.block_code}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='block_code' name='block_codeNull' id='block_codeNull' value='block_codeNull' {{block_code_checked}}>
                     <label class='form-check-label' for='block_codeNull'>null</label>
@@ -125,7 +170,12 @@
   <div class='form-group row {{block_row_class}}'>
     <label for='block' class='col-sm-4 col-form-label'>block</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='block' name='block' placeholder='NULL' value='{{block}}'  >
+      <input type='text' class='form-control {{#errors.block}}is-invalid{{/errors.block}}' id='block' name='block' placeholder='NULL' value='{{block}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.block}}<li>{{.}}</li>{{/errors.block}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='block' name='blockNull' id='blockNull' value='blockNull' {{block_checked}}>
                     <label class='form-check-label' for='blockNull'>null</label>
@@ -133,7 +183,12 @@
   <div class='form-group row {{parent_set_code_row_class}}'>
     <label for='parent_set_code' class='col-sm-4 col-form-label'>parent_set_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}'  >
+      <input type='text' class='form-control {{#errors.parent_set_code}}is-invalid{{/errors.parent_set_code}}' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.parent_set_code}}<li>{{.}}</li>{{/errors.parent_set_code}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='parent_set_code' name='parent_set_codeNull' id='parent_set_codeNull' value='parent_set_codeNull' {{parent_set_code_checked}}>
                     <label class='form-check-label' for='parent_set_codeNull'>null</label>
@@ -141,7 +196,12 @@
   <div class='form-group row {{card_count_row_class}}'>
     <label for='card_count' class='col-sm-4 col-form-label'>card_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='card_count' name='card_count' placeholder='' value='{{card_count}}'  required>
+      <input type='text' class='form-control {{#errors.card_count}}is-invalid{{/errors.card_count}}' id='card_count' name='card_count' placeholder='' value='{{card_count}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.card_count}}<li>{{.}}</li>{{/errors.card_count}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{is_digital_row_class}}'>
     <div class='col-sm-4'><label>is_digital</label></div>
@@ -164,27 +224,47 @@
   <div class='form-group row {{scryfall_uri_row_class}}'>
     <label for='scryfall_uri' class='col-sm-4 col-form-label'>scryfall_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_uri}}is-invalid{{/errors.scryfall_uri}}' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_uri}}<li>{{.}}</li>{{/errors.scryfall_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{mtgset_uri_row_class}}'>
     <label for='mtgset_uri' class='col-sm-4 col-form-label'>mtgset_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mtgset_uri' name='mtgset_uri' placeholder='' value='{{mtgset_uri}}'  required>
+      <input type='text' class='form-control {{#errors.mtgset_uri}}is-invalid{{/errors.mtgset_uri}}' id='mtgset_uri' name='mtgset_uri' placeholder='' value='{{mtgset_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.mtgset_uri}}<li>{{.}}</li>{{/errors.mtgset_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{icon_svg_uri_row_class}}'>
     <label for='icon_svg_uri' class='col-sm-4 col-form-label'>icon_svg_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='icon_svg_uri' name='icon_svg_uri' placeholder='' value='{{icon_svg_uri}}'  required>
+      <input type='text' class='form-control {{#errors.icon_svg_uri}}is-invalid{{/errors.icon_svg_uri}}' id='icon_svg_uri' name='icon_svg_uri' placeholder='' value='{{icon_svg_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.icon_svg_uri}}<li>{{.}}</li>{{/errors.icon_svg_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{search_uri_row_class}}'>
     <label for='search_uri' class='col-sm-4 col-form-label'>search_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='search_uri' name='search_uri' placeholder='' value='{{search_uri}}'  required>
+      <input type='text' class='form-control {{#errors.search_uri}}is-invalid{{/errors.search_uri}}' id='search_uri' name='search_uri' placeholder='' value='{{search_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.search_uri}}<li>{{.}}</li>{{/errors.search_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -214,7 +294,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
