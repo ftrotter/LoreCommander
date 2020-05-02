@@ -44,7 +44,7 @@ class orderdetailstat extends DURCModel{
 		'statusName' => 'varchar',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'statusName',
@@ -61,8 +61,8 @@ class orderdetailstat extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|required',
-		'statusName' => 'required',
+		'id' => 'integer|present',
+		'statusName' => 'present',
 	]; // End of validation rules
 		
         

@@ -53,7 +53,7 @@ class inventorytransaction extends DURCModel{
 		'comments' => 'varchar',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'transactionType',
@@ -82,9 +82,9 @@ class inventorytransaction extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'transactionType' => 'required',
-		'product_id' => 'integer|required',
-		'quantity' => 'integer|required',
+		'transactionType' => 'present',
+		'product_id' => 'integer|present',
+		'quantity' => 'integer|present',
 		'purchaseOrder_id' => 'integer|nullable',
 		'customerOrder_id' => 'integer|nullable',
 		'comments' => 'nullable',

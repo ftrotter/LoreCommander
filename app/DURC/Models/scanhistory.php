@@ -46,7 +46,7 @@ class scanhistory extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'multiverse_id',
@@ -69,7 +69,7 @@ class scanhistory extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'multiverse_id' => 'integer|required',
+		'multiverse_id' => 'integer|present',
 		'viewchannel' => 'nullable',
 	]; // End of validation rules
 		

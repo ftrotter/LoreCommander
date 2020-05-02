@@ -99,7 +99,7 @@ class cardface extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'card_id',
@@ -183,8 +183,8 @@ class cardface extends DURCModel{
 		'is_snow' => '0',
 		'has_phyrexian_mana' => '0',
 		'for_fulltext_search' => 'NULL',
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -193,22 +193,22 @@ class cardface extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'card_id' => 'integer|required',
-		'cardface_index' => 'integer|required',
-		'illustration_id' => 'required',
+		'card_id' => 'integer|present',
+		'cardface_index' => 'integer|present',
+		'illustration_id' => 'present',
 		'artist' => 'nullable',
 		'color' => 'nullable',
 		'color_identity' => 'nullable',
 		'flavor_text' => 'nullable',
-		'image_uri' => 'required',
-		'mana_cost' => 'required',
+		'image_uri' => 'present',
+		'mana_cost' => 'present',
 		'cmc' => 'nullable',
-		'name' => 'required',
-		'oracle_text' => 'required',
+		'name' => 'present',
+		'oracle_text' => 'present',
 		'power' => 'nullable',
 		'toughness' => 'nullable',
-		'type_line' => 'required',
-		'border_color' => 'required',
+		'type_line' => 'present',
+		'border_color' => 'present',
 		'image_uri_art_crop' => 'nullable',
 		'image_hash_art_crop' => 'nullable',
 		'image_uri_small' => 'nullable',
@@ -221,13 +221,11 @@ class cardface extends DURCModel{
 		'image_hash_png' => 'nullable',
 		'image_uri_border_crop' => 'nullable',
 		'image_hash_border_crop' => 'nullable',
-		'is_foil' => 'required',
-		'is_nonfoil' => 'required',
+		'is_foil' => 'present',
+		'is_nonfoil' => 'present',
 		'color_count' => 'integer',
-		'color_identity_count' => 'integer|required',
+		'color_identity_count' => 'integer|present',
 		'for_fulltext_search' => 'nullable',
-		'created_at' => 'required',
-		'updated_at' => 'required',
 	]; // End of validation rules
 		
         
@@ -963,8 +961,8 @@ CREATE TABLE `lore`.`cardface` (
   `is_snow` tinyint(1) NOT NULL DEFAULT 0,
   `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,
   `for_fulltext_search` varchar(2000) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`,`card_id`),
   KEY `is_color_green` (`is_color_green`),

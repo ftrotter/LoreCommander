@@ -1,0 +1,312 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/validationtest' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/validationtest/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>validationtest</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_validationtest/'>Return to validationtest list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/validationtest/create'>Create new validationtest </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{is_tinyIntTrueFalse_row_class}}'>
+    <div class='col-sm-4'><label>is_tinyIntTrueFalse</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_tinyIntTrueFalse' name='is_tinyIntTrueFalse' {{is_tinyIntTrueFalse}}  >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{has_tinyIntTrueFalse_row_class}}'>
+    <div class='col-sm-4'><label>has_tinyIntTrueFalse</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='has_tinyIntTrueFalse' name='has_tinyIntTrueFalse' {{has_tinyIntTrueFalse}}  >
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{thisDecimal_row_class}}'>
+    <label for='thisDecimal' class='col-sm-4 col-form-label'>thisDecimal</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.thisDecimal}}is-invalid{{/errors.thisDecimal}}' id='thisDecimal' name='thisDecimal' placeholder='' value='{{thisDecimal}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.thisDecimal}}<li>{{.}}</li>{{/errors.thisDecimal}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{thisFloat_row_class}}'>
+    <label for='thisFloat' class='col-sm-4 col-form-label'>thisFloat</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.thisFloat}}is-invalid{{/errors.thisFloat}}' id='thisFloat' name='thisFloat' placeholder='' value='{{thisFloat}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.thisFloat}}<li>{{.}}</li>{{/errors.thisFloat}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{thisDouble_row_class}}'>
+    <label for='thisDouble' class='col-sm-4 col-form-label'>thisDouble</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.thisDouble}}is-invalid{{/errors.thisDouble}}' id='thisDouble' name='thisDouble' placeholder='' value='{{thisDouble}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.thisDouble}}<li>{{.}}</li>{{/errors.thisDouble}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_url_row_class}}'>
+    <label for='this_url' class='col-sm-4 col-form-label'>this_url</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_url}}is-invalid{{/errors.this_url}}' id='this_url' name='this_url' placeholder='' value='{{this_url}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_url}}<li>{{.}}</li>{{/errors.this_url}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_uuid_row_class}}'>
+    <label for='this_uuid' class='col-sm-4 col-form-label'>this_uuid</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_uuid}}is-invalid{{/errors.this_uuid}}' id='this_uuid' name='this_uuid' placeholder='' value='{{this_uuid}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_uuid}}<li>{{.}}</li>{{/errors.this_uuid}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_alpha_row_class}}'>
+    <label for='this_alpha' class='col-sm-4 col-form-label'>this_alpha</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_alpha}}is-invalid{{/errors.this_alpha}}' id='this_alpha' name='this_alpha' placeholder='' value='{{this_alpha}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_alpha}}<li>{{.}}</li>{{/errors.this_alpha}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_alpha_dash_row_class}}'>
+    <label for='this_alpha_dash' class='col-sm-4 col-form-label'>this_alpha_dash</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_alpha_dash}}is-invalid{{/errors.this_alpha_dash}}' id='this_alpha_dash' name='this_alpha_dash' placeholder='' value='{{this_alpha_dash}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_alpha_dash}}<li>{{.}}</li>{{/errors.this_alpha_dash}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_alpha_num_row_class}}'>
+    <label for='this_alpha_num' class='col-sm-4 col-form-label'>this_alpha_num</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_alpha_num}}is-invalid{{/errors.this_alpha_num}}' id='this_alpha_num' name='this_alpha_num' placeholder='' value='{{this_alpha_num}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_alpha_num}}<li>{{.}}</li>{{/errors.this_alpha_num}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_email_row_class}}'>
+    <label for='this_email' class='col-sm-4 col-form-label'>this_email</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_email}}is-invalid{{/errors.this_email}}' id='this_email' name='this_email' placeholder='' value='{{this_email}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_email}}<li>{{.}}</li>{{/errors.this_email}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_ipv4_row_class}}'>
+    <label for='this_ipv4' class='col-sm-4 col-form-label'>this_ipv4</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_ipv4}}is-invalid{{/errors.this_ipv4}}' id='this_ipv4' name='this_ipv4' placeholder='' value='{{this_ipv4}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_ipv4}}<li>{{.}}</li>{{/errors.this_ipv4}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_ipv6_row_class}}'>
+    <label for='this_ipv6' class='col-sm-4 col-form-label'>this_ipv6</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_ipv6}}is-invalid{{/errors.this_ipv6}}' id='this_ipv6' name='this_ipv6' placeholder='' value='{{this_ipv6}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_ipv6}}<li>{{.}}</li>{{/errors.this_ipv6}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_json_row_class}}'>
+    <label for='this_json' class='col-sm-4 col-form-label'>this_json</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_json}}is-invalid{{/errors.this_json}}' id='this_json' name='this_json' placeholder='' value='{{this_json}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_json}}<li>{{.}}</li>{{/errors.this_json}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{this_timezone_row_class}}'>
+    <label for='this_timezone' class='col-sm-4 col-form-label'>this_timezone</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.this_timezone}}is-invalid{{/errors.this_timezone}}' id='this_timezone' name='this_timezone' placeholder='' value='{{this_timezone}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.this_timezone}}<li>{{.}}</li>{{/errors.this_timezone}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+
+<script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+
+<script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/validationtest/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='validationtest' class='do-soft-delete btn btn-outline-danger'>Hard Delete validationtest</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load
+            $('.null-checkbox').each(function() {
+                if ($(this).prop('checked')) {
+                    let id = $(this).attr('data-elem');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

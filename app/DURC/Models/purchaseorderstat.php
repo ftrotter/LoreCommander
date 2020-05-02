@@ -44,7 +44,7 @@ class purchaseorderstat extends DURCModel{
 		'status' => 'varchar',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 	]; // End of nullable fields
@@ -60,7 +60,7 @@ class purchaseorderstat extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|required',
+		'id' => 'integer|present',
 		'status' => 'nullable',
 	]; // End of validation rules
 		

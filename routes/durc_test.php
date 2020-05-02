@@ -20,6 +20,10 @@ Route::get('durctest', function () {
  			'/DURC/magicfield/create', //from: DURC_aaa.magicField 
  			'/DURC/magicfield/1', //from: DURC_aaa.magicField 
  			'/DURC/magicfield/1/edit', //from: DURC_aaa.magicField 
+ 			'/DURC/validationtest', //from: DURC_aaa.validationTest 
+ 			'/DURC/validationtest/create', //from: DURC_aaa.validationTest 
+ 			'/DURC/validationtest/1', //from: DURC_aaa.validationTest 
+ 			'/DURC/validationtest/1/edit', //from: DURC_aaa.validationTest 
  			'/DURC/nonprofitcorp', //from: DURC_irs.nonprofitcorp 
  			'/DURC/nonprofitcorp/create', //from: DURC_irs.nonprofitcorp 
  			'/DURC/nonprofitcorp/1', //from: DURC_irs.nonprofitcorp 

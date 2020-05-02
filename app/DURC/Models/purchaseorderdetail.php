@@ -52,7 +52,7 @@ class purchaseorderdetail extends DURCModel{
 		'inventory_id' => 'int',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'purchaseOrder_id',
@@ -79,10 +79,10 @@ class purchaseorderdetail extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'purchaseOrder_id' => 'integer|required',
+		'purchaseOrder_id' => 'integer|present',
 		'product_id' => 'integer|nullable',
-		'quantity' => 'required',
-		'unitCost' => 'required',
+		'quantity' => 'present',
+		'unitCost' => 'present',
 		'dateReceived' => 'nullable',
 		'inventory_id' => 'integer|nullable',
 	]; // End of validation rules

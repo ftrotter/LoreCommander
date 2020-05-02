@@ -47,7 +47,7 @@ class salesreport extends DURCModel{
 		'default' => 'tinyint',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'groupBy',
 		'default',
@@ -67,7 +67,7 @@ class salesreport extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'groupBy' => 'required',
+		'groupBy' => 'present',
 		'display' => 'nullable',
 		'title' => 'nullable',
 		'filterRowSource' => 'nullable',

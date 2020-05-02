@@ -58,7 +58,7 @@ class person extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'last_name',
@@ -88,9 +88,9 @@ class person extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'last_name' => 'required',
-		'first_name' => 'required',
-		'person_blurb' => 'required',
+		'last_name' => 'present',
+		'first_name' => 'present',
+		'person_blurb' => 'present',
 		'image_uri' => 'nullable',
 		'wallpaper_download_url' => 'nullable',
 		'mtgwiki_url' => 'nullable',

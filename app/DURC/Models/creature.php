@@ -50,7 +50,7 @@ class creature extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'creature_name',
@@ -73,7 +73,7 @@ class creature extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'creature_name' => 'required',
+		'creature_name' => 'present',
 		'creature_image_uri' => 'nullable',
 	]; // End of validation rules
 		

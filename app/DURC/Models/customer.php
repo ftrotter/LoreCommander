@@ -66,7 +66,7 @@ class customer extends DURCModel{
 		'deleted_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'random_date',
@@ -124,10 +124,10 @@ class customer extends DURCModel{
 		'webPage' => 'nullable',
 		'notes' => 'nullable',
 		'attachments' => 'nullable',
-		'random_date' => 'required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
-		'deleted_at' => 'required',
+		'random_date' => 'present',
+		'created_at' => 'present',
+		'updated_at' => 'present',
+		'deleted_at' => 'present',
 	]; // End of validation rules
 		
         

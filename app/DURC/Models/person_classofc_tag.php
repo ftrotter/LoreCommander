@@ -52,7 +52,7 @@ class person_classofc_tag extends DURCModel{
 		'updated_at' => 'datetime',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
 		'person_id',
@@ -81,12 +81,12 @@ class person_classofc_tag extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'id' => 'integer',
-		'person_id' => 'integer|required',
-		'classofc_id' => 'integer|required',
-		'tag_id' => 'integer|required',
+		'person_id' => 'integer|present',
+		'classofc_id' => 'integer|present',
+		'tag_id' => 'integer|present',
 		'link_note' => 'nullable',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'created_at' => 'present',
+		'updated_at' => 'present',
 	]; // End of validation rules
 		
         

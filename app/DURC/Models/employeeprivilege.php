@@ -46,7 +46,7 @@ class employeeprivilege extends DURCModel{
 		'privilege_id' => 'int',
 	]; //end field_type_map
 		
-    // Indicate which fields are nullable for the UI to be able to validate required form elements
+    // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'employee_id',
 		'privilege_id',
@@ -63,8 +63,8 @@ class employeeprivilege extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'employee_id' => 'integer|required',
-		'privilege_id' => 'integer|required',
+		'employee_id' => 'integer|present',
+		'privilege_id' => 'integer|present',
 	]; // End of validation rules
 		
         
