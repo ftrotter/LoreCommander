@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=bcf12b54dde7b40578db353e38fcebab
+FILE_SIG=563d7054d9976558982b15d278b19efb
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class strategytagController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class strategytagController extends DURCParentController
      * @param  \App\$strategytag  $strategytag
      * @return \Illuminate\Http\Response
      */
-    public function show(strategytag $strategytag){
+    public function show(Request $request, strategytag $strategytag){
         // enter your stuff here if you want...
-	return(parent::show($strategytag));
+	return(parent::show($request, $strategytag));
     }
 
     /**
@@ -63,9 +63,9 @@ class strategytagController extends DURCParentController
      * @param  \App\strategytag  $strategytag
      * @return \Illuminate\Http\Response
      */
-    public function edit(strategytag $strategytag, $is_new = false){
+    public function edit(Request $request, strategytag $strategytag, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($strategytag));
+	return(parent::edit($request, $strategytag));
     }
 
     /**

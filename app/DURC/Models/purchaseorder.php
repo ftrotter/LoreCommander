@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -62,7 +63,7 @@ class purchaseorder extends DURCModel{
 		'approvedBy_employee_id' => 'int',
 		'approvedDate' => 'datetime',
 		'submittedBy_employee_id' => 'int',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -70,10 +71,10 @@ class purchaseorder extends DURCModel{
 		'creationDate',
 		'shippingFee',
 		'taxes',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'supplier_id' => 'NULL',
 		'createdBy_employee_id' => 'NULL',
@@ -90,12 +91,225 @@ class purchaseorder extends DURCModel{
 		'approvedBy_employee_id' => 'NULL',
 		'approvedDate' => 'NULL',
 		'submittedBy_employee_id' => 'NULL',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'supplier_id' => 'integer|nullable',
+		'createdBy_employee_id' => 'integer|nullable',
+		'submittedDate' => 'nullable',
+		'status_id' => 'integer|nullable',
+		'expectedDate' => 'nullable',
+		'paymentDate' => 'nullable',
+		'paymentAmount' => 'nullable',
+		'paymentMethod' => 'nullable',
+		'notes' => 'nullable',
+		'approvedBy_employee_id' => 'integer|nullable',
+		'approvedDate' => 'nullable',
+		'submittedBy_employee_id' => 'integer|nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getSupplierIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setSupplierIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('supplier_id', 'int', $value, $this);
+		$this->attributes['supplier_id'] = $formatted_value;
+	}
+
+	public function getCreatedByEmployeeIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedByEmployeeIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('createdBy_employee_id', 'int', $value, $this);
+		$this->attributes['createdBy_employee_id'] = $formatted_value;
+	}
+
+	public function getSubmittedDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setSubmittedDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('submittedDate', 'datetime', $value, $this);
+		$this->attributes['submittedDate'] = $formatted_value;
+	}
+
+	public function getCreationDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreationDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('creationDate', 'datetime', $value, $this);
+		$this->attributes['creationDate'] = $formatted_value;
+	}
+
+	public function getStatusIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setStatusIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('status_id', 'int', $value, $this);
+		$this->attributes['status_id'] = $formatted_value;
+	}
+
+	public function getExpectedDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setExpectedDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('expectedDate', 'datetime', $value, $this);
+		$this->attributes['expectedDate'] = $formatted_value;
+	}
+
+	public function getShippingFeeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShippingFeeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shippingFee', 'decimal', $value, $this);
+		$this->attributes['shippingFee'] = $formatted_value;
+	}
+
+	public function getTaxesAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTaxesAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('taxes', 'decimal', $value, $this);
+		$this->attributes['taxes'] = $formatted_value;
+	}
+
+	public function getPaymentDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPaymentDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('paymentDate', 'datetime', $value, $this);
+		$this->attributes['paymentDate'] = $formatted_value;
+	}
+
+	public function getPaymentAmountAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPaymentAmountAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('paymentAmount', 'decimal', $value, $this);
+		$this->attributes['paymentAmount'] = $formatted_value;
+	}
+
+	public function getPaymentMethodAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPaymentMethodAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('paymentMethod', 'varchar', $value, $this);
+		$this->attributes['paymentMethod'] = $formatted_value;
+	}
+
+	public function getNotesAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setNotesAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('notes', 'longtext', $value, $this);
+		$this->attributes['notes'] = $formatted_value;
+	}
+
+	public function getApprovedByEmployeeIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setApprovedByEmployeeIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('approvedBy_employee_id', 'int', $value, $this);
+		$this->attributes['approvedBy_employee_id'] = $formatted_value;
+	}
+
+	public function getApprovedDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setApprovedDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('approvedDate', 'datetime', $value, $this);
+		$this->attributes['approvedDate'] = $formatted_value;
+	}
+
+	public function getSubmittedByEmployeeIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setSubmittedByEmployeeIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('submittedBy_employee_id', 'int', $value, $this);
+		$this->attributes['submittedBy_employee_id'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

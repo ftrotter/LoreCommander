@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{order_id_row_class}}'>
     <label for='order_id' class='col-sm-4 col-form-label'>order_id</label>
@@ -109,12 +114,22 @@ $('.select2_product_id').select2({
   <div class='form-group row {{quantity_row_class}}'>
     <label for='quantity' class='col-sm-4 col-form-label'>quantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='quantity' name='quantity' placeholder='0.0000' value='{{quantity}}'  >
+      <input type='text' class='form-control {{#errors.quantity}}is-invalid{{/errors.quantity}}' id='quantity' name='quantity' placeholder='0.0000' value='{{quantity}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.quantity}}<li>{{.}}</li>{{/errors.quantity}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{unitPrice_row_class}}'>
     <label for='unitPrice' class='col-sm-4 col-form-label'>unitPrice</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='unitPrice' name='unitPrice' placeholder='0.0000' value='{{unitPrice}}'  >
+      <input type='text' class='form-control {{#errors.unitPrice}}is-invalid{{/errors.unitPrice}}' id='unitPrice' name='unitPrice' placeholder='0.0000' value='{{unitPrice}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.unitPrice}}<li>{{.}}</li>{{/errors.unitPrice}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='unitPrice' name='unitPriceNull' id='unitPriceNull' value='unitPriceNull' {{unitPrice_checked}}>
                     <label class='form-check-label' for='unitPriceNull'>null</label>
@@ -122,7 +137,12 @@ $('.select2_product_id').select2({
   <div class='form-group row {{discount_row_class}}'>
     <label for='discount' class='col-sm-4 col-form-label'>discount</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='discount' name='discount' placeholder='0' value='{{discount}}'  >
+      <input type='text' class='form-control {{#errors.discount}}is-invalid{{/errors.discount}}' id='discount' name='discount' placeholder='0' value='{{discount}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.discount}}<li>{{.}}</li>{{/errors.discount}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{status_id_row_class}}'>
     <label for='status_id' class='col-sm-4 col-form-label'>status_id</label>
@@ -223,7 +243,12 @@ $('.select2_PurchaseOrder_id').select2({
   <div class='form-group row {{inventory_id_row_class}}'>
     <label for='inventory_id' class='col-sm-4 col-form-label'>inventory_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='inventory_id' name='inventory_id' placeholder='NULL' value='{{inventory_id}}'  >
+      <input type='text' class='form-control {{#errors.inventory_id}}is-invalid{{/errors.inventory_id}}' id='inventory_id' name='inventory_id' placeholder='NULL' value='{{inventory_id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.inventory_id}}<li>{{.}}</li>{{/errors.inventory_id}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='inventory_id' name='inventory_idNull' id='inventory_idNull' value='inventory_idNull' {{inventory_id_checked}}>
                     <label class='form-check-label' for='inventory_idNull'>null</label>

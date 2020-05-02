@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{cardface_id_row_class}}'>
     <label for='cardface_id' class='col-sm-4 col-form-label'>cardface_id</label>

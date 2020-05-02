@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{employee_id_row_class}}'>
     <label for='employee_id' class='col-sm-4 col-form-label'>employee_id</label>
@@ -202,7 +207,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipName_row_class}}'>
     <label for='shipName' class='col-sm-4 col-form-label'>shipName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipName' name='shipName' placeholder='NULL' value='{{shipName}}'  >
+      <input type='text' class='form-control {{#errors.shipName}}is-invalid{{/errors.shipName}}' id='shipName' name='shipName' placeholder='NULL' value='{{shipName}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipName}}<li>{{.}}</li>{{/errors.shipName}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipName' name='shipNameNull' id='shipNameNull' value='shipNameNull' {{shipName_checked}}>
                     <label class='form-check-label' for='shipNameNull'>null</label>
@@ -210,7 +220,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipAddress_row_class}}'>
     <label for='shipAddress' class='col-sm-4 col-form-label'>shipAddress</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipAddress' name='shipAddress' placeholder='NULL' value='{{shipAddress}}'  >
+      <input type='text' class='form-control {{#errors.shipAddress}}is-invalid{{/errors.shipAddress}}' id='shipAddress' name='shipAddress' placeholder='NULL' value='{{shipAddress}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipAddress}}<li>{{.}}</li>{{/errors.shipAddress}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipAddress' name='shipAddressNull' id='shipAddressNull' value='shipAddressNull' {{shipAddress_checked}}>
                     <label class='form-check-label' for='shipAddressNull'>null</label>
@@ -218,7 +233,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipCity_row_class}}'>
     <label for='shipCity' class='col-sm-4 col-form-label'>shipCity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipCity' name='shipCity' placeholder='NULL' value='{{shipCity}}'  >
+      <input type='text' class='form-control {{#errors.shipCity}}is-invalid{{/errors.shipCity}}' id='shipCity' name='shipCity' placeholder='NULL' value='{{shipCity}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipCity}}<li>{{.}}</li>{{/errors.shipCity}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipCity' name='shipCityNull' id='shipCityNull' value='shipCityNull' {{shipCity_checked}}>
                     <label class='form-check-label' for='shipCityNull'>null</label>
@@ -226,7 +246,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipStateProvince_row_class}}'>
     <label for='shipStateProvince' class='col-sm-4 col-form-label'>shipStateProvince</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipStateProvince' name='shipStateProvince' placeholder='NULL' value='{{shipStateProvince}}'  >
+      <input type='text' class='form-control {{#errors.shipStateProvince}}is-invalid{{/errors.shipStateProvince}}' id='shipStateProvince' name='shipStateProvince' placeholder='NULL' value='{{shipStateProvince}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipStateProvince}}<li>{{.}}</li>{{/errors.shipStateProvince}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipStateProvince' name='shipStateProvinceNull' id='shipStateProvinceNull' value='shipStateProvinceNull' {{shipStateProvince_checked}}>
                     <label class='form-check-label' for='shipStateProvinceNull'>null</label>
@@ -234,7 +259,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipZipPostalCode_row_class}}'>
     <label for='shipZipPostalCode' class='col-sm-4 col-form-label'>shipZipPostalCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipZipPostalCode' name='shipZipPostalCode' placeholder='NULL' value='{{shipZipPostalCode}}'  >
+      <input type='text' class='form-control {{#errors.shipZipPostalCode}}is-invalid{{/errors.shipZipPostalCode}}' id='shipZipPostalCode' name='shipZipPostalCode' placeholder='NULL' value='{{shipZipPostalCode}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipZipPostalCode}}<li>{{.}}</li>{{/errors.shipZipPostalCode}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipZipPostalCode' name='shipZipPostalCodeNull' id='shipZipPostalCodeNull' value='shipZipPostalCodeNull' {{shipZipPostalCode_checked}}>
                     <label class='form-check-label' for='shipZipPostalCodeNull'>null</label>
@@ -242,7 +272,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipCountryRegion_row_class}}'>
     <label for='shipCountryRegion' class='col-sm-4 col-form-label'>shipCountryRegion</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shipCountryRegion' name='shipCountryRegion' placeholder='NULL' value='{{shipCountryRegion}}'  >
+      <input type='text' class='form-control {{#errors.shipCountryRegion}}is-invalid{{/errors.shipCountryRegion}}' id='shipCountryRegion' name='shipCountryRegion' placeholder='NULL' value='{{shipCountryRegion}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shipCountryRegion}}<li>{{.}}</li>{{/errors.shipCountryRegion}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shipCountryRegion' name='shipCountryRegionNull' id='shipCountryRegionNull' value='shipCountryRegionNull' {{shipCountryRegion_checked}}>
                     <label class='form-check-label' for='shipCountryRegionNull'>null</label>
@@ -250,7 +285,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shippingFee_row_class}}'>
     <label for='shippingFee' class='col-sm-4 col-form-label'>shippingFee</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}'  >
+      <input type='text' class='form-control {{#errors.shippingFee}}is-invalid{{/errors.shippingFee}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.shippingFee}}<li>{{.}}</li>{{/errors.shippingFee}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='shippingFee' name='shippingFeeNull' id='shippingFeeNull' value='shippingFeeNull' {{shippingFee_checked}}>
                     <label class='form-check-label' for='shippingFeeNull'>null</label>
@@ -258,7 +298,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{taxes_row_class}}'>
     <label for='taxes' class='col-sm-4 col-form-label'>taxes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}'  >
+      <input type='text' class='form-control {{#errors.taxes}}is-invalid{{/errors.taxes}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.taxes}}<li>{{.}}</li>{{/errors.taxes}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='taxes' name='taxesNull' id='taxesNull' value='taxesNull' {{taxes_checked}}>
                     <label class='form-check-label' for='taxesNull'>null</label>
@@ -266,7 +311,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{paymentType_row_class}}'>
     <label for='paymentType' class='col-sm-4 col-form-label'>paymentType</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='paymentType' name='paymentType' placeholder='NULL' value='{{paymentType}}'  >
+      <input type='text' class='form-control {{#errors.paymentType}}is-invalid{{/errors.paymentType}}' id='paymentType' name='paymentType' placeholder='NULL' value='{{paymentType}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.paymentType}}<li>{{.}}</li>{{/errors.paymentType}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='paymentType' name='paymentTypeNull' id='paymentTypeNull' value='paymentTypeNull' {{paymentType_checked}}>
                     <label class='form-check-label' for='paymentTypeNull'>null</label>
@@ -304,7 +354,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+      <input type='text' class='form-control {{#errors.notes}}is-invalid{{/errors.notes}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.notes}}<li>{{.}}</li>{{/errors.notes}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='notes' name='notesNull' id='notesNull' value='notesNull' {{notes_checked}}>
                     <label class='form-check-label' for='notesNull'>null</label>
@@ -312,7 +367,12 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{taxRate_row_class}}'>
     <label for='taxRate' class='col-sm-4 col-form-label'>taxRate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='taxRate' name='taxRate' placeholder='0' value='{{taxRate}}'  >
+      <input type='text' class='form-control {{#errors.taxRate}}is-invalid{{/errors.taxRate}}' id='taxRate' name='taxRate' placeholder='0' value='{{taxRate}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.taxRate}}<li>{{.}}</li>{{/errors.taxRate}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='taxRate' name='taxRateNull' id='taxRateNull' value='taxRateNull' {{taxRate_checked}}>
                     <label class='form-check-label' for='taxRateNull'>null</label>

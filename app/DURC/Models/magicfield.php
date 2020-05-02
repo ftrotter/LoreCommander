@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -51,7 +52,7 @@ class magicfield extends DURCModel{
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 		'deleted_at' => 'datetime',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -65,10 +66,10 @@ class magicfield extends DURCModel{
 		'this_date',
 		'created_at',
 		'updated_at',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'editsome_markdown' => null,
 		'typesome_sql_code' => null,
@@ -80,12 +81,161 @@ class magicfield extends DURCModel{
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
 		'deleted_at' => 'NULL',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'editsome_markdown' => 'required',
+		'typesome_sql_code' => 'required',
+		'typesome_php_code' => 'required',
+		'typesome_python_code' => 'required',
+		'typesome_javascript_code' => 'required',
+		'this_datetime' => 'required',
+		'this_date' => 'required',
+		'deleted_at' => 'nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getEditsomeMarkdownAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setEditsomeMarkdownAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('editsome_markdown', 'varchar', $value, $this);
+		$this->attributes['editsome_markdown'] = $formatted_value;
+	}
+
+	public function getTypesomeSqlCodeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTypesomeSqlCodeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('typesome_sql_code', 'varchar', $value, $this);
+		$this->attributes['typesome_sql_code'] = $formatted_value;
+	}
+
+	public function getTypesomePhpCodeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTypesomePhpCodeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('typesome_php_code', 'mediumtext', $value, $this);
+		$this->attributes['typesome_php_code'] = $formatted_value;
+	}
+
+	public function getTypesomePythonCodeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTypesomePythonCodeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('typesome_python_code', 'mediumtext', $value, $this);
+		$this->attributes['typesome_python_code'] = $formatted_value;
+	}
+
+	public function getTypesomeJavascriptCodeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTypesomeJavascriptCodeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('typesome_javascript_code', 'varchar', $value, $this);
+		$this->attributes['typesome_javascript_code'] = $formatted_value;
+	}
+
+	public function getThisDatetimeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setThisDatetimeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('this_datetime', 'datetime', $value, $this);
+		$this->attributes['this_datetime'] = $formatted_value;
+	}
+
+	public function getThisDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setThisDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('this_date', 'date', $value, $this);
+		$this->attributes['this_date'] = $formatted_value;
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
+		$this->attributes['created_at'] = $formatted_value;
+	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUpdatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
+		$this->attributes['updated_at'] = $formatted_value;
+	}
+
+	public function getDeletedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setDeletedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('deleted_at', 'datetime', $value, $this);
+		$this->attributes['deleted_at'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

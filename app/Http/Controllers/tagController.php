@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a6ba7d7ce655595c678631feef99c2a2
+FILE_SIG=97279aeca34a9d07856125cecc05859e
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class tagController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class tagController extends DURCParentController
      * @param  \App\$tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(tag $tag){
+    public function show(Request $request, tag $tag){
         // enter your stuff here if you want...
-	return(parent::show($tag));
+	return(parent::show($request, $tag));
     }
 
     /**
@@ -63,9 +63,9 @@ class tagController extends DURCParentController
      * @param  \App\tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(tag $tag, $is_new = false){
+    public function edit(Request $request, tag $tag, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($tag));
+	return(parent::edit($request, $tag));
     }
 
     /**

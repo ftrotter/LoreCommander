@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -43,7 +44,7 @@ class scanhistory extends DURCModel{
 		'viewchannel' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -51,21 +52,92 @@ class scanhistory extends DURCModel{
 		'multiverse_id',
 		'created_at',
 		'updated_at',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'multiverse_id' => null,
 		'viewchannel' => 'NULL',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'multiverse_id' => 'integer|required',
+		'viewchannel' => 'nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getMultiverseIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setMultiverseIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('multiverse_id', 'int', $value, $this);
+		$this->attributes['multiverse_id'] = $formatted_value;
+	}
+
+	public function getViewchannelAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setViewchannelAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('viewchannel', 'varchar', $value, $this);
+		$this->attributes['viewchannel'] = $formatted_value;
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
+		$this->attributes['created_at'] = $formatted_value;
+	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUpdatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
+		$this->attributes['updated_at'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

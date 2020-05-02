@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class themeController extends DURCController
 {
@@ -74,18 +75,18 @@ class themeController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -205,17 +206,17 @@ class themeController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.theme.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.theme.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -226,29 +227,33 @@ class themeController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewtheme = new theme();
+        $myNewtheme = new theme();
 
-	//the games we play to easily auto-generate code..
-	$tmp_theme = $myNewtheme;
-			$tmp_theme->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_theme ); 
-		$tmp_theme->theme_name = DURC::formatForStorage( 'theme_name', 'varchar', $request->theme_name, $tmp_theme ); 
-		$tmp_theme->theme_description = DURC::formatForStorage( 'theme_description', 'text', $request->theme_description, $tmp_theme ); 
-		$tmp_theme->emblematic_person_id = DURC::formatForStorage( 'emblematic_person_id', 'int', $request->emblematic_person_id, $tmp_theme ); 
-		$tmp_theme->emblematic_cardface_id = DURC::formatForStorage( 'emblematic_cardface_id', 'int', $request->emblematic_cardface_id, $tmp_theme ); 
-		$tmp_theme->emblematic_creature_id = DURC::formatForStorage( 'emblematic_creature_id', 'int', $request->emblematic_creature_id, $tmp_theme ); 
+        //the games we play to easily auto-generate code..
+        $tmp_theme = $myNewtheme;
+        
+        $tmp_theme->id = $request->id;
+        $tmp_theme->theme_name = $request->theme_name;
+        $tmp_theme->theme_description = $request->theme_description;
+        $tmp_theme->emblematic_person_id = $request->emblematic_person_id;
+        $tmp_theme->emblematic_cardface_id = $request->emblematic_cardface_id;
+        $tmp_theme->emblematic_creature_id = $request->emblematic_creature_id;
 
-	
-	try {
-	    		$tmp_theme->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/theme/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_theme->save();
 
-	}
+        $new_id = $myNewtheme->id;
+        return redirect("/DURC/theme/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_theme->getErrors());
 
-	$new_id = $myNewtheme->id;
-	
-	return redirect("/DURC/theme/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/theme/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -256,8 +261,8 @@ class themeController extends DURCController
      * @param  \App\$theme  $theme
      * @return \Illuminate\Http\Response
      */
-    public function show(theme $theme){
-	return($this->edit($theme));
+    public function show(Request $request, theme $theme){
+	return($this->edit($request, $theme));
     }
 
     /**
@@ -292,10 +297,10 @@ class themeController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new theme();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new theme();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -304,68 +309,89 @@ class themeController extends DURCController
      * @param  \App\theme  $theme
      * @return \Illuminate\Http\Response
      */
-    public function edit(theme $theme){
+    public function edit(Request $request, theme $theme){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( theme::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($theme->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$theme = $theme->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($theme->toArray() as $key => $value){
-			if ( isset( theme::$field_type_map[$key] ) ) {
-                $field_type = theme::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( theme::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($theme->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $theme = $theme->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($theme->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($theme->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( theme::$field_type_map[$key] ) ) {
+                    $field_type = theme::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($theme->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $theme->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $theme->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.theme.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $theme->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $theme->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.theme.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -376,27 +402,28 @@ class themeController extends DURCController
      */
     public function update(Request $request, theme $theme){
 
-	$tmp_theme = $theme;
-			$tmp_theme->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_theme ); 
-		$tmp_theme->theme_name = DURC::formatForStorage( 'theme_name', 'varchar', $request->theme_name, $tmp_theme ); 
-		$tmp_theme->theme_description = DURC::formatForStorage( 'theme_description', 'text', $request->theme_description, $tmp_theme ); 
-		$tmp_theme->emblematic_person_id = DURC::formatForStorage( 'emblematic_person_id', 'int', $request->emblematic_person_id, $tmp_theme ); 
-		$tmp_theme->emblematic_cardface_id = DURC::formatForStorage( 'emblematic_cardface_id', 'int', $request->emblematic_cardface_id, $tmp_theme ); 
-		$tmp_theme->emblematic_creature_id = DURC::formatForStorage( 'emblematic_creature_id', 'int', $request->emblematic_creature_id, $tmp_theme ); 
-
-
-	$id = $theme->id;
-	
-    try {
-	    		$tmp_theme->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/theme/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/theme/$id")->with('status', 'Data Saved!');
+        $tmp_theme = $theme;
         
+        $tmp_theme->id = $request->id;
+        $tmp_theme->theme_name = $request->theme_name;
+        $tmp_theme->theme_description = $request->theme_description;
+        $tmp_theme->emblematic_person_id = $request->emblematic_person_id;
+        $tmp_theme->emblematic_cardface_id = $request->emblematic_cardface_id;
+        $tmp_theme->emblematic_creature_id = $request->emblematic_creature_id;
+
+        $id = $theme->id;
+        
+        try {
+            $tmp_theme->save();
+
+            return redirect("/DURC/theme/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_theme->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/theme/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

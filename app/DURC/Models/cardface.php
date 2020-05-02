@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -96,7 +97,7 @@ class cardface extends DURCModel{
 		'for_fulltext_search' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -130,10 +131,10 @@ class cardface extends DURCModel{
 		'has_phyrexian_mana',
 		'created_at',
 		'updated_at',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'card_id' => null,
 		'cardface_index' => null,
@@ -184,12 +185,656 @@ class cardface extends DURCModel{
 		'for_fulltext_search' => 'NULL',
 		'created_at' => null,
 		'updated_at' => null,
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'card_id' => 'integer|required',
+		'cardface_index' => 'integer|required',
+		'illustration_id' => 'required',
+		'artist' => 'nullable',
+		'color' => 'nullable',
+		'color_identity' => 'nullable',
+		'flavor_text' => 'nullable',
+		'image_uri' => 'required',
+		'mana_cost' => 'required',
+		'cmc' => 'nullable',
+		'name' => 'required',
+		'oracle_text' => 'required',
+		'power' => 'nullable',
+		'toughness' => 'nullable',
+		'type_line' => 'required',
+		'border_color' => 'required',
+		'image_uri_art_crop' => 'nullable',
+		'image_hash_art_crop' => 'nullable',
+		'image_uri_small' => 'nullable',
+		'image_hash_small' => 'nullable',
+		'image_uri_normal' => 'nullable',
+		'image_hash_normal' => 'nullable',
+		'image_uri_large' => 'nullable',
+		'image_hash_large' => 'nullable',
+		'image_uri_png' => 'nullable',
+		'image_hash_png' => 'nullable',
+		'image_uri_border_crop' => 'nullable',
+		'image_hash_border_crop' => 'nullable',
+		'is_foil' => 'required',
+		'is_nonfoil' => 'required',
+		'color_count' => 'integer',
+		'color_identity_count' => 'integer|required',
+		'for_fulltext_search' => 'nullable',
+		'created_at' => 'required',
+		'updated_at' => 'required',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getCardIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCardIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('card_id', 'int', $value, $this);
+		$this->attributes['card_id'] = $formatted_value;
+	}
+
+	public function getCardfaceIndexAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCardfaceIndexAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('cardface_index', 'int', $value, $this);
+		$this->attributes['cardface_index'] = $formatted_value;
+	}
+
+	public function getIllustrationIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIllustrationIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('illustration_id', 'varchar', $value, $this);
+		$this->attributes['illustration_id'] = $formatted_value;
+	}
+
+	public function getArtistAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setArtistAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('artist', 'varchar', $value, $this);
+		$this->attributes['artist'] = $formatted_value;
+	}
+
+	public function getColorAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setColorAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('color', 'varchar', $value, $this);
+		$this->attributes['color'] = $formatted_value;
+	}
+
+	public function getColorIdentityAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setColorIdentityAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('color_identity', 'varchar', $value, $this);
+		$this->attributes['color_identity'] = $formatted_value;
+	}
+
+	public function getFlavorTextAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setFlavorTextAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('flavor_text', 'varchar', $value, $this);
+		$this->attributes['flavor_text'] = $formatted_value;
+	}
+
+	public function getImageUriAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri', 'varchar', $value, $this);
+		$this->attributes['image_uri'] = $formatted_value;
+	}
+
+	public function getManaCostAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setManaCostAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('mana_cost', 'varchar', $value, $this);
+		$this->attributes['mana_cost'] = $formatted_value;
+	}
+
+	public function getCmcAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCmcAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('cmc', 'decimal', $value, $this);
+		$this->attributes['cmc'] = $formatted_value;
+	}
+
+	public function getNameAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setNameAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('name', 'varchar', $value, $this);
+		$this->attributes['name'] = $formatted_value;
+	}
+
+	public function getOracleTextAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setOracleTextAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('oracle_text', 'varchar', $value, $this);
+		$this->attributes['oracle_text'] = $formatted_value;
+	}
+
+	public function getPowerAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPowerAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('power', 'varchar', $value, $this);
+		$this->attributes['power'] = $formatted_value;
+	}
+
+	public function getToughnessAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setToughnessAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('toughness', 'varchar', $value, $this);
+		$this->attributes['toughness'] = $formatted_value;
+	}
+
+	public function getTypeLineAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTypeLineAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('type_line', 'varchar', $value, $this);
+		$this->attributes['type_line'] = $formatted_value;
+	}
+
+	public function getBorderColorAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setBorderColorAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('border_color', 'varchar', $value, $this);
+		$this->attributes['border_color'] = $formatted_value;
+	}
+
+	public function getImageUriArtCropAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriArtCropAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri_art_crop', 'varchar', $value, $this);
+		$this->attributes['image_uri_art_crop'] = $formatted_value;
+	}
+
+	public function getImageHashArtCropAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageHashArtCropAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_hash_art_crop', 'varchar', $value, $this);
+		$this->attributes['image_hash_art_crop'] = $formatted_value;
+	}
+
+	public function getImageUriSmallAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriSmallAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri_small', 'varchar', $value, $this);
+		$this->attributes['image_uri_small'] = $formatted_value;
+	}
+
+	public function getImageHashSmallAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageHashSmallAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_hash_small', 'varchar', $value, $this);
+		$this->attributes['image_hash_small'] = $formatted_value;
+	}
+
+	public function getImageUriNormalAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriNormalAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri_normal', 'varchar', $value, $this);
+		$this->attributes['image_uri_normal'] = $formatted_value;
+	}
+
+	public function getImageHashNormalAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageHashNormalAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_hash_normal', 'varchar', $value, $this);
+		$this->attributes['image_hash_normal'] = $formatted_value;
+	}
+
+	public function getImageUriLargeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriLargeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri_large', 'varchar', $value, $this);
+		$this->attributes['image_uri_large'] = $formatted_value;
+	}
+
+	public function getImageHashLargeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageHashLargeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_hash_large', 'varchar', $value, $this);
+		$this->attributes['image_hash_large'] = $formatted_value;
+	}
+
+	public function getImageUriPngAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriPngAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri_png', 'varchar', $value, $this);
+		$this->attributes['image_uri_png'] = $formatted_value;
+	}
+
+	public function getImageHashPngAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageHashPngAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_hash_png', 'varchar', $value, $this);
+		$this->attributes['image_hash_png'] = $formatted_value;
+	}
+
+	public function getImageUriBorderCropAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageUriBorderCropAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_uri_border_crop', 'varchar', $value, $this);
+		$this->attributes['image_uri_border_crop'] = $formatted_value;
+	}
+
+	public function getImageHashBorderCropAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setImageHashBorderCropAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('image_hash_border_crop', 'varchar', $value, $this);
+		$this->attributes['image_hash_border_crop'] = $formatted_value;
+	}
+
+	public function getIsFoilAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsFoilAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_foil', 'tinyint', $value, $this);
+		$this->attributes['is_foil'] = $formatted_value;
+	}
+
+	public function getIsNonfoilAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsNonfoilAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_nonfoil', 'tinyint', $value, $this);
+		$this->attributes['is_nonfoil'] = $formatted_value;
+	}
+
+	public function getIsOversizedAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsOversizedAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_oversized', 'tinyint', $value, $this);
+		$this->attributes['is_oversized'] = $formatted_value;
+	}
+
+	public function getIsColorGreenAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorGreenAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_green', 'tinyint', $value, $this);
+		$this->attributes['is_color_green'] = $formatted_value;
+	}
+
+	public function getIsColorRedAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorRedAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_red', 'tinyint', $value, $this);
+		$this->attributes['is_color_red'] = $formatted_value;
+	}
+
+	public function getIsColorBlueAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorBlueAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_blue', 'tinyint', $value, $this);
+		$this->attributes['is_color_blue'] = $formatted_value;
+	}
+
+	public function getIsColorBlackAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorBlackAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_black', 'tinyint', $value, $this);
+		$this->attributes['is_color_black'] = $formatted_value;
+	}
+
+	public function getIsColorWhiteAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorWhiteAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_white', 'tinyint', $value, $this);
+		$this->attributes['is_color_white'] = $formatted_value;
+	}
+
+	public function getIsColorlessAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorlessAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_colorless', 'tinyint', $value, $this);
+		$this->attributes['is_colorless'] = $formatted_value;
+	}
+
+	public function getColorCountAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setColorCountAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('color_count', 'int', $value, $this);
+		$this->attributes['color_count'] = $formatted_value;
+	}
+
+	public function getIsColorIdentityGreenAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorIdentityGreenAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_identity_green', 'tinyint', $value, $this);
+		$this->attributes['is_color_identity_green'] = $formatted_value;
+	}
+
+	public function getIsColorIdentityRedAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorIdentityRedAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_identity_red', 'tinyint', $value, $this);
+		$this->attributes['is_color_identity_red'] = $formatted_value;
+	}
+
+	public function getIsColorIdentityBlueAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorIdentityBlueAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_identity_blue', 'tinyint', $value, $this);
+		$this->attributes['is_color_identity_blue'] = $formatted_value;
+	}
+
+	public function getIsColorIdentityBlackAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorIdentityBlackAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_identity_black', 'tinyint', $value, $this);
+		$this->attributes['is_color_identity_black'] = $formatted_value;
+	}
+
+	public function getIsColorIdentityWhiteAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsColorIdentityWhiteAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_color_identity_white', 'tinyint', $value, $this);
+		$this->attributes['is_color_identity_white'] = $formatted_value;
+	}
+
+	public function getColorIdentityCountAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setColorIdentityCountAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('color_identity_count', 'int', $value, $this);
+		$this->attributes['color_identity_count'] = $formatted_value;
+	}
+
+	public function getIsSnowAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsSnowAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_snow', 'tinyint', $value, $this);
+		$this->attributes['is_snow'] = $formatted_value;
+	}
+
+	public function getHasPhyrexianManaAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setHasPhyrexianManaAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('has_phyrexian_mana', 'tinyint', $value, $this);
+		$this->attributes['has_phyrexian_mana'] = $formatted_value;
+	}
+
+	public function getForFulltextSearchAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setForFulltextSearchAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('for_fulltext_search', 'varchar', $value, $this);
+		$this->attributes['for_fulltext_search'] = $formatted_value;
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
+		$this->attributes['created_at'] = $formatted_value;
+	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUpdatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
+		$this->attributes['updated_at'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

@@ -38,12 +38,22 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{companyName_row_class}}'>
     <label for='companyName' class='col-sm-4 col-form-label'>companyName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='companyName' name='companyName' placeholder='NULL' value='{{companyName}}'  >
+      <input type='text' class='form-control {{#errors.companyName}}is-invalid{{/errors.companyName}}' id='companyName' name='companyName' placeholder='NULL' value='{{companyName}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.companyName}}<li>{{.}}</li>{{/errors.companyName}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='companyName' name='companyNameNull' id='companyNameNull' value='companyNameNull' {{companyName_checked}}>
                     <label class='form-check-label' for='companyNameNull'>null</label>
@@ -51,7 +61,12 @@
   <div class='form-group row {{lastName_row_class}}'>
     <label for='lastName' class='col-sm-4 col-form-label'>lastName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='lastName' name='lastName' placeholder='NULL' value='{{lastName}}'  >
+      <input type='text' class='form-control {{#errors.lastName}}is-invalid{{/errors.lastName}}' id='lastName' name='lastName' placeholder='NULL' value='{{lastName}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.lastName}}<li>{{.}}</li>{{/errors.lastName}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='lastName' name='lastNameNull' id='lastNameNull' value='lastNameNull' {{lastName_checked}}>
                     <label class='form-check-label' for='lastNameNull'>null</label>
@@ -59,7 +74,12 @@
   <div class='form-group row {{firstName_row_class}}'>
     <label for='firstName' class='col-sm-4 col-form-label'>firstName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='firstName' name='firstName' placeholder='NULL' value='{{firstName}}'  >
+      <input type='text' class='form-control {{#errors.firstName}}is-invalid{{/errors.firstName}}' id='firstName' name='firstName' placeholder='NULL' value='{{firstName}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.firstName}}<li>{{.}}</li>{{/errors.firstName}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='firstName' name='firstNameNull' id='firstNameNull' value='firstNameNull' {{firstName_checked}}>
                     <label class='form-check-label' for='firstNameNull'>null</label>
@@ -67,7 +87,12 @@
   <div class='form-group row {{emailAddress_row_class}}'>
     <label for='emailAddress' class='col-sm-4 col-form-label'>emailAddress</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='emailAddress' name='emailAddress' placeholder='NULL' value='{{emailAddress}}'  >
+      <input type='text' class='form-control {{#errors.emailAddress}}is-invalid{{/errors.emailAddress}}' id='emailAddress' name='emailAddress' placeholder='NULL' value='{{emailAddress}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.emailAddress}}<li>{{.}}</li>{{/errors.emailAddress}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='emailAddress' name='emailAddressNull' id='emailAddressNull' value='emailAddressNull' {{emailAddress_checked}}>
                     <label class='form-check-label' for='emailAddressNull'>null</label>
@@ -75,7 +100,12 @@
   <div class='form-group row {{jobTitle_row_class}}'>
     <label for='jobTitle' class='col-sm-4 col-form-label'>jobTitle</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='jobTitle' name='jobTitle' placeholder='NULL' value='{{jobTitle}}'  >
+      <input type='text' class='form-control {{#errors.jobTitle}}is-invalid{{/errors.jobTitle}}' id='jobTitle' name='jobTitle' placeholder='NULL' value='{{jobTitle}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.jobTitle}}<li>{{.}}</li>{{/errors.jobTitle}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='jobTitle' name='jobTitleNull' id='jobTitleNull' value='jobTitleNull' {{jobTitle_checked}}>
                     <label class='form-check-label' for='jobTitleNull'>null</label>
@@ -83,7 +113,12 @@
   <div class='form-group row {{businessPhone_row_class}}'>
     <label for='businessPhone' class='col-sm-4 col-form-label'>businessPhone</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='businessPhone' name='businessPhone' placeholder='NULL' value='{{businessPhone}}'  >
+      <input type='text' class='form-control {{#errors.businessPhone}}is-invalid{{/errors.businessPhone}}' id='businessPhone' name='businessPhone' placeholder='NULL' value='{{businessPhone}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.businessPhone}}<li>{{.}}</li>{{/errors.businessPhone}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='businessPhone' name='businessPhoneNull' id='businessPhoneNull' value='businessPhoneNull' {{businessPhone_checked}}>
                     <label class='form-check-label' for='businessPhoneNull'>null</label>
@@ -91,7 +126,12 @@
   <div class='form-group row {{homePhone_row_class}}'>
     <label for='homePhone' class='col-sm-4 col-form-label'>homePhone</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='homePhone' name='homePhone' placeholder='NULL' value='{{homePhone}}'  >
+      <input type='text' class='form-control {{#errors.homePhone}}is-invalid{{/errors.homePhone}}' id='homePhone' name='homePhone' placeholder='NULL' value='{{homePhone}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.homePhone}}<li>{{.}}</li>{{/errors.homePhone}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='homePhone' name='homePhoneNull' id='homePhoneNull' value='homePhoneNull' {{homePhone_checked}}>
                     <label class='form-check-label' for='homePhoneNull'>null</label>
@@ -99,7 +139,12 @@
   <div class='form-group row {{mobilePhone_row_class}}'>
     <label for='mobilePhone' class='col-sm-4 col-form-label'>mobilePhone</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mobilePhone' name='mobilePhone' placeholder='NULL' value='{{mobilePhone}}'  >
+      <input type='text' class='form-control {{#errors.mobilePhone}}is-invalid{{/errors.mobilePhone}}' id='mobilePhone' name='mobilePhone' placeholder='NULL' value='{{mobilePhone}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.mobilePhone}}<li>{{.}}</li>{{/errors.mobilePhone}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='mobilePhone' name='mobilePhoneNull' id='mobilePhoneNull' value='mobilePhoneNull' {{mobilePhone_checked}}>
                     <label class='form-check-label' for='mobilePhoneNull'>null</label>
@@ -107,7 +152,12 @@
   <div class='form-group row {{faxNumber_row_class}}'>
     <label for='faxNumber' class='col-sm-4 col-form-label'>faxNumber</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='faxNumber' name='faxNumber' placeholder='NULL' value='{{faxNumber}}'  >
+      <input type='text' class='form-control {{#errors.faxNumber}}is-invalid{{/errors.faxNumber}}' id='faxNumber' name='faxNumber' placeholder='NULL' value='{{faxNumber}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.faxNumber}}<li>{{.}}</li>{{/errors.faxNumber}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='faxNumber' name='faxNumberNull' id='faxNumberNull' value='faxNumberNull' {{faxNumber_checked}}>
                     <label class='form-check-label' for='faxNumberNull'>null</label>
@@ -115,7 +165,12 @@
   <div class='form-group row {{address_row_class}}'>
     <label for='address' class='col-sm-4 col-form-label'>address</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='address' name='address' placeholder='NULL' value='{{address}}'  >
+      <input type='text' class='form-control {{#errors.address}}is-invalid{{/errors.address}}' id='address' name='address' placeholder='NULL' value='{{address}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.address}}<li>{{.}}</li>{{/errors.address}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='address' name='addressNull' id='addressNull' value='addressNull' {{address_checked}}>
                     <label class='form-check-label' for='addressNull'>null</label>
@@ -123,7 +178,12 @@
   <div class='form-group row {{city_row_class}}'>
     <label for='city' class='col-sm-4 col-form-label'>city</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='city' name='city' placeholder='NULL' value='{{city}}'  >
+      <input type='text' class='form-control {{#errors.city}}is-invalid{{/errors.city}}' id='city' name='city' placeholder='NULL' value='{{city}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.city}}<li>{{.}}</li>{{/errors.city}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='city' name='cityNull' id='cityNull' value='cityNull' {{city_checked}}>
                     <label class='form-check-label' for='cityNull'>null</label>
@@ -131,7 +191,12 @@
   <div class='form-group row {{stateProvince_row_class}}'>
     <label for='stateProvince' class='col-sm-4 col-form-label'>stateProvince</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='stateProvince' name='stateProvince' placeholder='NULL' value='{{stateProvince}}'  >
+      <input type='text' class='form-control {{#errors.stateProvince}}is-invalid{{/errors.stateProvince}}' id='stateProvince' name='stateProvince' placeholder='NULL' value='{{stateProvince}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.stateProvince}}<li>{{.}}</li>{{/errors.stateProvince}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='stateProvince' name='stateProvinceNull' id='stateProvinceNull' value='stateProvinceNull' {{stateProvince_checked}}>
                     <label class='form-check-label' for='stateProvinceNull'>null</label>
@@ -139,7 +204,12 @@
   <div class='form-group row {{zipPostalCode_row_class}}'>
     <label for='zipPostalCode' class='col-sm-4 col-form-label'>zipPostalCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='zipPostalCode' name='zipPostalCode' placeholder='NULL' value='{{zipPostalCode}}'  >
+      <input type='text' class='form-control {{#errors.zipPostalCode}}is-invalid{{/errors.zipPostalCode}}' id='zipPostalCode' name='zipPostalCode' placeholder='NULL' value='{{zipPostalCode}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.zipPostalCode}}<li>{{.}}</li>{{/errors.zipPostalCode}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='zipPostalCode' name='zipPostalCodeNull' id='zipPostalCodeNull' value='zipPostalCodeNull' {{zipPostalCode_checked}}>
                     <label class='form-check-label' for='zipPostalCodeNull'>null</label>
@@ -147,7 +217,12 @@
   <div class='form-group row {{countryRegion_row_class}}'>
     <label for='countryRegion' class='col-sm-4 col-form-label'>countryRegion</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='countryRegion' name='countryRegion' placeholder='NULL' value='{{countryRegion}}'  >
+      <input type='text' class='form-control {{#errors.countryRegion}}is-invalid{{/errors.countryRegion}}' id='countryRegion' name='countryRegion' placeholder='NULL' value='{{countryRegion}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.countryRegion}}<li>{{.}}</li>{{/errors.countryRegion}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='countryRegion' name='countryRegionNull' id='countryRegionNull' value='countryRegionNull' {{countryRegion_checked}}>
                     <label class='form-check-label' for='countryRegionNull'>null</label>
@@ -155,7 +230,12 @@
   <div class='form-group row {{webPage_row_class}}'>
     <label for='webPage' class='col-sm-4 col-form-label'>webPage</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='webPage' name='webPage' placeholder='NULL' value='{{webPage}}'  >
+      <input type='text' class='form-control {{#errors.webPage}}is-invalid{{/errors.webPage}}' id='webPage' name='webPage' placeholder='NULL' value='{{webPage}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.webPage}}<li>{{.}}</li>{{/errors.webPage}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='webPage' name='webPageNull' id='webPageNull' value='webPageNull' {{webPage_checked}}>
                     <label class='form-check-label' for='webPageNull'>null</label>
@@ -163,7 +243,12 @@
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+      <input type='text' class='form-control {{#errors.notes}}is-invalid{{/errors.notes}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.notes}}<li>{{.}}</li>{{/errors.notes}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='notes' name='notesNull' id='notesNull' value='notesNull' {{notes_checked}}>
                     <label class='form-check-label' for='notesNull'>null</label>
@@ -171,7 +256,12 @@
   <div class='form-group row {{attachments_row_class}}'>
     <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+      <input type='text' class='form-control {{#errors.attachments}}is-invalid{{/errors.attachments}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.attachments}}<li>{{.}}</li>{{/errors.attachments}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='attachments' name='attachmentsNull' id='attachmentsNull' value='attachmentsNull' {{attachments_checked}}>
                     <label class='form-check-label' for='attachmentsNull'>null</label>
@@ -179,7 +269,7 @@
   <div class='form-group row {{random_date_row_class}}'>
     <label for='random_date' class='col-sm-4 col-form-label'>random_date</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='random_date' name='random_date' placeholder='' value='{{random_date}}'  >
+      <input type='text' class='form-control' id='random_date' name='random_date' placeholder='' value='{{random_date}}'  required>
 
 <button type='button' class='btn btn-primary' id='random_date_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -209,7 +299,7 @@
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -239,7 +329,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -269,7 +359,7 @@
   <div class='form-group row {{deleted_at_row_class}}'>
     <label for='deleted_at' class='col-sm-4 col-form-label'>deleted_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='deleted_at' name='deleted_at' placeholder='' value='{{deleted_at}}'  >
+      <input type='text' class='form-control' id='deleted_at' name='deleted_at' placeholder='' value='{{deleted_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='deleted_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

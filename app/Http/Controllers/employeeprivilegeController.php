@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2c9c6659f3028695907913f222190c9a
+FILE_SIG=99e5cd0c22d44934d3f1f429d93297bd
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class employeeprivilegeController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class employeeprivilegeController extends DURCParentController
      * @param  \App\$employeeprivilege  $employeeprivilege
      * @return \Illuminate\Http\Response
      */
-    public function show(employeeprivilege $employeeprivilege){
+    public function show(Request $request, employeeprivilege $employeeprivilege){
         // enter your stuff here if you want...
-	return(parent::show($employeeprivilege));
+	return(parent::show($request, $employeeprivilege));
     }
 
     /**
@@ -63,9 +63,9 @@ class employeeprivilegeController extends DURCParentController
      * @param  \App\employeeprivilege  $employeeprivilege
      * @return \Illuminate\Http\Response
      */
-    public function edit(employeeprivilege $employeeprivilege, $is_new = false){
+    public function edit(Request $request, employeeprivilege $employeeprivilege, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($employeeprivilege));
+	return(parent::edit($request, $employeeprivilege));
     }
 
     /**

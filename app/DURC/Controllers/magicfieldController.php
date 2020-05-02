@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class magicfieldController extends DURCController
 {
@@ -72,18 +73,18 @@ class magicfieldController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -203,17 +204,17 @@ class magicfieldController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.magicfield.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.magicfield.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -224,32 +225,36 @@ class magicfieldController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewmagicfield = new magicfield();
+        $myNewmagicfield = new magicfield();
 
-	//the games we play to easily auto-generate code..
-	$tmp_magicfield = $myNewmagicfield;
-			$tmp_magicfield->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_magicfield ); 
-		$tmp_magicfield->editsome_markdown = DURC::formatForStorage( 'editsome_markdown', 'varchar', $request->editsome_markdown, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_sql_code = DURC::formatForStorage( 'typesome_sql_code', 'varchar', $request->typesome_sql_code, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_php_code = DURC::formatForStorage( 'typesome_php_code', 'mediumtext', $request->typesome_php_code, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_python_code = DURC::formatForStorage( 'typesome_python_code', 'mediumtext', $request->typesome_python_code, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_javascript_code = DURC::formatForStorage( 'typesome_javascript_code', 'varchar', $request->typesome_javascript_code, $tmp_magicfield ); 
-		$tmp_magicfield->this_datetime = DURC::formatForStorage( 'this_datetime', 'datetime', $request->this_datetime, $tmp_magicfield ); 
-		$tmp_magicfield->this_date = DURC::formatForStorage( 'this_date', 'date', $request->this_date, $tmp_magicfield ); 
-		$tmp_magicfield->deleted_at = DURC::formatForStorage( 'deleted_at', 'datetime', $request->deleted_at, $tmp_magicfield ); 
+        //the games we play to easily auto-generate code..
+        $tmp_magicfield = $myNewmagicfield;
+        
+        $tmp_magicfield->id = $request->id;
+        $tmp_magicfield->editsome_markdown = $request->editsome_markdown;
+        $tmp_magicfield->typesome_sql_code = $request->typesome_sql_code;
+        $tmp_magicfield->typesome_php_code = $request->typesome_php_code;
+        $tmp_magicfield->typesome_python_code = $request->typesome_python_code;
+        $tmp_magicfield->typesome_javascript_code = $request->typesome_javascript_code;
+        $tmp_magicfield->this_datetime = $request->this_datetime;
+        $tmp_magicfield->this_date = $request->this_date;
+        $tmp_magicfield->deleted_at = $request->deleted_at;
 
-	
-	try {
-	    		$tmp_magicfield->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/magicfield/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_magicfield->save();
 
-	}
+        $new_id = $myNewmagicfield->id;
+        return redirect("/DURC/magicfield/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_magicfield->getErrors());
 
-	$new_id = $myNewmagicfield->id;
-	
-	return redirect("/DURC/magicfield/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/magicfield/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -257,8 +262,8 @@ class magicfieldController extends DURCController
      * @param  \App\$magicfield  $magicfield
      * @return \Illuminate\Http\Response
      */
-    public function show(magicfield $magicfield){
-	return($this->edit($magicfield));
+    public function show(Request $request, magicfield $magicfield){
+	return($this->edit($request, $magicfield));
     }
 
     /**
@@ -293,10 +298,10 @@ class magicfieldController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new magicfield();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new magicfield();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -305,68 +310,89 @@ class magicfieldController extends DURCController
      * @param  \App\magicfield  $magicfield
      * @return \Illuminate\Http\Response
      */
-    public function edit(magicfield $magicfield){
+    public function edit(Request $request, magicfield $magicfield){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( magicfield::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($magicfield->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$magicfield = $magicfield->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($magicfield->toArray() as $key => $value){
-			if ( isset( magicfield::$field_type_map[$key] ) ) {
-                $field_type = magicfield::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( magicfield::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($magicfield->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $magicfield = $magicfield->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($magicfield->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($magicfield->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( magicfield::$field_type_map[$key] ) ) {
+                    $field_type = magicfield::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($magicfield->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $magicfield->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $magicfield->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.magicfield.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $magicfield->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $magicfield->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.magicfield.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -377,30 +403,31 @@ class magicfieldController extends DURCController
      */
     public function update(Request $request, magicfield $magicfield){
 
-	$tmp_magicfield = $magicfield;
-			$tmp_magicfield->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_magicfield ); 
-		$tmp_magicfield->editsome_markdown = DURC::formatForStorage( 'editsome_markdown', 'varchar', $request->editsome_markdown, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_sql_code = DURC::formatForStorage( 'typesome_sql_code', 'varchar', $request->typesome_sql_code, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_php_code = DURC::formatForStorage( 'typesome_php_code', 'mediumtext', $request->typesome_php_code, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_python_code = DURC::formatForStorage( 'typesome_python_code', 'mediumtext', $request->typesome_python_code, $tmp_magicfield ); 
-		$tmp_magicfield->typesome_javascript_code = DURC::formatForStorage( 'typesome_javascript_code', 'varchar', $request->typesome_javascript_code, $tmp_magicfield ); 
-		$tmp_magicfield->this_datetime = DURC::formatForStorage( 'this_datetime', 'datetime', $request->this_datetime, $tmp_magicfield ); 
-		$tmp_magicfield->this_date = DURC::formatForStorage( 'this_date', 'date', $request->this_date, $tmp_magicfield ); 
-		$tmp_magicfield->deleted_at = DURC::formatForStorage( 'deleted_at', 'datetime', $request->deleted_at, $tmp_magicfield ); 
-
-
-	$id = $magicfield->id;
-	
-    try {
-	    		$tmp_magicfield->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/magicfield/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/magicfield/$id")->with('status', 'Data Saved!');
+        $tmp_magicfield = $magicfield;
         
+        $tmp_magicfield->id = $request->id;
+        $tmp_magicfield->editsome_markdown = $request->editsome_markdown;
+        $tmp_magicfield->typesome_sql_code = $request->typesome_sql_code;
+        $tmp_magicfield->typesome_php_code = $request->typesome_php_code;
+        $tmp_magicfield->typesome_python_code = $request->typesome_python_code;
+        $tmp_magicfield->typesome_javascript_code = $request->typesome_javascript_code;
+        $tmp_magicfield->this_datetime = $request->this_datetime;
+        $tmp_magicfield->this_date = $request->this_date;
+        $tmp_magicfield->deleted_at = $request->deleted_at;
+
+        $id = $magicfield->id;
+        
+        try {
+            $tmp_magicfield->save();
+
+            return redirect("/DURC/magicfield/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_magicfield->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/magicfield/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

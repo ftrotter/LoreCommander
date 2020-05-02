@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{classofc_id_row_class}}'>
     <label for='classofc_id' class='col-sm-4 col-form-label'>classofc_id</label>
@@ -151,7 +156,12 @@ $('.select2_vspack_id').select2({
   <div class='form-group row {{link_note_row_class}}'>
     <label for='link_note' class='col-sm-4 col-form-label'>link_note</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='link_note' name='link_note' placeholder='NULL' value='{{link_note}}'  >
+      <input type='text' class='form-control {{#errors.link_note}}is-invalid{{/errors.link_note}}' id='link_note' name='link_note' placeholder='NULL' value='{{link_note}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.link_note}}<li>{{.}}</li>{{/errors.link_note}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='link_note' name='link_noteNull' id='link_noteNull' value='link_noteNull' {{link_note_checked}}>
                     <label class='form-check-label' for='link_noteNull'>null</label>
@@ -159,7 +169,7 @@ $('.select2_vspack_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -189,7 +199,7 @@ $('.select2_vspack_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

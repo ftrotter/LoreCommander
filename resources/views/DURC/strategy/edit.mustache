@@ -38,22 +38,42 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{strategy_name_row_class}}'>
     <label for='strategy_name' class='col-sm-4 col-form-label'>strategy_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='strategy_name' name='strategy_name' placeholder='' value='{{strategy_name}}'  required>
+      <input type='text' class='form-control {{#errors.strategy_name}}is-invalid{{/errors.strategy_name}}' id='strategy_name' name='strategy_name' placeholder='' value='{{strategy_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.strategy_name}}<li>{{.}}</li>{{/errors.strategy_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{strategy_description_row_class}}'>
     <label for='strategy_description' class='col-sm-4 col-form-label'>strategy_description</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='strategy_description' name='strategy_description' placeholder='' value='{{strategy_description}}'  required>
+      <input type='text' class='form-control {{#errors.strategy_description}}is-invalid{{/errors.strategy_description}}' id='strategy_description' name='strategy_description' placeholder='' value='{{strategy_description}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.strategy_description}}<li>{{.}}</li>{{/errors.strategy_description}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{strategy_url_row_class}}'>
     <label for='strategy_url' class='col-sm-4 col-form-label'>strategy_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='strategy_url' name='strategy_url' placeholder='' value='{{strategy_url}}'  required>
+      <input type='text' class='form-control {{#errors.strategy_url}}is-invalid{{/errors.strategy_url}}' id='strategy_url' name='strategy_url' placeholder='' value='{{strategy_url}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.strategy_url}}<li>{{.}}</li>{{/errors.strategy_url}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{wincon_cardface_id_row_class}}'>
     <label for='wincon_cardface_id' class='col-sm-4 col-form-label'>wincon_cardface_id</label>
@@ -91,7 +111,12 @@ $('.select2_wincon_cardface_id').select2({
   <div class='form-group row {{WOTC_rule_reference_row_class}}'>
     <label for='WOTC_rule_reference' class='col-sm-4 col-form-label'>WOTC_rule_reference</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='NULL' value='{{WOTC_rule_reference}}'  >
+      <input type='text' class='form-control {{#errors.WOTC_rule_reference}}is-invalid{{/errors.WOTC_rule_reference}}' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='NULL' value='{{WOTC_rule_reference}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.WOTC_rule_reference}}<li>{{.}}</li>{{/errors.WOTC_rule_reference}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='WOTC_rule_reference' name='WOTC_rule_referenceNull' id='WOTC_rule_referenceNull' value='WOTC_rule_referenceNull' {{WOTC_rule_reference_checked}}>
                     <label class='form-check-label' for='WOTC_rule_referenceNull'>null</label>

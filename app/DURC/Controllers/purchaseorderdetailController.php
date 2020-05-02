@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class purchaseorderdetailController extends DURCController
 {
@@ -71,18 +72,18 @@ class purchaseorderdetailController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -202,17 +203,17 @@ class purchaseorderdetailController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.purchaseorderdetail.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.purchaseorderdetail.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -223,31 +224,35 @@ class purchaseorderdetailController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewpurchaseorderdetail = new purchaseorderdetail();
+        $myNewpurchaseorderdetail = new purchaseorderdetail();
 
-	//the games we play to easily auto-generate code..
-	$tmp_purchaseorderdetail = $myNewpurchaseorderdetail;
-			$tmp_purchaseorderdetail->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->purchaseOrder_id = DURC::formatForStorage( 'purchaseOrder_id', 'int', $request->purchaseOrder_id, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->product_id = DURC::formatForStorage( 'product_id', 'int', $request->product_id, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->quantity = DURC::formatForStorage( 'quantity', 'decimal', $request->quantity, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->unitCost = DURC::formatForStorage( 'unitCost', 'decimal', $request->unitCost, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->dateReceived = DURC::formatForStorage( 'dateReceived', 'datetime', $request->dateReceived, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->postedToInventory = DURC::formatForStorage( 'postedToInventory', 'tinyint', $request->postedToInventory, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->inventory_id = DURC::formatForStorage( 'inventory_id', 'int', $request->inventory_id, $tmp_purchaseorderdetail ); 
+        //the games we play to easily auto-generate code..
+        $tmp_purchaseorderdetail = $myNewpurchaseorderdetail;
+        
+        $tmp_purchaseorderdetail->id = $request->id;
+        $tmp_purchaseorderdetail->purchaseOrder_id = $request->purchaseOrder_id;
+        $tmp_purchaseorderdetail->product_id = $request->product_id;
+        $tmp_purchaseorderdetail->quantity = $request->quantity;
+        $tmp_purchaseorderdetail->unitCost = $request->unitCost;
+        $tmp_purchaseorderdetail->dateReceived = $request->dateReceived;
+        $tmp_purchaseorderdetail->postedToInventory = $request->postedToInventory;
+        $tmp_purchaseorderdetail->inventory_id = $request->inventory_id;
 
-	
-	try {
-	    		$tmp_purchaseorderdetail->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/purchaseorderdetail/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_purchaseorderdetail->save();
 
-	}
+        $new_id = $myNewpurchaseorderdetail->id;
+        return redirect("/DURC/purchaseorderdetail/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_purchaseorderdetail->getErrors());
 
-	$new_id = $myNewpurchaseorderdetail->id;
-	
-	return redirect("/DURC/purchaseorderdetail/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/purchaseorderdetail/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -255,8 +260,8 @@ class purchaseorderdetailController extends DURCController
      * @param  \App\$purchaseorderdetail  $purchaseorderdetail
      * @return \Illuminate\Http\Response
      */
-    public function show(purchaseorderdetail $purchaseorderdetail){
-	return($this->edit($purchaseorderdetail));
+    public function show(Request $request, purchaseorderdetail $purchaseorderdetail){
+	return($this->edit($request, $purchaseorderdetail));
     }
 
     /**
@@ -291,10 +296,10 @@ class purchaseorderdetailController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new purchaseorderdetail();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new purchaseorderdetail();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -303,68 +308,89 @@ class purchaseorderdetailController extends DURCController
      * @param  \App\purchaseorderdetail  $purchaseorderdetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(purchaseorderdetail $purchaseorderdetail){
+    public function edit(Request $request, purchaseorderdetail $purchaseorderdetail){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( purchaseorderdetail::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($purchaseorderdetail->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$purchaseorderdetail = $purchaseorderdetail->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($purchaseorderdetail->toArray() as $key => $value){
-			if ( isset( purchaseorderdetail::$field_type_map[$key] ) ) {
-                $field_type = purchaseorderdetail::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( purchaseorderdetail::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($purchaseorderdetail->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $purchaseorderdetail = $purchaseorderdetail->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($purchaseorderdetail->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($purchaseorderdetail->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( purchaseorderdetail::$field_type_map[$key] ) ) {
+                    $field_type = purchaseorderdetail::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($purchaseorderdetail->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $purchaseorderdetail->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $purchaseorderdetail->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.purchaseorderdetail.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $purchaseorderdetail->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $purchaseorderdetail->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.purchaseorderdetail.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -375,29 +401,30 @@ class purchaseorderdetailController extends DURCController
      */
     public function update(Request $request, purchaseorderdetail $purchaseorderdetail){
 
-	$tmp_purchaseorderdetail = $purchaseorderdetail;
-			$tmp_purchaseorderdetail->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->purchaseOrder_id = DURC::formatForStorage( 'purchaseOrder_id', 'int', $request->purchaseOrder_id, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->product_id = DURC::formatForStorage( 'product_id', 'int', $request->product_id, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->quantity = DURC::formatForStorage( 'quantity', 'decimal', $request->quantity, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->unitCost = DURC::formatForStorage( 'unitCost', 'decimal', $request->unitCost, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->dateReceived = DURC::formatForStorage( 'dateReceived', 'datetime', $request->dateReceived, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->postedToInventory = DURC::formatForStorage( 'postedToInventory', 'tinyint', $request->postedToInventory, $tmp_purchaseorderdetail ); 
-		$tmp_purchaseorderdetail->inventory_id = DURC::formatForStorage( 'inventory_id', 'int', $request->inventory_id, $tmp_purchaseorderdetail ); 
-
-
-	$id = $purchaseorderdetail->id;
-	
-    try {
-	    		$tmp_purchaseorderdetail->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/purchaseorderdetail/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/purchaseorderdetail/$id")->with('status', 'Data Saved!');
+        $tmp_purchaseorderdetail = $purchaseorderdetail;
         
+        $tmp_purchaseorderdetail->id = $request->id;
+        $tmp_purchaseorderdetail->purchaseOrder_id = $request->purchaseOrder_id;
+        $tmp_purchaseorderdetail->product_id = $request->product_id;
+        $tmp_purchaseorderdetail->quantity = $request->quantity;
+        $tmp_purchaseorderdetail->unitCost = $request->unitCost;
+        $tmp_purchaseorderdetail->dateReceived = $request->dateReceived;
+        $tmp_purchaseorderdetail->postedToInventory = $request->postedToInventory;
+        $tmp_purchaseorderdetail->inventory_id = $request->inventory_id;
+
+        $id = $purchaseorderdetail->id;
+        
+        try {
+            $tmp_purchaseorderdetail->save();
+
+            return redirect("/DURC/purchaseorderdetail/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_purchaseorderdetail->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/purchaseorderdetail/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

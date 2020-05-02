@@ -38,52 +38,102 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{scryfall_id_row_class}}'>
     <label for='scryfall_id' class='col-sm-4 col-form-label'>scryfall_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_id}}is-invalid{{/errors.scryfall_id}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_id}}<li>{{.}}</li>{{/errors.scryfall_id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{lang_row_class}}'>
     <label for='lang' class='col-sm-4 col-form-label'>lang</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='lang' name='lang' placeholder='' value='{{lang}}'  required>
+      <input type='text' class='form-control {{#errors.lang}}is-invalid{{/errors.lang}}' id='lang' name='lang' placeholder='' value='{{lang}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.lang}}<li>{{.}}</li>{{/errors.lang}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{oracle_id_row_class}}'>
     <label for='oracle_id' class='col-sm-4 col-form-label'>oracle_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='oracle_id' name='oracle_id' placeholder='' value='{{oracle_id}}'  required>
+      <input type='text' class='form-control {{#errors.oracle_id}}is-invalid{{/errors.oracle_id}}' id='oracle_id' name='oracle_id' placeholder='' value='{{oracle_id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.oracle_id}}<li>{{.}}</li>{{/errors.oracle_id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{rulings_uri_row_class}}'>
     <label for='rulings_uri' class='col-sm-4 col-form-label'>rulings_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='rulings_uri' name='rulings_uri' placeholder='' value='{{rulings_uri}}'  required>
+      <input type='text' class='form-control {{#errors.rulings_uri}}is-invalid{{/errors.rulings_uri}}' id='rulings_uri' name='rulings_uri' placeholder='' value='{{rulings_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.rulings_uri}}<li>{{.}}</li>{{/errors.rulings_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{scryfall_web_uri_row_class}}'>
     <label for='scryfall_web_uri' class='col-sm-4 col-form-label'>scryfall_web_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='scryfall_web_uri' name='scryfall_web_uri' placeholder='' value='{{scryfall_web_uri}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_web_uri}}is-invalid{{/errors.scryfall_web_uri}}' id='scryfall_web_uri' name='scryfall_web_uri' placeholder='' value='{{scryfall_web_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_web_uri}}<li>{{.}}</li>{{/errors.scryfall_web_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{scryfall_api_uri_row_class}}'>
     <label for='scryfall_api_uri' class='col-sm-4 col-form-label'>scryfall_api_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='scryfall_api_uri' name='scryfall_api_uri' placeholder='' value='{{scryfall_api_uri}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_api_uri}}is-invalid{{/errors.scryfall_api_uri}}' id='scryfall_api_uri' name='scryfall_api_uri' placeholder='' value='{{scryfall_api_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_api_uri}}<li>{{.}}</li>{{/errors.scryfall_api_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{layout_row_class}}'>
     <label for='layout' class='col-sm-4 col-form-label'>layout</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='layout' name='layout' placeholder='' value='{{layout}}'  required>
+      <input type='text' class='form-control {{#errors.layout}}is-invalid{{/errors.layout}}' id='layout' name='layout' placeholder='' value='{{layout}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.layout}}<li>{{.}}</li>{{/errors.layout}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{rarity_row_class}}'>
     <label for='rarity' class='col-sm-4 col-form-label'>rarity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='rarity' name='rarity' placeholder='' value='{{rarity}}'  required>
+      <input type='text' class='form-control {{#errors.rarity}}is-invalid{{/errors.rarity}}' id='rarity' name='rarity' placeholder='' value='{{rarity}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.rarity}}<li>{{.}}</li>{{/errors.rarity}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}'  >
+      <input type='text' class='form-control {{#errors.released_at}}is-invalid{{/errors.released_at}}' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.released_at}}<li>{{.}}</li>{{/errors.released_at}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='released_at' name='released_atNull' id='released_atNull' value='released_atNull' {{released_at_checked}}>
                     <label class='form-check-label' for='released_atNull'>null</label>
@@ -91,12 +141,22 @@
   <div class='form-group row {{set_name_row_class}}'>
     <label for='set_name' class='col-sm-4 col-form-label'>set_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='set_name' name='set_name' placeholder='' value='{{set_name}}'  required>
+      <input type='text' class='form-control {{#errors.set_name}}is-invalid{{/errors.set_name}}' id='set_name' name='set_name' placeholder='' value='{{set_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.set_name}}<li>{{.}}</li>{{/errors.set_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{set_type_row_class}}'>
     <label for='set_type' class='col-sm-4 col-form-label'>set_type</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='set_type' name='set_type' placeholder='' value='{{set_type}}'  required>
+      <input type='text' class='form-control {{#errors.set_type}}is-invalid{{/errors.set_type}}' id='set_type' name='set_type' placeholder='' value='{{set_type}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.set_type}}<li>{{.}}</li>{{/errors.set_type}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{mtgset_id_row_class}}'>
     <label for='mtgset_id' class='col-sm-4 col-form-label'>mtgset_id</label>
@@ -134,7 +194,12 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{variation_of_scryfall_id_row_class}}'>
     <label for='variation_of_scryfall_id' class='col-sm-4 col-form-label'>variation_of_scryfall_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='variation_of_scryfall_id' name='variation_of_scryfall_id' placeholder='NULL' value='{{variation_of_scryfall_id}}'  >
+      <input type='text' class='form-control {{#errors.variation_of_scryfall_id}}is-invalid{{/errors.variation_of_scryfall_id}}' id='variation_of_scryfall_id' name='variation_of_scryfall_id' placeholder='NULL' value='{{variation_of_scryfall_id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.variation_of_scryfall_id}}<li>{{.}}</li>{{/errors.variation_of_scryfall_id}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='variation_of_scryfall_id' name='variation_of_scryfall_idNull' id='variation_of_scryfall_idNull' value='variation_of_scryfall_idNull' {{variation_of_scryfall_id_checked}}>
                     <label class='form-check-label' for='variation_of_scryfall_idNull'>null</label>
@@ -142,7 +207,12 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{edhrec_rank_row_class}}'>
     <label for='edhrec_rank' class='col-sm-4 col-form-label'>edhrec_rank</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='edhrec_rank' name='edhrec_rank' placeholder='0' value='{{edhrec_rank}}'  >
+      <input type='text' class='form-control {{#errors.edhrec_rank}}is-invalid{{/errors.edhrec_rank}}' id='edhrec_rank' name='edhrec_rank' placeholder='0' value='{{edhrec_rank}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.edhrec_rank}}<li>{{.}}</li>{{/errors.edhrec_rank}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='edhrec_rank' name='edhrec_rankNull' id='edhrec_rankNull' value='edhrec_rankNull' {{edhrec_rank_checked}}>
                     <label class='form-check-label' for='edhrec_rankNull'>null</label>
@@ -177,7 +247,12 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{is_reprint_row_class}}'>
     <label for='is_reprint' class='col-sm-4 col-form-label'>is_reprint</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='is_reprint' name='is_reprint' placeholder='0' value='{{is_reprint}}'  >
+      <input type='text' class='form-control {{#errors.is_reprint}}is-invalid{{/errors.is_reprint}}' id='is_reprint' name='is_reprint' placeholder='0' value='{{is_reprint}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.is_reprint}}<li>{{.}}</li>{{/errors.is_reprint}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{is_variation_row_class}}'>
     <div class='col-sm-4'><label>is_variation</label></div>
@@ -218,77 +293,147 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{legal_oldschool_row_class}}'>
     <label for='legal_oldschool' class='col-sm-4 col-form-label'>legal_oldschool</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_oldschool' name='legal_oldschool' placeholder='0' value='{{legal_oldschool}}'  >
+      <input type='text' class='form-control {{#errors.legal_oldschool}}is-invalid{{/errors.legal_oldschool}}' id='legal_oldschool' name='legal_oldschool' placeholder='0' value='{{legal_oldschool}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_oldschool}}<li>{{.}}</li>{{/errors.legal_oldschool}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_duel_row_class}}'>
     <label for='legal_duel' class='col-sm-4 col-form-label'>legal_duel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_duel' name='legal_duel' placeholder='0' value='{{legal_duel}}'  >
+      <input type='text' class='form-control {{#errors.legal_duel}}is-invalid{{/errors.legal_duel}}' id='legal_duel' name='legal_duel' placeholder='0' value='{{legal_duel}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_duel}}<li>{{.}}</li>{{/errors.legal_duel}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_commander_row_class}}'>
     <label for='legal_commander' class='col-sm-4 col-form-label'>legal_commander</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_commander' name='legal_commander' placeholder='0' value='{{legal_commander}}'  >
+      <input type='text' class='form-control {{#errors.legal_commander}}is-invalid{{/errors.legal_commander}}' id='legal_commander' name='legal_commander' placeholder='0' value='{{legal_commander}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_commander}}<li>{{.}}</li>{{/errors.legal_commander}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_brawl_row_class}}'>
     <label for='legal_brawl' class='col-sm-4 col-form-label'>legal_brawl</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_brawl' name='legal_brawl' placeholder='0' value='{{legal_brawl}}'  >
+      <input type='text' class='form-control {{#errors.legal_brawl}}is-invalid{{/errors.legal_brawl}}' id='legal_brawl' name='legal_brawl' placeholder='0' value='{{legal_brawl}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_brawl}}<li>{{.}}</li>{{/errors.legal_brawl}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_penny_row_class}}'>
     <label for='legal_penny' class='col-sm-4 col-form-label'>legal_penny</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_penny' name='legal_penny' placeholder='0' value='{{legal_penny}}'  >
+      <input type='text' class='form-control {{#errors.legal_penny}}is-invalid{{/errors.legal_penny}}' id='legal_penny' name='legal_penny' placeholder='0' value='{{legal_penny}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_penny}}<li>{{.}}</li>{{/errors.legal_penny}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_vintage_row_class}}'>
     <label for='legal_vintage' class='col-sm-4 col-form-label'>legal_vintage</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_vintage' name='legal_vintage' placeholder='0' value='{{legal_vintage}}'  >
+      <input type='text' class='form-control {{#errors.legal_vintage}}is-invalid{{/errors.legal_vintage}}' id='legal_vintage' name='legal_vintage' placeholder='0' value='{{legal_vintage}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_vintage}}<li>{{.}}</li>{{/errors.legal_vintage}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_pauper_row_class}}'>
     <label for='legal_pauper' class='col-sm-4 col-form-label'>legal_pauper</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_pauper' name='legal_pauper' placeholder='0' value='{{legal_pauper}}'  >
+      <input type='text' class='form-control {{#errors.legal_pauper}}is-invalid{{/errors.legal_pauper}}' id='legal_pauper' name='legal_pauper' placeholder='0' value='{{legal_pauper}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_pauper}}<li>{{.}}</li>{{/errors.legal_pauper}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_legacy_row_class}}'>
     <label for='legal_legacy' class='col-sm-4 col-form-label'>legal_legacy</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_legacy' name='legal_legacy' placeholder='0' value='{{legal_legacy}}'  >
+      <input type='text' class='form-control {{#errors.legal_legacy}}is-invalid{{/errors.legal_legacy}}' id='legal_legacy' name='legal_legacy' placeholder='0' value='{{legal_legacy}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_legacy}}<li>{{.}}</li>{{/errors.legal_legacy}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_modern_row_class}}'>
     <label for='legal_modern' class='col-sm-4 col-form-label'>legal_modern</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_modern' name='legal_modern' placeholder='0' value='{{legal_modern}}'  >
+      <input type='text' class='form-control {{#errors.legal_modern}}is-invalid{{/errors.legal_modern}}' id='legal_modern' name='legal_modern' placeholder='0' value='{{legal_modern}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_modern}}<li>{{.}}</li>{{/errors.legal_modern}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_frontier_row_class}}'>
     <label for='legal_frontier' class='col-sm-4 col-form-label'>legal_frontier</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_frontier' name='legal_frontier' placeholder='0' value='{{legal_frontier}}'  >
+      <input type='text' class='form-control {{#errors.legal_frontier}}is-invalid{{/errors.legal_frontier}}' id='legal_frontier' name='legal_frontier' placeholder='0' value='{{legal_frontier}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_frontier}}<li>{{.}}</li>{{/errors.legal_frontier}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_future_row_class}}'>
     <label for='legal_future' class='col-sm-4 col-form-label'>legal_future</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_future' name='legal_future' placeholder='0' value='{{legal_future}}'  >
+      <input type='text' class='form-control {{#errors.legal_future}}is-invalid{{/errors.legal_future}}' id='legal_future' name='legal_future' placeholder='0' value='{{legal_future}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_future}}<li>{{.}}</li>{{/errors.legal_future}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_standard_row_class}}'>
     <label for='legal_standard' class='col-sm-4 col-form-label'>legal_standard</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_standard' name='legal_standard' placeholder='0' value='{{legal_standard}}'  >
+      <input type='text' class='form-control {{#errors.legal_standard}}is-invalid{{/errors.legal_standard}}' id='legal_standard' name='legal_standard' placeholder='0' value='{{legal_standard}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_standard}}<li>{{.}}</li>{{/errors.legal_standard}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_historic_row_class}}'>
     <label for='legal_historic' class='col-sm-4 col-form-label'>legal_historic</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_historic' name='legal_historic' placeholder='' value='{{legal_historic}}'  required>
+      <input type='text' class='form-control {{#errors.legal_historic}}is-invalid{{/errors.legal_historic}}' id='legal_historic' name='legal_historic' placeholder='' value='{{legal_historic}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_historic}}<li>{{.}}</li>{{/errors.legal_historic}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{legal_pioneer_row_class}}'>
     <label for='legal_pioneer' class='col-sm-4 col-form-label'>legal_pioneer</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='legal_pioneer' name='legal_pioneer' placeholder='' value='{{legal_pioneer}}'  required>
+      <input type='text' class='form-control {{#errors.legal_pioneer}}is-invalid{{/errors.legal_pioneer}}' id='legal_pioneer' name='legal_pioneer' placeholder='' value='{{legal_pioneer}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_pioneer}}<li>{{.}}</li>{{/errors.legal_pioneer}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -318,7 +463,7 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

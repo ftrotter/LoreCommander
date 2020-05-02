@@ -38,32 +38,57 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{vspack_name_row_class}}'>
     <label for='vspack_name' class='col-sm-4 col-form-label'>vspack_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='vspack_name' name='vspack_name' placeholder='' value='{{vspack_name}}'  required>
+      <input type='text' class='form-control {{#errors.vspack_name}}is-invalid{{/errors.vspack_name}}' id='vspack_name' name='vspack_name' placeholder='' value='{{vspack_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.vspack_name}}<li>{{.}}</li>{{/errors.vspack_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{vspack_wizards_url_row_class}}'>
     <label for='vspack_wizards_url' class='col-sm-4 col-form-label'>vspack_wizards_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='vspack_wizards_url' name='vspack_wizards_url' placeholder='' value='{{vspack_wizards_url}}'  required>
+      <input type='text' class='form-control {{#errors.vspack_wizards_url}}is-invalid{{/errors.vspack_wizards_url}}' id='vspack_wizards_url' name='vspack_wizards_url' placeholder='' value='{{vspack_wizards_url}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.vspack_wizards_url}}<li>{{.}}</li>{{/errors.vspack_wizards_url}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{vspack_wiki_url_row_class}}'>
     <label for='vspack_wiki_url' class='col-sm-4 col-form-label'>vspack_wiki_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='vspack_wiki_url' name='vspack_wiki_url' placeholder='' value='{{vspack_wiki_url}}'  required>
+      <input type='text' class='form-control {{#errors.vspack_wiki_url}}is-invalid{{/errors.vspack_wiki_url}}' id='vspack_wiki_url' name='vspack_wiki_url' placeholder='' value='{{vspack_wiki_url}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.vspack_wiki_url}}<li>{{.}}</li>{{/errors.vspack_wiki_url}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{vspack_img_url_row_class}}'>
     <label for='vspack_img_url' class='col-sm-4 col-form-label'>vspack_img_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='vspack_img_url' name='vspack_img_url' placeholder='' value='{{vspack_img_url}}'  required>
+      <input type='text' class='form-control {{#errors.vspack_img_url}}is-invalid{{/errors.vspack_img_url}}' id='vspack_img_url' name='vspack_img_url' placeholder='' value='{{vspack_img_url}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.vspack_img_url}}<li>{{.}}</li>{{/errors.vspack_img_url}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -93,7 +118,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

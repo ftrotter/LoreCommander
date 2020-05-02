@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class orderController extends DURCController
 {
@@ -72,18 +73,18 @@ class orderController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -203,17 +204,17 @@ class orderController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.order.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.order.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -224,43 +225,47 @@ class orderController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNeworder = new order();
+        $myNeworder = new order();
 
-	//the games we play to easily auto-generate code..
-	$tmp_order = $myNeworder;
-			$tmp_order->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_order ); 
-		$tmp_order->employee_id = DURC::formatForStorage( 'employee_id', 'int', $request->employee_id, $tmp_order ); 
-		$tmp_order->customer_id = DURC::formatForStorage( 'customer_id', 'int', $request->customer_id, $tmp_order ); 
-		$tmp_order->orderDate = DURC::formatForStorage( 'orderDate', 'datetime', $request->orderDate, $tmp_order ); 
-		$tmp_order->shippedDate = DURC::formatForStorage( 'shippedDate', 'datetime', $request->shippedDate, $tmp_order ); 
-		$tmp_order->shipper_id = DURC::formatForStorage( 'shipper_id', 'int', $request->shipper_id, $tmp_order ); 
-		$tmp_order->shipName = DURC::formatForStorage( 'shipName', 'varchar', $request->shipName, $tmp_order ); 
-		$tmp_order->shipAddress = DURC::formatForStorage( 'shipAddress', 'longtext', $request->shipAddress, $tmp_order ); 
-		$tmp_order->shipCity = DURC::formatForStorage( 'shipCity', 'varchar', $request->shipCity, $tmp_order ); 
-		$tmp_order->shipStateProvince = DURC::formatForStorage( 'shipStateProvince', 'varchar', $request->shipStateProvince, $tmp_order ); 
-		$tmp_order->shipZipPostalCode = DURC::formatForStorage( 'shipZipPostalCode', 'varchar', $request->shipZipPostalCode, $tmp_order ); 
-		$tmp_order->shipCountryRegion = DURC::formatForStorage( 'shipCountryRegion', 'varchar', $request->shipCountryRegion, $tmp_order ); 
-		$tmp_order->shippingFee = DURC::formatForStorage( 'shippingFee', 'decimal', $request->shippingFee, $tmp_order ); 
-		$tmp_order->taxes = DURC::formatForStorage( 'taxes', 'decimal', $request->taxes, $tmp_order ); 
-		$tmp_order->paymentType = DURC::formatForStorage( 'paymentType', 'varchar', $request->paymentType, $tmp_order ); 
-		$tmp_order->paidDate = DURC::formatForStorage( 'paidDate', 'datetime', $request->paidDate, $tmp_order ); 
-		$tmp_order->notes = DURC::formatForStorage( 'notes', 'longtext', $request->notes, $tmp_order ); 
-		$tmp_order->taxRate = DURC::formatForStorage( 'taxRate', 'double', $request->taxRate, $tmp_order ); 
-		$tmp_order->taxStatus_id = DURC::formatForStorage( 'taxStatus_id', 'tinyint', $request->taxStatus_id, $tmp_order ); 
-		$tmp_order->status_id = DURC::formatForStorage( 'status_id', 'tinyint', $request->status_id, $tmp_order ); 
+        //the games we play to easily auto-generate code..
+        $tmp_order = $myNeworder;
+        
+        $tmp_order->id = $request->id;
+        $tmp_order->employee_id = $request->employee_id;
+        $tmp_order->customer_id = $request->customer_id;
+        $tmp_order->orderDate = $request->orderDate;
+        $tmp_order->shippedDate = $request->shippedDate;
+        $tmp_order->shipper_id = $request->shipper_id;
+        $tmp_order->shipName = $request->shipName;
+        $tmp_order->shipAddress = $request->shipAddress;
+        $tmp_order->shipCity = $request->shipCity;
+        $tmp_order->shipStateProvince = $request->shipStateProvince;
+        $tmp_order->shipZipPostalCode = $request->shipZipPostalCode;
+        $tmp_order->shipCountryRegion = $request->shipCountryRegion;
+        $tmp_order->shippingFee = $request->shippingFee;
+        $tmp_order->taxes = $request->taxes;
+        $tmp_order->paymentType = $request->paymentType;
+        $tmp_order->paidDate = $request->paidDate;
+        $tmp_order->notes = $request->notes;
+        $tmp_order->taxRate = $request->taxRate;
+        $tmp_order->taxStatus_id = $request->taxStatus_id;
+        $tmp_order->status_id = $request->status_id;
 
-	
-	try {
-	    		$tmp_order->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/order/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_order->save();
 
-	}
+        $new_id = $myNeworder->id;
+        return redirect("/DURC/order/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_order->getErrors());
 
-	$new_id = $myNeworder->id;
-	
-	return redirect("/DURC/order/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/order/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -268,8 +273,8 @@ class orderController extends DURCController
      * @param  \App\$order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(order $order){
-	return($this->edit($order));
+    public function show(Request $request, order $order){
+	return($this->edit($request, $order));
     }
 
     /**
@@ -304,10 +309,10 @@ class orderController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new order();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new order();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -316,68 +321,89 @@ class orderController extends DURCController
      * @param  \App\order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(order $order){
+    public function edit(Request $request, order $order){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( order::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($order->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$order = $order->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($order->toArray() as $key => $value){
-			if ( isset( order::$field_type_map[$key] ) ) {
-                $field_type = order::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( order::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($order->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $order = $order->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($order->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($order->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( order::$field_type_map[$key] ) ) {
+                    $field_type = order::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($order->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $order->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $order->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.order.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $order->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $order->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.order.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -388,41 +414,42 @@ class orderController extends DURCController
      */
     public function update(Request $request, order $order){
 
-	$tmp_order = $order;
-			$tmp_order->id = DURC::formatForStorage( 'id', 'int', $request->id, $tmp_order ); 
-		$tmp_order->employee_id = DURC::formatForStorage( 'employee_id', 'int', $request->employee_id, $tmp_order ); 
-		$tmp_order->customer_id = DURC::formatForStorage( 'customer_id', 'int', $request->customer_id, $tmp_order ); 
-		$tmp_order->orderDate = DURC::formatForStorage( 'orderDate', 'datetime', $request->orderDate, $tmp_order ); 
-		$tmp_order->shippedDate = DURC::formatForStorage( 'shippedDate', 'datetime', $request->shippedDate, $tmp_order ); 
-		$tmp_order->shipper_id = DURC::formatForStorage( 'shipper_id', 'int', $request->shipper_id, $tmp_order ); 
-		$tmp_order->shipName = DURC::formatForStorage( 'shipName', 'varchar', $request->shipName, $tmp_order ); 
-		$tmp_order->shipAddress = DURC::formatForStorage( 'shipAddress', 'longtext', $request->shipAddress, $tmp_order ); 
-		$tmp_order->shipCity = DURC::formatForStorage( 'shipCity', 'varchar', $request->shipCity, $tmp_order ); 
-		$tmp_order->shipStateProvince = DURC::formatForStorage( 'shipStateProvince', 'varchar', $request->shipStateProvince, $tmp_order ); 
-		$tmp_order->shipZipPostalCode = DURC::formatForStorage( 'shipZipPostalCode', 'varchar', $request->shipZipPostalCode, $tmp_order ); 
-		$tmp_order->shipCountryRegion = DURC::formatForStorage( 'shipCountryRegion', 'varchar', $request->shipCountryRegion, $tmp_order ); 
-		$tmp_order->shippingFee = DURC::formatForStorage( 'shippingFee', 'decimal', $request->shippingFee, $tmp_order ); 
-		$tmp_order->taxes = DURC::formatForStorage( 'taxes', 'decimal', $request->taxes, $tmp_order ); 
-		$tmp_order->paymentType = DURC::formatForStorage( 'paymentType', 'varchar', $request->paymentType, $tmp_order ); 
-		$tmp_order->paidDate = DURC::formatForStorage( 'paidDate', 'datetime', $request->paidDate, $tmp_order ); 
-		$tmp_order->notes = DURC::formatForStorage( 'notes', 'longtext', $request->notes, $tmp_order ); 
-		$tmp_order->taxRate = DURC::formatForStorage( 'taxRate', 'double', $request->taxRate, $tmp_order ); 
-		$tmp_order->taxStatus_id = DURC::formatForStorage( 'taxStatus_id', 'tinyint', $request->taxStatus_id, $tmp_order ); 
-		$tmp_order->status_id = DURC::formatForStorage( 'status_id', 'tinyint', $request->status_id, $tmp_order ); 
-
-
-	$id = $order->id;
-	
-    try {
-	    		$tmp_order->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/order/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/order/$id")->with('status', 'Data Saved!');
+        $tmp_order = $order;
         
+        $tmp_order->id = $request->id;
+        $tmp_order->employee_id = $request->employee_id;
+        $tmp_order->customer_id = $request->customer_id;
+        $tmp_order->orderDate = $request->orderDate;
+        $tmp_order->shippedDate = $request->shippedDate;
+        $tmp_order->shipper_id = $request->shipper_id;
+        $tmp_order->shipName = $request->shipName;
+        $tmp_order->shipAddress = $request->shipAddress;
+        $tmp_order->shipCity = $request->shipCity;
+        $tmp_order->shipStateProvince = $request->shipStateProvince;
+        $tmp_order->shipZipPostalCode = $request->shipZipPostalCode;
+        $tmp_order->shipCountryRegion = $request->shipCountryRegion;
+        $tmp_order->shippingFee = $request->shippingFee;
+        $tmp_order->taxes = $request->taxes;
+        $tmp_order->paymentType = $request->paymentType;
+        $tmp_order->paidDate = $request->paidDate;
+        $tmp_order->notes = $request->notes;
+        $tmp_order->taxRate = $request->taxRate;
+        $tmp_order->taxStatus_id = $request->taxStatus_id;
+        $tmp_order->status_id = $request->status_id;
+
+        $id = $order->id;
+        
+        try {
+            $tmp_order->save();
+
+            return redirect("/DURC/order/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_order->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/order/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

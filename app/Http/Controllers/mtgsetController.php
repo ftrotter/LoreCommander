@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8dfec7dcb69ae2ac3fb2bf493bf5f4f5
+FILE_SIG=5a9dee8a061408eea0cb71f7823170ec
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class mtgsetController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class mtgsetController extends DURCParentController
      * @param  \App\$mtgset  $mtgset
      * @return \Illuminate\Http\Response
      */
-    public function show(mtgset $mtgset){
+    public function show(Request $request, mtgset $mtgset){
         // enter your stuff here if you want...
-	return(parent::show($mtgset));
+	return(parent::show($request, $mtgset));
     }
 
     /**
@@ -63,9 +63,9 @@ class mtgsetController extends DURCParentController
      * @param  \App\mtgset  $mtgset
      * @return \Illuminate\Http\Response
      */
-    public function edit(mtgset $mtgset, $is_new = false){
+    public function edit(Request $request, mtgset $mtgset, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($mtgset));
+	return(parent::edit($request, $mtgset));
     }
 
     /**

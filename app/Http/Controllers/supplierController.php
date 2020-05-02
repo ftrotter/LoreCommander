@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b563d8d34dfa35e6fef7072dba713fc2
+FILE_SIG=174d7d374ec92751115de0dad09030fb
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class supplierController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class supplierController extends DURCParentController
      * @param  \App\$supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(supplier $supplier){
+    public function show(Request $request, supplier $supplier){
         // enter your stuff here if you want...
-	return(parent::show($supplier));
+	return(parent::show($request, $supplier));
     }
 
     /**
@@ -63,9 +63,9 @@ class supplierController extends DURCParentController
      * @param  \App\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(supplier $supplier, $is_new = false){
+    public function edit(Request $request, supplier $supplier, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($supplier));
+	return(parent::edit($request, $supplier));
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=cf795a7fb3fd255f2a8d33c0d2842c34
+FILE_SIG=e789d1bf0e906e0f7013538d478a9441
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class themeController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class themeController extends DURCParentController
      * @param  \App\$theme  $theme
      * @return \Illuminate\Http\Response
      */
-    public function show(theme $theme){
+    public function show(Request $request, theme $theme){
         // enter your stuff here if you want...
-	return(parent::show($theme));
+	return(parent::show($request, $theme));
     }
 
     /**
@@ -63,9 +63,9 @@ class themeController extends DURCParentController
      * @param  \App\theme  $theme
      * @return \Illuminate\Http\Response
      */
-    public function edit(theme $theme, $is_new = false){
+    public function edit(Request $request, theme $theme, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($theme));
+	return(parent::edit($request, $theme));
     }
 
     /**

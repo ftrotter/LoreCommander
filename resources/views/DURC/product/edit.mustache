@@ -38,7 +38,12 @@
   <div class='form-group row {{supplier_ids_row_class}}'>
     <label for='supplier_ids' class='col-sm-4 col-form-label'>supplier_ids</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}'  >
+      <input type='text' class='form-control {{#errors.supplier_ids}}is-invalid{{/errors.supplier_ids}}' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.supplier_ids}}<li>{{.}}</li>{{/errors.supplier_ids}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='supplier_ids' name='supplier_idsNull' id='supplier_idsNull' value='supplier_idsNull' {{supplier_ids_checked}}>
                     <label class='form-check-label' for='supplier_idsNull'>null</label>
@@ -46,12 +51,22 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{productCode_row_class}}'>
     <label for='productCode' class='col-sm-4 col-form-label'>productCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}'  >
+      <input type='text' class='form-control {{#errors.productCode}}is-invalid{{/errors.productCode}}' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.productCode}}<li>{{.}}</li>{{/errors.productCode}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='productCode' name='productCodeNull' id='productCodeNull' value='productCodeNull' {{productCode_checked}}>
                     <label class='form-check-label' for='productCodeNull'>null</label>
@@ -59,7 +74,12 @@
   <div class='form-group row {{productName_row_class}}'>
     <label for='productName' class='col-sm-4 col-form-label'>productName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='productName' name='productName' placeholder='NULL' value='{{productName}}'  >
+      <input type='text' class='form-control {{#errors.productName}}is-invalid{{/errors.productName}}' id='productName' name='productName' placeholder='NULL' value='{{productName}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.productName}}<li>{{.}}</li>{{/errors.productName}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='productName' name='productNameNull' id='productNameNull' value='productNameNull' {{productName_checked}}>
                     <label class='form-check-label' for='productNameNull'>null</label>
@@ -67,7 +87,12 @@
   <div class='form-group row {{description_row_class}}'>
     <label for='description' class='col-sm-4 col-form-label'>description</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='description' name='description' placeholder='NULL' value='{{description}}'  >
+      <input type='text' class='form-control {{#errors.description}}is-invalid{{/errors.description}}' id='description' name='description' placeholder='NULL' value='{{description}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.description}}<li>{{.}}</li>{{/errors.description}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='description' name='descriptionNull' id='descriptionNull' value='descriptionNull' {{description_checked}}>
                     <label class='form-check-label' for='descriptionNull'>null</label>
@@ -75,7 +100,12 @@
   <div class='form-group row {{standardCost_row_class}}'>
     <label for='standardCost' class='col-sm-4 col-form-label'>standardCost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}'  >
+      <input type='text' class='form-control {{#errors.standardCost}}is-invalid{{/errors.standardCost}}' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.standardCost}}<li>{{.}}</li>{{/errors.standardCost}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='standardCost' name='standardCostNull' id='standardCostNull' value='standardCostNull' {{standardCost_checked}}>
                     <label class='form-check-label' for='standardCostNull'>null</label>
@@ -83,12 +113,22 @@
   <div class='form-group row {{listPrice_row_class}}'>
     <label for='listPrice' class='col-sm-4 col-form-label'>listPrice</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}'  >
+      <input type='text' class='form-control {{#errors.listPrice}}is-invalid{{/errors.listPrice}}' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.listPrice}}<li>{{.}}</li>{{/errors.listPrice}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{reorderLevel_row_class}}'>
     <label for='reorderLevel' class='col-sm-4 col-form-label'>reorderLevel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}'  >
+      <input type='text' class='form-control {{#errors.reorderLevel}}is-invalid{{/errors.reorderLevel}}' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.reorderLevel}}<li>{{.}}</li>{{/errors.reorderLevel}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='reorderLevel' name='reorderLevelNull' id='reorderLevelNull' value='reorderLevelNull' {{reorderLevel_checked}}>
                     <label class='form-check-label' for='reorderLevelNull'>null</label>
@@ -96,7 +136,12 @@
   <div class='form-group row {{targetLevel_row_class}}'>
     <label for='targetLevel' class='col-sm-4 col-form-label'>targetLevel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}'  >
+      <input type='text' class='form-control {{#errors.targetLevel}}is-invalid{{/errors.targetLevel}}' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.targetLevel}}<li>{{.}}</li>{{/errors.targetLevel}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='targetLevel' name='targetLevelNull' id='targetLevelNull' value='targetLevelNull' {{targetLevel_checked}}>
                     <label class='form-check-label' for='targetLevelNull'>null</label>
@@ -104,7 +149,12 @@
   <div class='form-group row {{quantityPerUnit_row_class}}'>
     <label for='quantityPerUnit' class='col-sm-4 col-form-label'>quantityPerUnit</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}'  >
+      <input type='text' class='form-control {{#errors.quantityPerUnit}}is-invalid{{/errors.quantityPerUnit}}' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.quantityPerUnit}}<li>{{.}}</li>{{/errors.quantityPerUnit}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='quantityPerUnit' name='quantityPerUnitNull' id='quantityPerUnitNull' value='quantityPerUnitNull' {{quantityPerUnit_checked}}>
                     <label class='form-check-label' for='quantityPerUnitNull'>null</label>
@@ -112,12 +162,22 @@
   <div class='form-group row {{discontinued_row_class}}'>
     <label for='discontinued' class='col-sm-4 col-form-label'>discontinued</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}'  >
+      <input type='text' class='form-control {{#errors.discontinued}}is-invalid{{/errors.discontinued}}' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.discontinued}}<li>{{.}}</li>{{/errors.discontinued}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{minimumReorderQuantity_row_class}}'>
     <label for='minimumReorderQuantity' class='col-sm-4 col-form-label'>minimumReorderQuantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}'  >
+      <input type='text' class='form-control {{#errors.minimumReorderQuantity}}is-invalid{{/errors.minimumReorderQuantity}}' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.minimumReorderQuantity}}<li>{{.}}</li>{{/errors.minimumReorderQuantity}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='minimumReorderQuantity' name='minimumReorderQuantityNull' id='minimumReorderQuantityNull' value='minimumReorderQuantityNull' {{minimumReorderQuantity_checked}}>
                     <label class='form-check-label' for='minimumReorderQuantityNull'>null</label>
@@ -125,7 +185,12 @@
   <div class='form-group row {{category_row_class}}'>
     <label for='category' class='col-sm-4 col-form-label'>category</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='category' name='category' placeholder='NULL' value='{{category}}'  >
+      <input type='text' class='form-control {{#errors.category}}is-invalid{{/errors.category}}' id='category' name='category' placeholder='NULL' value='{{category}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.category}}<li>{{.}}</li>{{/errors.category}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='category' name='categoryNull' id='categoryNull' value='categoryNull' {{category_checked}}>
                     <label class='form-check-label' for='categoryNull'>null</label>
@@ -133,7 +198,12 @@
   <div class='form-group row {{attachments_row_class}}'>
     <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+      <input type='text' class='form-control {{#errors.attachments}}is-invalid{{/errors.attachments}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.attachments}}<li>{{.}}</li>{{/errors.attachments}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='attachments' name='attachmentsNull' id='attachmentsNull' value='attachmentsNull' {{attachments_checked}}>
                     <label class='form-check-label' for='attachmentsNull'>null</label>

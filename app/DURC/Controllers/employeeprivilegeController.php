@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
+use CareSet\DURC\DURCInvalidDataException;
 
 class employeeprivilegeController extends DURCController
 {
@@ -71,18 +72,18 @@ class employeeprivilegeController extends DURCController
         $return_me['data'] = $return_me_data;
 		
 		
-                foreach($return_me['data'] as $data_i => $data_row){
-                        foreach($data_row as $key => $value){
-                                if(is_array($value)){
-                                        foreach($value as $lowest_key => $lowest_data){
-                                                //then this is a loaded attribute..
-                                                //lets move it one level higher...
-                                                $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
-                                        }
-                                        unset($return_me['data'][$data_i][$key]);
+        foreach($return_me['data'] as $data_i => $data_row){
+                foreach($data_row as $key => $value){
+                        if(is_array($value)){
+                                foreach($value as $lowest_key => $lowest_data){
+                                        //then this is a loaded attribute..
+                                        //lets move it one level higher...
+                                        $return_me['data'][$data_i][$key .'_id_DURClabel'] = $lowest_data;
                                 }
+                                unset($return_me['data'][$data_i][$key]);
                         }
                 }
+        }
 
 
 		//helps with logic-less templating...
@@ -202,17 +203,17 @@ class employeeprivilegeController extends DURCController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-	$main_template_name = $this->_getMainTemplateName();
-
-
-	$this->view_data = $this->_get_index_list($request);
-
-	if($request->has('debug')){
-		var_export($this->view_data);
-		exit();
-	}
-	$durc_template_results = view('DURC.employeeprivilege.index',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+        $main_template_name = $this->_getMainTemplateName();
+    
+    
+        $this->view_data = $this->_get_index_list($request);
+    
+        if($request->has('debug')){
+            var_export($this->view_data);
+            exit();
+        }
+        $durc_template_results = view('DURC.employeeprivilege.index',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
 
@@ -223,25 +224,29 @@ class employeeprivilegeController extends DURCController
     */ 
     public function store(Request $request){
 
-	$myNewemployeeprivilege = new employeeprivilege();
+        $myNewemployeeprivilege = new employeeprivilege();
 
-	//the games we play to easily auto-generate code..
-	$tmp_employeeprivilege = $myNewemployeeprivilege;
-			$tmp_employeeprivilege->employee_id = DURC::formatForStorage( 'employee_id', 'int', $request->employee_id, $tmp_employeeprivilege ); 
-		$tmp_employeeprivilege->privilege_id = DURC::formatForStorage( 'privilege_id', 'int', $request->privilege_id, $tmp_employeeprivilege ); 
+        //the games we play to easily auto-generate code..
+        $tmp_employeeprivilege = $myNewemployeeprivilege;
+        
+        $tmp_employeeprivilege->employee_id = $request->employee_id;
+        $tmp_employeeprivilege->privilege_id = $request->privilege_id;
 
-	
-	try {
-	    		$tmp_employeeprivilege->save();
 
-	} catch (\Exception $e) {
-	          return redirect("/DURC/employeeprivilege/create")->with('status', 'There was an error in your data: '.$e->getMessage());
+        try {
+            $tmp_employeeprivilege->save();
 
-	}
+        $new_id = $myNewemployeeprivilege->id;
+        return redirect("/DURC/employeeprivilege/$new_id")->with('status', 'Data Saved!');
+        } catch (\DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_employeeprivilege->getErrors());
 
-	$new_id = $myNewemployeeprivilege->id;
-	
-	return redirect("/DURC/employeeprivilege/$new_id")->with('status', 'Data Saved!');
+        } catch (\Exception $e) {
+            return redirect("/DURC/employeeprivilege/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
+
+        
     }//end store function
 
     /**
@@ -249,8 +254,8 @@ class employeeprivilegeController extends DURCController
      * @param  \App\$employeeprivilege  $employeeprivilege
      * @return \Illuminate\Http\Response
      */
-    public function show(employeeprivilege $employeeprivilege){
-	return($this->edit($employeeprivilege));
+    public function show(Request $request, employeeprivilege $employeeprivilege){
+	return($this->edit($request, $employeeprivilege));
     }
 
     /**
@@ -285,10 +290,10 @@ class employeeprivilegeController extends DURCController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-	// but really, we are just going to edit a new object..
-	$new_instance = new employeeprivilege();
-	return $this->edit($new_instance);
+    public function create(Request $request){
+        // but really, we are just going to edit a new object..
+        $new_instance = new employeeprivilege();
+        return $this->edit($request, $new_instance);
     }
 
 
@@ -297,68 +302,89 @@ class employeeprivilegeController extends DURCController
      * @param  \App\employeeprivilege  $employeeprivilege
      * @return \Illuminate\Http\Response
      */
-    public function edit(employeeprivilege $employeeprivilege){
+    public function edit(Request $request, employeeprivilege $employeeprivilege){
 
-	$main_template_name = $this->_getMainTemplateName();
-
-	//do we have a status message in the session? The view needs it...
-	$this->view_data['session_status'] = session('status',false);
-	if($this->view_data['session_status']){
-		$this->view_data['has_session_status'] = true;
-	}else{
-		$this->view_data['has_session_status'] = false;
-	}
-
-	$this->view_data['csrf_token'] = csrf_token();
-	
-	
-	foreach ( employeeprivilege::$field_type_map as $column_name => $field_type ) {
-        // If this field name is in the configured list of hidden fields, do not display the row.
-        $this->view_data["{$column_name}_row_class"] = '';
-        if ( in_array( $column_name, self::$hidden_fields_array ) ) {
-            $this->view_data["{$column_name}_row_class"] = 'd-none';
+        $main_template_name = $this->_getMainTemplateName();
+        
+        // in case there's flashed input
+        $this->view_data = $request->old();
+    
+        //do we have a status message in the session? The view needs it...
+        $this->view_data['session_status'] = session('status',false);
+        if($this->view_data['session_status']){
+            $this->view_data['has_session_status'] = true;
+        }else{
+            $this->view_data['has_session_status'] = false;
         }
-    }
-
-	if($employeeprivilege->exists){	//we will not have old data if this is a new object
-
-		//well lets properly eager load this object with a refresh to load all of the related things
-		$employeeprivilege = $employeeprivilege->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-
-		//put the contents into the view...
-		foreach($employeeprivilege->toArray() as $key => $value){
-			if ( isset( employeeprivilege::$field_type_map[$key] ) ) {
-                $field_type = employeeprivilege::$field_type_map[ $key ];
-                $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $value );
+        
+        // Do we have errors in the session?
+        $errors = session('errors', false);
+        if ($errors) {
+            $this->view_data['errors'] = $errors->getMessages();
+            if ($this->view_data['errors']) {
+                $this->view_data['has_errors'] = true;
             } else {
-                $this->view_data[$key] = $value;
+                $this->view_data['has_errors'] = false;
             }
+        }
+    
+        $this->view_data['csrf_token'] = csrf_token();
+        
+        
+        foreach ( employeeprivilege::$field_type_map as $column_name => $field_type ) {
+            // If this field name is in the configured list of hidden fields, do not display the row.
+            $this->view_data["{$column_name}_row_class"] = '';
+            if ( in_array( $column_name, self::$hidden_fields_array ) ) {
+                $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+        }
+    
+        if($employeeprivilege->exists){	//we will not have old data if this is a new object
+    
+            //well lets properly eager load this object with a refresh to load all of the related things
+            $employeeprivilege = $employeeprivilege->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+    
+            //put the contents into the view...
+            foreach($employeeprivilege->toArray() as $key => $value){
+                
+                if (array_key_exists($key, $request->old())) {
+                    $input = $request->old($key);
+                } else {
+                    $input = $value;
+                }
             
-            // If this is a nullable field, see whether null checkbox should be checked by default
-			if ($employeeprivilege->isFieldNullable($key) &&
-                $value == null) {
-			    $this->view_data["{$key}_checked"] = "checked";
+                if ( isset( employeeprivilege::$field_type_map[$key] ) ) {
+                    $field_type = employeeprivilege::$field_type_map[ $key ];
+                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+                } else {
+                    $this->view_data[$key] = $input;
+                }
+                
+                // If this is a nullable field, see whether null checkbox should be checked by default
+                if ($employeeprivilege->isFieldNullable($key) &&
+                    $input == null) {
+                    $this->view_data["{$key}_checked"] = "checked";
+                }
             }
-		}
-
-		//what is this object called?
-		$name_field = $employeeprivilege->_getBestName();
-		$this->view_data['is_new'] = false;
-		$this->view_data['durc_instance_name'] = $employeeprivilege->$name_field;
-	}else{
-		$this->view_data['is_new'] = true;
-	}
-
-	$debug = false;
-	if($debug){
-		echo '<pre>';
-		var_export($this->view_data);
-		exit();
-	}
-	
-
-	$durc_template_results = view('DURC.employeeprivilege.edit',$this->view_data);        
-	return view($main_template_name,['content' => $durc_template_results]);
+    
+            //what is this object called?
+            $name_field = $employeeprivilege->_getBestName();
+            $this->view_data['is_new'] = false;
+            $this->view_data['durc_instance_name'] = $employeeprivilege->$name_field;
+        }else{
+            $this->view_data['is_new'] = true;
+        }
+    
+        $debug = false;
+        if($debug){
+            echo '<pre>';
+            var_export($this->view_data);
+            exit();
+        }
+        
+    
+        $durc_template_results = view('DURC.employeeprivilege.edit',$this->view_data);        
+        return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
@@ -369,23 +395,24 @@ class employeeprivilegeController extends DURCController
      */
     public function update(Request $request, employeeprivilege $employeeprivilege){
 
-	$tmp_employeeprivilege = $employeeprivilege;
-			$tmp_employeeprivilege->employee_id = DURC::formatForStorage( 'employee_id', 'int', $request->employee_id, $tmp_employeeprivilege ); 
-		$tmp_employeeprivilege->privilege_id = DURC::formatForStorage( 'privilege_id', 'int', $request->privilege_id, $tmp_employeeprivilege ); 
-
-
-	$id = $employeeprivilege->id;
-	
-    try {
-	    		$tmp_employeeprivilege->save();
-
-	} catch (\Exception $e) {
-	          return redirect("/DURC/employeeprivilege/{$id}")->with('status', 'There was an error in your data: '.$e->getMessage());
-
-	}
-
-	return redirect("/DURC/employeeprivilege/$id")->with('status', 'Data Saved!');
+        $tmp_employeeprivilege = $employeeprivilege;
         
+        $tmp_employeeprivilege->employee_id = $request->employee_id;
+        $tmp_employeeprivilege->privilege_id = $request->privilege_id;
+
+        $id = $employeeprivilege->id;
+        
+        try {
+            $tmp_employeeprivilege->save();
+
+            return redirect("/DURC/employeeprivilege/$id")->with('status', 'Data Saved!');
+        } catch (DURCInvalidDataException $e) {
+            return back()->withInput()->with('errors', $tmp_employeeprivilege->getErrors());
+
+        } catch (\Exception $e) {
+            return redirect("/DURC/employeeprivilege/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+
+        }
     }
 
     /**

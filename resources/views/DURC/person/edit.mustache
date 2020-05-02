@@ -38,27 +38,52 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{last_name_row_class}}'>
     <label for='last_name' class='col-sm-4 col-form-label'>last_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='last_name' name='last_name' placeholder='' value='{{last_name}}'  required>
+      <input type='text' class='form-control {{#errors.last_name}}is-invalid{{/errors.last_name}}' id='last_name' name='last_name' placeholder='' value='{{last_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.last_name}}<li>{{.}}</li>{{/errors.last_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{first_name_row_class}}'>
     <label for='first_name' class='col-sm-4 col-form-label'>first_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='first_name' name='first_name' placeholder='' value='{{first_name}}'  required>
+      <input type='text' class='form-control {{#errors.first_name}}is-invalid{{/errors.first_name}}' id='first_name' name='first_name' placeholder='' value='{{first_name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.first_name}}<li>{{.}}</li>{{/errors.first_name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{person_blurb_row_class}}'>
     <label for='person_blurb' class='col-sm-4 col-form-label'>person_blurb</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='person_blurb' name='person_blurb' placeholder='' value='{{person_blurb}}'  required>
+      <input type='text' class='form-control {{#errors.person_blurb}}is-invalid{{/errors.person_blurb}}' id='person_blurb' name='person_blurb' placeholder='' value='{{person_blurb}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.person_blurb}}<li>{{.}}</li>{{/errors.person_blurb}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{image_uri_row_class}}'>
     <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}'  >
+      <input type='text' class='form-control {{#errors.image_uri}}is-invalid{{/errors.image_uri}}' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri}}<li>{{.}}</li>{{/errors.image_uri}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri' name='image_uriNull' id='image_uriNull' value='image_uriNull' {{image_uri_checked}}>
                     <label class='form-check-label' for='image_uriNull'>null</label>
@@ -66,7 +91,12 @@
   <div class='form-group row {{wallpaper_download_url_row_class}}'>
     <label for='wallpaper_download_url' class='col-sm-4 col-form-label'>wallpaper_download_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='NULL' value='{{wallpaper_download_url}}'  >
+      <input type='text' class='form-control {{#errors.wallpaper_download_url}}is-invalid{{/errors.wallpaper_download_url}}' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='NULL' value='{{wallpaper_download_url}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.wallpaper_download_url}}<li>{{.}}</li>{{/errors.wallpaper_download_url}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='wallpaper_download_url' name='wallpaper_download_urlNull' id='wallpaper_download_urlNull' value='wallpaper_download_urlNull' {{wallpaper_download_url_checked}}>
                     <label class='form-check-label' for='wallpaper_download_urlNull'>null</label>
@@ -74,7 +104,12 @@
   <div class='form-group row {{mtgwiki_url_row_class}}'>
     <label for='mtgwiki_url' class='col-sm-4 col-form-label'>mtgwiki_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mtgwiki_url' name='mtgwiki_url' placeholder='NULL' value='{{mtgwiki_url}}'  >
+      <input type='text' class='form-control {{#errors.mtgwiki_url}}is-invalid{{/errors.mtgwiki_url}}' id='mtgwiki_url' name='mtgwiki_url' placeholder='NULL' value='{{mtgwiki_url}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.mtgwiki_url}}<li>{{.}}</li>{{/errors.mtgwiki_url}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='mtgwiki_url' name='mtgwiki_urlNull' id='mtgwiki_urlNull' value='mtgwiki_urlNull' {{mtgwiki_url_checked}}>
                     <label class='form-check-label' for='mtgwiki_urlNull'>null</label>
@@ -82,7 +117,12 @@
   <div class='form-group row {{wizards_story_url_row_class}}'>
     <label for='wizards_story_url' class='col-sm-4 col-form-label'>wizards_story_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='wizards_story_url' name='wizards_story_url' placeholder='NULL' value='{{wizards_story_url}}'  >
+      <input type='text' class='form-control {{#errors.wizards_story_url}}is-invalid{{/errors.wizards_story_url}}' id='wizards_story_url' name='wizards_story_url' placeholder='NULL' value='{{wizards_story_url}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.wizards_story_url}}<li>{{.}}</li>{{/errors.wizards_story_url}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='wizards_story_url' name='wizards_story_urlNull' id='wizards_story_urlNull' value='wizards_story_urlNull' {{wizards_story_url_checked}}>
                     <label class='form-check-label' for='wizards_story_urlNull'>null</label>

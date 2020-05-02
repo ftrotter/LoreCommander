@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -44,27 +45,99 @@ class salesreport extends DURCModel{
 		'title' => 'varchar',
 		'filterRowSource' => 'longtext',
 		'default' => 'tinyint',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
 		'groupBy',
 		'default',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'groupBy' => null,
 		'display' => 'NULL',
 		'title' => 'NULL',
 		'filterRowSource' => 'NULL',
 		'default' => '0',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'groupBy' => 'required',
+		'display' => 'nullable',
+		'title' => 'nullable',
+		'filterRowSource' => 'nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getGroupByAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setGroupByAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('groupBy', 'varchar', $value, $this);
+		$this->attributes['groupBy'] = $formatted_value;
+	}
 
+	public function getDisplayAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setDisplayAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('display', 'varchar', $value, $this);
+		$this->attributes['display'] = $formatted_value;
+	}
+
+	public function getTitleAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTitleAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('title', 'varchar', $value, $this);
+		$this->attributes['title'] = $formatted_value;
+	}
+
+	public function getFilterRowSourceAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setFilterRowSourceAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('filterRowSource', 'longtext', $value, $this);
+		$this->attributes['filterRowSource'] = $formatted_value;
+	}
+
+	public function getDefaultAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setDefaultAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('default', 'tinyint', $value, $this);
+		$this->attributes['default'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -64,16 +65,16 @@ class order extends DURCModel{
 		'taxRate' => 'double',
 		'taxStatus_id' => 'tinyint',
 		'status_id' => 'tinyint',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
 		'id',
 		'orderDate',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'employee_id' => 'NULL',
 		'customer_id' => 'NULL',
@@ -94,12 +95,279 @@ class order extends DURCModel{
 		'taxRate' => '0',
 		'taxStatus_id' => 'NULL',
 		'status_id' => '0',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'employee_id' => 'integer|nullable',
+		'customer_id' => 'integer|nullable',
+		'shippedDate' => 'nullable',
+		'shipper_id' => 'integer|nullable',
+		'shipName' => 'nullable',
+		'shipAddress' => 'nullable',
+		'shipCity' => 'nullable',
+		'shipStateProvince' => 'nullable',
+		'shipZipPostalCode' => 'nullable',
+		'shipCountryRegion' => 'nullable',
+		'shippingFee' => 'nullable',
+		'taxes' => 'nullable',
+		'paymentType' => 'nullable',
+		'paidDate' => 'nullable',
+		'notes' => 'nullable',
+		'taxRate' => 'nullable',
+		'taxStatus_id' => 'nullable',
+		'status_id' => 'nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getEmployeeIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setEmployeeIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('employee_id', 'int', $value, $this);
+		$this->attributes['employee_id'] = $formatted_value;
+	}
+
+	public function getCustomerIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCustomerIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('customer_id', 'int', $value, $this);
+		$this->attributes['customer_id'] = $formatted_value;
+	}
+
+	public function getOrderDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setOrderDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('orderDate', 'datetime', $value, $this);
+		$this->attributes['orderDate'] = $formatted_value;
+	}
+
+	public function getShippedDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShippedDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shippedDate', 'datetime', $value, $this);
+		$this->attributes['shippedDate'] = $formatted_value;
+	}
+
+	public function getShipperIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipperIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipper_id', 'int', $value, $this);
+		$this->attributes['shipper_id'] = $formatted_value;
+	}
+
+	public function getShipNameAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipNameAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipName', 'varchar', $value, $this);
+		$this->attributes['shipName'] = $formatted_value;
+	}
+
+	public function getShipAddressAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipAddressAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipAddress', 'longtext', $value, $this);
+		$this->attributes['shipAddress'] = $formatted_value;
+	}
+
+	public function getShipCityAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipCityAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipCity', 'varchar', $value, $this);
+		$this->attributes['shipCity'] = $formatted_value;
+	}
+
+	public function getShipStateProvinceAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipStateProvinceAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipStateProvince', 'varchar', $value, $this);
+		$this->attributes['shipStateProvince'] = $formatted_value;
+	}
+
+	public function getShipZipPostalCodeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipZipPostalCodeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipZipPostalCode', 'varchar', $value, $this);
+		$this->attributes['shipZipPostalCode'] = $formatted_value;
+	}
+
+	public function getShipCountryRegionAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShipCountryRegionAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shipCountryRegion', 'varchar', $value, $this);
+		$this->attributes['shipCountryRegion'] = $formatted_value;
+	}
+
+	public function getShippingFeeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setShippingFeeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('shippingFee', 'decimal', $value, $this);
+		$this->attributes['shippingFee'] = $formatted_value;
+	}
+
+	public function getTaxesAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTaxesAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('taxes', 'decimal', $value, $this);
+		$this->attributes['taxes'] = $formatted_value;
+	}
+
+	public function getPaymentTypeAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPaymentTypeAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('paymentType', 'varchar', $value, $this);
+		$this->attributes['paymentType'] = $formatted_value;
+	}
+
+	public function getPaidDateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPaidDateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('paidDate', 'datetime', $value, $this);
+		$this->attributes['paidDate'] = $formatted_value;
+	}
+
+	public function getNotesAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setNotesAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('notes', 'longtext', $value, $this);
+		$this->attributes['notes'] = $formatted_value;
+	}
+
+	public function getTaxRateAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTaxRateAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('taxRate', 'double', $value, $this);
+		$this->attributes['taxRate'] = $formatted_value;
+	}
+
+	public function getTaxStatusIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setTaxStatusIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('taxStatus_id', 'tinyint', $value, $this);
+		$this->attributes['taxStatus_id'] = $formatted_value;
+	}
+
+	public function getStatusIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setStatusIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('status_id', 'tinyint', $value, $this);
+		$this->attributes['status_id'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

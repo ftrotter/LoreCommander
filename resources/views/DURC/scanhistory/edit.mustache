@@ -38,17 +38,32 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{multiverse_id_row_class}}'>
     <label for='multiverse_id' class='col-sm-4 col-form-label'>multiverse_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='multiverse_id' name='multiverse_id' placeholder='' value='{{multiverse_id}}'  required>
+      <input type='text' class='form-control {{#errors.multiverse_id}}is-invalid{{/errors.multiverse_id}}' id='multiverse_id' name='multiverse_id' placeholder='' value='{{multiverse_id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.multiverse_id}}<li>{{.}}</li>{{/errors.multiverse_id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{viewchannel_row_class}}'>
     <label for='viewchannel' class='col-sm-4 col-form-label'>viewchannel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='viewchannel' name='viewchannel' placeholder='NULL' value='{{viewchannel}}'  >
+      <input type='text' class='form-control {{#errors.viewchannel}}is-invalid{{/errors.viewchannel}}' id='viewchannel' name='viewchannel' placeholder='NULL' value='{{viewchannel}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.viewchannel}}<li>{{.}}</li>{{/errors.viewchannel}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='viewchannel' name='viewchannelNull' id='viewchannelNull' value='viewchannelNull' {{viewchannel_checked}}>
                     <label class='form-check-label' for='viewchannelNull'>null</label>

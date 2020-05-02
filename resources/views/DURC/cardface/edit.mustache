@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{card_id_row_class}}'>
     <label for='card_id' class='col-sm-4 col-form-label'>card_id</label>
@@ -76,17 +81,32 @@ $('.select2_card_id').select2({
   <div class='form-group row {{cardface_index_row_class}}'>
     <label for='cardface_index' class='col-sm-4 col-form-label'>cardface_index</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='cardface_index' name='cardface_index' placeholder='' value='{{cardface_index}}'  required>
+      <input type='text' class='form-control {{#errors.cardface_index}}is-invalid{{/errors.cardface_index}}' id='cardface_index' name='cardface_index' placeholder='' value='{{cardface_index}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.cardface_index}}<li>{{.}}</li>{{/errors.cardface_index}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{illustration_id_row_class}}'>
     <label for='illustration_id' class='col-sm-4 col-form-label'>illustration_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='illustration_id' name='illustration_id' placeholder='' value='{{illustration_id}}'  required>
+      <input type='text' class='form-control {{#errors.illustration_id}}is-invalid{{/errors.illustration_id}}' id='illustration_id' name='illustration_id' placeholder='' value='{{illustration_id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.illustration_id}}<li>{{.}}</li>{{/errors.illustration_id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{artist_row_class}}'>
     <label for='artist' class='col-sm-4 col-form-label'>artist</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='artist' name='artist' placeholder='NULL' value='{{artist}}'  >
+      <input type='text' class='form-control {{#errors.artist}}is-invalid{{/errors.artist}}' id='artist' name='artist' placeholder='NULL' value='{{artist}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.artist}}<li>{{.}}</li>{{/errors.artist}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='artist' name='artistNull' id='artistNull' value='artistNull' {{artist_checked}}>
                     <label class='form-check-label' for='artistNull'>null</label>
@@ -94,7 +114,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_row_class}}'>
     <label for='color' class='col-sm-4 col-form-label'>color</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='color' name='color' placeholder='NULL' value='{{color}}'  >
+      <input type='text' class='form-control {{#errors.color}}is-invalid{{/errors.color}}' id='color' name='color' placeholder='NULL' value='{{color}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.color}}<li>{{.}}</li>{{/errors.color}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='color' name='colorNull' id='colorNull' value='colorNull' {{color_checked}}>
                     <label class='form-check-label' for='colorNull'>null</label>
@@ -102,7 +127,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_identity_row_class}}'>
     <label for='color_identity' class='col-sm-4 col-form-label'>color_identity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='color_identity' name='color_identity' placeholder='NULL' value='{{color_identity}}'  >
+      <input type='text' class='form-control {{#errors.color_identity}}is-invalid{{/errors.color_identity}}' id='color_identity' name='color_identity' placeholder='NULL' value='{{color_identity}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.color_identity}}<li>{{.}}</li>{{/errors.color_identity}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='color_identity' name='color_identityNull' id='color_identityNull' value='color_identityNull' {{color_identity_checked}}>
                     <label class='form-check-label' for='color_identityNull'>null</label>
@@ -110,7 +140,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{flavor_text_row_class}}'>
     <label for='flavor_text' class='col-sm-4 col-form-label'>flavor_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='flavor_text' name='flavor_text' placeholder='NULL' value='{{flavor_text}}'  >
+      <input type='text' class='form-control {{#errors.flavor_text}}is-invalid{{/errors.flavor_text}}' id='flavor_text' name='flavor_text' placeholder='NULL' value='{{flavor_text}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.flavor_text}}<li>{{.}}</li>{{/errors.flavor_text}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='flavor_text' name='flavor_textNull' id='flavor_textNull' value='flavor_textNull' {{flavor_text_checked}}>
                     <label class='form-check-label' for='flavor_textNull'>null</label>
@@ -118,17 +153,32 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_row_class}}'>
     <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}'  required>
+      <input type='text' class='form-control {{#errors.image_uri}}is-invalid{{/errors.image_uri}}' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri}}<li>{{.}}</li>{{/errors.image_uri}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{mana_cost_row_class}}'>
     <label for='mana_cost' class='col-sm-4 col-form-label'>mana_cost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='mana_cost' name='mana_cost' placeholder='' value='{{mana_cost}}'  required>
+      <input type='text' class='form-control {{#errors.mana_cost}}is-invalid{{/errors.mana_cost}}' id='mana_cost' name='mana_cost' placeholder='' value='{{mana_cost}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.mana_cost}}<li>{{.}}</li>{{/errors.mana_cost}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{cmc_row_class}}'>
     <label for='cmc' class='col-sm-4 col-form-label'>cmc</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}'  >
+      <input type='text' class='form-control {{#errors.cmc}}is-invalid{{/errors.cmc}}' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.cmc}}<li>{{.}}</li>{{/errors.cmc}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='cmc' name='cmcNull' id='cmcNull' value='cmcNull' {{cmc_checked}}>
                     <label class='form-check-label' for='cmcNull'>null</label>
@@ -136,17 +186,32 @@ $('.select2_card_id').select2({
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='name' name='name' placeholder='' value='{{name}}'  required>
+      <input type='text' class='form-control {{#errors.name}}is-invalid{{/errors.name}}' id='name' name='name' placeholder='' value='{{name}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.name}}<li>{{.}}</li>{{/errors.name}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{oracle_text_row_class}}'>
     <label for='oracle_text' class='col-sm-4 col-form-label'>oracle_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='oracle_text' name='oracle_text' placeholder='' value='{{oracle_text}}'  required>
+      <input type='text' class='form-control {{#errors.oracle_text}}is-invalid{{/errors.oracle_text}}' id='oracle_text' name='oracle_text' placeholder='' value='{{oracle_text}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.oracle_text}}<li>{{.}}</li>{{/errors.oracle_text}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{power_row_class}}'>
     <label for='power' class='col-sm-4 col-form-label'>power</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='power' name='power' placeholder='NULL' value='{{power}}'  >
+      <input type='text' class='form-control {{#errors.power}}is-invalid{{/errors.power}}' id='power' name='power' placeholder='NULL' value='{{power}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.power}}<li>{{.}}</li>{{/errors.power}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='power' name='powerNull' id='powerNull' value='powerNull' {{power_checked}}>
                     <label class='form-check-label' for='powerNull'>null</label>
@@ -154,7 +219,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{toughness_row_class}}'>
     <label for='toughness' class='col-sm-4 col-form-label'>toughness</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}'  >
+      <input type='text' class='form-control {{#errors.toughness}}is-invalid{{/errors.toughness}}' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.toughness}}<li>{{.}}</li>{{/errors.toughness}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='toughness' name='toughnessNull' id='toughnessNull' value='toughnessNull' {{toughness_checked}}>
                     <label class='form-check-label' for='toughnessNull'>null</label>
@@ -162,17 +232,32 @@ $('.select2_card_id').select2({
   <div class='form-group row {{type_line_row_class}}'>
     <label for='type_line' class='col-sm-4 col-form-label'>type_line</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='type_line' name='type_line' placeholder='' value='{{type_line}}'  required>
+      <input type='text' class='form-control {{#errors.type_line}}is-invalid{{/errors.type_line}}' id='type_line' name='type_line' placeholder='' value='{{type_line}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.type_line}}<li>{{.}}</li>{{/errors.type_line}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{border_color_row_class}}'>
     <label for='border_color' class='col-sm-4 col-form-label'>border_color</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='border_color' name='border_color' placeholder='' value='{{border_color}}'  required>
+      <input type='text' class='form-control {{#errors.border_color}}is-invalid{{/errors.border_color}}' id='border_color' name='border_color' placeholder='' value='{{border_color}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.border_color}}<li>{{.}}</li>{{/errors.border_color}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{image_uri_art_crop_row_class}}'>
     <label for='image_uri_art_crop' class='col-sm-4 col-form-label'>image_uri_art_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri_art_crop' name='image_uri_art_crop' placeholder='NULL' value='{{image_uri_art_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_art_crop}}is-invalid{{/errors.image_uri_art_crop}}' id='image_uri_art_crop' name='image_uri_art_crop' placeholder='NULL' value='{{image_uri_art_crop}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri_art_crop}}<li>{{.}}</li>{{/errors.image_uri_art_crop}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri_art_crop' name='image_uri_art_cropNull' id='image_uri_art_cropNull' value='image_uri_art_cropNull' {{image_uri_art_crop_checked}}>
                     <label class='form-check-label' for='image_uri_art_cropNull'>null</label>
@@ -180,7 +265,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_art_crop_row_class}}'>
     <label for='image_hash_art_crop' class='col-sm-4 col-form-label'>image_hash_art_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_hash_art_crop' name='image_hash_art_crop' placeholder='NULL' value='{{image_hash_art_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_art_crop}}is-invalid{{/errors.image_hash_art_crop}}' id='image_hash_art_crop' name='image_hash_art_crop' placeholder='NULL' value='{{image_hash_art_crop}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_hash_art_crop}}<li>{{.}}</li>{{/errors.image_hash_art_crop}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_hash_art_crop' name='image_hash_art_cropNull' id='image_hash_art_cropNull' value='image_hash_art_cropNull' {{image_hash_art_crop_checked}}>
                     <label class='form-check-label' for='image_hash_art_cropNull'>null</label>
@@ -188,7 +278,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_small_row_class}}'>
     <label for='image_uri_small' class='col-sm-4 col-form-label'>image_uri_small</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri_small' name='image_uri_small' placeholder='NULL' value='{{image_uri_small}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_small}}is-invalid{{/errors.image_uri_small}}' id='image_uri_small' name='image_uri_small' placeholder='NULL' value='{{image_uri_small}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri_small}}<li>{{.}}</li>{{/errors.image_uri_small}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri_small' name='image_uri_smallNull' id='image_uri_smallNull' value='image_uri_smallNull' {{image_uri_small_checked}}>
                     <label class='form-check-label' for='image_uri_smallNull'>null</label>
@@ -196,7 +291,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_small_row_class}}'>
     <label for='image_hash_small' class='col-sm-4 col-form-label'>image_hash_small</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_hash_small' name='image_hash_small' placeholder='NULL' value='{{image_hash_small}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_small}}is-invalid{{/errors.image_hash_small}}' id='image_hash_small' name='image_hash_small' placeholder='NULL' value='{{image_hash_small}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_hash_small}}<li>{{.}}</li>{{/errors.image_hash_small}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_hash_small' name='image_hash_smallNull' id='image_hash_smallNull' value='image_hash_smallNull' {{image_hash_small_checked}}>
                     <label class='form-check-label' for='image_hash_smallNull'>null</label>
@@ -204,7 +304,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_normal_row_class}}'>
     <label for='image_uri_normal' class='col-sm-4 col-form-label'>image_uri_normal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri_normal' name='image_uri_normal' placeholder='NULL' value='{{image_uri_normal}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_normal}}is-invalid{{/errors.image_uri_normal}}' id='image_uri_normal' name='image_uri_normal' placeholder='NULL' value='{{image_uri_normal}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri_normal}}<li>{{.}}</li>{{/errors.image_uri_normal}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri_normal' name='image_uri_normalNull' id='image_uri_normalNull' value='image_uri_normalNull' {{image_uri_normal_checked}}>
                     <label class='form-check-label' for='image_uri_normalNull'>null</label>
@@ -212,7 +317,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_normal_row_class}}'>
     <label for='image_hash_normal' class='col-sm-4 col-form-label'>image_hash_normal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_hash_normal' name='image_hash_normal' placeholder='NULL' value='{{image_hash_normal}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_normal}}is-invalid{{/errors.image_hash_normal}}' id='image_hash_normal' name='image_hash_normal' placeholder='NULL' value='{{image_hash_normal}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_hash_normal}}<li>{{.}}</li>{{/errors.image_hash_normal}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_hash_normal' name='image_hash_normalNull' id='image_hash_normalNull' value='image_hash_normalNull' {{image_hash_normal_checked}}>
                     <label class='form-check-label' for='image_hash_normalNull'>null</label>
@@ -220,7 +330,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_large_row_class}}'>
     <label for='image_uri_large' class='col-sm-4 col-form-label'>image_uri_large</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri_large' name='image_uri_large' placeholder='NULL' value='{{image_uri_large}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_large}}is-invalid{{/errors.image_uri_large}}' id='image_uri_large' name='image_uri_large' placeholder='NULL' value='{{image_uri_large}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri_large}}<li>{{.}}</li>{{/errors.image_uri_large}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri_large' name='image_uri_largeNull' id='image_uri_largeNull' value='image_uri_largeNull' {{image_uri_large_checked}}>
                     <label class='form-check-label' for='image_uri_largeNull'>null</label>
@@ -228,7 +343,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_large_row_class}}'>
     <label for='image_hash_large' class='col-sm-4 col-form-label'>image_hash_large</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_hash_large' name='image_hash_large' placeholder='NULL' value='{{image_hash_large}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_large}}is-invalid{{/errors.image_hash_large}}' id='image_hash_large' name='image_hash_large' placeholder='NULL' value='{{image_hash_large}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_hash_large}}<li>{{.}}</li>{{/errors.image_hash_large}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_hash_large' name='image_hash_largeNull' id='image_hash_largeNull' value='image_hash_largeNull' {{image_hash_large_checked}}>
                     <label class='form-check-label' for='image_hash_largeNull'>null</label>
@@ -236,7 +356,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_png_row_class}}'>
     <label for='image_uri_png' class='col-sm-4 col-form-label'>image_uri_png</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri_png' name='image_uri_png' placeholder='NULL' value='{{image_uri_png}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_png}}is-invalid{{/errors.image_uri_png}}' id='image_uri_png' name='image_uri_png' placeholder='NULL' value='{{image_uri_png}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri_png}}<li>{{.}}</li>{{/errors.image_uri_png}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri_png' name='image_uri_pngNull' id='image_uri_pngNull' value='image_uri_pngNull' {{image_uri_png_checked}}>
                     <label class='form-check-label' for='image_uri_pngNull'>null</label>
@@ -244,7 +369,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_png_row_class}}'>
     <label for='image_hash_png' class='col-sm-4 col-form-label'>image_hash_png</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_hash_png' name='image_hash_png' placeholder='NULL' value='{{image_hash_png}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_png}}is-invalid{{/errors.image_hash_png}}' id='image_hash_png' name='image_hash_png' placeholder='NULL' value='{{image_hash_png}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_hash_png}}<li>{{.}}</li>{{/errors.image_hash_png}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_hash_png' name='image_hash_pngNull' id='image_hash_pngNull' value='image_hash_pngNull' {{image_hash_png_checked}}>
                     <label class='form-check-label' for='image_hash_pngNull'>null</label>
@@ -252,7 +382,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_border_crop_row_class}}'>
     <label for='image_uri_border_crop' class='col-sm-4 col-form-label'>image_uri_border_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_uri_border_crop' name='image_uri_border_crop' placeholder='NULL' value='{{image_uri_border_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_border_crop}}is-invalid{{/errors.image_uri_border_crop}}' id='image_uri_border_crop' name='image_uri_border_crop' placeholder='NULL' value='{{image_uri_border_crop}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri_border_crop}}<li>{{.}}</li>{{/errors.image_uri_border_crop}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri_border_crop' name='image_uri_border_cropNull' id='image_uri_border_cropNull' value='image_uri_border_cropNull' {{image_uri_border_crop_checked}}>
                     <label class='form-check-label' for='image_uri_border_cropNull'>null</label>
@@ -260,7 +395,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_border_crop_row_class}}'>
     <label for='image_hash_border_crop' class='col-sm-4 col-form-label'>image_hash_border_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='image_hash_border_crop' name='image_hash_border_crop' placeholder='NULL' value='{{image_hash_border_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_border_crop}}is-invalid{{/errors.image_hash_border_crop}}' id='image_hash_border_crop' name='image_hash_border_crop' placeholder='NULL' value='{{image_hash_border_crop}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_hash_border_crop}}<li>{{.}}</li>{{/errors.image_hash_border_crop}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_hash_border_crop' name='image_hash_border_cropNull' id='image_hash_border_cropNull' value='image_hash_border_cropNull' {{image_hash_border_crop_checked}}>
                     <label class='form-check-label' for='image_hash_border_cropNull'>null</label>
@@ -349,7 +489,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_count_row_class}}'>
     <label for='color_count' class='col-sm-4 col-form-label'>color_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='color_count' name='color_count' placeholder='0' value='{{color_count}}'  >
+      <input type='text' class='form-control {{#errors.color_count}}is-invalid{{/errors.color_count}}' id='color_count' name='color_count' placeholder='0' value='{{color_count}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.color_count}}<li>{{.}}</li>{{/errors.color_count}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{is_color_identity_green_row_class}}'>
     <div class='col-sm-4'><label>is_color_identity_green</label></div>
@@ -399,7 +544,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_identity_count_row_class}}'>
     <label for='color_identity_count' class='col-sm-4 col-form-label'>color_identity_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='color_identity_count' name='color_identity_count' placeholder='' value='{{color_identity_count}}'  required>
+      <input type='text' class='form-control {{#errors.color_identity_count}}is-invalid{{/errors.color_identity_count}}' id='color_identity_count' name='color_identity_count' placeholder='' value='{{color_identity_count}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.color_identity_count}}<li>{{.}}</li>{{/errors.color_identity_count}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{is_snow_row_class}}'>
     <div class='col-sm-4'><label>is_snow</label></div>
@@ -422,7 +572,12 @@ $('.select2_card_id').select2({
   <div class='form-group row {{for_fulltext_search_row_class}}'>
     <label for='for_fulltext_search' class='col-sm-4 col-form-label'>for_fulltext_search</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='for_fulltext_search' name='for_fulltext_search' placeholder='NULL' value='{{for_fulltext_search}}'  >
+      <input type='text' class='form-control {{#errors.for_fulltext_search}}is-invalid{{/errors.for_fulltext_search}}' id='for_fulltext_search' name='for_fulltext_search' placeholder='NULL' value='{{for_fulltext_search}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.for_fulltext_search}}<li>{{.}}</li>{{/errors.for_fulltext_search}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='for_fulltext_search' name='for_fulltext_searchNull' id='for_fulltext_searchNull' value='for_fulltext_searchNull' {{for_fulltext_search_checked}}>
                     <label class='form-check-label' for='for_fulltext_searchNull'>null</label>
@@ -430,7 +585,7 @@ $('.select2_card_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -460,7 +615,7 @@ $('.select2_card_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

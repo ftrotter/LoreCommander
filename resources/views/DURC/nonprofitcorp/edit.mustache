@@ -38,17 +38,32 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{EIN_row_class}}'>
     <label for='EIN' class='col-sm-4 col-form-label'>EIN</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='EIN' name='EIN' placeholder='0' value='{{EIN}}'  >
+      <input type='text' class='form-control {{#errors.EIN}}is-invalid{{/errors.EIN}}' id='EIN' name='EIN' placeholder='0' value='{{EIN}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.EIN}}<li>{{.}}</li>{{/errors.EIN}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{TAXPAYER_NAME_row_class}}'>
     <label for='TAXPAYER_NAME' class='col-sm-4 col-form-label'>TAXPAYER_NAME</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='TAXPAYER_NAME' name='TAXPAYER_NAME' placeholder='NULL' value='{{TAXPAYER_NAME}}'  >
+      <input type='text' class='form-control {{#errors.TAXPAYER_NAME}}is-invalid{{/errors.TAXPAYER_NAME}}' id='TAXPAYER_NAME' name='TAXPAYER_NAME' placeholder='NULL' value='{{TAXPAYER_NAME}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.TAXPAYER_NAME}}<li>{{.}}</li>{{/errors.TAXPAYER_NAME}}
+          </ul>
+       </div>
     </div><div class='col-sm-1'>
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='TAXPAYER_NAME' name='TAXPAYER_NAMENull' id='TAXPAYER_NAMENull' value='TAXPAYER_NAMENull' {{TAXPAYER_NAME_checked}}>
                     <label class='form-check-label' for='TAXPAYER_NAMENull'>null</label>

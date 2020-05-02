@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=a875235abc4a51840b71ac84f487cf17
+FILE_SIG=7c555775a5e4cccb700683ab5115804a
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class person_strategy_tagController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class person_strategy_tagController extends DURCParentController
      * @param  \App\$person_strategy_tag  $person_strategy_tag
      * @return \Illuminate\Http\Response
      */
-    public function show(person_strategy_tag $person_strategy_tag){
+    public function show(Request $request, person_strategy_tag $person_strategy_tag){
         // enter your stuff here if you want...
-	return(parent::show($person_strategy_tag));
+	return(parent::show($request, $person_strategy_tag));
     }
 
     /**
@@ -63,9 +63,9 @@ class person_strategy_tagController extends DURCParentController
      * @param  \App\person_strategy_tag  $person_strategy_tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(person_strategy_tag $person_strategy_tag, $is_new = false){
+    public function edit(Request $request, person_strategy_tag $person_strategy_tag, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($person_strategy_tag));
+	return(parent::edit($request, $person_strategy_tag));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -43,24 +44,58 @@ class employeeprivilege extends DURCModel{
 	static $field_type_map = [
 		'employee_id' => 'int',
 		'privilege_id' => 'int',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
 		'employee_id',
 		'privilege_id',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'employee_id' => null,
 		'privilege_id' => null,
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'employee_id' => 'integer|required',
+		'privilege_id' => 'integer|required',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getEmployeeIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setEmployeeIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('employee_id', 'int', $value, $this);
+		$this->attributes['employee_id'] = $formatted_value;
+	}
 
+	public function getPrivilegeIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPrivilegeIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('privilege_id', 'int', $value, $this);
+		$this->attributes['privilege_id'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

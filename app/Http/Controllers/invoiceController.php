@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=91efc7701b843d9232be868c67dd15db
+FILE_SIG=897b4e0f21975bac1abe3d374161515d
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class invoiceController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class invoiceController extends DURCParentController
      * @param  \App\$invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(invoice $invoice){
+    public function show(Request $request, invoice $invoice){
         // enter your stuff here if you want...
-	return(parent::show($invoice));
+	return(parent::show($request, $invoice));
     }
 
     /**
@@ -63,9 +63,9 @@ class invoiceController extends DURCParentController
      * @param  \App\invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(invoice $invoice, $is_new = false){
+    public function edit(Request $request, invoice $invoice, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($invoice));
+	return(parent::edit($request, $invoice));
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=51f296878aa8add3f5c595ce080f1407
+FILE_SIG=551c19152492640048f3af72f43205b5
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class scanhistoryController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class scanhistoryController extends DURCParentController
      * @param  \App\$scanhistory  $scanhistory
      * @return \Illuminate\Http\Response
      */
-    public function show(scanhistory $scanhistory){
+    public function show(Request $request, scanhistory $scanhistory){
         // enter your stuff here if you want...
-	return(parent::show($scanhistory));
+	return(parent::show($request, $scanhistory));
     }
 
     /**
@@ -63,9 +63,9 @@ class scanhistoryController extends DURCParentController
      * @param  \App\scanhistory  $scanhistory
      * @return \Illuminate\Http\Response
      */
-    public function edit(scanhistory $scanhistory, $is_new = false){
+    public function edit(Request $request, scanhistory $scanhistory, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($scanhistory));
+	return(parent::edit($request, $scanhistory));
     }
 
     /**

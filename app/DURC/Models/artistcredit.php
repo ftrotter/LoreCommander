@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -43,7 +44,7 @@ class artistcredit extends DURCModel{
 		'is_plain_credit' => 'tinyint',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -52,21 +53,91 @@ class artistcredit extends DURCModel{
 		'is_plain_credit',
 		'created_at',
 		'updated_at',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'artistcredit_name' => null,
 		'is_plain_credit' => '1',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'artistcredit_name' => 'required',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getArtistcreditNameAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setArtistcreditNameAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('artistcredit_name', 'varchar', $value, $this);
+		$this->attributes['artistcredit_name'] = $formatted_value;
+	}
+
+	public function getIsPlainCreditAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setIsPlainCreditAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('is_plain_credit', 'tinyint', $value, $this);
+		$this->attributes['is_plain_credit'] = $formatted_value;
+	}
+
+	public function getCreatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setCreatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
+		$this->attributes['created_at'] = $formatted_value;
+	}
+
+	public function getUpdatedAtAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUpdatedAtAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
+		$this->attributes['updated_at'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

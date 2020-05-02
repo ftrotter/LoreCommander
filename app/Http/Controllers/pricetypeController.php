@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=29dd2e12aa77ff3c02fc4f557dbf774c
+FILE_SIG=2269462e258439da2b749de6e856af3c
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class pricetypeController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class pricetypeController extends DURCParentController
      * @param  \App\$pricetype  $pricetype
      * @return \Illuminate\Http\Response
      */
-    public function show(pricetype $pricetype){
+    public function show(Request $request, pricetype $pricetype){
         // enter your stuff here if you want...
-	return(parent::show($pricetype));
+	return(parent::show($request, $pricetype));
     }
 
     /**
@@ -63,9 +63,9 @@ class pricetypeController extends DURCParentController
      * @param  \App\pricetype  $pricetype
      * @return \Illuminate\Http\Response
      */
-    public function edit(pricetype $pricetype, $is_new = false){
+    public function edit(Request $request, pricetype $pricetype, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($pricetype));
+	return(parent::edit($request, $pricetype));
     }
 
     /**

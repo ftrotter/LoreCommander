@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=98c6f954d8e753f0fe482406eaf49b58
+FILE_SIG=2addf5264913951168cbbb9005cb05a6
 */
 namespace App\Http\Controllers;
 
@@ -33,9 +33,9 @@ class creature_cardfaceController extends DURCParentController
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create(Request $request){
         // enter your stuff here if you want...
-	return(parent::create());
+	return(parent::create($request));
     }
 
     /**
@@ -53,9 +53,9 @@ class creature_cardfaceController extends DURCParentController
      * @param  \App\$creature_cardface  $creature_cardface
      * @return \Illuminate\Http\Response
      */
-    public function show(creature_cardface $creature_cardface){
+    public function show(Request $request, creature_cardface $creature_cardface){
         // enter your stuff here if you want...
-	return(parent::show($creature_cardface));
+	return(parent::show($request, $creature_cardface));
     }
 
     /**
@@ -63,9 +63,9 @@ class creature_cardfaceController extends DURCParentController
      * @param  \App\creature_cardface  $creature_cardface
      * @return \Illuminate\Http\Response
      */
-    public function edit(creature_cardface $creature_cardface, $is_new = false){
+    public function edit(Request $request, creature_cardface $creature_cardface, $is_new = false){
         // enter your stuff here if you want...
-	return(parent::edit($creature_cardface));
+	return(parent::edit($request, $creature_cardface));
     }
 
     /**

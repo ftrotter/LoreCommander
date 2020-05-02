@@ -3,6 +3,7 @@
 namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
+use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
@@ -52,7 +53,7 @@ class orderdetail extends DURCModel{
 		'dateAllocated' => 'datetime',
 		'PurchaseOrder_id' => 'int',
 		'inventory_id' => 'int',
-			]; //end field_type_map
+	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required form elements
     protected $non_nullable_fields = [
@@ -60,10 +61,10 @@ class orderdetail extends DURCModel{
 		'order_id',
 		'quantity',
 		'discount',
-			]; // End of nullable fields
+	]; // End of nullable fields
 
-    // Use Eloquent attributes array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
-    protected $attributes = [
+    // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
+    protected $default_values = [
 		'id' => null,
 		'order_id' => null,
 		'product_id' => 'NULL',
@@ -74,12 +75,148 @@ class orderdetail extends DURCModel{
 		'dateAllocated' => 'NULL',
 		'PurchaseOrder_id' => 'NULL',
 		'inventory_id' => 'NULL',
-			]; // End of attributes
+	];  // End of attributes
         
-		//everything is fillable by default
-		protected $guarded = [];
+    //everything is fillable by default
+    protected $guarded = [];
+		
+    // These are validation rules used by the DURCModel parent to validate data before storage
+    protected static $rules = [
+		'id' => 'integer',
+		'order_id' => 'integer|required',
+		'product_id' => 'integer|nullable',
+		'unitPrice' => 'nullable',
+		'status_id' => 'integer|nullable',
+		'dateAllocated' => 'nullable',
+		'PurchaseOrder_id' => 'integer|nullable',
+		'inventory_id' => 'integer|nullable',
+	]; // End of validation rules
+		
+        
+	// These are mutators generated for all model attributes.
+	// Mutators are called implicitly when getting and setting the attribute
+	public function getIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
 
+	public function setIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
+		$this->attributes['id'] = $formatted_value;
+	}
 
+	public function getOrderIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setOrderIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('order_id', 'int', $value, $this);
+		$this->attributes['order_id'] = $formatted_value;
+	}
+
+	public function getProductIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setProductIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('product_id', 'int', $value, $this);
+		$this->attributes['product_id'] = $formatted_value;
+	}
+
+	public function getQuantityAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setQuantityAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('quantity', 'decimal', $value, $this);
+		$this->attributes['quantity'] = $formatted_value;
+	}
+
+	public function getUnitPriceAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setUnitPriceAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('unitPrice', 'decimal', $value, $this);
+		$this->attributes['unitPrice'] = $formatted_value;
+	}
+
+	public function getDiscountAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setDiscountAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('discount', 'double', $value, $this);
+		$this->attributes['discount'] = $formatted_value;
+	}
+
+	public function getStatusIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setStatusIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('status_id', 'int', $value, $this);
+		$this->attributes['status_id'] = $formatted_value;
+	}
+
+	public function getDateAllocatedAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setDateAllocatedAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('dateAllocated', 'datetime', $value, $this);
+		$this->attributes['dateAllocated'] = $formatted_value;
+	}
+
+	public function getPurchaseOrderIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setPurchaseOrderIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('PurchaseOrder_id', 'int', $value, $this);
+		$this->attributes['PurchaseOrder_id'] = $formatted_value;
+	}
+
+	public function getInventoryIdAttribute($value)
+	{
+		$formatted_value = $value;
+		return $formatted_value;
+	}
+
+	public function setInventoryIdAttribute($value)
+	{
+		$formatted_value = DURC::formatForStorage('inventory_id', 'int', $value, $this);
+		$this->attributes['inventory_id'] = $formatted_value;
+	}
+
+ 
+        
 		
 //DURC HAS_MANY SECTION
 

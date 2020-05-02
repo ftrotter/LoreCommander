@@ -38,7 +38,12 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{purchaseOrder_id_row_class}}'>
     <label for='purchaseOrder_id' class='col-sm-4 col-form-label'>purchaseOrder_id</label>
@@ -109,12 +114,22 @@ $('.select2_product_id').select2({
   <div class='form-group row {{quantity_row_class}}'>
     <label for='quantity' class='col-sm-4 col-form-label'>quantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='quantity' name='quantity' placeholder='' value='{{quantity}}'  required>
+      <input type='text' class='form-control {{#errors.quantity}}is-invalid{{/errors.quantity}}' id='quantity' name='quantity' placeholder='' value='{{quantity}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.quantity}}<li>{{.}}</li>{{/errors.quantity}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{unitCost_row_class}}'>
     <label for='unitCost' class='col-sm-4 col-form-label'>unitCost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='unitCost' name='unitCost' placeholder='' value='{{unitCost}}'  required>
+      <input type='text' class='form-control {{#errors.unitCost}}is-invalid{{/errors.unitCost}}' id='unitCost' name='unitCost' placeholder='' value='{{unitCost}}'  required>
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.unitCost}}<li>{{.}}</li>{{/errors.unitCost}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{dateReceived_row_class}}'>
     <label for='dateReceived' class='col-sm-4 col-form-label'>dateReceived</label>
@@ -149,7 +164,12 @@ $('.select2_product_id').select2({
   <div class='form-group row {{postedToInventory_row_class}}'>
     <label for='postedToInventory' class='col-sm-4 col-form-label'>postedToInventory</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='postedToInventory' name='postedToInventory' placeholder='0' value='{{postedToInventory}}'  >
+      <input type='text' class='form-control {{#errors.postedToInventory}}is-invalid{{/errors.postedToInventory}}' id='postedToInventory' name='postedToInventory' placeholder='0' value='{{postedToInventory}}'  >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.postedToInventory}}<li>{{.}}</li>{{/errors.postedToInventory}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row {{inventory_id_row_class}}'>
     <label for='inventory_id' class='col-sm-4 col-form-label'>inventory_id</label>
