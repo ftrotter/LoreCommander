@@ -683,6 +683,44 @@ $('.select2_mtgset_id').select2({
 </table>
 </div></div> <!-- end cardprice card-->
 <br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many mverse ( <a href='/DURC/mverse/'>see all</a> )
+{{^mverse}}
+(no values)
+{{/mverse}}
+  </div>
+<div class='card-body'>
+
+<table id='table_mverse' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> card_id </th>
+			<th> multiverse_id </th>
+			<th> gatherer_url </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#mverse}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/mverse/{{id}}'>{{id}}</a></td>
+			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{multiverse_id_DURClabel}} ({{multiverse_id}}) </td>			<td>{{gatherer_url}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/mverse}}
+</tbody>
+</table>
+</div></div> <!-- end mverse card-->
+<br>
 </div></div> <!--end has many card-->
 <br>
 <div class='card'>

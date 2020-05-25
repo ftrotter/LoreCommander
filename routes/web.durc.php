@@ -378,6 +378,13 @@ Route::get("/DURC/json/mtgset/", 'mtgsetController@jsonall');
 Route::get("/DURC/searchjson/mtgset/", 'mtgsetController@search');
 
  
+//DURC->	lore.mverse
+Route::resource("/DURC/mverse", 'mverseController');
+Route::get("/DURC/json/mverse/{mverse_id}", 'mverseController@jsonone');
+Route::get("/DURC/json/mverse/", 'mverseController@jsonall');
+Route::get("/DURC/searchjson/mverse/", 'mverseController@search');
+
+ 
 //DURC->	lore.pack
 Route::resource("/DURC/pack", 'packController');
 Route::get("/DURC/json/pack/{pack_id}", 'packController@jsonone');

@@ -228,6 +228,10 @@ Route::get('durctest', function () {
  			'/DURC/mtgset/create', //from: lore.mtgset 
  			'/DURC/mtgset/1', //from: lore.mtgset 
  			'/DURC/mtgset/1/edit', //from: lore.mtgset 
+ 			'/DURC/mverse', //from: lore.mverse 
+ 			'/DURC/mverse/create', //from: lore.mverse 
+ 			'/DURC/mverse/1', //from: lore.mverse 
+ 			'/DURC/mverse/1/edit', //from: lore.mverse 
  			'/DURC/pack', //from: lore.pack 
  			'/DURC/pack/create', //from: lore.pack 
  			'/DURC/pack/1', //from: lore.pack 
