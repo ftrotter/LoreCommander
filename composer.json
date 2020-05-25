@@ -15,10 +15,7 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "careset/zermelo_installer": "dev-master",
-        "careset/zermelobladegraph": "dev-master",
         "fideloper/proxy": "~4.0",
-        "ftrotter/two-table-monolog-mysql": "dev-master",
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.0@dev",
         "phpunit/phpunit": "^7.3",
@@ -29,6 +26,12 @@
         "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
+        "ftrotter/two-table-monolog-mysql": "dev-master",
+        "careset/zermelo_installer": "dev-master",
+        "careset/zermelo": "dev-master",
+        "careset/zermelobladetabular": "dev-master",
+        "careset/zermelobladecard": "dev-master",
+        "careset/zermelobladegraph": "dev-master",
         "careset/durc": "dev-master",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
@@ -65,7 +68,7 @@
             "@php artisan package:discover"
         ]
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
