@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=ddccc2085376429ed582a38ee2623d5b
+FILE_SIG=26e58435f532532a7800c14698cc5424
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -450,7 +450,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
-    'default_value' => 'current_timestamp()',
+    'default_value' => NULL,
     'is_auto_increment' => false,
   ),
   20 => 
@@ -463,7 +463,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
-    'default_value' => 'current_timestamp()',
+    'default_value' => NULL,
     'is_auto_increment' => false,
   ),
 )
@@ -604,8 +604,8 @@ array (
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
+        'is_nullable' => false,
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       10 => 
@@ -624,7 +624,7 @@ array (
       11 => 
       array (
         'column_name' => 'set_type',
-        'data_type' => 'varchar',
+        'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -657,7 +657,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,
-        'default_value' => 'NULL',
+        'default_value' => '\'NULL\'',
         'is_auto_increment' => false,
       ),
       14 => 
@@ -969,7 +969,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       38 => 
@@ -982,7 +982,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
     ),

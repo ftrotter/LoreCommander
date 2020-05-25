@@ -61,39 +61,10 @@ class ordertaxstat extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'present',
-		'taxStatName' => 'present',
+		'id' => 'integer|required',
+		'taxStatName' => 'required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'tinyint', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getTaxStatNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTaxStatNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('taxStatName', 'varchar', $value, $this);
-		$this->attributes['taxStatName'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

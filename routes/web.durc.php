@@ -7,6 +7,69 @@ this will be automatically overwritten by future DURC runs.
 */
 
  
+//DURC->	DURC_aaa.author
+Route::resource("/DURC/author", 'authorController');
+Route::get("/DURC/json/author/{author_id}", 'authorController@jsonone');
+Route::get("/DURC/json/author/", 'authorController@jsonall');
+Route::get("/DURC/searchjson/author/", 'authorController@search');
+
+ 
+//DURC->	DURC_aaa.author_book
+Route::resource("/DURC/author_book", 'author_bookController');
+Route::get("/DURC/json/author_book/{author_book_id}", 'author_bookController@jsonone');
+Route::get("/DURC/json/author_book/", 'author_bookController@jsonall');
+Route::get("/DURC/searchjson/author_book/", 'author_bookController@search');
+
+ 
+//DURC->	DURC_aaa.authortype
+Route::resource("/DURC/authortype", 'authortypeController');
+Route::get("/DURC/json/authortype/{authortype_id}", 'authortypeController@jsonone');
+Route::get("/DURC/json/authortype/", 'authortypeController@jsonall');
+Route::get("/DURC/searchjson/authortype/", 'authortypeController@search');
+
+ 
+//DURC->	DURC_aaa.book
+Route::resource("/DURC/book", 'bookController');
+Route::get("/DURC/json/book/{book_id}", 'bookController@jsonone');
+Route::get("/DURC/json/book/", 'bookController@jsonall');
+Route::get("/DURC/searchjson/book/", 'bookController@search');
+
+ 
+//DURC->	DURC_aaa.comment
+Route::resource("/DURC/comment", 'commentController');
+Route::get("/DURC/json/comment/{comment_id}", 'commentController@jsonone');
+Route::get("/DURC/json/comment/", 'commentController@jsonall');
+Route::get("/DURC/searchjson/comment/", 'commentController@search');
+
+ 
+//DURC->	DURC_aaa.donation
+Route::resource("/DURC/donation", 'donationController');
+Route::get("/DURC/json/donation/{donation_id}", 'donationController@jsonone');
+Route::get("/DURC/json/donation/", 'donationController@jsonall');
+Route::get("/DURC/searchjson/donation/", 'donationController@search');
+Route::get("/DURC/donation/restore/{id}", 'donationController@restore');
+ 
+//DURC->	DURC_aaa.foreignkeytestgizmo
+Route::resource("/DURC/foreignkeytestgizmo", 'foreignkeytestgizmoController');
+Route::get("/DURC/json/foreignkeytestgizmo/{foreignkeytestgizmo_id}", 'foreignkeytestgizmoController@jsonone');
+Route::get("/DURC/json/foreignkeytestgizmo/", 'foreignkeytestgizmoController@jsonall');
+Route::get("/DURC/searchjson/foreignkeytestgizmo/", 'foreignkeytestgizmoController@search');
+Route::get("/DURC/foreignkeytestgizmo/restore/{id}", 'foreignkeytestgizmoController@restore');
+ 
+//DURC->	DURC_aaa.foreignkeytestthingy
+Route::resource("/DURC/foreignkeytestthingy", 'foreignkeytestthingyController');
+Route::get("/DURC/json/foreignkeytestthingy/{foreignkeytestthingy_id}", 'foreignkeytestthingyController@jsonone');
+Route::get("/DURC/json/foreignkeytestthingy/", 'foreignkeytestthingyController@jsonall');
+Route::get("/DURC/searchjson/foreignkeytestthingy/", 'foreignkeytestthingyController@search');
+Route::get("/DURC/foreignkeytestthingy/restore/{id}", 'foreignkeytestthingyController@restore');
+ 
+//DURC->	DURC_aaa.funnything
+Route::resource("/DURC/funnything", 'funnythingController');
+Route::get("/DURC/json/funnything/{funnything_id}", 'funnythingController@jsonone');
+Route::get("/DURC/json/funnything/", 'funnythingController@jsonall');
+Route::get("/DURC/searchjson/funnything/", 'funnythingController@search');
+
+ 
 //DURC->	DURC_aaa.magicField
 Route::resource("/DURC/magicfield", 'magicfieldController');
 Route::get("/DURC/json/magicfield/{magicfield_id}", 'magicfieldController@jsonone');
@@ -14,11 +77,53 @@ Route::get("/DURC/json/magicfield/", 'magicfieldController@jsonall');
 Route::get("/DURC/searchjson/magicfield/", 'magicfieldController@search');
 Route::get("/DURC/magicfield/restore/{id}", 'magicfieldController@restore');
  
-//DURC->	DURC_aaa.validationTest
-Route::resource("/DURC/validationtest", 'validationtestController');
-Route::get("/DURC/json/validationtest/{validationtest_id}", 'validationtestController@jsonone');
-Route::get("/DURC/json/validationtest/", 'validationtestController@jsonall');
-Route::get("/DURC/searchjson/validationtest/", 'validationtestController@search');
+//DURC->	DURC_aaa.post
+Route::resource("/DURC/post", 'postController');
+Route::get("/DURC/json/post/{post_id}", 'postController@jsonone');
+Route::get("/DURC/json/post/", 'postController@jsonall');
+Route::get("/DURC/searchjson/post/", 'postController@search');
+
+ 
+//DURC->	DURC_aaa.sibling
+Route::resource("/DURC/sibling", 'siblingController');
+Route::get("/DURC/json/sibling/{sibling_id}", 'siblingController@jsonone');
+Route::get("/DURC/json/sibling/", 'siblingController@jsonall');
+Route::get("/DURC/searchjson/sibling/", 'siblingController@search');
+
+ 
+//DURC->	DURC_aaa.test_boolean
+Route::resource("/DURC/test_boolean", 'test_booleanController');
+Route::get("/DURC/json/test_boolean/{test_boolean_id}", 'test_booleanController@jsonone');
+Route::get("/DURC/json/test_boolean/", 'test_booleanController@jsonall');
+Route::get("/DURC/searchjson/test_boolean/", 'test_booleanController@search');
+
+ 
+//DURC->	DURC_aaa.test_created_only
+Route::resource("/DURC/test_created_only", 'test_created_onlyController');
+Route::get("/DURC/json/test_created_only/{test_created_only_id}", 'test_created_onlyController@jsonone');
+Route::get("/DURC/json/test_created_only/", 'test_created_onlyController@jsonall');
+Route::get("/DURC/searchjson/test_created_only/", 'test_created_onlyController@search');
+
+ 
+//DURC->	DURC_aaa.test_default_date
+Route::resource("/DURC/test_default_date", 'test_default_dateController');
+Route::get("/DURC/json/test_default_date/{test_default_date_id}", 'test_default_dateController@jsonone');
+Route::get("/DURC/json/test_default_date/", 'test_default_dateController@jsonall');
+Route::get("/DURC/searchjson/test_default_date/", 'test_default_dateController@search');
+
+ 
+//DURC->	DURC_aaa.test_null_default
+Route::resource("/DURC/test_null_default", 'test_null_defaultController');
+Route::get("/DURC/json/test_null_default/{test_null_default_id}", 'test_null_defaultController@jsonone');
+Route::get("/DURC/json/test_null_default/", 'test_null_defaultController@jsonall');
+Route::get("/DURC/searchjson/test_null_default/", 'test_null_defaultController@search');
+
+ 
+//DURC->	DURC_aaa.vote
+Route::resource("/DURC/vote", 'voteController');
+Route::get("/DURC/json/vote/{vote_id}", 'voteController@jsonone');
+Route::get("/DURC/json/vote/", 'voteController@jsonall');
+Route::get("/DURC/searchjson/vote/", 'voteController@search');
 
  
 //DURC->	DURC_irs.nonprofitcorp

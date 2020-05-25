@@ -76,101 +76,12 @@ class cardprice extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'card_id' => 'integer|present',
-		'scryfall_id' => 'present',
-		'pricetype_id' => 'integer|present',
-		'price' => 'nullable',
+		'card_id' => 'integer|required',
+		'scryfall_id' => 'required',
+		'pricetype_id' => 'integer|required',
+		'price' => 'numeric|nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'bigint', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getCardIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCardIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('card_id', 'int', $value, $this);
-		$this->attributes['card_id'] = $formatted_value;
-	}
-
-	public function getScryfallIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setScryfallIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('scryfall_id', 'varchar', $value, $this);
-		$this->attributes['scryfall_id'] = $formatted_value;
-	}
-
-	public function getPricetypeIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPricetypeIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('pricetype_id', 'int', $value, $this);
-		$this->attributes['pricetype_id'] = $formatted_value;
-	}
-
-	public function getPriceAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPriceAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('price', 'decimal', $value, $this);
-		$this->attributes['price'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

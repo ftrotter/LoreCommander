@@ -63,39 +63,10 @@ class employeeprivilege extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'employee_id' => 'integer|present',
-		'privilege_id' => 'integer|present',
+		'employee_id' => 'integer|required',
+		'privilege_id' => 'integer|required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getEmployeeIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setEmployeeIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('employee_id', 'int', $value, $this);
-		$this->attributes['employee_id'] = $formatted_value;
-	}
-
-	public function getPrivilegeIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPrivilegeIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('privilege_id', 'int', $value, $this);
-		$this->attributes['privilege_id'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

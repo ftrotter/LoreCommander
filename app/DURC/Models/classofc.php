@@ -80,101 +80,12 @@ class classofc extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'classofc_name' => 'present',
+		'classofc_name' => 'required',
 		'classofc_img_uri' => 'nullable',
-		'classofc_wiki_url' => 'nullable',
+		'classofc_wiki_url' => 'url|nullable',
+		'is_mega_class' => 'integer',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getClassofcNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setClassofcNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('classofc_name', 'varchar', $value, $this);
-		$this->attributes['classofc_name'] = $formatted_value;
-	}
-
-	public function getClassofcImgUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setClassofcImgUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('classofc_img_uri', 'varchar', $value, $this);
-		$this->attributes['classofc_img_uri'] = $formatted_value;
-	}
-
-	public function getClassofcWikiUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setClassofcWikiUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('classofc_wiki_url', 'varchar', $value, $this);
-		$this->attributes['classofc_wiki_url'] = $formatted_value;
-	}
-
-	public function getIsMegaClassAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsMegaClassAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_mega_class', 'tinyint', $value, $this);
-		$this->attributes['is_mega_class'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

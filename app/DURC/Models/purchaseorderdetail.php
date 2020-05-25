@@ -78,116 +78,15 @@ class purchaseorderdetail extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'purchaseOrder_id' => 'integer|present',
+		'purchaseOrder_id' => 'integer|required',
 		'product_id' => 'integer|nullable',
-		'quantity' => 'present',
-		'unitCost' => 'present',
+		'quantity' => 'numeric|required',
+		'unitCost' => 'numeric|required',
 		'dateReceived' => 'nullable',
+		'postedToInventory' => 'integer',
 		'inventory_id' => 'integer|nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getPurchaseOrderIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPurchaseOrderIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('purchaseOrder_id', 'int', $value, $this);
-		$this->attributes['purchaseOrder_id'] = $formatted_value;
-	}
-
-	public function getProductIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setProductIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('product_id', 'int', $value, $this);
-		$this->attributes['product_id'] = $formatted_value;
-	}
-
-	public function getQuantityAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setQuantityAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('quantity', 'decimal', $value, $this);
-		$this->attributes['quantity'] = $formatted_value;
-	}
-
-	public function getUnitCostAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUnitCostAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('unitCost', 'decimal', $value, $this);
-		$this->attributes['unitCost'] = $formatted_value;
-	}
-
-	public function getDateReceivedAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setDateReceivedAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('dateReceived', 'datetime', $value, $this);
-		$this->attributes['dateReceived'] = $formatted_value;
-	}
-
-	public function getPostedToInventoryAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPostedToInventoryAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('postedToInventory', 'tinyint', $value, $this);
-		$this->attributes['postedToInventory'] = $formatted_value;
-	}
-
-	public function getInventoryIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setInventoryIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('inventory_id', 'int', $value, $this);
-		$this->attributes['inventory_id'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

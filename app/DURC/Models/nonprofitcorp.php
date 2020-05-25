@@ -26,6 +26,7 @@ class nonprofitcorp extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'donation', //from from many
 		];
 
 
@@ -63,56 +64,22 @@ class nonprofitcorp extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|present',
+		'id' => 'integer|required',
 		'EIN' => 'integer',
 		'TAXPAYER_NAME' => 'nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getEINAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setEINAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('EIN', 'int', $value, $this);
-		$this->attributes['EIN'] = $formatted_value;
-	}
-
-	public function getTAXPAYERNAMEAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTAXPAYERNAMEAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('TAXPAYER_NAME', 'varchar', $value, $this);
-		$this->attributes['TAXPAYER_NAME'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 
-			//DURC did not detect any has_many relationships
+/**
+*	get all the donation for this nonprofitcorp
+*/
+	public function donation(){
+		return $this->hasMany('App\donation','nonprofitcorp_id','id');
+	}
+
+
 		
 		
 //DURC HAS_ONE SECTION
@@ -131,7 +98,7 @@ CREATE TABLE `DURC_irs`.`nonprofitcorp` (
   `EIN` int(9) NOT NULL DEFAULT 0,
   `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
 */
 
 

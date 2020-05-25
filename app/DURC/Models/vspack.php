@@ -76,104 +76,14 @@ class vspack extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'vspack_name' => 'present',
-		'vspack_wizards_url' => 'present',
-		'vspack_wiki_url' => 'present',
-		'vspack_img_url' => 'present',
-		'created_at' => 'present',
-		'updated_at' => 'present',
+		'vspack_name' => 'required',
+		'vspack_wizards_url' => 'url|required',
+		'vspack_wiki_url' => 'url|required',
+		'vspack_img_url' => 'url|required',
+		'created_at' => 'required',
+		'updated_at' => 'required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getVspackNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setVspackNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('vspack_name', 'varchar', $value, $this);
-		$this->attributes['vspack_name'] = $formatted_value;
-	}
-
-	public function getVspackWizardsUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setVspackWizardsUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('vspack_wizards_url', 'varchar', $value, $this);
-		$this->attributes['vspack_wizards_url'] = $formatted_value;
-	}
-
-	public function getVspackWikiUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setVspackWikiUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('vspack_wiki_url', 'varchar', $value, $this);
-		$this->attributes['vspack_wiki_url'] = $formatted_value;
-	}
-
-	public function getVspackImgUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setVspackImgUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('vspack_img_url', 'varchar', $value, $this);
-		$this->attributes['vspack_img_url'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

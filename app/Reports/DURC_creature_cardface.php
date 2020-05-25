@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b6e6eb7e4de6f2bcead61a4908b252b7
+FILE_SIG=d39ea5d070a0a048cd2fbb7a8007f729
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -565,7 +565,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,
-        'default_value' => 'NULL',
+        'default_value' => '\'NULL\'',
         'is_auto_increment' => false,
       ),
       18 => 
@@ -578,7 +578,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,
-        'default_value' => 'NULL',
+        'default_value' => '\'NULL\'',
         'is_auto_increment' => false,
       ),
       19 => 
@@ -760,7 +760,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       33 => 
@@ -773,7 +773,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       34 => 
@@ -786,7 +786,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       35 => 
@@ -799,7 +799,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       36 => 
@@ -812,7 +812,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       37 => 
@@ -825,7 +825,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       38 => 
@@ -851,7 +851,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       40 => 
@@ -864,7 +864,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       41 => 
@@ -877,7 +877,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       42 => 
@@ -890,7 +890,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       43 => 
@@ -903,7 +903,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       44 => 
@@ -929,7 +929,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       46 => 
@@ -955,7 +955,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,
-        'default_value' => 'NULL',
+        'default_value' => '\'\'\'\'\'\'',
         'is_auto_increment' => false,
       ),
       48 => 
@@ -968,7 +968,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       49 => 
@@ -981,7 +981,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
     ),

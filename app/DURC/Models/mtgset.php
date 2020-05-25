@@ -102,8 +102,8 @@ class mtgset extends DURCModel{
 		'mtgset_uri' => null,
 		'icon_svg_uri' => null,
 		'search_uri' => null,
-		'created_at' => 'current_timestamp()',
-		'updated_at' => 'current_timestamp()',
+		'created_at' => null,
+		'updated_at' => null,
 	];  // End of attributes
         
     //everything is fillable by default
@@ -111,284 +111,28 @@ class mtgset extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'scryfall_id' => 'present',
-		'code' => 'present',
+		'scryfall_id' => 'required',
+		'code' => 'required',
 		'mtgo_code' => 'nullable',
 		'arena_code' => 'nullable',
 		'tcgplayer_id' => 'integer|nullable',
-		'name' => 'present',
-		'set_type' => 'present',
+		'name' => 'required',
+		'set_type' => 'required',
 		'released_at' => 'nullable',
 		'block_code' => 'nullable',
 		'block' => 'nullable',
 		'parent_set_code' => 'nullable',
-		'card_count' => 'integer|present',
-		'is_digital' => 'present',
-		'is_foil_only' => 'present',
-		'scryfall_uri' => 'present',
-		'mtgset_uri' => 'present',
-		'icon_svg_uri' => 'present',
-		'search_uri' => 'present',
+		'card_count' => 'integer|required',
+		'is_digital' => 'integer|required',
+		'is_foil_only' => 'integer|required',
+		'scryfall_uri' => 'required',
+		'mtgset_uri' => 'required',
+		'icon_svg_uri' => 'required',
+		'search_uri' => 'required',
+		'created_at' => 'required',
+		'updated_at' => 'required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getScryfallIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setScryfallIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('scryfall_id', 'varchar', $value, $this);
-		$this->attributes['scryfall_id'] = $formatted_value;
-	}
-
-	public function getCodeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCodeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('code', 'varchar', $value, $this);
-		$this->attributes['code'] = $formatted_value;
-	}
-
-	public function getMtgoCodeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setMtgoCodeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('mtgo_code', 'varchar', $value, $this);
-		$this->attributes['mtgo_code'] = $formatted_value;
-	}
-
-	public function getArenaCodeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setArenaCodeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('arena_code', 'varchar', $value, $this);
-		$this->attributes['arena_code'] = $formatted_value;
-	}
-
-	public function getTcgplayerIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTcgplayerIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('tcgplayer_id', 'int', $value, $this);
-		$this->attributes['tcgplayer_id'] = $formatted_value;
-	}
-
-	public function getNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('name', 'varchar', $value, $this);
-		$this->attributes['name'] = $formatted_value;
-	}
-
-	public function getSetTypeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setSetTypeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('set_type', 'varchar', $value, $this);
-		$this->attributes['set_type'] = $formatted_value;
-	}
-
-	public function getReleasedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setReleasedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('released_at', 'date', $value, $this);
-		$this->attributes['released_at'] = $formatted_value;
-	}
-
-	public function getBlockCodeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setBlockCodeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('block_code', 'varchar', $value, $this);
-		$this->attributes['block_code'] = $formatted_value;
-	}
-
-	public function getBlockAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setBlockAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('block', 'varchar', $value, $this);
-		$this->attributes['block'] = $formatted_value;
-	}
-
-	public function getParentSetCodeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setParentSetCodeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('parent_set_code', 'varchar', $value, $this);
-		$this->attributes['parent_set_code'] = $formatted_value;
-	}
-
-	public function getCardCountAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCardCountAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('card_count', 'int', $value, $this);
-		$this->attributes['card_count'] = $formatted_value;
-	}
-
-	public function getIsDigitalAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsDigitalAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_digital', 'tinyint', $value, $this);
-		$this->attributes['is_digital'] = $formatted_value;
-	}
-
-	public function getIsFoilOnlyAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsFoilOnlyAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_foil_only', 'tinyint', $value, $this);
-		$this->attributes['is_foil_only'] = $formatted_value;
-	}
-
-	public function getScryfallUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setScryfallUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('scryfall_uri', 'varchar', $value, $this);
-		$this->attributes['scryfall_uri'] = $formatted_value;
-	}
-
-	public function getMtgsetUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setMtgsetUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('mtgset_uri', 'varchar', $value, $this);
-		$this->attributes['mtgset_uri'] = $formatted_value;
-	}
-
-	public function getIconSvgUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIconSvgUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('icon_svg_uri', 'varchar', $value, $this);
-		$this->attributes['icon_svg_uri'] = $formatted_value;
-	}
-
-	public function getSearchUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setSearchUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('search_uri', 'varchar', $value, $this);
-		$this->attributes['search_uri'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 
@@ -433,8 +177,8 @@ CREATE TABLE `lore`.`mtgset` (
   `mtgset_uri` varchar(255) NOT NULL,
   `icon_svg_uri` varchar(255) NOT NULL,
   `search_uri` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8

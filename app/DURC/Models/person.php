@@ -87,141 +87,15 @@ class person extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'last_name' => 'present',
-		'first_name' => 'present',
-		'person_blurb' => 'present',
+		'last_name' => 'required',
+		'first_name' => 'required',
+		'person_blurb' => 'required',
 		'image_uri' => 'nullable',
-		'wallpaper_download_url' => 'nullable',
-		'mtgwiki_url' => 'nullable',
-		'wizards_story_url' => 'nullable',
+		'wallpaper_download_url' => 'url|nullable',
+		'mtgwiki_url' => 'url|nullable',
+		'wizards_story_url' => 'url|nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getLastNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setLastNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('last_name', 'varchar', $value, $this);
-		$this->attributes['last_name'] = $formatted_value;
-	}
-
-	public function getFirstNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setFirstNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('first_name', 'varchar', $value, $this);
-		$this->attributes['first_name'] = $formatted_value;
-	}
-
-	public function getPersonBlurbAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPersonBlurbAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('person_blurb', 'varchar', $value, $this);
-		$this->attributes['person_blurb'] = $formatted_value;
-	}
-
-	public function getImageUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri', 'varchar', $value, $this);
-		$this->attributes['image_uri'] = $formatted_value;
-	}
-
-	public function getWallpaperDownloadUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setWallpaperDownloadUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('wallpaper_download_url', 'varchar', $value, $this);
-		$this->attributes['wallpaper_download_url'] = $formatted_value;
-	}
-
-	public function getMtgwikiUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setMtgwikiUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('mtgwiki_url', 'varchar', $value, $this);
-		$this->attributes['mtgwiki_url'] = $formatted_value;
-	}
-
-	public function getWizardsStoryUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setWizardsStoryUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('wizards_story_url', 'varchar', $value, $this);
-		$this->attributes['wizards_story_url'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

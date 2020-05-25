@@ -152,8 +152,8 @@ class cardface extends DURCModel{
 		'toughness' => 'NULL',
 		'type_line' => null,
 		'border_color' => null,
-		'image_uri_art_crop' => 'NULL',
-		'image_hash_art_crop' => 'NULL',
+		'image_uri_art_crop' => '\'NULL\'',
+		'image_hash_art_crop' => '\'NULL\'',
 		'image_uri_small' => 'NULL',
 		'image_hash_small' => 'NULL',
 		'image_uri_normal' => 'NULL',
@@ -167,24 +167,24 @@ class cardface extends DURCModel{
 		'is_foil' => null,
 		'is_nonfoil' => null,
 		'is_oversized' => '0',
-		'is_color_green' => '0',
-		'is_color_red' => '0',
-		'is_color_blue' => '0',
-		'is_color_black' => '0',
-		'is_color_white' => '0',
-		'is_colorless' => '0',
+		'is_color_green' => null,
+		'is_color_red' => null,
+		'is_color_blue' => null,
+		'is_color_black' => null,
+		'is_color_white' => null,
+		'is_colorless' => null,
 		'color_count' => '0',
-		'is_color_identity_green' => '0',
-		'is_color_identity_red' => '0',
-		'is_color_identity_blue' => '0',
-		'is_color_identity_black' => '0',
-		'is_color_identity_white' => '0',
+		'is_color_identity_green' => null,
+		'is_color_identity_red' => null,
+		'is_color_identity_blue' => null,
+		'is_color_identity_black' => null,
+		'is_color_identity_white' => null,
 		'color_identity_count' => null,
-		'is_snow' => '0',
+		'is_snow' => null,
 		'has_phyrexian_mana' => '0',
-		'for_fulltext_search' => 'NULL',
-		'created_at' => 'current_timestamp()',
-		'updated_at' => 'current_timestamp()',
+		'for_fulltext_search' => '\'\'\'\'\'\'',
+		'created_at' => null,
+		'updated_at' => null,
 	];  // End of attributes
         
     //everything is fillable by default
@@ -192,23 +192,22 @@ class cardface extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'card_id' => 'integer|present',
-		'cardface_index' => 'integer|present',
-		'illustration_id' => 'present',
+		'card_id' => 'integer|required',
+		'cardface_index' => 'integer|required',
+		'illustration_id' => 'required',
 		'artist' => 'nullable',
 		'color' => 'nullable',
 		'color_identity' => 'nullable',
 		'flavor_text' => 'nullable',
-		'image_uri' => 'present',
-		'mana_cost' => 'present',
-		'cmc' => 'nullable',
-		'name' => 'present',
-		'oracle_text' => 'present',
+		'image_uri' => 'required',
+		'mana_cost' => 'required',
+		'cmc' => 'numeric|nullable',
+		'name' => 'required',
+		'oracle_text' => 'required',
 		'power' => 'nullable',
 		'toughness' => 'nullable',
-		'type_line' => 'present',
-		'border_color' => 'present',
+		'type_line' => 'required',
+		'border_color' => 'required',
 		'image_uri_art_crop' => 'nullable',
 		'image_hash_art_crop' => 'nullable',
 		'image_uri_small' => 'nullable',
@@ -221,618 +220,29 @@ class cardface extends DURCModel{
 		'image_hash_png' => 'nullable',
 		'image_uri_border_crop' => 'nullable',
 		'image_hash_border_crop' => 'nullable',
-		'is_foil' => 'present',
-		'is_nonfoil' => 'present',
+		'is_foil' => 'integer|required',
+		'is_nonfoil' => 'integer|required',
+		'is_oversized' => 'integer',
+		'is_color_green' => 'integer|required',
+		'is_color_red' => 'integer|required',
+		'is_color_blue' => 'integer|required',
+		'is_color_black' => 'integer|required',
+		'is_color_white' => 'integer|required',
+		'is_colorless' => 'integer|required',
 		'color_count' => 'integer',
-		'color_identity_count' => 'integer|present',
+		'is_color_identity_green' => 'integer|required',
+		'is_color_identity_red' => 'integer|required',
+		'is_color_identity_blue' => 'integer|required',
+		'is_color_identity_black' => 'integer|required',
+		'is_color_identity_white' => 'integer|required',
+		'color_identity_count' => 'integer|required',
+		'is_snow' => 'integer|required',
+		'has_phyrexian_mana' => 'integer',
 		'for_fulltext_search' => 'nullable',
+		'created_at' => 'required',
+		'updated_at' => 'required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getCardIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCardIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('card_id', 'int', $value, $this);
-		$this->attributes['card_id'] = $formatted_value;
-	}
-
-	public function getCardfaceIndexAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCardfaceIndexAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('cardface_index', 'int', $value, $this);
-		$this->attributes['cardface_index'] = $formatted_value;
-	}
-
-	public function getIllustrationIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIllustrationIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('illustration_id', 'varchar', $value, $this);
-		$this->attributes['illustration_id'] = $formatted_value;
-	}
-
-	public function getArtistAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setArtistAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('artist', 'varchar', $value, $this);
-		$this->attributes['artist'] = $formatted_value;
-	}
-
-	public function getColorAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setColorAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('color', 'varchar', $value, $this);
-		$this->attributes['color'] = $formatted_value;
-	}
-
-	public function getColorIdentityAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setColorIdentityAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('color_identity', 'varchar', $value, $this);
-		$this->attributes['color_identity'] = $formatted_value;
-	}
-
-	public function getFlavorTextAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setFlavorTextAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('flavor_text', 'varchar', $value, $this);
-		$this->attributes['flavor_text'] = $formatted_value;
-	}
-
-	public function getImageUriAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri', 'varchar', $value, $this);
-		$this->attributes['image_uri'] = $formatted_value;
-	}
-
-	public function getManaCostAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setManaCostAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('mana_cost', 'varchar', $value, $this);
-		$this->attributes['mana_cost'] = $formatted_value;
-	}
-
-	public function getCmcAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCmcAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('cmc', 'decimal', $value, $this);
-		$this->attributes['cmc'] = $formatted_value;
-	}
-
-	public function getNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('name', 'varchar', $value, $this);
-		$this->attributes['name'] = $formatted_value;
-	}
-
-	public function getOracleTextAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setOracleTextAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('oracle_text', 'varchar', $value, $this);
-		$this->attributes['oracle_text'] = $formatted_value;
-	}
-
-	public function getPowerAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPowerAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('power', 'varchar', $value, $this);
-		$this->attributes['power'] = $formatted_value;
-	}
-
-	public function getToughnessAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setToughnessAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('toughness', 'varchar', $value, $this);
-		$this->attributes['toughness'] = $formatted_value;
-	}
-
-	public function getTypeLineAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTypeLineAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('type_line', 'varchar', $value, $this);
-		$this->attributes['type_line'] = $formatted_value;
-	}
-
-	public function getBorderColorAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setBorderColorAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('border_color', 'varchar', $value, $this);
-		$this->attributes['border_color'] = $formatted_value;
-	}
-
-	public function getImageUriArtCropAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriArtCropAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri_art_crop', 'varchar', $value, $this);
-		$this->attributes['image_uri_art_crop'] = $formatted_value;
-	}
-
-	public function getImageHashArtCropAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageHashArtCropAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_hash_art_crop', 'varchar', $value, $this);
-		$this->attributes['image_hash_art_crop'] = $formatted_value;
-	}
-
-	public function getImageUriSmallAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriSmallAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri_small', 'varchar', $value, $this);
-		$this->attributes['image_uri_small'] = $formatted_value;
-	}
-
-	public function getImageHashSmallAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageHashSmallAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_hash_small', 'varchar', $value, $this);
-		$this->attributes['image_hash_small'] = $formatted_value;
-	}
-
-	public function getImageUriNormalAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriNormalAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri_normal', 'varchar', $value, $this);
-		$this->attributes['image_uri_normal'] = $formatted_value;
-	}
-
-	public function getImageHashNormalAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageHashNormalAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_hash_normal', 'varchar', $value, $this);
-		$this->attributes['image_hash_normal'] = $formatted_value;
-	}
-
-	public function getImageUriLargeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriLargeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri_large', 'varchar', $value, $this);
-		$this->attributes['image_uri_large'] = $formatted_value;
-	}
-
-	public function getImageHashLargeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageHashLargeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_hash_large', 'varchar', $value, $this);
-		$this->attributes['image_hash_large'] = $formatted_value;
-	}
-
-	public function getImageUriPngAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriPngAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri_png', 'varchar', $value, $this);
-		$this->attributes['image_uri_png'] = $formatted_value;
-	}
-
-	public function getImageHashPngAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageHashPngAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_hash_png', 'varchar', $value, $this);
-		$this->attributes['image_hash_png'] = $formatted_value;
-	}
-
-	public function getImageUriBorderCropAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageUriBorderCropAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_uri_border_crop', 'varchar', $value, $this);
-		$this->attributes['image_uri_border_crop'] = $formatted_value;
-	}
-
-	public function getImageHashBorderCropAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setImageHashBorderCropAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('image_hash_border_crop', 'varchar', $value, $this);
-		$this->attributes['image_hash_border_crop'] = $formatted_value;
-	}
-
-	public function getIsFoilAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsFoilAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_foil', 'tinyint', $value, $this);
-		$this->attributes['is_foil'] = $formatted_value;
-	}
-
-	public function getIsNonfoilAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsNonfoilAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_nonfoil', 'tinyint', $value, $this);
-		$this->attributes['is_nonfoil'] = $formatted_value;
-	}
-
-	public function getIsOversizedAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsOversizedAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_oversized', 'tinyint', $value, $this);
-		$this->attributes['is_oversized'] = $formatted_value;
-	}
-
-	public function getIsColorGreenAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorGreenAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_green', 'tinyint', $value, $this);
-		$this->attributes['is_color_green'] = $formatted_value;
-	}
-
-	public function getIsColorRedAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorRedAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_red', 'tinyint', $value, $this);
-		$this->attributes['is_color_red'] = $formatted_value;
-	}
-
-	public function getIsColorBlueAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorBlueAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_blue', 'tinyint', $value, $this);
-		$this->attributes['is_color_blue'] = $formatted_value;
-	}
-
-	public function getIsColorBlackAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorBlackAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_black', 'tinyint', $value, $this);
-		$this->attributes['is_color_black'] = $formatted_value;
-	}
-
-	public function getIsColorWhiteAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorWhiteAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_white', 'tinyint', $value, $this);
-		$this->attributes['is_color_white'] = $formatted_value;
-	}
-
-	public function getIsColorlessAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorlessAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_colorless', 'tinyint', $value, $this);
-		$this->attributes['is_colorless'] = $formatted_value;
-	}
-
-	public function getColorCountAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setColorCountAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('color_count', 'int', $value, $this);
-		$this->attributes['color_count'] = $formatted_value;
-	}
-
-	public function getIsColorIdentityGreenAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorIdentityGreenAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_identity_green', 'tinyint', $value, $this);
-		$this->attributes['is_color_identity_green'] = $formatted_value;
-	}
-
-	public function getIsColorIdentityRedAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorIdentityRedAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_identity_red', 'tinyint', $value, $this);
-		$this->attributes['is_color_identity_red'] = $formatted_value;
-	}
-
-	public function getIsColorIdentityBlueAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorIdentityBlueAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_identity_blue', 'tinyint', $value, $this);
-		$this->attributes['is_color_identity_blue'] = $formatted_value;
-	}
-
-	public function getIsColorIdentityBlackAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorIdentityBlackAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_identity_black', 'tinyint', $value, $this);
-		$this->attributes['is_color_identity_black'] = $formatted_value;
-	}
-
-	public function getIsColorIdentityWhiteAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsColorIdentityWhiteAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_color_identity_white', 'tinyint', $value, $this);
-		$this->attributes['is_color_identity_white'] = $formatted_value;
-	}
-
-	public function getColorIdentityCountAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setColorIdentityCountAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('color_identity_count', 'int', $value, $this);
-		$this->attributes['color_identity_count'] = $formatted_value;
-	}
-
-	public function getIsSnowAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsSnowAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_snow', 'tinyint', $value, $this);
-		$this->attributes['is_snow'] = $formatted_value;
-	}
-
-	public function getHasPhyrexianManaAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setHasPhyrexianManaAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('has_phyrexian_mana', 'tinyint', $value, $this);
-		$this->attributes['has_phyrexian_mana'] = $formatted_value;
-	}
-
-	public function getForFulltextSearchAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setForFulltextSearchAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('for_fulltext_search', 'varchar', $value, $this);
-		$this->attributes['for_fulltext_search'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 
@@ -930,8 +340,8 @@ CREATE TABLE `lore`.`cardface` (
   `toughness` varchar(255) DEFAULT NULL,
   `type_line` varchar(255) NOT NULL,
   `border_color` varchar(255) NOT NULL,
-  `image_uri_art_crop` varchar(500) DEFAULT NULL,
-  `image_hash_art_crop` varchar(32) DEFAULT NULL,
+  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',
+  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',
   `image_uri_small` varchar(500) DEFAULT NULL,
   `image_hash_small` varchar(32) DEFAULT NULL,
   `image_uri_normal` varchar(500) DEFAULT NULL,
@@ -945,24 +355,24 @@ CREATE TABLE `lore`.`cardface` (
   `is_foil` tinyint(1) NOT NULL,
   `is_nonfoil` tinyint(1) NOT NULL,
   `is_oversized` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,
-  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,
+  `is_color_green` tinyint(1) NOT NULL,
+  `is_color_red` tinyint(1) NOT NULL,
+  `is_color_blue` tinyint(1) NOT NULL,
+  `is_color_black` tinyint(1) NOT NULL,
+  `is_color_white` tinyint(1) NOT NULL,
+  `is_colorless` tinyint(1) NOT NULL,
   `color_count` int(11) NOT NULL DEFAULT 0,
-  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,
-  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,
+  `is_color_identity_green` tinyint(1) NOT NULL,
+  `is_color_identity_red` tinyint(1) NOT NULL,
+  `is_color_identity_blue` tinyint(1) NOT NULL,
+  `is_color_identity_black` tinyint(1) NOT NULL,
+  `is_color_identity_white` tinyint(1) NOT NULL,
   `color_identity_count` int(11) NOT NULL,
-  `is_snow` tinyint(1) NOT NULL DEFAULT 0,
+  `is_snow` tinyint(1) NOT NULL,
   `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,
-  `for_fulltext_search` varchar(2000) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `for_fulltext_search` varchar(2000) DEFAULT '''''',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`,`card_id`),
   KEY `is_color_green` (`is_color_green`),

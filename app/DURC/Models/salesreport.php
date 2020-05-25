@@ -67,77 +67,13 @@ class salesreport extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'groupBy' => 'present',
+		'groupBy' => 'required',
 		'display' => 'nullable',
 		'title' => 'nullable',
 		'filterRowSource' => 'nullable',
+		'default' => 'integer',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getGroupByAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setGroupByAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('groupBy', 'varchar', $value, $this);
-		$this->attributes['groupBy'] = $formatted_value;
-	}
-
-	public function getDisplayAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setDisplayAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('display', 'varchar', $value, $this);
-		$this->attributes['display'] = $formatted_value;
-	}
-
-	public function getTitleAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTitleAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('title', 'varchar', $value, $this);
-		$this->attributes['title'] = $formatted_value;
-	}
-
-	public function getFilterRowSourceAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setFilterRowSourceAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('filterRowSource', 'longtext', $value, $this);
-		$this->attributes['filterRowSource'] = $formatted_value;
-	}
-
-	public function getDefaultAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setDefaultAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('default', 'tinyint', $value, $this);
-		$this->attributes['default'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 
