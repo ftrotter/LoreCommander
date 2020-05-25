@@ -45,21 +45,21 @@
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{card_id_row_class}}'>
-    <label for='card_id' class='col-sm-4 col-form-label'>card_id</label>
+  <div class='form-group row {{cardface_id_row_class}}'>
+    <label for='cardface_id' class='col-sm-4 col-form-label'>cardface_id</label>
     <div class='col-sm-7'>
-	Current id value: {{card_id}} (see below for lookup value)<br>
-	<select class='select2_card_id form-control' id='card_id' name='card_id'  >
-	<option value='{{card_id}}' selected='selected'>{{card_id}}</option>
+	Current id value: {{cardface_id}} (see below for lookup value)<br>
+	<select class='select2_cardface_id form-control' id='cardface_id' name='cardface_id'  >
+	<option value='{{cardface_id}}' selected='selected'>{{cardface_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
 
-$('.select2_card_id').select2({
+$('.select2_cardface_id').select2({
   ajax: {
-    url: '/DURC/searchjson/card',
+    url: '/DURC/searchjson/cardface',
     delay: 1000,
     dataType: 'json',
     data: function (params) {
@@ -192,103 +192,127 @@ $('.select2_card_id').select2({
 
 <div class='card'>
   <div class='card-header'>
-    card ( <a href='/DURC/card/'>see all</a> )
-{{^card}}
+    cardface ( <a href='/DURC/cardface/'>see all</a> )
+{{^cardface}}
 (no values)
-{{/card}}
+{{/cardface}}
   </div>
 <div class='card-body'>
-<table id='table_card' class='table table-bordered table-hover table-responsive table-sm'>
+<table id='table_cardface' class='table table-bordered table-hover table-responsive table-sm'>
 <thead>
 <tr>
 			<th> id </th>
-			<th> scryfall_id </th>
-			<th> lang </th>
-			<th> oracle_id </th>
-			<th> rulings_uri </th>
-			<th> scryfall_web_uri </th>
-			<th> scryfall_api_uri </th>
-			<th> layout </th>
-			<th> rarity </th>
-			<th> released_at </th>
-			<th> set_name </th>
-			<th> set_type </th>
-			<th> mtgset_id </th>
-			<th> variation_of_scryfall_id </th>
-			<th> edhrec_rank </th>
-			<th> is_promo </th>
-			<th> is_reserved </th>
-			<th> is_story_spotlight </th>
-			<th> is_reprint </th>
-			<th> is_variation </th>
-			<th> is_game_paper </th>
-			<th> is_game_mtgo </th>
-			<th> is_game_arena </th>
-			<th> legal_oldschool </th>
-			<th> legal_duel </th>
-			<th> legal_commander </th>
-			<th> legal_brawl </th>
-			<th> legal_penny </th>
-			<th> legal_vintage </th>
-			<th> legal_pauper </th>
-			<th> legal_legacy </th>
-			<th> legal_modern </th>
-			<th> legal_frontier </th>
-			<th> legal_future </th>
-			<th> legal_standard </th>
-			<th> legal_historic </th>
-			<th> legal_pioneer </th>
+			<th> card_id </th>
+			<th> cardface_index </th>
+			<th> illustration_id </th>
+			<th> artist </th>
+			<th> color </th>
+			<th> color_identity </th>
+			<th> flavor_text </th>
+			<th> image_uri </th>
+			<th> mana_cost </th>
+			<th> cmc </th>
+			<th> name </th>
+			<th> oracle_text </th>
+			<th> power </th>
+			<th> toughness </th>
+			<th> type_line </th>
+			<th> border_color </th>
+			<th> image_uri_art_crop </th>
+			<th> image_hash_art_crop </th>
+			<th> image_uri_small </th>
+			<th> image_hash_small </th>
+			<th> image_uri_normal </th>
+			<th> image_hash_normal </th>
+			<th> image_uri_large </th>
+			<th> image_hash_large </th>
+			<th> image_uri_png </th>
+			<th> image_hash_png </th>
+			<th> image_uri_border_crop </th>
+			<th> image_hash_border_crop </th>
+			<th> is_foil </th>
+			<th> is_nonfoil </th>
+			<th> is_oversized </th>
+			<th> is_color_green </th>
+			<th> is_color_red </th>
+			<th> is_color_blue </th>
+			<th> is_color_black </th>
+			<th> is_color_white </th>
+			<th> is_colorless </th>
+			<th> color_count </th>
+			<th> is_color_identity_green </th>
+			<th> is_color_identity_red </th>
+			<th> is_color_identity_blue </th>
+			<th> is_color_identity_black </th>
+			<th> is_color_identity_white </th>
+			<th> color_identity_count </th>
+			<th> is_snow </th>
+			<th> has_phyrexian_mana </th>
+			<th> for_fulltext_search </th>
 			<th> created_at </th>
 			<th> updated_at </th>
 
 </tr>
 </thead>
 <tbody>
-{{#card}}
+{{#cardface}}
 	<tr>
 		{{#.}}
-			<td><a href='/DURC/card/{{id}}'>{{id}}</a></td>
-			<td>{{scryfall_id_DURClabel}} ({{scryfall_id}}) </td>			<td>{{lang}}</td>
-			<td>{{oracle_id_DURClabel}} ({{oracle_id}}) </td>			<td>{{rulings_uri}}</td>
-			<td>{{scryfall_web_uri}}</td>
-			<td>{{scryfall_api_uri}}</td>
-			<td>{{layout}}</td>
-			<td>{{rarity}}</td>
-			<td>{{released_at}}</td>
-			<td>{{set_name}}</td>
-			<td>{{set_type}}</td>
-			<td>{{mtgset_id_DURClabel}} ({{mtgset_id}}) </td>			<td>{{variation_of_scryfall_id_DURClabel}} ({{variation_of_scryfall_id}}) </td>			<td>{{edhrec_rank}}</td>
-			<td>{{is_promo}}</td>
-			<td>{{is_reserved}}</td>
-			<td>{{is_story_spotlight}}</td>
-			<td>{{is_reprint}}</td>
-			<td>{{is_variation}}</td>
-			<td>{{is_game_paper}}</td>
-			<td>{{is_game_mtgo}}</td>
-			<td>{{is_game_arena}}</td>
-			<td>{{legal_oldschool}}</td>
-			<td>{{legal_duel}}</td>
-			<td>{{legal_commander}}</td>
-			<td>{{legal_brawl}}</td>
-			<td>{{legal_penny}}</td>
-			<td>{{legal_vintage}}</td>
-			<td>{{legal_pauper}}</td>
-			<td>{{legal_legacy}}</td>
-			<td>{{legal_modern}}</td>
-			<td>{{legal_frontier}}</td>
-			<td>{{legal_future}}</td>
-			<td>{{legal_standard}}</td>
-			<td>{{legal_historic}}</td>
-			<td>{{legal_pioneer}}</td>
+			<td><a href='/DURC/cardface/{{id}}'>{{id}}</a></td>
+			<td>{{card_id_DURClabel}} ({{card_id}}) </td>			<td>{{cardface_index}}</td>
+			<td>{{illustration_id_DURClabel}} ({{illustration_id}}) </td>			<td>{{artist}}</td>
+			<td>{{color}}</td>
+			<td>{{color_identity}}</td>
+			<td>{{flavor_text}}</td>
+			<td>{{image_uri}}</td>
+			<td>{{mana_cost}}</td>
+			<td>{{cmc}}</td>
+			<td>{{name}}</td>
+			<td>{{oracle_text}}</td>
+			<td>{{power}}</td>
+			<td>{{toughness}}</td>
+			<td>{{type_line}}</td>
+			<td>{{border_color}}</td>
+			<td>{{image_uri_art_crop}}</td>
+			<td>{{image_hash_art_crop}}</td>
+			<td>{{image_uri_small}}</td>
+			<td>{{image_hash_small}}</td>
+			<td>{{image_uri_normal}}</td>
+			<td>{{image_hash_normal}}</td>
+			<td>{{image_uri_large}}</td>
+			<td>{{image_hash_large}}</td>
+			<td>{{image_uri_png}}</td>
+			<td>{{image_hash_png}}</td>
+			<td>{{image_uri_border_crop}}</td>
+			<td>{{image_hash_border_crop}}</td>
+			<td>{{is_foil}}</td>
+			<td>{{is_nonfoil}}</td>
+			<td>{{is_oversized}}</td>
+			<td>{{is_color_green}}</td>
+			<td>{{is_color_red}}</td>
+			<td>{{is_color_blue}}</td>
+			<td>{{is_color_black}}</td>
+			<td>{{is_color_white}}</td>
+			<td>{{is_colorless}}</td>
+			<td>{{color_count}}</td>
+			<td>{{is_color_identity_green}}</td>
+			<td>{{is_color_identity_red}}</td>
+			<td>{{is_color_identity_blue}}</td>
+			<td>{{is_color_identity_black}}</td>
+			<td>{{is_color_identity_white}}</td>
+			<td>{{color_identity_count}}</td>
+			<td>{{is_snow}}</td>
+			<td>{{has_phyrexian_mana}}</td>
+			<td>{{for_fulltext_search}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 		
 		{{/.}}
 	</tr>
-{{/card}}
+{{/cardface}}
 </tbody>
 </table>
-</div></div> <!-- end card card-->
+</div></div> <!-- end cardface card-->
 </div></div> <!--end belongs to card-->
 <br>
     

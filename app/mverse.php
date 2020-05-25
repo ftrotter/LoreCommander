@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=586b2d5c0492ad0a4e2da904be02f7a1
+FILE_SIG=ee09a6ef4e7b2678550a5faf07087362
 */
 namespace App;
 /*
@@ -26,14 +26,14 @@ class mverse extends \App\DURC\Models\mverse
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'card', //from belongs to
+			'cardface', //from belongs to
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'card_id', //int
+			//'cardface_id', //int
 			//'multiverse_id', //int
 			//'gatherer_url', //varchar
 			//'created_at', //datetime
@@ -46,11 +46,11 @@ class mverse extends \App\DURC\Models\mverse
 //DURC BELONGS_TO SECTION
 
 /**
-*	DURC is handling the card for this mverse in mverse
+*	DURC is handling the cardface for this mverse in mverse
 *       but you can extend or override the defaults by editing this function...
 */
-	public function card(){
-		return parent::card();
+	public function cardface(){
+		return parent::cardface();
 	}
 
 

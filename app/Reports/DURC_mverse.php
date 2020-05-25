@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=db0426290b9d639db92de6dec3b83ed0
+FILE_SIG=ede119e44b77da93f375b0f5630ae95e
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -45,16 +45,16 @@ class DURC_mverse extends AbstractTabularReport
 
 
 
-	$card_field = \App\card::getNameField();	
+	$cardface_field = \App\cardface::getNameField();	
 	$joined_select_field_sql .= "
-, A_card.$card_field  AS $card_field
+, A_cardface.$cardface_field  AS $cardface_field
 "; 
-	$card_img_field = \App\card::getImgField();
-	if(!is_null($card_img_field)){
-		if($is_debug){echo "card has an image field of: |$card_img_field|
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
 ";}
 		$joined_select_field_sql .= "
-, A_card.$card_img_field  AS $card_img_field
+, A_cardface.$cardface_img_field  AS $cardface_img_field
 "; 
 	}
 
@@ -65,7 +65,7 @@ class DURC_mverse extends AbstractTabularReport
 SELECT
 mverse.id
 $joined_select_field_sql 
-, mverse.card_id AS card_id
+, mverse.cardface_id AS cardface_id
 , mverse.multiverse_id AS multiverse_id
 , mverse.gatherer_url AS gatherer_url
 , mverse.created_at AS created_at
@@ -73,9 +73,9 @@ $joined_select_field_sql
 
 FROM lore.mverse
 
-LEFT JOIN lore.card AS A_card ON 
-	A_card.id =
-	mverse.card_id
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
+	mverse.cardface_id
 
 ";
 
@@ -85,7 +85,7 @@ LEFT JOIN lore.card AS A_card ON
 SELECT
 mverse.id 
 $joined_select_field_sql
-, mverse.card_id AS card_id
+, mverse.cardface_id AS cardface_id
 , mverse.multiverse_id AS multiverse_id
 , mverse.gatherer_url AS gatherer_url
 , mverse.created_at AS created_at
@@ -93,9 +93,9 @@ $joined_select_field_sql
  
 FROM lore.mverse 
 
-LEFT JOIN lore.card AS A_card ON 
-	A_card.id =
-	mverse.card_id
+LEFT JOIN lore.cardface AS A_cardface ON 
+	A_cardface.id =
+	mverse.cardface_id
 
 WHERE mverse.id = $index
 ";
@@ -132,16 +132,16 @@ WHERE mverse.id = $index
 
 
 
-	$card_field = \App\card::getNameField();	
+	$cardface_field = \App\cardface::getNameField();	
 	$joined_select_field_sql .= "
-, A_card.$card_field  AS $card_field
+, A_cardface.$cardface_field  AS $cardface_field
 "; 
-	$card_img_field = \App\card::getImgField();
-	if(!is_null($card_img_field)){
-		if($is_debug){echo "card has an image field of: |$card_img_field|
+	$cardface_img_field = \App\cardface::getImgField();
+	if(!is_null($cardface_img_field)){
+		if($is_debug){echo "cardface has an image field of: |$cardface_img_field|
 ";}
 		$joined_select_field_sql .= "
-, A_card.$card_img_field  AS $card_img_field
+, A_cardface.$cardface_img_field  AS $cardface_img_field
 "; 
 	}
 
@@ -160,16 +160,16 @@ WHERE mverse.id = $index
 
 
 
-$card_tmp = ''.$card_field;
-if(isset($row[$card_tmp])){
-	$card_data = $row[$card_tmp];
-	$row[$card_tmp] = "<a target='_blank' href='/Zermelo/DURC_card/$card_id'>$card_data</a>";
+$cardface_tmp = ''.$cardface_field;
+if(isset($row[$cardface_tmp])){
+	$cardface_data = $row[$cardface_tmp];
+	$row[$cardface_tmp] = "<a target='_blank' href='/Zermelo/DURC_cardface/$cardface_id'>$cardface_data</a>";
 }
 
-$card_img_tmp = ''.$card_img_field;
-if(isset($row[$card_img_tmp]) && strlen($card_img_tmp) > 0){
-	$card_img_data = $row[$card_img_tmp];
-	$row[$card_img_tmp] = "<img width='200px' src='$card_img_data'>";
+$cardface_img_tmp = ''.$cardface_img_field;
+if(isset($row[$cardface_img_tmp]) && strlen($cardface_img_tmp) > 0){
+	$cardface_img_data = $row[$cardface_img_tmp];
+	$row[$cardface_img_tmp] = "<img width='200px' src='$cardface_img_data'>";
 }
 
 
@@ -224,13 +224,13 @@ array (
   ),
   1 => 
   array (
-    'column_name' => 'card_id',
+    'column_name' => 'cardface_id',
     'data_type' => 'int',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => true,
     'foreign_db' => 'lore',
-    'foreign_table' => 'card',
+    'foreign_table' => 'cardface',
     'is_nullable' => false,
     'default_value' => NULL,
     'is_auto_increment' => false,
@@ -294,13 +294,13 @@ NULL
 NULL
 //belongs_to
 array (
-  'card' => 
+  'cardface' => 
   array (
     'prefix' => NULL,
-    'type' => 'card',
-    'to_table' => 'card',
+    'type' => 'cardface',
+    'to_table' => 'cardface',
     'to_db' => 'lore',
-    'local_key' => 'card_id',
+    'local_key' => 'cardface_id',
     'other_columns' => 
     array (
       0 => 
@@ -318,21 +318,21 @@ array (
       ),
       1 => 
       array (
-        'column_name' => 'scryfall_id',
-        'data_type' => 'varchar',
+        'column_name' => 'card_id',
+        'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => true,
         'is_linked_key' => true,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
+        'foreign_db' => 'lore',
+        'foreign_table' => 'card',
         'is_nullable' => false,
         'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       2 => 
       array (
-        'column_name' => 'lang',
-        'data_type' => 'varchar',
+        'column_name' => 'cardface_index',
+        'data_type' => 'int',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -344,7 +344,7 @@ array (
       ),
       3 => 
       array (
-        'column_name' => 'oracle_id',
+        'column_name' => 'illustration_id',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -357,59 +357,59 @@ array (
       ),
       4 => 
       array (
-        'column_name' => 'rulings_uri',
+        'column_name' => 'artist',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       5 => 
       array (
-        'column_name' => 'scryfall_web_uri',
+        'column_name' => 'color',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       6 => 
       array (
-        'column_name' => 'scryfall_api_uri',
+        'column_name' => 'color_identity',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       7 => 
       array (
-        'column_name' => 'layout',
+        'column_name' => 'flavor_text',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       8 => 
       array (
-        'column_name' => 'rarity',
+        'column_name' => 'image_uri',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -422,7 +422,7 @@ array (
       ),
       9 => 
       array (
-        'column_name' => 'released_at',
+        'column_name' => 'mana_cost',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -435,21 +435,21 @@ array (
       ),
       10 => 
       array (
-        'column_name' => 'set_name',
-        'data_type' => 'varchar',
+        'column_name' => 'cmc',
+        'data_type' => 'decimal',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       11 => 
       array (
-        'column_name' => 'set_type',
-        'data_type' => 'int',
+        'column_name' => 'name',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -461,20 +461,20 @@ array (
       ),
       12 => 
       array (
-        'column_name' => 'mtgset_id',
-        'data_type' => 'int',
+        'column_name' => 'oracle_text',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'lore',
-        'foreign_table' => 'mtgset',
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
         'is_nullable' => false,
         'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       13 => 
       array (
-        'column_name' => 'variation_of_scryfall_id',
+        'column_name' => 'power',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -482,26 +482,26 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,
-        'default_value' => '\'NULL\'',
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       14 => 
       array (
-        'column_name' => 'edhrec_rank',
-        'data_type' => 'int',
+        'column_name' => 'toughness',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,
-        'default_value' => '0',
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       15 => 
       array (
-        'column_name' => 'is_promo',
-        'data_type' => 'tinyint',
+        'column_name' => 'type_line',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -513,8 +513,47 @@ array (
       ),
       16 => 
       array (
-        'column_name' => 'is_reserved',
-        'data_type' => 'tinyint',
+        'column_name' => 'border_color',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      17 => 
+      array (
+        'column_name' => 'image_uri_art_crop',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => '\'NULL\'',
+        'is_auto_increment' => false,
+      ),
+      18 => 
+      array (
+        'column_name' => 'image_hash_art_crop',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => '\'NULL\'',
+        'is_auto_increment' => false,
+      ),
+      19 => 
+      array (
+        'column_name' => 'image_uri_small',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -524,165 +563,126 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      17 => 
-      array (
-        'column_name' => 'is_story_spotlight',
-        'data_type' => 'tinyint',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
-        'is_auto_increment' => false,
-      ),
-      18 => 
-      array (
-        'column_name' => 'is_reprint',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
-        'is_auto_increment' => false,
-      ),
-      19 => 
-      array (
-        'column_name' => 'is_variation',
-        'data_type' => 'tinyint',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
-        'is_auto_increment' => false,
-      ),
       20 => 
       array (
-        'column_name' => 'is_game_paper',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_hash_small',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       21 => 
       array (
-        'column_name' => 'is_game_mtgo',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_uri_normal',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       22 => 
       array (
-        'column_name' => 'is_game_arena',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_hash_normal',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       23 => 
       array (
-        'column_name' => 'legal_oldschool',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_uri_large',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       24 => 
       array (
-        'column_name' => 'legal_duel',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_hash_large',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       25 => 
       array (
-        'column_name' => 'legal_commander',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_uri_png',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       26 => 
       array (
-        'column_name' => 'legal_brawl',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_hash_png',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       27 => 
       array (
-        'column_name' => 'legal_penny',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_uri_border_crop',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       28 => 
       array (
-        'column_name' => 'legal_vintage',
-        'data_type' => 'tinyint',
+        'column_name' => 'image_hash_border_crop',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0',
+        'is_nullable' => true,
+        'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
       29 => 
       array (
-        'column_name' => 'legal_pauper',
+        'column_name' => 'is_foil',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -690,12 +690,12 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       30 => 
       array (
-        'column_name' => 'legal_legacy',
+        'column_name' => 'is_nonfoil',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -703,12 +703,12 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       31 => 
       array (
-        'column_name' => 'legal_modern',
+        'column_name' => 'is_oversized',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -721,7 +721,7 @@ array (
       ),
       32 => 
       array (
-        'column_name' => 'legal_frontier',
+        'column_name' => 'is_color_green',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -729,12 +729,12 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       33 => 
       array (
-        'column_name' => 'legal_future',
+        'column_name' => 'is_color_red',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -742,12 +742,12 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       34 => 
       array (
-        'column_name' => 'legal_standard',
+        'column_name' => 'is_color_blue',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -755,12 +755,12 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => '0',
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       35 => 
       array (
-        'column_name' => 'legal_historic',
+        'column_name' => 'is_color_black',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -773,7 +773,7 @@ array (
       ),
       36 => 
       array (
-        'column_name' => 'legal_pioneer',
+        'column_name' => 'is_color_white',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -786,6 +786,149 @@ array (
       ),
       37 => 
       array (
+        'column_name' => 'is_colorless',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      38 => 
+      array (
+        'column_name' => 'color_count',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      39 => 
+      array (
+        'column_name' => 'is_color_identity_green',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      40 => 
+      array (
+        'column_name' => 'is_color_identity_red',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      41 => 
+      array (
+        'column_name' => 'is_color_identity_blue',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      42 => 
+      array (
+        'column_name' => 'is_color_identity_black',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      43 => 
+      array (
+        'column_name' => 'is_color_identity_white',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      44 => 
+      array (
+        'column_name' => 'color_identity_count',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      45 => 
+      array (
+        'column_name' => 'is_snow',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      46 => 
+      array (
+        'column_name' => 'has_phyrexian_mana',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      47 => 
+      array (
+        'column_name' => 'for_fulltext_search',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => '\'\'\'\'\'\'',
+        'is_auto_increment' => false,
+      ),
+      48 => 
+      array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
         'is_primary_key' => false,
@@ -797,7 +940,7 @@ array (
         'default_value' => NULL,
         'is_auto_increment' => false,
       ),
-      38 => 
+      49 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',

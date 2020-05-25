@@ -37,7 +37,7 @@ Create <a href='/DURC/mverse/create/'>new mverse</a><br>
 
 <table id='table_mverse' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
-<th scope='col'>#</th><th scope='col'>card_id</th>
+<th scope='col'>#</th><th scope='col'>cardface_id</th>
 <th scope='col'>multiverse_id</th>
 <th scope='col'>gatherer_url</th>
 <th scope='col'>created_at</th>
@@ -45,7 +45,7 @@ Create <a href='/DURC/mverse/create/'>new mverse</a><br>
 
 </tr></thead>
 <tfoot><tr>
-<th scope='col'>#</th><th scope='col'>card_id</th>
+<th scope='col'>#</th><th scope='col'>cardface_id</th>
 <th scope='col'>multiverse_id</th>
 <th scope='col'>gatherer_url</th>
 <th scope='col'>created_at</th>
@@ -55,7 +55,7 @@ Create <a href='/DURC/mverse/create/'>new mverse</a><br>
 <tbody>
   {{#data}}
     <tr>
-	<th scope='row'><a href='/DURC/mverse/{{id}}/'> {{id}} </a></th>			<td>{{card_id_DURClabel}} <a href='/DURC/card/{{card_id}}/'> ({{card_id}})</a> </td>			<td>{{gatherer_url}}</td>
+	<th scope='row'><a href='/DURC/mverse/{{id}}/'> {{id}} </a></th>			<td>{{cardface_id_DURClabel}} <a href='/DURC/cardface/{{cardface_id}}/'> ({{cardface_id}})</a> </td>			<td>{{gatherer_url}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 

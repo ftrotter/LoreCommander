@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=60b30e0b07df02b8bdcdd093441eda23
+FILE_SIG=4bcf9df93bbec8a26f2c8ea447707821
 */
 namespace App;
 /*
@@ -30,6 +30,7 @@ class cardface extends \App\DURC\Models\cardface
 			'cardface_person_atag', //from from many
 			'classofc_cardface', //from from many
 			'creature_cardface', //from from many
+			'mverse', //from from many
 			'person_classofc_cardface', //from from many
 			'wincon_strategy', //from from many
 			'emblematic_theme', //from from many
@@ -127,6 +128,15 @@ class cardface extends \App\DURC\Models\cardface
 */
 	public function creature_cardface(){
 		return parent::creature_cardface();
+	}
+
+
+/**
+*	DURC is handling the mverse for this cardface in cardface
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function mverse(){
+		return parent::mverse();
 	}
 
 
