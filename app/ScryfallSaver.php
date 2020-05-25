@@ -270,6 +270,20 @@ class  ScryfallSaver {
 								]);
 								$DURC_cardface->fill($cardface_fill);
 				$DURC_cardface->save();
+				$this_cardface_id = $DURC_cardface->id;
+
+				//now we save all of the things that are "many" to the cardface or cards
+
+				//could be zero or many..
+				$multiverse_ids = $this_card['multiverse_ids'];
+
+				foreach($multiverse_ids as $this_multiverse_id){
+					$mverseObj = new \App\mverse;
+					$mverseObj->cardface_id = $this_cardface_id;
+					$mverseObj->multiverse_id = $this_multiverse_id ;
+					$mverseObj->gatherer_url = "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=$this_cardface_id"; //hardcoded = ok for now..
+					$mverseObj->save();
+				}
 
 
 				$prices  = $this_card['prices'];

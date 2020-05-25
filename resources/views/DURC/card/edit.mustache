@@ -128,13 +128,16 @@
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='' value='{{released_at}}' >
+      <input type='text' class='form-control {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.released_at.messages}}<li>{{.}}</li>{{/errors.released_at.messages}}
           </ul>
        </div>
-    </div></div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='released_at' name='released_atNull' id='released_atNull' value='released_atNull' {{released_at_checked}}>
+                    <label class='form-check-label' for='released_atNull'>null</label>
+                </div></div>
   <div class='form-group row {{set_name_row_class}}'>
     <label for='set_name' class='col-sm-4 col-form-label'>set_name</label>
     <div class='col-sm-7'>
@@ -430,7 +433,7 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -461,7 +464,7 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

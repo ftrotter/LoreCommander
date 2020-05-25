@@ -193,6 +193,7 @@ class CardSearch extends AbstractTabularReport
 "
 SELECT
 GROUP_CONCAT(cardface.id) AS cardface_ids, 
+GROUP_CONCAT(cardface.id) AS cardface_ids, 
 `name`
 , COUNT(DISTINCT(illustration_id)) AS illustration_count
 , COUNT(DISTINCT(scryfall_id)) AS release_count
