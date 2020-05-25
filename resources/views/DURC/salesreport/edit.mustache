@@ -38,20 +38,20 @@
   <div class='form-group row {{groupBy_row_class}}'>
     <label for='groupBy' class='col-sm-4 col-form-label'>groupBy</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.groupBy}}is-invalid{{/errors.groupBy}}' id='groupBy' name='groupBy' placeholder='' value='{{groupBy}}'  required>
+      <input type='text' class='form-control {{#errors.groupBy.has_errors}}is-invalid{{/errors.groupBy.has_errors}}' id='groupBy' name='groupBy' placeholder='' value='{{groupBy}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.groupBy}}<li>{{.}}</li>{{/errors.groupBy}}
+          {{#errors.groupBy.messages}}<li>{{.}}</li>{{/errors.groupBy.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{display_row_class}}'>
     <label for='display' class='col-sm-4 col-form-label'>display</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.display}}is-invalid{{/errors.display}}' id='display' name='display' placeholder='NULL' value='{{display}}'  >
+      <input type='text' class='form-control {{#errors.display.has_errors}}is-invalid{{/errors.display.has_errors}}' id='display' name='display' placeholder='NULL' value='{{display}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.display}}<li>{{.}}</li>{{/errors.display}}
+          {{#errors.display.messages}}<li>{{.}}</li>{{/errors.display.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -61,10 +61,10 @@
   <div class='form-group row {{title_row_class}}'>
     <label for='title' class='col-sm-4 col-form-label'>title</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.title}}is-invalid{{/errors.title}}' id='title' name='title' placeholder='NULL' value='{{title}}'  >
+      <input type='text' class='form-control {{#errors.title.has_errors}}is-invalid{{/errors.title.has_errors}}' id='title' name='title' placeholder='NULL' value='{{title}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.title}}<li>{{.}}</li>{{/errors.title}}
+          {{#errors.title.messages}}<li>{{.}}</li>{{/errors.title.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -74,10 +74,10 @@
   <div class='form-group row {{filterRowSource_row_class}}'>
     <label for='filterRowSource' class='col-sm-4 col-form-label'>filterRowSource</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.filterRowSource}}is-invalid{{/errors.filterRowSource}}' id='filterRowSource' name='filterRowSource' placeholder='NULL' value='{{filterRowSource}}'  >
+      <input type='text' class='form-control {{#errors.filterRowSource.has_errors}}is-invalid{{/errors.filterRowSource.has_errors}}' id='filterRowSource' name='filterRowSource' placeholder='NULL' value='{{filterRowSource}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.filterRowSource}}<li>{{.}}</li>{{/errors.filterRowSource}}
+          {{#errors.filterRowSource.messages}}<li>{{.}}</li>{{/errors.filterRowSource.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -87,10 +87,10 @@
   <div class='form-group row {{default_row_class}}'>
     <label for='default' class='col-sm-4 col-form-label'>default</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.default}}is-invalid{{/errors.default}}' id='default' name='default' placeholder='0' value='{{default}}'  >
+      <input type='text' class='form-control {{#errors.default.has_errors}}is-invalid{{/errors.default.has_errors}}' id='default' name='default' placeholder='0' value='{{default}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.default}}<li>{{.}}</li>{{/errors.default}}
+          {{#errors.default.messages}}<li>{{.}}</li>{{/errors.default.messages}}
           </ul>
        </div>
     </div></div>
@@ -142,10 +142,19 @@
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

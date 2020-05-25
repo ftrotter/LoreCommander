@@ -1,0 +1,413 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/sibling' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/sibling/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>sibling</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_sibling/'>Return to sibling list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/sibling/create'>Create new sibling </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{siblingname_row_class}}'>
+    <label for='siblingname' class='col-sm-4 col-form-label'>siblingname</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.siblingname.has_errors}}is-invalid{{/errors.siblingname.has_errors}}' id='siblingname' name='siblingname' placeholder='' value='{{siblingname}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.siblingname.messages}}<li>{{.}}</li>{{/errors.siblingname.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{step_sibling_id_row_class}}'>
+    <label for='step_sibling_id' class='col-sm-4 col-form-label'>step_sibling_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{step_sibling_id}} (see below for lookup value)<br>
+	<select class='select2_step_sibling_id form-control' id='step_sibling_id' name='step_sibling_id'  >
+	<option value='{{step_sibling_id}}' selected='selected'>{{step_sibling_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_step_sibling_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/sibling',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{sibling_id_row_class}}'>
+    <label for='sibling_id' class='col-sm-4 col-form-label'>sibling_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{sibling_id}} (see below for lookup value)<br>
+	<select class='select2_sibling_id form-control' id='sibling_id' name='sibling_id'  >
+	<option value='{{sibling_id}}' selected='selected'>{{sibling_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_sibling_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/sibling',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
+  </ul>
+</div><script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div></div>
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
+  </ul>
+</div><script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/sibling/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='sibling' class='do-soft-delete btn btn-outline-danger'>Hard Delete sibling</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many step_sibling ( <a href='/DURC/sibling/'>see all</a> )
+{{^step_sibling}}
+(no values)
+{{/step_sibling}}
+  </div>
+<div class='card-body'>
+
+<table id='table_step_sibling' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> siblingname </th>
+			<th> step_sibling_id </th>
+			<th> sibling_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#step_sibling}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/sibling/{{id}}'>{{id}}</a></td>
+			<td>{{siblingname}}</td>
+			<td>{{step_sibling_id_DURClabel}} ({{step_sibling_id}}) </td>			<td>{{sibling_id_DURClabel}} ({{sibling_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/step_sibling}}
+</tbody>
+</table>
+</div></div> <!-- end step_sibling card-->
+<br>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many sibling ( <a href='/DURC/sibling/'>see all</a> )
+{{^sibling}}
+(no values)
+{{/sibling}}
+  </div>
+<div class='card-body'>
+
+<table id='table_sibling' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> siblingname </th>
+			<th> step_sibling_id </th>
+			<th> sibling_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#sibling}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/sibling/{{id}}'>{{id}}</a></td>
+			<td>{{siblingname}}</td>
+			<td>{{step_sibling_id_DURClabel}} ({{step_sibling_id}}) </td>			<td>{{sibling_id_DURClabel}} ({{sibling_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/sibling}}
+</tbody>
+</table>
+</div></div> <!-- end sibling card-->
+<br>
+</div></div> <!--end has many card-->
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    step_sibling ( <a href='/DURC/sibling/'>see all</a> )
+{{^step_sibling}}
+(no values)
+{{/step_sibling}}
+  </div>
+<div class='card-body'>
+<table id='table_step_sibling' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> siblingname </th>
+			<th> step_sibling_id </th>
+			<th> sibling_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#step_sibling}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/sibling/{{id}}'>{{id}}</a></td>
+			<td>{{siblingname}}</td>
+			<td>{{step_sibling_id_DURClabel}} ({{step_sibling_id}}) </td>			<td>{{sibling_id_DURClabel}} ({{sibling_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/step_sibling}}
+</tbody>
+</table>
+</div></div> <!-- end step_sibling card-->
+
+<div class='card'>
+  <div class='card-header'>
+    sibling ( <a href='/DURC/sibling/'>see all</a> )
+{{^sibling}}
+(no values)
+{{/sibling}}
+  </div>
+<div class='card-body'>
+<table id='table_sibling' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> siblingname </th>
+			<th> step_sibling_id </th>
+			<th> sibling_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#sibling}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/sibling/{{id}}'>{{id}}</a></td>
+			<td>{{siblingname}}</td>
+			<td>{{step_sibling_id_DURClabel}} ({{step_sibling_id}}) </td>			<td>{{sibling_id_DURClabel}} ({{sibling_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/sibling}}
+</tbody>
+</table>
+</div></div> <!-- end sibling card-->
+</div></div> <!--end belongs to card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

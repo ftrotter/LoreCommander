@@ -38,30 +38,30 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  required>
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{EIN_row_class}}'>
     <label for='EIN' class='col-sm-4 col-form-label'>EIN</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.EIN}}is-invalid{{/errors.EIN}}' id='EIN' name='EIN' placeholder='0' value='{{EIN}}'  >
+      <input type='text' class='form-control {{#errors.EIN.has_errors}}is-invalid{{/errors.EIN.has_errors}}' id='EIN' name='EIN' placeholder='0' value='{{EIN}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.EIN}}<li>{{.}}</li>{{/errors.EIN}}
+          {{#errors.EIN.messages}}<li>{{.}}</li>{{/errors.EIN.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{TAXPAYER_NAME_row_class}}'>
     <label for='TAXPAYER_NAME' class='col-sm-4 col-form-label'>TAXPAYER_NAME</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.TAXPAYER_NAME}}is-invalid{{/errors.TAXPAYER_NAME}}' id='TAXPAYER_NAME' name='TAXPAYER_NAME' placeholder='NULL' value='{{TAXPAYER_NAME}}'  >
+      <input type='text' class='form-control {{#errors.TAXPAYER_NAME.has_errors}}is-invalid{{/errors.TAXPAYER_NAME.has_errors}}' id='TAXPAYER_NAME' name='TAXPAYER_NAME' placeholder='NULL' value='{{TAXPAYER_NAME}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.TAXPAYER_NAME}}<li>{{.}}</li>{{/errors.TAXPAYER_NAME}}
+          {{#errors.TAXPAYER_NAME.messages}}<li>{{.}}</li>{{/errors.TAXPAYER_NAME.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -92,6 +92,52 @@
 
 
 <br>
+<div class='card'>
+  <div class='card-header'>
+    Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    Has many donation ( <a href='/DURC/donation/'>see all</a> )
+{{^donation}}
+(no values)
+{{/donation}}
+  </div>
+<div class='card-body'>
+
+<table id='table_donation' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> amount </th>
+			<th> nonprofitcorp_id </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+			<th> deleted_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#donation}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/donation/{{id}}'>{{id}}</a></td>
+			<td>{{amount}}</td>
+			<td>{{nonprofitcorp_id_DURClabel}} ({{nonprofitcorp_id}}) </td>			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+			<td>{{deleted_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/donation}}
+</tbody>
+</table>
+</div></div> <!-- end donation card-->
+<br>
+</div></div> <!--end has many card-->
+<br>
     
     <script type='text/javascript'>
     // This javascript controls the null checkboxes
@@ -116,10 +162,19 @@
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

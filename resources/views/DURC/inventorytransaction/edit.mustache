@@ -38,10 +38,10 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
@@ -81,14 +81,17 @@ $('.select2_transactionType').select2({
   <div class='form-group row {{transactionCreatedDate_row_class}}'>
     <label for='transactionCreatedDate' class='col-sm-4 col-form-label'>transactionCreatedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='transactionCreatedDate' name='transactionCreatedDate' placeholder='' value='{{transactionCreatedDate}}'  >
+      <input type='text' class='form-control {{#errors.transactionCreatedDate.has_errors}}is-invalid{{/errors.transactionCreatedDate.has_errors}}' id='transactionCreatedDate' name='transactionCreatedDate' placeholder='current_timestamp()' value='{{transactionCreatedDate}}' >
 
 <button type='button' class='btn btn-primary' id='transactionCreatedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='transactionCreatedDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.transactionCreatedDate.messages}}<li>{{.}}</li>{{/errors.transactionCreatedDate.messages}}
+  </ul>
+</div><script>
 	var transactionCreatedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#transactionCreatedDate_TodayNow').click( function(e) {
       		$('#transactionCreatedDate').val(transactionCreatedDateConv.format(new Date())).change(); } );
@@ -105,20 +108,21 @@ $('.select2_transactionType').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{transactionModifiedDate_row_class}}'>
     <label for='transactionModifiedDate' class='col-sm-4 col-form-label'>transactionModifiedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='transactionModifiedDate' name='transactionModifiedDate' placeholder='' value='{{transactionModifiedDate}}'  >
+      <input type='text' class='form-control {{#errors.transactionModifiedDate.has_errors}}is-invalid{{/errors.transactionModifiedDate.has_errors}}' id='transactionModifiedDate' name='transactionModifiedDate' placeholder='current_timestamp()' value='{{transactionModifiedDate}}' >
 
 <button type='button' class='btn btn-primary' id='transactionModifiedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='transactionModifiedDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.transactionModifiedDate.messages}}<li>{{.}}</li>{{/errors.transactionModifiedDate.messages}}
+  </ul>
+</div><script>
 	var transactionModifiedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#transactionModifiedDate_TodayNow').click( function(e) {
       		$('#transactionModifiedDate').val(transactionModifiedDateConv.format(new Date())).change(); } );
@@ -135,9 +139,7 @@ $('.select2_transactionType').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{product_id_row_class}}'>
     <label for='product_id' class='col-sm-4 col-form-label'>product_id</label>
     <div class='col-sm-7'>
@@ -174,10 +176,10 @@ $('.select2_product_id').select2({
   <div class='form-group row {{quantity_row_class}}'>
     <label for='quantity' class='col-sm-4 col-form-label'>quantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.quantity}}is-invalid{{/errors.quantity}}' id='quantity' name='quantity' placeholder='' value='{{quantity}}'  required>
+      <input type='text' class='form-control {{#errors.quantity.has_errors}}is-invalid{{/errors.quantity.has_errors}}' id='quantity' name='quantity' placeholder='' value='{{quantity}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.quantity}}<li>{{.}}</li>{{/errors.quantity}}
+          {{#errors.quantity.messages}}<li>{{.}}</li>{{/errors.quantity.messages}}
           </ul>
        </div>
     </div></div>
@@ -250,10 +252,10 @@ $('.select2_customerOrder_id').select2({
   <div class='form-group row {{comments_row_class}}'>
     <label for='comments' class='col-sm-4 col-form-label'>comments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.comments}}is-invalid{{/errors.comments}}' id='comments' name='comments' placeholder='NULL' value='{{comments}}'  >
+      <input type='text' class='form-control {{#errors.comments.has_errors}}is-invalid{{/errors.comments.has_errors}}' id='comments' name='comments' placeholder='NULL' value='{{comments}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.comments}}<li>{{.}}</li>{{/errors.comments}}
+          {{#errors.comments.messages}}<li>{{.}}</li>{{/errors.comments.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -422,10 +424,19 @@ $('.select2_customerOrder_id').select2({
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

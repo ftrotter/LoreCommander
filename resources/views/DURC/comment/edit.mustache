@@ -1,0 +1,261 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/comment' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/comment/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>comment</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_comment/'>Return to comment list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/comment/create'>Create new comment </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{comment_text_row_class}}'>
+    <label for='comment_text' class='col-sm-4 col-form-label'>comment_text</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.comment_text.has_errors}}is-invalid{{/errors.comment_text.has_errors}}' id='comment_text' name='comment_text' placeholder='' value='{{comment_text}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.comment_text.messages}}<li>{{.}}</li>{{/errors.comment_text.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{post_id_row_class}}'>
+    <label for='post_id' class='col-sm-4 col-form-label'>post_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{post_id}} (see below for lookup value)<br>
+	<select class='select2_post_id form-control' id='post_id' name='post_id'  >
+	<option value='{{post_id}}' selected='selected'>{{post_id}}</option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+
+$('.select2_post_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/post',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
+          }
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
+});
+
+
+</script>
+
+
+  <div class='form-group row {{created_at_row_class}}'>
+    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+
+<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
+  </ul>
+</div><script>
+	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#created_at_TodayNow').click( function(e) {
+      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
+
+    	$('#created_at_FontPicker').click(
+      		function(e) {
+        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div></div>
+  <div class='form-group row {{updated_at_row_class}}'>
+    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+
+<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
+  </ul>
+</div><script>
+	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#updated_at_TodayNow').click( function(e) {
+      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
+
+    	$('#updated_at_FontPicker').click(
+      		function(e) {
+        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/comment/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='comment' class='do-soft-delete btn btn-outline-danger'>Hard Delete comment</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    post ( <a href='/DURC/post/'>see all</a> )
+{{^post}}
+(no values)
+{{/post}}
+  </div>
+<div class='card-body'>
+<table id='table_post' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> title </th>
+			<th> content </th>
+			<th> created_at </th>
+			<th> updated_at </th>
+
+</tr>
+</thead>
+<tbody>
+{{#post}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/post/{{id}}'>{{id}}</a></td>
+			<td>{{title}}</td>
+			<td>{{content}}</td>
+			<td>{{created_at}}</td>
+			<td>{{updated_at}}</td>
+		
+		{{/.}}
+	</tr>
+{{/post}}
+</tbody>
+</table>
+</div></div> <!-- end post card-->
+</div></div> <!--end belongs to card-->
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

@@ -38,10 +38,10 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
@@ -114,14 +114,17 @@ $('.select2_createdBy_employee_id').select2({
   <div class='form-group row {{submittedDate_row_class}}'>
     <label for='submittedDate' class='col-sm-4 col-form-label'>submittedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='submittedDate' name='submittedDate' placeholder='' value='{{submittedDate}}'  >
+      <input type='text' class='form-control {{#errors.submittedDate.has_errors}}is-invalid{{/errors.submittedDate.has_errors}}' id='submittedDate' name='submittedDate' placeholder='NULL' value='{{submittedDate}}' >
 
 <button type='button' class='btn btn-primary' id='submittedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='submittedDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.submittedDate.messages}}<li>{{.}}</li>{{/errors.submittedDate.messages}}
+  </ul>
+</div><script>
 	var submittedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#submittedDate_TodayNow').click( function(e) {
       		$('#submittedDate').val(submittedDateConv.format(new Date())).change(); } );
@@ -138,20 +141,24 @@ $('.select2_createdBy_employee_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='submittedDate' name='submittedDateNull' id='submittedDateNull' value='submittedDateNull' {{submittedDate_checked}}>
+                    <label class='form-check-label' for='submittedDateNull'>null</label>
+                </div></div>
   <div class='form-group row {{creationDate_row_class}}'>
     <label for='creationDate' class='col-sm-4 col-form-label'>creationDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='creationDate' name='creationDate' placeholder='' value='{{creationDate}}'  >
+      <input type='text' class='form-control {{#errors.creationDate.has_errors}}is-invalid{{/errors.creationDate.has_errors}}' id='creationDate' name='creationDate' placeholder='current_timestamp()' value='{{creationDate}}' >
 
 <button type='button' class='btn btn-primary' id='creationDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='creationDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.creationDate.messages}}<li>{{.}}</li>{{/errors.creationDate.messages}}
+  </ul>
+</div><script>
 	var creationDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#creationDate_TodayNow').click( function(e) {
       		$('#creationDate').val(creationDateConv.format(new Date())).change(); } );
@@ -168,9 +175,7 @@ $('.select2_createdBy_employee_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{status_id_row_class}}'>
     <label for='status_id' class='col-sm-4 col-form-label'>status_id</label>
     <div class='col-sm-7'>
@@ -207,14 +212,17 @@ $('.select2_status_id').select2({
   <div class='form-group row {{expectedDate_row_class}}'>
     <label for='expectedDate' class='col-sm-4 col-form-label'>expectedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='expectedDate' name='expectedDate' placeholder='' value='{{expectedDate}}'  >
+      <input type='text' class='form-control {{#errors.expectedDate.has_errors}}is-invalid{{/errors.expectedDate.has_errors}}' id='expectedDate' name='expectedDate' placeholder='NULL' value='{{expectedDate}}' >
 
 <button type='button' class='btn btn-primary' id='expectedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='expectedDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.expectedDate.messages}}<li>{{.}}</li>{{/errors.expectedDate.messages}}
+  </ul>
+</div><script>
 	var expectedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#expectedDate_TodayNow').click( function(e) {
       		$('#expectedDate').val(expectedDateConv.format(new Date())).change(); } );
@@ -231,40 +239,44 @@ $('.select2_status_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='expectedDate' name='expectedDateNull' id='expectedDateNull' value='expectedDateNull' {{expectedDate_checked}}>
+                    <label class='form-check-label' for='expectedDateNull'>null</label>
+                </div></div>
   <div class='form-group row {{shippingFee_row_class}}'>
     <label for='shippingFee' class='col-sm-4 col-form-label'>shippingFee</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shippingFee}}is-invalid{{/errors.shippingFee}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}'  >
+      <input type='text' class='form-control {{#errors.shippingFee.has_errors}}is-invalid{{/errors.shippingFee.has_errors}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shippingFee}}<li>{{.}}</li>{{/errors.shippingFee}}
+          {{#errors.shippingFee.messages}}<li>{{.}}</li>{{/errors.shippingFee.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{taxes_row_class}}'>
     <label for='taxes' class='col-sm-4 col-form-label'>taxes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.taxes}}is-invalid{{/errors.taxes}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}'  >
+      <input type='text' class='form-control {{#errors.taxes.has_errors}}is-invalid{{/errors.taxes.has_errors}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.taxes}}<li>{{.}}</li>{{/errors.taxes}}
+          {{#errors.taxes.messages}}<li>{{.}}</li>{{/errors.taxes.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{paymentDate_row_class}}'>
     <label for='paymentDate' class='col-sm-4 col-form-label'>paymentDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='paymentDate' name='paymentDate' placeholder='' value='{{paymentDate}}'  >
+      <input type='text' class='form-control {{#errors.paymentDate.has_errors}}is-invalid{{/errors.paymentDate.has_errors}}' id='paymentDate' name='paymentDate' placeholder='NULL' value='{{paymentDate}}' >
 
 <button type='button' class='btn btn-primary' id='paymentDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='paymentDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.paymentDate.messages}}<li>{{.}}</li>{{/errors.paymentDate.messages}}
+  </ul>
+</div><script>
 	var paymentDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#paymentDate_TodayNow').click( function(e) {
       		$('#paymentDate').val(paymentDateConv.format(new Date())).change(); } );
@@ -281,16 +293,17 @@ $('.select2_status_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='paymentDate' name='paymentDateNull' id='paymentDateNull' value='paymentDateNull' {{paymentDate_checked}}>
+                    <label class='form-check-label' for='paymentDateNull'>null</label>
+                </div></div>
   <div class='form-group row {{paymentAmount_row_class}}'>
     <label for='paymentAmount' class='col-sm-4 col-form-label'>paymentAmount</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.paymentAmount}}is-invalid{{/errors.paymentAmount}}' id='paymentAmount' name='paymentAmount' placeholder='0.0000' value='{{paymentAmount}}'  >
+      <input type='text' class='form-control {{#errors.paymentAmount.has_errors}}is-invalid{{/errors.paymentAmount.has_errors}}' id='paymentAmount' name='paymentAmount' placeholder='0.0000' value='{{paymentAmount}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.paymentAmount}}<li>{{.}}</li>{{/errors.paymentAmount}}
+          {{#errors.paymentAmount.messages}}<li>{{.}}</li>{{/errors.paymentAmount.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -300,10 +313,10 @@ $('.select2_status_id').select2({
   <div class='form-group row {{paymentMethod_row_class}}'>
     <label for='paymentMethod' class='col-sm-4 col-form-label'>paymentMethod</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.paymentMethod}}is-invalid{{/errors.paymentMethod}}' id='paymentMethod' name='paymentMethod' placeholder='NULL' value='{{paymentMethod}}'  >
+      <input type='text' class='form-control {{#errors.paymentMethod.has_errors}}is-invalid{{/errors.paymentMethod.has_errors}}' id='paymentMethod' name='paymentMethod' placeholder='NULL' value='{{paymentMethod}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.paymentMethod}}<li>{{.}}</li>{{/errors.paymentMethod}}
+          {{#errors.paymentMethod.messages}}<li>{{.}}</li>{{/errors.paymentMethod.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -313,10 +326,10 @@ $('.select2_status_id').select2({
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.notes}}is-invalid{{/errors.notes}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+      <input type='text' class='form-control {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.notes}}<li>{{.}}</li>{{/errors.notes}}
+          {{#errors.notes.messages}}<li>{{.}}</li>{{/errors.notes.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -359,14 +372,17 @@ $('.select2_approvedBy_employee_id').select2({
   <div class='form-group row {{approvedDate_row_class}}'>
     <label for='approvedDate' class='col-sm-4 col-form-label'>approvedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='approvedDate' name='approvedDate' placeholder='' value='{{approvedDate}}'  >
+      <input type='text' class='form-control {{#errors.approvedDate.has_errors}}is-invalid{{/errors.approvedDate.has_errors}}' id='approvedDate' name='approvedDate' placeholder='NULL' value='{{approvedDate}}' >
 
 <button type='button' class='btn btn-primary' id='approvedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='approvedDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.approvedDate.messages}}<li>{{.}}</li>{{/errors.approvedDate.messages}}
+  </ul>
+</div><script>
 	var approvedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#approvedDate_TodayNow').click( function(e) {
       		$('#approvedDate').val(approvedDateConv.format(new Date())).change(); } );
@@ -383,9 +399,10 @@ $('.select2_approvedBy_employee_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='approvedDate' name='approvedDateNull' id='approvedDateNull' value='approvedDateNull' {{approvedDate_checked}}>
+                    <label class='form-check-label' for='approvedDateNull'>null</label>
+                </div></div>
   <div class='form-group row {{submittedBy_employee_id_row_class}}'>
     <label for='submittedBy_employee_id' class='col-sm-4 col-form-label'>submittedBy_employee_id</label>
     <div class='col-sm-7'>
@@ -856,10 +873,19 @@ $('.select2_submittedBy_employee_id').select2({
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

@@ -38,10 +38,10 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
@@ -156,10 +156,10 @@ $('.select2_vspack_id').select2({
   <div class='form-group row {{link_note_row_class}}'>
     <label for='link_note' class='col-sm-4 col-form-label'>link_note</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.link_note}}is-invalid{{/errors.link_note}}' id='link_note' name='link_note' placeholder='NULL' value='{{link_note}}'  >
+      <input type='text' class='form-control {{#errors.link_note.has_errors}}is-invalid{{/errors.link_note.has_errors}}' id='link_note' name='link_note' placeholder='NULL' value='{{link_note}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.link_note}}<li>{{.}}</li>{{/errors.link_note}}
+          {{#errors.link_note.messages}}<li>{{.}}</li>{{/errors.link_note.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -169,14 +169,17 @@ $('.select2_vspack_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  required>
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
+  </ul>
+</div><script>
 	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#created_at_TodayNow').click( function(e) {
       		$('#created_at').val(created_atConv.format(new Date())).change(); } );
@@ -193,20 +196,21 @@ $('.select2_vspack_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  required>
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
+  </ul>
+</div><script>
 	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#updated_at_TodayNow').click( function(e) {
       		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
@@ -223,9 +227,7 @@ $('.select2_vspack_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
@@ -401,10 +403,19 @@ $('.select2_vspack_id').select2({
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

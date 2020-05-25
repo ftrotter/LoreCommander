@@ -169,9 +169,26 @@ function toggleFullScreen(elem) {
 </head>
 <body>
 <div id='cardView' class='container-fluid' style='padding: 3% 3%;background-color: light-grey;' >
-<h3> Delver URL: {{$base_url}}/changeCard/{{$channel_id}}/$multiverseid </h3>
+<h1> Welcome to Lore Card Show </h1>
+<p>
+This is a simple webpage that allows you turn your android phone into a MTG card data display.
+The system works by using a websocket to modify this webpage after the 
+<a target='_blank' href='https://play.google.com/store/apps/details?id=delverslab.delverlens&hl=en_US'>Delver Android App</a>
+is used to send a 
+<a target='_blank' href='https://scryfall.com/docs/api/cards/multiverse'>multiverse id</a>
+to the ShowCard URL. If you would like you can test this interface out without using delver by visiting the
+<a target='_blank' href='/changeCard/fredTV/469857'> ShowCard URL with the multiverse id for Concordia Pegasus</a>. After
+visiting that page, return to this one to see how it has changed!!
+<br>
+Debugging tips. If you have trouble, click the 'reload card view template' button to get the latests js template loaded. 
+Also, if you are using <a target='_blank' href='https://privacybadger.org/'>Privacy Badger</a> (which you should be) or an ad blocker, you will need to approved the domain api.scryfall.com which is where all of the data for card show comes from!
+
+</p>
+<h3> Enter the following into Delver: {{$base_url}}/changeCard/{{$channel_id}}/$multiverseid </h3>
 <a href='/templates/cardview.template.html'>reload card view template</a>
 <input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen(document.body)">
+<br>
+Thanks to <a target='_blank' href='https://scryfall.com'>ScryFall</a> for the amazing API and image database that makes this possible, as well as to WotC whose generous policies with fan content make both this site and ScryFall possible. 
 </div>
 </body>
 

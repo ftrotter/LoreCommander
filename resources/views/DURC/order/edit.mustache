@@ -38,10 +38,10 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
@@ -114,14 +114,17 @@ $('.select2_customer_id').select2({
   <div class='form-group row {{orderDate_row_class}}'>
     <label for='orderDate' class='col-sm-4 col-form-label'>orderDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='orderDate' name='orderDate' placeholder='' value='{{orderDate}}'  >
+      <input type='text' class='form-control {{#errors.orderDate.has_errors}}is-invalid{{/errors.orderDate.has_errors}}' id='orderDate' name='orderDate' placeholder='current_timestamp()' value='{{orderDate}}' >
 
 <button type='button' class='btn btn-primary' id='orderDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='orderDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.orderDate.messages}}<li>{{.}}</li>{{/errors.orderDate.messages}}
+  </ul>
+</div><script>
 	var orderDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#orderDate_TodayNow').click( function(e) {
       		$('#orderDate').val(orderDateConv.format(new Date())).change(); } );
@@ -138,20 +141,21 @@ $('.select2_customer_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{shippedDate_row_class}}'>
     <label for='shippedDate' class='col-sm-4 col-form-label'>shippedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='shippedDate' name='shippedDate' placeholder='' value='{{shippedDate}}'  >
+      <input type='text' class='form-control {{#errors.shippedDate.has_errors}}is-invalid{{/errors.shippedDate.has_errors}}' id='shippedDate' name='shippedDate' placeholder='NULL' value='{{shippedDate}}' >
 
 <button type='button' class='btn btn-primary' id='shippedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='shippedDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.shippedDate.messages}}<li>{{.}}</li>{{/errors.shippedDate.messages}}
+  </ul>
+</div><script>
 	var shippedDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#shippedDate_TodayNow').click( function(e) {
       		$('#shippedDate').val(shippedDateConv.format(new Date())).change(); } );
@@ -168,9 +172,10 @@ $('.select2_customer_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='shippedDate' name='shippedDateNull' id='shippedDateNull' value='shippedDateNull' {{shippedDate_checked}}>
+                    <label class='form-check-label' for='shippedDateNull'>null</label>
+                </div></div>
   <div class='form-group row {{shipper_id_row_class}}'>
     <label for='shipper_id' class='col-sm-4 col-form-label'>shipper_id</label>
     <div class='col-sm-7'>
@@ -207,10 +212,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipName_row_class}}'>
     <label for='shipName' class='col-sm-4 col-form-label'>shipName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipName}}is-invalid{{/errors.shipName}}' id='shipName' name='shipName' placeholder='NULL' value='{{shipName}}'  >
+      <input type='text' class='form-control {{#errors.shipName.has_errors}}is-invalid{{/errors.shipName.has_errors}}' id='shipName' name='shipName' placeholder='NULL' value='{{shipName}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shipName}}<li>{{.}}</li>{{/errors.shipName}}
+          {{#errors.shipName.messages}}<li>{{.}}</li>{{/errors.shipName.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -220,10 +225,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipAddress_row_class}}'>
     <label for='shipAddress' class='col-sm-4 col-form-label'>shipAddress</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipAddress}}is-invalid{{/errors.shipAddress}}' id='shipAddress' name='shipAddress' placeholder='NULL' value='{{shipAddress}}'  >
+      <input type='text' class='form-control {{#errors.shipAddress.has_errors}}is-invalid{{/errors.shipAddress.has_errors}}' id='shipAddress' name='shipAddress' placeholder='NULL' value='{{shipAddress}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shipAddress}}<li>{{.}}</li>{{/errors.shipAddress}}
+          {{#errors.shipAddress.messages}}<li>{{.}}</li>{{/errors.shipAddress.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -233,10 +238,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipCity_row_class}}'>
     <label for='shipCity' class='col-sm-4 col-form-label'>shipCity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipCity}}is-invalid{{/errors.shipCity}}' id='shipCity' name='shipCity' placeholder='NULL' value='{{shipCity}}'  >
+      <input type='text' class='form-control {{#errors.shipCity.has_errors}}is-invalid{{/errors.shipCity.has_errors}}' id='shipCity' name='shipCity' placeholder='NULL' value='{{shipCity}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shipCity}}<li>{{.}}</li>{{/errors.shipCity}}
+          {{#errors.shipCity.messages}}<li>{{.}}</li>{{/errors.shipCity.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -246,10 +251,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipStateProvince_row_class}}'>
     <label for='shipStateProvince' class='col-sm-4 col-form-label'>shipStateProvince</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipStateProvince}}is-invalid{{/errors.shipStateProvince}}' id='shipStateProvince' name='shipStateProvince' placeholder='NULL' value='{{shipStateProvince}}'  >
+      <input type='text' class='form-control {{#errors.shipStateProvince.has_errors}}is-invalid{{/errors.shipStateProvince.has_errors}}' id='shipStateProvince' name='shipStateProvince' placeholder='NULL' value='{{shipStateProvince}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shipStateProvince}}<li>{{.}}</li>{{/errors.shipStateProvince}}
+          {{#errors.shipStateProvince.messages}}<li>{{.}}</li>{{/errors.shipStateProvince.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -259,10 +264,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipZipPostalCode_row_class}}'>
     <label for='shipZipPostalCode' class='col-sm-4 col-form-label'>shipZipPostalCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipZipPostalCode}}is-invalid{{/errors.shipZipPostalCode}}' id='shipZipPostalCode' name='shipZipPostalCode' placeholder='NULL' value='{{shipZipPostalCode}}'  >
+      <input type='text' class='form-control {{#errors.shipZipPostalCode.has_errors}}is-invalid{{/errors.shipZipPostalCode.has_errors}}' id='shipZipPostalCode' name='shipZipPostalCode' placeholder='NULL' value='{{shipZipPostalCode}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shipZipPostalCode}}<li>{{.}}</li>{{/errors.shipZipPostalCode}}
+          {{#errors.shipZipPostalCode.messages}}<li>{{.}}</li>{{/errors.shipZipPostalCode.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -272,10 +277,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shipCountryRegion_row_class}}'>
     <label for='shipCountryRegion' class='col-sm-4 col-form-label'>shipCountryRegion</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipCountryRegion}}is-invalid{{/errors.shipCountryRegion}}' id='shipCountryRegion' name='shipCountryRegion' placeholder='NULL' value='{{shipCountryRegion}}'  >
+      <input type='text' class='form-control {{#errors.shipCountryRegion.has_errors}}is-invalid{{/errors.shipCountryRegion.has_errors}}' id='shipCountryRegion' name='shipCountryRegion' placeholder='NULL' value='{{shipCountryRegion}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shipCountryRegion}}<li>{{.}}</li>{{/errors.shipCountryRegion}}
+          {{#errors.shipCountryRegion.messages}}<li>{{.}}</li>{{/errors.shipCountryRegion.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -285,10 +290,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{shippingFee_row_class}}'>
     <label for='shippingFee' class='col-sm-4 col-form-label'>shippingFee</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shippingFee}}is-invalid{{/errors.shippingFee}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}'  >
+      <input type='text' class='form-control {{#errors.shippingFee.has_errors}}is-invalid{{/errors.shippingFee.has_errors}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.shippingFee}}<li>{{.}}</li>{{/errors.shippingFee}}
+          {{#errors.shippingFee.messages}}<li>{{.}}</li>{{/errors.shippingFee.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -298,10 +303,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{taxes_row_class}}'>
     <label for='taxes' class='col-sm-4 col-form-label'>taxes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.taxes}}is-invalid{{/errors.taxes}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}'  >
+      <input type='text' class='form-control {{#errors.taxes.has_errors}}is-invalid{{/errors.taxes.has_errors}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.taxes}}<li>{{.}}</li>{{/errors.taxes}}
+          {{#errors.taxes.messages}}<li>{{.}}</li>{{/errors.taxes.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -311,10 +316,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{paymentType_row_class}}'>
     <label for='paymentType' class='col-sm-4 col-form-label'>paymentType</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.paymentType}}is-invalid{{/errors.paymentType}}' id='paymentType' name='paymentType' placeholder='NULL' value='{{paymentType}}'  >
+      <input type='text' class='form-control {{#errors.paymentType.has_errors}}is-invalid{{/errors.paymentType.has_errors}}' id='paymentType' name='paymentType' placeholder='NULL' value='{{paymentType}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.paymentType}}<li>{{.}}</li>{{/errors.paymentType}}
+          {{#errors.paymentType.messages}}<li>{{.}}</li>{{/errors.paymentType.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -324,14 +329,17 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{paidDate_row_class}}'>
     <label for='paidDate' class='col-sm-4 col-form-label'>paidDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='paidDate' name='paidDate' placeholder='' value='{{paidDate}}'  >
+      <input type='text' class='form-control {{#errors.paidDate.has_errors}}is-invalid{{/errors.paidDate.has_errors}}' id='paidDate' name='paidDate' placeholder='NULL' value='{{paidDate}}' >
 
 <button type='button' class='btn btn-primary' id='paidDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='paidDate_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.paidDate.messages}}<li>{{.}}</li>{{/errors.paidDate.messages}}
+  </ul>
+</div><script>
 	var paidDateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#paidDate_TodayNow').click( function(e) {
       		$('#paidDate').val(paidDateConv.format(new Date())).change(); } );
@@ -348,16 +356,17 @@ $('.select2_shipper_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='paidDate' name='paidDateNull' id='paidDateNull' value='paidDateNull' {{paidDate_checked}}>
+                    <label class='form-check-label' for='paidDateNull'>null</label>
+                </div></div>
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.notes}}is-invalid{{/errors.notes}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}'  >
+      <input type='text' class='form-control {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.notes}}<li>{{.}}</li>{{/errors.notes}}
+          {{#errors.notes.messages}}<li>{{.}}</li>{{/errors.notes.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -367,10 +376,10 @@ $('.select2_shipper_id').select2({
   <div class='form-group row {{taxRate_row_class}}'>
     <label for='taxRate' class='col-sm-4 col-form-label'>taxRate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.taxRate}}is-invalid{{/errors.taxRate}}' id='taxRate' name='taxRate' placeholder='0' value='{{taxRate}}'  >
+      <input type='text' class='form-control {{#errors.taxRate.has_errors}}is-invalid{{/errors.taxRate.has_errors}}' id='taxRate' name='taxRate' placeholder='0' value='{{taxRate}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.taxRate}}<li>{{.}}</li>{{/errors.taxRate}}
+          {{#errors.taxRate.messages}}<li>{{.}}</li>{{/errors.taxRate.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -783,10 +792,19 @@ $('.select2_status_id').select2({
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

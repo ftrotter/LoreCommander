@@ -38,10 +38,10 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
@@ -141,14 +141,17 @@
   <div class='form-group row {{this_datetime_row_class}}'>
     <label for='this_datetime' class='col-sm-4 col-form-label'>this_datetime</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='this_datetime' name='this_datetime' placeholder='' value='{{this_datetime}}'  required>
+      <input type='text' class='form-control {{#errors.this_datetime.has_errors}}is-invalid{{/errors.this_datetime.has_errors}}' id='this_datetime' name='this_datetime' placeholder='' value='{{this_datetime}}' >
 
 <button type='button' class='btn btn-primary' id='this_datetime_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='this_datetime_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.this_datetime.messages}}<li>{{.}}</li>{{/errors.this_datetime.messages}}
+  </ul>
+</div><script>
 	var this_datetimeConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#this_datetime_TodayNow').click( function(e) {
       		$('#this_datetime').val(this_datetimeConv.format(new Date())).change(); } );
@@ -165,20 +168,22 @@
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{this_date_row_class}}'>
     <label for='this_date' class='col-sm-4 col-form-label'>this_date</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='this_date' name='this_date' placeholder='' value='{{this_date}}'  required>
-
-<button type='button' class='btn btn-primary' id='this_date_FontPicker'>
-<img src='/css/ic_today_black_24dp_1x.png'> 
-</button>
-<button type='button' class='btn btn-primary' id='this_date_TodayNow'> Today </button>
-
-<script>
+      <input type='text' class='form-control {{#errors.this_date.has_errors}}is-invalid{{/errors.this_date.has_errors}}' id='this_date' name='this_date' placeholder='' value='{{this_date}}' >
+        
+    <button type='button' class='btn btn-primary' id='this_date_FontPicker'>
+    <img src='/css/ic_today_black_24dp_1x.png'> 
+    </button>
+    <button type='button' class='btn btn-primary' id='this_date_TodayNow'> Today </button>
+    <div class='invalid-feedback'>
+      <ul>
+      {{#errors.this_date.messages}}<li>{{.}}</li>{{/errors.this_date.messages}}
+      </ul>
+   </div>
+   <script>
 	var this_dateConv = new AnyTime.Converter({format: '%Y-%m-%d'});
   	$('#this_date_TodayNow').click( function(e) {
       		$('#this_date').val(this_dateConv.format(new Date())).change(); } );
@@ -193,22 +198,23 @@
 			).focus();
         	e.preventDefault();
         	} );
-</script>
+    </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
+  </ul>
+</div><script>
 	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#created_at_TodayNow').click( function(e) {
       		$('#created_at').val(created_atConv.format(new Date())).change(); } );
@@ -225,20 +231,21 @@
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
+  </ul>
+</div><script>
 	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#updated_at_TodayNow').click( function(e) {
       		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
@@ -255,20 +262,21 @@
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{deleted_at_row_class}}'>
     <label for='deleted_at' class='col-sm-4 col-form-label'>deleted_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='deleted_at' name='deleted_at' placeholder='' value='{{deleted_at}}'  >
+      <input type='text' class='form-control {{#errors.deleted_at.has_errors}}is-invalid{{/errors.deleted_at.has_errors}}' id='deleted_at' name='deleted_at' placeholder='NULL' value='{{deleted_at}}' >
 
 <button type='button' class='btn btn-primary' id='deleted_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='deleted_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.deleted_at.messages}}<li>{{.}}</li>{{/errors.deleted_at.messages}}
+  </ul>
+</div><script>
 	var deleted_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#deleted_at_TodayNow').click( function(e) {
       		$('#deleted_at').val(deleted_atConv.format(new Date())).change(); } );
@@ -285,9 +293,10 @@
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='deleted_at' name='deleted_atNull' id='deleted_atNull' value='deleted_atNull' {{deleted_at_checked}}>
+                    <label class='form-check-label' for='deleted_atNull'>null</label>
+                </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
@@ -342,10 +351,19 @@
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

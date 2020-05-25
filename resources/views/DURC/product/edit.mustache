@@ -38,10 +38,10 @@
   <div class='form-group row {{supplier_ids_row_class}}'>
     <label for='supplier_ids' class='col-sm-4 col-form-label'>supplier_ids</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.supplier_ids}}is-invalid{{/errors.supplier_ids}}' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}'  >
+      <input type='text' class='form-control {{#errors.supplier_ids.has_errors}}is-invalid{{/errors.supplier_ids.has_errors}}' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.supplier_ids}}<li>{{.}}</li>{{/errors.supplier_ids}}
+          {{#errors.supplier_ids.messages}}<li>{{.}}</li>{{/errors.supplier_ids.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -51,20 +51,20 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{productCode_row_class}}'>
     <label for='productCode' class='col-sm-4 col-form-label'>productCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.productCode}}is-invalid{{/errors.productCode}}' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}'  >
+      <input type='text' class='form-control {{#errors.productCode.has_errors}}is-invalid{{/errors.productCode.has_errors}}' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.productCode}}<li>{{.}}</li>{{/errors.productCode}}
+          {{#errors.productCode.messages}}<li>{{.}}</li>{{/errors.productCode.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -74,10 +74,10 @@
   <div class='form-group row {{productName_row_class}}'>
     <label for='productName' class='col-sm-4 col-form-label'>productName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.productName}}is-invalid{{/errors.productName}}' id='productName' name='productName' placeholder='NULL' value='{{productName}}'  >
+      <input type='text' class='form-control {{#errors.productName.has_errors}}is-invalid{{/errors.productName.has_errors}}' id='productName' name='productName' placeholder='NULL' value='{{productName}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.productName}}<li>{{.}}</li>{{/errors.productName}}
+          {{#errors.productName.messages}}<li>{{.}}</li>{{/errors.productName.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -87,10 +87,10 @@
   <div class='form-group row {{description_row_class}}'>
     <label for='description' class='col-sm-4 col-form-label'>description</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.description}}is-invalid{{/errors.description}}' id='description' name='description' placeholder='NULL' value='{{description}}'  >
+      <input type='text' class='form-control {{#errors.description.has_errors}}is-invalid{{/errors.description.has_errors}}' id='description' name='description' placeholder='NULL' value='{{description}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.description}}<li>{{.}}</li>{{/errors.description}}
+          {{#errors.description.messages}}<li>{{.}}</li>{{/errors.description.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -100,10 +100,10 @@
   <div class='form-group row {{standardCost_row_class}}'>
     <label for='standardCost' class='col-sm-4 col-form-label'>standardCost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.standardCost}}is-invalid{{/errors.standardCost}}' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}'  >
+      <input type='text' class='form-control {{#errors.standardCost.has_errors}}is-invalid{{/errors.standardCost.has_errors}}' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.standardCost}}<li>{{.}}</li>{{/errors.standardCost}}
+          {{#errors.standardCost.messages}}<li>{{.}}</li>{{/errors.standardCost.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -113,20 +113,20 @@
   <div class='form-group row {{listPrice_row_class}}'>
     <label for='listPrice' class='col-sm-4 col-form-label'>listPrice</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.listPrice}}is-invalid{{/errors.listPrice}}' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}'  >
+      <input type='text' class='form-control {{#errors.listPrice.has_errors}}is-invalid{{/errors.listPrice.has_errors}}' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.listPrice}}<li>{{.}}</li>{{/errors.listPrice}}
+          {{#errors.listPrice.messages}}<li>{{.}}</li>{{/errors.listPrice.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{reorderLevel_row_class}}'>
     <label for='reorderLevel' class='col-sm-4 col-form-label'>reorderLevel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.reorderLevel}}is-invalid{{/errors.reorderLevel}}' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}'  >
+      <input type='text' class='form-control {{#errors.reorderLevel.has_errors}}is-invalid{{/errors.reorderLevel.has_errors}}' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.reorderLevel}}<li>{{.}}</li>{{/errors.reorderLevel}}
+          {{#errors.reorderLevel.messages}}<li>{{.}}</li>{{/errors.reorderLevel.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -136,10 +136,10 @@
   <div class='form-group row {{targetLevel_row_class}}'>
     <label for='targetLevel' class='col-sm-4 col-form-label'>targetLevel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.targetLevel}}is-invalid{{/errors.targetLevel}}' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}'  >
+      <input type='text' class='form-control {{#errors.targetLevel.has_errors}}is-invalid{{/errors.targetLevel.has_errors}}' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.targetLevel}}<li>{{.}}</li>{{/errors.targetLevel}}
+          {{#errors.targetLevel.messages}}<li>{{.}}</li>{{/errors.targetLevel.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -149,10 +149,10 @@
   <div class='form-group row {{quantityPerUnit_row_class}}'>
     <label for='quantityPerUnit' class='col-sm-4 col-form-label'>quantityPerUnit</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.quantityPerUnit}}is-invalid{{/errors.quantityPerUnit}}' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}'  >
+      <input type='text' class='form-control {{#errors.quantityPerUnit.has_errors}}is-invalid{{/errors.quantityPerUnit.has_errors}}' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.quantityPerUnit}}<li>{{.}}</li>{{/errors.quantityPerUnit}}
+          {{#errors.quantityPerUnit.messages}}<li>{{.}}</li>{{/errors.quantityPerUnit.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -162,20 +162,20 @@
   <div class='form-group row {{discontinued_row_class}}'>
     <label for='discontinued' class='col-sm-4 col-form-label'>discontinued</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.discontinued}}is-invalid{{/errors.discontinued}}' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}'  >
+      <input type='text' class='form-control {{#errors.discontinued.has_errors}}is-invalid{{/errors.discontinued.has_errors}}' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.discontinued}}<li>{{.}}</li>{{/errors.discontinued}}
+          {{#errors.discontinued.messages}}<li>{{.}}</li>{{/errors.discontinued.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{minimumReorderQuantity_row_class}}'>
     <label for='minimumReorderQuantity' class='col-sm-4 col-form-label'>minimumReorderQuantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.minimumReorderQuantity}}is-invalid{{/errors.minimumReorderQuantity}}' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}'  >
+      <input type='text' class='form-control {{#errors.minimumReorderQuantity.has_errors}}is-invalid{{/errors.minimumReorderQuantity.has_errors}}' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.minimumReorderQuantity}}<li>{{.}}</li>{{/errors.minimumReorderQuantity}}
+          {{#errors.minimumReorderQuantity.messages}}<li>{{.}}</li>{{/errors.minimumReorderQuantity.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -185,10 +185,10 @@
   <div class='form-group row {{category_row_class}}'>
     <label for='category' class='col-sm-4 col-form-label'>category</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.category}}is-invalid{{/errors.category}}' id='category' name='category' placeholder='NULL' value='{{category}}'  >
+      <input type='text' class='form-control {{#errors.category.has_errors}}is-invalid{{/errors.category.has_errors}}' id='category' name='category' placeholder='NULL' value='{{category}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.category}}<li>{{.}}</li>{{/errors.category}}
+          {{#errors.category.messages}}<li>{{.}}</li>{{/errors.category.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -198,10 +198,10 @@
   <div class='form-group row {{attachments_row_class}}'>
     <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.attachments}}is-invalid{{/errors.attachments}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}'  >
+      <input type='text' class='form-control {{#errors.attachments.has_errors}}is-invalid{{/errors.attachments.has_errors}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.attachments}}<li>{{.}}</li>{{/errors.attachments}}
+          {{#errors.attachments.messages}}<li>{{.}}</li>{{/errors.attachments.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -390,10 +390,19 @@
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });
