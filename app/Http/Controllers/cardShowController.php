@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 class cardShowController extends Controller
 {
 
-
-
+/*
+	Shows the core Card interface, which gives the details of the card as well as card variations..
+	Note: FireFox will fail if you have privacy badger running without approving the scryfall api url.
+*/
 	public function showCard($channel_id){
 
 		$current_url = url()->full();
@@ -24,6 +26,11 @@ class cardShowController extends Controller
 		
 	}
 
+/*
+	Literally just shows a big picture of the card. 
+	Note: FireFox will fail if you have privacy badger running without approving the scryfall api url.
+
+*/
 	public function showJustCard($channel_id){
 
 
