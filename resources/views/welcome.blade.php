@@ -25,12 +25,14 @@
 		<h4> Bespoke Tools </h4>
 		<ul>
 			<li> <b><a target='_blank' href='/showJustCard/fredTV'>TV Card Simple View</a></b>: 
-				Turn your TV into a pretty decent ScryFall data viewer  with
-				the <a target='_blank' href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
 				</li>
 			<li> <b><a target='_blank' href='/showCard/fredTV'>TV Card Complex View</a></b>: 
-				Turn your TV into a pretty decent ScryFall data viewer  with
-				the <a target='_blank' href='https://delverlab.com/'>Delver Lens App</a> as the remote control. 
+				</li>
+			<li> <b><a target='_blank' href='/showArtCard/fredTV'>TV Card Art View</a></b>: 
+				</li>
+			<li> <b><a target='_blank' href='https://delverlab.com/'>The Delver Lens App</a></b> is the remote control for all TV views
+				</li>
+			<li> <b><a target='_blank' href='/changeCard/fredTV/469857'>Show Pegasus Card</a></b> to test the TV views
 				</li>
 		</ul>
 		</div>
