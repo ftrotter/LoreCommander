@@ -27,6 +27,24 @@ class cardShowController extends Controller
 	}
 
 /*
+	Shows just the art!!
+	Note: FireFox will fail if you have privacy badger running without approving the scryfall api url.
+*/
+	public function showArtCard($channel_id){
+
+		$current_url = url()->full();
+		$url = url('/');
+
+
+		return view('show_art_card',[
+				'channel_id'  => $channel_id,
+				'base_url' => $url,
+				'current_url' => $current_url,
+				]);
+		
+	}
+
+/*
 	Literally just shows a big picture of the card. 
 	Note: FireFox will fail if you have privacy badger running without approving the scryfall api url.
 
@@ -75,7 +93,12 @@ class cardShowController extends Controller
 
 		$scanhistory->save();
 
-		return("Showing card $multiverse_id");
+//		return("Showing card $multiverse_id");
+		return response()->json([
+			'result' => 'success',
+			'showing_card_id' => $multiverse_id,
+
+		]);
 
 	}
 
