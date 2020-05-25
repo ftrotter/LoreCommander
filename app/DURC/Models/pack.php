@@ -75,104 +75,14 @@ class pack extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'pack_name' => 'present',
-		'pack_wizards_url' => 'present',
-		'pack_wiki_url' => 'present',
-		'pack_img_url' => 'present',
-		'created_at' => 'present',
-		'updated_at' => 'present',
+		'pack_name' => 'required',
+		'pack_wizards_url' => 'url|required',
+		'pack_wiki_url' => 'url|required',
+		'pack_img_url' => 'url|required',
+		'created_at' => 'required',
+		'updated_at' => 'required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getPackNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPackNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('pack_name', 'varchar', $value, $this);
-		$this->attributes['pack_name'] = $formatted_value;
-	}
-
-	public function getPackWizardsUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPackWizardsUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('pack_wizards_url', 'varchar', $value, $this);
-		$this->attributes['pack_wizards_url'] = $formatted_value;
-	}
-
-	public function getPackWikiUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPackWikiUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('pack_wiki_url', 'varchar', $value, $this);
-		$this->attributes['pack_wiki_url'] = $formatted_value;
-	}
-
-	public function getPackImgUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPackImgUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('pack_img_url', 'varchar', $value, $this);
-		$this->attributes['pack_img_url'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

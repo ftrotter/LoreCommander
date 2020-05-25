@@ -67,63 +67,9 @@ class pricetype extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'pricetype_name' => 'present',
+		'pricetype_name' => 'required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getPricetypeNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPricetypeNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('pricetype_name', 'varchar', $value, $this);
-		$this->attributes['pricetype_name'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

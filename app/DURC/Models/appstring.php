@@ -60,39 +60,9 @@ class appstring extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
 		'stringData' => 'nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getStringDataAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setStringDataAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('stringData', 'varchar', $value, $this);
-		$this->attributes['stringData'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

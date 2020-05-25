@@ -16,6 +16,7 @@ class magicfieldController extends DURCController
 	public $view_data = [];
 
 	protected static $hidden_fields_array = [
+		'id',
 		'created_at',
 		'updated_at',
 		'deleted_at',
@@ -246,11 +247,11 @@ class magicfieldController extends DURCController
 
         $new_id = $myNewmagicfield->id;
         return redirect("/DURC/magicfield/$new_id")->with('status', 'Data Saved!');
-        } catch (\DURCInvalidDataException $e) {
+        } catch (DURCInvalidDataException $e) {
             return back()->withInput()->with('errors', $tmp_magicfield->getErrors());
 
         } catch (\Exception $e) {
-            return redirect("/DURC/magicfield/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+            return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
 
         }
 
@@ -325,25 +326,27 @@ class magicfieldController extends DURCController
             $this->view_data['has_session_status'] = false;
         }
         
-        // Do we have errors in the session?
-        $errors = session('errors', false);
-        if ($errors) {
-            $this->view_data['errors'] = $errors->getMessages();
-            if ($this->view_data['errors']) {
-                $this->view_data['has_errors'] = true;
-            } else {
-                $this->view_data['has_errors'] = false;
-            }
+        // Do we have errors in the session? If so, set local error_messages array, 
+        // which contains an array for each field containing error messages
+        $error_messages = [];
+        if ($errors = session('errors', false)) {
+            $error_messages = $errors->getMessages();
         }
     
         $this->view_data['csrf_token'] = csrf_token();
-        
         
         foreach ( magicfield::$field_type_map as $column_name => $field_type ) {
             // If this field name is in the configured list of hidden fields, do not display the row.
             $this->view_data["{$column_name}_row_class"] = '';
             if ( in_array( $column_name, self::$hidden_fields_array ) ) {
                 $this->view_data["{$column_name}_row_class"] = 'd-none';
+            }
+            
+            // If this field has any errors, set them, otherwise tell view that has_errors is false for this field
+            $this->view_data['errors'][$column_name]['has_errors'] = false;
+            if (isset($error_messages[$column_name])) {
+                $this->view_data['errors'][$column_name]['has_errors'] = true;
+                $this->view_data['errors'][$column_name]['messages'] = $error_messages[$column_name];
             }
         }
     
@@ -425,7 +428,7 @@ class magicfieldController extends DURCController
             return back()->withInput()->with('errors', $tmp_magicfield->getErrors());
 
         } catch (\Exception $e) {
-            return redirect("/DURC/magicfield/create")->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
+            return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
 
         }
     }

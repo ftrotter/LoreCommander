@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=8e6a1b37063546624ecc524a4bd9afe1
+FILE_SIG=79a3349ec227beaf5d7321a068b1279a
 */
 namespace App;
 /*
@@ -26,6 +26,7 @@ class nonprofitcorp extends \App\DURC\Models\nonprofitcorp
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'donation', //from from many
 		];
 
 */
@@ -38,7 +39,16 @@ class nonprofitcorp extends \App\DURC\Models\nonprofitcorp
 
 
 //DURC HAS_MANY SECTION
-			//DURC did not detect any has_many relationships
+
+/**
+*	DURC is handling the donation for this nonprofitcorp in nonprofitcorp
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function donation(){
+		return parent::donation();
+	}
+
+
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 

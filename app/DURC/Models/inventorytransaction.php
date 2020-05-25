@@ -81,128 +81,14 @@ class inventorytransaction extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'transactionType' => 'present',
-		'product_id' => 'integer|present',
-		'quantity' => 'integer|present',
+		'transactionType' => 'integer|required',
+		'product_id' => 'integer|required',
+		'quantity' => 'integer|required',
 		'purchaseOrder_id' => 'integer|nullable',
 		'customerOrder_id' => 'integer|nullable',
 		'comments' => 'nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getTransactionTypeAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTransactionTypeAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('transactionType', 'tinyint', $value, $this);
-		$this->attributes['transactionType'] = $formatted_value;
-	}
-
-	public function getTransactionCreatedDateAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTransactionCreatedDateAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('transactionCreatedDate', 'datetime', $value, $this);
-		$this->attributes['transactionCreatedDate'] = $formatted_value;
-	}
-
-	public function getTransactionModifiedDateAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setTransactionModifiedDateAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('transactionModifiedDate', 'datetime', $value, $this);
-		$this->attributes['transactionModifiedDate'] = $formatted_value;
-	}
-
-	public function getProductIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setProductIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('product_id', 'int', $value, $this);
-		$this->attributes['product_id'] = $formatted_value;
-	}
-
-	public function getQuantityAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setQuantityAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('quantity', 'int', $value, $this);
-		$this->attributes['quantity'] = $formatted_value;
-	}
-
-	public function getPurchaseOrderIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setPurchaseOrderIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('purchaseOrder_id', 'int', $value, $this);
-		$this->attributes['purchaseOrder_id'] = $formatted_value;
-	}
-
-	public function getCustomerOrderIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCustomerOrderIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('customerOrder_id', 'int', $value, $this);
-		$this->attributes['customerOrder_id'] = $formatted_value;
-	}
-
-	public function getCommentsAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCommentsAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('comments', 'varchar', $value, $this);
-		$this->attributes['comments'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

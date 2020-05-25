@@ -16,14 +16,74 @@ Route::get('durctest', function () {
 
 
 
+ 			'/DURC/author', //from: DURC_aaa.author 
+ 			'/DURC/author/create', //from: DURC_aaa.author 
+ 			'/DURC/author/1', //from: DURC_aaa.author 
+ 			'/DURC/author/1/edit', //from: DURC_aaa.author 
+ 			'/DURC/author_book', //from: DURC_aaa.author_book 
+ 			'/DURC/author_book/create', //from: DURC_aaa.author_book 
+ 			'/DURC/author_book/1', //from: DURC_aaa.author_book 
+ 			'/DURC/author_book/1/edit', //from: DURC_aaa.author_book 
+ 			'/DURC/authortype', //from: DURC_aaa.authortype 
+ 			'/DURC/authortype/create', //from: DURC_aaa.authortype 
+ 			'/DURC/authortype/1', //from: DURC_aaa.authortype 
+ 			'/DURC/authortype/1/edit', //from: DURC_aaa.authortype 
+ 			'/DURC/book', //from: DURC_aaa.book 
+ 			'/DURC/book/create', //from: DURC_aaa.book 
+ 			'/DURC/book/1', //from: DURC_aaa.book 
+ 			'/DURC/book/1/edit', //from: DURC_aaa.book 
+ 			'/DURC/comment', //from: DURC_aaa.comment 
+ 			'/DURC/comment/create', //from: DURC_aaa.comment 
+ 			'/DURC/comment/1', //from: DURC_aaa.comment 
+ 			'/DURC/comment/1/edit', //from: DURC_aaa.comment 
+ 			'/DURC/donation', //from: DURC_aaa.donation 
+ 			'/DURC/donation/create', //from: DURC_aaa.donation 
+ 			'/DURC/donation/1', //from: DURC_aaa.donation 
+ 			'/DURC/donation/1/edit', //from: DURC_aaa.donation 
+ 			'/DURC/foreignkeytestgizmo', //from: DURC_aaa.foreignkeytestgizmo 
+ 			'/DURC/foreignkeytestgizmo/create', //from: DURC_aaa.foreignkeytestgizmo 
+ 			'/DURC/foreignkeytestgizmo/1', //from: DURC_aaa.foreignkeytestgizmo 
+ 			'/DURC/foreignkeytestgizmo/1/edit', //from: DURC_aaa.foreignkeytestgizmo 
+ 			'/DURC/foreignkeytestthingy', //from: DURC_aaa.foreignkeytestthingy 
+ 			'/DURC/foreignkeytestthingy/create', //from: DURC_aaa.foreignkeytestthingy 
+ 			'/DURC/foreignkeytestthingy/1', //from: DURC_aaa.foreignkeytestthingy 
+ 			'/DURC/foreignkeytestthingy/1/edit', //from: DURC_aaa.foreignkeytestthingy 
+ 			'/DURC/funnything', //from: DURC_aaa.funnything 
+ 			'/DURC/funnything/create', //from: DURC_aaa.funnything 
+ 			'/DURC/funnything/1', //from: DURC_aaa.funnything 
+ 			'/DURC/funnything/1/edit', //from: DURC_aaa.funnything 
  			'/DURC/magicfield', //from: DURC_aaa.magicField 
  			'/DURC/magicfield/create', //from: DURC_aaa.magicField 
  			'/DURC/magicfield/1', //from: DURC_aaa.magicField 
  			'/DURC/magicfield/1/edit', //from: DURC_aaa.magicField 
- 			'/DURC/validationtest', //from: DURC_aaa.validationTest 
- 			'/DURC/validationtest/create', //from: DURC_aaa.validationTest 
- 			'/DURC/validationtest/1', //from: DURC_aaa.validationTest 
- 			'/DURC/validationtest/1/edit', //from: DURC_aaa.validationTest 
+ 			'/DURC/post', //from: DURC_aaa.post 
+ 			'/DURC/post/create', //from: DURC_aaa.post 
+ 			'/DURC/post/1', //from: DURC_aaa.post 
+ 			'/DURC/post/1/edit', //from: DURC_aaa.post 
+ 			'/DURC/sibling', //from: DURC_aaa.sibling 
+ 			'/DURC/sibling/create', //from: DURC_aaa.sibling 
+ 			'/DURC/sibling/1', //from: DURC_aaa.sibling 
+ 			'/DURC/sibling/1/edit', //from: DURC_aaa.sibling 
+ 			'/DURC/test_boolean', //from: DURC_aaa.test_boolean 
+ 			'/DURC/test_boolean/create', //from: DURC_aaa.test_boolean 
+ 			'/DURC/test_boolean/1', //from: DURC_aaa.test_boolean 
+ 			'/DURC/test_boolean/1/edit', //from: DURC_aaa.test_boolean 
+ 			'/DURC/test_created_only', //from: DURC_aaa.test_created_only 
+ 			'/DURC/test_created_only/create', //from: DURC_aaa.test_created_only 
+ 			'/DURC/test_created_only/1', //from: DURC_aaa.test_created_only 
+ 			'/DURC/test_created_only/1/edit', //from: DURC_aaa.test_created_only 
+ 			'/DURC/test_default_date', //from: DURC_aaa.test_default_date 
+ 			'/DURC/test_default_date/create', //from: DURC_aaa.test_default_date 
+ 			'/DURC/test_default_date/1', //from: DURC_aaa.test_default_date 
+ 			'/DURC/test_default_date/1/edit', //from: DURC_aaa.test_default_date 
+ 			'/DURC/test_null_default', //from: DURC_aaa.test_null_default 
+ 			'/DURC/test_null_default/create', //from: DURC_aaa.test_null_default 
+ 			'/DURC/test_null_default/1', //from: DURC_aaa.test_null_default 
+ 			'/DURC/test_null_default/1/edit', //from: DURC_aaa.test_null_default 
+ 			'/DURC/vote', //from: DURC_aaa.vote 
+ 			'/DURC/vote/create', //from: DURC_aaa.vote 
+ 			'/DURC/vote/1', //from: DURC_aaa.vote 
+ 			'/DURC/vote/1/edit', //from: DURC_aaa.vote 
  			'/DURC/nonprofitcorp', //from: DURC_irs.nonprofitcorp 
  			'/DURC/nonprofitcorp/create', //from: DURC_irs.nonprofitcorp 
  			'/DURC/nonprofitcorp/1', //from: DURC_irs.nonprofitcorp 

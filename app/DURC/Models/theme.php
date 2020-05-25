@@ -81,115 +81,14 @@ class theme extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|present',
-		'theme_name' => 'present',
-		'theme_description' => 'present',
-		'emblematic_person_id' => 'integer|present',
-		'emblematic_cardface_id' => 'integer|present',
-		'emblematic_creature_id' => 'integer|present',
+		'id' => 'integer|required',
+		'theme_name' => 'required',
+		'theme_description' => 'required',
+		'emblematic_person_id' => 'integer|required',
+		'emblematic_cardface_id' => 'integer|required',
+		'emblematic_creature_id' => 'integer|required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getThemeNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setThemeNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('theme_name', 'varchar', $value, $this);
-		$this->attributes['theme_name'] = $formatted_value;
-	}
-
-	public function getThemeDescriptionAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setThemeDescriptionAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('theme_description', 'text', $value, $this);
-		$this->attributes['theme_description'] = $formatted_value;
-	}
-
-	public function getEmblematicPersonIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setEmblematicPersonIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('emblematic_person_id', 'int', $value, $this);
-		$this->attributes['emblematic_person_id'] = $formatted_value;
-	}
-
-	public function getEmblematicCardfaceIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setEmblematicCardfaceIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('emblematic_cardface_id', 'int', $value, $this);
-		$this->attributes['emblematic_cardface_id'] = $formatted_value;
-	}
-
-	public function getEmblematicCreatureIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setEmblematicCreatureIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('emblematic_creature_id', 'int', $value, $this);
-		$this->attributes['emblematic_creature_id'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

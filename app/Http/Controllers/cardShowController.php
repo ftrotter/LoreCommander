@@ -97,7 +97,7 @@ class cardShowController extends Controller
 		return response()->json([
 			'result' => 'success',
 			'showing_card_id' => $multiverse_id,
-
+			'button_class' => 'btn-success',
 		]);
 
 	}

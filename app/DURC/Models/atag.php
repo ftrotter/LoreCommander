@@ -73,88 +73,11 @@ class atag extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'arttag_name' => 'present',
+		'arttag_name' => 'required',
+		'is_directed' => 'integer',
 		'excludes_arttag_id' => 'integer|nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getArttagNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setArttagNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('arttag_name', 'varchar', $value, $this);
-		$this->attributes['arttag_name'] = $formatted_value;
-	}
-
-	public function getIsDirectedAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIsDirectedAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('is_directed', 'tinyint', $value, $this);
-		$this->attributes['is_directed'] = $formatted_value;
-	}
-
-	public function getExcludesArttagIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setExcludesArttagIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('excludes_arttag_id', 'int', $value, $this);
-		$this->attributes['excludes_arttag_id'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

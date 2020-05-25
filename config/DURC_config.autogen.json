@@ -1,5 +1,772 @@
 {
     "DURC_aaa": {
+        "author": {
+            "table_name": "author",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "lastname",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "firstname",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_date",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_date",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                }
+            ],
+            "has_many": {
+                "author_book": {
+                    "prefix": null,
+                    "type": "author_book",
+                    "from_table": "author_book",
+                    "from_db": "DURC_aaa",
+                    "from_column": "author_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`author` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `lastname` varchar(255) NOT NULL,\n  `firstname` varchar(255) NOT NULL,\n  `created_date` datetime DEFAULT NULL,\n  `updated_date` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "author_book": {
+            "table_name": "author_book",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "author_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "author",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "book_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "book",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "authortype_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "authortype",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "author": {
+                    "prefix": null,
+                    "type": "author",
+                    "to_table": "author",
+                    "to_db": "DURC_aaa",
+                    "local_key": "author_id"
+                },
+                "book": {
+                    "prefix": null,
+                    "type": "book",
+                    "to_table": "book",
+                    "to_db": "DURC_aaa",
+                    "local_key": "book_id"
+                },
+                "authortype": {
+                    "prefix": null,
+                    "type": "authortype",
+                    "to_table": "authortype",
+                    "to_db": "DURC_aaa",
+                    "local_key": "authortype_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`author_book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `author_id` int(11) NOT NULL,\n  `book_id` int(11) NOT NULL,\n  `authortype_id` int(11) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "authortype": {
+            "table_name": "authortype",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "authortypedesc",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "has_many": {
+                "author_book": {
+                    "prefix": null,
+                    "type": "author_book",
+                    "from_table": "author_book",
+                    "from_db": "DURC_aaa",
+                    "from_column": "authortype_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`authortype` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `authortypedesc` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "book": {
+            "table_name": "book",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "title",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "release_date",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "has_many": {
+                "author_book": {
+                    "prefix": null,
+                    "type": "author_book",
+                    "from_table": "author_book",
+                    "from_db": "DURC_aaa",
+                    "from_column": "book_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(255) NOT NULL,\n  `release_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "comment": {
+            "table_name": "comment",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "comment_text",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "post_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "post",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "post": {
+                    "prefix": null,
+                    "type": "post",
+                    "to_table": "post",
+                    "to_db": "DURC_aaa",
+                    "local_key": "post_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`comment` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `comment_text` varchar(1000) NOT NULL,\n  `post_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "donation": {
+            "table_name": "donation",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "amount",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "nonprofitcorp_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_irs",
+                    "foreign_table": "nonprofitcorp",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "deleted_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "nonprofitcorp": {
+                    "prefix": null,
+                    "type": "nonprofitcorp",
+                    "to_table": "nonprofitcorp",
+                    "to_db": "DURC_irs",
+                    "local_key": "nonprofitcorp_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`donation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `amount` int(11) NOT NULL,\n  `nonprofitcorp_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "foreignkeytestgizmo": {
+            "table_name": "foreignkeytestgizmo",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "gizmoname",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "deleted_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`foreignkeytestgizmo` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `gizmoname` varchar(100) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "foreignkeytestthingy": {
+            "table_name": "foreignkeytestthingy",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "thingyname",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "gizmopickupaskey",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "foreignkeytestgizmo",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "deleted_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`foreignkeytestthingy` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `thingyname` varchar(100) NOT NULL,\n  `gizmopickupaskey` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `gizmopickupaskey` (`gizmopickupaskey`),\n  CONSTRAINT `forgizmo` FOREIGN KEY (`gizmopickupaskey`) REFERENCES `foreignkeytestgizmo` (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "funnything": {
+            "table_name": "funnything",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "thisint",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thisfloat",
+                    "data_type": "float",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thisdecimal",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thisvarchar",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thisdate",
+                    "data_type": "date",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thisdatetime",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thistimestamp",
+                    "data_type": "timestamp",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thischar",
+                    "data_type": "char",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thistext",
+                    "data_type": "mediumtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thisblob",
+                    "data_type": "blob",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thistinyint",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "thistinytext",
+                    "data_type": "text",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`funnything` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `thisint` int(11) DEFAULT NULL,\n  `thisfloat` float DEFAULT NULL,\n  `thisdecimal` decimal(5,5) DEFAULT NULL,\n  `thisvarchar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `thisdate` date DEFAULT NULL,\n  `thisdatetime` datetime DEFAULT NULL,\n  `thistimestamp` timestamp NULL DEFAULT NULL,\n  `thischar` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `thistext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `thisblob` blob DEFAULT NULL,\n  `thistinyint` tinyint(11) NOT NULL,\n  `thistinytext` text COLLATE utf8mb4_unicode_ci NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        },
         "magicfield": {
             "table_name": "magicField",
             "db": "DURC_aaa",
@@ -139,8 +906,8 @@
             ],
             "create_table_sql": "CREATE TABLE `DURC_aaa`.`magicField` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `editsome_markdown` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_sql_code` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_php_code` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_python_code` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_javascript_code` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `this_datetime` datetime NOT NULL,\n  `this_date` date NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `deleted_at` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
-        "validationtest": {
-            "table_name": "validationTest",
+        "post": {
+            "table_name": "post",
             "db": "DURC_aaa",
             "column_data": [
                 {
@@ -156,67 +923,7 @@
                     "is_auto_increment": true
                 },
                 {
-                    "column_name": "is_tinyIntTrueFalse",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "has_tinyIntTrueFalse",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "thisDecimal",
-                    "data_type": "decimal",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "thisFloat",
-                    "data_type": "float",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "thisDouble",
-                    "data_type": "double",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_url",
+                    "column_name": "title",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -228,103 +935,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "this_uuid",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_alpha",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_alpha_dash",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_alpha_num",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_email",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_ipv4",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_ipv6",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_json",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "this_timezone",
+                    "column_name": "content",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -344,7 +955,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -356,11 +967,542 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`validationTest` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `is_tinyIntTrueFalse` tinyint(1) NOT NULL,\n  `has_tinyIntTrueFalse` tinyint(1) NOT NULL,\n  `thisDecimal` decimal(10,3) NOT NULL,\n  `thisFloat` float NOT NULL,\n  `thisDouble` double NOT NULL,\n  `this_url` varchar(255) NOT NULL,\n  `this_uuid` varchar(255) NOT NULL,\n  `this_alpha` varchar(255) NOT NULL,\n  `this_alpha_dash` varchar(255) NOT NULL,\n  `this_alpha_num` varchar(255) NOT NULL,\n  `this_email` varchar(255) NOT NULL,\n  `this_ipv4` varchar(255) NOT NULL,\n  `this_ipv6` varchar(255) NOT NULL,\n  `this_json` varchar(1000) NOT NULL,\n  `this_timezone` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
+            "has_many": {
+                "comment": {
+                    "prefix": null,
+                    "type": "comment",
+                    "from_table": "comment",
+                    "from_db": "DURC_aaa",
+                    "from_column": "post_id"
+                },
+                "vote": {
+                    "prefix": null,
+                    "type": "vote",
+                    "from_table": "vote",
+                    "from_db": "DURC_aaa",
+                    "from_column": "post_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`post` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(100) NOT NULL,\n  `content` varchar(1000) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "sibling": {
+            "table_name": "sibling",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "siblingname",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "step_sibling_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "sibling",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "sibling_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "sibling",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "has_many": {
+                "step_sibling": {
+                    "prefix": "step",
+                    "type": "sibling",
+                    "from_table": "sibling",
+                    "from_db": "DURC_aaa",
+                    "from_column": "step_sibling_id"
+                },
+                "sibling": {
+                    "prefix": null,
+                    "type": "sibling",
+                    "from_table": "sibling",
+                    "from_db": "DURC_aaa",
+                    "from_column": "sibling_id"
+                }
+            },
+            "belongs_to": {
+                "step_sibling": {
+                    "prefix": "step",
+                    "type": "sibling",
+                    "to_table": "sibling",
+                    "to_db": "DURC_aaa",
+                    "local_key": "step_sibling_id"
+                },
+                "sibling": {
+                    "prefix": null,
+                    "type": "sibling",
+                    "to_table": "sibling",
+                    "to_db": "DURC_aaa",
+                    "local_key": "sibling_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`sibling` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `siblingname` varchar(255) NOT NULL,\n  `step_sibling_id` int(11) DEFAULT NULL,\n  `sibling_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "test_boolean": {
+            "table_name": "test_boolean",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "label",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_something",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "has_something",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_something2",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "has_something2",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "has_something3",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_boolean` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `label` varchar(255) NOT NULL,\n  `is_something` varchar(255) NOT NULL,\n  `has_something` varchar(255) NOT NULL,\n  `is_something2` tinyint(4) DEFAULT NULL,\n  `has_something2` tinyint(4) DEFAULT NULL,\n  `has_something3` tinyint(1) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "test_created_only": {
+            "table_name": "test_created_only",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_created_only` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `name` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+        },
+        "test_default_date": {
+            "table_name": "test_default_date",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "datetime_none",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "date_none",
+                    "data_type": "date",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "datetime_current",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "date_current",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "'Current timestamp not supported for date'",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "datetime_null",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "date_null",
+                    "data_type": "date",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "datetime_defined",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "'2000-01-01 01:23:45'",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "date_defined",
+                    "data_type": "date",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "'2000-01-01'",
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_default_date` (\n  `id` int(11) NOT NULL,\n  `datetime_none` datetime NOT NULL,\n  `date_none` date NOT NULL,\n  `datetime_current` datetime NOT NULL DEFAULT current_timestamp(),\n  `date_current` varchar(255) DEFAULT 'Current timestamp not supported for date',\n  `datetime_null` datetime DEFAULT NULL,\n  `date_null` date DEFAULT NULL,\n  `datetime_defined` datetime NOT NULL DEFAULT '2000-01-01 01:23:45',\n  `date_defined` date NOT NULL DEFAULT '2000-01-01',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+        },
+        "test_null_default": {
+            "table_name": "test_null_default",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "null_var",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "non_null_var_def",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "non_null_var_no_def",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "nullable_w_default",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "'THIS IS THE DEFAULT'",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "non_null_default",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "'I CANNOT BE NULL'",
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_null_default` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `null_var` varchar(255) DEFAULT NULL,\n  `non_null_var_def` varchar(255) NOT NULL,\n  `non_null_var_no_def` varchar(255) DEFAULT NULL,\n  `nullable_w_default` varchar(255) DEFAULT 'THIS IS THE DEFAULT',\n  `non_null_default` varchar(255) NOT NULL DEFAULT 'I CANNOT BE NULL',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+        },
+        "vote": {
+            "table_name": "vote",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "post_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "post",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "votenum",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "post": {
+                    "prefix": null,
+                    "type": "post",
+                    "to_table": "post",
+                    "to_db": "DURC_aaa",
+                    "local_key": "post_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`vote` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `post_id` int(11) NOT NULL,\n  `votenum` varchar(11) NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
         }
     },
     "DURC_irs": {
@@ -405,7 +1547,16 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_irs`.`nonprofitcorp` (\n  `id` int(11) NOT NULL,\n  `EIN` int(9) NOT NULL DEFAULT 0,\n  `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=latin1"
+            "has_many": {
+                "donation": {
+                    "prefix": null,
+                    "type": "donation",
+                    "from_table": "donation",
+                    "from_db": "DURC_aaa",
+                    "from_column": "nonprofitcorp_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_irs`.`nonprofitcorp` (\n  `id` int(11) NOT NULL,\n  `EIN` int(9) NOT NULL DEFAULT 0,\n  `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
         }
     },
     "DURC_northwind_data": {
@@ -3332,8 +4483,8 @@
                     "is_linked_key": false,
                     "foreign_db": null,
                     "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
+                    "is_nullable": false,
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -3350,7 +4501,7 @@
                 },
                 {
                     "column_name": "set_type",
-                    "data_type": "varchar",
+                    "data_type": "int",
                     "is_primary_key": false,
                     "is_foreign_key": false,
                     "is_linked_key": false,
@@ -3381,7 +4532,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": true,
-                    "default_value": "NULL",
+                    "default_value": "'NULL'",
                     "is_auto_increment": false
                 },
                 {
@@ -3669,7 +4820,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -3681,7 +4832,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 }
             ],
@@ -3710,7 +4861,7 @@
                     "from_column": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) DEFAULT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT NULL,\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(11) NOT NULL,\n  `legal_pioneer` tinyint(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` int(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(11) NOT NULL,\n  `legal_pioneer` tinyint(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface": {
             "table_name": "cardface",
@@ -3929,7 +5080,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": true,
-                    "default_value": "NULL",
+                    "default_value": "'NULL'",
                     "is_auto_increment": false
                 },
                 {
@@ -3941,7 +5092,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": true,
-                    "default_value": "NULL",
+                    "default_value": "'NULL'",
                     "is_auto_increment": false
                 },
                 {
@@ -4109,7 +5260,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4121,7 +5272,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4133,7 +5284,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4145,7 +5296,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4157,7 +5308,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4169,7 +5320,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4193,7 +5344,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4205,7 +5356,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4217,7 +5368,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4229,7 +5380,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4241,7 +5392,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4265,7 +5416,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4289,7 +5440,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": true,
-                    "default_value": "NULL",
+                    "default_value": "''''''",
                     "is_auto_increment": false
                 },
                 {
@@ -4301,7 +5452,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -4313,7 +5464,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 }
             ],
@@ -4377,7 +5528,7 @@
                     "from_column": "emblematic_cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT NULL,\n  `image_hash_art_crop` varchar(32) DEFAULT NULL,\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) NOT NULL,\n  `mana_cost` varchar(255) NOT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) NOT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL,\n  `is_nonfoil` tinyint(1) NOT NULL,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL,\n  `is_color_red` tinyint(1) NOT NULL,\n  `is_color_blue` tinyint(1) NOT NULL,\n  `is_color_black` tinyint(1) NOT NULL,\n  `is_color_white` tinyint(1) NOT NULL,\n  `is_colorless` tinyint(1) NOT NULL,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL,\n  `is_color_identity_red` tinyint(1) NOT NULL,\n  `is_color_identity_blue` tinyint(1) NOT NULL,\n  `is_color_identity_black` tinyint(1) NOT NULL,\n  `is_color_identity_white` tinyint(1) NOT NULL,\n  `color_identity_count` int(11) NOT NULL,\n  `is_snow` tinyint(1) NOT NULL,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface_classofc_atag": {
             "table_name": "cardface_classofc_atag",
@@ -5593,7 +6744,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -5605,7 +6756,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 }
             ],
@@ -5618,7 +6769,7 @@
                     "from_column": "mtgset_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `arena_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` date DEFAULT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `arena_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` date DEFAULT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "pack": {
             "table_name": "pack",

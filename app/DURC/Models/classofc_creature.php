@@ -71,76 +71,10 @@ class classofc_creature extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'classofc_id' => 'integer|present',
-		'creature_id' => 'integer|present',
+		'classofc_id' => 'integer|required',
+		'creature_id' => 'integer|required',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getClassofcIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setClassofcIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('classofc_id', 'int', $value, $this);
-		$this->attributes['classofc_id'] = $formatted_value;
-	}
-
-	public function getCreatureIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatureIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('creature_id', 'int', $value, $this);
-		$this->attributes['creature_id'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 

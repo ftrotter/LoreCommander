@@ -79,115 +79,13 @@ class strategy extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer',
-		'strategy_name' => 'present',
-		'strategy_description' => 'present',
-		'strategy_url' => 'present',
+		'strategy_name' => 'required',
+		'strategy_description' => 'required',
+		'strategy_url' => 'url|required',
 		'wincon_cardface_id' => 'integer|nullable',
 		'WOTC_rule_reference' => 'nullable',
 	]; // End of validation rules
-		
-        
-	// These are mutators generated for all model attributes.
-	// Mutators are called implicitly when getting and setting the attribute
-	public function getIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('id', 'int', $value, $this);
-		$this->attributes['id'] = $formatted_value;
-	}
-
-	public function getStrategyNameAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setStrategyNameAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('strategy_name', 'varchar', $value, $this);
-		$this->attributes['strategy_name'] = $formatted_value;
-	}
-
-	public function getStrategyDescriptionAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setStrategyDescriptionAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('strategy_description', 'varchar', $value, $this);
-		$this->attributes['strategy_description'] = $formatted_value;
-	}
-
-	public function getStrategyUrlAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setStrategyUrlAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('strategy_url', 'varchar', $value, $this);
-		$this->attributes['strategy_url'] = $formatted_value;
-	}
-
-	public function getWinconCardfaceIdAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setWinconCardfaceIdAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('wincon_cardface_id', 'int', $value, $this);
-		$this->attributes['wincon_cardface_id'] = $formatted_value;
-	}
-
-	public function getWOTCRuleReferenceAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setWOTCRuleReferenceAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('WOTC_rule_reference', 'varchar', $value, $this);
-		$this->attributes['WOTC_rule_reference'] = $formatted_value;
-	}
-
-	public function getCreatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setCreatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('created_at', 'datetime', $value, $this);
-		$this->attributes['created_at'] = $formatted_value;
-	}
-
-	public function getUpdatedAtAttribute($value)
-	{
-		$formatted_value = $value;
-		return $formatted_value;
-	}
-
-	public function setUpdatedAtAttribute($value)
-	{
-		$formatted_value = DURC::formatForStorage('updated_at', 'datetime', $value, $this);
-		$this->attributes['updated_at'] = $formatted_value;
-	}
-
- 
-        
+		        
 		
 //DURC HAS_MANY SECTION
 
