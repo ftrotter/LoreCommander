@@ -102,8 +102,8 @@ class mtgset extends DURCModel{
 		'mtgset_uri' => null,
 		'icon_svg_uri' => null,
 		'search_uri' => null,
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -129,8 +129,6 @@ class mtgset extends DURCModel{
 		'mtgset_uri' => 'required',
 		'icon_svg_uri' => 'required',
 		'search_uri' => 'required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
 	]; // End of validation rules
 		        
 		
@@ -177,8 +175,8 @@ CREATE TABLE `lore`.`mtgset` (
   `mtgset_uri` varchar(255) NOT NULL,
   `icon_svg_uri` varchar(255) NOT NULL,
   `search_uri` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8

@@ -163,13 +163,16 @@ $('.select2_card_id').select2({
   <div class='form-group row {{mana_cost_row_class}}'>
     <label for='mana_cost' class='col-sm-4 col-form-label'>mana_cost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mana_cost.has_errors}}is-invalid{{/errors.mana_cost.has_errors}}' id='mana_cost' name='mana_cost' placeholder='' value='{{mana_cost}}' >
+      <input type='text' class='form-control {{#errors.mana_cost.has_errors}}is-invalid{{/errors.mana_cost.has_errors}}' id='mana_cost' name='mana_cost' placeholder='NULL' value='{{mana_cost}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.mana_cost.messages}}<li>{{.}}</li>{{/errors.mana_cost.messages}}
           </ul>
        </div>
-    </div></div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='mana_cost' name='mana_costNull' id='mana_costNull' value='mana_costNull' {{mana_cost_checked}}>
+                    <label class='form-check-label' for='mana_costNull'>null</label>
+                </div></div>
   <div class='form-group row {{cmc_row_class}}'>
     <label for='cmc' class='col-sm-4 col-form-label'>cmc</label>
     <div class='col-sm-7'>
@@ -196,13 +199,16 @@ $('.select2_card_id').select2({
   <div class='form-group row {{oracle_text_row_class}}'>
     <label for='oracle_text' class='col-sm-4 col-form-label'>oracle_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.oracle_text.has_errors}}is-invalid{{/errors.oracle_text.has_errors}}' id='oracle_text' name='oracle_text' placeholder='' value='{{oracle_text}}' >
+      <input type='text' class='form-control {{#errors.oracle_text.has_errors}}is-invalid{{/errors.oracle_text.has_errors}}' id='oracle_text' name='oracle_text' placeholder='NULL' value='{{oracle_text}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.oracle_text.messages}}<li>{{.}}</li>{{/errors.oracle_text.messages}}
           </ul>
        </div>
-    </div></div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='oracle_text' name='oracle_textNull' id='oracle_textNull' value='oracle_textNull' {{oracle_text_checked}}>
+                    <label class='form-check-label' for='oracle_textNull'>null</label>
+                </div></div>
   <div class='form-group row {{power_row_class}}'>
     <label for='power' class='col-sm-4 col-form-label'>power</label>
     <div class='col-sm-7'>
@@ -544,7 +550,7 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_identity_count_row_class}}'>
     <label for='color_identity_count' class='col-sm-4 col-form-label'>color_identity_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_identity_count.has_errors}}is-invalid{{/errors.color_identity_count.has_errors}}' id='color_identity_count' name='color_identity_count' placeholder='' value='{{color_identity_count}}' >
+      <input type='text' class='form-control {{#errors.color_identity_count.has_errors}}is-invalid{{/errors.color_identity_count.has_errors}}' id='color_identity_count' name='color_identity_count' placeholder='0' value='{{color_identity_count}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.color_identity_count.messages}}<li>{{.}}</li>{{/errors.color_identity_count.messages}}
@@ -585,7 +591,7 @@ $('.select2_card_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -616,7 +622,7 @@ $('.select2_card_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
