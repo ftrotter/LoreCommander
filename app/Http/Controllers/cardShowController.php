@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use TwoMySQLHandler\TwoMySQLHandler;
+//use TwoMySQLHandler\TwoMySQLHandler;
 
 class cardShowController extends Controller
 {
@@ -14,6 +14,8 @@ class cardShowController extends Controller
 
 		$current_url = url()->full();
 		$url = url('/');
+
+
 		return view('show_card',[
 				'channel_id'  => $channel_id,
 				'base_url' => $url,
@@ -27,6 +29,8 @@ class cardShowController extends Controller
 
 		$current_url = url()->full();
 		$url = url('/');
+
+
 
 		return view('show_just_card',[
 			'channel_id'  => $channel_id,
@@ -47,14 +51,14 @@ class cardShowController extends Controller
 
         	$pusher->trigger( $channel_id, 'show_this_card',  ['multiverse_id' => $multiverse_id] );
 
-
+/*
 		//lets log this  using the generic logger, because we need to learn to use this.. 
 		$pdo = \DB::connection()->getPdo();
 		$mySQLHandler = new TwoMySQLHandler($pdo, "lore_log", "log_message", "log_context", [], \Monolog\Logger::DEBUG);	
 		$logger = new \Monolog\Logger('CardViewer');
 		$logger->pushHandler($mySQLHandler);
 		$logger->addInfo("Showing Card",['multiverse_id' => $multiverse_id]);
-		
+*/		
 
 		//lets also have an entry into 
 		$scanhistory = \App\scanhistory::create([
