@@ -1,0 +1,172 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/test_null_default' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/test_null_default/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>test_null_default</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_test_null_default/'>Return to test_null_default list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/test_null_default/create'>Create new test_null_default </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{id_row_class}}'>
+    <label for='id' class='col-sm-4 col-form-label'>id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{null_var_row_class}}'>
+    <label for='null_var' class='col-sm-4 col-form-label'>null_var</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.null_var.has_errors}}is-invalid{{/errors.null_var.has_errors}}' id='null_var' name='null_var' placeholder='NULL' value='{{null_var}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.null_var.messages}}<li>{{.}}</li>{{/errors.null_var.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='null_var' name='null_varNull' id='null_varNull' value='null_varNull' {{null_var_checked}}>
+                    <label class='form-check-label' for='null_varNull'>null</label>
+                </div></div>
+  <div class='form-group row {{non_null_var_def_row_class}}'>
+    <label for='non_null_var_def' class='col-sm-4 col-form-label'>non_null_var_def</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.non_null_var_def.has_errors}}is-invalid{{/errors.non_null_var_def.has_errors}}' id='non_null_var_def' name='non_null_var_def' placeholder='' value='{{non_null_var_def}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.non_null_var_def.messages}}<li>{{.}}</li>{{/errors.non_null_var_def.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{non_null_var_no_def_row_class}}'>
+    <label for='non_null_var_no_def' class='col-sm-4 col-form-label'>non_null_var_no_def</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.non_null_var_no_def.has_errors}}is-invalid{{/errors.non_null_var_no_def.has_errors}}' id='non_null_var_no_def' name='non_null_var_no_def' placeholder='NULL' value='{{non_null_var_no_def}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.non_null_var_no_def.messages}}<li>{{.}}</li>{{/errors.non_null_var_no_def.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='non_null_var_no_def' name='non_null_var_no_defNull' id='non_null_var_no_defNull' value='non_null_var_no_defNull' {{non_null_var_no_def_checked}}>
+                    <label class='form-check-label' for='non_null_var_no_defNull'>null</label>
+                </div></div>
+  <div class='form-group row {{nullable_w_default_row_class}}'>
+    <label for='nullable_w_default' class='col-sm-4 col-form-label'>nullable_w_default</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.nullable_w_default.has_errors}}is-invalid{{/errors.nullable_w_default.has_errors}}' id='nullable_w_default' name='nullable_w_default' placeholder=''THIS IS THE DEFAULT'' value='{{nullable_w_default}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.nullable_w_default.messages}}<li>{{.}}</li>{{/errors.nullable_w_default.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='nullable_w_default' name='nullable_w_defaultNull' id='nullable_w_defaultNull' value='nullable_w_defaultNull' {{nullable_w_default_checked}}>
+                    <label class='form-check-label' for='nullable_w_defaultNull'>null</label>
+                </div></div>
+  <div class='form-group row {{non_null_default_row_class}}'>
+    <label for='non_null_default' class='col-sm-4 col-form-label'>non_null_default</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control {{#errors.non_null_default.has_errors}}is-invalid{{/errors.non_null_default.has_errors}}' id='non_null_default' name='non_null_default' placeholder=''I CANNOT BE NULL'' value='{{non_null_default}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.non_null_default.messages}}<li>{{.}}</li>{{/errors.non_null_default.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/test_null_default/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='test_null_default' class='do-soft-delete btn btn-outline-danger'>Hard Delete test_null_default</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+    
+    <script type='text/javascript'>
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

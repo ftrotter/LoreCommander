@@ -38,40 +38,40 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{scryfall_id_row_class}}'>
     <label for='scryfall_id' class='col-sm-4 col-form-label'>scryfall_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.scryfall_id}}is-invalid{{/errors.scryfall_id}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_id.has_errors}}is-invalid{{/errors.scryfall_id.has_errors}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.scryfall_id}}<li>{{.}}</li>{{/errors.scryfall_id}}
+          {{#errors.scryfall_id.messages}}<li>{{.}}</li>{{/errors.scryfall_id.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{code_row_class}}'>
     <label for='code' class='col-sm-4 col-form-label'>code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.code}}is-invalid{{/errors.code}}' id='code' name='code' placeholder='' value='{{code}}'  required>
+      <input type='text' class='form-control {{#errors.code.has_errors}}is-invalid{{/errors.code.has_errors}}' id='code' name='code' placeholder='' value='{{code}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.code}}<li>{{.}}</li>{{/errors.code}}
+          {{#errors.code.messages}}<li>{{.}}</li>{{/errors.code.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{mtgo_code_row_class}}'>
     <label for='mtgo_code' class='col-sm-4 col-form-label'>mtgo_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mtgo_code}}is-invalid{{/errors.mtgo_code}}' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}'  >
+      <input type='text' class='form-control {{#errors.mtgo_code.has_errors}}is-invalid{{/errors.mtgo_code.has_errors}}' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.mtgo_code}}<li>{{.}}</li>{{/errors.mtgo_code}}
+          {{#errors.mtgo_code.messages}}<li>{{.}}</li>{{/errors.mtgo_code.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -81,10 +81,10 @@
   <div class='form-group row {{arena_code_row_class}}'>
     <label for='arena_code' class='col-sm-4 col-form-label'>arena_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.arena_code}}is-invalid{{/errors.arena_code}}' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}'  >
+      <input type='text' class='form-control {{#errors.arena_code.has_errors}}is-invalid{{/errors.arena_code.has_errors}}' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.arena_code}}<li>{{.}}</li>{{/errors.arena_code}}
+          {{#errors.arena_code.messages}}<li>{{.}}</li>{{/errors.arena_code.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -94,10 +94,10 @@
   <div class='form-group row {{tcgplayer_id_row_class}}'>
     <label for='tcgplayer_id' class='col-sm-4 col-form-label'>tcgplayer_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.tcgplayer_id}}is-invalid{{/errors.tcgplayer_id}}' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}'  >
+      <input type='text' class='form-control {{#errors.tcgplayer_id.has_errors}}is-invalid{{/errors.tcgplayer_id.has_errors}}' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.tcgplayer_id}}<li>{{.}}</li>{{/errors.tcgplayer_id}}
+          {{#errors.tcgplayer_id.messages}}<li>{{.}}</li>{{/errors.tcgplayer_id.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -107,34 +107,38 @@
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.name}}is-invalid{{/errors.name}}' id='name' name='name' placeholder='' value='{{name}}'  required>
+      <input type='text' class='form-control {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.name}}<li>{{.}}</li>{{/errors.name}}
+          {{#errors.name.messages}}<li>{{.}}</li>{{/errors.name.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{set_type_row_class}}'>
     <label for='set_type' class='col-sm-4 col-form-label'>set_type</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.set_type}}is-invalid{{/errors.set_type}}' id='set_type' name='set_type' placeholder='' value='{{set_type}}'  required>
+      <input type='text' class='form-control {{#errors.set_type.has_errors}}is-invalid{{/errors.set_type.has_errors}}' id='set_type' name='set_type' placeholder='' value='{{set_type}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.set_type}}<li>{{.}}</li>{{/errors.set_type}}
+          {{#errors.set_type.messages}}<li>{{.}}</li>{{/errors.set_type.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='released_at' name='released_at' placeholder='' value='{{released_at}}'  >
-
-<button type='button' class='btn btn-primary' id='released_at_FontPicker'>
-<img src='/css/ic_today_black_24dp_1x.png'> 
-</button>
-<button type='button' class='btn btn-primary' id='released_at_TodayNow'> Today </button>
-
-<script>
+      <input type='text' class='form-control {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}' >
+        
+    <button type='button' class='btn btn-primary' id='released_at_FontPicker'>
+    <img src='/css/ic_today_black_24dp_1x.png'> 
+    </button>
+    <button type='button' class='btn btn-primary' id='released_at_TodayNow'> Today </button>
+    <div class='invalid-feedback'>
+      <ul>
+      {{#errors.released_at.messages}}<li>{{.}}</li>{{/errors.released_at.messages}}
+      </ul>
+   </div>
+   <script>
 	var released_atConv = new AnyTime.Converter({format: '%Y-%m-%d'});
   	$('#released_at_TodayNow').click( function(e) {
       		$('#released_at').val(released_atConv.format(new Date())).change(); } );
@@ -149,18 +153,19 @@
 			).focus();
         	e.preventDefault();
         	} );
-</script>
+    </script>
 
-    </div>
-  </div>
-
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='released_at' name='released_atNull' id='released_atNull' value='released_atNull' {{released_at_checked}}>
+                    <label class='form-check-label' for='released_atNull'>null</label>
+                </div></div>
   <div class='form-group row {{block_code_row_class}}'>
     <label for='block_code' class='col-sm-4 col-form-label'>block_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.block_code}}is-invalid{{/errors.block_code}}' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}'  >
+      <input type='text' class='form-control {{#errors.block_code.has_errors}}is-invalid{{/errors.block_code.has_errors}}' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.block_code}}<li>{{.}}</li>{{/errors.block_code}}
+          {{#errors.block_code.messages}}<li>{{.}}</li>{{/errors.block_code.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -170,10 +175,10 @@
   <div class='form-group row {{block_row_class}}'>
     <label for='block' class='col-sm-4 col-form-label'>block</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.block}}is-invalid{{/errors.block}}' id='block' name='block' placeholder='NULL' value='{{block}}'  >
+      <input type='text' class='form-control {{#errors.block.has_errors}}is-invalid{{/errors.block.has_errors}}' id='block' name='block' placeholder='NULL' value='{{block}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.block}}<li>{{.}}</li>{{/errors.block}}
+          {{#errors.block.messages}}<li>{{.}}</li>{{/errors.block.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -183,10 +188,10 @@
   <div class='form-group row {{parent_set_code_row_class}}'>
     <label for='parent_set_code' class='col-sm-4 col-form-label'>parent_set_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.parent_set_code}}is-invalid{{/errors.parent_set_code}}' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}'  >
+      <input type='text' class='form-control {{#errors.parent_set_code.has_errors}}is-invalid{{/errors.parent_set_code.has_errors}}' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.parent_set_code}}<li>{{.}}</li>{{/errors.parent_set_code}}
+          {{#errors.parent_set_code.messages}}<li>{{.}}</li>{{/errors.parent_set_code.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -196,10 +201,10 @@
   <div class='form-group row {{card_count_row_class}}'>
     <label for='card_count' class='col-sm-4 col-form-label'>card_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.card_count}}is-invalid{{/errors.card_count}}' id='card_count' name='card_count' placeholder='' value='{{card_count}}'  required>
+      <input type='text' class='form-control {{#errors.card_count.has_errors}}is-invalid{{/errors.card_count.has_errors}}' id='card_count' name='card_count' placeholder='' value='{{card_count}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.card_count}}<li>{{.}}</li>{{/errors.card_count}}
+          {{#errors.card_count.messages}}<li>{{.}}</li>{{/errors.card_count.messages}}
           </ul>
        </div>
     </div></div>
@@ -224,54 +229,57 @@
   <div class='form-group row {{scryfall_uri_row_class}}'>
     <label for='scryfall_uri' class='col-sm-4 col-form-label'>scryfall_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.scryfall_uri}}is-invalid{{/errors.scryfall_uri}}' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}'  required>
+      <input type='text' class='form-control {{#errors.scryfall_uri.has_errors}}is-invalid{{/errors.scryfall_uri.has_errors}}' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.scryfall_uri}}<li>{{.}}</li>{{/errors.scryfall_uri}}
+          {{#errors.scryfall_uri.messages}}<li>{{.}}</li>{{/errors.scryfall_uri.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{mtgset_uri_row_class}}'>
     <label for='mtgset_uri' class='col-sm-4 col-form-label'>mtgset_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mtgset_uri}}is-invalid{{/errors.mtgset_uri}}' id='mtgset_uri' name='mtgset_uri' placeholder='' value='{{mtgset_uri}}'  required>
+      <input type='text' class='form-control {{#errors.mtgset_uri.has_errors}}is-invalid{{/errors.mtgset_uri.has_errors}}' id='mtgset_uri' name='mtgset_uri' placeholder='' value='{{mtgset_uri}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.mtgset_uri}}<li>{{.}}</li>{{/errors.mtgset_uri}}
+          {{#errors.mtgset_uri.messages}}<li>{{.}}</li>{{/errors.mtgset_uri.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{icon_svg_uri_row_class}}'>
     <label for='icon_svg_uri' class='col-sm-4 col-form-label'>icon_svg_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.icon_svg_uri}}is-invalid{{/errors.icon_svg_uri}}' id='icon_svg_uri' name='icon_svg_uri' placeholder='' value='{{icon_svg_uri}}'  required>
+      <input type='text' class='form-control {{#errors.icon_svg_uri.has_errors}}is-invalid{{/errors.icon_svg_uri.has_errors}}' id='icon_svg_uri' name='icon_svg_uri' placeholder='' value='{{icon_svg_uri}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.icon_svg_uri}}<li>{{.}}</li>{{/errors.icon_svg_uri}}
+          {{#errors.icon_svg_uri.messages}}<li>{{.}}</li>{{/errors.icon_svg_uri.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{search_uri_row_class}}'>
     <label for='search_uri' class='col-sm-4 col-form-label'>search_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.search_uri}}is-invalid{{/errors.search_uri}}' id='search_uri' name='search_uri' placeholder='' value='{{search_uri}}'  required>
+      <input type='text' class='form-control {{#errors.search_uri.has_errors}}is-invalid{{/errors.search_uri.has_errors}}' id='search_uri' name='search_uri' placeholder='' value='{{search_uri}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.search_uri}}<li>{{.}}</li>{{/errors.search_uri}}
+          {{#errors.search_uri.messages}}<li>{{.}}</li>{{/errors.search_uri.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
+  </ul>
+</div><script>
 	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#created_at_TodayNow').click( function(e) {
       		$('#created_at').val(created_atConv.format(new Date())).change(); } );
@@ -288,20 +296,21 @@
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
+  </ul>
+</div><script>
 	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#updated_at_TodayNow').click( function(e) {
       		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
@@ -318,9 +327,7 @@
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
@@ -478,10 +485,19 @@
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

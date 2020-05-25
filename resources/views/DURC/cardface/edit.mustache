@@ -38,10 +38,10 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
@@ -81,30 +81,30 @@ $('.select2_card_id').select2({
   <div class='form-group row {{cardface_index_row_class}}'>
     <label for='cardface_index' class='col-sm-4 col-form-label'>cardface_index</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.cardface_index}}is-invalid{{/errors.cardface_index}}' id='cardface_index' name='cardface_index' placeholder='' value='{{cardface_index}}'  required>
+      <input type='text' class='form-control {{#errors.cardface_index.has_errors}}is-invalid{{/errors.cardface_index.has_errors}}' id='cardface_index' name='cardface_index' placeholder='' value='{{cardface_index}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.cardface_index}}<li>{{.}}</li>{{/errors.cardface_index}}
+          {{#errors.cardface_index.messages}}<li>{{.}}</li>{{/errors.cardface_index.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{illustration_id_row_class}}'>
     <label for='illustration_id' class='col-sm-4 col-form-label'>illustration_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.illustration_id}}is-invalid{{/errors.illustration_id}}' id='illustration_id' name='illustration_id' placeholder='' value='{{illustration_id}}'  required>
+      <input type='text' class='form-control {{#errors.illustration_id.has_errors}}is-invalid{{/errors.illustration_id.has_errors}}' id='illustration_id' name='illustration_id' placeholder='' value='{{illustration_id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.illustration_id}}<li>{{.}}</li>{{/errors.illustration_id}}
+          {{#errors.illustration_id.messages}}<li>{{.}}</li>{{/errors.illustration_id.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{artist_row_class}}'>
     <label for='artist' class='col-sm-4 col-form-label'>artist</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.artist}}is-invalid{{/errors.artist}}' id='artist' name='artist' placeholder='NULL' value='{{artist}}'  >
+      <input type='text' class='form-control {{#errors.artist.has_errors}}is-invalid{{/errors.artist.has_errors}}' id='artist' name='artist' placeholder='NULL' value='{{artist}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.artist}}<li>{{.}}</li>{{/errors.artist}}
+          {{#errors.artist.messages}}<li>{{.}}</li>{{/errors.artist.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -114,10 +114,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_row_class}}'>
     <label for='color' class='col-sm-4 col-form-label'>color</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color}}is-invalid{{/errors.color}}' id='color' name='color' placeholder='NULL' value='{{color}}'  >
+      <input type='text' class='form-control {{#errors.color.has_errors}}is-invalid{{/errors.color.has_errors}}' id='color' name='color' placeholder='NULL' value='{{color}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.color}}<li>{{.}}</li>{{/errors.color}}
+          {{#errors.color.messages}}<li>{{.}}</li>{{/errors.color.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -127,10 +127,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_identity_row_class}}'>
     <label for='color_identity' class='col-sm-4 col-form-label'>color_identity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_identity}}is-invalid{{/errors.color_identity}}' id='color_identity' name='color_identity' placeholder='NULL' value='{{color_identity}}'  >
+      <input type='text' class='form-control {{#errors.color_identity.has_errors}}is-invalid{{/errors.color_identity.has_errors}}' id='color_identity' name='color_identity' placeholder='NULL' value='{{color_identity}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.color_identity}}<li>{{.}}</li>{{/errors.color_identity}}
+          {{#errors.color_identity.messages}}<li>{{.}}</li>{{/errors.color_identity.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -140,10 +140,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{flavor_text_row_class}}'>
     <label for='flavor_text' class='col-sm-4 col-form-label'>flavor_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.flavor_text}}is-invalid{{/errors.flavor_text}}' id='flavor_text' name='flavor_text' placeholder='NULL' value='{{flavor_text}}'  >
+      <input type='text' class='form-control {{#errors.flavor_text.has_errors}}is-invalid{{/errors.flavor_text.has_errors}}' id='flavor_text' name='flavor_text' placeholder='NULL' value='{{flavor_text}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.flavor_text}}<li>{{.}}</li>{{/errors.flavor_text}}
+          {{#errors.flavor_text.messages}}<li>{{.}}</li>{{/errors.flavor_text.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -153,30 +153,30 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_row_class}}'>
     <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri}}is-invalid{{/errors.image_uri}}' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}'  required>
+      <input type='text' class='form-control {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri}}<li>{{.}}</li>{{/errors.image_uri}}
+          {{#errors.image_uri.messages}}<li>{{.}}</li>{{/errors.image_uri.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{mana_cost_row_class}}'>
     <label for='mana_cost' class='col-sm-4 col-form-label'>mana_cost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mana_cost}}is-invalid{{/errors.mana_cost}}' id='mana_cost' name='mana_cost' placeholder='' value='{{mana_cost}}'  required>
+      <input type='text' class='form-control {{#errors.mana_cost.has_errors}}is-invalid{{/errors.mana_cost.has_errors}}' id='mana_cost' name='mana_cost' placeholder='' value='{{mana_cost}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.mana_cost}}<li>{{.}}</li>{{/errors.mana_cost}}
+          {{#errors.mana_cost.messages}}<li>{{.}}</li>{{/errors.mana_cost.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{cmc_row_class}}'>
     <label for='cmc' class='col-sm-4 col-form-label'>cmc</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.cmc}}is-invalid{{/errors.cmc}}' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}'  >
+      <input type='text' class='form-control {{#errors.cmc.has_errors}}is-invalid{{/errors.cmc.has_errors}}' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.cmc}}<li>{{.}}</li>{{/errors.cmc}}
+          {{#errors.cmc.messages}}<li>{{.}}</li>{{/errors.cmc.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -186,30 +186,30 @@ $('.select2_card_id').select2({
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.name}}is-invalid{{/errors.name}}' id='name' name='name' placeholder='' value='{{name}}'  required>
+      <input type='text' class='form-control {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.name}}<li>{{.}}</li>{{/errors.name}}
+          {{#errors.name.messages}}<li>{{.}}</li>{{/errors.name.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{oracle_text_row_class}}'>
     <label for='oracle_text' class='col-sm-4 col-form-label'>oracle_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.oracle_text}}is-invalid{{/errors.oracle_text}}' id='oracle_text' name='oracle_text' placeholder='' value='{{oracle_text}}'  required>
+      <input type='text' class='form-control {{#errors.oracle_text.has_errors}}is-invalid{{/errors.oracle_text.has_errors}}' id='oracle_text' name='oracle_text' placeholder='' value='{{oracle_text}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.oracle_text}}<li>{{.}}</li>{{/errors.oracle_text}}
+          {{#errors.oracle_text.messages}}<li>{{.}}</li>{{/errors.oracle_text.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{power_row_class}}'>
     <label for='power' class='col-sm-4 col-form-label'>power</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.power}}is-invalid{{/errors.power}}' id='power' name='power' placeholder='NULL' value='{{power}}'  >
+      <input type='text' class='form-control {{#errors.power.has_errors}}is-invalid{{/errors.power.has_errors}}' id='power' name='power' placeholder='NULL' value='{{power}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.power}}<li>{{.}}</li>{{/errors.power}}
+          {{#errors.power.messages}}<li>{{.}}</li>{{/errors.power.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -219,10 +219,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{toughness_row_class}}'>
     <label for='toughness' class='col-sm-4 col-form-label'>toughness</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.toughness}}is-invalid{{/errors.toughness}}' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}'  >
+      <input type='text' class='form-control {{#errors.toughness.has_errors}}is-invalid{{/errors.toughness.has_errors}}' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.toughness}}<li>{{.}}</li>{{/errors.toughness}}
+          {{#errors.toughness.messages}}<li>{{.}}</li>{{/errors.toughness.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -232,30 +232,30 @@ $('.select2_card_id').select2({
   <div class='form-group row {{type_line_row_class}}'>
     <label for='type_line' class='col-sm-4 col-form-label'>type_line</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.type_line}}is-invalid{{/errors.type_line}}' id='type_line' name='type_line' placeholder='' value='{{type_line}}'  required>
+      <input type='text' class='form-control {{#errors.type_line.has_errors}}is-invalid{{/errors.type_line.has_errors}}' id='type_line' name='type_line' placeholder='' value='{{type_line}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.type_line}}<li>{{.}}</li>{{/errors.type_line}}
+          {{#errors.type_line.messages}}<li>{{.}}</li>{{/errors.type_line.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{border_color_row_class}}'>
     <label for='border_color' class='col-sm-4 col-form-label'>border_color</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.border_color}}is-invalid{{/errors.border_color}}' id='border_color' name='border_color' placeholder='' value='{{border_color}}'  required>
+      <input type='text' class='form-control {{#errors.border_color.has_errors}}is-invalid{{/errors.border_color.has_errors}}' id='border_color' name='border_color' placeholder='' value='{{border_color}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.border_color}}<li>{{.}}</li>{{/errors.border_color}}
+          {{#errors.border_color.messages}}<li>{{.}}</li>{{/errors.border_color.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{image_uri_art_crop_row_class}}'>
     <label for='image_uri_art_crop' class='col-sm-4 col-form-label'>image_uri_art_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_art_crop}}is-invalid{{/errors.image_uri_art_crop}}' id='image_uri_art_crop' name='image_uri_art_crop' placeholder='NULL' value='{{image_uri_art_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_art_crop.has_errors}}is-invalid{{/errors.image_uri_art_crop.has_errors}}' id='image_uri_art_crop' name='image_uri_art_crop' placeholder=''NULL'' value='{{image_uri_art_crop}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri_art_crop}}<li>{{.}}</li>{{/errors.image_uri_art_crop}}
+          {{#errors.image_uri_art_crop.messages}}<li>{{.}}</li>{{/errors.image_uri_art_crop.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -265,10 +265,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_art_crop_row_class}}'>
     <label for='image_hash_art_crop' class='col-sm-4 col-form-label'>image_hash_art_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_art_crop}}is-invalid{{/errors.image_hash_art_crop}}' id='image_hash_art_crop' name='image_hash_art_crop' placeholder='NULL' value='{{image_hash_art_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_art_crop.has_errors}}is-invalid{{/errors.image_hash_art_crop.has_errors}}' id='image_hash_art_crop' name='image_hash_art_crop' placeholder=''NULL'' value='{{image_hash_art_crop}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_hash_art_crop}}<li>{{.}}</li>{{/errors.image_hash_art_crop}}
+          {{#errors.image_hash_art_crop.messages}}<li>{{.}}</li>{{/errors.image_hash_art_crop.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -278,10 +278,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_small_row_class}}'>
     <label for='image_uri_small' class='col-sm-4 col-form-label'>image_uri_small</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_small}}is-invalid{{/errors.image_uri_small}}' id='image_uri_small' name='image_uri_small' placeholder='NULL' value='{{image_uri_small}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_small.has_errors}}is-invalid{{/errors.image_uri_small.has_errors}}' id='image_uri_small' name='image_uri_small' placeholder='NULL' value='{{image_uri_small}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri_small}}<li>{{.}}</li>{{/errors.image_uri_small}}
+          {{#errors.image_uri_small.messages}}<li>{{.}}</li>{{/errors.image_uri_small.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -291,10 +291,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_small_row_class}}'>
     <label for='image_hash_small' class='col-sm-4 col-form-label'>image_hash_small</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_small}}is-invalid{{/errors.image_hash_small}}' id='image_hash_small' name='image_hash_small' placeholder='NULL' value='{{image_hash_small}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_small.has_errors}}is-invalid{{/errors.image_hash_small.has_errors}}' id='image_hash_small' name='image_hash_small' placeholder='NULL' value='{{image_hash_small}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_hash_small}}<li>{{.}}</li>{{/errors.image_hash_small}}
+          {{#errors.image_hash_small.messages}}<li>{{.}}</li>{{/errors.image_hash_small.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -304,10 +304,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_normal_row_class}}'>
     <label for='image_uri_normal' class='col-sm-4 col-form-label'>image_uri_normal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_normal}}is-invalid{{/errors.image_uri_normal}}' id='image_uri_normal' name='image_uri_normal' placeholder='NULL' value='{{image_uri_normal}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_normal.has_errors}}is-invalid{{/errors.image_uri_normal.has_errors}}' id='image_uri_normal' name='image_uri_normal' placeholder='NULL' value='{{image_uri_normal}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri_normal}}<li>{{.}}</li>{{/errors.image_uri_normal}}
+          {{#errors.image_uri_normal.messages}}<li>{{.}}</li>{{/errors.image_uri_normal.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -317,10 +317,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_normal_row_class}}'>
     <label for='image_hash_normal' class='col-sm-4 col-form-label'>image_hash_normal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_normal}}is-invalid{{/errors.image_hash_normal}}' id='image_hash_normal' name='image_hash_normal' placeholder='NULL' value='{{image_hash_normal}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_normal.has_errors}}is-invalid{{/errors.image_hash_normal.has_errors}}' id='image_hash_normal' name='image_hash_normal' placeholder='NULL' value='{{image_hash_normal}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_hash_normal}}<li>{{.}}</li>{{/errors.image_hash_normal}}
+          {{#errors.image_hash_normal.messages}}<li>{{.}}</li>{{/errors.image_hash_normal.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -330,10 +330,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_large_row_class}}'>
     <label for='image_uri_large' class='col-sm-4 col-form-label'>image_uri_large</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_large}}is-invalid{{/errors.image_uri_large}}' id='image_uri_large' name='image_uri_large' placeholder='NULL' value='{{image_uri_large}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_large.has_errors}}is-invalid{{/errors.image_uri_large.has_errors}}' id='image_uri_large' name='image_uri_large' placeholder='NULL' value='{{image_uri_large}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri_large}}<li>{{.}}</li>{{/errors.image_uri_large}}
+          {{#errors.image_uri_large.messages}}<li>{{.}}</li>{{/errors.image_uri_large.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -343,10 +343,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_large_row_class}}'>
     <label for='image_hash_large' class='col-sm-4 col-form-label'>image_hash_large</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_large}}is-invalid{{/errors.image_hash_large}}' id='image_hash_large' name='image_hash_large' placeholder='NULL' value='{{image_hash_large}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_large.has_errors}}is-invalid{{/errors.image_hash_large.has_errors}}' id='image_hash_large' name='image_hash_large' placeholder='NULL' value='{{image_hash_large}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_hash_large}}<li>{{.}}</li>{{/errors.image_hash_large}}
+          {{#errors.image_hash_large.messages}}<li>{{.}}</li>{{/errors.image_hash_large.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -356,10 +356,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_png_row_class}}'>
     <label for='image_uri_png' class='col-sm-4 col-form-label'>image_uri_png</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_png}}is-invalid{{/errors.image_uri_png}}' id='image_uri_png' name='image_uri_png' placeholder='NULL' value='{{image_uri_png}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_png.has_errors}}is-invalid{{/errors.image_uri_png.has_errors}}' id='image_uri_png' name='image_uri_png' placeholder='NULL' value='{{image_uri_png}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri_png}}<li>{{.}}</li>{{/errors.image_uri_png}}
+          {{#errors.image_uri_png.messages}}<li>{{.}}</li>{{/errors.image_uri_png.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -369,10 +369,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_png_row_class}}'>
     <label for='image_hash_png' class='col-sm-4 col-form-label'>image_hash_png</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_png}}is-invalid{{/errors.image_hash_png}}' id='image_hash_png' name='image_hash_png' placeholder='NULL' value='{{image_hash_png}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_png.has_errors}}is-invalid{{/errors.image_hash_png.has_errors}}' id='image_hash_png' name='image_hash_png' placeholder='NULL' value='{{image_hash_png}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_hash_png}}<li>{{.}}</li>{{/errors.image_hash_png}}
+          {{#errors.image_hash_png.messages}}<li>{{.}}</li>{{/errors.image_hash_png.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -382,10 +382,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_uri_border_crop_row_class}}'>
     <label for='image_uri_border_crop' class='col-sm-4 col-form-label'>image_uri_border_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_border_crop}}is-invalid{{/errors.image_uri_border_crop}}' id='image_uri_border_crop' name='image_uri_border_crop' placeholder='NULL' value='{{image_uri_border_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_uri_border_crop.has_errors}}is-invalid{{/errors.image_uri_border_crop.has_errors}}' id='image_uri_border_crop' name='image_uri_border_crop' placeholder='NULL' value='{{image_uri_border_crop}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri_border_crop}}<li>{{.}}</li>{{/errors.image_uri_border_crop}}
+          {{#errors.image_uri_border_crop.messages}}<li>{{.}}</li>{{/errors.image_uri_border_crop.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -395,10 +395,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{image_hash_border_crop_row_class}}'>
     <label for='image_hash_border_crop' class='col-sm-4 col-form-label'>image_hash_border_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_border_crop}}is-invalid{{/errors.image_hash_border_crop}}' id='image_hash_border_crop' name='image_hash_border_crop' placeholder='NULL' value='{{image_hash_border_crop}}'  >
+      <input type='text' class='form-control {{#errors.image_hash_border_crop.has_errors}}is-invalid{{/errors.image_hash_border_crop.has_errors}}' id='image_hash_border_crop' name='image_hash_border_crop' placeholder='NULL' value='{{image_hash_border_crop}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_hash_border_crop}}<li>{{.}}</li>{{/errors.image_hash_border_crop}}
+          {{#errors.image_hash_border_crop.messages}}<li>{{.}}</li>{{/errors.image_hash_border_crop.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -489,10 +489,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_count_row_class}}'>
     <label for='color_count' class='col-sm-4 col-form-label'>color_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_count}}is-invalid{{/errors.color_count}}' id='color_count' name='color_count' placeholder='0' value='{{color_count}}'  >
+      <input type='text' class='form-control {{#errors.color_count.has_errors}}is-invalid{{/errors.color_count.has_errors}}' id='color_count' name='color_count' placeholder='0' value='{{color_count}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.color_count}}<li>{{.}}</li>{{/errors.color_count}}
+          {{#errors.color_count.messages}}<li>{{.}}</li>{{/errors.color_count.messages}}
           </ul>
        </div>
     </div></div>
@@ -544,10 +544,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{color_identity_count_row_class}}'>
     <label for='color_identity_count' class='col-sm-4 col-form-label'>color_identity_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_identity_count}}is-invalid{{/errors.color_identity_count}}' id='color_identity_count' name='color_identity_count' placeholder='' value='{{color_identity_count}}'  required>
+      <input type='text' class='form-control {{#errors.color_identity_count.has_errors}}is-invalid{{/errors.color_identity_count.has_errors}}' id='color_identity_count' name='color_identity_count' placeholder='' value='{{color_identity_count}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.color_identity_count}}<li>{{.}}</li>{{/errors.color_identity_count}}
+          {{#errors.color_identity_count.messages}}<li>{{.}}</li>{{/errors.color_identity_count.messages}}
           </ul>
        </div>
     </div></div>
@@ -572,10 +572,10 @@ $('.select2_card_id').select2({
   <div class='form-group row {{for_fulltext_search_row_class}}'>
     <label for='for_fulltext_search' class='col-sm-4 col-form-label'>for_fulltext_search</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.for_fulltext_search}}is-invalid{{/errors.for_fulltext_search}}' id='for_fulltext_search' name='for_fulltext_search' placeholder='NULL' value='{{for_fulltext_search}}'  >
+      <input type='text' class='form-control {{#errors.for_fulltext_search.has_errors}}is-invalid{{/errors.for_fulltext_search.has_errors}}' id='for_fulltext_search' name='for_fulltext_search' placeholder='''''''' value='{{for_fulltext_search}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.for_fulltext_search}}<li>{{.}}</li>{{/errors.for_fulltext_search}}
+          {{#errors.for_fulltext_search.messages}}<li>{{.}}</li>{{/errors.for_fulltext_search.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -585,14 +585,17 @@ $('.select2_card_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='created_at' name='created_at' placeholder='' value='{{created_at}}'  >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
+  </ul>
+</div><script>
 	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#created_at_TodayNow').click( function(e) {
       		$('#created_at').val(created_atConv.format(new Date())).change(); } );
@@ -609,20 +612,21 @@ $('.select2_card_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}'  >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
 </button>
 <button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
-
-<script>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
+  </ul>
+</div><script>
 	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
   	$('#updated_at_TodayNow').click( function(e) {
       		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
@@ -639,9 +643,7 @@ $('.select2_card_id').select2({
         	} );
 </script>
 
-    </div>
-  </div>
-
+    </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
@@ -1083,10 +1085,19 @@ $('.select2_card_id').select2({
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });

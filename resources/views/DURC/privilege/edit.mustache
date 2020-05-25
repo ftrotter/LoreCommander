@@ -38,20 +38,20 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id}}is-invalid{{/errors.id}}' id='id' name='id' placeholder='' value='{{id}}'  >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.id}}<li>{{.}}</li>{{/errors.id}}
+          {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
           </ul>
        </div>
     </div></div>
   <div class='form-group row {{privilegeName_row_class}}'>
     <label for='privilegeName' class='col-sm-4 col-form-label'>privilegeName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.privilegeName}}is-invalid{{/errors.privilegeName}}' id='privilegeName' name='privilegeName' placeholder='NULL' value='{{privilegeName}}'  >
+      <input type='text' class='form-control {{#errors.privilegeName.has_errors}}is-invalid{{/errors.privilegeName.has_errors}}' id='privilegeName' name='privilegeName' placeholder='NULL' value='{{privilegeName}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.privilegeName}}<li>{{.}}</li>{{/errors.privilegeName}}
+          {{#errors.privilegeName.messages}}<li>{{.}}</li>{{/errors.privilegeName.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
@@ -145,10 +145,19 @@
                 }
             });
             
-            // Trigger change on page load
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
                 if ($(this).prop('checked')) {
-                    let id = $(this).attr('data-elem');
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
                     $('#'+id).attr('readonly', true);
                 }
             });
