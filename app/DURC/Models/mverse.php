@@ -26,7 +26,7 @@ class mverse extends DURCModel{
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
-			'card', //from belongs to
+			'cardface', //from belongs to
 		];
 
 
@@ -41,7 +41,7 @@ class mverse extends DURCModel{
 	//for many functions to work, we need to be able to do a lookup on the field_type and get back the MariaDB/MySQL column type.
 	static $field_type_map = [
 		'id' => 'int',
-		'card_id' => 'int',
+		'cardface_id' => 'int',
 		'multiverse_id' => 'int',
 		'gatherer_url' => 'varchar',
 		'created_at' => 'datetime',
@@ -51,7 +51,7 @@ class mverse extends DURCModel{
     // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
-		'card_id',
+		'cardface_id',
 		'multiverse_id',
 		'gatherer_url',
 		'created_at',
@@ -61,7 +61,7 @@ class mverse extends DURCModel{
     // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $default_values = [
 		'id' => null,
-		'card_id' => null,
+		'cardface_id' => null,
 		'multiverse_id' => null,
 		'gatherer_url' => null,
 		'created_at' => 'current_timestamp()',
@@ -73,7 +73,7 @@ class mverse extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'card_id' => 'integer|required',
+		'cardface_id' => 'integer|required',
 		'multiverse_id' => 'integer|required',
 		'gatherer_url' => 'url|required',
 	]; // End of validation rules
@@ -92,10 +92,10 @@ class mverse extends DURCModel{
 //DURC BELONGS_TO SECTION
 
 /**
-*	get the single card for this mverse
+*	get the single cardface for this mverse
 */
-	public function card(){
-		return $this->belongsTo('App\card','card_id','id');
+	public function cardface(){
+		return $this->belongsTo('App\cardface','cardface_id','id');
 	}
 
 
@@ -104,7 +104,7 @@ class mverse extends DURCModel{
 /*
 CREATE TABLE `lore`.`mverse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `card_id` int(11) NOT NULL,
+  `cardface_id` int(11) NOT NULL,
   `multiverse_id` int(11) NOT NULL,
   `gatherer_url` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),

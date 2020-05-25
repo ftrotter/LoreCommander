@@ -26,7 +26,7 @@ class mverseController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
-		$with_summary_array[] = "card:id,".\App\card::getNameField();
+		$with_summary_array[] = "cardface:id,".\App\cardface::getNameField();
 
 		return($with_summary_array);
 		
@@ -232,7 +232,7 @@ class mverseController extends DURCController
         $tmp_mverse = $myNewmverse;
         
         $tmp_mverse->id = $request->id;
-        $tmp_mverse->card_id = $request->card_id;
+        $tmp_mverse->cardface_id = $request->cardface_id;
         $tmp_mverse->multiverse_id = $request->multiverse_id;
         $tmp_mverse->gatherer_url = $request->gatherer_url;
 
@@ -404,7 +404,7 @@ class mverseController extends DURCController
         $tmp_mverse = $mverse;
         
         $tmp_mverse->id = $request->id;
-        $tmp_mverse->card_id = $request->card_id;
+        $tmp_mverse->cardface_id = $request->cardface_id;
         $tmp_mverse->multiverse_id = $request->multiverse_id;
         $tmp_mverse->gatherer_url = $request->gatherer_url;
 

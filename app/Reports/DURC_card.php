@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b1c3fe225550fa3ed7b3005a687da514
+FILE_SIG=f0440d9e11d95a6880569862f332155e
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -1534,95 +1534,6 @@ array (
         'is_auto_increment' => false,
       ),
       6 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
-  'mverse' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'mverse',
-    'from_table' => 'mverse',
-    'from_db' => 'lore',
-    'from_column' => 'card_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => true,
-      ),
-      1 => 
-      array (
-        'column_name' => 'card_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => true,
-        'foreign_db' => 'lore',
-        'foreign_table' => 'card',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'multiverse_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'gatherer_url',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      4 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-      5 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',

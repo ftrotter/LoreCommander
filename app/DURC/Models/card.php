@@ -28,7 +28,6 @@ class card extends DURCModel{
 		protected $DURC_selfish_with = [ 
 			'cardface', //from from many
 			'cardprice', //from from many
-			'mverse', //from from many
 			'mtgset', //from belongs to
 		];
 
@@ -228,14 +227,6 @@ class card extends DURCModel{
 */
 	public function cardprice(){
 		return $this->hasMany('App\cardprice','card_id','id');
-	}
-
-
-/**
-*	get all the mverse for this card
-*/
-	public function mverse(){
-		return $this->hasMany('App\mverse','card_id','id');
 	}
 
 

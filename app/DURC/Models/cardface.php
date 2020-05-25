@@ -30,6 +30,7 @@ class cardface extends DURCModel{
 			'cardface_person_atag', //from from many
 			'classofc_cardface', //from from many
 			'creature_cardface', //from from many
+			'mverse', //from from many
 			'person_classofc_cardface', //from from many
 			'wincon_strategy', //from from many
 			'emblematic_theme', //from from many
@@ -275,6 +276,14 @@ class cardface extends DURCModel{
 */
 	public function creature_cardface(){
 		return $this->hasMany('App\creature_cardface','cardface_id','id');
+	}
+
+
+/**
+*	get all the mverse for this cardface
+*/
+	public function mverse(){
+		return $this->hasMany('App\mverse','cardface_id','id');
 	}
 
 
