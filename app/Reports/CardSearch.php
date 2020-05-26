@@ -68,14 +68,54 @@ class CardSearch extends AbstractTabularReport
       </div>
     </div>
   </div> 
- 
   <div class="form-group row">
     <div class="offset-4 col-8">
       <button name="submit" type="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </form>
-'; 
+ ';
+	//doing this so that the quotes are reversed from ' to " 
+	$desc .= " 
+<script>
+
+        function api_button_press(path_stub,data_id){
+
+                fetch_me_url =  path_stub + data_id ;
+
+                fetch(fetch_me_url)
+                        .then(function(response) {
+                                if(response.ok){
+                                        return response.json();
+                                }else{
+                                        console.log('Network response was not ok from' + fetch_me_url);
+                                }
+                        }).then( function(data){
+
+                                        $('#api_button_' + data_id).html(data.button_text);
+                                        //just remove both possible classes
+                                        $('#api_button_' + data_id).removeClass('btn-primary');
+                                        $('#api_button_' + data_id).removeClass('btn-secondary');
+                                        $('#api_button_' + data_id).removeClass('btn-success');
+                                        $('#api_button_' + data_id).removeClass('btn-danger');
+                                        $('#api_button_' + data_id).removeClass('btn-warning');
+                                        $('#api_button_' + data_id).removeClass('btn-info');
+                                        $('#api_button_' + data_id).removeClass('btn-light');
+                                        $('#api_button_' + data_id).removeClass('btn-dark');
+                                        $('#api_button_' + data_id).removeClass('btn-link');
+                                        //then add back the right one
+                                        $('#api_button_' + data_id).addClass('btn');
+                                        $('#api_button_' + data_id).addClass(data.button_class);
+                                        console.log(data);
+                        });
+
+        }
+
+
+</script>
+
+";
+ 
 	return($desc);
     }
 
@@ -193,7 +233,6 @@ class CardSearch extends AbstractTabularReport
 "
 SELECT
 GROUP_CONCAT(cardface.id) AS cardface_ids, 
-GROUP_CONCAT(cardface.id) AS cardface_ids, 
 `name`
 , COUNT(DISTINCT(illustration_id)) AS illustration_count
 , COUNT(DISTINCT(scryfall_id)) AS release_count
@@ -202,11 +241,14 @@ GROUP_CONCAT(cardface.id) AS cardface_ids,
 ,MAX(image_uri_small) AS image_uri_small
 ,MAX(scryfall_web_uri) AS scryfall_web_uri
 ,MAX(image_uri_art_crop) AS image_uri_art_crop
-
+,MAX(multiverse_id) AS multiverse_id
 FROM lore.cardface
 JOIN lore.card ON 
 	card.id =
     	cardface.card_id
+LEFT JOIN lore.mverse ON 
+	mverse.cardface_id =
+	cardface.id
 $where_sql
 GROUP BY oracle_id, name, mana_cost, type_line 
 
@@ -232,8 +274,34 @@ GROUP BY oracle_id, name, mana_cost, type_line
     {
 
 	extract($row);
-		
-	$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img width='250px' src='$image_uri_art_crop'></a>";
+
+	//we sometimes have hundreds of ids.. we need to make them take the form
+	//1111,2222,3333,4444,555,
+	//1222,2343,4353,4656,567,
+	//etc
+	//first we completely seperate the ids..
+	$cardface_array = explode(',',$cardface_ids);
+	//then we put them into arrays of five elements each.
+	$cardface_chunks = array_chunk($cardface_array,5);
+	//now create a new array to hold our row strings...
+	$cardface_row_strings = [];
+	foreach($cardface_chunks as $this_chunk){
+		$cardface_row_strings[] = implode(',',$this_chunk);//this will make a single row...
+	}
+	$row['cardface_ids'] = implode('<br>',$cardface_row_strings);	
+	
+	$row['name'] = "
+		<h3>$name</h3>
+		<a target='_blank' href='$scryfall_web_uri'>
+			<img width='250px' src='$image_uri_art_crop'>
+		</a>
+		<button onclick=\"api_button_press('/changeCard/fredTV/',$multiverse_id);\" 
+			id='api_button_$multiverse_id' 
+			type='button' 
+			class='btn btn-success'>
+			Show on TV
+		</button>
+		";
 
         return $row;
     }
