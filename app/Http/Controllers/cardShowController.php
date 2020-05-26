@@ -64,7 +64,11 @@ class cardShowController extends Controller
 			]);
 		
 	}
+/*
 
+	This is the back end function that interacts with pusher and sends the singal to the various tracking televisions...
+
+*/
 	public function sendCardPush($channel_id,$multiverse_id){
 
 	        $app_key = config('broadcasting.connections.pusher.key');
@@ -98,6 +102,7 @@ class cardShowController extends Controller
 			'result' => 'success',
 			'showing_card_id' => $multiverse_id,
 			'button_class' => 'btn-success',
+			'button_text' => 'Card Data Sent',
 		]);
 
 	}
