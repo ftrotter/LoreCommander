@@ -183,6 +183,23 @@ GROUP BY illustration_id
 
 	extract($row);
 
+        //we sometimes have hundreds of ids.. we need to make them take the form
+        //1111,2222,3333,4444,555,
+        //1222,2343,4353,4656,567,
+        //etc
+        //first we completely seperate the ids..
+        $cardface_array = explode(',',$cardface_ids);
+        //then we put them into arrays of five elements each.
+        $cardface_chunks = array_chunk($cardface_array,5);
+        //now create a new array to hold our row strings...
+        $cardface_row_strings = [];
+        foreach($cardface_chunks as $this_chunk){
+                $cardface_row_strings[] = implode(',',$this_chunk);//this will make a single row...
+        }
+        $row['cardface_ids'] = implode('<br>',$cardface_row_strings);
+
+
+
 	if(isset($scryfall_web_uri)){		
 		$row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img width='250px' src='$image_uri_art_crop'></a>";
 	}
