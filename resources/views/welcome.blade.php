@@ -81,7 +81,7 @@
 		<ul>
 			<li> <b><a target='_blank' href='/Zermelo/DURC_person'>DURC_person</a></b> auto generated report on our database of MTG characters </li>
 			<li> <b><a target='_blank' href='/Zermelo/DURC_creature'>DURC_creature</a></b>  </li>
-			<li> <b><a target='_blank' href='/Zermelo/DURC_person_classofcreature_tag'>DURC_person_classofcreature_tag</a></b>: Shows how persons related to creatures  </li>
+			<li> <b><a target='_blank' href='/Zermelo/DURC_person_classofc_tag'>DURC_person_classofcreature_tag</a></b>: Shows how persons related to creatures  </li>
 			<li> <b><a target='_blank' href='/Zermelo/DURC_classofc_classofc_vspack'>DURC classofc_classofc_vspack</a></b>: When WoTC releases a vs pack, it establishes a formal rivalry between two tribes of creatures  </li>
 			<li> <b><a target='_blank' href=''></a></b>:  </li>
 			<li> <b><a target='_blank' href=''></a></b>:  </li>
