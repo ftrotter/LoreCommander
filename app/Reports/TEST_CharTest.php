@@ -40,7 +40,7 @@ Databases have funny characters, this should not be a problem for Zermelo
 	//replace with your own SQL
         $sql = "
 SELECT * 
-FROM DURC_aaa.characterTests
+FROM DURC_aaa.characterTest
 ";
     	return $sql;
     }
