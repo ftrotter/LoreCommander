@@ -51,8 +51,8 @@ What to test here:
 
 
 	$filters = [];
-	$filters[] = $this->getSocket('MyWind_job_title_filter');
-	$filters[] = $this->getSocket('MyWind_big_state_filter');
+	$filters[] = $this->getSocket('DURC_job_title_filter');
+	$filters[] = $this->getSocket('DURC_big_state_filter');
 
 	if(!is_numeric($customer_id)){
 		//this means that there was no customer_id passed in on the url...
@@ -69,7 +69,7 @@ SELECT
 	homePhone, 
 	mobilePhone,
 	stateProvince
-FROM MyWind_northwind_model.customer
+FROM DURC_northwind_model.customer
 ";
 
 		$where_then_and = ' WHERE ';
@@ -97,7 +97,7 @@ SELECT
 	homePhone, 
 	mobilePhone,
 	stateProvince
-FROM MyWind_northwind_model.customer
+FROM DURC_northwind_model.customer
 WHERE customer.id = '$customer_id'
 ";
 
