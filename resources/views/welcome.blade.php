@@ -76,7 +76,6 @@
 		</ul>
 		</div>
 		<div class='col-md-4'>
-
 		<h4> DURC-built Tabular Reports </h4>
 		<ul>
 			<li> <b><a target='_blank' href='/Zermelo/DURC_person'>DURC_person</a></b> auto generated report on our database of MTG characters </li>
@@ -86,6 +85,22 @@
 			<li> <b><a target='_blank' href=''></a></b>:  </li>
 			<li> <b><a target='_blank' href=''></a></b>:  </li>
 			<li> <b><a target='_blank' href=''></a></b>:  </li>
+		</ul>
+		</div>
+		<div class='col-md-4'>
+		<h4> DURC-built Tabular Reports </h4>
+		<ul>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_AutoTagsReport'>Auto Tags Report</a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_CharTest'>Character Test</a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_GraphTest'>Graph Test</a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindCustomerReport'>NorthWind Customer Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindCustomerSocketReport'> Northwind Customer Socket Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindOrderIndexReport'> Northwind Order Index Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindOrderReport'>Northwind Order Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindOrderSlowReport'> Northwind Order Slow Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindOrderYearReport'> Northwind Order Year Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindProductReport'> Northwind Product Report </a></b>  </li>
+			<li> <b><a target='_blank' href='/Zermelo/TEST_TagsReport'>Tags Report </a></b>  </li>
 		</ul>
 		</div>
 	</div>
