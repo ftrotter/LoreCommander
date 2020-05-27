@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.2.11-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.16  Distrib 10.2.15-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: northwind_model
+-- Host: localhost    Database: DURC_northwind_model
 -- ------------------------------------------------------
--- Server version	10.2.11-MariaDB-10.2.11+maria~xenial-log
+-- Server version	10.2.15-MariaDB-10.2.15+maria~xenial-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -472,4 +472,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-01 15:15:49
+-- Dump completed on 2020-05-27 13:37:46
