@@ -68,7 +68,7 @@ SELECT
 	`query_num`
 
 
-FROM testdata.graphdata_nodetypetests
+FROM DURC_aaa.graphdata_nodetypetests
 ";
         return $sql;
     }
