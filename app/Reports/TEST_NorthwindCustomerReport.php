@@ -89,7 +89,7 @@ FROM DURC_northwind_model.customer
 		//but this controls the cache table -> front end connection 
 		//we use setInputDefault instead of setInput because we do not want to lock the sorting...
 		//we just want to have an initial sort. 
-		$this->setInputDefault('order',[0 => ['companyName' => 'desc']]);
+		$this->setInput('order',[0 => ['companyName' => 'desc']]);
 
 
 	}else{
