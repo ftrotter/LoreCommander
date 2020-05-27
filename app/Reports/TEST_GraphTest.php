@@ -60,10 +60,12 @@ SELECT
 	`source_type`, `source_group`, 
 	`source_longitude`, `source_latitude`, 
 	`source_img`, 
+	source_id AS source_json_url,
 	`target_id`, `target_name`, `target_size`, 
 	`target_type`, `target_group`, 
 	`target_longitude`, `target_latitude`, 
 	`target_img`, 
+	target_id AS target_json_url,
 	`weight`, `link_type`, 
 	`query_num`
 
