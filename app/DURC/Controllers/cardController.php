@@ -244,6 +244,7 @@ class cardController extends DURCController
         $tmp_card->set_name = $request->set_name;
         $tmp_card->set_type = $request->set_type;
         $tmp_card->mtgset_id = $request->mtgset_id;
+        $tmp_card->collector_number = $request->collector_number;
         $tmp_card->variation_of_scryfall_id = $request->variation_of_scryfall_id;
         $tmp_card->edhrec_rank = $request->edhrec_rank;
         $tmp_card->is_promo = $request->is_promo;
@@ -449,6 +450,7 @@ class cardController extends DURCController
         $tmp_card->set_name = $request->set_name;
         $tmp_card->set_type = $request->set_type;
         $tmp_card->mtgset_id = $request->mtgset_id;
+        $tmp_card->collector_number = $request->collector_number;
         $tmp_card->variation_of_scryfall_id = $request->variation_of_scryfall_id;
         $tmp_card->edhrec_rank = $request->edhrec_rank;
         $tmp_card->is_promo = $request->is_promo;

@@ -152,6 +152,7 @@ class  ScryfallSaver {
 				}	
 				$mtgset_id = $MTGSet->id;
 				$card_fill['mtgset_id'] = $mtgset_id;
+				$card_fill['collector_number'] = $this_card['collector_number']; //confusingly this is a string and not an INT field. 
 				$card_fill['scryfall_api_uri'] = $this_card['uri'];		
 				$card_fill['scryfall_web_uri'] = $this_card['scryfall_uri'];
 	
