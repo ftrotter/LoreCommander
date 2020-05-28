@@ -294,6 +294,37 @@
             },
             "create_table_sql": "CREATE TABLE `DURC_aaa`.`book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(255) NOT NULL,\n  `release_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
         },
+        "charactertest": {
+            "table_name": "characterTest",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "funny_character_field",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`characterTest` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `funny_character_field` varchar(1000) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+        },
         "comment": {
             "table_name": "comment",
             "db": "DURC_aaa",
@@ -1099,6 +1130,181 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `DURC_aaa`.`sibling` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `siblingname` varchar(255) NOT NULL,\n  `step_sibling_id` int(11) DEFAULT NULL,\n  `sibling_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+        },
+        "tags_report": {
+            "table_name": "tags_report",
+            "db": "DURC_aaa",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "bigint",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "field_to_bold_in_report_display",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "field_to_hide_by_default",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "field_to_italic_in_report_display",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "field_to_right_align_in_report",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "field_to_bolditalic_in_report_display",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "numeric_field",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "decimal_field",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "currency_field",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "percent_field",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "url_field",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "time_field",
+                    "data_type": "time",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "date_field",
+                    "data_type": "date",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "datetime_field",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`tags_report` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `field_to_bold_in_report_display` varchar(255) NOT NULL,\n  `field_to_hide_by_default` varchar(255) NOT NULL,\n  `field_to_italic_in_report_display` varchar(255) NOT NULL,\n  `field_to_right_align_in_report` varchar(255) NOT NULL,\n  `field_to_bolditalic_in_report_display` varchar(255) NOT NULL,\n  `numeric_field` int(11) NOT NULL,\n  `decimal_field` decimal(10,4) NOT NULL,\n  `currency_field` varchar(255) NOT NULL,\n  `percent_field` int(11) NOT NULL,\n  `url_field` varchar(255) NOT NULL,\n  `time_field` time NOT NULL,\n  `date_field` date NOT NULL,\n  `datetime_field` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4"
         },
         "test_boolean": {
             "table_name": "test_boolean",
@@ -2227,6 +2433,816 @@
             },
             "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`orderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL DEFAULT 0.0000,\n  `unitPrice` decimal(19,4) DEFAULT 0.0000,\n  `discount` double NOT NULL DEFAULT 0,\n  `status_id` int(11) DEFAULT NULL,\n  `dateAllocated` datetime DEFAULT NULL,\n  `PurchaseOrder_id` int(11) DEFAULT NULL,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`PurchaseOrder_id`),\n  KEY `fkOrderDetailOrder1_idx` (`order_id`),\n  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`),\n  CONSTRAINT `fkOrderDetailOrder1` FOREIGN KEY (`order_id`) REFERENCES `northwind_model`.`order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderDetailOrderDetailStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`orderDetailStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderDetailProducts1` FOREIGN KEY (`product_id`) REFERENCES `northwind_model`.`product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         },
+        "order_2017": {
+            "table_name": "order_2017",
+            "db": "DURC_northwind_data",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "employee_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "employee",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "customer_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "customer",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "orderDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shippedDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipper_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "shipper",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipName",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipAddress",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipCity",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipStateProvince",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipZipPostalCode",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipCountryRegion",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shippingFee",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0.0000",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxes",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0.0000",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "paymentType",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "paidDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "notes",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxRate",
+                    "data_type": "double",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxStatus_id",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "status_id",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "employee": {
+                    "prefix": null,
+                    "type": "employee",
+                    "to_table": "employee",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "employee_id"
+                },
+                "customer": {
+                    "prefix": null,
+                    "type": "customer",
+                    "to_table": "customer",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "customer_id"
+                },
+                "shipper": {
+                    "prefix": null,
+                    "type": "shipper",
+                    "to_table": "shipper",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "shipper_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2017` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+        },
+        "order_2018": {
+            "table_name": "order_2018",
+            "db": "DURC_northwind_data",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "employee_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "employee",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "customer_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "customer",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "orderDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shippedDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipper_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "shipper",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipName",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipAddress",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipCity",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipStateProvince",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipZipPostalCode",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipCountryRegion",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shippingFee",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0.0000",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxes",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0.0000",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "paymentType",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "paidDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "notes",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxRate",
+                    "data_type": "double",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxStatus_id",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "status_id",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "employee": {
+                    "prefix": null,
+                    "type": "employee",
+                    "to_table": "employee",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "employee_id"
+                },
+                "customer": {
+                    "prefix": null,
+                    "type": "customer",
+                    "to_table": "customer",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "customer_id"
+                },
+                "shipper": {
+                    "prefix": null,
+                    "type": "shipper",
+                    "to_table": "shipper",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "shipper_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2018` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+        },
+        "order_2019": {
+            "table_name": "order_2019",
+            "db": "DURC_northwind_data",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "employee_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "employee",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "customer_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "customer",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "orderDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shippedDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipper_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_northwind_model",
+                    "foreign_table": "shipper",
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipName",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipAddress",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipCity",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipStateProvince",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipZipPostalCode",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shipCountryRegion",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "shippingFee",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0.0000",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxes",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0.0000",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "paymentType",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "paidDate",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "notes",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxRate",
+                    "data_type": "double",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "taxStatus_id",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "status_id",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "employee": {
+                    "prefix": null,
+                    "type": "employee",
+                    "to_table": "employee",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "employee_id"
+                },
+                "customer": {
+                    "prefix": null,
+                    "type": "customer",
+                    "to_table": "customer",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "customer_id"
+                },
+                "shipper": {
+                    "prefix": null,
+                    "type": "shipper",
+                    "to_table": "shipper",
+                    "to_db": "DURC_northwind_model",
+                    "local_key": "shipper_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2019` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+        },
         "purchaseorder": {
             "table_name": "purchaseOrder",
             "db": "DURC_northwind_data",
@@ -2907,6 +3923,27 @@
                     "from_table": "order",
                     "from_db": "DURC_northwind_data",
                     "from_column": "customer_id"
+                },
+                "order_2017": {
+                    "prefix": null,
+                    "type": "order_2017",
+                    "from_table": "order_2017",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "customer_id"
+                },
+                "order_2018": {
+                    "prefix": null,
+                    "type": "order_2018",
+                    "from_table": "order_2018",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "customer_id"
+                },
+                "order_2019": {
+                    "prefix": null,
+                    "type": "order_2019",
+                    "from_table": "order_2019",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "customer_id"
                 }
             },
             "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`customer` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `companyName` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  `random_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`companyName`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
@@ -3137,6 +4174,27 @@
                     "prefix": null,
                     "type": "order",
                     "from_table": "order",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "employee_id"
+                },
+                "order_2017": {
+                    "prefix": null,
+                    "type": "order_2017",
+                    "from_table": "order_2017",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "employee_id"
+                },
+                "order_2018": {
+                    "prefix": null,
+                    "type": "order_2018",
+                    "from_table": "order_2018",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "employee_id"
+                },
+                "order_2019": {
+                    "prefix": null,
+                    "type": "order_2019",
+                    "from_table": "order_2019",
                     "from_db": "DURC_northwind_data",
                     "from_column": "employee_id"
                 },
@@ -3908,6 +4966,27 @@
                     "from_table": "order",
                     "from_db": "DURC_northwind_data",
                     "from_column": "shipper_id"
+                },
+                "order_2017": {
+                    "prefix": null,
+                    "type": "order_2017",
+                    "from_table": "order_2017",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "shipper_id"
+                },
+                "order_2018": {
+                    "prefix": null,
+                    "type": "order_2018",
+                    "from_table": "order_2018",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "shipper_id"
+                },
+                "order_2019": {
+                    "prefix": null,
+                    "type": "order_2019",
+                    "from_table": "order_2019",
+                    "from_db": "DURC_northwind_data",
+                    "from_column": "shipper_id"
                 }
             },
             "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`shipper` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
@@ -4524,6 +5603,18 @@
                     "is_auto_increment": false
                 },
                 {
+                    "column_name": "collector_number",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "''",
+                    "is_auto_increment": false
+                },
+                {
                     "column_name": "variation_of_scryfall_id",
                     "data_type": "varchar",
                     "is_primary_key": false,
@@ -4861,7 +5952,7 @@
                     "from_column": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) DEFAULT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(11) NOT NULL,\n  `legal_pioneer` tinyint(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) DEFAULT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `collector_number` varchar(20) NOT NULL DEFAULT '',\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(11) NOT NULL,\n  `legal_pioneer` tinyint(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface": {
             "table_name": "cardface",
@@ -6864,7 +7955,7 @@
                     "local_key": "cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mverse` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `multiverse_id` int(11) NOT NULL,\n  `gatherer_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`mverse` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `multiverse_id` int(11) NOT NULL,\n  `gatherer_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `cardface_id` (`cardface_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
         },
         "pack": {
             "table_name": "pack",

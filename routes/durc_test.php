@@ -32,6 +32,10 @@ Route::get('durctest', function () {
  			'/DURC/book/create', //from: DURC_aaa.book 
  			'/DURC/book/1', //from: DURC_aaa.book 
  			'/DURC/book/1/edit', //from: DURC_aaa.book 
+ 			'/DURC/charactertest', //from: DURC_aaa.characterTest 
+ 			'/DURC/charactertest/create', //from: DURC_aaa.characterTest 
+ 			'/DURC/charactertest/1', //from: DURC_aaa.characterTest 
+ 			'/DURC/charactertest/1/edit', //from: DURC_aaa.characterTest 
  			'/DURC/comment', //from: DURC_aaa.comment 
  			'/DURC/comment/create', //from: DURC_aaa.comment 
  			'/DURC/comment/1', //from: DURC_aaa.comment 
@@ -64,6 +68,10 @@ Route::get('durctest', function () {
  			'/DURC/sibling/create', //from: DURC_aaa.sibling 
  			'/DURC/sibling/1', //from: DURC_aaa.sibling 
  			'/DURC/sibling/1/edit', //from: DURC_aaa.sibling 
+ 			'/DURC/tags_report', //from: DURC_aaa.tags_report 
+ 			'/DURC/tags_report/create', //from: DURC_aaa.tags_report 
+ 			'/DURC/tags_report/1', //from: DURC_aaa.tags_report 
+ 			'/DURC/tags_report/1/edit', //from: DURC_aaa.tags_report 
  			'/DURC/test_boolean', //from: DURC_aaa.test_boolean 
  			'/DURC/test_boolean/create', //from: DURC_aaa.test_boolean 
  			'/DURC/test_boolean/1', //from: DURC_aaa.test_boolean 
@@ -104,6 +112,18 @@ Route::get('durctest', function () {
  			'/DURC/orderdetail/create', //from: DURC_northwind_data.orderDetail 
  			'/DURC/orderdetail/1', //from: DURC_northwind_data.orderDetail 
  			'/DURC/orderdetail/1/edit', //from: DURC_northwind_data.orderDetail 
+ 			'/DURC/order_2017', //from: DURC_northwind_data.order_2017 
+ 			'/DURC/order_2017/create', //from: DURC_northwind_data.order_2017 
+ 			'/DURC/order_2017/1', //from: DURC_northwind_data.order_2017 
+ 			'/DURC/order_2017/1/edit', //from: DURC_northwind_data.order_2017 
+ 			'/DURC/order_2018', //from: DURC_northwind_data.order_2018 
+ 			'/DURC/order_2018/create', //from: DURC_northwind_data.order_2018 
+ 			'/DURC/order_2018/1', //from: DURC_northwind_data.order_2018 
+ 			'/DURC/order_2018/1/edit', //from: DURC_northwind_data.order_2018 
+ 			'/DURC/order_2019', //from: DURC_northwind_data.order_2019 
+ 			'/DURC/order_2019/create', //from: DURC_northwind_data.order_2019 
+ 			'/DURC/order_2019/1', //from: DURC_northwind_data.order_2019 
+ 			'/DURC/order_2019/1/edit', //from: DURC_northwind_data.order_2019 
  			'/DURC/purchaseorder', //from: DURC_northwind_data.purchaseOrder 
  			'/DURC/purchaseorder/create', //from: DURC_northwind_data.purchaseOrder 
  			'/DURC/purchaseorder/1', //from: DURC_northwind_data.purchaseOrder 

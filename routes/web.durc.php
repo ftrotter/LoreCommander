@@ -35,6 +35,13 @@ Route::get("/DURC/json/book/", 'bookController@jsonall');
 Route::get("/DURC/searchjson/book/", 'bookController@search');
 
  
+//DURC->	DURC_aaa.characterTest
+Route::resource("/DURC/charactertest", 'charactertestController');
+Route::get("/DURC/json/charactertest/{charactertest_id}", 'charactertestController@jsonone');
+Route::get("/DURC/json/charactertest/", 'charactertestController@jsonall');
+Route::get("/DURC/searchjson/charactertest/", 'charactertestController@search');
+
+ 
 //DURC->	DURC_aaa.comment
 Route::resource("/DURC/comment", 'commentController');
 Route::get("/DURC/json/comment/{comment_id}", 'commentController@jsonone');
@@ -89,6 +96,13 @@ Route::resource("/DURC/sibling", 'siblingController');
 Route::get("/DURC/json/sibling/{sibling_id}", 'siblingController@jsonone');
 Route::get("/DURC/json/sibling/", 'siblingController@jsonall');
 Route::get("/DURC/searchjson/sibling/", 'siblingController@search');
+
+ 
+//DURC->	DURC_aaa.tags_report
+Route::resource("/DURC/tags_report", 'tags_reportController');
+Route::get("/DURC/json/tags_report/{tags_report_id}", 'tags_reportController@jsonone');
+Route::get("/DURC/json/tags_report/", 'tags_reportController@jsonall');
+Route::get("/DURC/searchjson/tags_report/", 'tags_reportController@search');
 
  
 //DURC->	DURC_aaa.test_boolean
@@ -159,6 +173,27 @@ Route::resource("/DURC/orderdetail", 'orderdetailController');
 Route::get("/DURC/json/orderdetail/{orderdetail_id}", 'orderdetailController@jsonone');
 Route::get("/DURC/json/orderdetail/", 'orderdetailController@jsonall');
 Route::get("/DURC/searchjson/orderdetail/", 'orderdetailController@search');
+
+ 
+//DURC->	DURC_northwind_data.order_2017
+Route::resource("/DURC/order_2017", 'order_2017Controller');
+Route::get("/DURC/json/order_2017/{order_2017_id}", 'order_2017Controller@jsonone');
+Route::get("/DURC/json/order_2017/", 'order_2017Controller@jsonall');
+Route::get("/DURC/searchjson/order_2017/", 'order_2017Controller@search');
+
+ 
+//DURC->	DURC_northwind_data.order_2018
+Route::resource("/DURC/order_2018", 'order_2018Controller');
+Route::get("/DURC/json/order_2018/{order_2018_id}", 'order_2018Controller@jsonone');
+Route::get("/DURC/json/order_2018/", 'order_2018Controller@jsonall');
+Route::get("/DURC/searchjson/order_2018/", 'order_2018Controller@search');
+
+ 
+//DURC->	DURC_northwind_data.order_2019
+Route::resource("/DURC/order_2019", 'order_2019Controller');
+Route::get("/DURC/json/order_2019/{order_2019_id}", 'order_2019Controller@jsonone');
+Route::get("/DURC/json/order_2019/", 'order_2019Controller@jsonall');
+Route::get("/DURC/searchjson/order_2019/", 'order_2019Controller@search');
 
  
 //DURC->	DURC_northwind_data.purchaseOrder
