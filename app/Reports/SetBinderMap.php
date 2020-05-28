@@ -23,7 +23,7 @@ class SetBinderMap extends AbstractTabularReport
   <div class='form-group row'>
     <label for='select' class='col-4 col-form-label'>Select Which Set to view</label> 
     <div class='col-8'>
-      <select id='select' name='select' class='custom-select'>
+      <select id='mtgset_id' name='mtgset_id' class='custom-select'>
 ";
 
 	foreach($mtgset_Objs as $this_mtgset){
@@ -42,7 +42,7 @@ class SetBinderMap extends AbstractTabularReport
   </div> 
   <div class='form-group row'>
     <div class='offset-4 col-8'>
-      <button name='submit' type='submit' class='btn btn-primary'>Submit</button>
+      <button name='submit' type='submit' class='btn btn-primary'>Show Set</button>
     </div>
   </div>
 </form>
@@ -64,20 +64,46 @@ class SetBinderMap extends AbstractTabularReport
     **/
     public function GetSQL()
     {
-	//replace with your own SQL
-        $sql = 
+
+	$mtgset_id = $this->getInput('mtgset_id');
+
+
+	if(!is_null($mtgset_id)){
+		$mtgset_id = 552; //alpha
+	}
+
+       $sql =
 "
-SELECT 
-	`TABLE_SCHEMA` AS database_name,
-	`TABLE_NAME`,
-	`COLUMN_NAME`,
-	`ORDINAL_POSITION` AS column_order,
-	`COLUMN_TYPE`
-FROM information_schema.COLUMNS
-WHERE TABLE_SCHEMA != 'mysql' AND TABLE_SCHEMA != 'information_schema'
+SELECT
+        GROUP_CONCAT(cardface.id) AS cardface_ids
+        , MAX(name) AS name
+        , MAX(artist) AS artist
+        , MAX(mana_cost) AS mana_cost
+        , MAX(type_line) AS type_line
+        , MAX(power) AS power
+, GROUP_CONCAT(DISTINCT(set_name)) AS set_names
+, GROUP_CONCAT(DISTINCT(oracle_text)) AS oracle_texts
+, GROUP_CONCAT(DISTINCT(flavor_text)) AS flavor_texts
+, MAX(color) AS color
+, MAX(rarity) AS rarity
+, MAX(color_identity) AS color_identity
+, MAX(scryfall_web_uri) AS scryfall_web_uri
+, MAX(rulings_uri) AS rulings_uri
+, MAX(image_uri_small) AS image_uri_small
+, MAX(image_uri_art_crop) AS image_uri_art_crop
+FROM lore.cardface
+JOIN lore.card ON
+        card.id =
+        cardface.card_id
+WHERE mtgset_id = $mtgset_id 
+GROUP BY illustration_id
+ORDER BY collection_number ASC
 ";
-    	return $sql;
+
+
+
     }
+
 
     /**
     * Each row content will be passed to MapRow.
