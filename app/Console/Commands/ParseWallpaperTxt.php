@@ -86,6 +86,10 @@ class ParseWallpaperTxt extends Command
 
 	foreach($wallpaper_blocks as $this_block){
 
+		//we do not always get to have these... 
+		$set = null;
+		$release_date = null;
+
 		$block_lines = explode("\n",$this_block);
 		//not sure why there is a blank array element at $block_lines[0] but there sure is one.
 		$blank_line = array_shift($block_lines);
@@ -98,9 +102,6 @@ class ParseWallpaperTxt extends Command
 			list($set, $release_date) = explode($set_date_split_string,$next); //the set and date section takes the form '(set) 01/01/2000' which makes ') ' the seperator between the two data points..
 			$set = substr($set,1); //remove the leading '(' from this string..
 			$next = array_shift($block_lines);
-		}else{
-			$set = 'none';
-			$release_date = 'none';
 		}
 
 		//now we are at the author..
@@ -127,21 +128,24 @@ class ParseWallpaperTxt extends Command
 
 		$this_wallpaper = \App\wallpaper::updateOrCreate(['art_name' => $art_title],
 									$fill_data);
-		
+		echo '.';	
 		foreach($urls as $this_url){
-			$name = 'something';
+			echo 'u';
 
-			$this_wallpaper_url = \App\wallpaper_url::create([
+			if(strpos(strtolower($this_url),'media.magic.wizards.com') > 0){ //who cares about other urls? all facebook and twitter and nonesense
+				$name = 'something';
+
+				$this_wallpaper_url = \App\wallpaper_url::updateOrCreate(['wallpaper_url' => $this_url], [
 								'wallpaper_id' => $this_wallpaper->id,
 								'wallpaper_url_name' => $name,
-								'wallpaper_url' => $this_url
 							]);
-			$this_wallpaper_url->save();
+				$this_wallpaper_url->save();
+			}
 		}
 
 	}
 	
-
+	echo "\n";
 	$this->info('script end.');
 
     }
