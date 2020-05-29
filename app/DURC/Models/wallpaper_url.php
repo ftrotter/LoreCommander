@@ -44,6 +44,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id' => 'int',
 		'wallpaper_url_name' => 'varchar',
 		'wallpaper_url' => 'varchar',
+		'wallpaper_local_path' => 'varchar',
 		'is_highest_resolution' => 'tinyint',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
@@ -66,6 +67,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id' => null,
 		'wallpaper_url_name' => null,
 		'wallpaper_url' => null,
+		'wallpaper_local_path' => 'NULL',
 		'is_highest_resolution' => '0',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
@@ -79,6 +81,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id' => 'integer|required',
 		'wallpaper_url_name' => 'required',
 		'wallpaper_url' => 'url|required',
+		'wallpaper_local_path' => 'nullable',
 		'is_highest_resolution' => 'integer',
 	]; // End of validation rules
 		        
@@ -111,6 +114,7 @@ CREATE TABLE `lore`.`wallpaper_url` (
   `wallpaper_id` int(11) NOT NULL,
   `wallpaper_url_name` varchar(190) NOT NULL,
   `lore`.`wallpaper_url` varchar(190) NOT NULL,
+  `wallpaper_local_path` varchar(255) DEFAULT NULL,
   `is_highest_resolution` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),

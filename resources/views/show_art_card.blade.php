@@ -185,7 +185,7 @@ Also, if you are using <a target='_blank' href='https://privacybadger.org/'>Priv
 
 </p>
 <h3> Enter the following into Delver: {{$base_url}}/changeCard/{{$channel_id}}/$multiverseid </h3>
-<a href='/templates/cardview.template.html'>reload card view template</a>
+<a href='/templates/justartview.template.html'>reload card view template</a>
 <input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen(document.body)">
 <br>
 Thanks to <a target='_blank' href='https://scryfall.com'>ScryFall</a> for the amazing API and image database that makes this possible, as well as to WotC whose generous policies with fan content make both this site and ScryFall possible.
