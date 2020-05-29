@@ -23,7 +23,10 @@ class ScryFallAPIProxy extends Controller
 		$best_art_img_url = $scryfall_data['image_uris']['art_crop'];
 
 		$highres_img_sql = "
-SELECT MAX(wallpaper_url) AS wallpaper_url, MAX(wallpaper.id) AS wallpaper_id   
+SELECT 
+	MAX(wallpaper_url) AS wallpaper_url, 
+	MAX(wallpaper_local_path) AS wallpaper_local_path,
+	MAX(wallpaper.id) AS wallpaper_id   
 FROM lore.mverse 
 JOIN lore.cardface ON 
 	cardface_id =
@@ -48,7 +51,8 @@ GROUP BY multiverse_id
 		$rows = $result->fetchAll(\PDO::FETCH_ASSOC);
 
 		foreach($rows as $this_row){
-			$high_res_wallpaper_url = $this_row['wallpaper_url'];
+			list($trash, $public_path) = explode('/public/',$this_row['wallpaper_local_path']); //the webserver puts 'public' as / so the relative url for the wallpapers is always... starting from there
+			$high_res_wallpaper_url = "/$public_path";
 		}	
 
 		if($high_res_wallpaper_url){
