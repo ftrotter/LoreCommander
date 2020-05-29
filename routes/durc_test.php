@@ -308,6 +308,14 @@ Route::get('durctest', function () {
  			'/DURC/vspack/create', //from: lore.vspack 
  			'/DURC/vspack/1', //from: lore.vspack 
  			'/DURC/vspack/1/edit', //from: lore.vspack 
+ 			'/DURC/wallpaper', //from: lore.wallpaper 
+ 			'/DURC/wallpaper/create', //from: lore.wallpaper 
+ 			'/DURC/wallpaper/1', //from: lore.wallpaper 
+ 			'/DURC/wallpaper/1/edit', //from: lore.wallpaper 
+ 			'/DURC/wallpaper_url', //from: lore.wallpaper_url 
+ 			'/DURC/wallpaper_url/create', //from: lore.wallpaper_url 
+ 			'/DURC/wallpaper_url/1', //from: lore.wallpaper_url 
+ 			'/DURC/wallpaper_url/1/edit', //from: lore.wallpaper_url 
 
 
 	]; //end route_list

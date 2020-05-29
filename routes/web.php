@@ -559,6 +559,20 @@ Route::get("/DURC/json/vspack/{vspack_id}", 'vspackController@jsonone');
 Route::get("/DURC/json/vspack/", 'vspackController@jsonall');
 Route::get("/DURC/searchjson/vspack/", 'vspackController@search');
 
+ 
+//DURC->	lore.wallpaper
+Route::resource("/DURC/wallpaper", 'wallpaperController');
+Route::get("/DURC/json/wallpaper/{wallpaper_id}", 'wallpaperController@jsonone');
+Route::get("/DURC/json/wallpaper/", 'wallpaperController@jsonall');
+Route::get("/DURC/searchjson/wallpaper/", 'wallpaperController@search');
+
+ 
+//DURC->	lore.wallpaper_url
+Route::resource("/DURC/wallpaper_url", 'wallpaper_urlController');
+Route::get("/DURC/json/wallpaper_url/{wallpaper_url_id}", 'wallpaper_urlController@jsonone');
+Route::get("/DURC/json/wallpaper_url/", 'wallpaper_urlController@jsonall');
+Route::get("/DURC/searchjson/wallpaper_url/", 'wallpaper_urlController@search');
+
 
 
 
