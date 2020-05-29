@@ -16,6 +16,7 @@ class wallpaperController extends DURCController
 	public $view_data = [];
 
 	protected static $hidden_fields_array = [
+		'id',
 		'created_at',
 		'updated_at',
 
