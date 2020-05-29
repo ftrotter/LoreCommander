@@ -15,6 +15,7 @@ CREATE TABLE `card` (
   `set_type` varchar(255) NOT NULL,
   `mtgset_id` int(11) NOT NULL,
   `collector_number` varchar(20) NOT NULL DEFAULT '',
+  `sortable_collector_number` varchar(30) DEFAULT NULL,
   `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',
   `edhrec_rank` int(11) DEFAULT 0,
   `is_promo` tinyint(1) NOT NULL,
@@ -51,6 +52,7 @@ CREATE TABLE `card` (
   KEY `legal_commander` (`legal_commander`),
   KEY `legal_penny` (`legal_penny`),
   KEY `legal_modern` (`legal_modern`),
-  KEY `legal_standard` (`legal_standard`)
+  KEY `legal_standard` (`legal_standard`),
+  KEY `sortable_collector_number` (`sortable_collector_number`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
