@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use DB;
 
 class ParseWallpaperTxt extends Command
 {
@@ -141,11 +142,14 @@ class ParseWallpaperTxt extends Command
 			'facebookcover' => 'Facebook',
 			'wallpapertwitter' => 'Twitter',
 			'twitterheader' => 'Twitter',
-
+			'wallpaper2560x1600' => '2560x1600',
 			];
 
 		$this_wallpaper = \App\wallpaper::updateOrCreate(['art_name' => $art_title],
 									$fill_data);
+
+
+
 		foreach($urls as $this_url){
 
 			if(strpos(strtolower($this_url),'://media.magic.wizards.com') !== false){ //who cares about other urls? all facebook and twitter and nonesense
@@ -160,6 +164,8 @@ class ParseWallpaperTxt extends Command
 
 				//we need a default if one of our two methods fails...
 				$name = 'Unknown Size';
+
+				$is_highest_resolution = 0 ; //has to be the starting assumption..
 
 				foreach($file_segments as $this_segment){
 					//first we test to see if there is valid named segment
@@ -176,13 +182,24 @@ class ParseWallpaperTxt extends Command
 					}
 
 
+					if($name == '2560x1600'){ //we know that when these appear, they are the highest res
+						$is_highest_resolution = 1;
+					}
+					
 				}
 
+
+				if(count($urls) == 1){
+					//then this is automatically the highest resolution
+					$is_highest_resolution = 1;
+				}
 
 				$this_wallpaper_url = \App\wallpaper_url::updateOrCreate(['wallpaper_url' => $this_url], [
 								'wallpaper_id' => $this_wallpaper->id,
 								'wallpaper_url_name' => $name,
+								'is_highest_resolution' => $is_highest_resolution,
 							]);
+
 				$this_wallpaper_url->save();
 			}
 		}

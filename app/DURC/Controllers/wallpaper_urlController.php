@@ -235,6 +235,7 @@ class wallpaper_urlController extends DURCController
         $tmp_wallpaper_url->wallpaper_id = $request->wallpaper_id;
         $tmp_wallpaper_url->wallpaper_url_name = $request->wallpaper_url_name;
         $tmp_wallpaper_url->wallpaper_url = $request->wallpaper_url;
+        $tmp_wallpaper_url->is_highest_resolution = $request->is_highest_resolution;
 
 
         try {
@@ -407,6 +408,7 @@ class wallpaper_urlController extends DURCController
         $tmp_wallpaper_url->wallpaper_id = $request->wallpaper_id;
         $tmp_wallpaper_url->wallpaper_url_name = $request->wallpaper_url_name;
         $tmp_wallpaper_url->wallpaper_url = $request->wallpaper_url;
+        $tmp_wallpaper_url->is_highest_resolution = $request->is_highest_resolution;
 
         $id = $wallpaper_url->id;
         
