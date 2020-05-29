@@ -9522,6 +9522,206 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `vspack_name` varchar(255) NOT NULL,\n  `vspack_wizards_url` varchar(2000) NOT NULL,\n  `vspack_wiki_url` varchar(2000) NOT NULL,\n  `vspack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+        },
+        "wallpaper": {
+            "table_name": "wallpaper",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "art_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "set_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "art_release_date",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "author_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "illustration_id",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                }
+            ],
+            "has_many": {
+                "wallpaper_url": {
+                    "prefix": null,
+                    "type": "wallpaper_url",
+                    "from_table": "wallpaper_url",
+                    "from_db": "lore",
+                    "from_column": "wallpaper_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper` (\n  `id` int(11) NOT NULL,\n  `art_name` varchar(190) DEFAULT NULL,\n  `set_name` varchar(190) NOT NULL,\n  `art_release_date` datetime DEFAULT NULL,\n  `author_name` varchar(190) NOT NULL,\n  `illustration_id` varchar(190) DEFAULT NULL,\n  `created_at` datetime DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp()\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
+        },
+        "wallpaper_url": {
+            "table_name": "wallpaper_url",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "wallpaper_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": true,
+                    "foreign_db": "lore",
+                    "foreign_table": "wallpaper",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "wallpaper_url_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "wallpaper_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "wallpaper": {
+                    "prefix": null,
+                    "type": "wallpaper",
+                    "to_table": "wallpaper",
+                    "to_db": "lore",
+                    "local_key": "wallpaper_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_url` (\n  `id` int(11) NOT NULL,\n  `wallpaper_id` int(11) NOT NULL,\n  `wallpaper_url_name` varchar(190) NOT NULL,\n  `lore`.`wallpaper_url` varchar(190) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp()\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
         }
     }
 }
