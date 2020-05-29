@@ -15,11 +15,10 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "fideloper/proxy": "~4.0",
         "laravel/framework": "^6.0",
-        "laravel/helpers": "^1.0@dev",
+        "laravel/helpers": "^1.1",
+        "mgargano/simplehtmldom": "^1.5",
         "phpunit/phpunit": "^7.3",
-        "proai/laravel-handlebars": "^1.9",
         "pusher/pusher-php-server": "^4.0",
         "sunra/php-simple-html-dom-parser": "^1.5",
         "superbalist/flysystem-google-storage": "^7.0",
@@ -68,7 +67,8 @@
             "@php artisan package:discover"
         ]
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
