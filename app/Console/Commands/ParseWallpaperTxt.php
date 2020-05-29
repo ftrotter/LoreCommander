@@ -126,14 +126,58 @@ class ParseWallpaperTxt extends Command
 			'author_name' => $author,
 		];
 
+
+		$list_of_url_names = [
+			'tablet' => 'Tablet',
+			'facebook' => 'Facebook',
+			'iphone' => 'iPhone',
+			'ipad' => 'iPad',
+			'twitter' => 'Twitter',
+			'mobile' => 'Mobile',
+			'gameinfo' => 'Gameinfo',
+			'wallpapermobile' => 'Mobile',
+			'wallpapertablet' => 'Tablet',
+			'wallpaperfacebook' => 'Facebook',
+			'facebookcover' => 'Facebook',
+			'wallpapertwitter' => 'Twitter',
+			'twitterheader' => 'Twitter',
+
+			];
+
 		$this_wallpaper = \App\wallpaper::updateOrCreate(['art_name' => $art_title],
 									$fill_data);
-		echo '.';	
 		foreach($urls as $this_url){
-			echo 'u';
 
-			if(strpos(strtolower($this_url),'media.magic.wizards.com') > 0){ //who cares about other urls? all facebook and twitter and nonesense
-				$name = 'something';
+			if(strpos(strtolower($this_url),'://media.magic.wizards.com') !== false){ //who cares about other urls? all facebook and twitter and nonesense
+
+				//the standard process for getting a file name out of a url...
+				$path = parse_url($this_url, PHP_URL_PATH);
+				$path_parts = pathinfo($path);
+				$just_filename_no_extension = $path_parts['filename'];
+
+				//but the MTG files are helpfully segmented with underscore...
+				$file_segments = explode('_',$just_filename_no_extension);
+
+				//we need a default if one of our two methods fails...
+				$name = 'Unknown Size';
+
+				foreach($file_segments as $this_segment){
+					//first we test to see if there is valid named segment
+					foreach($list_of_url_names as $this_name){
+						if(array_key_exists(strtolower($this_segment),$list_of_url_names)){
+							//these means that it was facebook, or twitter or whatever...
+							$name = $list_of_url_names[strtolower($this_segment)];
+						}
+					}
+					//then we test for a simension like: 2560x1600
+					//here is the regular expression that matches that pattern, thanks https://stackoverflow.com/a/31809994/144364
+					if(preg_match("/([0-9]+x[0-9]+)/",strtolower($this_segment))) {
+						$name = strtolower($this_segment); //not sure what it is, but it takes the screen dimension pattern and it works for the name!!
+					}
+
+
+				}
+
 
 				$this_wallpaper_url = \App\wallpaper_url::updateOrCreate(['wallpaper_url' => $this_url], [
 								'wallpaper_id' => $this_wallpaper->id,
