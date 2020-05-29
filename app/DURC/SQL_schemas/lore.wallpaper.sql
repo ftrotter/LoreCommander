@@ -3,7 +3,7 @@
 CREATE TABLE `wallpaper` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `art_name` varchar(190) DEFAULT NULL,
-  `set_name` varchar(190) NOT NULL,
+  `set_name` varchar(190) DEFAULT NULL,
   `art_release_date` datetime DEFAULT NULL,
   `author_name` varchar(190) NOT NULL,
   `illustration_id` varchar(190) DEFAULT NULL,

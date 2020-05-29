@@ -111,7 +111,7 @@ CREATE TABLE `lore`.`wallpaper_url` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `lore`.`wallpaper_url` (`lore`.`wallpaper_url`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4
 */
 
 

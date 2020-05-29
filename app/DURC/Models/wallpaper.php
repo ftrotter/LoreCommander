@@ -53,7 +53,6 @@ class wallpaper extends DURCModel{
     // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
-		'set_name',
 		'author_name',
 		'updated_at',
 	]; // End of nullable fields
@@ -62,7 +61,7 @@ class wallpaper extends DURCModel{
     protected $default_values = [
 		'id' => null,
 		'art_name' => 'NULL',
-		'set_name' => null,
+		'set_name' => 'NULL',
 		'art_release_date' => 'NULL',
 		'author_name' => null,
 		'illustration_id' => 'NULL',
@@ -76,7 +75,7 @@ class wallpaper extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'art_name' => 'nullable',
-		'set_name' => 'required',
+		'set_name' => 'nullable',
 		'art_release_date' => 'nullable',
 		'author_name' => 'required',
 		'illustration_id' => 'nullable',
@@ -110,7 +109,7 @@ class wallpaper extends DURCModel{
 CREATE TABLE `lore`.`wallpaper` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `art_name` varchar(190) DEFAULT NULL,
-  `set_name` varchar(190) NOT NULL,
+  `set_name` varchar(190) DEFAULT NULL,
   `art_release_date` datetime DEFAULT NULL,
   `author_name` varchar(190) NOT NULL,
   `illustration_id` varchar(190) DEFAULT NULL,
@@ -118,7 +117,7 @@ CREATE TABLE `lore`.`wallpaper` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `art_name` (`art_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4
 */
 
 
