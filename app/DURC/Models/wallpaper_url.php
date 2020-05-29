@@ -73,7 +73,6 @@ class wallpaper_url extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
-		'id' => 'integer|required',
 		'wallpaper_id' => 'integer|required',
 		'wallpaper_url_name' => 'required',
 		'wallpaper_url' => 'url|required',
@@ -104,12 +103,14 @@ class wallpaper_url extends DURCModel{
 //Originating SQL Schema
 /*
 CREATE TABLE `lore`.`wallpaper_url` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `wallpaper_id` int(11) NOT NULL,
   `wallpaper_url_name` varchar(190) NOT NULL,
   `lore`.`wallpaper_url` varchar(190) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lore`.`wallpaper_url` (`lore`.`wallpaper_url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
 */
 

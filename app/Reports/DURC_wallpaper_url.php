@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=6664bf3e89562a57b51fe382f71b0285
+FILE_SIG=683ad181e84cc6dfc8283009478e79f1
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -213,14 +213,14 @@ array (
   array (
     'column_name' => 'id',
     'data_type' => 'int',
-    'is_primary_key' => false,
+    'is_primary_key' => true,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
     'default_value' => NULL,
-    'is_auto_increment' => false,
+    'is_auto_increment' => true,
   ),
   1 => 
   array (
@@ -253,8 +253,8 @@ array (
     'column_name' => 'wallpaper_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
@@ -307,22 +307,22 @@ array (
       array (
         'column_name' => 'id',
         'data_type' => 'int',
-        'is_primary_key' => false,
+        'is_primary_key' => true,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
         'default_value' => NULL,
-        'is_auto_increment' => false,
+        'is_auto_increment' => true,
       ),
       1 => 
       array (
         'column_name' => 'art_name',
         'data_type' => 'varchar',
         'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => true,

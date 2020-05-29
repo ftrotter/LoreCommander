@@ -84,7 +84,6 @@ class ParseWallpaperTxt extends Command
 
 	$wallpaper_blocks = explode('*',$file_string);
 
-	$data = [];
 	foreach($wallpaper_blocks as $this_block){
 
 		$block_lines = explode("\n",$this_block);
@@ -119,18 +118,29 @@ class ParseWallpaperTxt extends Command
 		$urls = $match[0];
 		$mysql_date = date("Y-m-d", strtotime($release_date)); 
 
-		$tmp = [
+		$fill_data = [
 			'art_name' => $art_title,
 			'set_name' => $set,
 			'art_release_date' => $mysql_date,
 			'author_name' => $author,
-			'wallpaper_urls' => $urls,
 		];
 
-		$data[] = $tmp;
+		$this_wallpaper = \App\wallpaper::updateOrCreate(['art_name' => $art_title],
+									$fill_data);
+		
+		foreach($urls as $this_url){
+			$name = 'something';
+
+			$this_wallpaper_url = \App\wallpaper_url::create([
+								'wallpaper_id' => $this_wallpaper->id,
+								'wallpaper_url_name' => $name,
+								'wallpaper_url' => $this_url
+							]);
+			$this_wallpaper_url->save();
+		}
+
 	}
 	
-	var_export($data);	
 
 	$this->info('script end.');
 

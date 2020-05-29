@@ -9530,21 +9530,21 @@
                 {
                     "column_name": "id",
                     "data_type": "int",
-                    "is_primary_key": false,
+                    "is_primary_key": true,
                     "is_foreign_key": false,
                     "is_linked_key": false,
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
                     "default_value": null,
-                    "is_auto_increment": false
+                    "is_auto_increment": true
                 },
                 {
                     "column_name": "art_name",
                     "data_type": "varchar",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": true,
@@ -9633,7 +9633,7 @@
                     "from_column": "wallpaper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`wallpaper` (\n  `id` int(11) NOT NULL,\n  `art_name` varchar(190) DEFAULT NULL,\n  `set_name` varchar(190) NOT NULL,\n  `art_release_date` datetime DEFAULT NULL,\n  `author_name` varchar(190) NOT NULL,\n  `illustration_id` varchar(190) DEFAULT NULL,\n  `created_at` datetime DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp()\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `art_name` varchar(190) DEFAULT NULL,\n  `set_name` varchar(190) NOT NULL,\n  `art_release_date` datetime DEFAULT NULL,\n  `author_name` varchar(190) NOT NULL,\n  `illustration_id` varchar(190) DEFAULT NULL,\n  `created_at` datetime DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `art_name` (`art_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
         },
         "wallpaper_url": {
             "table_name": "wallpaper_url",
@@ -9642,14 +9642,14 @@
                 {
                     "column_name": "id",
                     "data_type": "int",
-                    "is_primary_key": false,
+                    "is_primary_key": true,
                     "is_foreign_key": false,
                     "is_linked_key": false,
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
                     "default_value": null,
-                    "is_auto_increment": false
+                    "is_auto_increment": true
                 },
                 {
                     "column_name": "wallpaper_id",
@@ -9679,8 +9679,8 @@
                     "column_name": "wallpaper_url",
                     "data_type": "varchar",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
@@ -9721,7 +9721,7 @@
                     "local_key": "wallpaper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_url` (\n  `id` int(11) NOT NULL,\n  `wallpaper_id` int(11) NOT NULL,\n  `wallpaper_url_name` varchar(190) NOT NULL,\n  `lore`.`wallpaper_url` varchar(190) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp()\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_url` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `wallpaper_id` int(11) NOT NULL,\n  `wallpaper_url_name` varchar(190) NOT NULL,\n  `lore`.`wallpaper_url` varchar(190) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `lore`.`wallpaper_url` (`lore`.`wallpaper_url`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
         }
     }
 }
