@@ -152,6 +152,11 @@ class ParseWallpaperTxt extends Command
 
 		foreach($urls as $this_url){
 
+			if($this_url == 'https://media.magic.wizards.com/images/wallpaper/Look-at-Me'){
+				//this is not real...
+				continue;
+			}
+
 			if(strpos(strtolower($this_url),'://media.magic.wizards.com') !== false){ //who cares about other urls? all facebook and twitter and nonesense
 
 				//the standard process for getting a file name out of a url...
