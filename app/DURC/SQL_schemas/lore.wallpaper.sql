@@ -6,7 +6,6 @@ CREATE TABLE `wallpaper` (
   `set_name` varchar(190) DEFAULT NULL,
   `art_release_date` datetime DEFAULT NULL,
   `author_name` varchar(190) NOT NULL,
-  `illustration_id` varchar(190) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

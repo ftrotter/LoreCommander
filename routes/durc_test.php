@@ -312,6 +312,10 @@ Route::get('durctest', function () {
  			'/DURC/wallpaper/create', //from: lore.wallpaper 
  			'/DURC/wallpaper/1', //from: lore.wallpaper 
  			'/DURC/wallpaper/1/edit', //from: lore.wallpaper 
+ 			'/DURC/wallpaper_illustration', //from: lore.wallpaper_illustration 
+ 			'/DURC/wallpaper_illustration/create', //from: lore.wallpaper_illustration 
+ 			'/DURC/wallpaper_illustration/1', //from: lore.wallpaper_illustration 
+ 			'/DURC/wallpaper_illustration/1/edit', //from: lore.wallpaper_illustration 
  			'/DURC/wallpaper_url', //from: lore.wallpaper_url 
  			'/DURC/wallpaper_url/create', //from: lore.wallpaper_url 
  			'/DURC/wallpaper_url/1', //from: lore.wallpaper_url 

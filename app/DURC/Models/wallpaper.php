@@ -45,7 +45,6 @@ class wallpaper extends DURCModel{
 		'set_name' => 'varchar',
 		'art_release_date' => 'datetime',
 		'author_name' => 'varchar',
-		'illustration_id' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 	]; //end field_type_map
@@ -64,7 +63,6 @@ class wallpaper extends DURCModel{
 		'set_name' => 'NULL',
 		'art_release_date' => 'NULL',
 		'author_name' => null,
-		'illustration_id' => 'NULL',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
@@ -78,7 +76,6 @@ class wallpaper extends DURCModel{
 		'set_name' => 'nullable',
 		'art_release_date' => 'nullable',
 		'author_name' => 'required',
-		'illustration_id' => 'nullable',
 		'created_at' => 'nullable',
 	]; // End of validation rules
 		        
@@ -112,7 +109,6 @@ CREATE TABLE `lore`.`wallpaper` (
   `set_name` varchar(190) DEFAULT NULL,
   `art_release_date` datetime DEFAULT NULL,
   `author_name` varchar(190) NOT NULL,
-  `illustration_id` varchar(190) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

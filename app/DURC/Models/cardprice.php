@@ -125,7 +125,7 @@ CREATE TABLE `lore`.`cardprice` (
   PRIMARY KEY (`id`),
   KEY `card_id` (`card_id`),
   KEY `created_at` (`created_at`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 */
 
 

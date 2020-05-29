@@ -567,6 +567,13 @@ Route::get("/DURC/json/wallpaper/", 'wallpaperController@jsonall');
 Route::get("/DURC/searchjson/wallpaper/", 'wallpaperController@search');
 
  
+//DURC->	lore.wallpaper_illustration
+Route::resource("/DURC/wallpaper_illustration", 'wallpaper_illustrationController');
+Route::get("/DURC/json/wallpaper_illustration/{wallpaper_illustration_id}", 'wallpaper_illustrationController@jsonone');
+Route::get("/DURC/json/wallpaper_illustration/", 'wallpaper_illustrationController@jsonall');
+Route::get("/DURC/searchjson/wallpaper_illustration/", 'wallpaper_illustrationController@search');
+
+ 
 //DURC->	lore.wallpaper_url
 Route::resource("/DURC/wallpaper_url", 'wallpaper_urlController');
 Route::get("/DURC/json/wallpaper_url/{wallpaper_url_id}", 'wallpaper_urlController@jsonone');

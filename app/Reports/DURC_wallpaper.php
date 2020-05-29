@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=13d2d2ade1e4f6f38f1834d344c1132f
+FILE_SIG=9dc956fc7948dfec656dd7c5ba1f5c2f
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -56,7 +56,6 @@ $joined_select_field_sql
 , wallpaper.set_name AS set_name
 , wallpaper.art_release_date AS art_release_date
 , wallpaper.author_name AS author_name
-, wallpaper.illustration_id AS illustration_id
 , wallpaper.created_at AS created_at
 , wallpaper.updated_at AS updated_at
 
@@ -74,7 +73,6 @@ $joined_select_field_sql
 , wallpaper.set_name AS set_name
 , wallpaper.art_release_date AS art_release_date
 , wallpaper.author_name AS author_name
-, wallpaper.illustration_id AS illustration_id
 , wallpaper.created_at AS created_at
 , wallpaper.updated_at AS updated_at
  
@@ -234,19 +232,6 @@ array (
   ),
   5 => 
   array (
-    'column_name' => 'illustration_id',
-    'data_type' => 'varchar',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => true,
-    'default_value' => 'NULL',
-    'is_auto_increment' => false,
-  ),
-  6 => 
-  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -258,7 +243,7 @@ array (
     'default_value' => 'current_timestamp()',
     'is_auto_increment' => false,
   ),
-  7 => 
+  6 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',
