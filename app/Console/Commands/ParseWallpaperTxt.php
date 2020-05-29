@@ -84,10 +84,53 @@ class ParseWallpaperTxt extends Command
 
 	$wallpaper_blocks = explode('*',$file_string);
 
+	$data = [];
 	foreach($wallpaper_blocks as $this_block){
 
-	}
+		$block_lines = explode("\n",$this_block);
+		//not sure why there is a blank array element at $block_lines[0] but there sure is one.
+		$blank_line = array_shift($block_lines);
+		$art_title = array_shift($block_lines);
+		$next = array_shift($block_lines); //sometimes there is no set and date... 
 
+		$set_date_split_string = ") "; //the set and date section takes the form '(set) 01/01/2000' which makes ') ' the seperator between the two data points..
+
+		if(strpos($next,$set_date_split_string)){
+			list($set, $release_date) = explode($set_date_split_string,$next); //the set and date section takes the form '(set) 01/01/2000' which makes ') ' the seperator between the two data points..
+			$set = substr($set,1); //remove the leading '(' from this string..
+			$next = array_shift($block_lines);
+		}else{
+			$set = 'none';
+			$release_date = 'none';
+		}
+
+		//now we are at the author..
+		$author = $next;
+		$author = substr($author,3); //remove the 'By ' characters from the author string...
+
+		//uncomment this to see progress..
+		//echo " art=$art_title\n set=$set\n release_date=$release_date\n author=$author\n";
+
+		//from here, its easier just to extract the urls using a regex
+		$rest_of_block = implode('   ',$block_lines);
+
+		preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $rest_of_block, $match);
+
+		$urls = $match[0];
+		$mysql_date = date("Y-m-d", strtotime($release_date)); 
+
+		$tmp = [
+			'art_name' => $art_title,
+			'set_name' => $set,
+			'art_release_date' => $mysql_date,
+			'author_name' => $author,
+			'wallpaper_urls' => $urls,
+		];
+
+		$data[] = $tmp;
+	}
+	
+	var_export($data);	
 
 	$this->info('script end.');
 
