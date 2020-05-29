@@ -302,7 +302,7 @@ CREATE TABLE `lore`.`card` (
   KEY `legal_penny` (`legal_penny`),
   KEY `legal_modern` (`legal_modern`),
   KEY `legal_standard` (`legal_standard`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 

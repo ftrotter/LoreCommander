@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1079ac56727dec7c2b7f8f1947f526a1
+FILE_SIG=a08603ac46f1b39a8316308ab5fb8320
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -68,6 +68,7 @@ $joined_select_field_sql
 , wallpaper_url.wallpaper_id AS wallpaper_id
 , wallpaper_url.wallpaper_url_name AS wallpaper_url_name
 , wallpaper_url.wallpaper_url AS wallpaper_url
+, wallpaper_url.is_highest_resolution AS is_highest_resolution
 , wallpaper_url.created_at AS created_at
 , wallpaper_url.updated_at AS updated_at
 
@@ -88,6 +89,7 @@ $joined_select_field_sql
 , wallpaper_url.wallpaper_id AS wallpaper_id
 , wallpaper_url.wallpaper_url_name AS wallpaper_url_name
 , wallpaper_url.wallpaper_url AS wallpaper_url
+, wallpaper_url.is_highest_resolution AS is_highest_resolution
 , wallpaper_url.created_at AS created_at
 , wallpaper_url.updated_at AS updated_at
  
@@ -263,6 +265,19 @@ array (
   ),
   4 => 
   array (
+    'column_name' => 'is_highest_resolution',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  5 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -274,7 +289,7 @@ array (
     'default_value' => 'current_timestamp()',
     'is_auto_increment' => false,
   ),
-  5 => 
+  6 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

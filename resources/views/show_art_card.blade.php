@@ -30,7 +30,7 @@
     		var channel = pusher.subscribe('{{$channel_id}}');
     		channel.bind('show_this_card', function(data) {
 
-			var scryfall_url = 'https://api.scryfall.com/cards/multiverse/' + data['multiverse_id'];
+			var scryfall_url = 'https://lore.ft1.us/scryProxy/cards/multiverse/' + data['multiverse_id'];
 
 			$.get('/templates/justartview.template.html', function(templates) {
 				var tpl = $(templates).filter('#tpl-cardview').html();

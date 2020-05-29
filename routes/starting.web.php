@@ -23,6 +23,10 @@ Route::get('showArtCard/{channel_id}', 'cardShowController@showArtCard');
 Route::get('genericLinkerForm/{durc_type_left}/{durc_type_right}/{durc_type_link}','GenericLinker@linkForm');
 Route::post('genericLinkerSave/{durc_type_left}/{durc_type_right}/{durc_type_link}','GenericLinker@linkSaver');
 
+
+Route::get('scryProxy/cards/multiverse/{multiverse_id}', 'ScryFallAPIProxy@cardFromMulti');
+
+
 Route::get('pusher', function () {
 
 

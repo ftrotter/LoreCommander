@@ -44,6 +44,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id' => 'int',
 		'wallpaper_url_name' => 'varchar',
 		'wallpaper_url' => 'varchar',
+		'is_highest_resolution' => 'tinyint',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 	]; //end field_type_map
@@ -54,6 +55,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id',
 		'wallpaper_url_name',
 		'wallpaper_url',
+		'is_highest_resolution',
 		'created_at',
 		'updated_at',
 	]; // End of nullable fields
@@ -64,6 +66,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id' => null,
 		'wallpaper_url_name' => null,
 		'wallpaper_url' => null,
+		'is_highest_resolution' => '0',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
@@ -76,6 +79,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_id' => 'integer|required',
 		'wallpaper_url_name' => 'required',
 		'wallpaper_url' => 'url|required',
+		'is_highest_resolution' => 'integer',
 	]; // End of validation rules
 		        
 		
@@ -107,6 +111,7 @@ CREATE TABLE `lore`.`wallpaper_url` (
   `wallpaper_id` int(11) NOT NULL,
   `wallpaper_url_name` varchar(190) NOT NULL,
   `lore`.`wallpaper_url` varchar(190) NOT NULL,
+  `is_highest_resolution` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

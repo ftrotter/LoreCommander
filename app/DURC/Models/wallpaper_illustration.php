@@ -97,7 +97,7 @@ CREATE TABLE `lore`.`wallpaper_illustration` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4
 */
 
 

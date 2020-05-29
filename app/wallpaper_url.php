@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b64ab791c6699c3f1890251cbeee005e
+FILE_SIG=d549487fdd2b9534ba3ad00f91e9cc8f
 */
 namespace App;
 /*
@@ -36,6 +36,7 @@ class wallpaper_url extends \App\DURC\Models\wallpaper_url
 			//'wallpaper_id', //int
 			//'wallpaper_url_name', //varchar
 			//'wallpaper_url', //varchar
+			//'is_highest_resolution', //tinyint
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
