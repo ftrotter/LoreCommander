@@ -149,10 +149,16 @@ class ParseWallpaperTxt extends Command
 									$fill_data);
 
 
+		$bad_url_list = [
+			'https://media.magic.wizards.com/images/wallpaper/Ob-Nixilis',
+			'https://media.magic.wizards.com/images/wallpaper/Look-at-Me',
+			'https://media.magic.wizards.com/images/wallpaper/Karametra',
+			];
+
 
 		foreach($urls as $this_url){
 
-			if($this_url == 'https://media.magic.wizards.com/images/wallpaper/Look-at-Me'){
+			if(in_array($this_url,$bad_url_list)){
 				//this is not real...
 				continue;
 			}
