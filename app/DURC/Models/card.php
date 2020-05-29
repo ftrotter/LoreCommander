@@ -56,6 +56,7 @@ class card extends DURCModel{
 		'set_type' => 'varchar',
 		'mtgset_id' => 'int',
 		'collector_number' => 'varchar',
+		'sortable_collector_number' => 'varchar',
 		'variation_of_scryfall_id' => 'varchar',
 		'edhrec_rank' => 'int',
 		'is_promo' => 'tinyint',
@@ -140,6 +141,7 @@ class card extends DURCModel{
 		'set_type' => null,
 		'mtgset_id' => null,
 		'collector_number' => '\'\'',
+		'sortable_collector_number' => 'NULL',
 		'variation_of_scryfall_id' => '\'NULL\'',
 		'edhrec_rank' => '0',
 		'is_promo' => null,
@@ -185,6 +187,7 @@ class card extends DURCModel{
 		'set_name' => 'required',
 		'set_type' => 'required',
 		'mtgset_id' => 'integer|required',
+		'sortable_collector_number' => 'nullable',
 		'variation_of_scryfall_id' => 'nullable',
 		'edhrec_rank' => 'integer|nullable',
 		'is_promo' => 'integer|required',
@@ -265,6 +268,7 @@ CREATE TABLE `lore`.`card` (
   `set_type` varchar(255) NOT NULL,
   `mtgset_id` int(11) NOT NULL,
   `collector_number` varchar(20) NOT NULL DEFAULT '',
+  `sortable_collector_number` varchar(30) DEFAULT NULL,
   `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',
   `edhrec_rank` int(11) DEFAULT 0,
   `is_promo` tinyint(1) NOT NULL,
@@ -301,7 +305,8 @@ CREATE TABLE `lore`.`card` (
   KEY `legal_commander` (`legal_commander`),
   KEY `legal_penny` (`legal_penny`),
   KEY `legal_modern` (`legal_modern`),
-  KEY `legal_standard` (`legal_standard`)
+  KEY `legal_standard` (`legal_standard`),
+  KEY `sortable_collector_number` (`sortable_collector_number`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
