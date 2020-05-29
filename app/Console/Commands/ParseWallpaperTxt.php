@@ -158,6 +158,7 @@ class ParseWallpaperTxt extends Command
 				$path = parse_url($this_url, PHP_URL_PATH);
 				$path_parts = pathinfo($path);
 				$just_filename_no_extension = $path_parts['filename'];
+				$full_filename = $path_parts['basename'];
 
 				//but the MTG files are helpfully segmented with underscore...
 				$file_segments = explode('_',$just_filename_no_extension);
@@ -194,7 +195,19 @@ class ParseWallpaperTxt extends Command
 					$is_highest_resolution = 1;
 				}
 
+
+				//calculate the local path...
+				$dir = base_path() . "/public/wallpapers/";
+
+				$file_destination = $dir . $full_filename; //this is where the local copy goes
+
+				if(!file_exists($file_destination)){
+					//and if we have not downloaded it already... here it goes...
+					file_put_contents($file_destination, fopen($this_url, 'r'));
+				}
+
 				$this_wallpaper_url = \App\wallpaper_url::updateOrCreate(['wallpaper_url' => $this_url], [
+								'wallpaper_local_path' => $file_destination,
 								'wallpaper_id' => $this_wallpaper->id,
 								'wallpaper_url_name' => $name,
 								'is_highest_resolution' => $is_highest_resolution,
