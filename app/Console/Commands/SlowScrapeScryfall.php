@@ -90,7 +90,8 @@ class SlowScrapeScryfall extends Command
 		unset($this_set['foil_only']);
 
 		if(isset($this_set['arena_code'])){
-			var_export($this_set);
+			$name = $this_set['name'];
+			echo "Prepping for set \"$name\"\n";
 		}
 
 
