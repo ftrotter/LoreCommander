@@ -2,14 +2,14 @@
 
 namespace App\DURC\Controllers;
 
-use App\wallpaper;
+use App\wallpaper_illustration;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 use CareSet\DURC\DURCInvalidDataException;
 
-class wallpaperController extends DURCController
+class wallpaper_illustrationController extends DURCController
 {
 
 
@@ -38,7 +38,7 @@ class wallpaperController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = wallpaper::with($with_argument)->paginate(100);
+		$these = wallpaper_illustration::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -53,8 +53,8 @@ class wallpaperController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( wallpaper::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = wallpaper::$field_type_map[ $lowest_key ];
+                                        if ( isset( wallpaper_illustration::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = wallpaper_illustration::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -62,8 +62,8 @@ class wallpaperController extends DURCController
                                 }
                         }
 
-                        if ( isset( wallpaper::$field_type_map[$key] ) ) {
-                            $field_type = wallpaper::$field_type_map[ $key ];
+                        if ( isset( wallpaper_illustration::$field_type_map[$key] ) ) {
+                            $field_type = wallpaper_illustration::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -127,11 +127,11 @@ class wallpaperController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = wallpaper::getSearchFields();
+                $search_fields = wallpaper_illustration::getSearchFields();
 
 		//sometimes there is an image field that contains the url of an image
 		//but this is typically null
-		$img_field = wallpaper::getImgField();
+		$img_field = wallpaper_illustration::getImgField();
 
 		$where_sql = '';
 		$or = '';
@@ -140,7 +140,7 @@ class wallpaperController extends DURCController
 			$or = ' OR ';
 		}
 
-		$query = wallpaper::whereRaw($where_sql);
+		$query = wallpaper_illustration::whereRaw($where_sql);
 		            
 		$count = $query->count();			
 		$these = $query
@@ -192,7 +192,7 @@ class wallpaperController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\wallpaper  $wallpaper
+     * @param  \App\wallpaper_illustration  $wallpaper_illustration
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -213,7 +213,7 @@ class wallpaperController extends DURCController
             var_export($this->view_data);
             exit();
         }
-        $durc_template_results = view('DURC.wallpaper.index',$this->view_data);        
+        $durc_template_results = view('DURC.wallpaper_illustration.index',$this->view_data);        
         return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -225,25 +225,23 @@ class wallpaperController extends DURCController
     */ 
     public function store(Request $request){
 
-        $myNewwallpaper = new wallpaper();
+        $myNewwallpaper_illustration = new wallpaper_illustration();
 
         //the games we play to easily auto-generate code..
-        $tmp_wallpaper = $myNewwallpaper;
+        $tmp_wallpaper_illustration = $myNewwallpaper_illustration;
         
-        $tmp_wallpaper->id = $request->id;
-        $tmp_wallpaper->art_name = $request->art_name;
-        $tmp_wallpaper->set_name = $request->set_name;
-        $tmp_wallpaper->art_release_date = $request->art_release_date;
-        $tmp_wallpaper->author_name = $request->author_name;
+        $tmp_wallpaper_illustration->id = $request->id;
+        $tmp_wallpaper_illustration->wallpaper_name = $request->wallpaper_name;
+        $tmp_wallpaper_illustration->illustration_id = $request->illustration_id;
 
 
         try {
-            $tmp_wallpaper->save();
+            $tmp_wallpaper_illustration->save();
 
-        $new_id = $myNewwallpaper->id;
-        return redirect("/DURC/wallpaper/$new_id")->with('status', 'Data Saved!');
+        $new_id = $myNewwallpaper_illustration->id;
+        return redirect("/DURC/wallpaper_illustration/$new_id")->with('status', 'Data Saved!');
         } catch (DURCInvalidDataException $e) {
-            return back()->withInput()->with('errors', $tmp_wallpaper->getErrors());
+            return back()->withInput()->with('errors', $tmp_wallpaper_illustration->getErrors());
 
         } catch (\Exception $e) {
             return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
@@ -255,35 +253,35 @@ class wallpaperController extends DURCController
 
     /**
      * Display the specified resource.
-     * @param  \App\$wallpaper  $wallpaper
+     * @param  \App\$wallpaper_illustration  $wallpaper_illustration
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, wallpaper $wallpaper){
-	return($this->edit($request, $wallpaper));
+    public function show(Request $request, wallpaper_illustration $wallpaper_illustration){
+	return($this->edit($request, $wallpaper_illustration));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\wallpaper  $wallpaper
+     * @param  \App\wallpaper_illustration  $wallpaper_illustration
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $wallpaper_id){
-		$wallpaper = \App\wallpaper::find($wallpaper_id);
-		$wallpaper = $wallpaper->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		$return_me_array = $wallpaper->toArray();
+    public function jsonone(Request $request, $wallpaper_illustration_id){
+		$wallpaper_illustration = \App\wallpaper_illustration::find($wallpaper_illustration_id);
+		$wallpaper_illustration = $wallpaper_illustration->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$return_me_array = $wallpaper_illustration->toArray();
 		
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
-		$img_uri_field = \App\wallpaper::getImgField();
+		$img_uri_field = \App\wallpaper_illustration::getImgField();
 		if(!is_null($img_uri_field)){ //then this object has an image link..
 			if(!isset($return_me_array['card_img_top'])){ //allow the user to use this as a field without pestering..
-				$return_me_array['card_img_top'] = $wallpaper->$img_uri_field;
+				$return_me_array['card_img_top'] = $wallpaper_illustration->$img_uri_field;
 			}
 		}
 
 		//lets get a card_body from the DURC mode class!!
 		if(!isset($return_me_array['card_body'])){ //allow the user to use this as a field without pestering..
 			//this is simply the name unless someone has put work into this...
-			$return_me_array['card_body'] = $wallpaper->getCardBody();
+			$return_me_array['card_body'] = $wallpaper_illustration->getCardBody();
 		}
 		
 		return response()->json($return_me_array);
@@ -296,17 +294,17 @@ class wallpaperController extends DURCController
      */
     public function create(Request $request){
         // but really, we are just going to edit a new object..
-        $new_instance = new wallpaper();
+        $new_instance = new wallpaper_illustration();
         return $this->edit($request, $new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\wallpaper  $wallpaper
+     * @param  \App\wallpaper_illustration  $wallpaper_illustration
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, wallpaper $wallpaper){
+    public function edit(Request $request, wallpaper_illustration $wallpaper_illustration){
 
         $main_template_name = $this->_getMainTemplateName();
         
@@ -330,7 +328,7 @@ class wallpaperController extends DURCController
     
         $this->view_data['csrf_token'] = csrf_token();
         
-        foreach ( wallpaper::$field_type_map as $column_name => $field_type ) {
+        foreach ( wallpaper_illustration::$field_type_map as $column_name => $field_type ) {
             // If this field name is in the configured list of hidden fields, do not display the row.
             $this->view_data["{$column_name}_row_class"] = '';
             if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -345,13 +343,13 @@ class wallpaperController extends DURCController
             }
         }
     
-        if($wallpaper->exists){	//we will not have old data if this is a new object
+        if($wallpaper_illustration->exists){	//we will not have old data if this is a new object
     
             //well lets properly eager load this object with a refresh to load all of the related things
-            $wallpaper = $wallpaper->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+            $wallpaper_illustration = $wallpaper_illustration->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
     
             //put the contents into the view...
-            foreach($wallpaper->toArray() as $key => $value){
+            foreach($wallpaper_illustration->toArray() as $key => $value){
                 
                 if (array_key_exists($key, $request->old())) {
                     $input = $request->old($key);
@@ -359,24 +357,24 @@ class wallpaperController extends DURCController
                     $input = $value;
                 }
             
-                if ( isset( wallpaper::$field_type_map[$key] ) ) {
-                    $field_type = wallpaper::$field_type_map[ $key ];
+                if ( isset( wallpaper_illustration::$field_type_map[$key] ) ) {
+                    $field_type = wallpaper_illustration::$field_type_map[ $key ];
                     $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
                 } else {
                     $this->view_data[$key] = $input;
                 }
                 
                 // If this is a nullable field, see whether null checkbox should be checked by default
-                if ($wallpaper->isFieldNullable($key) &&
+                if ($wallpaper_illustration->isFieldNullable($key) &&
                     $input == null) {
                     $this->view_data["{$key}_checked"] = "checked";
                 }
             }
     
             //what is this object called?
-            $name_field = $wallpaper->_getBestName();
+            $name_field = $wallpaper_illustration->_getBestName();
             $this->view_data['is_new'] = false;
-            $this->view_data['durc_instance_name'] = $wallpaper->$name_field;
+            $this->view_data['durc_instance_name'] = $wallpaper_illustration->$name_field;
         }else{
             $this->view_data['is_new'] = true;
         }
@@ -389,34 +387,32 @@ class wallpaperController extends DURCController
         }
         
     
-        $durc_template_results = view('DURC.wallpaper.edit',$this->view_data);        
+        $durc_template_results = view('DURC.wallpaper_illustration.edit',$this->view_data);        
         return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\wallpaper  $wallpaper
+     * @param  \App\wallpaper_illustration  $wallpaper_illustration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, wallpaper $wallpaper){
+    public function update(Request $request, wallpaper_illustration $wallpaper_illustration){
 
-        $tmp_wallpaper = $wallpaper;
+        $tmp_wallpaper_illustration = $wallpaper_illustration;
         
-        $tmp_wallpaper->id = $request->id;
-        $tmp_wallpaper->art_name = $request->art_name;
-        $tmp_wallpaper->set_name = $request->set_name;
-        $tmp_wallpaper->art_release_date = $request->art_release_date;
-        $tmp_wallpaper->author_name = $request->author_name;
+        $tmp_wallpaper_illustration->id = $request->id;
+        $tmp_wallpaper_illustration->wallpaper_name = $request->wallpaper_name;
+        $tmp_wallpaper_illustration->illustration_id = $request->illustration_id;
 
-        $id = $wallpaper->id;
+        $id = $wallpaper_illustration->id;
         
         try {
-            $tmp_wallpaper->save();
+            $tmp_wallpaper_illustration->save();
 
-            return redirect("/DURC/wallpaper/$id")->with('status', 'Data Saved!');
+            return redirect("/DURC/wallpaper_illustration/$id")->with('status', 'Data Saved!');
         } catch (DURCInvalidDataException $e) {
-            return back()->withInput()->with('errors', $tmp_wallpaper->getErrors());
+            return back()->withInput()->with('errors', $tmp_wallpaper_illustration->getErrors());
 
         } catch (\Exception $e) {
             return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
@@ -426,11 +422,11 @@ class wallpaperController extends DURCController
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\wallpaper  $wallpaper
+     * @param  \App\wallpaper_illustration  $wallpaper_illustration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(wallpaper $wallpaper){
-	    return wallpaper::destroy( $wallpaper->id );  
+    public function destroy(wallpaper_illustration $wallpaper_illustration){
+	    return wallpaper_illustration::destroy( $wallpaper_illustration->id );  
     }
     
     /**
@@ -440,7 +436,7 @@ class wallpaperController extends DURCController
      */
     public function restore( $id )
     {
-        $wallpaper = wallpaper::withTrashed()->find($id)->restore();
+        $wallpaper_illustration = wallpaper_illustration::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }

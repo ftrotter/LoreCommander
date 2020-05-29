@@ -10,22 +10,22 @@
             </div>
 
 {{#is_new}}
-<form action='/DURC/wallpaper_url' method='POST'>
+<form action='/DURC/wallpaper_illustration' method='POST'>
 {{/is_new}}
 
 {{^is_new}}
-<form action='/DURC/wallpaper_url/{{id}}' method='POST'>
+<form action='/DURC/wallpaper_illustration/{{id}}' method='POST'>
     <input type='hidden' name='_method' value='PUT'>
 {{/is_new}}
 
-	<h1>wallpaper_url</h1>
+	<h1>wallpaper_illustration</h1>
 <div class='card'>
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/Zermelo/DURC_wallpaper_url/'>Return to wallpaper_url list</a> </li>
+<li> <a href='/Zermelo/DURC_wallpaper_illustration/'>Return to wallpaper_illustration list</a> </li>
 {{^is_new}}
-<li> <a href='/DURC/wallpaper_url/create'>Create new wallpaper_url </a> </li>
+<li> <a href='/DURC/wallpaper_illustration/create'>Create new wallpaper_illustration </a> </li>
 {{/is_new}}
 </ul>
   </div>
@@ -45,63 +45,36 @@
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{wallpaper_id_row_class}}'>
-    <label for='wallpaper_id' class='col-sm-4 col-form-label'>wallpaper_id</label>
+  <div class='form-group row {{wallpaper_name_row_class}}'>
+    <label for='wallpaper_name' class='col-sm-4 col-form-label'>wallpaper_name</label>
     <div class='col-sm-7'>
-	Current id value: {{wallpaper_id}} (see below for lookup value)<br>
-	<select class='select2_wallpaper_id form-control' id='wallpaper_id' name='wallpaper_id'  >
-	<option value='{{wallpaper_id}}' selected='selected'>{{wallpaper_id}}</option>
-	</select>
-    </div>
-  </div>
-
-<script type='text/javascript'>
-
-$('.select2_wallpaper_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/wallpaper',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
-          }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
-});
-
-
-</script>
-
-
-  <div class='form-group row {{wallpaper_url_name_row_class}}'>
-    <label for='wallpaper_url_name' class='col-sm-4 col-form-label'>wallpaper_url_name</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.wallpaper_url_name.has_errors}}is-invalid{{/errors.wallpaper_url_name.has_errors}}' id='wallpaper_url_name' name='wallpaper_url_name' placeholder='' value='{{wallpaper_url_name}}' >
+      <input type='text' class='form-control {{#errors.wallpaper_name.has_errors}}is-invalid{{/errors.wallpaper_name.has_errors}}' id='wallpaper_name' name='wallpaper_name' placeholder='NULL' value='{{wallpaper_name}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.wallpaper_url_name.messages}}<li>{{.}}</li>{{/errors.wallpaper_url_name.messages}}
+          {{#errors.wallpaper_name.messages}}<li>{{.}}</li>{{/errors.wallpaper_name.messages}}
           </ul>
        </div>
-    </div></div>
-  <div class='form-group row {{wallpaper_url_row_class}}'>
-    <label for='wallpaper_url' class='col-sm-4 col-form-label'>wallpaper_url</label>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='wallpaper_name' name='wallpaper_nameNull' id='wallpaper_nameNull' value='wallpaper_nameNull' {{wallpaper_name_checked}}>
+                    <label class='form-check-label' for='wallpaper_nameNull'>null</label>
+                </div></div>
+  <div class='form-group row {{illustration_id_row_class}}'>
+    <label for='illustration_id' class='col-sm-4 col-form-label'>illustration_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.wallpaper_url.has_errors}}is-invalid{{/errors.wallpaper_url.has_errors}}' id='wallpaper_url' name='wallpaper_url' placeholder='' value='{{wallpaper_url}}' >
+      <input type='text' class='form-control {{#errors.illustration_id.has_errors}}is-invalid{{/errors.illustration_id.has_errors}}' id='illustration_id' name='illustration_id' placeholder='NULL' value='{{illustration_id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.wallpaper_url.messages}}<li>{{.}}</li>{{/errors.wallpaper_url.messages}}
+          {{#errors.illustration_id.messages}}<li>{{.}}</li>{{/errors.illustration_id.messages}}
           </ul>
        </div>
-    </div></div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='illustration_id' name='illustration_idNull' id='illustration_idNull' value='illustration_idNull' {{illustration_id_checked}}>
+                    <label class='form-check-label' for='illustration_idNull'>null</label>
+                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -132,7 +105,7 @@ $('.select2_wallpaper_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -173,63 +146,16 @@ $('.select2_wallpaper_id').select2({
   <div class='form-group row'>
               <div class='col-sm-12 text-right'>
 
-<form action='/DURC/wallpaper_url/{{id}}' method='POST'>
+<form action='/DURC/wallpaper_illustration/{{id}}' method='POST'>
     	<input type='hidden' name='_method' value='DELETE'>
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 
-              <button type='button' data-id='{{id}}' data-controller='wallpaper_url' class='do-soft-delete btn btn-outline-danger'>Hard Delete wallpaper_url</button>
+              <button type='button' data-id='{{id}}' data-controller='wallpaper_illustration' class='do-soft-delete btn btn-outline-danger'>Hard Delete wallpaper_illustration</button>
 </form>
               </div>
             </div>
 
 
-<br>
-<div class='card'>
-  <div class='card-header'>
-    Belongs To Relationships
-  </div>
-<div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    wallpaper ( <a href='/DURC/wallpaper/'>see all</a> )
-{{^wallpaper}}
-(no values)
-{{/wallpaper}}
-  </div>
-<div class='card-body'>
-<table id='table_wallpaper' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> art_name </th>
-			<th> set_name </th>
-			<th> art_release_date </th>
-			<th> author_name </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#wallpaper}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/wallpaper/{{id}}'>{{id}}</a></td>
-			<td>{{art_name}}</td>
-			<td>{{set_name}}</td>
-			<td>{{art_release_date}}</td>
-			<td>{{author_name}}</td>
-			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-		
-		{{/.}}
-	</tr>
-{{/wallpaper}}
-</tbody>
-</table>
-</div></div> <!-- end wallpaper card-->
-</div></div> <!--end belongs to card-->
 <br>
     
     <script type='text/javascript'>

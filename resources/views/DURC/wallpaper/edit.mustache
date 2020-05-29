@@ -115,19 +115,6 @@
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{illustration_id_row_class}}'>
-    <label for='illustration_id' class='col-sm-4 col-form-label'>illustration_id</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.illustration_id.has_errors}}is-invalid{{/errors.illustration_id.has_errors}}' id='illustration_id' name='illustration_id' placeholder='NULL' value='{{illustration_id}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.illustration_id.messages}}<li>{{.}}</li>{{/errors.illustration_id.messages}}
-          </ul>
-       </div>
-    </div><div class='col-sm-1'>
-                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='illustration_id' name='illustration_idNull' id='illustration_idNull' value='illustration_idNull' {{illustration_id_checked}}>
-                    <label class='form-check-label' for='illustration_idNull'>null</label>
-                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>

@@ -1,18 +1,18 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e18f77d56b91ba7e4fed7d0c1fb26585
+FILE_SIG=dc44adc8a9666eaef480d61b8507b627
 */
 namespace App;
 /*
-	wallpaper: controls lore.wallpaper
+	wallpaper_illustration: controls lore.wallpaper_illustration
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class wallpaper extends \App\DURC\Models\wallpaper
+class wallpaper_illustration extends \App\DURC\Models\wallpaper_illustration
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
@@ -26,33 +26,21 @@ class wallpaper extends \App\DURC\Models\wallpaper
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'wallpaper_url', //from from many
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'art_name', //varchar
-			//'set_name', //varchar
-			//'art_release_date', //datetime
-			//'author_name', //varchar
+			//'wallpaper_name', //varchar
+			//'illustration_id', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
 
 
 //DURC HAS_MANY SECTION
-
-/**
-*	DURC is handling the wallpaper_url for this wallpaper in wallpaper
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function wallpaper_url(){
-		return parent::wallpaper_url();
-	}
-
-
+			//DURC did not detect any has_many relationships
 //DURC BELONGS_TO SECTION
 			//DURC did not detect any belongs_to relationships
 
@@ -81,4 +69,4 @@ class wallpaper extends \App\DURC\Models\wallpaper
 	//your stuff goes here..
 	
 
-}//end wallpaper
+}//end wallpaper_illustration

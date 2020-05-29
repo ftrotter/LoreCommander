@@ -392,7 +392,7 @@ CREATE TABLE `lore`.`cardface` (
   FULLTEXT KEY `type_line` (`type_line`),
   FULLTEXT KEY `name` (`name`),
   FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
 
