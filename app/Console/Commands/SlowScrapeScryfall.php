@@ -120,5 +120,8 @@ class SlowScrapeScryfall extends Command
 		
 	} //end of set loop.
 
+
+	$this->call('scry:post_sync',[]); //call scry syn with no arguments... 
+
     }//end of handler function
 }
