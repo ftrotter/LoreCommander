@@ -115,7 +115,7 @@ CREATE TABLE `lore`.`classofc_cardface` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
 
