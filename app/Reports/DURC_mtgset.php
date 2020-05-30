@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=54be0e44109cea34d2cf6b270f9dfcd2
+FILE_SIG=5534cf13c5d94b3f69a9d4fddddf6bbf
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -663,14 +663,14 @@ array (
       14 => 
       array (
         'column_name' => 'sortable_collector_number',
-        'data_type' => 'varchar',
+        'data_type' => 'decimal',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
+        'is_nullable' => false,
+        'default_value' => NULL,
         'is_auto_increment' => false,
       ),
       15 => 
