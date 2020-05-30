@@ -39,17 +39,16 @@ class PostSync extends Command
     public function handle()
     {
 
-	
-        
-	$sql = [];
-	
-/*
-	This might seem simple, but we do not want to polute the creature types with 
-	entried from the funny sets luke Unhinged and Unglued
-	which requires us to join to the card so we can join to the mtgset where that information is stored.
-	we exlude all of the set_type = 'funny' creature types
-*/
 	$pdo = \DB::connection()->getPdo();
+
+	        
+	$sql = [];
+
+//	This might seem simple, but we do not want to polute the creature types with 
+//	entried from the funny sets luke Unhinged and Unglued
+//	which requires us to join to the card so we can join to the mtgset where that information is stored.
+//	we exlude all of the set_type = 'funny' creature types
+
 
 	$sql_make_creature = "
 INSERT IGNORE lore.creature 
@@ -76,7 +75,7 @@ ORDER BY creature_name
 	$this->info("Running $sql_make_creature");
 	$count = $pdo->exec($sql_make_creature);
 
-	echo "Added $count new creatures\n";
+	$this->info("Added $count new creatures\n");
 
 
 	//now we need to tokenize. Easier to do in php.
@@ -129,14 +128,14 @@ lore.classofc (`id`, `classofc_name`, `created_at`, `updated_at`)
 
 			$count  =  $pdo->exec($insert_sql);
 			if($count > 0){
-				echo '.';
+			//	echo '.';
 			}
 		}
 	}
 
-	echo "\n";
+	//echo "\n";
 
-	echo "Done inserting new class of creature";
+	$this->info("Done inserting new class of creature");
 
 	//now we want  to build the links between the creatures and the classofc(reature)
 
@@ -161,7 +160,7 @@ SELECT * FROM lore.classofc
 	//loop over the classes and search for the class name in the creature table
 	//and then link the correspoding creature rows to the class row. 
 
-	echo "Associating creature class and creatures\n";
+	$this->info("Associating creature class and creatures");
 
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
 		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
@@ -186,7 +185,7 @@ WHERE creature.creature_name LIKE '%$name%'
 		}
 	}
 
-	echo "\nfinished linking creature types and creature classes\n";
+	$this->info("finished linking creature types and creature classes\n");
 
 
 	//now we want to link the classes to the cards...
@@ -222,7 +221,7 @@ WHERE
 	
 			$count  =  $pdo->exec($insert_sql);
 			if($count > 0){
-				echo 'C';
+				//echo 'C';
 			}
 
 		}
@@ -278,13 +277,13 @@ WHERE
 		$count  =  $pdo->exec($insert_sql);
 		if($count > 0){
 			$c_links_total += $count;
-			echo 'c';
+			//echo 'c';
 		}
 		
 	}
 
 
-	echo "\nFinished linking creature with specific cards made $c_links_total new connections\n";
+	$this->info("Finished linking creature with specific cards made $c_links_total new connections");
 
 
 	$populate_fulltext_sql = "
@@ -297,7 +296,14 @@ UPDATE lore.cardface SET  for_fulltext_search = CONCAT_WS(' ',
 ";
 
 	$count = $pdo->exec($populate_fulltext_sql);
-	echo "Created fulltext search field for cardface with $count cardface changes\n";
+	$this->info("Created fulltext search field for cardface with $count cardface changes");
+
+	//convert the easy cases for collector number to sortable collector number...
+	$sql[] = "
+UPDATE  `card` SET 
+sortable_collector_number = CAST( collector_number AS DECIMAL(10,2))
+WHERE `collector_number`  REGEXP '^[[:digit:]]{10}$'
+";
 
 	foreach($sql as $this_sql){
 
@@ -305,6 +311,44 @@ UPDATE lore.cardface SET  for_fulltext_search = CONCAT_WS(' ',
 		$pdo->query($this_sql);
 
 	}
+
+
+
+	$prefix_problem_sql = "
+SELECT `collector_number`
+FROM lore.card
+WHERE 
+`collector_number` REGEXP '[^0-9A-Za-z]'
+GROUP BY collector_number
+";
+
+	$result = $pdo->query($prefix_problem_sql);
+	$rows = $result->fetchAll(\PDO::FETCH_ASSOC);
+
+	foreach($rows as $row){
+		$collector_number = $row['collector_number'];
+		//not we need to convert this into a sortable decimal... 
+		//for now, just adding .1 is enough... 
+
+		$sortable_collector_number = (int) filter_var($collector_number, FILTER_SANITIZE_NUMBER_INT); //thanks https://stackoverflow.com/a/12582416/144364
+
+		$sortable_collector_number = abs($sortable_collector_number); //the above function treats the dashes in strings a negatives 
+	
+		$sortable_collector_number = $sortable_collector_number + .1;
+
+		$this->info("Converting collector number $collector_number to $sortable_collector_number for sorting");
+	
+		$update_sql = "
+UPDATE lore.card SET sortable_collector_number = $sortable_collector_number 
+WHERE collector_number = '$collector_number'
+";	
+
+		$count = $pdo->exec($update_sql);
+
+	}
+
+	
+
 
 
     }
