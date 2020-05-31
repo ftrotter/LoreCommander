@@ -3,6 +3,7 @@
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 use DB;
+
 class SetBinderMap extends AbstractTabularReport
 {
     // define the report name
@@ -14,8 +15,7 @@ class SetBinderMap extends AbstractTabularReport
 	$mtgset_Objs = \App\mtgset::orderBy('released_at','desc')->get();
 
 
-
-	
+	$current_mtgset_id = $this->getInput('mtgset_id',-1);
 
 
 	$desc = "
@@ -30,8 +30,14 @@ class SetBinderMap extends AbstractTabularReport
 
 		$code = $this_mtgset->code;
 
+		if($this_mtgset->id == $current_mtgset_id){
+			$selected_html = 'selected'; 
+		}else{
+			$selected_html = '';
+		}
+
 		$desc .= "
-		<option value='$this_mtgset->id'> $this_mtgset->name ($this_mtgset->code $this_mtgset->released_at) </option>
+		<option $selected_html value='$this_mtgset->id'> $this_mtgset->name ($this_mtgset->code $this_mtgset->released_at) </option>
 		";
 
 	}
@@ -65,43 +71,37 @@ class SetBinderMap extends AbstractTabularReport
     public function GetSQL()
     {
 
-	$mtgset_id = $this->getInput('mtgset_id');
-
-
-	if(!is_null($mtgset_id)){
-		$mtgset_id = 552; //alpha
-	}
+	$mtgset_id = $this->getInput('mtgset_id',522);
 
        $sql =
 "
 SELECT
-        GROUP_CONCAT(cardface.id) AS cardface_ids
+	sortable_collector_number
+	, collector_number
         , MAX(name) AS name
         , MAX(artist) AS artist
-        , MAX(mana_cost) AS mana_cost
         , MAX(type_line) AS type_line
-        , MAX(power) AS power
-, GROUP_CONCAT(DISTINCT(set_name)) AS set_names
-, GROUP_CONCAT(DISTINCT(oracle_text)) AS oracle_texts
-, GROUP_CONCAT(DISTINCT(flavor_text)) AS flavor_texts
-, MAX(color) AS color
-, MAX(rarity) AS rarity
-, MAX(color_identity) AS color_identity
-, MAX(scryfall_web_uri) AS scryfall_web_uri
-, MAX(rulings_uri) AS rulings_uri
-, MAX(image_uri_small) AS image_uri_small
-, MAX(image_uri_art_crop) AS image_uri_art_crop
+	, GROUP_CONCAT(DISTINCT(set_name)) AS set_names
+	, MAX(color) AS color
+	, MAX(rarity) AS rarity
+	, MAX(color_identity) AS color_identity
+	, MAX(scryfall_web_uri) AS scryfall_web_uri
+	, MAX(rulings_uri) AS rulings_uri
+	, MAX(image_uri_small) AS image_uri_small
+	, MAX(image_uri_art_crop) AS image_uri_art_crop
 FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
 WHERE mtgset_id = $mtgset_id 
+AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
 GROUP BY illustration_id
-ORDER BY collection_number ASC
+ORDER BY sortable_collector_number DESC
 ";
 
+	$this->setInput('order',[0 => ['sortable_collector_number' => 'asc']]);
 
-
+	return($sql);
     }
 
 
@@ -115,19 +115,12 @@ ORDER BY collection_number ASC
     public function MapRow(array $row, int $row_number) :array
     {
 
-    	/*
-		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
-		//a table drilldown report
-		$table_name = $row['TABLE_NAME'];
+	extract($row);
 
-		$row['TABLE_NAME'] = "Gotta Love Those Row Decorations: $table_name";
+        if(isset($scryfall_web_uri)){
+                $row['name'] = "<h3>$name</h3><a target='_blank' href='$scryfall_web_uri'><img width='250px' src='$image_uri_art_crop'></a>";
+        }
 
-		//this will make table name a link to another report
-		//$row['TABLE_NAME'] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
-
-		//this will do the same thing, but styling the link as a bootstrap button.
-		//$row['TABLE_NAME'] = "<a class='btn btn-primary btn-sm' href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
-	*/
 
         return $row;
     }

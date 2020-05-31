@@ -49,7 +49,7 @@ class PostSync extends Command
 //	which requires us to join to the card so we can join to the mtgset where that information is stored.
 //	we exlude all of the set_type = 'funny' creature types
 
-
+/*
 	$sql_make_creature = "
 INSERT IGNORE lore.creature 
 SELECT DISTINCT
@@ -297,12 +297,15 @@ UPDATE lore.cardface SET  for_fulltext_search = CONCAT_WS(' ',
 
 	$count = $pdo->exec($populate_fulltext_sql);
 	$this->info("Created fulltext search field for cardface with $count cardface changes");
+*/
+
+
 
 	//convert the easy cases for collector number to sortable collector number...
 	$sql[] = "
 UPDATE  `card` SET 
 sortable_collector_number = CAST( collector_number AS DECIMAL(10,2))
-WHERE `collector_number`  REGEXP '^[[:digit:]]{10}$'
+WHERE `collector_number` REGEXP '^[[:digit:]]*$'
 ";
 
 	foreach($sql as $this_sql){
@@ -318,7 +321,7 @@ WHERE `collector_number`  REGEXP '^[[:digit:]]{10}$'
 SELECT `collector_number`
 FROM lore.card
 WHERE 
-`collector_number` REGEXP '[^0-9A-Za-z]'
+`collector_number` NOT REGEXP '^[[:digit:]]*$'
 GROUP BY collector_number
 ";
 
