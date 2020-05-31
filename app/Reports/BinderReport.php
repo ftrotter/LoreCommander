@@ -146,7 +146,7 @@ CREATE TABLE _zermelo_cache.$divider_page_cache_table (
 		//we need to know how long to do that for, so we need to get the total number of rows as a starting point
 		$count_total_rows_sql = "
 SELECT
-	COUNT(DISTINCT(CONCAT(illustration_id, collector_number)) AS total_result_rows
+	COUNT(DISTINCT(CONCAT(illustration_id, collector_number))) AS total_result_rows
 FROM lore.cardface
 JOIN lore.card ON
         card.id =
