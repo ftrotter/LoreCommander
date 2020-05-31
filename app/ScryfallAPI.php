@@ -34,7 +34,7 @@ class  ScryfallAPI {
 */
 	public static function getAllCardsInSet($set_code){
 
-		$set_search = urlencode("set:$set_code");
+		$set_search = urlencode("set:$set_code unique:prints");
 
 		$url = "https://api.scryfall.com/cards/search?q=$set_search";
 
