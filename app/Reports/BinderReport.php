@@ -1,18 +1,80 @@
 <?php
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
+use DB;
 
 class BinderReport extends AbstractCardsReport
 {
 
-    public function GetReportName(): string { return('BinderReport'); }
-    public function GetReportDescription(): ?string { return('Enter Your Report Description Here HTML is allowed for forms and such. Example reports on mysql table metadata'); }
+    public function GetReportName(): string { return('Binder Report'); }
+    public function GetReportDescription(): ?string { 
+
+	//our html is doing alot of work here...
+	//we have css that targets the print mode of the Binder Report to ensure that there are nine cards on each page...
+	//then we have the form that allows you to choose which set you want to order...
+
+        $mtgset_Objs = \App\mtgset::orderBy('released_at','desc')->get();
+
+
+        $current_mtgset_id = $this->getInput('mtgset_id',-1);
+	
+	$html = "
+This report will display 'page guides' for a binder of MTG cards, by set.
+Choose a set below. <br>
+<style>
+@media print {
+	.zermelo-card-group-label {
+		break-before: page;
+		width: 100%;
+	}
+}
+</style>
+
+<form>
+  <div class='form-group row'>
+    <label for='select' class='col-4 col-form-label'>Select Which Set to view</label>
+    <div class='col-8'>
+      <select id='mtgset_id' name='mtgset_id' class='custom-select'>
+";
+        foreach($mtgset_Objs as $this_mtgset){
+
+                $code = $this_mtgset->code;
+
+                if($this_mtgset->id == $current_mtgset_id){
+                        $selected_html = 'selected';
+                }else{
+                        $selected_html = '';
+                }
+
+                $html .= "
+                <option $selected_html value='$this_mtgset->id'> $this_mtgset->name ($this_mtgset->code $this_mtgset->released_at) </option>
+                ";
+
+        }
+
+        $html .= "
+      </select>
+    </div>
+  </div>
+  <div class='form-group row'>
+    <div class='offset-4 col-8'>
+      <button name='submit' type='submit' class='btn btn-primary'>Show Set</button>
+    </div>
+  </div>
+</form>
+";
+
+
+
+	return($html);
+
+	}
 
     //should this card view use a fluid boostrap container
     public function is_fluid() { return true; }
 
     //how wide should each card be?
-    public function cardWidth() { return "150px"; }
+    public function cardWidth() { return "230px"; }
 
     /**
      * This is what builds the report. It will accept a SQL statement or an Array of sql statements.
@@ -28,30 +90,127 @@ class BinderReport extends AbstractCardsReport
     **/
     public function GetSQL()
     {
-	//this is based on the cards element from bootstrap https://getbootstrap.com/docs/4.3/components/card/ in the standard view
-	//card_header is text at the top card.
-	//card_title will be the title of the card, inside the card content
-	//card_text is beneath the title in the card content
-	//card_img_top is the image at the top of the card
-	//card_img_bottom is the image at the bottom of the card
-	//card_img_top_alttext sets the alttext of the image at the top
-	//card_img_bottom_alttext sets the alttext of the image at the bottom
-	//card_footer is the text inside the footer of the card
+	// This report relies on us knowning where every illustration goes on which binder page. 
+	// which means we need to increment a counter every ninth row in the data... but that would require a mysql variable and zermelo does not yet support that
+	// so we are going to instead create a table, in advance, which has that mapping between pages and illustrations, and then we are going to join to it.
 
-	$mtgset_id = $this->getInput('mtgset_id',522);
+	$mtgset_id = (int) $this->getInput('mtgset_id');
 
-        $sql = "
+	if(!is_numeric($mtgset_id)){
+		echo "Error, need a numeric mtgset_id";
+		exit();
+	}
+	$mtgset_id = (int) $mtgset_id;
+
+	$pdo = DB::connection()->getPdo();
+	
+
+	$divider_page_cache_table = "card_pagemap_cache_set_$mtgset_id";
+
+	//first, lets see if a cache already exists for this cache_id.. 
+
+	$check_sql = "
+SELECT * 
+FROM information_schema.tables
+WHERE table_schema = '_zermelo_cache' 
+    AND table_name = '$divider_page_cache_table'
+LIMIT 1;
+";
+
+	$is_cache_exist = false; //our starting assumption
+
+	$stm = $pdo->query($check_sql);
+	$rows = $stm->fetchAll(\PDO::FETCH_ASSOC);
+	foreach($rows as $this_row){
+		$is_cache_exist = true;
+	}
+
+	if(!$is_cache_exist){
+
+		// we need an empty cache table for this report.. 
+		$drop_pagemap_table_sql = "DROP TABLE IF EXISTS _zermelo_cache.$divider_page_cache_table";
+		$pdo->exec($drop_pagemap_table_sql);
+
+		//now re-create it from scratch
+		$create_pagemap_table_sql = "
+CREATE TABLE _zermelo_cache.$divider_page_cache_table (
+  `illustration_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `collector_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `binder_page_number` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+"; 
+		$pdo->exec($create_pagemap_table_sql);
+
+		//now we need to loop over the results, and use the LIMIT function to get identifably pages in groups of nine. 
+		//we need to know how long to do that for, so we need to get the total number of rows as a starting point
+		$count_total_rows_sql = "
 SELECT
-        MAX(name) AS card_header
-	, MAX(scryfall_web_uri) AS card_img_bottom_anchor
-        , MAX(image_uri_normal) AS card_img_bottom
+	COUNT(DISTINCT(CONCAT(illustration_id, collector_number)) AS total_result_rows
 FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
-WHERE mtgset_id = 566
+WHERE mtgset_id = $mtgset_id
 AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
-GROUP BY illustration_id
+";
+
+		$stm = $pdo->query($count_total_rows_sql);
+		$rows = $stm->fetchAll(\PDO::FETCH_ASSOC);
+		foreach($rows as $this_row){
+			$total_result_rows = $this_row['total_result_rows'];
+		}
+
+		$total_pages = ($total_result_rows / 9) +1; //not a big deal to do the loop one too many times...
+
+
+
+		for($i = 0; $i <= $total_pages; $i++){
+			$from_row_count = $i * 9;		
+	
+			$insert_sql = "
+INSERT INTO _zermelo_cache.$divider_page_cache_table
+SELECT 
+	illustration_id,
+	collector_number,
+	'$i' AS binder_page_number,
+	CURRENT_TIME() AS created_at
+FROM lore.cardface
+JOIN lore.card ON
+        card.id =
+        cardface.card_id
+WHERE mtgset_id = $mtgset_id
+AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
+GROUP BY illustration_id, collector_number
+ORDER BY sortable_collector_number ASC
+LIMIT $from_row_count, 9 
+";
+	
+			$pdo->exec($insert_sql);
+
+		}
+
+
+	} //end cache creation logic, should only run the first time for each set... 
+
+
+        	$sql = "
+SELECT
+        MAX(name) AS card_header
+	, MAX(scryfall_web_uri) AS card_img_bottom_anchor
+        , MAX(image_uri_normal) AS card_img_bottom
+        , binder_page_number + 1 AS card_layout_block_id
+	, CONCAT('Page Number ', binder_page_number + 1 ) AS card_layout_block_label
+FROM lore.cardface
+JOIN lore.card ON
+        card.id =
+        cardface.card_id
+JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON 
+	pagemap_cache.illustration_id =
+	cardface.illustration_id
+WHERE mtgset_id = $mtgset_id
+AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
+GROUP BY cardface.illustration_id, card.collector_number
 ORDER BY sortable_collector_number ASC
 ";
 
@@ -141,7 +300,7 @@ ORDER BY sortable_collector_number ASC
     * So if you want to just run the report one time, and then load subsequent data from the cache, set this to return 'true';
     */
    public function isCacheEnabled(){
-        return(false);
+        return(true);
    }
 
     /**
@@ -150,7 +309,7 @@ ORDER BY sortable_collector_number ASC
     * before the cache is regenerated by re-running the report SQL
     */
    public function howLongToCacheInSeconds(){
-        return(1200); //twenty minutes by default
+        return(12000); //twenty minutes by default
    }
 
 
