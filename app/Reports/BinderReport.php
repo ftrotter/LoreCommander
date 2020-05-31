@@ -205,9 +205,13 @@ FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
-JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON 
-	pagemap_cache.illustration_id =
-	cardface.illustration_id
+JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON ( 
+		pagemap_cache.illustration_id =
+		cardface.illustration_id
+	AND
+		pagemap_cache.collector_number =
+		card.collector_number
+	)
 WHERE mtgset_id = $mtgset_id
 AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
 GROUP BY cardface.illustration_id, card.collector_number
