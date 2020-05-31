@@ -196,7 +196,7 @@ LIMIT $from_row_count, 9
 
         	$sql = "
 SELECT
-        MAX(name) AS card_header
+        CONCAT(MAX(name), ' (', card.collector_number, ')') AS card_header
 	, MAX(scryfall_web_uri) AS card_img_bottom_anchor
         , MAX(image_uri_normal) AS card_img_bottom
         , binder_page_number + 1 AS card_layout_block_id
