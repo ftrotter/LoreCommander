@@ -40,6 +40,7 @@ CREATE TABLE `card` (
   `legal_standard` tinyint(1) NOT NULL DEFAULT 0,
   `legal_historic` tinyint(11) NOT NULL,
   `legal_pioneer` tinyint(11) NOT NULL,
+  `binder_group_number` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

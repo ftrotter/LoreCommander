@@ -270,6 +270,7 @@ class cardController extends DURCController
         $tmp_card->legal_standard = $request->legal_standard;
         $tmp_card->legal_historic = $request->legal_historic;
         $tmp_card->legal_pioneer = $request->legal_pioneer;
+        $tmp_card->binder_group_number = $request->binder_group_number;
 
 
         try {
@@ -477,6 +478,7 @@ class cardController extends DURCController
         $tmp_card->legal_standard = $request->legal_standard;
         $tmp_card->legal_historic = $request->legal_historic;
         $tmp_card->legal_pioneer = $request->legal_pioneer;
+        $tmp_card->binder_group_number = $request->binder_group_number;
 
         $id = $card->id;
         

@@ -81,6 +81,7 @@ class card extends DURCModel{
 		'legal_standard' => 'tinyint',
 		'legal_historic' => 'tinyint',
 		'legal_pioneer' => 'tinyint',
+		'binder_group_number' => 'int',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 	]; //end field_type_map
@@ -166,6 +167,7 @@ class card extends DURCModel{
 		'legal_standard' => '0',
 		'legal_historic' => null,
 		'legal_pioneer' => null,
+		'binder_group_number' => 'NULL',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
@@ -212,6 +214,7 @@ class card extends DURCModel{
 		'legal_standard' => 'integer',
 		'legal_historic' => 'integer|required',
 		'legal_pioneer' => 'integer|required',
+		'binder_group_number' => 'integer|nullable',
 	]; // End of validation rules
 		        
 		
@@ -293,6 +296,7 @@ CREATE TABLE `lore`.`card` (
   `legal_standard` tinyint(1) NOT NULL DEFAULT 0,
   `legal_historic` tinyint(11) NOT NULL,
   `legal_pioneer` tinyint(11) NOT NULL,
+  `binder_group_number` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -306,7 +310,7 @@ CREATE TABLE `lore`.`card` (
   KEY `legal_penny` (`legal_penny`),
   KEY `legal_modern` (`legal_modern`),
   KEY `legal_standard` (`legal_standard`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 
