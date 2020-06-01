@@ -105,6 +105,8 @@ Choose a set below. <br>
 
 	$mtgset_id = $this->getInput('mtgset_id');
 	$cards_per_page = $this->getInput('cards_per_page');
+	$sort_method = $this->getInput('sort_method','sort_WUBRG');
+
 
 	if(!is_numeric($mtgset_id)){
 		return('SELECT "No results, use form to populate results" AS message');
@@ -121,7 +123,8 @@ Choose a set below. <br>
 
 	$pdo = DB::connection()->getPdo();
 
-	$divider_page_cache_table = "card_pagemap_cache_set_$mtgset_id"."_$cards_per_page";
+	$collectnum_cache_table = "card_pagemap_cache_collectnum_$mtgset_id"."_$cards_per_page";
+	$WUBRG_cache_table = "card_pagemap_cache_WUBRG_$mtgset_id"."_$cards_per_page";
 
 	//first, lets see if a cache already exists for this cache_id.. 
 
@@ -129,7 +132,7 @@ Choose a set below. <br>
 SELECT * 
 FROM information_schema.tables
 WHERE table_schema = '_zermelo_cache' 
-    AND table_name = '$divider_page_cache_table'
+    AND table_name = '$collectnum_cache_table'
 LIMIT 1;
 ";
 
@@ -138,20 +141,27 @@ LIMIT 1;
 	$stm = $pdo->query($check_sql);
 	$rows = $stm->fetchAll(\PDO::FETCH_ASSOC);
 	foreach($rows as $this_row){
-		$is_cache_exist = true;
+		$is_cache_exist = true; //we know we have one of the cache tables... so we assume we have both...
 	}
+
+	$is_cache_exist = false; //assume this for debugging...
 
 	if(!$is_cache_exist){
 
+		//there are two ways to sort, and therefore there are two cache tables..
+		//one for collection number sorting...
+		//and one for WUBRG sorting... 		
+
 		// we need an empty cache table for this report.. 
-		$drop_pagemap_table_sql = "DROP TABLE IF EXISTS _zermelo_cache.$divider_page_cache_table";
+		$drop_pagemap_table_sql = "DROP TABLE IF EXISTS _zermelo_cache.$collectnum_cache_table";
 		$pdo->exec($drop_pagemap_table_sql);
 
 		//now re-create it from scratch
 		$create_pagemap_table_sql = "
-CREATE TABLE _zermelo_cache.$divider_page_cache_table (
+CREATE TABLE _zermelo_cache.$collectnum_cache_table (
   `illustration_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `collector_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_by_me` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortable_collector_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `binder_page_number` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -185,10 +195,11 @@ AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
 			$from_row_count = $i * $cards_per_page;		
 	
 			$insert_sql = "
-INSERT INTO _zermelo_cache.$divider_page_cache_table
+INSERT INTO _zermelo_cache.$collectnum_cache_table
 SELECT 
 	illustration_id,
-	collector_number,
+	card.sortable_collector_number AS sort_by_me,
+	card.sortable_collector_number,
 	'$i' AS binder_page_number,
 	CURRENT_TIME() AS created_at
 FROM lore.cardface
@@ -197,8 +208,55 @@ JOIN lore.card ON
         cardface.card_id
 WHERE mtgset_id = $mtgset_id
 AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
-GROUP BY illustration_id, collector_number
+GROUP BY illustration_id, sortable_collector_number
 ORDER BY sortable_collector_number ASC
+LIMIT $from_row_count, $cards_per_page 
+";
+		
+			$pdo->exec($insert_sql);
+		}
+		
+
+		//now we do the same thing.. but for our WUBRG sort...
+
+		// we need an empty cache table for this report.. 
+		$drop_pagemap_table_sql = "DROP TABLE IF EXISTS _zermelo_cache.$WUBRG_cache_table";
+		$pdo->exec($drop_pagemap_table_sql);
+
+		//now re-create it from scratch
+		$create_pagemap_table_sql = "
+CREATE TABLE _zermelo_cache.$WUBRG_cache_table (
+  `illustration_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_by_me` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortable_collector_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `binder_page_number` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+"; 
+		$pdo->exec($create_pagemap_table_sql);
+
+		//total pages will be the same for both caches...
+		//so we do not need to recalculate $total_pages
+
+		for($i = 0; $i <= $total_pages; $i++){
+			$from_row_count = $i * $cards_per_page;		
+	
+			$insert_sql = "
+INSERT INTO _zermelo_cache.$WUBRG_cache_table
+SELECT 
+	illustration_id,
+	CONCAT(card.binder_group_number,cardface.name,sortable_collector_number) AS sort_by_me,
+	card.sortable_collector_number,
+	'$i' AS binder_page_number,
+	CURRENT_TIME() AS created_at
+FROM lore.cardface
+JOIN lore.card ON
+        card.id =
+        cardface.card_id
+WHERE mtgset_id = $mtgset_id
+AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
+GROUP BY card.binder_group_number, illustration_id, sortable_collector_number, cardface.name
+ORDER BY card.binder_group_number ASC, sort_by_me ASC
 LIMIT $from_row_count, $cards_per_page 
 ";
 	
@@ -209,6 +267,12 @@ LIMIT $from_row_count, $cards_per_page
 
 	} //end cache creation logic, should only run the first time for each set... 
 
+		$divider_page_cache_table = $collectnum_cache_table;
+		if($sort_method == 'sort_WUBRG'){
+			//the other sort table takes precedence here...
+			$divider_page_cache_table = $WUBRG_cache_table;
+		}
+
 
         	$sql = "
 SELECT
@@ -216,7 +280,8 @@ SELECT
 	, MAX(scryfall_web_uri) AS card_img_bottom_anchor
         , MAX(image_uri_normal) AS card_img_bottom
         , binder_page_number + 1 AS card_layout_block_id
-	, CONCAT('Page Number ', binder_page_number + 1 ) AS card_layout_block_label
+	, CONCAT('Page Number ', binder_page_number + 1 ) AS card_layout_block_label,
+	sort_by_me
 FROM lore.cardface
 JOIN lore.card ON
         card.id =
@@ -225,16 +290,16 @@ JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON (
 		pagemap_cache.illustration_id =
 		cardface.illustration_id
 	AND
-		pagemap_cache.collector_number =
-		card.collector_number
+		pagemap_cache.sortable_collector_number =
+		card.sortable_collector_number
 	)
 WHERE mtgset_id = $mtgset_id
 AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
 GROUP BY cardface.illustration_id, card.collector_number
-ORDER BY sortable_collector_number ASC
+ORDER BY binder_page_number ASC, sort_by_me ASC
 ";
 
-
+	$this->setInput('order',[0 => ['card_layout_block_id' => 'asc', 'sort_by_me' => 'asc']]);
 
 
         return $sql;
