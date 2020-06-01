@@ -60,7 +60,7 @@ Choose a set below. <br>
     <label for='sort_method' class='col-4 col-form-label'>Choose Sort Method</label> 
     <div class='col-8'>
       <select id='sort_method' name='sort_method' class='custom-select'>
-        <option value='sort_WUBRG'>Sort Colorless WUBRG Multi Artificat Land Token</option>
+        <option value='sort_WUBRG'>Sort Colorless WUBRG Multi Artifact Land Token</option>
         <option value='sort_collector'>Sort By Collector Number</option>
       </select>
     </div>
