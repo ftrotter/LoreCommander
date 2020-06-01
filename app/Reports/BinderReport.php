@@ -6,7 +6,16 @@ use DB;
 class BinderReport extends AbstractCardsReport
 {
 
-    public function GetReportName(): string { return('Binder Report'); }
+    public function GetReportName(): string { 
+
+        	$current_mtgset_id = $this->getInput('mtgset_id',-1);
+		if($current_mtgset_id > 0){
+			$mtgsetObj = \App\mtgset::find($current_mtgset_id);
+			return($mtgsetObj->name . ' Binder Report'); 
+		}else{
+			return('Binder Report');
+		}
+	}
     public function GetReportDescription(): ?string { 
 
 	//our html is doing alot of work here...
