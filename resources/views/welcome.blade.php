@@ -65,6 +65,7 @@
 			<li> <b><a target='_blank' href='/ZermeloCard/CardSearchUsingCard'>Card Search Using Card Display</a></b>: This shows cards using the bootstrap 4 card layout  </li>
 			<li> <b><a target='_blank' href='/ZermeloCard/CardSearchUsingImgGrid'>Card Search Using Grid Display</a></b>:  </li>
 			<li> <b><a target='_blank' href='/ZermeloCard/cardMostSets'>Classic Card viewer</a></b>: Shows the cards that keep getting reprinted and updated. These are the classics.  </li>
+			<li> <b><a target='_blank' href='/ZermeloCard/BinderReport'>Binder Report</a></b>: Shows which cards would go where in a binder based on options </li>
 		</ul>
 		</div>
 		<div class='col-md-4'>
