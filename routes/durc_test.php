@@ -44,6 +44,10 @@ Route::get('durctest', function () {
  			'/DURC/donation/create', //from: DURC_aaa.donation 
  			'/DURC/donation/1', //from: DURC_aaa.donation 
  			'/DURC/donation/1/edit', //from: DURC_aaa.donation 
+ 			'/DURC/filtertest', //from: DURC_aaa.filterTest 
+ 			'/DURC/filtertest/create', //from: DURC_aaa.filterTest 
+ 			'/DURC/filtertest/1', //from: DURC_aaa.filterTest 
+ 			'/DURC/filtertest/1/edit', //from: DURC_aaa.filterTest 
  			'/DURC/foreignkeytestgizmo', //from: DURC_aaa.foreignkeytestgizmo 
  			'/DURC/foreignkeytestgizmo/create', //from: DURC_aaa.foreignkeytestgizmo 
  			'/DURC/foreignkeytestgizmo/1', //from: DURC_aaa.foreignkeytestgizmo 

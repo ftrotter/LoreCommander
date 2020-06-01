@@ -102,6 +102,13 @@ Route::get("/DURC/json/donation/", 'donationController@jsonall');
 Route::get("/DURC/searchjson/donation/", 'donationController@search');
 Route::get("/DURC/donation/restore/{id}", 'donationController@restore');
  
+//DURC->	DURC_aaa.filterTest
+Route::resource("/DURC/filtertest", 'filtertestController');
+Route::get("/DURC/json/filtertest/{filtertest_id}", 'filtertestController@jsonone');
+Route::get("/DURC/json/filtertest/", 'filtertestController@jsonall');
+Route::get("/DURC/searchjson/filtertest/", 'filtertestController@search');
+
+ 
 //DURC->	DURC_aaa.foreignkeytestgizmo
 Route::resource("/DURC/foreignkeytestgizmo", 'foreignkeytestgizmoController');
 Route::get("/DURC/json/foreignkeytestgizmo/{foreignkeytestgizmo_id}", 'foreignkeytestgizmoController@jsonone');
