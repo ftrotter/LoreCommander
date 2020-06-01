@@ -89,7 +89,7 @@
 		</ul>
 		</div>
 		<div class='col-md-4'>
-		<h4> DURC-built Tabular Reports </h4>
+		<h4> Test Reports </h4>
 		<ul>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_AutoTagsReport'>Auto Tags Report</a></b>  </li>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_CharTest'>Character Test</a></b>  </li>
