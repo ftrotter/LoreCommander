@@ -56,6 +56,11 @@ $clean_up_commands = [
 	//these two are just for good measure... 
 	"composer clear-cache > /dev/null 2>&1", //make composer see the new files
 	"composer dump-autoload > /dev/null 2>&1", //and refresh the composer cache...
+	"php artisan cache:clear",
+	"php artisan route:clear",
+	"php artisan config:clear ",
+	"php artisan view:clear",
+
 ];
 
 	//for the cleanup commands, we just want them to silently run... so we use exec without an echo
