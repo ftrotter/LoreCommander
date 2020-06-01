@@ -49,7 +49,7 @@ class PostSync extends Command
 //	which requires us to join to the card so we can join to the mtgset where that information is stored.
 //	we exlude all of the set_type = 'funny' creature types
 
-/*
+
 	$sql_make_creature = "
 INSERT IGNORE lore.creature 
 SELECT DISTINCT
@@ -297,7 +297,6 @@ UPDATE lore.cardface SET  for_fulltext_search = CONCAT_WS(' ',
 
 	$count = $pdo->exec($populate_fulltext_sql);
 	$this->info("Created fulltext search field for cardface with $count cardface changes");
-*/
 
 
 
@@ -350,7 +349,160 @@ WHERE collector_number = '$collector_number'
 
 	}
 
-	
+
+
+	$sql = []; //start over...	
+
+	//we are going to take the GW Basic lesson and order with some space so the first binder sort group will be 10, then 20, etc etc.
+
+	$sql['mark colorless non-artificats as 10'] = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 10 
+WHERE is_colorless = 1 AND cardface.name NOT LIKE '%Artifact%'
+";
+
+	$sql['mark simple white as 20']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 20 
+WHERE is_color_white = 1 
+AND is_color_green = 0
+AND is_color_blue = 0
+AND is_color_red = 0
+AND is_color_black = 0
+";	
+
+
+	$sql['mark simple blue as 30']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 30 
+WHERE is_color_white = 0 
+AND is_color_green = 0
+AND is_color_blue = 1
+AND is_color_red = 0
+AND is_color_black = 0
+";	
+
+	$sql['mark simple black as 40']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 40 
+WHERE is_color_white = 0 
+AND is_color_green = 0
+AND is_color_blue = 0
+AND is_color_red = 0
+AND is_color_black = 1
+";	
+
+	$sql['mark simple red as 50']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 50 
+WHERE is_color_white = 0 
+AND is_color_green = 0
+AND is_color_blue = 0
+AND is_color_red = 1
+AND is_color_black = 0
+";	
+
+	$sql['mark simple green as 60']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 60 
+WHERE is_color_white = 0 
+AND is_color_green = 1
+AND is_color_blue = 0
+AND is_color_red = 0
+AND is_color_black = 0
+";	
+
+	//figuring out multicolored is a little more complicated
+	$sql['mark multicolored cards as 70']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 70 
+WHERE 
+	is_color_white = 1 AND (is_color_green = 1 OR is_color_red = 1 OR is_color_blue = 1 OR is_color_black = 1)
+OR 
+	is_color_blue = 1 AND (is_color_green = 1 OR is_color_red = 1 OR is_color_white = 1 OR is_color_black = 1)
+OR 
+	is_color_black = 1 AND (is_color_green = 1 OR is_color_red = 1 OR is_color_white = 1 OR is_color_blue = 1)
+OR 
+	is_color_red = 1 AND (is_color_green = 1 OR is_color_blue = 1 OR is_color_white = 1 OR is_color_black = 1)
+OR 
+	is_color_green = 1 AND (is_color_blue = 1 OR is_color_red = 1 OR is_color_white = 1 OR is_color_black = 1)
+";	
+
+
+	$sql['mark artifacts as 80']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 80 
+WHERE 
+	type_line LIKE '%Artifact%'
+";	
+
+
+	//we do lands first, setting it to 100, and then we set basic lands to 90, because that is easier to read... 
+	//but it does make the sequence critical...
+	$sql['mark lands as 100']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 100
+WHERE 
+	type_line LIKE '%Land%'
+";	
+
+	$sql['mark basic lands as 90']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 90
+WHERE 
+	type_line LIKE '%Basic Land%'
+";	
+
+	$sql['mark tokens as 110']  = "
+UPDATE lore.card 
+JOIN lore.cardface ON 
+	cardface.card_id =
+	card.id
+SET card.binder_group_number = 110
+WHERE 
+	type_line LIKE '%Token%'
+";	
+
+
+	foreach($sql as $comment =>  $this_sql){
+
+		
+		$this->info("$comment\n Running\n $this_sql");
+		$pdo->query($this_sql);
+
+	}
+
+
 
 
 
