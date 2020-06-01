@@ -167,7 +167,7 @@ class card extends DURCModel{
 		'legal_standard' => '0',
 		'legal_historic' => null,
 		'legal_pioneer' => null,
-		'binder_group_number' => 'NULL',
+		'binder_group_number' => '0',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
@@ -296,7 +296,7 @@ CREATE TABLE `lore`.`card` (
   `legal_standard` tinyint(1) NOT NULL DEFAULT 0,
   `legal_historic` tinyint(11) NOT NULL,
   `legal_pioneer` tinyint(11) NOT NULL,
-  `binder_group_number` int(11) DEFAULT NULL,
+  `binder_group_number` int(11) DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

@@ -456,7 +456,7 @@ $('.select2_mtgset_id').select2({
   <div class='form-group row {{binder_group_number_row_class}}'>
     <label for='binder_group_number' class='col-sm-4 col-form-label'>binder_group_number</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.binder_group_number.has_errors}}is-invalid{{/errors.binder_group_number.has_errors}}' id='binder_group_number' name='binder_group_number' placeholder='NULL' value='{{binder_group_number}}' >
+      <input type='text' class='form-control {{#errors.binder_group_number.has_errors}}is-invalid{{/errors.binder_group_number.has_errors}}' id='binder_group_number' name='binder_group_number' placeholder='0' value='{{binder_group_number}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.binder_group_number.messages}}<li>{{.}}</li>{{/errors.binder_group_number.messages}}
