@@ -57,15 +57,33 @@ Choose a set below. <br>
     </div>
   </div>
   <div class='form-group row'>
+    <label for='sort_method' class='col-4 col-form-label'>Choose Sort Method</label> 
+    <div class='col-8'>
+      <select id='sort_method' name='sort_method' class='custom-select'>
+        <option value='sort_WUBRG'>Sort Colorless WUBRG Multi Artificat Land Token</option>
+        <option value='sort_collector'>Sort By Collector Number</option>
+      </select>
+    </div>
+  </div>
+  <div class='form-group row'>
+    <label for='cards_per_page' class='col-4 col-form-label'>Cards Per Page</label> 
+    <div class='col-8'>
+      <select id='cards_per_page' name='cards_per_page' class='custom-select'>
+        <option value='8'>8</option>
+        <option value='9'>9</option>
+        <option value='7'>7</option>
+        <option value='6'>6</option>
+      </select>
+    </div>
+  </div>
+
+  <div class='form-group row'>
     <div class='offset-4 col-8'>
       <button name='submit' type='submit' class='btn btn-primary'>Show Set</button>
     </div>
   </div>
 </form>
 ";
-
-
-
 	return($html);
 
 	}
@@ -77,16 +95,7 @@ Choose a set below. <br>
     public function cardWidth() { return "230px"; }
 
     /**
-     * This is what builds the report. It will accept a SQL statement or an Array of sql statements.
-     * Can be used in conjunction with Inputs to determine different output based on URI parameters
-     * Additional URI parameters are passed as
-    *   $this->getCode() - which will give the first url segment after the report name
-    *   $this->getParameters() - which will give an array of every later url segment after the getCode value
-    *   $this->getInput() - which will give _GET parameters (etc?)
-    *   $this->quote($something_you_got_from_the_user) - This wrapper to the PDO quote function is good for preventing SQL injection
-    * 	$this->setInput($key,$new_value) - a way to override _GET parameters (i.e. for initializing a sort for instance)
-    * 		For instance $this->setInput('order',[0 => ['order_by_me' => 'asc']]); will order the report, to start by the order_by_me column ASC. 
-    *		This replicates what is being passed from the front end data tables to the backend to make sorting work.. 
+     * Builds the report
     **/
     public function GetSQL()
     {
@@ -94,18 +103,25 @@ Choose a set below. <br>
 	// which means we need to increment a counter every ninth row in the data... but that would require a mysql variable and zermelo does not yet support that
 	// so we are going to instead create a table, in advance, which has that mapping between pages and illustrations, and then we are going to join to it.
 
-	$mtgset_id = (int) $this->getInput('mtgset_id');
+	$mtgset_id = $this->getInput('mtgset_id');
+	$cards_per_page = $this->getInput('cards_per_page');
 
 	if(!is_numeric($mtgset_id)){
-		echo "Error, need a numeric mtgset_id";
+		return('SELECT "No results, use form to populate results" AS message');
 		exit();
 	}
+
+	if(!is_numeric($cards_per_page)){
+		return('SELECT "No results, use form to populate results" AS message');
+		exit();
+	}
+
 	$mtgset_id = (int) $mtgset_id;
+	$cards_per_page = (int) $cards_per_page;
 
 	$pdo = DB::connection()->getPdo();
-	
 
-	$divider_page_cache_table = "card_pagemap_cache_set_$mtgset_id";
+	$divider_page_cache_table = "card_pagemap_cache_set_$mtgset_id"."_$cards_per_page";
 
 	//first, lets see if a cache already exists for this cache_id.. 
 
@@ -161,12 +177,12 @@ AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
 			$total_result_rows = $this_row['total_result_rows'];
 		}
 
-		$total_pages = ($total_result_rows / 9) +1; //not a big deal to do the loop one too many times...
+		$total_pages = ($total_result_rows / $cards_per_page) +1; //not a big deal to do the loop one too many times...
 
 
 
 		for($i = 0; $i <= $total_pages; $i++){
-			$from_row_count = $i * 9;		
+			$from_row_count = $i * $cards_per_page;		
 	
 			$insert_sql = "
 INSERT INTO _zermelo_cache.$divider_page_cache_table
@@ -183,7 +199,7 @@ WHERE mtgset_id = $mtgset_id
 AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
 GROUP BY illustration_id, collector_number
 ORDER BY sortable_collector_number ASC
-LIMIT $from_row_count, 9 
+LIMIT $from_row_count, $cards_per_page 
 ";
 	
 			$pdo->exec($insert_sql);
@@ -196,7 +212,7 @@ LIMIT $from_row_count, 9
 
         	$sql = "
 SELECT
-        CONCAT(MAX(name), ' (', card.collector_number, ')') AS card_header
+        CONCAT(MAX(name), ' (', card.collector_number, ' - ', card.binder_group_number  ,')') AS card_header
 	, MAX(scryfall_web_uri) AS card_img_bottom_anchor
         , MAX(image_uri_normal) AS card_img_bottom
         , binder_page_number + 1 AS card_layout_block_id
@@ -304,7 +320,7 @@ ORDER BY sortable_collector_number ASC
     * So if you want to just run the report one time, and then load subsequent data from the cache, set this to return 'true';
     */
    public function isCacheEnabled(){
-        return(true);
+        return(false);
    }
 
     /**
