@@ -224,6 +224,32 @@ INSERT INTO `donation` VALUES (1,11,741152597,'2018-01-10 00:12:00','2018-01-11 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `filterTest`
+--
+
+DROP TABLE IF EXISTS `filterTest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `filterTest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_url` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `test_json` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `filterTest`
+--
+
+LOCK TABLES `filterTest` WRITE;
+/*!40000 ALTER TABLE `filterTest` DISABLE KEYS */;
+/*!40000 ALTER TABLE `filterTest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `foreignkeytestgizmo`
 --
 
@@ -626,4 +652,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-27 13:37:04
+-- Dump completed on 2020-06-01 18:27:51
