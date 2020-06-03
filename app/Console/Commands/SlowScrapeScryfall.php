@@ -74,6 +74,12 @@ class SlowScrapeScryfall extends Command
 			$this_set['is_foil_only'] = 0;
 		}
 
+		if($this_set['nonfoil_only']){
+			$this_set['is_nonfoil_only'] = 1;
+		}else{
+			$this_set['is_nonfoil_only'] = 0;
+		}
+
 		if($this_set['digital']){
 			$this_set['is_digital'] = 1;
 		}else{

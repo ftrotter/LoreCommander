@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e49440a11459179ee9f9db36dab92312
+FILE_SIG=bc5506db13c517265ee8af108c3ebf34
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -66,6 +66,7 @@ $joined_select_field_sql
 , mtgset.card_count AS card_count
 , mtgset.is_digital AS is_digital
 , mtgset.is_foil_only AS is_foil_only
+, mtgset.is_nonfoil_only AS is_nonfoil_only
 , mtgset.scryfall_uri AS scryfall_uri
 , mtgset.mtgset_uri AS mtgset_uri
 , mtgset.icon_svg_uri AS icon_svg_uri
@@ -97,6 +98,7 @@ $joined_select_field_sql
 , mtgset.card_count AS card_count
 , mtgset.is_digital AS is_digital
 , mtgset.is_foil_only AS is_foil_only
+, mtgset.is_nonfoil_only AS is_nonfoil_only
 , mtgset.scryfall_uri AS scryfall_uri
 , mtgset.mtgset_uri AS mtgset_uri
 , mtgset.icon_svg_uri AS icon_svg_uri
@@ -390,20 +392,20 @@ array (
   ),
   15 => 
   array (
-    'column_name' => 'scryfall_uri',
-    'data_type' => 'varchar',
+    'column_name' => 'is_nonfoil_only',
+    'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
   16 => 
   array (
-    'column_name' => 'mtgset_uri',
+    'column_name' => 'scryfall_uri',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -416,7 +418,7 @@ array (
   ),
   17 => 
   array (
-    'column_name' => 'icon_svg_uri',
+    'column_name' => 'mtgset_uri',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -429,7 +431,7 @@ array (
   ),
   18 => 
   array (
-    'column_name' => 'search_uri',
+    'column_name' => 'icon_svg_uri',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -442,6 +444,19 @@ array (
   ),
   19 => 
   array (
+    'column_name' => 'search_uri',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  20 => 
+  array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
@@ -453,7 +468,7 @@ array (
     'default_value' => 'current_timestamp()',
     'is_auto_increment' => false,
   ),
-  20 => 
+  21 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

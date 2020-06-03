@@ -245,6 +245,7 @@ class mtgsetController extends DURCController
         $tmp_mtgset->card_count = $request->card_count;
         $tmp_mtgset->is_digital = $request->is_digital;
         $tmp_mtgset->is_foil_only = $request->is_foil_only;
+        $tmp_mtgset->is_nonfoil_only = $request->is_nonfoil_only;
         $tmp_mtgset->scryfall_uri = $request->scryfall_uri;
         $tmp_mtgset->mtgset_uri = $request->mtgset_uri;
         $tmp_mtgset->icon_svg_uri = $request->icon_svg_uri;
@@ -432,6 +433,7 @@ class mtgsetController extends DURCController
         $tmp_mtgset->card_count = $request->card_count;
         $tmp_mtgset->is_digital = $request->is_digital;
         $tmp_mtgset->is_foil_only = $request->is_foil_only;
+        $tmp_mtgset->is_nonfoil_only = $request->is_nonfoil_only;
         $tmp_mtgset->scryfall_uri = $request->scryfall_uri;
         $tmp_mtgset->mtgset_uri = $request->mtgset_uri;
         $tmp_mtgset->icon_svg_uri = $request->icon_svg_uri;

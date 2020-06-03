@@ -16,6 +16,7 @@ CREATE TABLE `mtgset` (
   `card_count` int(11) NOT NULL,
   `is_digital` tinyint(1) NOT NULL,
   `is_foil_only` tinyint(1) NOT NULL,
+  `is_nonfoil_only` tinyint(1) DEFAULT NULL,
   `scryfall_uri` varchar(255) NOT NULL,
   `mtgset_uri` varchar(255) NOT NULL,
   `icon_svg_uri` varchar(255) NOT NULL,
