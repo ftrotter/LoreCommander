@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "careset/durc": "dev-master",
+        "careset/durc": ">=0.9",
         "careset/zermelo_installer": ">=1.0",
         "ftrotter/two-table-monolog-mysql": "dev-master",
         "laravel/framework": "^6.0",
