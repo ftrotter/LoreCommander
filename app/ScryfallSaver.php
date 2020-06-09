@@ -194,7 +194,12 @@ class  ScryfallSaver {
 				//flattent the games array i.e. mtgo, arena, print
 				if(isset($this_card['games'])){
 					foreach($this_card['games'] as $this_game){
-						$card_fill["is_game_$this_game"] = 1; //it is 0 by dfault..
+						// There's also this awful 'sega' game type that needs accounting for...
+						if(($this_game == 'sega') or ($this_game == 'astral')){
+							echo "SEGA!";
+						}else{
+							$card_fill["is_game_$this_game"] = 1; //it is 0 by dfault..
+						}
 					}
 				}
 	
