@@ -27,6 +27,7 @@ class supplier extends DURCModel{
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
 			'purchaseorder', //from from many
+			'product_to_supplier', //from from one
 		];
 
 
@@ -127,7 +128,14 @@ class supplier extends DURCModel{
 		
 //DURC HAS_ONE SECTION
 
-			//DURC did not detect any has_one relationships
+/**
+*	get all the product_to_supplier for this supplier
+*/
+	public function product_to_supplier(){
+		return $this->hasOne('App\product_to_supplier','supplier_id','id');
+	}
+
+
 
 		
 //DURC BELONGS_TO SECTION

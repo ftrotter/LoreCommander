@@ -125,13 +125,13 @@ class mtgset extends DURCModel{
 		'block' => 'nullable',
 		'parent_set_code' => 'nullable',
 		'card_count' => 'integer|required',
-		'is_digital' => 'integer|required',
-		'is_foil_only' => 'integer|required',
-		'is_nonfoil_only' => 'integer|nullable',
-		'scryfall_uri' => 'required',
-		'mtgset_uri' => 'required',
-		'icon_svg_uri' => 'required',
-		'search_uri' => 'required',
+		'is_digital' => 'boolean|integer|required',
+		'is_foil_only' => 'boolean|integer|required',
+		'is_nonfoil_only' => 'boolean|integer|nullable',
+		'scryfall_uri' => 'url|required',
+		'mtgset_uri' => 'url|required',
+		'icon_svg_uri' => 'url|required',
+		'search_uri' => 'url|required',
 	]; // End of validation rules
 		        
 		

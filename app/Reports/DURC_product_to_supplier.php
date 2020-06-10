@@ -1,25 +1,25 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=14d7e9e591b712fd635c01694060047c
+FILE_SIG=3ae62de577ea2bd62c25349610405435
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 
-class DURC_purchaseorderdetail extends AbstractTabularReport
+class DURC_product_to_supplier extends AbstractTabularReport
 {
 
     //returns the name of the report
     public function GetReportName(): string {
-        $report_name = "purchaseorderdetail Report";
+        $report_name = "product_to_supplier Report";
         return($report_name);
     }
 
     //returns the description of the report. HTML is allowed here.
     public function GetReportDescription(): ?string {
-        $desc = "View the purchaseorderdetail data
+        $desc = "View the product_to_supplier data
 			<br>
-			<a href='/DURC/purchaseorderdetail/create'>Add new purchaseorderdetail</a>
+			<a href='/DURC/product_to_supplier/create'>Add new product_to_supplier</a>
 ";
         return($desc);
     }
@@ -34,7 +34,7 @@ class DURC_purchaseorderdetail extends AbstractTabularReport
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\purchaseorderdetail::getImgField();
+	$img_field_name = \App\product_to_supplier::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -45,29 +45,29 @@ class DURC_purchaseorderdetail extends AbstractTabularReport
 
 
 
-	$purchaseOrder_field = \App\purchaseorder::getNameField();	
-	$joined_select_field_sql .= "
-, A_purchaseOrder.$purchaseOrder_field  AS $purchaseOrder_field
-"; 
-	$purchaseOrder_img_field = \App\purchaseorder::getImgField();
-	if(!is_null($purchaseOrder_img_field)){
-		if($is_debug){echo "purchaseOrder has an image field of: |$purchaseOrder_img_field|
-";}
-		$joined_select_field_sql .= "
-, A_purchaseOrder.$purchaseOrder_img_field  AS $purchaseOrder_img_field
-"; 
-	}
-
 	$product_field = \App\product::getNameField();	
 	$joined_select_field_sql .= "
-, B_product.$product_field  AS $product_field
+, A_product.$product_field  AS $product_field
 "; 
 	$product_img_field = \App\product::getImgField();
 	if(!is_null($product_img_field)){
 		if($is_debug){echo "product has an image field of: |$product_img_field|
 ";}
 		$joined_select_field_sql .= "
-, B_product.$product_img_field  AS $product_img_field
+, A_product.$product_img_field  AS $product_img_field
+"; 
+	}
+
+	$supplier_field = \App\supplier::getNameField();	
+	$joined_select_field_sql .= "
+, B_supplier.$supplier_field  AS $supplier_field
+"; 
+	$supplier_img_field = \App\supplier::getImgField();
+	if(!is_null($supplier_img_field)){
+		if($is_debug){echo "supplier has an image field of: |$supplier_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_supplier.$supplier_img_field  AS $supplier_img_field
 "; 
 	}
 
@@ -76,25 +76,22 @@ class DURC_purchaseorderdetail extends AbstractTabularReport
 
                 $sql = "
 SELECT
-purchaseOrderDetail.id
+product_to_supplier.id
 $joined_select_field_sql 
-, purchaseOrderDetail.purchaseOrder_id AS purchaseOrder_id
-, purchaseOrderDetail.product_id AS product_id
-, purchaseOrderDetail.quantity AS quantity
-, purchaseOrderDetail.unitCost AS unitCost
-, purchaseOrderDetail.dateReceived AS dateReceived
-, purchaseOrderDetail.postedToInventory AS postedToInventory
-, purchaseOrderDetail.inventory_id AS inventory_id
+, product_to_supplier.product_id AS product_id
+, product_to_supplier.supplier_id AS supplier_id
+, product_to_supplier.created_at AS created_at
+, product_to_supplier.updated_at AS updated_at
 
-FROM DURC_northwind_data.purchaseOrderDetail
+FROM DURC_northwind_model.product_to_supplier
 
-LEFT JOIN DURC_northwind_data.purchaseOrder AS A_purchaseOrder ON 
-	A_purchaseOrder.id =
-	purchaseOrderDetail.purchaseOrder_id
+LEFT JOIN DURC_northwind_model.product AS A_product ON 
+	A_product.id =
+	product_to_supplier.product_id
 
-LEFT JOIN DURC_northwind_model.product AS B_product ON 
-	B_product.id =
-	purchaseOrderDetail.product_id
+LEFT JOIN DURC_northwind_model.supplier AS B_supplier ON 
+	B_supplier.id =
+	product_to_supplier.supplier_id
 
 ";
 
@@ -102,27 +99,24 @@ LEFT JOIN DURC_northwind_model.product AS B_product ON
 
                 $sql = "
 SELECT
-purchaseOrderDetail.id 
+product_to_supplier.id 
 $joined_select_field_sql
-, purchaseOrderDetail.purchaseOrder_id AS purchaseOrder_id
-, purchaseOrderDetail.product_id AS product_id
-, purchaseOrderDetail.quantity AS quantity
-, purchaseOrderDetail.unitCost AS unitCost
-, purchaseOrderDetail.dateReceived AS dateReceived
-, purchaseOrderDetail.postedToInventory AS postedToInventory
-, purchaseOrderDetail.inventory_id AS inventory_id
+, product_to_supplier.product_id AS product_id
+, product_to_supplier.supplier_id AS supplier_id
+, product_to_supplier.created_at AS created_at
+, product_to_supplier.updated_at AS updated_at
  
-FROM DURC_northwind_data.purchaseOrderDetail 
+FROM DURC_northwind_model.product_to_supplier 
 
-LEFT JOIN DURC_northwind_data.purchaseOrder AS A_purchaseOrder ON 
-	A_purchaseOrder.id =
-	purchaseOrderDetail.purchaseOrder_id
+LEFT JOIN DURC_northwind_model.product AS A_product ON 
+	A_product.id =
+	product_to_supplier.product_id
 
-LEFT JOIN DURC_northwind_model.product AS B_product ON 
-	B_product.id =
-	purchaseOrderDetail.product_id
+LEFT JOIN DURC_northwind_model.supplier AS B_supplier ON 
+	B_supplier.id =
+	product_to_supplier.supplier_id
 
-WHERE purchaseOrderDetail.id = $index
+WHERE product_to_supplier.id = $index
 ";
 
         }
@@ -146,7 +140,7 @@ WHERE purchaseOrderDetail.id = $index
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\purchaseorderdetail::getImgField();
+	$img_field_name = \App\product_to_supplier::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -157,36 +151,36 @@ WHERE purchaseOrderDetail.id = $index
 
 
 
-	$purchaseOrder_field = \App\purchaseorder::getNameField();	
-	$joined_select_field_sql .= "
-, A_purchaseOrder.$purchaseOrder_field  AS $purchaseOrder_field
-"; 
-	$purchaseOrder_img_field = \App\purchaseorder::getImgField();
-	if(!is_null($purchaseOrder_img_field)){
-		if($is_debug){echo "purchaseOrder has an image field of: |$purchaseOrder_img_field|
-";}
-		$joined_select_field_sql .= "
-, A_purchaseOrder.$purchaseOrder_img_field  AS $purchaseOrder_img_field
-"; 
-	}
-
 	$product_field = \App\product::getNameField();	
 	$joined_select_field_sql .= "
-, B_product.$product_field  AS $product_field
+, A_product.$product_field  AS $product_field
 "; 
 	$product_img_field = \App\product::getImgField();
 	if(!is_null($product_img_field)){
 		if($is_debug){echo "product has an image field of: |$product_img_field|
 ";}
 		$joined_select_field_sql .= "
-, B_product.$product_img_field  AS $product_img_field
+, A_product.$product_img_field  AS $product_img_field
+"; 
+	}
+
+	$supplier_field = \App\supplier::getNameField();	
+	$joined_select_field_sql .= "
+, B_supplier.$supplier_field  AS $supplier_field
+"; 
+	$supplier_img_field = \App\supplier::getImgField();
+	if(!is_null($supplier_img_field)){
+		if($is_debug){echo "supplier has an image field of: |$supplier_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_supplier.$supplier_img_field  AS $supplier_img_field
 "; 
 	}
 
 
 
         //link this row to its DURC editor
-        $row['id'] = "<a href='/DURC/purchaseorderdetail/$id'>$id</a>";
+        $row['id'] = "<a href='/DURC/product_to_supplier/$id'>$id</a>";
 
 
 
@@ -198,18 +192,6 @@ WHERE purchaseOrderDetail.id = $index
 
 
 
-$purchaseorder_tmp = ''.$purchaseOrder_field;
-if(isset($row[$purchaseorder_tmp])){
-	$purchaseorder_data = $row[$purchaseorder_tmp];
-	$row[$purchaseorder_tmp] = "<a target='_blank' href='/Zermelo/DURC_purchaseOrder/$purchaseOrder_id'>$purchaseorder_data</a>";
-}
-
-$purchaseorder_img_tmp = ''.$purchaseOrder_img_field;
-if(isset($row[$purchaseorder_img_tmp]) && strlen($purchaseorder_img_tmp) > 0){
-	$purchaseorder_img_data = $row[$purchaseorder_img_tmp];
-	$row[$purchaseorder_img_tmp] = "<img width='200px' src='$purchaseorder_img_data'>";
-}
-
 $product_tmp = ''.$product_field;
 if(isset($row[$product_tmp])){
 	$product_data = $row[$product_tmp];
@@ -220,6 +202,18 @@ $product_img_tmp = ''.$product_img_field;
 if(isset($row[$product_img_tmp]) && strlen($product_img_tmp) > 0){
 	$product_img_data = $row[$product_img_tmp];
 	$row[$product_img_tmp] = "<img width='200px' src='$product_img_data'>";
+}
+
+$supplier_tmp = ''.$supplier_field;
+if(isset($row[$supplier_tmp])){
+	$supplier_data = $row[$supplier_tmp];
+	$row[$supplier_tmp] = "<a target='_blank' href='/Zermelo/DURC_supplier/$supplier_id'>$supplier_data</a>";
+}
+
+$supplier_img_tmp = ''.$supplier_img_field;
+if(isset($row[$supplier_img_tmp]) && strlen($supplier_img_tmp) > 0){
+	$supplier_img_data = $row[$supplier_img_tmp];
+	$row[$supplier_img_tmp] = "<img width='200px' src='$supplier_img_data'>";
 }
 
 
@@ -261,106 +255,54 @@ if(isset($row[$product_img_tmp]) && strlen($product_img_tmp) > 0){
 array (
   0 => 
   array (
-    'column_name' => 'id',
+    'column_name' => 'product_id',
     'data_type' => 'int',
     'is_primary_key' => true,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => 'DURC_northwind_model',
+    'foreign_table' => 'product',
     'is_nullable' => false,
     'default_value' => NULL,
-    'is_auto_increment' => true,
+    'is_auto_increment' => false,
   ),
   1 => 
   array (
-    'column_name' => 'purchaseOrder_id',
+    'column_name' => 'supplier_id',
     'data_type' => 'int',
-    'is_primary_key' => false,
+    'is_primary_key' => true,
     'is_foreign_key' => true,
     'is_linked_key' => true,
-    'foreign_db' => 'DURC_northwind_data',
-    'foreign_table' => 'purchaseOrder',
+    'foreign_db' => 'DURC_northwind_model',
+    'foreign_table' => 'supplier',
     'is_nullable' => false,
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
   2 => 
   array (
-    'column_name' => 'product_id',
-    'data_type' => 'int',
-    'is_primary_key' => false,
-    'is_foreign_key' => true,
-    'is_linked_key' => true,
-    'foreign_db' => 'DURC_northwind_model',
-    'foreign_table' => 'product',
-    'is_nullable' => true,
-    'default_value' => 'NULL',
-    'is_auto_increment' => false,
-  ),
-  3 => 
-  array (
-    'column_name' => 'quantity',
-    'data_type' => 'decimal',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => NULL,
-    'is_auto_increment' => false,
-  ),
-  4 => 
-  array (
-    'column_name' => 'unitCost',
-    'data_type' => 'decimal',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => NULL,
-    'is_auto_increment' => false,
-  ),
-  5 => 
-  array (
-    'column_name' => 'dateReceived',
+    'column_name' => 'created_at',
     'data_type' => 'datetime',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => true,
-    'default_value' => 'NULL',
+    'is_nullable' => false,
+    'default_value' => 'current_timestamp()',
     'is_auto_increment' => false,
   ),
-  6 => 
+  3 => 
   array (
-    'column_name' => 'postedToInventory',
-    'data_type' => 'tinyint',
+    'column_name' => 'updated_at',
+    'data_type' => 'datetime',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  7 => 
-  array (
-    'column_name' => 'inventory_id',
-    'data_type' => 'int',
-    'is_primary_key' => false,
-    'is_foreign_key' => true,
-    'is_linked_key' => true,
-    'foreign_db' => 'DURC_northwind_data',
-    'foreign_table' => 'inventoryTransaction',
-    'is_nullable' => true,
-    'default_value' => 'NULL',
+    'default_value' => 'current_timestamp()',
     'is_auto_increment' => false,
   ),
 )
@@ -370,225 +312,6 @@ NULL
 NULL
 //belongs_to
 array (
-  'purchaseorder' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'purchaseorder',
-    'to_table' => 'purchaseOrder',
-    'to_db' => 'DURC_northwind_data',
-    'local_key' => 'purchaseOrder_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => true,
-      ),
-      1 => 
-      array (
-        'column_name' => 'supplier_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'supplier',
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'createdBy_employee_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'employee',
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'submittedDate',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      4 => 
-      array (
-        'column_name' => 'creationDate',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-      5 => 
-      array (
-        'column_name' => 'status_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'MyWind_northwind_model',
-        'foreign_table' => 'purchaseOrderStat',
-        'is_nullable' => true,
-        'default_value' => '0',
-        'is_auto_increment' => false,
-      ),
-      6 => 
-      array (
-        'column_name' => 'expectedDate',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      7 => 
-      array (
-        'column_name' => 'shippingFee',
-        'data_type' => 'decimal',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0.0000',
-        'is_auto_increment' => false,
-      ),
-      8 => 
-      array (
-        'column_name' => 'taxes',
-        'data_type' => 'decimal',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => '0.0000',
-        'is_auto_increment' => false,
-      ),
-      9 => 
-      array (
-        'column_name' => 'paymentDate',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      10 => 
-      array (
-        'column_name' => 'paymentAmount',
-        'data_type' => 'decimal',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => '0.0000',
-        'is_auto_increment' => false,
-      ),
-      11 => 
-      array (
-        'column_name' => 'paymentMethod',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      12 => 
-      array (
-        'column_name' => 'notes',
-        'data_type' => 'longtext',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      13 => 
-      array (
-        'column_name' => 'approvedBy_employee_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'employee',
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      14 => 
-      array (
-        'column_name' => 'approvedDate',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      15 => 
-      array (
-        'column_name' => 'submittedBy_employee_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'employee',
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
   'product' => 
   array (
     'prefix' => NULL,
@@ -755,6 +478,251 @@ array (
         'is_auto_increment' => false,
       ),
       12 => 
+      array (
+        'column_name' => 'attachments',
+        'data_type' => 'longblob',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+    ),
+  ),
+  'supplier' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'supplier',
+    'to_table' => 'supplier',
+    'to_db' => 'DURC_northwind_model',
+    'local_key' => 'supplier_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
+      ),
+      1 => 
+      array (
+        'column_name' => 'company',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      2 => 
+      array (
+        'column_name' => 'lastName',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      3 => 
+      array (
+        'column_name' => 'firstName',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      4 => 
+      array (
+        'column_name' => 'emailAddress',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      5 => 
+      array (
+        'column_name' => 'jobTitle',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      6 => 
+      array (
+        'column_name' => 'businessPhone',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      7 => 
+      array (
+        'column_name' => 'homePhone',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      8 => 
+      array (
+        'column_name' => 'mobilePhone',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      9 => 
+      array (
+        'column_name' => 'faxNumber',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      10 => 
+      array (
+        'column_name' => 'address',
+        'data_type' => 'longtext',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      11 => 
+      array (
+        'column_name' => 'city',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      12 => 
+      array (
+        'column_name' => 'stateProvince',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      13 => 
+      array (
+        'column_name' => 'zipPostalCode',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      14 => 
+      array (
+        'column_name' => 'countryRegion',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      15 => 
+      array (
+        'column_name' => 'webPage',
+        'data_type' => 'longtext',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      16 => 
+      array (
+        'column_name' => 'notes',
+        'data_type' => 'longtext',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      17 => 
       array (
         'column_name' => 'attachments',
         'data_type' => 'longblob',
