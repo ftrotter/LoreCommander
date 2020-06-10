@@ -83,7 +83,7 @@ class cardface_classofc_atag extends DURCModel{
 		'cardface_id' => 'integer|required',
 		'classofc_id' => 'integer|required',
 		'atag_id' => 'integer|required',
-		'is_bulk_linker' => 'integer',
+		'is_bulk_linker' => 'boolean|integer',
 		'link_note' => 'nullable',
 	]; // End of validation rules
 		        
@@ -138,7 +138,7 @@ CREATE TABLE `lore`.`cardface_classofc_atag` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`,`atag_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
 

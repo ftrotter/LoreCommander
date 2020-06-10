@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=42b3d9e21fc3dc7c55bb7f016e363dde
+FILE_SIG=26ff6ebe04a3e27348001398cda084cb
 */
 namespace App;
 /*
@@ -27,9 +27,6 @@ class employee extends \App\DURC\Models\employee
 /*
 		protected $DURC_selfish_with = [ 
 			'order', //from from many
-			'order_2017', //from from many
-			'order_2018', //from from many
-			'order_2019', //from from many
 			'createdBy_purchaseorder', //from from many
 			'approvedBy_purchaseorder', //from from many
 			'submittedBy_purchaseorder', //from from many
@@ -68,33 +65,6 @@ class employee extends \App\DURC\Models\employee
 */
 	public function order(){
 		return parent::order();
-	}
-
-
-/**
-*	DURC is handling the order_2017 for this employee in employee
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function order_2017(){
-		return parent::order_2017();
-	}
-
-
-/**
-*	DURC is handling the order_2018 for this employee in employee
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function order_2018(){
-		return parent::order_2018();
-	}
-
-
-/**
-*	DURC is handling the order_2019 for this employee in employee
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function order_2019(){
-		return parent::order_2019();
 	}
 
 

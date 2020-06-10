@@ -83,7 +83,7 @@ class person_strategy_tag extends DURCModel{
 		'person_id' => 'integer|required',
 		'strategy_id' => 'integer|required',
 		'tag_id' => 'integer|required',
-		'is_bulk_linker' => 'integer',
+		'is_bulk_linker' => 'boolean|integer',
 		'link_note' => 'nullable',
 		'created_at' => 'required',
 		'updated_at' => 'required',

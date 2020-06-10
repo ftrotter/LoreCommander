@@ -90,7 +90,7 @@ class person extends DURCModel{
 		'last_name' => 'required',
 		'first_name' => 'required',
 		'person_blurb' => 'required',
-		'image_uri' => 'nullable',
+		'image_uri' => 'url|nullable',
 		'wallpaper_download_url' => 'url|nullable',
 		'mtgwiki_url' => 'url|nullable',
 		'wizards_story_url' => 'url|nullable',

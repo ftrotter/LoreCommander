@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=08114e38cf12bb13fc595f7e963997fd
+FILE_SIG=3e9cd8e5ebcd4a13cdef1a400dba027c
 */
 namespace App;
 /*
@@ -27,6 +27,7 @@ class supplier extends \App\DURC\Models\supplier
 /*
 		protected $DURC_selfish_with = [ 
 			'purchaseorder', //from from many
+			'product_to_supplier', //from from one
 		];
 
 */

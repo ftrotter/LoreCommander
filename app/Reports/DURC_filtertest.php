@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=06fb7f428457b3842604757c75a94d0f
+FILE_SIG=652d939202bbd9131661e1b387e577d6
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -52,8 +52,23 @@ class DURC_filtertest extends AbstractTabularReport
 SELECT
 filterTest.id
 $joined_select_field_sql 
+, filterTest.is_boolean AS is_boolean
+, filterTest.dec_value AS dec_value
+, filterTest.float_value AS float_value
+, filterTest.tiny_integer AS tiny_integer
+, filterTest.small_integer AS small_integer
+, filterTest.integer_field AS integer_field
+, filterTest.test_uri AS test_uri
 , filterTest.test_url AS test_url
+, filterTest.test_uuid AS test_uuid
+, filterTest.test_alpha AS test_alpha
+, filterTest.test_alpha_dash AS test_alpha_dash
+, filterTest.test_alpha_num AS test_alpha_num
+, filterTest.test_email AS test_email
+, filterTest.test_ipv4 AS test_ipv4
+, filterTest.test_ipv6 AS test_ipv6
 , filterTest.test_json AS test_json
+, filterTest.test_timezone AS test_timezone
 , filterTest.created_at AS created_at
 , filterTest.updated_at AS updated_at
 
@@ -67,8 +82,23 @@ FROM DURC_aaa.filterTest
 SELECT
 filterTest.id 
 $joined_select_field_sql
+, filterTest.is_boolean AS is_boolean
+, filterTest.dec_value AS dec_value
+, filterTest.float_value AS float_value
+, filterTest.tiny_integer AS tiny_integer
+, filterTest.small_integer AS small_integer
+, filterTest.integer_field AS integer_field
+, filterTest.test_uri AS test_uri
 , filterTest.test_url AS test_url
+, filterTest.test_uuid AS test_uuid
+, filterTest.test_alpha AS test_alpha
+, filterTest.test_alpha_dash AS test_alpha_dash
+, filterTest.test_alpha_num AS test_alpha_num
+, filterTest.test_email AS test_email
+, filterTest.test_ipv4 AS test_ipv4
+, filterTest.test_ipv6 AS test_ipv6
 , filterTest.test_json AS test_json
+, filterTest.test_timezone AS test_timezone
 , filterTest.created_at AS created_at
 , filterTest.updated_at AS updated_at
  
@@ -176,6 +206,97 @@ array (
   ),
   1 => 
   array (
+    'column_name' => 'is_boolean',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  2 => 
+  array (
+    'column_name' => 'dec_value',
+    'data_type' => 'decimal',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  3 => 
+  array (
+    'column_name' => 'float_value',
+    'data_type' => 'float',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  4 => 
+  array (
+    'column_name' => 'tiny_integer',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  5 => 
+  array (
+    'column_name' => 'small_integer',
+    'data_type' => 'smallint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  6 => 
+  array (
+    'column_name' => 'integer_field',
+    'data_type' => 'int',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  7 => 
+  array (
+    'column_name' => 'test_uri',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  8 => 
+  array (
     'column_name' => 'test_url',
     'data_type' => 'varchar',
     'is_primary_key' => false,
@@ -187,7 +308,98 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
-  2 => 
+  9 => 
+  array (
+    'column_name' => 'test_uuid',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  10 => 
+  array (
+    'column_name' => 'test_alpha',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  11 => 
+  array (
+    'column_name' => 'test_alpha_dash',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  12 => 
+  array (
+    'column_name' => 'test_alpha_num',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  13 => 
+  array (
+    'column_name' => 'test_email',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  14 => 
+  array (
+    'column_name' => 'test_ipv4',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  15 => 
+  array (
+    'column_name' => 'test_ipv6',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  16 => 
   array (
     'column_name' => 'test_json',
     'data_type' => 'mediumtext',
@@ -200,7 +412,20 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
-  3 => 
+  17 => 
+  array (
+    'column_name' => 'test_timezone',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  18 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -213,7 +438,7 @@ array (
     'default_value' => 'current_timestamp()',
     'is_auto_increment' => false,
   ),
-  4 => 
+  19 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

@@ -231,8 +231,23 @@ class filtertestController extends DURCController
         $tmp_filtertest = $myNewfiltertest;
         
         $tmp_filtertest->id = $request->id;
+        $tmp_filtertest->is_boolean = $request->is_boolean;
+        $tmp_filtertest->dec_value = $request->dec_value;
+        $tmp_filtertest->float_value = $request->float_value;
+        $tmp_filtertest->tiny_integer = $request->tiny_integer;
+        $tmp_filtertest->small_integer = $request->small_integer;
+        $tmp_filtertest->integer_field = $request->integer_field;
+        $tmp_filtertest->test_uri = $request->test_uri;
         $tmp_filtertest->test_url = $request->test_url;
+        $tmp_filtertest->test_uuid = $request->test_uuid;
+        $tmp_filtertest->test_alpha = $request->test_alpha;
+        $tmp_filtertest->test_alpha_dash = $request->test_alpha_dash;
+        $tmp_filtertest->test_alpha_num = $request->test_alpha_num;
+        $tmp_filtertest->test_email = $request->test_email;
+        $tmp_filtertest->test_ipv4 = $request->test_ipv4;
+        $tmp_filtertest->test_ipv6 = $request->test_ipv6;
         $tmp_filtertest->test_json = $request->test_json;
+        $tmp_filtertest->test_timezone = $request->test_timezone;
 
 
         try {
@@ -402,8 +417,23 @@ class filtertestController extends DURCController
         $tmp_filtertest = $filtertest;
         
         $tmp_filtertest->id = $request->id;
+        $tmp_filtertest->is_boolean = $request->is_boolean;
+        $tmp_filtertest->dec_value = $request->dec_value;
+        $tmp_filtertest->float_value = $request->float_value;
+        $tmp_filtertest->tiny_integer = $request->tiny_integer;
+        $tmp_filtertest->small_integer = $request->small_integer;
+        $tmp_filtertest->integer_field = $request->integer_field;
+        $tmp_filtertest->test_uri = $request->test_uri;
         $tmp_filtertest->test_url = $request->test_url;
+        $tmp_filtertest->test_uuid = $request->test_uuid;
+        $tmp_filtertest->test_alpha = $request->test_alpha;
+        $tmp_filtertest->test_alpha_dash = $request->test_alpha_dash;
+        $tmp_filtertest->test_alpha_num = $request->test_alpha_num;
+        $tmp_filtertest->test_email = $request->test_email;
+        $tmp_filtertest->test_ipv4 = $request->test_ipv4;
+        $tmp_filtertest->test_ipv6 = $request->test_ipv6;
         $tmp_filtertest->test_json = $request->test_json;
+        $tmp_filtertest->test_timezone = $request->test_timezone;
 
         $id = $filtertest->id;
         

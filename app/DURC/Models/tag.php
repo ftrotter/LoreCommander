@@ -76,7 +76,7 @@ class tag extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'tag_name' => 'required',
-		'is_directed' => 'integer',
+		'is_directed' => 'boolean|integer',
 		'excludes_tag_id' => 'integer|nullable',
 	]; // End of validation rules
 		        
