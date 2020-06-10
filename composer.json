@@ -9,7 +9,7 @@
     "type": "project",
     "repositories": [
         {
-            "type": "vcs",
+            "type": "git",
             "url": "git@github.com:CareSet/ZermeloBladeGraph.git"
         }
     ],
