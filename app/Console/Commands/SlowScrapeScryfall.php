@@ -94,6 +94,7 @@ class SlowScrapeScryfall extends Command
 		unset($this_set['uri']); //this variable name was too vauge
 		unset($this_set['digital']);
 		unset($this_set['foil_only']);
+		unset($this_set['nonfoil_only']);
 
 		if(isset($this_set['arena_code'])){
 			$name = $this_set['name'];
