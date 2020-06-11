@@ -20,7 +20,6 @@
         "ftrotter/two-table-monolog-mysql": "dev-master",
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.1",
-        "mgargano/simplehtmldom": "^1.5",
         "phpunit/phpunit": "^7.3",
         "proai/laravel-handlebars": "^1.6",
         "pusher/pusher-php-server": "^4.0",
