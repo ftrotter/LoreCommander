@@ -27,9 +27,6 @@ class shipper extends DURCModel{
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
 			'order', //from from many
-			'order_2017', //from from many
-			'order_2018', //from from many
-			'order_2019', //from from many
 		];
 
 
@@ -123,30 +120,6 @@ class shipper extends DURCModel{
 */
 	public function order(){
 		return $this->hasMany('App\order','shipper_id','id');
-	}
-
-
-/**
-*	get all the order_2017 for this shipper
-*/
-	public function order_2017(){
-		return $this->hasMany('App\order_2017','shipper_id','id');
-	}
-
-
-/**
-*	get all the order_2018 for this shipper
-*/
-	public function order_2018(){
-		return $this->hasMany('App\order_2018','shipper_id','id');
-	}
-
-
-/**
-*	get all the order_2019 for this shipper
-*/
-	public function order_2019(){
-		return $this->hasMany('App\order_2019','shipper_id','id');
 	}
 
 

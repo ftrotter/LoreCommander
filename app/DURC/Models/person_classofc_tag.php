@@ -83,7 +83,7 @@ class person_classofc_tag extends DURCModel{
 		'person_id' => 'integer|required',
 		'classofc_id' => 'integer|required',
 		'tag_id' => 'integer|required',
-		'is_bulk_linker' => 'integer',
+		'is_bulk_linker' => 'boolean|integer',
 		'link_note' => 'nullable',
 		'created_at' => 'required',
 		'updated_at' => 'required',

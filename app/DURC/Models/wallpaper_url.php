@@ -82,7 +82,7 @@ class wallpaper_url extends DURCModel{
 		'wallpaper_url_name' => 'required',
 		'wallpaper_url' => 'url|required',
 		'wallpaper_local_path' => 'nullable',
-		'is_highest_resolution' => 'integer',
+		'is_highest_resolution' => 'boolean|integer',
 	]; // End of validation rules
 		        
 		

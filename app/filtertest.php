@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=eba5adeb4e9f1e43123c28b8345c76bc
+FILE_SIG=b54d7d37828da16964b89266855a6bd9
 */
 namespace App;
 /*
@@ -32,8 +32,23 @@ class filtertest extends \App\DURC\Models\filtertest
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
+			//'is_boolean', //tinyint
+			//'dec_value', //decimal
+			//'float_value', //float
+			//'tiny_integer', //tinyint
+			//'small_integer', //smallint
+			//'integer_field', //int
+			//'test_uri', //varchar
 			//'test_url', //varchar
+			//'test_uuid', //varchar
+			//'test_alpha', //varchar
+			//'test_alpha_dash', //varchar
+			//'test_alpha_num', //varchar
+			//'test_email', //varchar
+			//'test_ipv4', //varchar
+			//'test_ipv6', //varchar
 			//'test_json', //mediumtext
+			//'test_timezone', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array

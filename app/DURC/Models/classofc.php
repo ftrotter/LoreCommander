@@ -81,9 +81,9 @@ class classofc extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'classofc_name' => 'required',
-		'classofc_img_uri' => 'nullable',
+		'classofc_img_uri' => 'url|nullable',
 		'classofc_wiki_url' => 'url|nullable',
-		'is_mega_class' => 'integer',
+		'is_mega_class' => 'boolean|integer',
 	]; // End of validation rules
 		        
 		
@@ -168,7 +168,7 @@ CREATE TABLE `lore`.`classofc` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `creatureclass_name` (`classofc_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
 

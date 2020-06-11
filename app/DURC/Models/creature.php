@@ -73,7 +73,7 @@ class creature extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'creature_name' => 'required',
-		'creature_image_uri' => 'nullable',
+		'creature_image_uri' => 'url|nullable',
 	]; // End of validation rules
 		        
 		

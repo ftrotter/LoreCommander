@@ -10,23 +10,43 @@
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com:CareSet/ZermeloBladeGraph.git"
+            "url":"https://github.com/CareSet/Zermelo.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CareSet/ZermeloBladeTabular.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CareSet/ZermeloBladeCard.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CareSet/ZermeloBladeTreeCard.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CareSet/ZermeloBladeGraph.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CareSet/DURC.git"
         }
     ],
     "require": {
         "php": ">=7.2.0",
-        "careset/durc": ">=0.9",
-        "careset/zermelo_installer": ">=1.0",
-        "ftrotter/two-table-monolog-mysql": "dev-master",
+	"proai/laravel-handlebars": "^1.6",
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.1",
         "mgargano/simplehtmldom": "^1.5",
         "phpunit/phpunit": "^7.3",
-        "proai/laravel-handlebars": "^1.6",
         "pusher/pusher-php-server": "^4.0",
         "sunra/php-simple-html-dom-parser": "^1.5",
         "superbalist/flysystem-google-storage": "^7.0",
-        "vlucas/phpdotenv": "^3.3"
+        "vlucas/phpdotenv": "^3.3",
+        "ftrotter/two-table-monolog-mysql": "dev-master",
+        "careset/zermelo_installer": "dev-develop",
+        "careset/durc": "dev-master"
     },
     "require-dev": {
     },
@@ -61,9 +81,10 @@
             "@php artisan package:discover"
         ]
     },
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "preferred-install": "dist",
+        "preferred-install": "source",
         "sort-packages": true,
         "optimize-autoloader": true
     }

@@ -83,7 +83,7 @@ class classofc_classofc_vspack extends DURCModel{
 		'classofc_id' => 'integer|required',
 		'second_classofc_id' => 'integer|required',
 		'vspack_id' => 'integer|required',
-		'is_bulk_linker' => 'integer',
+		'is_bulk_linker' => 'boolean|integer',
 		'link_note' => 'nullable',
 		'created_at' => 'required',
 		'updated_at' => 'required',
@@ -140,7 +140,7 @@ CREATE TABLE `lore`.`classofc_classofc_vspack` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `classofc_id` (`classofc_id`,`second_classofc_id`,`vspack_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
 

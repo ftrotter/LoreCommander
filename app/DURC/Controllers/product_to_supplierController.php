@@ -2,21 +2,22 @@
 
 namespace App\DURC\Controllers;
 
-use App\product;
+use App\product_to_supplier;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 use CareSet\DURC\DURCInvalidDataException;
 
-class productController extends DURCController
+class product_to_supplierController extends DURCController
 {
 
 
 	public $view_data = [];
 
 	protected static $hidden_fields_array = [
-		'id',
+		'created_at',
+		'updated_at',
 
 	];
 
@@ -24,6 +25,8 @@ class productController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
+		$with_summary_array[] = "product:id,".\App\product::getNameField();
+		$with_summary_array[] = "supplier:id,".\App\supplier::getNameField();
 
 		return($with_summary_array);
 		
@@ -36,7 +39,7 @@ class productController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = product::with($with_argument)->paginate(100);
+		$these = product_to_supplier::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -51,8 +54,8 @@ class productController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( product::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = product::$field_type_map[ $lowest_key ];
+                                        if ( isset( product_to_supplier::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = product_to_supplier::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -60,8 +63,8 @@ class productController extends DURCController
                                 }
                         }
 
-                        if ( isset( product::$field_type_map[$key] ) ) {
-                            $field_type = product::$field_type_map[ $key ];
+                        if ( isset( product_to_supplier::$field_type_map[$key] ) ) {
+                            $field_type = product_to_supplier::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -125,11 +128,11 @@ class productController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = product::getSearchFields();
+                $search_fields = product_to_supplier::getSearchFields();
 
 		//sometimes there is an image field that contains the url of an image
 		//but this is typically null
-		$img_field = product::getImgField();
+		$img_field = product_to_supplier::getImgField();
 
 		$where_sql = '';
 		$or = '';
@@ -138,7 +141,7 @@ class productController extends DURCController
 			$or = ' OR ';
 		}
 
-		$query = product::whereRaw($where_sql);
+		$query = product_to_supplier::whereRaw($where_sql);
 		            
 		$count = $query->count();			
 		$these = $query
@@ -190,7 +193,7 @@ class productController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\product  $product
+     * @param  \App\product_to_supplier  $product_to_supplier
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -211,7 +214,7 @@ class productController extends DURCController
             var_export($this->view_data);
             exit();
         }
-        $durc_template_results = view('DURC.product.index',$this->view_data);        
+        $durc_template_results = view('DURC.product_to_supplier.index',$this->view_data);        
         return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -223,33 +226,22 @@ class productController extends DURCController
     */ 
     public function store(Request $request){
 
-        $myNewproduct = new product();
+        $myNewproduct_to_supplier = new product_to_supplier();
 
         //the games we play to easily auto-generate code..
-        $tmp_product = $myNewproduct;
+        $tmp_product_to_supplier = $myNewproduct_to_supplier;
         
-        $tmp_product->id = $request->id;
-        $tmp_product->productCode = $request->productCode;
-        $tmp_product->productName = $request->productName;
-        $tmp_product->description = $request->description;
-        $tmp_product->standardCost = $request->standardCost;
-        $tmp_product->listPrice = $request->listPrice;
-        $tmp_product->reorderLevel = $request->reorderLevel;
-        $tmp_product->targetLevel = $request->targetLevel;
-        $tmp_product->quantityPerUnit = $request->quantityPerUnit;
-        $tmp_product->discontinued = $request->discontinued;
-        $tmp_product->minimumReorderQuantity = $request->minimumReorderQuantity;
-        $tmp_product->category = $request->category;
-        $tmp_product->attachments = $request->attachments;
+        $tmp_product_to_supplier->product_id = $request->product_id;
+        $tmp_product_to_supplier->supplier_id = $request->supplier_id;
 
 
         try {
-            $tmp_product->save();
+            $tmp_product_to_supplier->save();
 
-        $new_id = $myNewproduct->id;
-        return redirect("/DURC/product/$new_id")->with('status', 'Data Saved!');
+        $new_id = $myNewproduct_to_supplier->id;
+        return redirect("/DURC/product_to_supplier/$new_id")->with('status', 'Data Saved!');
         } catch (DURCInvalidDataException $e) {
-            return back()->withInput()->with('errors', $tmp_product->getErrors());
+            return back()->withInput()->with('errors', $tmp_product_to_supplier->getErrors());
 
         } catch (\Exception $e) {
             return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
@@ -261,35 +253,35 @@ class productController extends DURCController
 
     /**
      * Display the specified resource.
-     * @param  \App\$product  $product
+     * @param  \App\$product_to_supplier  $product_to_supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, product $product){
-	return($this->edit($request, $product));
+    public function show(Request $request, product_to_supplier $product_to_supplier){
+	return($this->edit($request, $product_to_supplier));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\product  $product
+     * @param  \App\product_to_supplier  $product_to_supplier
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $product_id){
-		$product = \App\product::find($product_id);
-		$product = $product->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		$return_me_array = $product->toArray();
+    public function jsonone(Request $request, $product_to_supplier_id){
+		$product_to_supplier = \App\product_to_supplier::find($product_to_supplier_id);
+		$product_to_supplier = $product_to_supplier->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$return_me_array = $product_to_supplier->toArray();
 		
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
-		$img_uri_field = \App\product::getImgField();
+		$img_uri_field = \App\product_to_supplier::getImgField();
 		if(!is_null($img_uri_field)){ //then this object has an image link..
 			if(!isset($return_me_array['card_img_top'])){ //allow the user to use this as a field without pestering..
-				$return_me_array['card_img_top'] = $product->$img_uri_field;
+				$return_me_array['card_img_top'] = $product_to_supplier->$img_uri_field;
 			}
 		}
 
 		//lets get a card_body from the DURC mode class!!
 		if(!isset($return_me_array['card_body'])){ //allow the user to use this as a field without pestering..
 			//this is simply the name unless someone has put work into this...
-			$return_me_array['card_body'] = $product->getCardBody();
+			$return_me_array['card_body'] = $product_to_supplier->getCardBody();
 		}
 		
 		return response()->json($return_me_array);
@@ -302,17 +294,17 @@ class productController extends DURCController
      */
     public function create(Request $request){
         // but really, we are just going to edit a new object..
-        $new_instance = new product();
+        $new_instance = new product_to_supplier();
         return $this->edit($request, $new_instance);
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\product  $product
+     * @param  \App\product_to_supplier  $product_to_supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, product $product){
+    public function edit(Request $request, product_to_supplier $product_to_supplier){
 
         $main_template_name = $this->_getMainTemplateName();
         
@@ -336,7 +328,7 @@ class productController extends DURCController
     
         $this->view_data['csrf_token'] = csrf_token();
         
-        foreach ( product::$field_type_map as $column_name => $field_type ) {
+        foreach ( product_to_supplier::$field_type_map as $column_name => $field_type ) {
             // If this field name is in the configured list of hidden fields, do not display the row.
             $this->view_data["{$column_name}_row_class"] = '';
             if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -351,13 +343,13 @@ class productController extends DURCController
             }
         }
     
-        if($product->exists){	//we will not have old data if this is a new object
+        if($product_to_supplier->exists){	//we will not have old data if this is a new object
     
             //well lets properly eager load this object with a refresh to load all of the related things
-            $product = $product->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+            $product_to_supplier = $product_to_supplier->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
     
             //put the contents into the view...
-            foreach($product->toArray() as $key => $value){
+            foreach($product_to_supplier->toArray() as $key => $value){
                 
                 if (array_key_exists($key, $request->old())) {
                     $input = $request->old($key);
@@ -365,24 +357,24 @@ class productController extends DURCController
                     $input = $value;
                 }
             
-                if ( isset( product::$field_type_map[$key] ) ) {
-                    $field_type = product::$field_type_map[ $key ];
+                if ( isset( product_to_supplier::$field_type_map[$key] ) ) {
+                    $field_type = product_to_supplier::$field_type_map[ $key ];
                     $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
                 } else {
                     $this->view_data[$key] = $input;
                 }
                 
                 // If this is a nullable field, see whether null checkbox should be checked by default
-                if ($product->isFieldNullable($key) &&
+                if ($product_to_supplier->isFieldNullable($key) &&
                     $input == null) {
                     $this->view_data["{$key}_checked"] = "checked";
                 }
             }
     
             //what is this object called?
-            $name_field = $product->_getBestName();
+            $name_field = $product_to_supplier->_getBestName();
             $this->view_data['is_new'] = false;
-            $this->view_data['durc_instance_name'] = $product->$name_field;
+            $this->view_data['durc_instance_name'] = $product_to_supplier->$name_field;
         }else{
             $this->view_data['is_new'] = true;
         }
@@ -395,42 +387,31 @@ class productController extends DURCController
         }
         
     
-        $durc_template_results = view('DURC.product.edit',$this->view_data);        
+        $durc_template_results = view('DURC.product_to_supplier.edit',$this->view_data);        
         return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\product  $product
+     * @param  \App\product_to_supplier  $product_to_supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product){
+    public function update(Request $request, product_to_supplier $product_to_supplier){
 
-        $tmp_product = $product;
+        $tmp_product_to_supplier = $product_to_supplier;
         
-        $tmp_product->id = $request->id;
-        $tmp_product->productCode = $request->productCode;
-        $tmp_product->productName = $request->productName;
-        $tmp_product->description = $request->description;
-        $tmp_product->standardCost = $request->standardCost;
-        $tmp_product->listPrice = $request->listPrice;
-        $tmp_product->reorderLevel = $request->reorderLevel;
-        $tmp_product->targetLevel = $request->targetLevel;
-        $tmp_product->quantityPerUnit = $request->quantityPerUnit;
-        $tmp_product->discontinued = $request->discontinued;
-        $tmp_product->minimumReorderQuantity = $request->minimumReorderQuantity;
-        $tmp_product->category = $request->category;
-        $tmp_product->attachments = $request->attachments;
+        $tmp_product_to_supplier->product_id = $request->product_id;
+        $tmp_product_to_supplier->supplier_id = $request->supplier_id;
 
-        $id = $product->id;
+        $id = $product_to_supplier->id;
         
         try {
-            $tmp_product->save();
+            $tmp_product_to_supplier->save();
 
-            return redirect("/DURC/product/$id")->with('status', 'Data Saved!');
+            return redirect("/DURC/product_to_supplier/$id")->with('status', 'Data Saved!');
         } catch (DURCInvalidDataException $e) {
-            return back()->withInput()->with('errors', $tmp_product->getErrors());
+            return back()->withInput()->with('errors', $tmp_product_to_supplier->getErrors());
 
         } catch (\Exception $e) {
             return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
@@ -440,11 +421,11 @@ class productController extends DURCController
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\product  $product
+     * @param  \App\product_to_supplier  $product_to_supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product){
-	    return product::destroy( $product->id );  
+    public function destroy(product_to_supplier $product_to_supplier){
+	    return product_to_supplier::destroy( $product_to_supplier->id );  
     }
     
     /**
@@ -454,7 +435,7 @@ class productController extends DURCController
      */
     public function restore( $id )
     {
-        $product = product::withTrashed()->find($id)->restore();
+        $product_to_supplier = product_to_supplier::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }
