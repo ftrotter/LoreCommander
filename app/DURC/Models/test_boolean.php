@@ -74,11 +74,11 @@ class test_boolean extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'label' => 'required',
-		'is_something' => 'required',
-		'has_something' => 'required',
-		'is_something2' => 'integer|nullable',
-		'has_something2' => 'integer|nullable',
-		'has_something3' => 'integer|nullable',
+		'is_something' => 'boolean|required',
+		'has_something' => 'boolean|required',
+		'is_something2' => 'boolean|integer|nullable',
+		'has_something2' => 'boolean|integer|nullable',
+		'has_something3' => 'boolean|integer|nullable',
 	]; // End of validation rules
 		        
 		

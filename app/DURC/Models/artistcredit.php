@@ -70,7 +70,7 @@ class artistcredit extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'artistcredit_name' => 'required',
-		'is_plain_credit' => 'integer',
+		'is_plain_credit' => 'boolean|integer',
 	]; // End of validation rules
 		        
 		
