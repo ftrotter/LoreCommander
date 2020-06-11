@@ -77,9 +77,10 @@ system("$composer_command clear-cache");
 
 // Run our composer command
 $command = "$composer $composer_command $task";
-system($command);
+//$last_line = system($command, $return_status);
 
-echo "\n";
+echo "You need to run: \n$command\n";
+
 
 
 
