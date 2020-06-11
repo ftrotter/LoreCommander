@@ -93,7 +93,7 @@
 		<ul>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_AutoTagsReport'>Auto Tags Report</a></b>  </li>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_CharTest'>Character Test</a></b>  </li>
-			<li> <b><a target='_blank' href='/Zermelo/TEST_GraphTest'>Graph Test</a></b>  </li>
+			<li> <b><a target='_blank' href='/ZermeloGraph/TEST_GraphTest'>Graph Test</a></b>  </li>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindCustomerReport'>NorthWind Customer Report </a></b>  </li>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindCustomerSocketReport'> Northwind Customer Socket Report </a></b>  </li>
 			<li> <b><a target='_blank' href='/Zermelo/TEST_NorthwindOrderIndexReport'> Northwind Order Index Report </a></b>  </li>
