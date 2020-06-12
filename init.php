@@ -102,3 +102,14 @@ sudo -u $real_user php artisan install:zermelobladetabular
 sudo -u $real_user php artisan install:zermelobladecard
 */
 
+
+// correct the group permissions for all the files in the project so that they can interact correctly with github and be run by any user:
+// change the group for everything to 'careset':
+shell_exec("sudo chgrp careset * -R");
+// Change group on the storage directory to be writable by apache:
+shell_exec("sudo chgrp www-data storage -R");
+// Grant groups r/w privileges:
+shell_exec("sudo chmod g+rw * -R");
+// Add the sticky bit permission, but only to directories:
+shell_exec("sudo find ./ -type d | xargs chmod g+s");
+
