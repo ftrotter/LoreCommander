@@ -38,7 +38,6 @@
 	"proai/laravel-handlebars": "^1.6",
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.1",
-        "mgargano/simplehtmldom": "^1.5",
         "phpunit/phpunit": "^7.3",
         "pusher/pusher-php-server": "^4.0",
         "sunra/php-simple-html-dom-parser": "^1.5",

@@ -92,6 +92,16 @@ class  ScryfallAPI {
 			}
 			return($this_data['data']);
     		}else{
+
+			//it is possible to page past the end of the results and get a 422 status error
+			///this just means that there is no more data...
+
+			if($info['http_code'] == 422){
+				//here we just return an empty array.
+				return([]); 
+			}
+
+
         		echo "Response : $response";
         		echo "Request not successful. Response code : ".$info['http_code']." <br>";
 			echo "tried to get $full_url\n";

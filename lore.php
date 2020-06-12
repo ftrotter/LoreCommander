@@ -81,9 +81,10 @@ system("$composer_command clear-cache");
 
 // Run our composer command
 $command = "$composer $composer_command $task";
-system($command);
+//$last_line = system($command, $return_status);
 
-echo "\n";
+echo "You need to run: \n$command\n";
+
 
 
 // correct the group permissions for all the files in the project so that they can interact correctly with github and be run by any user:
