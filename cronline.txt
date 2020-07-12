@@ -1,0 +1,2 @@
+# This is what is in crontab -e
+* 3 1-31/2 * * /usr/bin/php /var/www/LoreCommander/cron_nightly.php > /var/www/LoreCommander/log/cron_nightly.log 2>&1
