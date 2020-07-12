@@ -101,7 +101,7 @@ Choose a set below. <br>
     public function is_fluid() { return true; }
 
     //how wide should each card be?
-    public function cardWidth() { return "220px"; }
+    public function cardWidth() { return "215px"; }
 
     /**
      * Builds the report
@@ -285,7 +285,7 @@ LIMIT $from_row_count, $cards_per_page
 
         	$sql = "
 SELECT
-        CONCAT('(', card.collector_number, ')') AS card_header
+        CONCAT('(', card.collector_number, ')') AS card_body
 	, MAX(name) AS card_name
 	, card.collector_number
 	, MAX(scryfall_web_uri) AS card_img_top_anchor
@@ -326,9 +326,9 @@ ORDER BY binder_page_number ASC, sort_by_me ASC
 
 	extract($row);
 
-	if(isset($row['card_header'])){
-		$row['card_header'] = "
-</p><table class='table table-bordered table-sm small' style='background-color: white'>
+	if(isset($row['card_body'])){
+		$row['card_body'] = "
+<table class='table table-bordered table-sm small' style='background-color: white'>
 <tr>
 	<td colspan=6> <small> $card_name</small> <b>($collector_number)</b> </td>
 </tr>
@@ -336,7 +336,7 @@ ORDER BY binder_page_number ASC, sort_by_me ASC
 	<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
 </tr><tr><td>reg:</td>
 	<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-</tr></table><p>
+</tr></table>
 ";
 	}
 
