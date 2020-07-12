@@ -326,6 +326,10 @@ ORDER BY binder_page_number ASC, sort_by_me ASC
 
 	extract($row);
 
+	if(strlen($card_name) > 25){ //Narset of the Ancient Way Token causes a line break... most card names are short.. some are not... just in case..
+		$card_name = substr($card_name,0,25) . '...' ;
+	}
+
 	if(isset($row['card_body'])){
 		$row['card_body'] = "
 <table class='table table-bordered table-sm small' style='background-color: white'>
