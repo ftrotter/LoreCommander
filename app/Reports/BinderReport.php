@@ -101,7 +101,7 @@ Choose a set below. <br>
     public function is_fluid() { return true; }
 
     //how wide should each card be?
-    public function cardWidth() { return "230px"; }
+    public function cardWidth() { return "220px"; }
 
     /**
      * Builds the report
@@ -285,12 +285,14 @@ LIMIT $from_row_count, $cards_per_page
 
         	$sql = "
 SELECT
-        CONCAT(MAX(name), ' <br> (', card.collector_number, ')') AS card_header
-	, MAX(scryfall_web_uri) AS card_img_bottom_anchor
-        , MAX(image_uri_normal) AS card_img_bottom
+        CONCAT('(', card.collector_number, ')') AS card_header
+	, MAX(name) AS card_name
+	, card.collector_number
+	, MAX(scryfall_web_uri) AS card_img_top_anchor
+        , MAX(image_uri_normal) AS card_img_top
         , binder_page_number + 1 AS card_layout_block_id
-	, CONCAT('Page Number ', binder_page_number + 1 ) AS card_layout_block_label,
-	sort_by_me
+	, CONCAT('Page Number ', binder_page_number + 1 ) AS card_layout_block_label
+	, sort_by_me
 FROM lore.cardface
 JOIN lore.card ON
         card.id =
@@ -322,13 +324,21 @@ ORDER BY binder_page_number ASC, sort_by_me ASC
     public function MapRow(array $row, int $row_number) :array
     {
 
-        /*
-        //this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
-        //a table drilldown report
-        $table_name = $row['TABLE_NAME'];
-        $row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+	extract($row);
 
-    */
+	if(isset($row['card_header'])){
+		$row['card_header'] = "
+</p><table class='table table-bordered table-sm small' style='background-color: white'>
+<tr>
+	<td colspan=6> <small> $card_name</small> <b>($collector_number)</b> </td>
+</tr>
+<tr><td>foil:</td>
+	<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr><tr><td>reg:</td>
+	<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr></table><p>
+";
+	}
 
         return $row;
     }
