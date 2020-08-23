@@ -19,7 +19,7 @@ DURC_northwind_model.purchaseOrderStat by DURC.
 
 class purchaseorderstat extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

@@ -19,7 +19,7 @@ lore.theme by DURC.
 
 class theme extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

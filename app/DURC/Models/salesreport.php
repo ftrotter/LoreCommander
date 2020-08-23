@@ -19,7 +19,7 @@ DURC_northwind_model.salesReport by DURC.
 
 class salesreport extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     protected $primaryKey = 'groupBy';
 

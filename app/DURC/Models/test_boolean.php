@@ -19,7 +19,7 @@ DURC_aaa.test_boolean by DURC.
 
 class test_boolean extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

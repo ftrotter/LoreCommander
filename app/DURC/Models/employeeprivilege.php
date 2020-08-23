@@ -19,7 +19,7 @@ DURC_northwind_model.employeePrivilege by DURC.
 
 class employeeprivilege extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     protected $primaryKey = 'privilege_id';
 

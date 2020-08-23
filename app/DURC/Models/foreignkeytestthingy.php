@@ -19,7 +19,7 @@ DURC_aaa.foreignkeytestthingy by DURC.
 
 class foreignkeytestthingy extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

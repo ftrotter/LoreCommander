@@ -19,7 +19,7 @@ lore.cardprice by DURC.
 
 class cardprice extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

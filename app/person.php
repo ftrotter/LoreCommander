@@ -4,6 +4,8 @@ Note: because this file was signed, everything originally placed before the name
 FILE_SIG=029cd66ebee4a5805bc5bb89215e6785
 */
 namespace App;
+use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	person: controls lore.person
 
@@ -12,8 +14,11 @@ this is safe to edit.
 
 
 */
-class person extends \App\DURC\Models\person
+class person extends \App\DURC\Models\person implements Auditable
 {
+
+	use \OwenIt\Auditing\Auditable;
+
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/

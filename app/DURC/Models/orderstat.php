@@ -19,7 +19,7 @@ DURC_northwind_model.orderStat by DURC.
 
 class orderstat extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

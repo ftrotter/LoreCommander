@@ -19,7 +19,7 @@ DURC_aaa.characterTest by DURC.
 
 class charactertest extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

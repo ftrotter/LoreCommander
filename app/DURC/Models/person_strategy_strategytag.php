@@ -19,7 +19,7 @@ lore.person_strategy_strategytag by DURC.
 
 class person_strategy_strategytag extends DURCModel  implements Auditable {
 
-	use \OwenIt\Auditing\Auditable;
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 
