@@ -261,14 +261,17 @@ class  ScryfallSaver {
 				$cardface_fill['color_count'] = $color_count;
 				$cardface_fill['color_identity_count'] = $color_identity_count;
 
+
 				if(isset($this_card['image_uris'])){	
 					foreach($this_card['image_uris'] as $image_type => $image_url){
 						$cardface_fill["image_uri_$image_type"] = $image_url;
 					}
+
+					$cardface_fill['image_uri'] = $cardface_fill["image_uri_art_crop"];
+
 				}
 
 				//set  the default url...
-				$cardface_fill['image_uri'] = $cardface_fill["image_uri_art_crop"];
 
 
 				//a card face is unique on card_id plus illustration_id... probably...
