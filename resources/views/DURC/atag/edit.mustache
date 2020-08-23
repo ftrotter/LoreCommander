@@ -59,7 +59,12 @@
     <div class='col-sm-4'><label>is_directed</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_directed' name='is_directed' {{is_directed}}  >
+            <input type='checkbox' id='is_directed' class='{{#errors.is_directed.has_errors}}is-invalid{{/errors.is_directed.has_errors}}'name='is_directed' {{is_directed}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_directed.messages}}<li>{{.}}</li>{{/errors.is_directed.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

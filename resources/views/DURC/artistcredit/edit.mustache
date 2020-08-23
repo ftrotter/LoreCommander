@@ -59,7 +59,12 @@
     <div class='col-sm-4'><label>is_plain_credit</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_plain_credit' name='is_plain_credit' {{is_plain_credit}}  >
+            <input type='checkbox' id='is_plain_credit' class='{{#errors.is_plain_credit.has_errors}}is-invalid{{/errors.is_plain_credit.has_errors}}'name='is_plain_credit' {{is_plain_credit}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_plain_credit.messages}}<li>{{.}}</li>{{/errors.is_plain_credit.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

@@ -29,7 +29,6 @@ class product extends DURCModel{
 			'inventorytransaction', //from from many
 			'orderdetail', //from from many
 			'purchaseorderdetail', //from from many
-			'product_to_supplier', //from from one
 		];
 
 
@@ -44,6 +43,7 @@ class product extends DURCModel{
 
 	//for many functions to work, we need to be able to do a lookup on the field_type and get back the MariaDB/MySQL column type.
 	static $field_type_map = [
+		'supplier_ids' => 'longtext',
 		'id' => 'int',
 		'productCode' => 'varchar',
 		'productName' => 'varchar',
@@ -68,6 +68,7 @@ class product extends DURCModel{
 
     // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $default_values = [
+		'supplier_ids' => 'NULL',
 		'id' => null,
 		'productCode' => 'NULL',
 		'productName' => 'NULL',
@@ -88,6 +89,7 @@ class product extends DURCModel{
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
+		'supplier_ids' => 'nullable',
 		'productCode' => 'nullable',
 		'productName' => 'nullable',
 		'description' => 'nullable',
@@ -133,14 +135,7 @@ class product extends DURCModel{
 		
 //DURC HAS_ONE SECTION
 
-/**
-*	get all the product_to_supplier for this product
-*/
-	public function product_to_supplier(){
-		return $this->hasOne('App\product_to_supplier','product_id','id');
-	}
-
-
+			//DURC did not detect any has_one relationships
 
 		
 //DURC BELONGS_TO SECTION
@@ -150,6 +145,7 @@ class product extends DURCModel{
 //Originating SQL Schema
 /*
 CREATE TABLE `DURC_northwind_model`.`product` (
+  `supplier_ids` longtext DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `productCode` varchar(25) DEFAULT NULL,
   `productName` varchar(50) DEFAULT NULL,

@@ -269,6 +269,20 @@ class creatureController extends DURCController
 		$creature = \App\creature::find($creature_id);
 		$creature = $creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $creature->toArray();
+		$search_fields = \App\creature::getSearchFields();
+
+        $tmp_text = '';
+        foreach($return_me_array as $field => $data){
+            if(in_array($field, $search_fields)){
+                //then we need to show this text!!
+                $tmp_text .=  "$data ";
+            }
+        }
+        $return_me_array['text'] = trim($tmp_text);
+
+        //show the id of the data at the end of the select..
+        $return_me_array['text'] .= ' ('.$return_me_array['id'].')';
+		
 		
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
 		$img_uri_field = \App\creature::getImgField();
@@ -295,7 +309,7 @@ class creatureController extends DURCController
     public function create(Request $request){
         // but really, we are just going to edit a new object..
         $new_instance = new creature();
-        return $this->edit($request, $new_instance);
+        return $this->edit($request, $new_instance); 
     }
 
 
@@ -343,40 +357,49 @@ class creatureController extends DURCController
             }
         }
     
-        if($creature->exists){	//we will not have old data if this is a new object
+        if($creature->exists){	
     
-            //well lets properly eager load this object with a refresh to load all of the related things
-            $creature = $creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+      		//well lets properly eager load this object with a refresh to load all of the related things
+      		$creature = $creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
     
-            //put the contents into the view...
-            foreach($creature->toArray() as $key => $value){
+      		//put the contents into the view...
+		//we have to do this even if the object is new, because sometimes the variable is set from a GET or POST request... 
+      		foreach($creature->toArray() as $key => $value){
                 
-                if (array_key_exists($key, $request->old())) {
-                    $input = $request->old($key);
-                } else {
-                    $input = $value;
-                }
+                	if (array_key_exists($key, $request->old())) {
+                    		$input = $request->old($key);
+                	} else {
+                    		$input = $value;
+                	}
             
-                if ( isset( creature::$field_type_map[$key] ) ) {
-                    $field_type = creature::$field_type_map[ $key ];
-                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
-                } else {
-                    $this->view_data[$key] = $input;
-                }
+                	if ( isset( creature::$field_type_map[$key] ) ) {
+                		$field_type = creature::$field_type_map[ $key ];
+                		$this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+        		} else {
+                		$this->view_data[$key] = $input;
+        		}
                 
-                // If this is a nullable field, see whether null checkbox should be checked by default
-                if ($creature->isFieldNullable($key) &&
-                    $input == null) {
-                    $this->view_data["{$key}_checked"] = "checked";
-                }
-            }
+       	 		// If this is a nullable field, see whether null checkbox should be checked by default
+       	 		if ($creature->isFieldNullable($key) &&
+                		$input == null) {
+                		$this->view_data["{$key}_checked"] = "checked";
+        		}
+       		}
     
-            //what is this object called?
-            $name_field = $creature->_getBestName();
-            $this->view_data['is_new'] = false;
-            $this->view_data['durc_instance_name'] = $creature->$name_field;
+            	//what is this object called?
+            	$name_field = $creature->_getBestName();
+            	$this->view_data['is_new'] = false;
+            	$this->view_data['durc_instance_name'] = $creature->$name_field;
+
         }else{
-            $this->view_data['is_new'] = true;
+		//this has not been saved yet, but we still want to honor GET and POST variables etc. 
+        	$creature = new creature();
+		$params = $request->all(); //this will include GET and POST variables, etc
+		$creature->fill($params);  //this will initialize the contents of the object with anything in the GET etc.
+		foreach($params as $key => $value){
+			$this->view_data[$key] = $value;
+		}
+            	$this->view_data['is_new'] = true;
         }
     
         $debug = false;

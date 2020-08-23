@@ -382,6 +382,13 @@ Route::get("/DURC/json/atag/", 'atagController@jsonall');
 Route::get("/DURC/searchjson/atag/", 'atagController@search');
 
  
+//DURC->	lore.audit
+Route::resource("/DURC/audit", 'auditController');
+Route::get("/DURC/json/audit/{audit_id}", 'auditController@jsonone');
+Route::get("/DURC/json/audit/", 'auditController@jsonall');
+Route::get("/DURC/searchjson/audit/", 'auditController@search');
+
+ 
 //DURC->	lore.card
 Route::resource("/DURC/card", 'cardController');
 Route::get("/DURC/json/card/{card_id}", 'cardController@jsonone');

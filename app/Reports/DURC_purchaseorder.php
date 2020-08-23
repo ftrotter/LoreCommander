@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=6afb62c248432d0eb4906c3885b4ca6f
+FILE_SIG=e857751482715a095be8f05297ba118f
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -439,8 +439,8 @@ array (
     'is_primary_key' => false,
     'is_foreign_key' => true,
     'is_linked_key' => true,
-    'foreign_db' => 'MyWind_northwind_model',
-    'foreign_table' => 'purchaseOrderStat',
+    'foreign_db' => 'northwind_model',
+    'foreign_table' => 'purchaseOrderStatus',
     'is_nullable' => true,
     'default_value' => '0',
     'is_auto_increment' => false,

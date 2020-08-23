@@ -58,8 +58,8 @@ class wallpaper_illustration extends DURCModel{
 		'id' => null,
 		'wallpaper_name' => 'NULL',
 		'illustration_id' => 'NULL',
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -69,8 +69,6 @@ class wallpaper_illustration extends DURCModel{
     protected static $rules = [
 		'wallpaper_name' => 'nullable',
 		'illustration_id' => 'nullable',
-		'created_at' => 'required',
-		'updated_at' => 'required',
 	]; // End of validation rules
 		        
 		
@@ -94,8 +92,8 @@ CREATE TABLE `lore`.`wallpaper_illustration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `wallpaper_name` varchar(190) DEFAULT NULL,
   `illustration_id` varchar(190) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4
 */

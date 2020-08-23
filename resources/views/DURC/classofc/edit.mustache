@@ -85,7 +85,12 @@
     <div class='col-sm-4'><label>is_mega_class</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_mega_class' name='is_mega_class' {{is_mega_class}}  >
+            <input type='checkbox' id='is_mega_class' class='{{#errors.is_mega_class.has_errors}}is-invalid{{/errors.is_mega_class.has_errors}}'name='is_mega_class' {{is_mega_class}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_mega_class.messages}}<li>{{.}}</li>{{/errors.is_mega_class.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

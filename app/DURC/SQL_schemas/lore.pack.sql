@@ -6,8 +6,8 @@ CREATE TABLE `pack` (
   `pack_wizards_url` varchar(2000) NOT NULL,
   `pack_wiki_url` varchar(2000) NOT NULL,
   `pack_img_url` varchar(2000) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

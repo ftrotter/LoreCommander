@@ -55,7 +55,7 @@ $logger = new \Monolog\Logger($channel);
 $logger->pushHandler($mySQLHandler);
 
 //Now you can use the logger, and further attach additional information
-$logger->addWarning("This is a great message, woohoo!", array('username'  => 'John Doe', 'userid'  => 245));
+$logger->warning("This is a great message, woohoo!", array('username'  => 'John Doe', 'userid'  => 245));
 
     }
 }

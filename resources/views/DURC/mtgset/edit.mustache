@@ -212,7 +212,12 @@
     <div class='col-sm-4'><label>is_digital</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_digital' name='is_digital' {{is_digital}}  >
+            <input type='checkbox' id='is_digital' class='{{#errors.is_digital.has_errors}}is-invalid{{/errors.is_digital.has_errors}}'name='is_digital' {{is_digital}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_digital.messages}}<li>{{.}}</li>{{/errors.is_digital.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -221,7 +226,12 @@
     <div class='col-sm-4'><label>is_foil_only</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_foil_only' name='is_foil_only' {{is_foil_only}}  >
+            <input type='checkbox' id='is_foil_only' class='{{#errors.is_foil_only.has_errors}}is-invalid{{/errors.is_foil_only.has_errors}}'name='is_foil_only' {{is_foil_only}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_foil_only.messages}}<li>{{.}}</li>{{/errors.is_foil_only.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -230,7 +240,12 @@
     <div class='col-sm-4'><label>is_nonfoil_only</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_nonfoil_only' name='is_nonfoil_only' {{is_nonfoil_only}}  >
+            <input type='checkbox' id='is_nonfoil_only' class='{{#errors.is_nonfoil_only.has_errors}}is-invalid{{/errors.is_nonfoil_only.has_errors}}'name='is_nonfoil_only' {{is_nonfoil_only}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_nonfoil_only.messages}}<li>{{.}}</li>{{/errors.is_nonfoil_only.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

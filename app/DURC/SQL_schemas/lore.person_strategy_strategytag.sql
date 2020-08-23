@@ -7,8 +7,8 @@ CREATE TABLE `person_strategy_strategytag` (
   `strategytag_id` int(11) NOT NULL,
   `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,
   `link_note` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`strategytag_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -163,30 +163,53 @@
     <div class='col-sm-7'>
 	Current id value: {{mtgset_id}} (see below for lookup value)<br>
 	<select class='select2_mtgset_id form-control' id='mtgset_id' name='mtgset_id'  >
-	<option value='{{mtgset_id}}' selected='selected'>{{mtgset_id}}</option>
+	<option value='{{mtgset_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#mtgset_id option:selected');
+    const mtgsetId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/mtgset/' + mtgsetId,
+    }).then(function (data) {
 
-$('.select2_mtgset_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/mtgset',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_mtgset_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/mtgset',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -244,7 +267,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_promo</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_promo' name='is_promo' {{is_promo}}  >
+            <input type='checkbox' id='is_promo' class='{{#errors.is_promo.has_errors}}is-invalid{{/errors.is_promo.has_errors}}'name='is_promo' {{is_promo}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_promo.messages}}<li>{{.}}</li>{{/errors.is_promo.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -253,7 +281,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_reserved</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_reserved' name='is_reserved' {{is_reserved}}  >
+            <input type='checkbox' id='is_reserved' class='{{#errors.is_reserved.has_errors}}is-invalid{{/errors.is_reserved.has_errors}}'name='is_reserved' {{is_reserved}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_reserved.messages}}<li>{{.}}</li>{{/errors.is_reserved.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -262,7 +295,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_story_spotlight</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_story_spotlight' name='is_story_spotlight' {{is_story_spotlight}}  >
+            <input type='checkbox' id='is_story_spotlight' class='{{#errors.is_story_spotlight.has_errors}}is-invalid{{/errors.is_story_spotlight.has_errors}}'name='is_story_spotlight' {{is_story_spotlight}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_story_spotlight.messages}}<li>{{.}}</li>{{/errors.is_story_spotlight.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -281,7 +319,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_variation</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_variation' name='is_variation' {{is_variation}}  >
+            <input type='checkbox' id='is_variation' class='{{#errors.is_variation.has_errors}}is-invalid{{/errors.is_variation.has_errors}}'name='is_variation' {{is_variation}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_variation.messages}}<li>{{.}}</li>{{/errors.is_variation.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -290,7 +333,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_game_paper</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_game_paper' name='is_game_paper' {{is_game_paper}}  >
+            <input type='checkbox' id='is_game_paper' class='{{#errors.is_game_paper.has_errors}}is-invalid{{/errors.is_game_paper.has_errors}}'name='is_game_paper' {{is_game_paper}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_game_paper.messages}}<li>{{.}}</li>{{/errors.is_game_paper.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -299,7 +347,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_game_mtgo</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_game_mtgo' name='is_game_mtgo' {{is_game_mtgo}}  >
+            <input type='checkbox' id='is_game_mtgo' class='{{#errors.is_game_mtgo.has_errors}}is-invalid{{/errors.is_game_mtgo.has_errors}}'name='is_game_mtgo' {{is_game_mtgo}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_game_mtgo.messages}}<li>{{.}}</li>{{/errors.is_game_mtgo.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -308,7 +361,12 @@ $('.select2_mtgset_id').select2({
     <div class='col-sm-4'><label>is_game_arena</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_game_arena' name='is_game_arena' {{is_game_arena}}  >
+            <input type='checkbox' id='is_game_arena' class='{{#errors.is_game_arena.has_errors}}is-invalid{{/errors.is_game_arena.has_errors}}'name='is_game_arena' {{is_game_arena}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_game_arena.messages}}<li>{{.}}</li>{{/errors.is_game_arena.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

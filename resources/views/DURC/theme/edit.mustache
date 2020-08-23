@@ -70,30 +70,53 @@
     <div class='col-sm-7'>
 	Current id value: {{emblematic_person_id}} (see below for lookup value)<br>
 	<select class='select2_emblematic_person_id form-control' id='emblematic_person_id' name='emblematic_person_id'  >
-	<option value='{{emblematic_person_id}}' selected='selected'>{{emblematic_person_id}}</option>
+	<option value='{{emblematic_person_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#person_id option:selected');
+    const personId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/person/' + personId,
+    }).then(function (data) {
 
-$('.select2_emblematic_person_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/person',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_emblematic_person_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/person',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -103,30 +126,53 @@ $('.select2_emblematic_person_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{emblematic_cardface_id}} (see below for lookup value)<br>
 	<select class='select2_emblematic_cardface_id form-control' id='emblematic_cardface_id' name='emblematic_cardface_id'  >
-	<option value='{{emblematic_cardface_id}}' selected='selected'>{{emblematic_cardface_id}}</option>
+	<option value='{{emblematic_cardface_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#cardface_id option:selected');
+    const cardfaceId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/cardface/' + cardfaceId,
+    }).then(function (data) {
 
-$('.select2_emblematic_cardface_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/cardface',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_emblematic_cardface_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/cardface',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -136,30 +182,53 @@ $('.select2_emblematic_cardface_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{emblematic_creature_id}} (see below for lookup value)<br>
 	<select class='select2_emblematic_creature_id form-control' id='emblematic_creature_id' name='emblematic_creature_id'  >
-	<option value='{{emblematic_creature_id}}' selected='selected'>{{emblematic_creature_id}}</option>
+	<option value='{{emblematic_creature_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#creature_id option:selected');
+    const creatureId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/creature/' + creatureId,
+    }).then(function (data) {
 
-$('.select2_emblematic_creature_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/creature',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_emblematic_creature_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/creature',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 

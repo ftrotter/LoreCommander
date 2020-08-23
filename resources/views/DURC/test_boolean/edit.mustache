@@ -79,7 +79,12 @@
     <div class='col-sm-4'><label>is_something2</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_something2' name='is_something2' {{is_something2}}  >
+            <input type='checkbox' id='is_something2' class='{{#errors.is_something2.has_errors}}is-invalid{{/errors.is_something2.has_errors}}'name='is_something2' {{is_something2}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_something2.messages}}<li>{{.}}</li>{{/errors.is_something2.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -88,7 +93,12 @@
     <div class='col-sm-4'><label>has_something2</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='has_something2' name='has_something2' {{has_something2}}  >
+            <input type='checkbox' id='has_something2' class='{{#errors.has_something2.has_errors}}is-invalid{{/errors.has_something2.has_errors}}'name='has_something2' {{has_something2}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.has_something2.messages}}<li>{{.}}</li>{{/errors.has_something2.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -97,7 +107,12 @@
     <div class='col-sm-4'><label>has_something3</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='has_something3' name='has_something3' {{has_something3}}  >
+            <input type='checkbox' id='has_something3' class='{{#errors.has_something3.has_errors}}is-invalid{{/errors.has_something3.has_errors}}'name='has_something3' {{has_something3}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.has_something3.messages}}<li>{{.}}</li>{{/errors.has_something3.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

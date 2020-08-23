@@ -58,8 +58,8 @@ class strategytag extends DURCModel{
     protected $default_values = [
 		'id' => null,
 		'strategytag_name' => null,
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -68,8 +68,6 @@ class strategytag extends DURCModel{
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'strategytag_name' => 'required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
 	]; // End of validation rules
 		        
 		
@@ -99,8 +97,8 @@ class strategytag extends DURCModel{
 CREATE TABLE `lore`.`strategytag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `strategytag_name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */

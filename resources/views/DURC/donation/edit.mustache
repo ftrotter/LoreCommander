@@ -60,30 +60,53 @@
     <div class='col-sm-7'>
 	Current id value: {{nonprofitcorp_id}} (see below for lookup value)<br>
 	<select class='select2_nonprofitcorp_id form-control' id='nonprofitcorp_id' name='nonprofitcorp_id'  >
-	<option value='{{nonprofitcorp_id}}' selected='selected'>{{nonprofitcorp_id}}</option>
+	<option value='{{nonprofitcorp_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#nonprofitcorp_id option:selected');
+    const nonprofitcorpId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/nonprofitcorp/' + nonprofitcorpId,
+    }).then(function (data) {
 
-$('.select2_nonprofitcorp_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/nonprofitcorp',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_nonprofitcorp_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/nonprofitcorp',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
