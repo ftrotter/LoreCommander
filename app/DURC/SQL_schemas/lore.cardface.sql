@@ -9,7 +9,7 @@ CREATE TABLE `cardface` (
   `color` varchar(255) DEFAULT NULL,
   `color_identity` varchar(255) DEFAULT NULL,
   `flavor_text` varchar(1000) DEFAULT NULL,
-  `image_uri` varchar(255) NOT NULL,
+  `image_uri` varchar(255) DEFAULT NULL,
   `mana_cost` varchar(255) DEFAULT NULL,
   `cmc` decimal(10,2) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
