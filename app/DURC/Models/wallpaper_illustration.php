@@ -19,7 +19,7 @@ lore.wallpaper_illustration by DURC.
 
 class wallpaper_illustration extends DURCModel  implements Auditable {
 
-	use \OwenIt\Auditing\Auditable;
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 

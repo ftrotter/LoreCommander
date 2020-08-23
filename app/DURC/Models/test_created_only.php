@@ -19,7 +19,7 @@ DURC_aaa.test_created_only by DURC.
 
 class test_created_only extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

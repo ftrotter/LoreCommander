@@ -19,7 +19,7 @@ lore.person_classofc_cardface by DURC.
 
 class person_classofc_cardface extends DURCModel  implements Auditable {
 
-	use \OwenIt\Auditing\Auditable;
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 

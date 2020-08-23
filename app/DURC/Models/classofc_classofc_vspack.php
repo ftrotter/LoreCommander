@@ -19,7 +19,7 @@ lore.classofc_classofc_vspack by DURC.
 
 class classofc_classofc_vspack extends DURCModel  implements Auditable {
 
-	use \OwenIt\Auditing\Auditable;
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 

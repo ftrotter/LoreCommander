@@ -19,7 +19,7 @@ lore.creature_cardface by DURC.
 
 class creature_cardface extends DURCModel  implements Auditable {
 
-	use \OwenIt\Auditing\Auditable;
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 

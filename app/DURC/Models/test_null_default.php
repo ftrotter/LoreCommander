@@ -19,7 +19,7 @@ DURC_aaa.test_null_default by DURC.
 
 class test_null_default extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

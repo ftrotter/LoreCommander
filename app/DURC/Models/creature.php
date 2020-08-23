@@ -19,7 +19,7 @@ lore.creature by DURC.
 
 class creature extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

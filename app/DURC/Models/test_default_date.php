@@ -19,7 +19,7 @@ DURC_aaa.test_default_date by DURC.
 
 class test_default_date extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

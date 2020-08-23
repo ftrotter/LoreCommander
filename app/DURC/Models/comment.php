@@ -19,7 +19,7 @@ DURC_aaa.comment by DURC.
 
 class comment extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

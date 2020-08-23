@@ -19,7 +19,7 @@ DURC_aaa.magicField by DURC.
 
 class magicfield extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

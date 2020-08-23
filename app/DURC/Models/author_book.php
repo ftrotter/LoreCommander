@@ -19,7 +19,7 @@ DURC_aaa.author_book by DURC.
 
 class author_book extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

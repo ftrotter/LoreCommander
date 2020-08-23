@@ -19,7 +19,7 @@ DURC_aaa.tags_report by DURC.
 
 class tags_report extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

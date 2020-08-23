@@ -19,7 +19,7 @@ DURC_northwind_data.order_2018 by DURC.
 
 class order_2018 extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

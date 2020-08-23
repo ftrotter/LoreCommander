@@ -19,7 +19,7 @@ DURC_northwind_data.inventoryTransaction by DURC.
 
 class inventorytransaction extends DURCModel {
 
-	
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

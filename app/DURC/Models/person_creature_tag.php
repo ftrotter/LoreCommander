@@ -19,7 +19,7 @@ lore.person_creature_tag by DURC.
 
 class person_creature_tag extends DURCModel  implements Auditable {
 
-	use \OwenIt\Auditing\Auditable;
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 
