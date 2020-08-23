@@ -176,13 +176,16 @@ $(document).ready(function () {
   <div class='form-group row {{image_uri_row_class}}'>
     <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='' value='{{image_uri}}' >
+      <input type='text' class='form-control {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri.messages}}<li>{{.}}</li>{{/errors.image_uri.messages}}
           </ul>
        </div>
-    </div></div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri' name='image_uriNull' id='image_uriNull' value='image_uriNull' {{image_uri_checked}}>
+                    <label class='form-check-label' for='image_uriNull'>null</label>
+                </div></div>
   <div class='form-group row {{mana_cost_row_class}}'>
     <label for='mana_cost' class='col-sm-4 col-form-label'>mana_cost</label>
     <div class='col-sm-7'>
