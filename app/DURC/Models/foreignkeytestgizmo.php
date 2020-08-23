@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ DURC_aaa.foreignkeytestgizmo by DURC.
 
 */
 
-class foreignkeytestgizmo extends DURCModel{
+class foreignkeytestgizmo extends DURCModel {
+
+	
 
     
 

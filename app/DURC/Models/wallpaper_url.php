@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ lore.wallpaper_url by DURC.
 
 */
 
-class wallpaper_url extends DURCModel{
+class wallpaper_url extends DURCModel  implements Auditable {
+
+	use \OwenIt\Auditing\Auditable;
 
     
 

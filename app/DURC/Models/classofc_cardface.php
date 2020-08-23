@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ lore.classofc_cardface by DURC.
 
 */
 
-class classofc_cardface extends DURCModel{
+class classofc_cardface extends DURCModel  implements Auditable {
+
+	use \OwenIt\Auditing\Auditable;
 
     
 
@@ -115,7 +118,7 @@ CREATE TABLE `lore`.`classofc_cardface` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
 
 
