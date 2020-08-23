@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ DURC_northwind_model.employeePrivilege by DURC.
 
 */
 
-class employeeprivilege extends DURCModel{
+class employeeprivilege extends DURCModel {
+
+	
 
     protected $primaryKey = 'privilege_id';
 

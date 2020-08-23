@@ -1,127 +1,127 @@
 {
     "DURC_aaa": {
         "author": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "author_book": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "authortype": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "book": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "characterTest": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "comment": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "donation": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "filterTest": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "foreignkeytestgizmo": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "foreignkeytestthingy": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "funnything": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "graphdata_nodetypetests": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "magicField": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "post": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "sibling": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "tags_report": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "test_boolean": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "test_created_only": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "test_default_date": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "test_null_default": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "vote": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
@@ -129,7 +129,7 @@
     },
     "DURC_irs": {
         "nonprofitcorp": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
@@ -137,55 +137,55 @@
     },
     "DURC_northwind_data": {
         "inventoryTransaction": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "invoice": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "order": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "orderDetail": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "order_2017": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "order_2018": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "order_2019": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "purchaseOrder": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "purchaseOrderDetail": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
@@ -193,85 +193,85 @@
     },
     "DURC_northwind_model": {
         "appstring": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "customer": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "employee": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "employeePrivilege": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "inventoryTransactionType": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "orderDetailStat": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "orderStat": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "orderTaxStat": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "privilege": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "product": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "purchaseOrderStat": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "salesReport": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "shipper": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "supplier": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
@@ -279,207 +279,207 @@
     },
     "lore": {
         "artist": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "artistcredit": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "atag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "audit": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "card": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "cardface": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "cardface_classofc_atag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "cardface_person_atag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "cardprice": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "classofc": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "classofc_cardface": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "classofc_classofc_vspack": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "classofc_creature": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "creature": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "creature_cardface": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "mtgset": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "mverse": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "pack": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "person": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "person_classofc_cardface": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "person_classofc_tag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "person_creature_tag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "person_strategy_strategytag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "person_strategy_tag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "pricetype": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "scanhistory": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "strategy": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "strategytag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "tag": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "theme": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
         "vspack": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "wallpaper": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "wallpaper_illustration": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         },
         "wallpaper_url": {
-            "is_make_web_interface": 1,
+            "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
-            "is_audited": 0,
+            "is_audited": 1,
             "is_listed_in_webindex": 0
         }
     }
