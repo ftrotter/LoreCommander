@@ -50,30 +50,53 @@
     <div class='col-sm-7'>
 	Current id value: {{person_id}} (see below for lookup value)<br>
 	<select class='select2_person_id form-control' id='person_id' name='person_id'  >
-	<option value='{{person_id}}' selected='selected'>{{person_id}}</option>
+	<option value='{{person_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#person_id option:selected');
+    const personId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/person/' + personId,
+    }).then(function (data) {
 
-$('.select2_person_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/person',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_person_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/person',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -83,30 +106,53 @@ $('.select2_person_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{strategy_id}} (see below for lookup value)<br>
 	<select class='select2_strategy_id form-control' id='strategy_id' name='strategy_id'  >
-	<option value='{{strategy_id}}' selected='selected'>{{strategy_id}}</option>
+	<option value='{{strategy_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#strategy_id option:selected');
+    const strategyId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/strategy/' + strategyId,
+    }).then(function (data) {
 
-$('.select2_strategy_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/strategy',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_strategy_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/strategy',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -116,30 +162,53 @@ $('.select2_strategy_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{strategytag_id}} (see below for lookup value)<br>
 	<select class='select2_strategytag_id form-control' id='strategytag_id' name='strategytag_id'  >
-	<option value='{{strategytag_id}}' selected='selected'>{{strategytag_id}}</option>
+	<option value='{{strategytag_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#strategytag_id option:selected');
+    const strategytagId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/strategytag/' + strategytagId,
+    }).then(function (data) {
 
-$('.select2_strategytag_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/strategytag',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_strategytag_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/strategytag',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -148,7 +217,12 @@ $('.select2_strategytag_id').select2({
     <div class='col-sm-4'><label>is_bulk_linker</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_bulk_linker' name='is_bulk_linker' {{is_bulk_linker}}  >
+            <input type='checkbox' id='is_bulk_linker' class='{{#errors.is_bulk_linker.has_errors}}is-invalid{{/errors.is_bulk_linker.has_errors}}'name='is_bulk_linker' {{is_bulk_linker}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_bulk_linker.messages}}<li>{{.}}</li>{{/errors.is_bulk_linker.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -169,7 +243,7 @@ $('.select2_strategytag_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -200,7 +274,7 @@ $('.select2_strategytag_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 

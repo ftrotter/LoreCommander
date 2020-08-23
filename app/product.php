@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=949da197bca18e8450878792d5248d6f
+FILE_SIG=367b8383b0e1a8e868571df1aac008c2
 */
 namespace App;
 /*
@@ -29,12 +29,12 @@ class product extends \App\DURC\Models\product
 			'inventorytransaction', //from from many
 			'orderdetail', //from from many
 			'purchaseorderdetail', //from from many
-			'product_to_supplier', //from from one
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
+			//'supplier_ids', //longtext
 			//'id', //int
 			//'productCode', //varchar
 			//'productName', //varchar

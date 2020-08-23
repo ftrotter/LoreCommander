@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=f2baec177cf270b8baf95e76311134ab
+FILE_SIG=7a32613780aaf24066d74402981c90bc
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -505,8 +505,8 @@ array (
         'is_primary_key' => false,
         'is_foreign_key' => true,
         'is_linked_key' => true,
-        'foreign_db' => 'MyWind_northwind_model',
-        'foreign_table' => 'purchaseOrderStat',
+        'foreign_db' => 'northwind_model',
+        'foreign_table' => 'purchaseOrderStatus',
         'is_nullable' => true,
         'default_value' => '0',
         'is_auto_increment' => false,
@@ -645,71 +645,7 @@ array (
   ),
 )
 //has_one
-array (
-  'product_to_supplier' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'product_to_supplier',
-    'from_table' => 'product_to_supplier',
-    'from_db' => 'DURC_northwind_model',
-    'from_column' => 'supplier_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'product_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'product',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      1 => 
-      array (
-        'column_name' => 'supplier_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'supplier',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
-)
+NULL
 //belongs_to
 NULL
 //many_many

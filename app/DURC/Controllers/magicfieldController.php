@@ -276,6 +276,20 @@ class magicfieldController extends DURCController
 		$magicfield = \App\magicfield::find($magicfield_id);
 		$magicfield = $magicfield->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $magicfield->toArray();
+		$search_fields = \App\magicfield::getSearchFields();
+
+        $tmp_text = '';
+        foreach($return_me_array as $field => $data){
+            if(in_array($field, $search_fields)){
+                //then we need to show this text!!
+                $tmp_text .=  "$data ";
+            }
+        }
+        $return_me_array['text'] = trim($tmp_text);
+
+        //show the id of the data at the end of the select..
+        $return_me_array['text'] .= ' ('.$return_me_array['id'].')';
+		
 		
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
 		$img_uri_field = \App\magicfield::getImgField();
@@ -302,7 +316,7 @@ class magicfieldController extends DURCController
     public function create(Request $request){
         // but really, we are just going to edit a new object..
         $new_instance = new magicfield();
-        return $this->edit($request, $new_instance);
+        return $this->edit($request, $new_instance); 
     }
 
 
@@ -350,40 +364,49 @@ class magicfieldController extends DURCController
             }
         }
     
-        if($magicfield->exists){	//we will not have old data if this is a new object
+        if($magicfield->exists){	
     
-            //well lets properly eager load this object with a refresh to load all of the related things
-            $magicfield = $magicfield->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+      		//well lets properly eager load this object with a refresh to load all of the related things
+      		$magicfield = $magicfield->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
     
-            //put the contents into the view...
-            foreach($magicfield->toArray() as $key => $value){
+      		//put the contents into the view...
+		//we have to do this even if the object is new, because sometimes the variable is set from a GET or POST request... 
+      		foreach($magicfield->toArray() as $key => $value){
                 
-                if (array_key_exists($key, $request->old())) {
-                    $input = $request->old($key);
-                } else {
-                    $input = $value;
-                }
+                	if (array_key_exists($key, $request->old())) {
+                    		$input = $request->old($key);
+                	} else {
+                    		$input = $value;
+                	}
             
-                if ( isset( magicfield::$field_type_map[$key] ) ) {
-                    $field_type = magicfield::$field_type_map[ $key ];
-                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
-                } else {
-                    $this->view_data[$key] = $input;
-                }
+                	if ( isset( magicfield::$field_type_map[$key] ) ) {
+                		$field_type = magicfield::$field_type_map[ $key ];
+                		$this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+        		} else {
+                		$this->view_data[$key] = $input;
+        		}
                 
-                // If this is a nullable field, see whether null checkbox should be checked by default
-                if ($magicfield->isFieldNullable($key) &&
-                    $input == null) {
-                    $this->view_data["{$key}_checked"] = "checked";
-                }
-            }
+       	 		// If this is a nullable field, see whether null checkbox should be checked by default
+       	 		if ($magicfield->isFieldNullable($key) &&
+                		$input == null) {
+                		$this->view_data["{$key}_checked"] = "checked";
+        		}
+       		}
     
-            //what is this object called?
-            $name_field = $magicfield->_getBestName();
-            $this->view_data['is_new'] = false;
-            $this->view_data['durc_instance_name'] = $magicfield->$name_field;
+            	//what is this object called?
+            	$name_field = $magicfield->_getBestName();
+            	$this->view_data['is_new'] = false;
+            	$this->view_data['durc_instance_name'] = $magicfield->$name_field;
+
         }else{
-            $this->view_data['is_new'] = true;
+		//this has not been saved yet, but we still want to honor GET and POST variables etc. 
+        	$magicfield = new magicfield();
+		$params = $request->all(); //this will include GET and POST variables, etc
+		$magicfield->fill($params);  //this will initialize the contents of the object with anything in the GET etc.
+		foreach($params as $key => $value){
+			$this->view_data[$key] = $value;
+		}
+            	$this->view_data['is_new'] = true;
         }
     
         $debug = false;

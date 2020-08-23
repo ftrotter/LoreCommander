@@ -12,8 +12,15 @@ this is safe to edit.
 
 
 */
-class person_classofc_tag extends \App\DURC\Models\person_classofc_tag
+
+use OwenIt\Auditing\Contracts\Auditable;
+
+class person_classofc_tag extends \App\DURC\Models\person_classofc_tag implements Auditable
 {
+
+	 use \OwenIt\Auditing\Auditable;
+	
+
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/

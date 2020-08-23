@@ -50,30 +50,53 @@
     <div class='col-sm-7'>
 	Current id value: {{order_id}} (see below for lookup value)<br>
 	<select class='select2_order_id form-control' id='order_id' name='order_id'  >
-	<option value='{{order_id}}' selected='selected'>{{order_id}}</option>
+	<option value='{{order_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#order_id option:selected');
+    const orderId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/order/' + orderId,
+    }).then(function (data) {
 
-$('.select2_order_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/order',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_order_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/order',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -83,30 +106,53 @@ $('.select2_order_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{product_id}} (see below for lookup value)<br>
 	<select class='select2_product_id form-control' id='product_id' name='product_id'  >
-	<option value='{{product_id}}' selected='selected'>{{product_id}}</option>
+	<option value='{{product_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#product_id option:selected');
+    const productId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/product/' + productId,
+    }).then(function (data) {
 
-$('.select2_product_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/product',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_product_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/product',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -149,30 +195,53 @@ $('.select2_product_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{status_id}} (see below for lookup value)<br>
 	<select class='select2_status_id form-control' id='status_id' name='status_id'  >
-	<option value='{{status_id}}' selected='selected'>{{status_id}}</option>
+	<option value='{{status_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#orderDetailStatus_id option:selected');
+    const orderDetailStatusId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/orderDetailStatus/' + orderDetailStatusId,
+    }).then(function (data) {
 
-$('.select2_status_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/orderDetailStatus',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_status_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/orderDetailStatus',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -216,30 +285,53 @@ $('.select2_status_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{PurchaseOrder_id}} (see below for lookup value)<br>
 	<select class='select2_PurchaseOrder_id form-control' id='PurchaseOrder_id' name='PurchaseOrder_id'  >
-	<option value='{{PurchaseOrder_id}}' selected='selected'>{{PurchaseOrder_id}}</option>
+	<option value='{{PurchaseOrder_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#purchaseOrder_id option:selected');
+    const purchaseOrderId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/purchaseOrder/' + purchaseOrderId,
+    }).then(function (data) {
 
-$('.select2_PurchaseOrder_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/purchaseOrder',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_PurchaseOrder_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/purchaseOrder',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 

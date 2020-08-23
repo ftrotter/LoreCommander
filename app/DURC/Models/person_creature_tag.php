@@ -71,8 +71,8 @@ class person_creature_tag extends DURCModel{
 		'tag_id' => null,
 		'is_bulk_linker' => '0',
 		'link_note' => 'NULL',
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -85,8 +85,6 @@ class person_creature_tag extends DURCModel{
 		'tag_id' => 'integer|required',
 		'is_bulk_linker' => 'boolean|integer',
 		'link_note' => 'nullable',
-		'created_at' => 'required',
-		'updated_at' => 'required',
 	]; // End of validation rules
 		        
 		
@@ -136,8 +134,8 @@ CREATE TABLE `lore`.`person_creature_tag` (
   `tag_id` int(11) NOT NULL,
   `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,
   `link_note` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_id` (`person_id`,`creature_id`,`tag_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8

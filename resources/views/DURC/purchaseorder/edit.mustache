@@ -50,30 +50,53 @@
     <div class='col-sm-7'>
 	Current id value: {{supplier_id}} (see below for lookup value)<br>
 	<select class='select2_supplier_id form-control' id='supplier_id' name='supplier_id'  >
-	<option value='{{supplier_id}}' selected='selected'>{{supplier_id}}</option>
+	<option value='{{supplier_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#supplier_id option:selected');
+    const supplierId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/supplier/' + supplierId,
+    }).then(function (data) {
 
-$('.select2_supplier_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/supplier',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_supplier_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/supplier',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -83,30 +106,53 @@ $('.select2_supplier_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{createdBy_employee_id}} (see below for lookup value)<br>
 	<select class='select2_createdBy_employee_id form-control' id='createdBy_employee_id' name='createdBy_employee_id'  >
-	<option value='{{createdBy_employee_id}}' selected='selected'>{{createdBy_employee_id}}</option>
+	<option value='{{createdBy_employee_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#employee_id option:selected');
+    const employeeId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/employee/' + employeeId,
+    }).then(function (data) {
 
-$('.select2_createdBy_employee_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/employee',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_createdBy_employee_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/employee',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -181,30 +227,53 @@ $('.select2_createdBy_employee_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{status_id}} (see below for lookup value)<br>
 	<select class='select2_status_id form-control' id='status_id' name='status_id'  >
-	<option value='{{status_id}}' selected='selected'>{{status_id}}</option>
+	<option value='{{status_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#purchaseOrderStatus_id option:selected');
+    const purchaseOrderStatusId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/purchaseOrderStatus/' + purchaseOrderStatusId,
+    }).then(function (data) {
 
-$('.select2_status_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/purchaseOrderStatus',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_status_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/purchaseOrderStatus',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -341,30 +410,53 @@ $('.select2_status_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{approvedBy_employee_id}} (see below for lookup value)<br>
 	<select class='select2_approvedBy_employee_id form-control' id='approvedBy_employee_id' name='approvedBy_employee_id'  >
-	<option value='{{approvedBy_employee_id}}' selected='selected'>{{approvedBy_employee_id}}</option>
+	<option value='{{approvedBy_employee_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#employee_id option:selected');
+    const employeeId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/employee/' + employeeId,
+    }).then(function (data) {
 
-$('.select2_approvedBy_employee_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/employee',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_approvedBy_employee_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/employee',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -408,30 +500,53 @@ $('.select2_approvedBy_employee_id').select2({
     <div class='col-sm-7'>
 	Current id value: {{submittedBy_employee_id}} (see below for lookup value)<br>
 	<select class='select2_submittedBy_employee_id form-control' id='submittedBy_employee_id' name='submittedBy_employee_id'  >
-	<option value='{{submittedBy_employee_id}}' selected='selected'>{{submittedBy_employee_id}}</option>
+	<option value='{{submittedBy_employee_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#employee_id option:selected');
+    const employeeId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/employee/' + employeeId,
+    }).then(function (data) {
 
-$('.select2_submittedBy_employee_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/employee',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_submittedBy_employee_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/employee',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 

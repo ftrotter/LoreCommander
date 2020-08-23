@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=eba65ee612fa8732fa5d90998e110920
+FILE_SIG=af3e4025646936eeccc479f7af11d74e
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -52,6 +52,7 @@ class DURC_product extends AbstractTabularReport
 SELECT
 product.id
 $joined_select_field_sql 
+, product.supplier_ids AS supplier_ids
 , product.productCode AS productCode
 , product.productName AS productName
 , product.description AS description
@@ -75,6 +76,7 @@ FROM DURC_northwind_model.product
 SELECT
 product.id 
 $joined_select_field_sql
+, product.supplier_ids AS supplier_ids
 , product.productCode AS productCode
 , product.productName AS productName
 , product.description AS description
@@ -179,6 +181,19 @@ WHERE product.id = $index
 array (
   0 => 
   array (
+    'column_name' => 'supplier_ids',
+    'data_type' => 'longtext',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
+  ),
+  1 => 
+  array (
     'column_name' => 'id',
     'data_type' => 'int',
     'is_primary_key' => true,
@@ -190,7 +205,7 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => true,
   ),
-  1 => 
+  2 => 
   array (
     'column_name' => 'productCode',
     'data_type' => 'varchar',
@@ -203,7 +218,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  2 => 
+  3 => 
   array (
     'column_name' => 'productName',
     'data_type' => 'varchar',
@@ -216,7 +231,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  3 => 
+  4 => 
   array (
     'column_name' => 'description',
     'data_type' => 'longtext',
@@ -229,7 +244,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  4 => 
+  5 => 
   array (
     'column_name' => 'standardCost',
     'data_type' => 'decimal',
@@ -242,7 +257,7 @@ array (
     'default_value' => '0.0000',
     'is_auto_increment' => false,
   ),
-  5 => 
+  6 => 
   array (
     'column_name' => 'listPrice',
     'data_type' => 'decimal',
@@ -255,7 +270,7 @@ array (
     'default_value' => '0.0000',
     'is_auto_increment' => false,
   ),
-  6 => 
+  7 => 
   array (
     'column_name' => 'reorderLevel',
     'data_type' => 'int',
@@ -268,7 +283,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  7 => 
+  8 => 
   array (
     'column_name' => 'targetLevel',
     'data_type' => 'int',
@@ -281,7 +296,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  8 => 
+  9 => 
   array (
     'column_name' => 'quantityPerUnit',
     'data_type' => 'varchar',
@@ -294,7 +309,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  9 => 
+  10 => 
   array (
     'column_name' => 'discontinued',
     'data_type' => 'tinyint',
@@ -307,7 +322,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  10 => 
+  11 => 
   array (
     'column_name' => 'minimumReorderQuantity',
     'data_type' => 'int',
@@ -320,7 +335,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  11 => 
+  12 => 
   array (
     'column_name' => 'category',
     'data_type' => 'varchar',
@@ -333,7 +348,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  12 => 
+  13 => 
   array (
     'column_name' => 'attachments',
     'data_type' => 'longblob',
@@ -735,71 +750,7 @@ array (
   ),
 )
 //has_one
-array (
-  'product_to_supplier' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'product_to_supplier',
-    'from_table' => 'product_to_supplier',
-    'from_db' => 'DURC_northwind_model',
-    'from_column' => 'product_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'product_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'product',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      1 => 
-      array (
-        'column_name' => 'supplier_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_northwind_model',
-        'foreign_table' => 'supplier',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => 'current_timestamp()',
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
-)
+NULL
 //belongs_to
 NULL
 //many_many

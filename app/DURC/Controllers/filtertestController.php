@@ -231,23 +231,8 @@ class filtertestController extends DURCController
         $tmp_filtertest = $myNewfiltertest;
         
         $tmp_filtertest->id = $request->id;
-        $tmp_filtertest->is_boolean = $request->is_boolean;
-        $tmp_filtertest->dec_value = $request->dec_value;
-        $tmp_filtertest->float_value = $request->float_value;
-        $tmp_filtertest->tiny_integer = $request->tiny_integer;
-        $tmp_filtertest->small_integer = $request->small_integer;
-        $tmp_filtertest->integer_field = $request->integer_field;
-        $tmp_filtertest->test_uri = $request->test_uri;
         $tmp_filtertest->test_url = $request->test_url;
-        $tmp_filtertest->test_uuid = $request->test_uuid;
-        $tmp_filtertest->test_alpha = $request->test_alpha;
-        $tmp_filtertest->test_alpha_dash = $request->test_alpha_dash;
-        $tmp_filtertest->test_alpha_num = $request->test_alpha_num;
-        $tmp_filtertest->test_email = $request->test_email;
-        $tmp_filtertest->test_ipv4 = $request->test_ipv4;
-        $tmp_filtertest->test_ipv6 = $request->test_ipv6;
         $tmp_filtertest->test_json = $request->test_json;
-        $tmp_filtertest->test_timezone = $request->test_timezone;
 
 
         try {
@@ -284,6 +269,20 @@ class filtertestController extends DURCController
 		$filtertest = \App\filtertest::find($filtertest_id);
 		$filtertest = $filtertest->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $filtertest->toArray();
+		$search_fields = \App\filtertest::getSearchFields();
+
+        $tmp_text = '';
+        foreach($return_me_array as $field => $data){
+            if(in_array($field, $search_fields)){
+                //then we need to show this text!!
+                $tmp_text .=  "$data ";
+            }
+        }
+        $return_me_array['text'] = trim($tmp_text);
+
+        //show the id of the data at the end of the select..
+        $return_me_array['text'] .= ' ('.$return_me_array['id'].')';
+		
 		
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
 		$img_uri_field = \App\filtertest::getImgField();
@@ -310,7 +309,7 @@ class filtertestController extends DURCController
     public function create(Request $request){
         // but really, we are just going to edit a new object..
         $new_instance = new filtertest();
-        return $this->edit($request, $new_instance);
+        return $this->edit($request, $new_instance); 
     }
 
 
@@ -358,40 +357,49 @@ class filtertestController extends DURCController
             }
         }
     
-        if($filtertest->exists){	//we will not have old data if this is a new object
+        if($filtertest->exists){	
     
-            //well lets properly eager load this object with a refresh to load all of the related things
-            $filtertest = $filtertest->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+      		//well lets properly eager load this object with a refresh to load all of the related things
+      		$filtertest = $filtertest->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
     
-            //put the contents into the view...
-            foreach($filtertest->toArray() as $key => $value){
+      		//put the contents into the view...
+		//we have to do this even if the object is new, because sometimes the variable is set from a GET or POST request... 
+      		foreach($filtertest->toArray() as $key => $value){
                 
-                if (array_key_exists($key, $request->old())) {
-                    $input = $request->old($key);
-                } else {
-                    $input = $value;
-                }
+                	if (array_key_exists($key, $request->old())) {
+                    		$input = $request->old($key);
+                	} else {
+                    		$input = $value;
+                	}
             
-                if ( isset( filtertest::$field_type_map[$key] ) ) {
-                    $field_type = filtertest::$field_type_map[ $key ];
-                    $this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
-                } else {
-                    $this->view_data[$key] = $input;
-                }
+                	if ( isset( filtertest::$field_type_map[$key] ) ) {
+                		$field_type = filtertest::$field_type_map[ $key ];
+                		$this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
+        		} else {
+                		$this->view_data[$key] = $input;
+        		}
                 
-                // If this is a nullable field, see whether null checkbox should be checked by default
-                if ($filtertest->isFieldNullable($key) &&
-                    $input == null) {
-                    $this->view_data["{$key}_checked"] = "checked";
-                }
-            }
+       	 		// If this is a nullable field, see whether null checkbox should be checked by default
+       	 		if ($filtertest->isFieldNullable($key) &&
+                		$input == null) {
+                		$this->view_data["{$key}_checked"] = "checked";
+        		}
+       		}
     
-            //what is this object called?
-            $name_field = $filtertest->_getBestName();
-            $this->view_data['is_new'] = false;
-            $this->view_data['durc_instance_name'] = $filtertest->$name_field;
+            	//what is this object called?
+            	$name_field = $filtertest->_getBestName();
+            	$this->view_data['is_new'] = false;
+            	$this->view_data['durc_instance_name'] = $filtertest->$name_field;
+
         }else{
-            $this->view_data['is_new'] = true;
+		//this has not been saved yet, but we still want to honor GET and POST variables etc. 
+        	$filtertest = new filtertest();
+		$params = $request->all(); //this will include GET and POST variables, etc
+		$filtertest->fill($params);  //this will initialize the contents of the object with anything in the GET etc.
+		foreach($params as $key => $value){
+			$this->view_data[$key] = $value;
+		}
+            	$this->view_data['is_new'] = true;
         }
     
         $debug = false;
@@ -417,23 +425,8 @@ class filtertestController extends DURCController
         $tmp_filtertest = $filtertest;
         
         $tmp_filtertest->id = $request->id;
-        $tmp_filtertest->is_boolean = $request->is_boolean;
-        $tmp_filtertest->dec_value = $request->dec_value;
-        $tmp_filtertest->float_value = $request->float_value;
-        $tmp_filtertest->tiny_integer = $request->tiny_integer;
-        $tmp_filtertest->small_integer = $request->small_integer;
-        $tmp_filtertest->integer_field = $request->integer_field;
-        $tmp_filtertest->test_uri = $request->test_uri;
         $tmp_filtertest->test_url = $request->test_url;
-        $tmp_filtertest->test_uuid = $request->test_uuid;
-        $tmp_filtertest->test_alpha = $request->test_alpha;
-        $tmp_filtertest->test_alpha_dash = $request->test_alpha_dash;
-        $tmp_filtertest->test_alpha_num = $request->test_alpha_num;
-        $tmp_filtertest->test_email = $request->test_email;
-        $tmp_filtertest->test_ipv4 = $request->test_ipv4;
-        $tmp_filtertest->test_ipv6 = $request->test_ipv6;
         $tmp_filtertest->test_json = $request->test_json;
-        $tmp_filtertest->test_timezone = $request->test_timezone;
 
         $id = $filtertest->id;
         

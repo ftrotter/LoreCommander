@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=26c3c2ef513cd8f506ca925b71eadb8e
+FILE_SIG=715c6c33944571cf7be06e386e4986dc
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -387,7 +387,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
       7 => 
@@ -400,7 +400,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
     ),
@@ -502,7 +502,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
       7 => 
@@ -515,7 +515,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
     ),
@@ -617,7 +617,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
       7 => 
@@ -630,7 +630,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
     ),

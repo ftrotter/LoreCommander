@@ -204,6 +204,10 @@ Route::get('durctest', function () {
  			'/DURC/atag/create', //from: lore.atag 
  			'/DURC/atag/1', //from: lore.atag 
  			'/DURC/atag/1/edit', //from: lore.atag 
+ 			'/DURC/audit', //from: lore.audit 
+ 			'/DURC/audit/create', //from: lore.audit 
+ 			'/DURC/audit/1', //from: lore.audit 
+ 			'/DURC/audit/1/edit', //from: lore.audit 
  			'/DURC/card', //from: lore.card 
  			'/DURC/card/create', //from: lore.card 
  			'/DURC/card/1', //from: lore.card 

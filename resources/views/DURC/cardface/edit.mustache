@@ -50,30 +50,53 @@
     <div class='col-sm-7'>
 	Current id value: {{card_id}} (see below for lookup value)<br>
 	<select class='select2_card_id form-control' id='card_id' name='card_id'  >
-	<option value='{{card_id}}' selected='selected'>{{card_id}}</option>
+	<option value='{{card_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#card_id option:selected');
+    const cardId = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/card/' + cardId,
+    }).then(function (data) {
 
-$('.select2_card_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/card',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_card_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/card',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
 });
-
 
 </script>
 
@@ -415,7 +438,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_foil</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_foil' name='is_foil' {{is_foil}}  >
+            <input type='checkbox' id='is_foil' class='{{#errors.is_foil.has_errors}}is-invalid{{/errors.is_foil.has_errors}}'name='is_foil' {{is_foil}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_foil.messages}}<li>{{.}}</li>{{/errors.is_foil.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -424,7 +452,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_nonfoil</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_nonfoil' name='is_nonfoil' {{is_nonfoil}}  >
+            <input type='checkbox' id='is_nonfoil' class='{{#errors.is_nonfoil.has_errors}}is-invalid{{/errors.is_nonfoil.has_errors}}'name='is_nonfoil' {{is_nonfoil}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_nonfoil.messages}}<li>{{.}}</li>{{/errors.is_nonfoil.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -433,7 +466,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_oversized</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_oversized' name='is_oversized' {{is_oversized}}  >
+            <input type='checkbox' id='is_oversized' class='{{#errors.is_oversized.has_errors}}is-invalid{{/errors.is_oversized.has_errors}}'name='is_oversized' {{is_oversized}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_oversized.messages}}<li>{{.}}</li>{{/errors.is_oversized.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -442,7 +480,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_green</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_green' name='is_color_green' {{is_color_green}}  >
+            <input type='checkbox' id='is_color_green' class='{{#errors.is_color_green.has_errors}}is-invalid{{/errors.is_color_green.has_errors}}'name='is_color_green' {{is_color_green}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_green.messages}}<li>{{.}}</li>{{/errors.is_color_green.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -451,7 +494,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_red</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_red' name='is_color_red' {{is_color_red}}  >
+            <input type='checkbox' id='is_color_red' class='{{#errors.is_color_red.has_errors}}is-invalid{{/errors.is_color_red.has_errors}}'name='is_color_red' {{is_color_red}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_red.messages}}<li>{{.}}</li>{{/errors.is_color_red.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -460,7 +508,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_blue</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_blue' name='is_color_blue' {{is_color_blue}}  >
+            <input type='checkbox' id='is_color_blue' class='{{#errors.is_color_blue.has_errors}}is-invalid{{/errors.is_color_blue.has_errors}}'name='is_color_blue' {{is_color_blue}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_blue.messages}}<li>{{.}}</li>{{/errors.is_color_blue.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -469,7 +522,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_black</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_black' name='is_color_black' {{is_color_black}}  >
+            <input type='checkbox' id='is_color_black' class='{{#errors.is_color_black.has_errors}}is-invalid{{/errors.is_color_black.has_errors}}'name='is_color_black' {{is_color_black}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_black.messages}}<li>{{.}}</li>{{/errors.is_color_black.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -478,7 +536,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_white</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_white' name='is_color_white' {{is_color_white}}  >
+            <input type='checkbox' id='is_color_white' class='{{#errors.is_color_white.has_errors}}is-invalid{{/errors.is_color_white.has_errors}}'name='is_color_white' {{is_color_white}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_white.messages}}<li>{{.}}</li>{{/errors.is_color_white.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -487,7 +550,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_colorless</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_colorless' name='is_colorless' {{is_colorless}}  >
+            <input type='checkbox' id='is_colorless' class='{{#errors.is_colorless.has_errors}}is-invalid{{/errors.is_colorless.has_errors}}'name='is_colorless' {{is_colorless}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_colorless.messages}}<li>{{.}}</li>{{/errors.is_colorless.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -506,7 +574,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_identity_green</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_identity_green' name='is_color_identity_green' {{is_color_identity_green}}  >
+            <input type='checkbox' id='is_color_identity_green' class='{{#errors.is_color_identity_green.has_errors}}is-invalid{{/errors.is_color_identity_green.has_errors}}'name='is_color_identity_green' {{is_color_identity_green}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_green.messages}}<li>{{.}}</li>{{/errors.is_color_identity_green.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -515,7 +588,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_identity_red</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_identity_red' name='is_color_identity_red' {{is_color_identity_red}}  >
+            <input type='checkbox' id='is_color_identity_red' class='{{#errors.is_color_identity_red.has_errors}}is-invalid{{/errors.is_color_identity_red.has_errors}}'name='is_color_identity_red' {{is_color_identity_red}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_red.messages}}<li>{{.}}</li>{{/errors.is_color_identity_red.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -524,7 +602,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_identity_blue</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_identity_blue' name='is_color_identity_blue' {{is_color_identity_blue}}  >
+            <input type='checkbox' id='is_color_identity_blue' class='{{#errors.is_color_identity_blue.has_errors}}is-invalid{{/errors.is_color_identity_blue.has_errors}}'name='is_color_identity_blue' {{is_color_identity_blue}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_blue.messages}}<li>{{.}}</li>{{/errors.is_color_identity_blue.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -533,7 +616,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_identity_black</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_identity_black' name='is_color_identity_black' {{is_color_identity_black}}  >
+            <input type='checkbox' id='is_color_identity_black' class='{{#errors.is_color_identity_black.has_errors}}is-invalid{{/errors.is_color_identity_black.has_errors}}'name='is_color_identity_black' {{is_color_identity_black}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_black.messages}}<li>{{.}}</li>{{/errors.is_color_identity_black.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -542,7 +630,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_color_identity_white</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_color_identity_white' name='is_color_identity_white' {{is_color_identity_white}}  >
+            <input type='checkbox' id='is_color_identity_white' class='{{#errors.is_color_identity_white.has_errors}}is-invalid{{/errors.is_color_identity_white.has_errors}}'name='is_color_identity_white' {{is_color_identity_white}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_white.messages}}<li>{{.}}</li>{{/errors.is_color_identity_white.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -561,7 +654,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>is_snow</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_snow' name='is_snow' {{is_snow}}  >
+            <input type='checkbox' id='is_snow' class='{{#errors.is_snow.has_errors}}is-invalid{{/errors.is_snow.has_errors}}'name='is_snow' {{is_snow}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_snow.messages}}<li>{{.}}</li>{{/errors.is_snow.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -570,7 +668,12 @@ $('.select2_card_id').select2({
     <div class='col-sm-4'><label>has_phyrexian_mana</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='has_phyrexian_mana' name='has_phyrexian_mana' {{has_phyrexian_mana}}  >
+            <input type='checkbox' id='has_phyrexian_mana' class='{{#errors.has_phyrexian_mana.has_errors}}is-invalid{{/errors.has_phyrexian_mana.has_errors}}'name='has_phyrexian_mana' {{has_phyrexian_mana}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.has_phyrexian_mana.messages}}<li>{{.}}</li>{{/errors.has_phyrexian_mana.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>

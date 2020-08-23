@@ -66,8 +66,8 @@ class pack extends DURCModel{
 		'pack_wizards_url' => null,
 		'pack_wiki_url' => null,
 		'pack_img_url' => null,
-		'created_at' => null,
-		'updated_at' => null,
+		'created_at' => 'current_timestamp()',
+		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -79,8 +79,6 @@ class pack extends DURCModel{
 		'pack_wizards_url' => 'url|required',
 		'pack_wiki_url' => 'url|required',
 		'pack_img_url' => 'url|required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
 	]; // End of validation rules
 		        
 		
@@ -106,8 +104,8 @@ CREATE TABLE `lore`.`pack` (
   `pack_wizards_url` varchar(2000) NOT NULL,
   `pack_wiki_url` varchar(2000) NOT NULL,
   `pack_img_url` varchar(2000) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 */
