@@ -260,9 +260,11 @@ class  ScryfallSaver {
 	
 				$cardface_fill['color_count'] = $color_count;
 				$cardface_fill['color_identity_count'] = $color_identity_count;
-	
-				foreach($this_card['image_uris'] as $image_type => $image_url){
-					$cardface_fill["image_uri_$image_type"] = $image_url;
+
+				if(isset($this_card['image_uris'])){	
+					foreach($this_card['image_uris'] as $image_type => $image_url){
+						$cardface_fill["image_uri_$image_type"] = $image_url;
+					}
 				}
 
 				//set  the default url...
