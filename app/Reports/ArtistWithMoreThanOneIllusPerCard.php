@@ -51,9 +51,9 @@ class ArtistWithMoreThanOneIllusPerCard extends AbstractCardsReport
         $sql = "
 SELECT 
 	inner_table.oracle_id,
-	cardface.artist AS card_text,
-    cardface.name AS card_title,
-    cardface.image_uri_art_crop AS card_img_top
+	CONCAT(cardface.name,cardface.artist) AS card_layout_block_id,
+	CONCAT(cardface.artist,' - ',cardface.name) AS card_layout_block_label,
+    	cardface.image_uri_art_crop AS card_img_top
 FROM lore.card
 JOIN (
 
@@ -80,7 +80,7 @@ JOIN lore.cardface ON
 	cardface.card_id =
     card.id
     
-ORDER BY inner_table.name
+ORDER BY card_layout_block_id ASC
 ";
         return $sql;
     }
