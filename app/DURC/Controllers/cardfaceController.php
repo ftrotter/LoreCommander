@@ -239,7 +239,7 @@ class cardfaceController extends DURCController
         $tmp_cardface->color = $request->color;
         $tmp_cardface->color_identity = $request->color_identity;
         $tmp_cardface->flavor_text = $request->flavor_text;
-        $tmp_cardface->image_uri = $request->image_uri;
+        $tmp_cardface->cardface_image_uri = $request->cardface_image_uri;
         $tmp_cardface->mana_cost = $request->mana_cost;
         $tmp_cardface->cmc = $request->cmc;
         $tmp_cardface->name = $request->name;
@@ -478,7 +478,7 @@ class cardfaceController extends DURCController
         $tmp_cardface->color = $request->color;
         $tmp_cardface->color_identity = $request->color_identity;
         $tmp_cardface->flavor_text = $request->flavor_text;
-        $tmp_cardface->image_uri = $request->image_uri;
+        $tmp_cardface->cardface_image_uri = $request->cardface_image_uri;
         $tmp_cardface->mana_cost = $request->mana_cost;
         $tmp_cardface->cmc = $request->cmc;
         $tmp_cardface->name = $request->name;

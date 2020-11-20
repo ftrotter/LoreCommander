@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=5a7f29b89491e94b4080657920798301
+FILE_SIG=c7d0022099ac462dd8607f38e1a8eba9
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -72,7 +72,7 @@ $joined_select_field_sql
 , cardface.color AS color
 , cardface.color_identity AS color_identity
 , cardface.flavor_text AS flavor_text
-, cardface.image_uri AS image_uri
+, cardface.cardface_image_uri AS cardface_image_uri
 , cardface.mana_cost AS mana_cost
 , cardface.cmc AS cmc
 , cardface.name AS name
@@ -136,7 +136,7 @@ $joined_select_field_sql
 , cardface.color AS color
 , cardface.color_identity AS color_identity
 , cardface.flavor_text AS flavor_text
-, cardface.image_uri AS image_uri
+, cardface.cardface_image_uri AS cardface_image_uri
 , cardface.mana_cost AS mana_cost
 , cardface.cmc AS cmc
 , cardface.name AS name
@@ -403,7 +403,7 @@ array (
   ),
   8 => 
   array (
-    'column_name' => 'image_uri',
+    'column_name' => 'cardface_image_uri',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -1359,7 +1359,7 @@ array (
         'column_name' => 'cardface_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => false,
+        'is_foreign_key' => true,
         'is_linked_key' => true,
         'foreign_db' => 'lore',
         'foreign_table' => 'cardface',
@@ -1372,8 +1372,8 @@ array (
         'column_name' => 'multiverse_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,

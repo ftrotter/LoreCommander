@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d467a0d04e0d7ecaf73efdf4a6864b5c
+FILE_SIG=2b8f2fa4c47bbb5c76daa5fbe888802d
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -227,7 +227,7 @@ array (
     'column_name' => 'cardface_id',
     'data_type' => 'int',
     'is_primary_key' => false,
-    'is_foreign_key' => false,
+    'is_foreign_key' => true,
     'is_linked_key' => true,
     'foreign_db' => 'lore',
     'foreign_table' => 'cardface',
@@ -240,8 +240,8 @@ array (
     'column_name' => 'multiverse_id',
     'data_type' => 'int',
     'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
@@ -409,7 +409,7 @@ array (
       ),
       8 => 
       array (
-        'column_name' => 'image_uri',
+        'column_name' => 'cardface_image_uri',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,

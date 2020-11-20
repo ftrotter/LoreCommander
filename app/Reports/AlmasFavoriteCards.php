@@ -62,6 +62,9 @@ JOIN lore.cardface ON
 	card.id
 WHERE 
 	cardface.name LIKE '%Beast in show%'
+	 OR cardface.name LIKE '%Jerboa%'
+	 OR cardface.name LIKE '% Moth'
+ORDER BY card_layout_block_id
 	
 ";
         return $sql;

@@ -173,18 +173,18 @@ $(document).ready(function () {
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='flavor_text' name='flavor_textNull' id='flavor_textNull' value='flavor_textNull' {{flavor_text_checked}}>
                     <label class='form-check-label' for='flavor_textNull'>null</label>
                 </div></div>
-  <div class='form-group row {{image_uri_row_class}}'>
-    <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
+  <div class='form-group row {{cardface_image_uri_row_class}}'>
+    <label for='cardface_image_uri' class='col-sm-4 col-form-label'>cardface_image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}' >
+      <input type='text' class='form-control {{#errors.cardface_image_uri.has_errors}}is-invalid{{/errors.cardface_image_uri.has_errors}}' id='cardface_image_uri' name='cardface_image_uri' placeholder='NULL' value='{{cardface_image_uri}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.image_uri.messages}}<li>{{.}}</li>{{/errors.image_uri.messages}}
+          {{#errors.cardface_image_uri.messages}}<li>{{.}}</li>{{/errors.cardface_image_uri.messages}}
           </ul>
        </div>
     </div><div class='col-sm-1'>
-                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri' name='image_uriNull' id='image_uriNull' value='image_uriNull' {{image_uri_checked}}>
-                    <label class='form-check-label' for='image_uriNull'>null</label>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='cardface_image_uri' name='cardface_image_uriNull' id='cardface_image_uriNull' value='cardface_image_uriNull' {{cardface_image_uri_checked}}>
+                    <label class='form-check-label' for='cardface_image_uriNull'>null</label>
                 </div></div>
   <div class='form-group row {{mana_cost_row_class}}'>
     <label for='mana_cost' class='col-sm-4 col-form-label'>mana_cost</label>
