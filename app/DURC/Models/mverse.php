@@ -113,8 +113,9 @@ CREATE TABLE `lore`.`mverse` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
+  UNIQUE KEY `cardface_id_2` (`cardface_id`,`multiverse_id`),
   KEY `cardface_id` (`cardface_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
 */
 
 

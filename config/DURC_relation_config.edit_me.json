@@ -5509,181 +5509,6 @@
             },
             "create_table_sql": "CREATE TABLE `lore`.`atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `arttag_name` varchar(255) NOT NULL,\n  `is_directed` tinyint(1) NOT NULL DEFAULT 0,\n  `excludes_arttag_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`arttag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
-        "audit": {
-            "table_name": "audit",
-            "db": "lore",
-            "column_data": [
-                {
-                    "column_name": "id",
-                    "data_type": "bigint",
-                    "is_primary_key": true,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": true
-                },
-                {
-                    "column_name": "user_type",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "user_id",
-                    "data_type": "bigint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "event",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "auditable_type",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "auditable_id",
-                    "data_type": "bigint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": null,
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "old_values",
-                    "data_type": "text",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "new_values",
-                    "data_type": "text",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "url",
-                    "data_type": "text",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "ip_address",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "user_agent",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "tags",
-                    "data_type": "varchar",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "created_at",
-                    "data_type": "timestamp",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "current_timestamp()",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "updated_at",
-                    "data_type": "timestamp",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "current_timestamp()",
-                    "is_auto_increment": false
-                }
-            ],
-            "create_table_sql": "CREATE TABLE `lore`.`audit` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `user_id` bigint(20) unsigned DEFAULT NULL,\n  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `auditable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `auditable_id` bigint(20) unsigned NOT NULL,\n  `old_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `new_values` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `user_agent` varchar(1023) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `created_at` timestamp NULL DEFAULT current_timestamp(),\n  `updated_at` timestamp NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `audits_auditable_type_auditable_id_index` (`auditable_type`,`auditable_id`),\n  KEY `audits_user_id_user_type_index` (`user_id`,`user_type`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
-        },
         "card": {
             "table_name": "card",
             "db": "lore",
@@ -6321,7 +6146,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "image_uri",
+                    "column_name": "cardface_image_uri",
                     "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -6892,7 +6717,7 @@
                     "from_column": "emblematic_cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `mana_cost` varchar(255) DEFAULT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) DEFAULT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_nonfoil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `cardface_image_uri` varchar(255) DEFAULT NULL,\n  `mana_cost` varchar(255) DEFAULT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(1000) DEFAULT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_nonfoil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface_classofc_atag": {
             "table_name": "cardface_classofc_atag",
@@ -8167,7 +7992,7 @@
                     "column_name": "cardface_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
+                    "is_foreign_key": true,
                     "is_linked_key": true,
                     "foreign_db": "lore",
                     "foreign_table": "cardface",
@@ -8179,8 +8004,8 @@
                     "column_name": "multiverse_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
@@ -8233,7 +8058,7 @@
                     "local_key": "cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mverse` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `multiverse_id` int(11) NOT NULL,\n  `gatherer_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `cardface_id` (`cardface_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`mverse` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `multiverse_id` int(11) NOT NULL,\n  `gatherer_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id_2` (`cardface_id`,`multiverse_id`),\n  KEY `cardface_id` (`cardface_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
         },
         "pack": {
             "table_name": "pack",

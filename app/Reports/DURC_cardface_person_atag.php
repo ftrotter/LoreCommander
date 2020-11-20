@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d5ef656743f5db534bb4578648fdd60a
+FILE_SIG=d8c6e045dba7bdd8226d224e748c873a
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -531,7 +531,7 @@ array (
       ),
       8 => 
       array (
-        'column_name' => 'image_uri',
+        'column_name' => 'cardface_image_uri',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,

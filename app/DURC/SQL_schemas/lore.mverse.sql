@@ -8,6 +8,7 @@ CREATE TABLE `mverse` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
+  UNIQUE KEY `cardface_id_2` (`cardface_id`,`multiverse_id`),
   KEY `cardface_id` (`cardface_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;

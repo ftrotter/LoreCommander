@@ -104,13 +104,59 @@ $(document).ready(function () {
   <div class='form-group row {{multiverse_id_row_class}}'>
     <label for='multiverse_id' class='col-sm-4 col-form-label'>multiverse_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.multiverse_id.has_errors}}is-invalid{{/errors.multiverse_id.has_errors}}' id='multiverse_id' name='multiverse_id' placeholder='' value='{{multiverse_id}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.multiverse_id.messages}}<li>{{.}}</li>{{/errors.multiverse_id.messages}}
-          </ul>
-       </div>
-    </div></div>
+	Current id value: {{multiverse_id}} (see below for lookup value)<br>
+	<select class='select2_multiverse_id form-control' id='multiverse_id' name='multiverse_id'  >
+	<option value='{{multiverse_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    $('#loader').modal();
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#_id option:selected');
+    const Id = element.val();
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json//' + Id,
+    }).then(function (data) {
+
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    
+        $('.select2_multiverse_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
+          }
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        $('#loader').modal('hide');
+    });
+});
+
+</script>
+
+
   <div class='form-group row {{gatherer_url_row_class}}'>
     <label for='gatherer_url' class='col-sm-4 col-form-label'>gatherer_url</label>
     <div class='col-sm-7'>
@@ -232,7 +278,7 @@ $(document).ready(function () {
 			<th> color </th>
 			<th> color_identity </th>
 			<th> flavor_text </th>
-			<th> image_uri </th>
+			<th> cardface_image_uri </th>
 			<th> mana_cost </th>
 			<th> cmc </th>
 			<th> name </th>
@@ -287,7 +333,7 @@ $(document).ready(function () {
 			<td>{{color}}</td>
 			<td>{{color_identity}}</td>
 			<td>{{flavor_text}}</td>
-			<td>{{image_uri}}</td>
+			<td>{{cardface_image_uri}}</td>
 			<td>{{mana_cost}}</td>
 			<td>{{cmc}}</td>
 			<td>{{name}}</td>
