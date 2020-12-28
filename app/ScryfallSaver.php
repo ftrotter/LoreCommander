@@ -99,6 +99,7 @@ class  ScryfallSaver {
 			'usd_foil' => 2,
 			'eur' => 3,
 			'tix' => 4,
+			'eur_foil' => 5,
 		];
 
 	public static  function saveCardList($cards){
@@ -289,9 +290,11 @@ class  ScryfallSaver {
 				$multiverse_ids = $this_card['multiverse_ids'];
 
 				foreach($multiverse_ids as $this_multiverse_id){
-					$mverseObj = new \App\mverse;
-					$mverseObj->cardface_id = $this_cardface_id;
-					$mverseObj->multiverse_id = $this_multiverse_id ;
+					$mverseObj = \App\mverse::firstOrNew([
+						'cardface_id' => $this_cardface_id,
+						'multiverse_id' => $this_multiverse_id,
+						]);
+
 					$mverseObj->gatherer_url = "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=$this_cardface_id"; //hardcoded = ok for now..
 					$mverseObj->save();
 				}
