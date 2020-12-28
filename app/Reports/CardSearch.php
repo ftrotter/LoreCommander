@@ -404,5 +404,12 @@ GROUP BY oracle_id, name, mana_cost, type_line
         return(1200); //twenty minutes by default
    }
 
+    /**
+    * This function will determine if replacing /ZermeloCard/ with /ZeremeloSQL/ will show the SQL of the report
+    * for security reasons it should be off by default.
+    */
+   public function isSQLPrintEnabled(): bool{
+         return(true); //protect the sql by default
+   }	
 
 }
