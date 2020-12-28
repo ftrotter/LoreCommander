@@ -422,5 +422,12 @@ ORDER BY binder_page_number ASC, sort_by_me ASC
         return(12000); //200 minutes
    }
 
+    /**
+    * This function will determine if replacing /ZermeloCard/ with /ZeremeloSQL/ will show the SQL of the report
+    * for security reasons it should be off by default.
+    */
+   public function isSQLPrintEnabled(): bool{
+         return(true); //protect the sql by default
+   }
 
 }
