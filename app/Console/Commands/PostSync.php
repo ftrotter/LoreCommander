@@ -287,12 +287,13 @@ WHERE
 
 
 	$populate_fulltext_sql = "
-UPDATE lore.cardface SET  for_fulltext_search = CONCAT_WS(' ',
+UPDATE lore.cardface SET  for_fulltext_search = CONCAT(' ', CONCAT_WS(' | ',
 	REGEXP_REPLACE(name, '[^a-zA-Z0-9]',' '), 
 	REGEXP_REPLACE(oracle_text, '[^a-zA-Z0-9]',' '),
 	REGEXP_REPLACE(flavor_text, '[^a-zA-Z0-9]',' '),
 	REGEXP_REPLACE(type_line, '[^a-zA-Z0-9]',' '), 
-	REGEXP_REPLACE(artist, '[^a-zA-Z0-9]',' ') ); 
+	REGEXP_REPLACE(artist, '[^a-zA-Z0-9]',' ') )
+	,' '); 
 ";
 
 	$count = $pdo->exec($populate_fulltext_sql);
