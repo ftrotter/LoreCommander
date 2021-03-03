@@ -28,8 +28,6 @@ class BinderReport extends AbstractCardsReport
         $current_mtgset_id = $this->getInput('mtgset_id',-1);
 	
 	$html = "
-This report will display 'page guides' for a binder of MTG cards, by set.
-Choose a set below. <br>
 <style>
 @media print {
 	.zermelo-card-group-label {
@@ -37,7 +35,16 @@ Choose a set below. <br>
 		width: 100%;
 	}
 }
+.p-1 {
+    padding: 0rem  !important;;
+}
+.table {
+    margin-bottom: 0rem;
+}
 </style>
+<div class='d-print-none'>
+This report will display 'page guides' for a binder of MTG cards, by set.
+Choose a set below. <br>
 
 <form>
   <div class='form-group row'>
@@ -92,6 +99,7 @@ Choose a set below. <br>
     </div>
   </div>
 </form>
+</div>
 ";
 	return($html);
 
