@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=bc5506db13c517265ee8af108c3ebf34
+FILE_SIG=c30f4b77650b268a361878368c2221ee
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -984,7 +984,7 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => '0',
         'is_auto_increment' => false,
       ),
       38 => 
@@ -997,10 +997,36 @@ array (
         'foreign_db' => NULL,
         'foreign_table' => NULL,
         'is_nullable' => false,
-        'default_value' => NULL,
+        'default_value' => '0',
         'is_auto_increment' => false,
       ),
       39 => 
+      array (
+        'column_name' => 'legal_gladiator',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      40 => 
+      array (
+        'column_name' => 'legal_premodern',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      41 => 
       array (
         'column_name' => 'binder_group_number',
         'data_type' => 'int',
@@ -1013,7 +1039,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      40 => 
+      42 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -1026,7 +1052,7 @@ array (
         'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
-      41 => 
+      43 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
