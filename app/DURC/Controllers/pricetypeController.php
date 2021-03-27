@@ -266,6 +266,9 @@ class pricetypeController extends DURCController
      */
     public function jsonone(Request $request, $pricetype_id){
 		$pricetype = \App\pricetype::find($pricetype_id);
+		if ($pricetype === null) {
+            return response()->json("pricetype with id = {$pricetype_id} Not Found", 404);
+        }
 		$pricetype = $pricetype->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $pricetype->toArray();
 		$search_fields = \App\pricetype::getSearchFields();

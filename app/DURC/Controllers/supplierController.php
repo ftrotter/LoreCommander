@@ -280,6 +280,9 @@ class supplierController extends DURCController
      */
     public function jsonone(Request $request, $supplier_id){
 		$supplier = \App\supplier::find($supplier_id);
+		if ($supplier === null) {
+            return response()->json("supplier with id = {$supplier_id} Not Found", 404);
+        }
 		$supplier = $supplier->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $supplier->toArray();
 		$search_fields = \App\supplier::getSearchFields();

@@ -267,6 +267,9 @@ class postController extends DURCController
      */
     public function jsonone(Request $request, $post_id){
 		$post = \App\post::find($post_id);
+		if ($post === null) {
+            return response()->json("post with id = {$post_id} Not Found", 404);
+        }
 		$post = $post->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $post->toArray();
 		$search_fields = \App\post::getSearchFields();

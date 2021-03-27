@@ -265,6 +265,9 @@ class employeeprivilegeController extends DURCController
      */
     public function jsonone(Request $request, $employeeprivilege_id){
 		$employeeprivilege = \App\employeeprivilege::find($employeeprivilege_id);
+		if ($employeeprivilege === null) {
+            return response()->json("employeeprivilege with id = {$employeeprivilege_id} Not Found", 404);
+        }
 		$employeeprivilege = $employeeprivilege->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $employeeprivilege->toArray();
 		$search_fields = \App\employeeprivilege::getSearchFields();

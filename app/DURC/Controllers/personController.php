@@ -272,6 +272,9 @@ class personController extends DURCController
      */
     public function jsonone(Request $request, $person_id){
 		$person = \App\person::find($person_id);
+		if ($person === null) {
+            return response()->json("person with id = {$person_id} Not Found", 404);
+        }
 		$person = $person->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $person->toArray();
 		$search_fields = \App\person::getSearchFields();

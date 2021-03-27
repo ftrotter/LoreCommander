@@ -269,6 +269,9 @@ class classofc_creatureController extends DURCController
      */
     public function jsonone(Request $request, $classofc_creature_id){
 		$classofc_creature = \App\classofc_creature::find($classofc_creature_id);
+		if ($classofc_creature === null) {
+            return response()->json("classofc_creature with id = {$classofc_creature_id} Not Found", 404);
+        }
 		$classofc_creature = $classofc_creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $classofc_creature->toArray();
 		$search_fields = \App\classofc_creature::getSearchFields();

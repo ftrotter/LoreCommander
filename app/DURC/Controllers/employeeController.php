@@ -280,6 +280,9 @@ class employeeController extends DURCController
      */
     public function jsonone(Request $request, $employee_id){
 		$employee = \App\employee::find($employee_id);
+		if ($employee === null) {
+            return response()->json("employee with id = {$employee_id} Not Found", 404);
+        }
 		$employee = $employee->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $employee->toArray();
 		$search_fields = \App\employee::getSearchFields();

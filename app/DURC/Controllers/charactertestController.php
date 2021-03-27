@@ -264,6 +264,9 @@ class charactertestController extends DURCController
      */
     public function jsonone(Request $request, $charactertest_id){
 		$charactertest = \App\charactertest::find($charactertest_id);
+		if ($charactertest === null) {
+            return response()->json("charactertest with id = {$charactertest_id} Not Found", 404);
+        }
 		$charactertest = $charactertest->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $charactertest->toArray();
 		$search_fields = \App\charactertest::getSearchFields();

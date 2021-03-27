@@ -268,6 +268,9 @@ class foreignkeytestgizmoController extends DURCController
      */
     public function jsonone(Request $request, $foreignkeytestgizmo_id){
 		$foreignkeytestgizmo = \App\foreignkeytestgizmo::find($foreignkeytestgizmo_id);
+		if ($foreignkeytestgizmo === null) {
+            return response()->json("foreignkeytestgizmo with id = {$foreignkeytestgizmo_id} Not Found", 404);
+        }
 		$foreignkeytestgizmo = $foreignkeytestgizmo->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $foreignkeytestgizmo->toArray();
 		$search_fields = \App\foreignkeytestgizmo::getSearchFields();

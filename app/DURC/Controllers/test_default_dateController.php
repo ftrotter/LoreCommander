@@ -270,6 +270,9 @@ class test_default_dateController extends DURCController
      */
     public function jsonone(Request $request, $test_default_date_id){
 		$test_default_date = \App\test_default_date::find($test_default_date_id);
+		if ($test_default_date === null) {
+            return response()->json("test_default_date with id = {$test_default_date_id} Not Found", 404);
+        }
 		$test_default_date = $test_default_date->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $test_default_date->toArray();
 		$search_fields = \App\test_default_date::getSearchFields();

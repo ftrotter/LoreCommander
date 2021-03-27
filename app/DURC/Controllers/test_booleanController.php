@@ -269,6 +269,9 @@ class test_booleanController extends DURCController
      */
     public function jsonone(Request $request, $test_boolean_id){
 		$test_boolean = \App\test_boolean::find($test_boolean_id);
+		if ($test_boolean === null) {
+            return response()->json("test_boolean with id = {$test_boolean_id} Not Found", 404);
+        }
 		$test_boolean = $test_boolean->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $test_boolean->toArray();
 		$search_fields = \App\test_boolean::getSearchFields();

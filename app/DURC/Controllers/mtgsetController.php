@@ -284,6 +284,9 @@ class mtgsetController extends DURCController
      */
     public function jsonone(Request $request, $mtgset_id){
 		$mtgset = \App\mtgset::find($mtgset_id);
+		if ($mtgset === null) {
+            return response()->json("mtgset with id = {$mtgset_id} Not Found", 404);
+        }
 		$mtgset = $mtgset->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $mtgset->toArray();
 		$search_fields = \App\mtgset::getSearchFields();

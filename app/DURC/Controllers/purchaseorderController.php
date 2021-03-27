@@ -282,6 +282,9 @@ class purchaseorderController extends DURCController
      */
     public function jsonone(Request $request, $purchaseorder_id){
 		$purchaseorder = \App\purchaseorder::find($purchaseorder_id);
+		if ($purchaseorder === null) {
+            return response()->json("purchaseorder with id = {$purchaseorder_id} Not Found", 404);
+        }
 		$purchaseorder = $purchaseorder->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $purchaseorder->toArray();
 		$search_fields = \App\purchaseorder::getSearchFields();

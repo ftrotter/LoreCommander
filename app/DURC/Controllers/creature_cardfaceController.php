@@ -269,6 +269,9 @@ class creature_cardfaceController extends DURCController
      */
     public function jsonone(Request $request, $creature_cardface_id){
 		$creature_cardface = \App\creature_cardface::find($creature_cardface_id);
+		if ($creature_cardface === null) {
+            return response()->json("creature_cardface with id = {$creature_cardface_id} Not Found", 404);
+        }
 		$creature_cardface = $creature_cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $creature_cardface->toArray();
 		$search_fields = \App\creature_cardface::getSearchFields();

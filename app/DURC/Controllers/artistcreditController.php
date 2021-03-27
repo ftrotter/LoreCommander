@@ -267,6 +267,9 @@ class artistcreditController extends DURCController
      */
     public function jsonone(Request $request, $artistcredit_id){
 		$artistcredit = \App\artistcredit::find($artistcredit_id);
+		if ($artistcredit === null) {
+            return response()->json("artistcredit with id = {$artistcredit_id} Not Found", 404);
+        }
 		$artistcredit = $artistcredit->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $artistcredit->toArray();
 		$search_fields = \App\artistcredit::getSearchFields();

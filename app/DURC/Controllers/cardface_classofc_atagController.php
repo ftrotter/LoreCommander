@@ -273,6 +273,9 @@ class cardface_classofc_atagController extends DURCController
      */
     public function jsonone(Request $request, $cardface_classofc_atag_id){
 		$cardface_classofc_atag = \App\cardface_classofc_atag::find($cardface_classofc_atag_id);
+		if ($cardface_classofc_atag === null) {
+            return response()->json("cardface_classofc_atag with id = {$cardface_classofc_atag_id} Not Found", 404);
+        }
 		$cardface_classofc_atag = $cardface_classofc_atag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $cardface_classofc_atag->toArray();
 		$search_fields = \App\cardface_classofc_atag::getSearchFields();

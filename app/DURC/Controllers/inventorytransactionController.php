@@ -273,6 +273,9 @@ class inventorytransactionController extends DURCController
      */
     public function jsonone(Request $request, $inventorytransaction_id){
 		$inventorytransaction = \App\inventorytransaction::find($inventorytransaction_id);
+		if ($inventorytransaction === null) {
+            return response()->json("inventorytransaction with id = {$inventorytransaction_id} Not Found", 404);
+        }
 		$inventorytransaction = $inventorytransaction->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $inventorytransaction->toArray();
 		$search_fields = \App\inventorytransaction::getSearchFields();

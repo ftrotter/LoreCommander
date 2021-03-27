@@ -285,6 +285,9 @@ class order_2019Controller extends DURCController
      */
     public function jsonone(Request $request, $order_2019_id){
 		$order_2019 = \App\order_2019::find($order_2019_id);
+		if ($order_2019 === null) {
+            return response()->json("order_2019 with id = {$order_2019_id} Not Found", 404);
+        }
 		$order_2019 = $order_2019->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $order_2019->toArray();
 		$search_fields = \App\order_2019::getSearchFields();

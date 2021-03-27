@@ -266,6 +266,9 @@ class artistController extends DURCController
      */
     public function jsonone(Request $request, $artist_id){
 		$artist = \App\artist::find($artist_id);
+		if ($artist === null) {
+            return response()->json("artist with id = {$artist_id} Not Found", 404);
+        }
 		$artist = $artist->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $artist->toArray();
 		$search_fields = \App\artist::getSearchFields();

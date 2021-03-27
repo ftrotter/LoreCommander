@@ -273,6 +273,9 @@ class classofc_classofc_vspackController extends DURCController
      */
     public function jsonone(Request $request, $classofc_classofc_vspack_id){
 		$classofc_classofc_vspack = \App\classofc_classofc_vspack::find($classofc_classofc_vspack_id);
+		if ($classofc_classofc_vspack === null) {
+            return response()->json("classofc_classofc_vspack with id = {$classofc_classofc_vspack_id} Not Found", 404);
+        }
 		$classofc_classofc_vspack = $classofc_classofc_vspack->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $classofc_classofc_vspack->toArray();
 		$search_fields = \App\classofc_classofc_vspack::getSearchFields();

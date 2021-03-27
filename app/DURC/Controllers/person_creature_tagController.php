@@ -273,6 +273,9 @@ class person_creature_tagController extends DURCController
      */
     public function jsonone(Request $request, $person_creature_tag_id){
 		$person_creature_tag = \App\person_creature_tag::find($person_creature_tag_id);
+		if ($person_creature_tag === null) {
+            return response()->json("person_creature_tag with id = {$person_creature_tag_id} Not Found", 404);
+        }
 		$person_creature_tag = $person_creature_tag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $person_creature_tag->toArray();
 		$search_fields = \App\person_creature_tag::getSearchFields();

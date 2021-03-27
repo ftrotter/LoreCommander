@@ -268,6 +268,9 @@ class test_null_defaultController extends DURCController
      */
     public function jsonone(Request $request, $test_null_default_id){
 		$test_null_default = \App\test_null_default::find($test_null_default_id);
+		if ($test_null_default === null) {
+            return response()->json("test_null_default with id = {$test_null_default_id} Not Found", 404);
+        }
 		$test_null_default = $test_null_default->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $test_null_default->toArray();
 		$search_fields = \App\test_null_default::getSearchFields();

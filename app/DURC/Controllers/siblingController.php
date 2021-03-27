@@ -270,6 +270,9 @@ class siblingController extends DURCController
      */
     public function jsonone(Request $request, $sibling_id){
 		$sibling = \App\sibling::find($sibling_id);
+		if ($sibling === null) {
+            return response()->json("sibling with id = {$sibling_id} Not Found", 404);
+        }
 		$sibling = $sibling->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $sibling->toArray();
 		$search_fields = \App\sibling::getSearchFields();

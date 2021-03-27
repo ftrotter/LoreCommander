@@ -274,6 +274,9 @@ class magicfieldController extends DURCController
      */
     public function jsonone(Request $request, $magicfield_id){
 		$magicfield = \App\magicfield::find($magicfield_id);
+		if ($magicfield === null) {
+            return response()->json("magicfield with id = {$magicfield_id} Not Found", 404);
+        }
 		$magicfield = $magicfield->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $magicfield->toArray();
 		$search_fields = \App\magicfield::getSearchFields();

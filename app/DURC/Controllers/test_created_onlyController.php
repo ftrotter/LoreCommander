@@ -265,6 +265,9 @@ class test_created_onlyController extends DURCController
      */
     public function jsonone(Request $request, $test_created_only_id){
 		$test_created_only = \App\test_created_only::find($test_created_only_id);
+		if ($test_created_only === null) {
+            return response()->json("test_created_only with id = {$test_created_only_id} Not Found", 404);
+        }
 		$test_created_only = $test_created_only->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $test_created_only->toArray();
 		$search_fields = \App\test_created_only::getSearchFields();

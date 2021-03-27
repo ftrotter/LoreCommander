@@ -29,6 +29,7 @@ class wallpaper extends DURCModel  implements Auditable {
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'wallpaper_illustration', //from from many
 			'wallpaper_url', //from from many
 		];
 
@@ -84,6 +85,14 @@ class wallpaper extends DURCModel  implements Auditable {
 		        
 		
 //DURC HAS_MANY SECTION
+
+/**
+*	get all the wallpaper_illustration for this wallpaper
+*/
+	public function wallpaper_illustration(){
+		return $this->hasMany('App\wallpaper_illustration','wallpaper_id','id');
+	}
+
 
 /**
 *	get all the wallpaper_url for this wallpaper
