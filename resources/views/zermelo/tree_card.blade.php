@@ -1,29 +1,29 @@
 <div class="container-fluid">
 	<div>
-		<h1> {{ $presenter->getReport()->GetReportName()  }}</h1>
+		<h1> {{ $report->GetReportName()  }}</h1>
 	</div>
 	<div>
-		{!! $presenter->getReport()->GetReportDescription() !!}
+		{!! $report->GetReportDescription() !!}
 	</div>
 
 	<div style='display: none' id='json_error_message' class="alert alert-danger" role="alert">
 
 	</div>
 
-@if ($presenter->getReport()->is_fluid())
+@if ($report->is_fluid())
 	<div class='container-fluid'>
 @else
 	<div class='container'>
-@endif	
+@endif
 
 	<div id='div_for_cards'>
 
-	
+
 
 
 
 	</div>
-	
+
 
 
 </div>
@@ -31,8 +31,8 @@
 
 
 
-<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.4.3.1.min.js"></script>
+<script type="text/javascript" src="/vendor/CareSet/core/js/jquery.min.js"></script>
+<script type="text/javascript" src="/vendor/CareSet/core/botstrap/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
 
@@ -100,7 +100,7 @@ function doh_ajax_failed(jqxhr, textStatus, error){
                     var param = decodeURIComponent( $.param(merge) );
 
 		    var json_url_to_get = '{{ $presenter->getReportUri() }}';
-	
+
 
 			//now lets get the actual data...
                     $.getJSON(json_url_to_get, param
@@ -129,12 +129,12 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 					//no url version
 					real_card_header = `<div class='card-header'> ${this_card.label}  </div>`;
 				}
-					
+
 				if(isset(this_card.sub_tree)){
 					branch_list = "<ul class='list-group list-group-flush'>";
 					this_card.sub_tree.forEach(function(branch_item) {
 						if(isset(branch_item.url)){
-							branch_list += `<li class='list-group-item'> <a target='_blank' href='${branch_item.url}'>  ${branch_item.label} </a> `;	
+							branch_list += `<li class='list-group-item'> <a target='_blank' href='${branch_item.url}'>  ${branch_item.label} </a> `;
 						}else{
 							branch_list += `<li class='list-group-item'> ${branch_item.label} `;
 						}
@@ -161,10 +161,10 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 				}else{
 					branch_list = '';
 				}
-				
 
-				
-	
+
+
+
 				cards_html += `
 <div class="col-md-3">
 	<div style='width: ${card_width}' class='card' >
@@ -175,7 +175,7 @@ function doh_ajax_failed(jqxhr, textStatus, error){
 `;
 
 				i++;
-	
+
 			})
 
 			cards_html += "</div>";

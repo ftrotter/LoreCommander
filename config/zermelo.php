@@ -59,9 +59,9 @@ return [
 
     'SQL_PRINT_ENABLED' => env("SQL_PRINTER_ENABLED",false),
 
-    'SQL_PRINT_VIEW_TEMPLATE' => env("SQL_PRINT_VIEW_TEMPLATE","Zermelo::layouts.sql"),
+    'SQL_PRINT_VIEW_TEMPLATE' => env("SQL_PRINT_VIEW_TEMPLATE","Zermelo::layouts.sql_layout"),
 
-    'BOOTSTRAP_CSS_LOCATION' => env("BOOTSTRAP_CSS_LOCATION","/vendor/CareSet/zermelo_api/bootstrap-4.3.1/css/bootstrap.min.css"),
+    'BOOTSTRAP_CSS_LOCATION' => env("BOOTSTRAP_CSS_LOCATION","/vendor/CareSet/zermelo/core/bootstrap/bootstrap.min.css"),
 
     /**
      * List of valid tags to be used with RESTRICT_TAGS
@@ -72,6 +72,83 @@ return [
         'ITALIC',
         'RIGHT'
     ],
+
+    /**
+     * The template the controller will use to render the report
+     * This is used in WebController implementation of ControllerInterface@show method
+     */
+    "CARD_VIEW_TEMPLATE"=>env("CARD_VIEW_TEMPLATE","Zermelo::layouts.card_layout"),
+
+    /**
+     * Middleware on the card web routes
+     */
+    'CARD_MIDDLEWARE' => env("CARD_MIDDLEWARE", [ "web" ]),
+
+    /**
+     * Path where the Report display.
+     * This is used in implementations of ControllerInterface@show method
+     * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
+     * /Zermelo/(ReportName) (see config/zermelo.php for api prefix setting)
+     */
+    'CARD_URI_PREFIX'=>env("CARD_URI_PREFIX","ZermeloCard"),
+
+    /**
+     * Path where the Report display.
+     * This is used in implementations of ControllerInterface@show method
+     * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
+     * /ZermeloGraph/(ReportName) (see config/zermelo.php for api prefix setting)
+     */
+    'GRAPH_URI_PREFIX'=>env("GRAPH_URI_PREFIX","ZermeloGraph"),
+
+
+    /**
+     * Middleware on the graph web routes
+     */
+    'GRAPH_MIDDLEWARE' => env("MIDDLEWARE", [ "web" ]),
+
+    /**
+     * The template the controller will use to render the report
+     * This is used in WebController implementation of ControllerInterface@show method
+     */
+    'GRAPH_VIEW_TEMPLATE'=>env("GRAPH_VIEW_TEMPLATE","Zermelo::layouts.d3graph_layout"),
+
+    /**
+     * Path where the Report display.
+     * This is used in the route configuration in this module's ServiceProvider
+     * /Zermelo/(ReportName)
+     */
+    'TABULAR_URI_PREFIX' => env("TABULAR_URI_PREFIX","Zermelo"),
+
+    /**
+     * Middleware on the tabular web routes
+     */
+    'TABULAR_MIDDLEWARE' => env("TABULAR_MIDDLEWARE", [ "web" ]),
+
+
+    /**
+     * The template the controller will use to render the report
+     * This is used in WebController implementation of ControllerInterface@show method
+     */
+    "TABULAR_VIEW_TEMPLATE"=>env("TABULAR_VIEW_TEMPLATE","Zermelo::layouts.tabular_layout"),
+
+    /**
+     * The template the controller will use to render the report
+     * This is used in WebController implementation of ControllerInterface@show method
+     */
+    "TREECARD_VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","Zermelo::layouts.tree_card_layout"),
+
+    /**
+     * Middleware on the card web routes
+     */
+    'TREECARD_MIDDLEWARE' => env("MIDDLEWARE", [ "web" ]),
+
+    /**
+     * Path where the Report display.
+     * This is used in implementations of ControllerInterface@show method
+     * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
+     * /Zermelo/(ReportName) (see config/zermelo.php for api prefix setting)
+     */
+    'TREECARD_URI_PREFIX'=>env("TREECARD_URI_PREFIX","ZermeloTreeCard"),
 
     /**
      * Database path where all the cache table will be stored.
