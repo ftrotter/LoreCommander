@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -58,11 +58,12 @@
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('wallpaper_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#wallpaper_id option:selected');
     const wallpaperId = element.val();
+    let wallpaperIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -70,12 +71,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/wallpaper/' + wallpaperId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        wallpaperIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_wallpaper_id').select2({
           width: '100%',   
           ajax: {
@@ -91,10 +99,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-wallpaper_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('wallpaper_id');
+        if (wallpaperIdHasError === true) {
+            $('#select2-wallpaper_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -104,7 +119,7 @@ $(document).ready(function () {
   <div class='form-group row {{wallpaper_url_name_row_class}}'>
     <label for='wallpaper_url_name' class='col-sm-4 col-form-label'>wallpaper_url_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.wallpaper_url_name.has_errors}}is-invalid{{/errors.wallpaper_url_name.has_errors}}' id='wallpaper_url_name' name='wallpaper_url_name' placeholder='' value='{{wallpaper_url_name}}' >
+      <input type='text' class='form-control  {{#errors.wallpaper_url_name.has_errors}}is-invalid{{/errors.wallpaper_url_name.has_errors}}' id='wallpaper_url_name' name='wallpaper_url_name' placeholder='' value='{{wallpaper_url_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.wallpaper_url_name.messages}}<li>{{.}}</li>{{/errors.wallpaper_url_name.messages}}
@@ -114,7 +129,7 @@ $(document).ready(function () {
   <div class='form-group row {{wallpaper_url_row_class}}'>
     <label for='wallpaper_url' class='col-sm-4 col-form-label'>wallpaper_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.wallpaper_url.has_errors}}is-invalid{{/errors.wallpaper_url.has_errors}}' id='wallpaper_url' name='wallpaper_url' placeholder='' value='{{wallpaper_url}}' >
+      <input type='text' class='form-control  {{#errors.wallpaper_url.has_errors}}is-invalid{{/errors.wallpaper_url.has_errors}}' id='wallpaper_url' name='wallpaper_url' placeholder='' value='{{wallpaper_url}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.wallpaper_url.messages}}<li>{{.}}</li>{{/errors.wallpaper_url.messages}}
@@ -124,7 +139,7 @@ $(document).ready(function () {
   <div class='form-group row {{wallpaper_local_path_row_class}}'>
     <label for='wallpaper_local_path' class='col-sm-4 col-form-label'>wallpaper_local_path</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.wallpaper_local_path.has_errors}}is-invalid{{/errors.wallpaper_local_path.has_errors}}' id='wallpaper_local_path' name='wallpaper_local_path' placeholder='NULL' value='{{wallpaper_local_path}}' >
+      <input type='text' class='form-control nullable {{#errors.wallpaper_local_path.has_errors}}is-invalid{{/errors.wallpaper_local_path.has_errors}}' id='wallpaper_local_path' name='wallpaper_local_path' placeholder='NULL' value='{{wallpaper_local_path}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.wallpaper_local_path.messages}}<li>{{.}}</li>{{/errors.wallpaper_local_path.messages}}
@@ -151,7 +166,7 @@ $(document).ready(function () {
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -182,7 +197,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -283,6 +298,26 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -296,13 +331,26 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

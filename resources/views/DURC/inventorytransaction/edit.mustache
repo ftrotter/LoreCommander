@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -58,11 +58,12 @@
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('transactionType');
     
     // Get the option element that is currently selected and it's foreign ID
-    const element = $('#inventoryTransactionType_id option:selected');
+    const element = $('#transactionType option:selected');
     const inventoryTransactionTypeId = element.val();
+    let inventoryTransactionTypeIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -70,12 +71,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/inventoryTransactionType/' + inventoryTransactionTypeId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        inventoryTransactionTypeIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_transactionType').select2({
           width: '100%',   
           ajax: {
@@ -91,10 +99,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-transactionType-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('transactionType');
+        if (inventoryTransactionTypeIdHasError === true) {
+            $('#select2-transactionType-container').addClass('text-danger');
+        }
     });
 });
 
@@ -104,7 +119,7 @@ $(document).ready(function () {
   <div class='form-group row {{transactionCreatedDate_row_class}}'>
     <label for='transactionCreatedDate' class='col-sm-4 col-form-label'>transactionCreatedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.transactionCreatedDate.has_errors}}is-invalid{{/errors.transactionCreatedDate.has_errors}}' id='transactionCreatedDate' name='transactionCreatedDate' placeholder='current_timestamp()' value='{{transactionCreatedDate}}' >
+      <input type='text' class='form-control  {{#errors.transactionCreatedDate.has_errors}}is-invalid{{/errors.transactionCreatedDate.has_errors}}' id='transactionCreatedDate' name='transactionCreatedDate' placeholder='current_timestamp()' value='{{transactionCreatedDate}}' >
 
 <button type='button' class='btn btn-primary' id='transactionCreatedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -135,7 +150,7 @@ $(document).ready(function () {
   <div class='form-group row {{transactionModifiedDate_row_class}}'>
     <label for='transactionModifiedDate' class='col-sm-4 col-form-label'>transactionModifiedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.transactionModifiedDate.has_errors}}is-invalid{{/errors.transactionModifiedDate.has_errors}}' id='transactionModifiedDate' name='transactionModifiedDate' placeholder='current_timestamp()' value='{{transactionModifiedDate}}' >
+      <input type='text' class='form-control  {{#errors.transactionModifiedDate.has_errors}}is-invalid{{/errors.transactionModifiedDate.has_errors}}' id='transactionModifiedDate' name='transactionModifiedDate' placeholder='current_timestamp()' value='{{transactionModifiedDate}}' >
 
 <button type='button' class='btn btn-primary' id='transactionModifiedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -176,11 +191,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('product_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#product_id option:selected');
     const productId = element.val();
+    let productIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -188,12 +204,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/product/' + productId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        productIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_product_id').select2({
           width: '100%',   
           ajax: {
@@ -209,10 +232,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-product_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('product_id');
+        if (productIdHasError === true) {
+            $('#select2-product_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -222,7 +252,7 @@ $(document).ready(function () {
   <div class='form-group row {{quantity_row_class}}'>
     <label for='quantity' class='col-sm-4 col-form-label'>quantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.quantity.has_errors}}is-invalid{{/errors.quantity.has_errors}}' id='quantity' name='quantity' placeholder='' value='{{quantity}}' >
+      <input type='text' class='form-control  {{#errors.quantity.has_errors}}is-invalid{{/errors.quantity.has_errors}}' id='quantity' name='quantity' placeholder='' value='{{quantity}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.quantity.messages}}<li>{{.}}</li>{{/errors.quantity.messages}}
@@ -242,11 +272,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('purchaseOrder_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#purchaseOrder_id option:selected');
     const purchaseOrderId = element.val();
+    let purchaseOrderIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -254,12 +285,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/purchaseOrder/' + purchaseOrderId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        purchaseOrderIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_purchaseOrder_id').select2({
           width: '100%',   
           ajax: {
@@ -275,10 +313,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-purchaseOrder_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('purchaseOrder_id');
+        if (purchaseOrderIdHasError === true) {
+            $('#select2-purchaseOrder_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -298,11 +343,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('customerOrder_id');
     
     // Get the option element that is currently selected and it's foreign ID
-    const element = $('#order_id option:selected');
+    const element = $('#customerOrder_id option:selected');
     const orderId = element.val();
+    let orderIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -310,12 +356,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/order/' + orderId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        orderIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_customerOrder_id').select2({
           width: '100%',   
           ajax: {
@@ -331,10 +384,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-customerOrder_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('customerOrder_id');
+        if (orderIdHasError === true) {
+            $('#select2-customerOrder_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -344,7 +404,7 @@ $(document).ready(function () {
   <div class='form-group row {{comments_row_class}}'>
     <label for='comments' class='col-sm-4 col-form-label'>comments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.comments.has_errors}}is-invalid{{/errors.comments.has_errors}}' id='comments' name='comments' placeholder='NULL' value='{{comments}}' >
+      <input type='text' class='form-control nullable {{#errors.comments.has_errors}}is-invalid{{/errors.comments.has_errors}}' id='comments' name='comments' placeholder='NULL' value='{{comments}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.comments.messages}}<li>{{.}}</li>{{/errors.comments.messages}}
@@ -494,6 +554,26 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -507,13 +587,26 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

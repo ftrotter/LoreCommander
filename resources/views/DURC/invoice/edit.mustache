@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -58,11 +58,12 @@
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('order_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#order_id option:selected');
     const orderId = element.val();
+    let orderIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -70,12 +71,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/order/' + orderId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        orderIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_order_id').select2({
           width: '100%',   
           ajax: {
@@ -91,10 +99,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-order_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('order_id');
+        if (orderIdHasError === true) {
+            $('#select2-order_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -104,7 +119,7 @@ $(document).ready(function () {
   <div class='form-group row {{invoiceDate_row_class}}'>
     <label for='invoiceDate' class='col-sm-4 col-form-label'>invoiceDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.invoiceDate.has_errors}}is-invalid{{/errors.invoiceDate.has_errors}}' id='invoiceDate' name='invoiceDate' placeholder='current_timestamp()' value='{{invoiceDate}}' >
+      <input type='text' class='form-control  {{#errors.invoiceDate.has_errors}}is-invalid{{/errors.invoiceDate.has_errors}}' id='invoiceDate' name='invoiceDate' placeholder='current_timestamp()' value='{{invoiceDate}}' >
 
 <button type='button' class='btn btn-primary' id='invoiceDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -135,7 +150,7 @@ $(document).ready(function () {
   <div class='form-group row {{dueDate_row_class}}'>
     <label for='dueDate' class='col-sm-4 col-form-label'>dueDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.dueDate.has_errors}}is-invalid{{/errors.dueDate.has_errors}}' id='dueDate' name='dueDate' placeholder='NULL' value='{{dueDate}}' >
+      <input type='text' class='form-control nullable {{#errors.dueDate.has_errors}}is-invalid{{/errors.dueDate.has_errors}}' id='dueDate' name='dueDate' placeholder='NULL' value='{{dueDate}}' >
 
 <button type='button' class='btn btn-primary' id='dueDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -169,7 +184,7 @@ $(document).ready(function () {
   <div class='form-group row {{tax_row_class}}'>
     <label for='tax' class='col-sm-4 col-form-label'>tax</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.tax.has_errors}}is-invalid{{/errors.tax.has_errors}}' id='tax' name='tax' placeholder='0.0000' value='{{tax}}' >
+      <input type='text' class='form-control nullable {{#errors.tax.has_errors}}is-invalid{{/errors.tax.has_errors}}' id='tax' name='tax' placeholder='0.0000' value='{{tax}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.tax.messages}}<li>{{.}}</li>{{/errors.tax.messages}}
@@ -182,7 +197,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipping_row_class}}'>
     <label for='shipping' class='col-sm-4 col-form-label'>shipping</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipping.has_errors}}is-invalid{{/errors.shipping.has_errors}}' id='shipping' name='shipping' placeholder='0.0000' value='{{shipping}}' >
+      <input type='text' class='form-control nullable {{#errors.shipping.has_errors}}is-invalid{{/errors.shipping.has_errors}}' id='shipping' name='shipping' placeholder='0.0000' value='{{shipping}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipping.messages}}<li>{{.}}</li>{{/errors.shipping.messages}}
@@ -195,7 +210,7 @@ $(document).ready(function () {
   <div class='form-group row {{amountDue_row_class}}'>
     <label for='amountDue' class='col-sm-4 col-form-label'>amountDue</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.amountDue.has_errors}}is-invalid{{/errors.amountDue.has_errors}}' id='amountDue' name='amountDue' placeholder='0.0000' value='{{amountDue}}' >
+      <input type='text' class='form-control nullable {{#errors.amountDue.has_errors}}is-invalid{{/errors.amountDue.has_errors}}' id='amountDue' name='amountDue' placeholder='0.0000' value='{{amountDue}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.amountDue.messages}}<li>{{.}}</li>{{/errors.amountDue.messages}}
@@ -299,6 +314,26 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -312,13 +347,26 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

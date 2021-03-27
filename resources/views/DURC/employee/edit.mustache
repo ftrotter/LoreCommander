@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{company_row_class}}'>
     <label for='company' class='col-sm-4 col-form-label'>company</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.company.has_errors}}is-invalid{{/errors.company.has_errors}}' id='company' name='company' placeholder='NULL' value='{{company}}' >
+      <input type='text' class='form-control nullable {{#errors.company.has_errors}}is-invalid{{/errors.company.has_errors}}' id='company' name='company' placeholder='NULL' value='{{company}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.company.messages}}<li>{{.}}</li>{{/errors.company.messages}}
@@ -61,7 +61,7 @@
   <div class='form-group row {{lastName_row_class}}'>
     <label for='lastName' class='col-sm-4 col-form-label'>lastName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.lastName.has_errors}}is-invalid{{/errors.lastName.has_errors}}' id='lastName' name='lastName' placeholder='NULL' value='{{lastName}}' >
+      <input type='text' class='form-control nullable {{#errors.lastName.has_errors}}is-invalid{{/errors.lastName.has_errors}}' id='lastName' name='lastName' placeholder='NULL' value='{{lastName}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.lastName.messages}}<li>{{.}}</li>{{/errors.lastName.messages}}
@@ -74,7 +74,7 @@
   <div class='form-group row {{firstName_row_class}}'>
     <label for='firstName' class='col-sm-4 col-form-label'>firstName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.firstName.has_errors}}is-invalid{{/errors.firstName.has_errors}}' id='firstName' name='firstName' placeholder='NULL' value='{{firstName}}' >
+      <input type='text' class='form-control nullable {{#errors.firstName.has_errors}}is-invalid{{/errors.firstName.has_errors}}' id='firstName' name='firstName' placeholder='NULL' value='{{firstName}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.firstName.messages}}<li>{{.}}</li>{{/errors.firstName.messages}}
@@ -87,7 +87,7 @@
   <div class='form-group row {{emailAddress_row_class}}'>
     <label for='emailAddress' class='col-sm-4 col-form-label'>emailAddress</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.emailAddress.has_errors}}is-invalid{{/errors.emailAddress.has_errors}}' id='emailAddress' name='emailAddress' placeholder='NULL' value='{{emailAddress}}' >
+      <input type='text' class='form-control nullable {{#errors.emailAddress.has_errors}}is-invalid{{/errors.emailAddress.has_errors}}' id='emailAddress' name='emailAddress' placeholder='NULL' value='{{emailAddress}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.emailAddress.messages}}<li>{{.}}</li>{{/errors.emailAddress.messages}}
@@ -100,7 +100,7 @@
   <div class='form-group row {{jobTitle_row_class}}'>
     <label for='jobTitle' class='col-sm-4 col-form-label'>jobTitle</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.jobTitle.has_errors}}is-invalid{{/errors.jobTitle.has_errors}}' id='jobTitle' name='jobTitle' placeholder='NULL' value='{{jobTitle}}' >
+      <input type='text' class='form-control nullable {{#errors.jobTitle.has_errors}}is-invalid{{/errors.jobTitle.has_errors}}' id='jobTitle' name='jobTitle' placeholder='NULL' value='{{jobTitle}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.jobTitle.messages}}<li>{{.}}</li>{{/errors.jobTitle.messages}}
@@ -113,7 +113,7 @@
   <div class='form-group row {{businessPhone_row_class}}'>
     <label for='businessPhone' class='col-sm-4 col-form-label'>businessPhone</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.businessPhone.has_errors}}is-invalid{{/errors.businessPhone.has_errors}}' id='businessPhone' name='businessPhone' placeholder='NULL' value='{{businessPhone}}' >
+      <input type='text' class='form-control nullable {{#errors.businessPhone.has_errors}}is-invalid{{/errors.businessPhone.has_errors}}' id='businessPhone' name='businessPhone' placeholder='NULL' value='{{businessPhone}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.businessPhone.messages}}<li>{{.}}</li>{{/errors.businessPhone.messages}}
@@ -126,7 +126,7 @@
   <div class='form-group row {{homePhone_row_class}}'>
     <label for='homePhone' class='col-sm-4 col-form-label'>homePhone</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.homePhone.has_errors}}is-invalid{{/errors.homePhone.has_errors}}' id='homePhone' name='homePhone' placeholder='NULL' value='{{homePhone}}' >
+      <input type='text' class='form-control nullable {{#errors.homePhone.has_errors}}is-invalid{{/errors.homePhone.has_errors}}' id='homePhone' name='homePhone' placeholder='NULL' value='{{homePhone}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.homePhone.messages}}<li>{{.}}</li>{{/errors.homePhone.messages}}
@@ -139,7 +139,7 @@
   <div class='form-group row {{mobilePhone_row_class}}'>
     <label for='mobilePhone' class='col-sm-4 col-form-label'>mobilePhone</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mobilePhone.has_errors}}is-invalid{{/errors.mobilePhone.has_errors}}' id='mobilePhone' name='mobilePhone' placeholder='NULL' value='{{mobilePhone}}' >
+      <input type='text' class='form-control nullable {{#errors.mobilePhone.has_errors}}is-invalid{{/errors.mobilePhone.has_errors}}' id='mobilePhone' name='mobilePhone' placeholder='NULL' value='{{mobilePhone}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.mobilePhone.messages}}<li>{{.}}</li>{{/errors.mobilePhone.messages}}
@@ -152,7 +152,7 @@
   <div class='form-group row {{faxNumber_row_class}}'>
     <label for='faxNumber' class='col-sm-4 col-form-label'>faxNumber</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.faxNumber.has_errors}}is-invalid{{/errors.faxNumber.has_errors}}' id='faxNumber' name='faxNumber' placeholder='NULL' value='{{faxNumber}}' >
+      <input type='text' class='form-control nullable {{#errors.faxNumber.has_errors}}is-invalid{{/errors.faxNumber.has_errors}}' id='faxNumber' name='faxNumber' placeholder='NULL' value='{{faxNumber}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.faxNumber.messages}}<li>{{.}}</li>{{/errors.faxNumber.messages}}
@@ -165,7 +165,7 @@
   <div class='form-group row {{address_row_class}}'>
     <label for='address' class='col-sm-4 col-form-label'>address</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.address.has_errors}}is-invalid{{/errors.address.has_errors}}' id='address' name='address' placeholder='NULL' value='{{address}}' >
+      <input type='text' class='form-control nullable {{#errors.address.has_errors}}is-invalid{{/errors.address.has_errors}}' id='address' name='address' placeholder='NULL' value='{{address}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.address.messages}}<li>{{.}}</li>{{/errors.address.messages}}
@@ -178,7 +178,7 @@
   <div class='form-group row {{city_row_class}}'>
     <label for='city' class='col-sm-4 col-form-label'>city</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.city.has_errors}}is-invalid{{/errors.city.has_errors}}' id='city' name='city' placeholder='NULL' value='{{city}}' >
+      <input type='text' class='form-control nullable {{#errors.city.has_errors}}is-invalid{{/errors.city.has_errors}}' id='city' name='city' placeholder='NULL' value='{{city}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.city.messages}}<li>{{.}}</li>{{/errors.city.messages}}
@@ -191,7 +191,7 @@
   <div class='form-group row {{stateProvince_row_class}}'>
     <label for='stateProvince' class='col-sm-4 col-form-label'>stateProvince</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.stateProvince.has_errors}}is-invalid{{/errors.stateProvince.has_errors}}' id='stateProvince' name='stateProvince' placeholder='NULL' value='{{stateProvince}}' >
+      <input type='text' class='form-control nullable {{#errors.stateProvince.has_errors}}is-invalid{{/errors.stateProvince.has_errors}}' id='stateProvince' name='stateProvince' placeholder='NULL' value='{{stateProvince}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.stateProvince.messages}}<li>{{.}}</li>{{/errors.stateProvince.messages}}
@@ -204,7 +204,7 @@
   <div class='form-group row {{zipPostalCode_row_class}}'>
     <label for='zipPostalCode' class='col-sm-4 col-form-label'>zipPostalCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.zipPostalCode.has_errors}}is-invalid{{/errors.zipPostalCode.has_errors}}' id='zipPostalCode' name='zipPostalCode' placeholder='NULL' value='{{zipPostalCode}}' >
+      <input type='text' class='form-control nullable {{#errors.zipPostalCode.has_errors}}is-invalid{{/errors.zipPostalCode.has_errors}}' id='zipPostalCode' name='zipPostalCode' placeholder='NULL' value='{{zipPostalCode}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.zipPostalCode.messages}}<li>{{.}}</li>{{/errors.zipPostalCode.messages}}
@@ -217,7 +217,7 @@
   <div class='form-group row {{countryRegion_row_class}}'>
     <label for='countryRegion' class='col-sm-4 col-form-label'>countryRegion</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.countryRegion.has_errors}}is-invalid{{/errors.countryRegion.has_errors}}' id='countryRegion' name='countryRegion' placeholder='NULL' value='{{countryRegion}}' >
+      <input type='text' class='form-control nullable {{#errors.countryRegion.has_errors}}is-invalid{{/errors.countryRegion.has_errors}}' id='countryRegion' name='countryRegion' placeholder='NULL' value='{{countryRegion}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.countryRegion.messages}}<li>{{.}}</li>{{/errors.countryRegion.messages}}
@@ -230,7 +230,7 @@
   <div class='form-group row {{webPage_row_class}}'>
     <label for='webPage' class='col-sm-4 col-form-label'>webPage</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.webPage.has_errors}}is-invalid{{/errors.webPage.has_errors}}' id='webPage' name='webPage' placeholder='NULL' value='{{webPage}}' >
+      <input type='text' class='form-control nullable {{#errors.webPage.has_errors}}is-invalid{{/errors.webPage.has_errors}}' id='webPage' name='webPage' placeholder='NULL' value='{{webPage}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.webPage.messages}}<li>{{.}}</li>{{/errors.webPage.messages}}
@@ -243,7 +243,7 @@
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
+      <input type='text' class='form-control nullable {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.notes.messages}}<li>{{.}}</li>{{/errors.notes.messages}}
@@ -256,7 +256,7 @@
   <div class='form-group row {{attachments_row_class}}'>
     <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.attachments.has_errors}}is-invalid{{/errors.attachments.has_errors}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}' >
+      <input type='text' class='form-control nullable {{#errors.attachments.has_errors}}is-invalid{{/errors.attachments.has_errors}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.attachments.messages}}<li>{{.}}</li>{{/errors.attachments.messages}}
@@ -748,6 +748,26 @@
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -761,13 +781,26 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly
