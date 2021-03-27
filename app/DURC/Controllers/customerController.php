@@ -285,6 +285,9 @@ class customerController extends DURCController
      */
     public function jsonone(Request $request, $customer_id){
 		$customer = \App\customer::find($customer_id);
+		if ($customer === null) {
+            return response()->json("customer with id = {$customer_id} Not Found", 404);
+        }
 		$customer = $customer->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $customer->toArray();
 		$search_fields = \App\customer::getSearchFields();

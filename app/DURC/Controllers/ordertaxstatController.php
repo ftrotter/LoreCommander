@@ -263,6 +263,9 @@ class ordertaxstatController extends DURCController
      */
     public function jsonone(Request $request, $ordertaxstat_id){
 		$ordertaxstat = \App\ordertaxstat::find($ordertaxstat_id);
+		if ($ordertaxstat === null) {
+            return response()->json("ordertaxstat with id = {$ordertaxstat_id} Not Found", 404);
+        }
 		$ordertaxstat = $ordertaxstat->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $ordertaxstat->toArray();
 		$search_fields = \App\ordertaxstat::getSearchFields();

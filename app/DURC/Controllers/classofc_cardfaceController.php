@@ -269,6 +269,9 @@ class classofc_cardfaceController extends DURCController
      */
     public function jsonone(Request $request, $classofc_cardface_id){
 		$classofc_cardface = \App\classofc_cardface::find($classofc_cardface_id);
+		if ($classofc_cardface === null) {
+            return response()->json("classofc_cardface with id = {$classofc_cardface_id} Not Found", 404);
+        }
 		$classofc_cardface = $classofc_cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $classofc_cardface->toArray();
 		$search_fields = \App\classofc_cardface::getSearchFields();

@@ -269,6 +269,9 @@ class vspackController extends DURCController
      */
     public function jsonone(Request $request, $vspack_id){
 		$vspack = \App\vspack::find($vspack_id);
+		if ($vspack === null) {
+            return response()->json("vspack with id = {$vspack_id} Not Found", 404);
+        }
 		$vspack = $vspack->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $vspack->toArray();
 		$search_fields = \App\vspack::getSearchFields();

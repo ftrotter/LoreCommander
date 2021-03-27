@@ -275,6 +275,9 @@ class orderdetailController extends DURCController
      */
     public function jsonone(Request $request, $orderdetail_id){
 		$orderdetail = \App\orderdetail::find($orderdetail_id);
+		if ($orderdetail === null) {
+            return response()->json("orderdetail with id = {$orderdetail_id} Not Found", 404);
+        }
 		$orderdetail = $orderdetail->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $orderdetail->toArray();
 		$search_fields = \App\orderdetail::getSearchFields();

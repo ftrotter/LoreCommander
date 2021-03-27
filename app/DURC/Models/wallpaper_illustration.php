@@ -29,6 +29,7 @@ class wallpaper_illustration extends DURCModel  implements Auditable {
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
+			'wallpaper', //from belongs to
 		];
 
 
@@ -44,6 +45,7 @@ class wallpaper_illustration extends DURCModel  implements Auditable {
 	static $field_type_map = [
 		'id' => 'int',
 		'wallpaper_name' => 'varchar',
+		'wallpaper_id' => 'int',
 		'illustration_id' => 'varchar',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
@@ -60,6 +62,7 @@ class wallpaper_illustration extends DURCModel  implements Auditable {
     protected $default_values = [
 		'id' => null,
 		'wallpaper_name' => 'NULL',
+		'wallpaper_id' => 'NULL',
 		'illustration_id' => 'NULL',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
@@ -71,6 +74,7 @@ class wallpaper_illustration extends DURCModel  implements Auditable {
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
 		'wallpaper_name' => 'nullable',
+		'wallpaper_id' => 'integer|nullable',
 		'illustration_id' => 'nullable',
 	]; // End of validation rules
 		        
@@ -87,13 +91,21 @@ class wallpaper_illustration extends DURCModel  implements Auditable {
 		
 //DURC BELONGS_TO SECTION
 
-			//DURC did not detect any belongs_to relationships
+/**
+*	get the single wallpaper for this wallpaper_illustration
+*/
+	public function wallpaper(){
+		return $this->belongsTo('App\wallpaper','wallpaper_id','id');
+	}
+
+
 
 //Originating SQL Schema
 /*
 CREATE TABLE `lore`.`wallpaper_illustration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `wallpaper_name` varchar(190) DEFAULT NULL,
+  `wallpaper_id` int(11) DEFAULT NULL,
   `illustration_id` varchar(190) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),

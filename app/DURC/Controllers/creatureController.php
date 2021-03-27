@@ -267,6 +267,9 @@ class creatureController extends DURCController
      */
     public function jsonone(Request $request, $creature_id){
 		$creature = \App\creature::find($creature_id);
+		if ($creature === null) {
+            return response()->json("creature with id = {$creature_id} Not Found", 404);
+        }
 		$creature = $creature->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $creature->toArray();
 		$search_fields = \App\creature::getSearchFields();

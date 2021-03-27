@@ -267,6 +267,9 @@ class filtertestController extends DURCController
      */
     public function jsonone(Request $request, $filtertest_id){
 		$filtertest = \App\filtertest::find($filtertest_id);
+		if ($filtertest === null) {
+            return response()->json("filtertest with id = {$filtertest_id} Not Found", 404);
+        }
 		$filtertest = $filtertest->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $filtertest->toArray();
 		$search_fields = \App\filtertest::getSearchFields();

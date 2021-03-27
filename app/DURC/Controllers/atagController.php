@@ -268,6 +268,9 @@ class atagController extends DURCController
      */
     public function jsonone(Request $request, $atag_id){
 		$atag = \App\atag::find($atag_id);
+		if ($atag === null) {
+            return response()->json("atag with id = {$atag_id} Not Found", 404);
+        }
 		$atag = $atag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $atag->toArray();
 		$search_fields = \App\atag::getSearchFields();

@@ -266,6 +266,9 @@ class authortypeController extends DURCController
      */
     public function jsonone(Request $request, $authortype_id){
 		$authortype = \App\authortype::find($authortype_id);
+		if ($authortype === null) {
+            return response()->json("authortype with id = {$authortype_id} Not Found", 404);
+        }
 		$authortype = $authortype->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $authortype->toArray();
 		$search_fields = \App\authortype::getSearchFields();

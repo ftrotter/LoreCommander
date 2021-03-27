@@ -248,6 +248,7 @@ class cardfaceController extends DURCController
         $tmp_cardface->toughness = $request->toughness;
         $tmp_cardface->type_line = $request->type_line;
         $tmp_cardface->border_color = $request->border_color;
+        $tmp_cardface->image_uri = $request->image_uri;
         $tmp_cardface->image_uri_art_crop = $request->image_uri_art_crop;
         $tmp_cardface->image_hash_art_crop = $request->image_hash_art_crop;
         $tmp_cardface->image_uri_small = $request->image_uri_small;
@@ -313,6 +314,9 @@ class cardfaceController extends DURCController
      */
     public function jsonone(Request $request, $cardface_id){
 		$cardface = \App\cardface::find($cardface_id);
+		if ($cardface === null) {
+            return response()->json("cardface with id = {$cardface_id} Not Found", 404);
+        }
 		$cardface = $cardface->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $cardface->toArray();
 		$search_fields = \App\cardface::getSearchFields();
@@ -487,6 +491,7 @@ class cardfaceController extends DURCController
         $tmp_cardface->toughness = $request->toughness;
         $tmp_cardface->type_line = $request->type_line;
         $tmp_cardface->border_color = $request->border_color;
+        $tmp_cardface->image_uri = $request->image_uri;
         $tmp_cardface->image_uri_art_crop = $request->image_uri_art_crop;
         $tmp_cardface->image_hash_art_crop = $request->image_hash_art_crop;
         $tmp_cardface->image_uri_small = $request->image_uri_small;

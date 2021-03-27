@@ -270,6 +270,8 @@ class cardController extends DURCController
         $tmp_card->legal_standard = $request->legal_standard;
         $tmp_card->legal_historic = $request->legal_historic;
         $tmp_card->legal_pioneer = $request->legal_pioneer;
+        $tmp_card->legal_gladiator = $request->legal_gladiator;
+        $tmp_card->legal_premodern = $request->legal_premodern;
         $tmp_card->binder_group_number = $request->binder_group_number;
 
 
@@ -305,6 +307,9 @@ class cardController extends DURCController
      */
     public function jsonone(Request $request, $card_id){
 		$card = \App\card::find($card_id);
+		if ($card === null) {
+            return response()->json("card with id = {$card_id} Not Found", 404);
+        }
 		$card = $card->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $card->toArray();
 		$search_fields = \App\card::getSearchFields();
@@ -501,6 +506,8 @@ class cardController extends DURCController
         $tmp_card->legal_standard = $request->legal_standard;
         $tmp_card->legal_historic = $request->legal_historic;
         $tmp_card->legal_pioneer = $request->legal_pioneer;
+        $tmp_card->legal_gladiator = $request->legal_gladiator;
+        $tmp_card->legal_premodern = $request->legal_premodern;
         $tmp_card->binder_group_number = $request->binder_group_number;
 
         $id = $card->id;

@@ -264,6 +264,9 @@ class appstringController extends DURCController
      */
     public function jsonone(Request $request, $appstring_id){
 		$appstring = \App\appstring::find($appstring_id);
+		if ($appstring === null) {
+            return response()->json("appstring with id = {$appstring_id} Not Found", 404);
+        }
 		$appstring = $appstring->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $appstring->toArray();
 		$search_fields = \App\appstring::getSearchFields();

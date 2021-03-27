@@ -270,6 +270,9 @@ class donationController extends DURCController
      */
     public function jsonone(Request $request, $donation_id){
 		$donation = \App\donation::find($donation_id);
+		if ($donation === null) {
+            return response()->json("donation with id = {$donation_id} Not Found", 404);
+        }
 		$donation = $donation->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $donation->toArray();
 		$search_fields = \App\donation::getSearchFields();

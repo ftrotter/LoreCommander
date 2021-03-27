@@ -270,6 +270,9 @@ class invoiceController extends DURCController
      */
     public function jsonone(Request $request, $invoice_id){
 		$invoice = \App\invoice::find($invoice_id);
+		if ($invoice === null) {
+            return response()->json("invoice with id = {$invoice_id} Not Found", 404);
+        }
 		$invoice = $invoice->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $invoice->toArray();
 		$search_fields = \App\invoice::getSearchFields();

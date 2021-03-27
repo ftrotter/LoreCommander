@@ -264,6 +264,9 @@ class privilegeController extends DURCController
      */
     public function jsonone(Request $request, $privilege_id){
 		$privilege = \App\privilege::find($privilege_id);
+		if ($privilege === null) {
+            return response()->json("privilege with id = {$privilege_id} Not Found", 404);
+        }
 		$privilege = $privilege->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $privilege->toArray();
 		$search_fields = \App\privilege::getSearchFields();

@@ -273,6 +273,9 @@ class person_strategy_strategytagController extends DURCController
      */
     public function jsonone(Request $request, $person_strategy_strategytag_id){
 		$person_strategy_strategytag = \App\person_strategy_strategytag::find($person_strategy_strategytag_id);
+		if ($person_strategy_strategytag === null) {
+            return response()->json("person_strategy_strategytag with id = {$person_strategy_strategytag_id} Not Found", 404);
+        }
 		$person_strategy_strategytag = $person_strategy_strategytag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $person_strategy_strategytag->toArray();
 		$search_fields = \App\person_strategy_strategytag::getSearchFields();

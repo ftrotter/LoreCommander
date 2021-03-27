@@ -266,6 +266,9 @@ class salesreportController extends DURCController
      */
     public function jsonone(Request $request, $salesreport_id){
 		$salesreport = \App\salesreport::find($salesreport_id);
+		if ($salesreport === null) {
+            return response()->json("salesreport with id = {$salesreport_id} Not Found", 404);
+        }
 		$salesreport = $salesreport->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $salesreport->toArray();
 		$search_fields = \App\salesreport::getSearchFields();

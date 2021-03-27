@@ -276,6 +276,9 @@ class tags_reportController extends DURCController
      */
     public function jsonone(Request $request, $tags_report_id){
 		$tags_report = \App\tags_report::find($tags_report_id);
+		if ($tags_report === null) {
+            return response()->json("tags_report with id = {$tags_report_id} Not Found", 404);
+        }
 		$tags_report = $tags_report->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $tags_report->toArray();
 		$search_fields = \App\tags_report::getSearchFields();

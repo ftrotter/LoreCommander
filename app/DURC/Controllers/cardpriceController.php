@@ -271,6 +271,9 @@ class cardpriceController extends DURCController
      */
     public function jsonone(Request $request, $cardprice_id){
 		$cardprice = \App\cardprice::find($cardprice_id);
+		if ($cardprice === null) {
+            return response()->json("cardprice with id = {$cardprice_id} Not Found", 404);
+        }
 		$cardprice = $cardprice->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $cardprice->toArray();
 		$search_fields = \App\cardprice::getSearchFields();

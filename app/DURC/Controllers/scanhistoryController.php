@@ -267,6 +267,9 @@ class scanhistoryController extends DURCController
      */
     public function jsonone(Request $request, $scanhistory_id){
 		$scanhistory = \App\scanhistory::find($scanhistory_id);
+		if ($scanhistory === null) {
+            return response()->json("scanhistory with id = {$scanhistory_id} Not Found", 404);
+        }
 		$scanhistory = $scanhistory->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $scanhistory->toArray();
 		$search_fields = \App\scanhistory::getSearchFields();

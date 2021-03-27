@@ -266,6 +266,9 @@ class authorController extends DURCController
      */
     public function jsonone(Request $request, $author_id){
 		$author = \App\author::find($author_id);
+		if ($author === null) {
+            return response()->json("author with id = {$author_id} Not Found", 404);
+        }
 		$author = $author->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $author->toArray();
 		$search_fields = \App\author::getSearchFields();

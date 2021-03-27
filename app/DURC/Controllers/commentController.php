@@ -268,6 +268,9 @@ class commentController extends DURCController
      */
     public function jsonone(Request $request, $comment_id){
 		$comment = \App\comment::find($comment_id);
+		if ($comment === null) {
+            return response()->json("comment with id = {$comment_id} Not Found", 404);
+        }
 		$comment = $comment->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $comment->toArray();
 		$search_fields = \App\comment::getSearchFields();

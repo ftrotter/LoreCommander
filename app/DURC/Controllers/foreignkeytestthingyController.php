@@ -269,6 +269,9 @@ class foreignkeytestthingyController extends DURCController
      */
     public function jsonone(Request $request, $foreignkeytestthingy_id){
 		$foreignkeytestthingy = \App\foreignkeytestthingy::find($foreignkeytestthingy_id);
+		if ($foreignkeytestthingy === null) {
+            return response()->json("foreignkeytestthingy with id = {$foreignkeytestthingy_id} Not Found", 404);
+        }
 		$foreignkeytestthingy = $foreignkeytestthingy->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $foreignkeytestthingy->toArray();
 		$search_fields = \App\foreignkeytestthingy::getSearchFields();

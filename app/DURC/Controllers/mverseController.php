@@ -269,6 +269,9 @@ class mverseController extends DURCController
      */
     public function jsonone(Request $request, $mverse_id){
 		$mverse = \App\mverse::find($mverse_id);
+		if ($mverse === null) {
+            return response()->json("mverse with id = {$mverse_id} Not Found", 404);
+        }
 		$mverse = $mverse->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $mverse->toArray();
 		$search_fields = \App\mverse::getSearchFields();

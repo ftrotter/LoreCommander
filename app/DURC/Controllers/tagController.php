@@ -269,6 +269,9 @@ class tagController extends DURCController
      */
     public function jsonone(Request $request, $tag_id){
 		$tag = \App\tag::find($tag_id);
+		if ($tag === null) {
+            return response()->json("tag with id = {$tag_id} Not Found", 404);
+        }
 		$tag = $tag->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $tag->toArray();
 		$search_fields = \App\tag::getSearchFields();

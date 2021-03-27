@@ -26,6 +26,7 @@ class wallpaper_illustrationController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
+		$with_summary_array[] = "wallpaper:id,".\App\wallpaper::getNameField();
 
 		return($with_summary_array);
 		
@@ -232,6 +233,7 @@ class wallpaper_illustrationController extends DURCController
         
         $tmp_wallpaper_illustration->id = $request->id;
         $tmp_wallpaper_illustration->wallpaper_name = $request->wallpaper_name;
+        $tmp_wallpaper_illustration->wallpaper_id = $request->wallpaper_id;
         $tmp_wallpaper_illustration->illustration_id = $request->illustration_id;
 
 
@@ -267,6 +269,9 @@ class wallpaper_illustrationController extends DURCController
      */
     public function jsonone(Request $request, $wallpaper_illustration_id){
 		$wallpaper_illustration = \App\wallpaper_illustration::find($wallpaper_illustration_id);
+		if ($wallpaper_illustration === null) {
+            return response()->json("wallpaper_illustration with id = {$wallpaper_illustration_id} Not Found", 404);
+        }
 		$wallpaper_illustration = $wallpaper_illustration->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $wallpaper_illustration->toArray();
 		$search_fields = \App\wallpaper_illustration::getSearchFields();
@@ -426,6 +431,7 @@ class wallpaper_illustrationController extends DURCController
         
         $tmp_wallpaper_illustration->id = $request->id;
         $tmp_wallpaper_illustration->wallpaper_name = $request->wallpaper_name;
+        $tmp_wallpaper_illustration->wallpaper_id = $request->wallpaper_id;
         $tmp_wallpaper_illustration->illustration_id = $request->illustration_id;
 
         $id = $wallpaper_illustration->id;

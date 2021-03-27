@@ -269,6 +269,9 @@ class classofcController extends DURCController
      */
     public function jsonone(Request $request, $classofc_id){
 		$classofc = \App\classofc::find($classofc_id);
+		if ($classofc === null) {
+            return response()->json("classofc with id = {$classofc_id} Not Found", 404);
+        }
 		$classofc = $classofc->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $classofc->toArray();
 		$search_fields = \App\classofc::getSearchFields();

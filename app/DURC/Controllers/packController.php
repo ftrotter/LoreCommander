@@ -269,6 +269,9 @@ class packController extends DURCController
      */
     public function jsonone(Request $request, $pack_id){
 		$pack = \App\pack::find($pack_id);
+		if ($pack === null) {
+            return response()->json("pack with id = {$pack_id} Not Found", 404);
+        }
 		$pack = $pack->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $pack->toArray();
 		$search_fields = \App\pack::getSearchFields();

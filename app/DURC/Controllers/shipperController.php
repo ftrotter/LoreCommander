@@ -280,6 +280,9 @@ class shipperController extends DURCController
      */
     public function jsonone(Request $request, $shipper_id){
 		$shipper = \App\shipper::find($shipper_id);
+		if ($shipper === null) {
+            return response()->json("shipper with id = {$shipper_id} Not Found", 404);
+        }
 		$shipper = $shipper->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $shipper->toArray();
 		$search_fields = \App\shipper::getSearchFields();

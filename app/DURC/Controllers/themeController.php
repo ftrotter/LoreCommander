@@ -272,6 +272,9 @@ class themeController extends DURCController
      */
     public function jsonone(Request $request, $theme_id){
 		$theme = \App\theme::find($theme_id);
+		if ($theme === null) {
+            return response()->json("theme with id = {$theme_id} Not Found", 404);
+        }
 		$theme = $theme->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $theme->toArray();
 		$search_fields = \App\theme::getSearchFields();

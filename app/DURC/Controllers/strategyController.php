@@ -271,6 +271,9 @@ class strategyController extends DURCController
      */
     public function jsonone(Request $request, $strategy_id){
 		$strategy = \App\strategy::find($strategy_id);
+		if ($strategy === null) {
+            return response()->json("strategy with id = {$strategy_id} Not Found", 404);
+        }
 		$strategy = $strategy->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $strategy->toArray();
 		$search_fields = \App\strategy::getSearchFields();

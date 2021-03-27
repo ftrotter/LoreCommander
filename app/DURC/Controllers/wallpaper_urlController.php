@@ -271,6 +271,9 @@ class wallpaper_urlController extends DURCController
      */
     public function jsonone(Request $request, $wallpaper_url_id){
 		$wallpaper_url = \App\wallpaper_url::find($wallpaper_url_id);
+		if ($wallpaper_url === null) {
+            return response()->json("wallpaper_url with id = {$wallpaper_url_id} Not Found", 404);
+        }
 		$wallpaper_url = $wallpaper_url->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $wallpaper_url->toArray();
 		$search_fields = \App\wallpaper_url::getSearchFields();

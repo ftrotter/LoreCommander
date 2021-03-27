@@ -276,6 +276,9 @@ class productController extends DURCController
      */
     public function jsonone(Request $request, $product_id){
 		$product = \App\product::find($product_id);
+		if ($product === null) {
+            return response()->json("product with id = {$product_id} Not Found", 404);
+        }
 		$product = $product->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $product->toArray();
 		$search_fields = \App\product::getSearchFields();

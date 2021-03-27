@@ -263,6 +263,9 @@ class inventorytransactiontypeController extends DURCController
      */
     public function jsonone(Request $request, $inventorytransactiontype_id){
 		$inventorytransactiontype = \App\inventorytransactiontype::find($inventorytransactiontype_id);
+		if ($inventorytransactiontype === null) {
+            return response()->json("inventorytransactiontype with id = {$inventorytransactiontype_id} Not Found", 404);
+        }
 		$inventorytransactiontype = $inventorytransactiontype->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
 		$return_me_array = $inventorytransactiontype->toArray();
 		$search_fields = \App\inventorytransactiontype::getSearchFields();
