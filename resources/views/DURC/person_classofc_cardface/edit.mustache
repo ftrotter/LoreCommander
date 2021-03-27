@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -58,11 +58,12 @@
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('person_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#person_id option:selected');
     const personId = element.val();
+    let personIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -70,12 +71,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/person/' + personId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        personIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_person_id').select2({
           width: '100%',   
           ajax: {
@@ -91,10 +99,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-person_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('person_id');
+        if (personIdHasError === true) {
+            $('#select2-person_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -114,11 +129,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('classofc_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#classofc_id option:selected');
     const classofcId = element.val();
+    let classofcIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -126,12 +142,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/classofc/' + classofcId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        classofcIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_classofc_id').select2({
           width: '100%',   
           ajax: {
@@ -147,10 +170,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-classofc_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('classofc_id');
+        if (classofcIdHasError === true) {
+            $('#select2-classofc_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -170,11 +200,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('cardface_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#cardface_id option:selected');
     const cardfaceId = element.val();
+    let cardfaceIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -182,12 +213,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/cardface/' + cardfaceId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        cardfaceIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_cardface_id').select2({
           width: '100%',   
           ajax: {
@@ -203,10 +241,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-cardface_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('cardface_id');
+        if (cardfaceIdHasError === true) {
+            $('#select2-cardface_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -230,7 +275,7 @@ $(document).ready(function () {
   <div class='form-group row {{link_note_row_class}}'>
     <label for='link_note' class='col-sm-4 col-form-label'>link_note</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.link_note.has_errors}}is-invalid{{/errors.link_note.has_errors}}' id='link_note' name='link_note' placeholder='NULL' value='{{link_note}}' >
+      <input type='text' class='form-control nullable {{#errors.link_note.has_errors}}is-invalid{{/errors.link_note.has_errors}}' id='link_note' name='link_note' placeholder='NULL' value='{{link_note}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.link_note.messages}}<li>{{.}}</li>{{/errors.link_note.messages}}
@@ -243,7 +288,7 @@ $(document).ready(function () {
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -274,7 +319,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -446,6 +491,7 @@ $(document).ready(function () {
 			<th> toughness </th>
 			<th> type_line </th>
 			<th> border_color </th>
+			<th> image_uri </th>
 			<th> image_uri_art_crop </th>
 			<th> image_hash_art_crop </th>
 			<th> image_uri_small </th>
@@ -501,6 +547,7 @@ $(document).ready(function () {
 			<td>{{toughness}}</td>
 			<td>{{type_line}}</td>
 			<td>{{border_color}}</td>
+			<td>{{image_uri}}</td>
 			<td>{{image_uri_art_crop}}</td>
 			<td>{{image_hash_art_crop}}</td>
 			<td>{{image_uri_small}}</td>
@@ -545,6 +592,26 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -558,13 +625,26 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

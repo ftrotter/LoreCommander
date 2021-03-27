@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -58,11 +58,12 @@
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('card_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#card_id option:selected');
     const cardId = element.val();
+    let cardIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -70,12 +71,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/card/' + cardId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        cardIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_card_id').select2({
           width: '100%',   
           ajax: {
@@ -91,10 +99,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-card_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('card_id');
+        if (cardIdHasError === true) {
+            $('#select2-card_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -104,7 +119,7 @@ $(document).ready(function () {
   <div class='form-group row {{cardface_index_row_class}}'>
     <label for='cardface_index' class='col-sm-4 col-form-label'>cardface_index</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.cardface_index.has_errors}}is-invalid{{/errors.cardface_index.has_errors}}' id='cardface_index' name='cardface_index' placeholder='' value='{{cardface_index}}' >
+      <input type='text' class='form-control  {{#errors.cardface_index.has_errors}}is-invalid{{/errors.cardface_index.has_errors}}' id='cardface_index' name='cardface_index' placeholder='' value='{{cardface_index}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.cardface_index.messages}}<li>{{.}}</li>{{/errors.cardface_index.messages}}
@@ -114,7 +129,7 @@ $(document).ready(function () {
   <div class='form-group row {{illustration_id_row_class}}'>
     <label for='illustration_id' class='col-sm-4 col-form-label'>illustration_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.illustration_id.has_errors}}is-invalid{{/errors.illustration_id.has_errors}}' id='illustration_id' name='illustration_id' placeholder='' value='{{illustration_id}}' >
+      <input type='text' class='form-control  {{#errors.illustration_id.has_errors}}is-invalid{{/errors.illustration_id.has_errors}}' id='illustration_id' name='illustration_id' placeholder='' value='{{illustration_id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.illustration_id.messages}}<li>{{.}}</li>{{/errors.illustration_id.messages}}
@@ -124,7 +139,7 @@ $(document).ready(function () {
   <div class='form-group row {{artist_row_class}}'>
     <label for='artist' class='col-sm-4 col-form-label'>artist</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.artist.has_errors}}is-invalid{{/errors.artist.has_errors}}' id='artist' name='artist' placeholder='NULL' value='{{artist}}' >
+      <input type='text' class='form-control nullable {{#errors.artist.has_errors}}is-invalid{{/errors.artist.has_errors}}' id='artist' name='artist' placeholder='NULL' value='{{artist}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.artist.messages}}<li>{{.}}</li>{{/errors.artist.messages}}
@@ -137,7 +152,7 @@ $(document).ready(function () {
   <div class='form-group row {{color_row_class}}'>
     <label for='color' class='col-sm-4 col-form-label'>color</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color.has_errors}}is-invalid{{/errors.color.has_errors}}' id='color' name='color' placeholder='NULL' value='{{color}}' >
+      <input type='text' class='form-control nullable {{#errors.color.has_errors}}is-invalid{{/errors.color.has_errors}}' id='color' name='color' placeholder='NULL' value='{{color}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.color.messages}}<li>{{.}}</li>{{/errors.color.messages}}
@@ -150,7 +165,7 @@ $(document).ready(function () {
   <div class='form-group row {{color_identity_row_class}}'>
     <label for='color_identity' class='col-sm-4 col-form-label'>color_identity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_identity.has_errors}}is-invalid{{/errors.color_identity.has_errors}}' id='color_identity' name='color_identity' placeholder='NULL' value='{{color_identity}}' >
+      <input type='text' class='form-control nullable {{#errors.color_identity.has_errors}}is-invalid{{/errors.color_identity.has_errors}}' id='color_identity' name='color_identity' placeholder='NULL' value='{{color_identity}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.color_identity.messages}}<li>{{.}}</li>{{/errors.color_identity.messages}}
@@ -163,7 +178,7 @@ $(document).ready(function () {
   <div class='form-group row {{flavor_text_row_class}}'>
     <label for='flavor_text' class='col-sm-4 col-form-label'>flavor_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.flavor_text.has_errors}}is-invalid{{/errors.flavor_text.has_errors}}' id='flavor_text' name='flavor_text' placeholder='NULL' value='{{flavor_text}}' >
+      <input type='text' class='form-control nullable {{#errors.flavor_text.has_errors}}is-invalid{{/errors.flavor_text.has_errors}}' id='flavor_text' name='flavor_text' placeholder='NULL' value='{{flavor_text}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.flavor_text.messages}}<li>{{.}}</li>{{/errors.flavor_text.messages}}
@@ -176,7 +191,7 @@ $(document).ready(function () {
   <div class='form-group row {{cardface_image_uri_row_class}}'>
     <label for='cardface_image_uri' class='col-sm-4 col-form-label'>cardface_image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.cardface_image_uri.has_errors}}is-invalid{{/errors.cardface_image_uri.has_errors}}' id='cardface_image_uri' name='cardface_image_uri' placeholder='NULL' value='{{cardface_image_uri}}' >
+      <input type='text' class='form-control nullable {{#errors.cardface_image_uri.has_errors}}is-invalid{{/errors.cardface_image_uri.has_errors}}' id='cardface_image_uri' name='cardface_image_uri' placeholder='NULL' value='{{cardface_image_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.cardface_image_uri.messages}}<li>{{.}}</li>{{/errors.cardface_image_uri.messages}}
@@ -189,7 +204,7 @@ $(document).ready(function () {
   <div class='form-group row {{mana_cost_row_class}}'>
     <label for='mana_cost' class='col-sm-4 col-form-label'>mana_cost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mana_cost.has_errors}}is-invalid{{/errors.mana_cost.has_errors}}' id='mana_cost' name='mana_cost' placeholder='NULL' value='{{mana_cost}}' >
+      <input type='text' class='form-control nullable {{#errors.mana_cost.has_errors}}is-invalid{{/errors.mana_cost.has_errors}}' id='mana_cost' name='mana_cost' placeholder='NULL' value='{{mana_cost}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.mana_cost.messages}}<li>{{.}}</li>{{/errors.mana_cost.messages}}
@@ -202,7 +217,7 @@ $(document).ready(function () {
   <div class='form-group row {{cmc_row_class}}'>
     <label for='cmc' class='col-sm-4 col-form-label'>cmc</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.cmc.has_errors}}is-invalid{{/errors.cmc.has_errors}}' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}' >
+      <input type='text' class='form-control nullable {{#errors.cmc.has_errors}}is-invalid{{/errors.cmc.has_errors}}' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.cmc.messages}}<li>{{.}}</li>{{/errors.cmc.messages}}
@@ -215,7 +230,7 @@ $(document).ready(function () {
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
+      <input type='text' class='form-control  {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.name.messages}}<li>{{.}}</li>{{/errors.name.messages}}
@@ -225,7 +240,7 @@ $(document).ready(function () {
   <div class='form-group row {{oracle_text_row_class}}'>
     <label for='oracle_text' class='col-sm-4 col-form-label'>oracle_text</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.oracle_text.has_errors}}is-invalid{{/errors.oracle_text.has_errors}}' id='oracle_text' name='oracle_text' placeholder='NULL' value='{{oracle_text}}' >
+      <input type='text' class='form-control nullable {{#errors.oracle_text.has_errors}}is-invalid{{/errors.oracle_text.has_errors}}' id='oracle_text' name='oracle_text' placeholder='NULL' value='{{oracle_text}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.oracle_text.messages}}<li>{{.}}</li>{{/errors.oracle_text.messages}}
@@ -238,7 +253,7 @@ $(document).ready(function () {
   <div class='form-group row {{power_row_class}}'>
     <label for='power' class='col-sm-4 col-form-label'>power</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.power.has_errors}}is-invalid{{/errors.power.has_errors}}' id='power' name='power' placeholder='NULL' value='{{power}}' >
+      <input type='text' class='form-control nullable {{#errors.power.has_errors}}is-invalid{{/errors.power.has_errors}}' id='power' name='power' placeholder='NULL' value='{{power}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.power.messages}}<li>{{.}}</li>{{/errors.power.messages}}
@@ -251,7 +266,7 @@ $(document).ready(function () {
   <div class='form-group row {{toughness_row_class}}'>
     <label for='toughness' class='col-sm-4 col-form-label'>toughness</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.toughness.has_errors}}is-invalid{{/errors.toughness.has_errors}}' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}' >
+      <input type='text' class='form-control nullable {{#errors.toughness.has_errors}}is-invalid{{/errors.toughness.has_errors}}' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.toughness.messages}}<li>{{.}}</li>{{/errors.toughness.messages}}
@@ -264,7 +279,7 @@ $(document).ready(function () {
   <div class='form-group row {{type_line_row_class}}'>
     <label for='type_line' class='col-sm-4 col-form-label'>type_line</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.type_line.has_errors}}is-invalid{{/errors.type_line.has_errors}}' id='type_line' name='type_line' placeholder='' value='{{type_line}}' >
+      <input type='text' class='form-control  {{#errors.type_line.has_errors}}is-invalid{{/errors.type_line.has_errors}}' id='type_line' name='type_line' placeholder='' value='{{type_line}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.type_line.messages}}<li>{{.}}</li>{{/errors.type_line.messages}}
@@ -274,17 +289,30 @@ $(document).ready(function () {
   <div class='form-group row {{border_color_row_class}}'>
     <label for='border_color' class='col-sm-4 col-form-label'>border_color</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.border_color.has_errors}}is-invalid{{/errors.border_color.has_errors}}' id='border_color' name='border_color' placeholder='' value='{{border_color}}' >
+      <input type='text' class='form-control  {{#errors.border_color.has_errors}}is-invalid{{/errors.border_color.has_errors}}' id='border_color' name='border_color' placeholder='' value='{{border_color}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.border_color.messages}}<li>{{.}}</li>{{/errors.border_color.messages}}
           </ul>
        </div>
     </div></div>
+  <div class='form-group row {{image_uri_row_class}}'>
+    <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.image_uri.messages}}<li>{{.}}</li>{{/errors.image_uri.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='image_uri' name='image_uriNull' id='image_uriNull' value='image_uriNull' {{image_uri_checked}}>
+                    <label class='form-check-label' for='image_uriNull'>null</label>
+                </div></div>
   <div class='form-group row {{image_uri_art_crop_row_class}}'>
     <label for='image_uri_art_crop' class='col-sm-4 col-form-label'>image_uri_art_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_art_crop.has_errors}}is-invalid{{/errors.image_uri_art_crop.has_errors}}' id='image_uri_art_crop' name='image_uri_art_crop' placeholder=''NULL'' value='{{image_uri_art_crop}}' >
+      <input type='text' class='form-control nullable {{#errors.image_uri_art_crop.has_errors}}is-invalid{{/errors.image_uri_art_crop.has_errors}}' id='image_uri_art_crop' name='image_uri_art_crop' placeholder=''NULL'' value='{{image_uri_art_crop}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri_art_crop.messages}}<li>{{.}}</li>{{/errors.image_uri_art_crop.messages}}
@@ -297,7 +325,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_hash_art_crop_row_class}}'>
     <label for='image_hash_art_crop' class='col-sm-4 col-form-label'>image_hash_art_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_art_crop.has_errors}}is-invalid{{/errors.image_hash_art_crop.has_errors}}' id='image_hash_art_crop' name='image_hash_art_crop' placeholder=''NULL'' value='{{image_hash_art_crop}}' >
+      <input type='text' class='form-control nullable {{#errors.image_hash_art_crop.has_errors}}is-invalid{{/errors.image_hash_art_crop.has_errors}}' id='image_hash_art_crop' name='image_hash_art_crop' placeholder=''NULL'' value='{{image_hash_art_crop}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_hash_art_crop.messages}}<li>{{.}}</li>{{/errors.image_hash_art_crop.messages}}
@@ -310,7 +338,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_uri_small_row_class}}'>
     <label for='image_uri_small' class='col-sm-4 col-form-label'>image_uri_small</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_small.has_errors}}is-invalid{{/errors.image_uri_small.has_errors}}' id='image_uri_small' name='image_uri_small' placeholder='NULL' value='{{image_uri_small}}' >
+      <input type='text' class='form-control nullable {{#errors.image_uri_small.has_errors}}is-invalid{{/errors.image_uri_small.has_errors}}' id='image_uri_small' name='image_uri_small' placeholder='NULL' value='{{image_uri_small}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri_small.messages}}<li>{{.}}</li>{{/errors.image_uri_small.messages}}
@@ -323,7 +351,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_hash_small_row_class}}'>
     <label for='image_hash_small' class='col-sm-4 col-form-label'>image_hash_small</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_small.has_errors}}is-invalid{{/errors.image_hash_small.has_errors}}' id='image_hash_small' name='image_hash_small' placeholder='NULL' value='{{image_hash_small}}' >
+      <input type='text' class='form-control nullable {{#errors.image_hash_small.has_errors}}is-invalid{{/errors.image_hash_small.has_errors}}' id='image_hash_small' name='image_hash_small' placeholder='NULL' value='{{image_hash_small}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_hash_small.messages}}<li>{{.}}</li>{{/errors.image_hash_small.messages}}
@@ -336,7 +364,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_uri_normal_row_class}}'>
     <label for='image_uri_normal' class='col-sm-4 col-form-label'>image_uri_normal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_normal.has_errors}}is-invalid{{/errors.image_uri_normal.has_errors}}' id='image_uri_normal' name='image_uri_normal' placeholder='NULL' value='{{image_uri_normal}}' >
+      <input type='text' class='form-control nullable {{#errors.image_uri_normal.has_errors}}is-invalid{{/errors.image_uri_normal.has_errors}}' id='image_uri_normal' name='image_uri_normal' placeholder='NULL' value='{{image_uri_normal}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri_normal.messages}}<li>{{.}}</li>{{/errors.image_uri_normal.messages}}
@@ -349,7 +377,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_hash_normal_row_class}}'>
     <label for='image_hash_normal' class='col-sm-4 col-form-label'>image_hash_normal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_normal.has_errors}}is-invalid{{/errors.image_hash_normal.has_errors}}' id='image_hash_normal' name='image_hash_normal' placeholder='NULL' value='{{image_hash_normal}}' >
+      <input type='text' class='form-control nullable {{#errors.image_hash_normal.has_errors}}is-invalid{{/errors.image_hash_normal.has_errors}}' id='image_hash_normal' name='image_hash_normal' placeholder='NULL' value='{{image_hash_normal}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_hash_normal.messages}}<li>{{.}}</li>{{/errors.image_hash_normal.messages}}
@@ -362,7 +390,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_uri_large_row_class}}'>
     <label for='image_uri_large' class='col-sm-4 col-form-label'>image_uri_large</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_large.has_errors}}is-invalid{{/errors.image_uri_large.has_errors}}' id='image_uri_large' name='image_uri_large' placeholder='NULL' value='{{image_uri_large}}' >
+      <input type='text' class='form-control nullable {{#errors.image_uri_large.has_errors}}is-invalid{{/errors.image_uri_large.has_errors}}' id='image_uri_large' name='image_uri_large' placeholder='NULL' value='{{image_uri_large}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri_large.messages}}<li>{{.}}</li>{{/errors.image_uri_large.messages}}
@@ -375,7 +403,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_hash_large_row_class}}'>
     <label for='image_hash_large' class='col-sm-4 col-form-label'>image_hash_large</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_large.has_errors}}is-invalid{{/errors.image_hash_large.has_errors}}' id='image_hash_large' name='image_hash_large' placeholder='NULL' value='{{image_hash_large}}' >
+      <input type='text' class='form-control nullable {{#errors.image_hash_large.has_errors}}is-invalid{{/errors.image_hash_large.has_errors}}' id='image_hash_large' name='image_hash_large' placeholder='NULL' value='{{image_hash_large}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_hash_large.messages}}<li>{{.}}</li>{{/errors.image_hash_large.messages}}
@@ -388,7 +416,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_uri_png_row_class}}'>
     <label for='image_uri_png' class='col-sm-4 col-form-label'>image_uri_png</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_png.has_errors}}is-invalid{{/errors.image_uri_png.has_errors}}' id='image_uri_png' name='image_uri_png' placeholder='NULL' value='{{image_uri_png}}' >
+      <input type='text' class='form-control nullable {{#errors.image_uri_png.has_errors}}is-invalid{{/errors.image_uri_png.has_errors}}' id='image_uri_png' name='image_uri_png' placeholder='NULL' value='{{image_uri_png}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri_png.messages}}<li>{{.}}</li>{{/errors.image_uri_png.messages}}
@@ -401,7 +429,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_hash_png_row_class}}'>
     <label for='image_hash_png' class='col-sm-4 col-form-label'>image_hash_png</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_png.has_errors}}is-invalid{{/errors.image_hash_png.has_errors}}' id='image_hash_png' name='image_hash_png' placeholder='NULL' value='{{image_hash_png}}' >
+      <input type='text' class='form-control nullable {{#errors.image_hash_png.has_errors}}is-invalid{{/errors.image_hash_png.has_errors}}' id='image_hash_png' name='image_hash_png' placeholder='NULL' value='{{image_hash_png}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_hash_png.messages}}<li>{{.}}</li>{{/errors.image_hash_png.messages}}
@@ -414,7 +442,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_uri_border_crop_row_class}}'>
     <label for='image_uri_border_crop' class='col-sm-4 col-form-label'>image_uri_border_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_uri_border_crop.has_errors}}is-invalid{{/errors.image_uri_border_crop.has_errors}}' id='image_uri_border_crop' name='image_uri_border_crop' placeholder='NULL' value='{{image_uri_border_crop}}' >
+      <input type='text' class='form-control nullable {{#errors.image_uri_border_crop.has_errors}}is-invalid{{/errors.image_uri_border_crop.has_errors}}' id='image_uri_border_crop' name='image_uri_border_crop' placeholder='NULL' value='{{image_uri_border_crop}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri_border_crop.messages}}<li>{{.}}</li>{{/errors.image_uri_border_crop.messages}}
@@ -427,7 +455,7 @@ $(document).ready(function () {
   <div class='form-group row {{image_hash_border_crop_row_class}}'>
     <label for='image_hash_border_crop' class='col-sm-4 col-form-label'>image_hash_border_crop</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.image_hash_border_crop.has_errors}}is-invalid{{/errors.image_hash_border_crop.has_errors}}' id='image_hash_border_crop' name='image_hash_border_crop' placeholder='NULL' value='{{image_hash_border_crop}}' >
+      <input type='text' class='form-control nullable {{#errors.image_hash_border_crop.has_errors}}is-invalid{{/errors.image_hash_border_crop.has_errors}}' id='image_hash_border_crop' name='image_hash_border_crop' placeholder='NULL' value='{{image_hash_border_crop}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_hash_border_crop.messages}}<li>{{.}}</li>{{/errors.image_hash_border_crop.messages}}
@@ -566,7 +594,7 @@ $(document).ready(function () {
   <div class='form-group row {{color_count_row_class}}'>
     <label for='color_count' class='col-sm-4 col-form-label'>color_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_count.has_errors}}is-invalid{{/errors.color_count.has_errors}}' id='color_count' name='color_count' placeholder='0' value='{{color_count}}' >
+      <input type='text' class='form-control  {{#errors.color_count.has_errors}}is-invalid{{/errors.color_count.has_errors}}' id='color_count' name='color_count' placeholder='0' value='{{color_count}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.color_count.messages}}<li>{{.}}</li>{{/errors.color_count.messages}}
@@ -646,7 +674,7 @@ $(document).ready(function () {
   <div class='form-group row {{color_identity_count_row_class}}'>
     <label for='color_identity_count' class='col-sm-4 col-form-label'>color_identity_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.color_identity_count.has_errors}}is-invalid{{/errors.color_identity_count.has_errors}}' id='color_identity_count' name='color_identity_count' placeholder='0' value='{{color_identity_count}}' >
+      <input type='text' class='form-control  {{#errors.color_identity_count.has_errors}}is-invalid{{/errors.color_identity_count.has_errors}}' id='color_identity_count' name='color_identity_count' placeholder='0' value='{{color_identity_count}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.color_identity_count.messages}}<li>{{.}}</li>{{/errors.color_identity_count.messages}}
@@ -684,7 +712,7 @@ $(document).ready(function () {
   <div class='form-group row {{for_fulltext_search_row_class}}'>
     <label for='for_fulltext_search' class='col-sm-4 col-form-label'>for_fulltext_search</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.for_fulltext_search.has_errors}}is-invalid{{/errors.for_fulltext_search.has_errors}}' id='for_fulltext_search' name='for_fulltext_search' placeholder='''''''' value='{{for_fulltext_search}}' >
+      <input type='text' class='form-control nullable {{#errors.for_fulltext_search.has_errors}}is-invalid{{/errors.for_fulltext_search.has_errors}}' id='for_fulltext_search' name='for_fulltext_search' placeholder='''''''' value='{{for_fulltext_search}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.for_fulltext_search.messages}}<li>{{.}}</li>{{/errors.for_fulltext_search.messages}}
@@ -697,7 +725,7 @@ $(document).ready(function () {
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -728,7 +756,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -1160,6 +1188,8 @@ $(document).ready(function () {
 			<th> legal_standard </th>
 			<th> legal_historic </th>
 			<th> legal_pioneer </th>
+			<th> legal_gladiator </th>
+			<th> legal_premodern </th>
 			<th> binder_group_number </th>
 			<th> created_at </th>
 			<th> updated_at </th>
@@ -1205,6 +1235,8 @@ $(document).ready(function () {
 			<td>{{legal_standard}}</td>
 			<td>{{legal_historic}}</td>
 			<td>{{legal_pioneer}}</td>
+			<td>{{legal_gladiator}}</td>
+			<td>{{legal_premodern}}</td>
 			<td>{{binder_group_number}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
@@ -1219,6 +1251,26 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -1232,13 +1284,26 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

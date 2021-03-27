@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -141,7 +141,7 @@
   <div class='form-group row {{this_datetime_row_class}}'>
     <label for='this_datetime' class='col-sm-4 col-form-label'>this_datetime</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.this_datetime.has_errors}}is-invalid{{/errors.this_datetime.has_errors}}' id='this_datetime' name='this_datetime' placeholder='' value='{{this_datetime}}' >
+      <input type='text' class='form-control  {{#errors.this_datetime.has_errors}}is-invalid{{/errors.this_datetime.has_errors}}' id='this_datetime' name='this_datetime' placeholder='' value='{{this_datetime}}' >
 
 <button type='button' class='btn btn-primary' id='this_datetime_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -172,7 +172,7 @@
   <div class='form-group row {{this_date_row_class}}'>
     <label for='this_date' class='col-sm-4 col-form-label'>this_date</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.this_date.has_errors}}is-invalid{{/errors.this_date.has_errors}}' id='this_date' name='this_date' placeholder='' value='{{this_date}}' >
+      <input type='text' class='form-control  {{#errors.this_date.has_errors}}is-invalid{{/errors.this_date.has_errors}}' id='this_date' name='this_date' placeholder='' value='{{this_date}}' >
         
     <button type='button' class='btn btn-primary' id='this_date_FontPicker'>
     <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -204,7 +204,7 @@
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -235,7 +235,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -266,7 +266,7 @@
   <div class='form-group row {{deleted_at_row_class}}'>
     <label for='deleted_at' class='col-sm-4 col-form-label'>deleted_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.deleted_at.has_errors}}is-invalid{{/errors.deleted_at.has_errors}}' id='deleted_at' name='deleted_at' placeholder='NULL' value='{{deleted_at}}' >
+      <input type='text' class='form-control nullable {{#errors.deleted_at.has_errors}}is-invalid{{/errors.deleted_at.has_errors}}' id='deleted_at' name='deleted_at' placeholder='NULL' value='{{deleted_at}}' >
 
 <button type='button' class='btn btn-primary' id='deleted_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -329,6 +329,26 @@
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -342,13 +362,26 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

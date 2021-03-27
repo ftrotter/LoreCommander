@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -58,11 +58,12 @@
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('employee_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#employee_id option:selected');
     const employeeId = element.val();
+    let employeeIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -70,12 +71,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/employee/' + employeeId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        employeeIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_employee_id').select2({
           width: '100%',   
           ajax: {
@@ -91,10 +99,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-employee_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('employee_id');
+        if (employeeIdHasError === true) {
+            $('#select2-employee_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -114,11 +129,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('customer_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#customer_id option:selected');
     const customerId = element.val();
+    let customerIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -126,12 +142,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/customer/' + customerId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        customerIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_customer_id').select2({
           width: '100%',   
           ajax: {
@@ -147,10 +170,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-customer_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('customer_id');
+        if (customerIdHasError === true) {
+            $('#select2-customer_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -160,7 +190,7 @@ $(document).ready(function () {
   <div class='form-group row {{orderDate_row_class}}'>
     <label for='orderDate' class='col-sm-4 col-form-label'>orderDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.orderDate.has_errors}}is-invalid{{/errors.orderDate.has_errors}}' id='orderDate' name='orderDate' placeholder='current_timestamp()' value='{{orderDate}}' >
+      <input type='text' class='form-control  {{#errors.orderDate.has_errors}}is-invalid{{/errors.orderDate.has_errors}}' id='orderDate' name='orderDate' placeholder='current_timestamp()' value='{{orderDate}}' >
 
 <button type='button' class='btn btn-primary' id='orderDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -191,7 +221,7 @@ $(document).ready(function () {
   <div class='form-group row {{shippedDate_row_class}}'>
     <label for='shippedDate' class='col-sm-4 col-form-label'>shippedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shippedDate.has_errors}}is-invalid{{/errors.shippedDate.has_errors}}' id='shippedDate' name='shippedDate' placeholder='NULL' value='{{shippedDate}}' >
+      <input type='text' class='form-control nullable {{#errors.shippedDate.has_errors}}is-invalid{{/errors.shippedDate.has_errors}}' id='shippedDate' name='shippedDate' placeholder='NULL' value='{{shippedDate}}' >
 
 <button type='button' class='btn btn-primary' id='shippedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -235,11 +265,12 @@ $(document).ready(function () {
 <script type='text/javascript'>
 $(document).ready(function () {
     // Show the loader/spinner
-    $('#loader').modal();
+    add_to_loading_queue('shipper_id');
     
     // Get the option element that is currently selected and it's foreign ID
     const element = $('#shipper_id option:selected');
     const shipperId = element.val();
+    let shipperIdHasError = false;
     
     // Use the json API to get the text of the selected element. 
     // We do this dynamically so we don't have to figure out in the controller
@@ -247,12 +278,19 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: '/DURC/json/shipper/' + shipperId,
-    }).then(function (data) {
-
+    })
+    .done(function(data, textStatus, jqXHR) {
         // data.text has the same text string (formed from concatinating search fields) as
         // the elements in the select list
         element.html(data.text);
-    
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        shipperIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
         $('.select2_shipper_id').select2({
           width: '100%',   
           ajax: {
@@ -268,10 +306,17 @@ $(document).ready(function () {
                   return query;
               }
           }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-shipper_id-container').removeClass('text-danger');
         });
         
         // Hide the loader/spinner after the select2 has been built
-        $('#loader').modal('hide');
+        remove_from_loading_queue('shipper_id');
+        if (shipperIdHasError === true) {
+            $('#select2-shipper_id-container').addClass('text-danger');
+        }
     });
 });
 
@@ -281,7 +326,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipName_row_class}}'>
     <label for='shipName' class='col-sm-4 col-form-label'>shipName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipName.has_errors}}is-invalid{{/errors.shipName.has_errors}}' id='shipName' name='shipName' placeholder='NULL' value='{{shipName}}' >
+      <input type='text' class='form-control nullable {{#errors.shipName.has_errors}}is-invalid{{/errors.shipName.has_errors}}' id='shipName' name='shipName' placeholder='NULL' value='{{shipName}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipName.messages}}<li>{{.}}</li>{{/errors.shipName.messages}}
@@ -294,7 +339,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipAddress_row_class}}'>
     <label for='shipAddress' class='col-sm-4 col-form-label'>shipAddress</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipAddress.has_errors}}is-invalid{{/errors.shipAddress.has_errors}}' id='shipAddress' name='shipAddress' placeholder='NULL' value='{{shipAddress}}' >
+      <input type='text' class='form-control nullable {{#errors.shipAddress.has_errors}}is-invalid{{/errors.shipAddress.has_errors}}' id='shipAddress' name='shipAddress' placeholder='NULL' value='{{shipAddress}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipAddress.messages}}<li>{{.}}</li>{{/errors.shipAddress.messages}}
@@ -307,7 +352,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipCity_row_class}}'>
     <label for='shipCity' class='col-sm-4 col-form-label'>shipCity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipCity.has_errors}}is-invalid{{/errors.shipCity.has_errors}}' id='shipCity' name='shipCity' placeholder='NULL' value='{{shipCity}}' >
+      <input type='text' class='form-control nullable {{#errors.shipCity.has_errors}}is-invalid{{/errors.shipCity.has_errors}}' id='shipCity' name='shipCity' placeholder='NULL' value='{{shipCity}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipCity.messages}}<li>{{.}}</li>{{/errors.shipCity.messages}}
@@ -320,7 +365,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipStateProvince_row_class}}'>
     <label for='shipStateProvince' class='col-sm-4 col-form-label'>shipStateProvince</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipStateProvince.has_errors}}is-invalid{{/errors.shipStateProvince.has_errors}}' id='shipStateProvince' name='shipStateProvince' placeholder='NULL' value='{{shipStateProvince}}' >
+      <input type='text' class='form-control nullable {{#errors.shipStateProvince.has_errors}}is-invalid{{/errors.shipStateProvince.has_errors}}' id='shipStateProvince' name='shipStateProvince' placeholder='NULL' value='{{shipStateProvince}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipStateProvince.messages}}<li>{{.}}</li>{{/errors.shipStateProvince.messages}}
@@ -333,7 +378,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipZipPostalCode_row_class}}'>
     <label for='shipZipPostalCode' class='col-sm-4 col-form-label'>shipZipPostalCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipZipPostalCode.has_errors}}is-invalid{{/errors.shipZipPostalCode.has_errors}}' id='shipZipPostalCode' name='shipZipPostalCode' placeholder='NULL' value='{{shipZipPostalCode}}' >
+      <input type='text' class='form-control nullable {{#errors.shipZipPostalCode.has_errors}}is-invalid{{/errors.shipZipPostalCode.has_errors}}' id='shipZipPostalCode' name='shipZipPostalCode' placeholder='NULL' value='{{shipZipPostalCode}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipZipPostalCode.messages}}<li>{{.}}</li>{{/errors.shipZipPostalCode.messages}}
@@ -346,7 +391,7 @@ $(document).ready(function () {
   <div class='form-group row {{shipCountryRegion_row_class}}'>
     <label for='shipCountryRegion' class='col-sm-4 col-form-label'>shipCountryRegion</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shipCountryRegion.has_errors}}is-invalid{{/errors.shipCountryRegion.has_errors}}' id='shipCountryRegion' name='shipCountryRegion' placeholder='NULL' value='{{shipCountryRegion}}' >
+      <input type='text' class='form-control nullable {{#errors.shipCountryRegion.has_errors}}is-invalid{{/errors.shipCountryRegion.has_errors}}' id='shipCountryRegion' name='shipCountryRegion' placeholder='NULL' value='{{shipCountryRegion}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shipCountryRegion.messages}}<li>{{.}}</li>{{/errors.shipCountryRegion.messages}}
@@ -359,7 +404,7 @@ $(document).ready(function () {
   <div class='form-group row {{shippingFee_row_class}}'>
     <label for='shippingFee' class='col-sm-4 col-form-label'>shippingFee</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.shippingFee.has_errors}}is-invalid{{/errors.shippingFee.has_errors}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}' >
+      <input type='text' class='form-control nullable {{#errors.shippingFee.has_errors}}is-invalid{{/errors.shippingFee.has_errors}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shippingFee.messages}}<li>{{.}}</li>{{/errors.shippingFee.messages}}
@@ -372,7 +417,7 @@ $(document).ready(function () {
   <div class='form-group row {{taxes_row_class}}'>
     <label for='taxes' class='col-sm-4 col-form-label'>taxes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.taxes.has_errors}}is-invalid{{/errors.taxes.has_errors}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}' >
+      <input type='text' class='form-control nullable {{#errors.taxes.has_errors}}is-invalid{{/errors.taxes.has_errors}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.taxes.messages}}<li>{{.}}</li>{{/errors.taxes.messages}}
@@ -385,7 +430,7 @@ $(document).ready(function () {
   <div class='form-group row {{paymentType_row_class}}'>
     <label for='paymentType' class='col-sm-4 col-form-label'>paymentType</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.paymentType.has_errors}}is-invalid{{/errors.paymentType.has_errors}}' id='paymentType' name='paymentType' placeholder='NULL' value='{{paymentType}}' >
+      <input type='text' class='form-control nullable {{#errors.paymentType.has_errors}}is-invalid{{/errors.paymentType.has_errors}}' id='paymentType' name='paymentType' placeholder='NULL' value='{{paymentType}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.paymentType.messages}}<li>{{.}}</li>{{/errors.paymentType.messages}}
@@ -398,7 +443,7 @@ $(document).ready(function () {
   <div class='form-group row {{paidDate_row_class}}'>
     <label for='paidDate' class='col-sm-4 col-form-label'>paidDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.paidDate.has_errors}}is-invalid{{/errors.paidDate.has_errors}}' id='paidDate' name='paidDate' placeholder='NULL' value='{{paidDate}}' >
+      <input type='text' class='form-control nullable {{#errors.paidDate.has_errors}}is-invalid{{/errors.paidDate.has_errors}}' id='paidDate' name='paidDate' placeholder='NULL' value='{{paidDate}}' >
 
 <button type='button' class='btn btn-primary' id='paidDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -432,7 +477,7 @@ $(document).ready(function () {
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
+      <input type='text' class='form-control nullable {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.notes.messages}}<li>{{.}}</li>{{/errors.notes.messages}}
@@ -445,7 +490,7 @@ $(document).ready(function () {
   <div class='form-group row {{taxRate_row_class}}'>
     <label for='taxRate' class='col-sm-4 col-form-label'>taxRate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.taxRate.has_errors}}is-invalid{{/errors.taxRate.has_errors}}' id='taxRate' name='taxRate' placeholder='0' value='{{taxRate}}' >
+      <input type='text' class='form-control nullable {{#errors.taxRate.has_errors}}is-invalid{{/errors.taxRate.has_errors}}' id='taxRate' name='taxRate' placeholder='0' value='{{taxRate}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.taxRate.messages}}<li>{{.}}</li>{{/errors.taxRate.messages}}
@@ -458,7 +503,7 @@ $(document).ready(function () {
   <div class='form-group row {{taxStatus_id_row_class}}'>
     <label for='taxStatus_id' class='col-sm-4 col-form-label'>taxStatus_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.taxStatus_id.has_errors}}is-invalid{{/errors.taxStatus_id.has_errors}}' id='taxStatus_id' name='taxStatus_id' placeholder='NULL' value='{{taxStatus_id}}' >
+      <input type='text' class='form-control nullable {{#errors.taxStatus_id.has_errors}}is-invalid{{/errors.taxStatus_id.has_errors}}' id='taxStatus_id' name='taxStatus_id' placeholder='NULL' value='{{taxStatus_id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.taxStatus_id.messages}}<li>{{.}}</li>{{/errors.taxStatus_id.messages}}
@@ -471,7 +516,7 @@ $(document).ready(function () {
   <div class='form-group row {{status_id_row_class}}'>
     <label for='status_id' class='col-sm-4 col-form-label'>status_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.status_id.has_errors}}is-invalid{{/errors.status_id.has_errors}}' id='status_id' name='status_id' placeholder='0' value='{{status_id}}' >
+      <input type='text' class='form-control nullable {{#errors.status_id.has_errors}}is-invalid{{/errors.status_id.has_errors}}' id='status_id' name='status_id' placeholder='0' value='{{status_id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.status_id.messages}}<li>{{.}}</li>{{/errors.status_id.messages}}
@@ -708,6 +753,26 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -721,13 +786,26 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

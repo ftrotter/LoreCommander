@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{null_var_row_class}}'>
     <label for='null_var' class='col-sm-4 col-form-label'>null_var</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.null_var.has_errors}}is-invalid{{/errors.null_var.has_errors}}' id='null_var' name='null_var' placeholder='NULL' value='{{null_var}}' >
+      <input type='text' class='form-control nullable {{#errors.null_var.has_errors}}is-invalid{{/errors.null_var.has_errors}}' id='null_var' name='null_var' placeholder='NULL' value='{{null_var}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.null_var.messages}}<li>{{.}}</li>{{/errors.null_var.messages}}
@@ -61,7 +61,7 @@
   <div class='form-group row {{non_null_var_def_row_class}}'>
     <label for='non_null_var_def' class='col-sm-4 col-form-label'>non_null_var_def</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.non_null_var_def.has_errors}}is-invalid{{/errors.non_null_var_def.has_errors}}' id='non_null_var_def' name='non_null_var_def' placeholder='' value='{{non_null_var_def}}' >
+      <input type='text' class='form-control  {{#errors.non_null_var_def.has_errors}}is-invalid{{/errors.non_null_var_def.has_errors}}' id='non_null_var_def' name='non_null_var_def' placeholder='' value='{{non_null_var_def}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.non_null_var_def.messages}}<li>{{.}}</li>{{/errors.non_null_var_def.messages}}
@@ -71,7 +71,7 @@
   <div class='form-group row {{non_null_var_no_def_row_class}}'>
     <label for='non_null_var_no_def' class='col-sm-4 col-form-label'>non_null_var_no_def</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.non_null_var_no_def.has_errors}}is-invalid{{/errors.non_null_var_no_def.has_errors}}' id='non_null_var_no_def' name='non_null_var_no_def' placeholder='NULL' value='{{non_null_var_no_def}}' >
+      <input type='text' class='form-control nullable {{#errors.non_null_var_no_def.has_errors}}is-invalid{{/errors.non_null_var_no_def.has_errors}}' id='non_null_var_no_def' name='non_null_var_no_def' placeholder='NULL' value='{{non_null_var_no_def}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.non_null_var_no_def.messages}}<li>{{.}}</li>{{/errors.non_null_var_no_def.messages}}
@@ -84,7 +84,7 @@
   <div class='form-group row {{nullable_w_default_row_class}}'>
     <label for='nullable_w_default' class='col-sm-4 col-form-label'>nullable_w_default</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.nullable_w_default.has_errors}}is-invalid{{/errors.nullable_w_default.has_errors}}' id='nullable_w_default' name='nullable_w_default' placeholder=''THIS IS THE DEFAULT'' value='{{nullable_w_default}}' >
+      <input type='text' class='form-control nullable {{#errors.nullable_w_default.has_errors}}is-invalid{{/errors.nullable_w_default.has_errors}}' id='nullable_w_default' name='nullable_w_default' placeholder=''THIS IS THE DEFAULT'' value='{{nullable_w_default}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.nullable_w_default.messages}}<li>{{.}}</li>{{/errors.nullable_w_default.messages}}
@@ -97,7 +97,7 @@
   <div class='form-group row {{non_null_default_row_class}}'>
     <label for='non_null_default' class='col-sm-4 col-form-label'>non_null_default</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.non_null_default.has_errors}}is-invalid{{/errors.non_null_default.has_errors}}' id='non_null_default' name='non_null_default' placeholder=''I CANNOT BE NULL'' value='{{non_null_default}}' >
+      <input type='text' class='form-control  {{#errors.non_null_default.has_errors}}is-invalid{{/errors.non_null_default.has_errors}}' id='non_null_default' name='non_null_default' placeholder=''I CANNOT BE NULL'' value='{{non_null_default}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.non_null_default.messages}}<li>{{.}}</li>{{/errors.non_null_default.messages}}
@@ -130,6 +130,26 @@
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -143,13 +163,26 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly
