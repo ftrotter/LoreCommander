@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=dc44adc8a9666eaef480d61b8507b627
+FILE_SIG=66e35a22eff7dbbbb2601dc2da6b5817
 */
 namespace App;
 /*
@@ -26,6 +26,7 @@ class wallpaper_illustration extends \App\DURC\Models\wallpaper_illustration
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'wallpaper', //from belongs to
 		];
 
 */
@@ -33,6 +34,7 @@ class wallpaper_illustration extends \App\DURC\Models\wallpaper_illustration
 	protected  $hidden = [
 			//'id', //int
 			//'wallpaper_name', //varchar
+			//'wallpaper_id', //int
 			//'illustration_id', //varchar
 			//'created_at', //datetime
 			//'updated_at', //datetime
@@ -42,7 +44,16 @@ class wallpaper_illustration extends \App\DURC\Models\wallpaper_illustration
 //DURC HAS_MANY SECTION
 			//DURC did not detect any has_many relationships
 //DURC BELONGS_TO SECTION
-			//DURC did not detect any belongs_to relationships
+
+/**
+*	DURC is handling the wallpaper for this wallpaper_illustration in wallpaper_illustration
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function wallpaper(){
+		return parent::wallpaper();
+	}
+
+
 
 	//look in the parent class for the SQL used to generate the underlying table
 

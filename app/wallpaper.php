@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=e18f77d56b91ba7e4fed7d0c1fb26585
+FILE_SIG=63712ba4ddad66cc38a5a519de3cb38a
 */
 namespace App;
 /*
@@ -26,6 +26,7 @@ class wallpaper extends \App\DURC\Models\wallpaper
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
+			'wallpaper_illustration', //from from many
 			'wallpaper_url', //from from many
 		];
 
@@ -43,6 +44,15 @@ class wallpaper extends \App\DURC\Models\wallpaper
 
 
 //DURC HAS_MANY SECTION
+
+/**
+*	DURC is handling the wallpaper_illustration for this wallpaper in wallpaper
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function wallpaper_illustration(){
+		return parent::wallpaper_illustration();
+	}
+
 
 /**
 *	DURC is handling the wallpaper_url for this wallpaper in wallpaper
