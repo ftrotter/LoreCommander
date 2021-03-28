@@ -20,10 +20,20 @@
         height: min-content;
         vertical-align: middle;
     }
+
+    .alternate_row {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        padding-top: 5px;
+
+    }
+
+
 </style>
 </head>
 <body>
 
+@include('Zermelo::menu')
 
 @include('Zermelo::card')
 
