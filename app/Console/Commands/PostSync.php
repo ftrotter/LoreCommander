@@ -503,7 +503,8 @@ WHERE
 
 	}
 
-
+                $hping_result = \CareSet\Util::hping('HC_POST_SYNC_URL');
+                $this->info($hping_result);
 
 
 

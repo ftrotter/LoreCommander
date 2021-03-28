@@ -129,6 +129,9 @@ class SlowScrapeScryfall extends Command
 
 
 	$this->call('scry:post_sync',[]); //call scry syn with no arguments... 
+
+        $hping_result = \CareSet\Util::hping('HC_MAIN_SYNC_URL');
+        $this->info($hping_result);
 	
 	$this->info('all done.');
     }//end of handler function
