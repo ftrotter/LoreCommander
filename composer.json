@@ -1,31 +1,31 @@
 {
-    "name": "ftrotter/lore",
-    "description": "Lore Commander MTG Data Analysis Project",
+    "name": "careset/eden",
+    "description": "CareSet Project that starts with Eden",
     "keywords": [
-        "MTG",
-        "zermelo"
     ],
-    "license": "MIT",
+    "license": "Proprietary",
     "type": "project",
     "repositories": [
         {
-            "type": "git",
-            "url": "git@github.com:CareSet/ZermeloBladeGraph.git"
+            "type": "vcs",
+            "url": "git@github.com:CareSet/CareSetJWTAuthClient.git"
         }
+
     ],
     "require": {
         "php": ">=7.2.0",
-        "careset/durc": ">=0.9",
-        "careset/zermelo": "^2.0",
-        "doctrine/sql-formatter": "^1.1",
+        "careset/caresetjwtauthclient": "dev-master",
+        "careset/durc": ">=1.0",
+        "careset/zermelo": ">=2.0",
+        "davidgorges/color-contrast": "^1.0",
         "ftrotter/two-table-monolog-mysql": "dev-master",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "^6.20",
         "laravel/helpers": "^1.1",
         "owen-it/laravel-auditing": "^10.0",
         "phpunit/phpunit": "^7.3",
-        "proai/laravel-handlebars": "^1.6",
+        "proai/laravel-handlebars": "~1.9",
         "pusher/pusher-php-server": "^4.0",
-        "sunra/php-simple-html-dom-parser": "^1.5",
+	"kub-at/php-simple-html-dom-parser": "^1.9",
         "superbalist/flysystem-google-storage": "^7.0",
         "vlucas/phpdotenv": "^3.3"
     },
@@ -37,7 +37,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+	    "CareSet\\": "CareSet/"
         }
     },
     "autoload-dev": {
@@ -62,6 +63,7 @@
             "@php artisan package:discover"
         ]
     },
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "preferred-install": "dist",
