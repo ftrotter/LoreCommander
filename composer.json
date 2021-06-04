@@ -1,7 +1,9 @@
 {
-    "name": "careset/eden",
-    "description": "CareSet Project that starts with Eden",
+    "name": "careset/lorecommander",
+    "description": "Data analysis on MTG cards using the Zermelo reporting engine",
     "keywords": [
+	"MTG",
+	"Zermelo"
     ],
     "license": "Proprietary",
     "type": "project",

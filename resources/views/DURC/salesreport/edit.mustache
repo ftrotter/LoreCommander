@@ -38,7 +38,7 @@
   <div class='form-group row {{groupBy_row_class}}'>
     <label for='groupBy' class='col-sm-4 col-form-label'>groupBy</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.groupBy.has_errors}}is-invalid{{/errors.groupBy.has_errors}}' id='groupBy' name='groupBy' placeholder='' value='{{groupBy}}' >
+      <input type='text' class='form-control {{#errors.groupBy.has_errors}}is-invalid{{/errors.groupBy.has_errors}}' id='groupBy' name='groupBy' placeholder='' value='{{groupBy}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.groupBy.messages}}<li>{{.}}</li>{{/errors.groupBy.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{display_row_class}}'>
     <label for='display' class='col-sm-4 col-form-label'>display</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.display.has_errors}}is-invalid{{/errors.display.has_errors}}' id='display' name='display' placeholder='NULL' value='{{display}}' >
+      <input type='text' class='form-control {{#errors.display.has_errors}}is-invalid{{/errors.display.has_errors}}' id='display' name='display' placeholder='NULL' value='{{display}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.display.messages}}<li>{{.}}</li>{{/errors.display.messages}}
@@ -61,7 +61,7 @@
   <div class='form-group row {{title_row_class}}'>
     <label for='title' class='col-sm-4 col-form-label'>title</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.title.has_errors}}is-invalid{{/errors.title.has_errors}}' id='title' name='title' placeholder='NULL' value='{{title}}' >
+      <input type='text' class='form-control {{#errors.title.has_errors}}is-invalid{{/errors.title.has_errors}}' id='title' name='title' placeholder='NULL' value='{{title}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.title.messages}}<li>{{.}}</li>{{/errors.title.messages}}
@@ -74,7 +74,7 @@
   <div class='form-group row {{filterRowSource_row_class}}'>
     <label for='filterRowSource' class='col-sm-4 col-form-label'>filterRowSource</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.filterRowSource.has_errors}}is-invalid{{/errors.filterRowSource.has_errors}}' id='filterRowSource' name='filterRowSource' placeholder='NULL' value='{{filterRowSource}}' >
+      <input type='text' class='form-control {{#errors.filterRowSource.has_errors}}is-invalid{{/errors.filterRowSource.has_errors}}' id='filterRowSource' name='filterRowSource' placeholder='NULL' value='{{filterRowSource}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.filterRowSource.messages}}<li>{{.}}</li>{{/errors.filterRowSource.messages}}
@@ -87,7 +87,7 @@
   <div class='form-group row {{default_row_class}}'>
     <label for='default' class='col-sm-4 col-form-label'>default</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.default.has_errors}}is-invalid{{/errors.default.has_errors}}' id='default' name='default' placeholder='0' value='{{default}}' >
+      <input type='text' class='form-control {{#errors.default.has_errors}}is-invalid{{/errors.default.has_errors}}' id='default' name='default' placeholder='0' value='{{default}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.default.messages}}<li>{{.}}</li>{{/errors.default.messages}}
@@ -120,26 +120,6 @@
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -153,26 +133,13 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

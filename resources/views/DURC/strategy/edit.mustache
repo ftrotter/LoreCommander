@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{strategy_name_row_class}}'>
     <label for='strategy_name' class='col-sm-4 col-form-label'>strategy_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.strategy_name.has_errors}}is-invalid{{/errors.strategy_name.has_errors}}' id='strategy_name' name='strategy_name' placeholder='' value='{{strategy_name}}' >
+      <input type='text' class='form-control {{#errors.strategy_name.has_errors}}is-invalid{{/errors.strategy_name.has_errors}}' id='strategy_name' name='strategy_name' placeholder='' value='{{strategy_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.strategy_name.messages}}<li>{{.}}</li>{{/errors.strategy_name.messages}}
@@ -58,7 +58,7 @@
   <div class='form-group row {{strategy_description_row_class}}'>
     <label for='strategy_description' class='col-sm-4 col-form-label'>strategy_description</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.strategy_description.has_errors}}is-invalid{{/errors.strategy_description.has_errors}}' id='strategy_description' name='strategy_description' placeholder='' value='{{strategy_description}}' >
+      <input type='text' class='form-control {{#errors.strategy_description.has_errors}}is-invalid{{/errors.strategy_description.has_errors}}' id='strategy_description' name='strategy_description' placeholder='' value='{{strategy_description}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.strategy_description.messages}}<li>{{.}}</li>{{/errors.strategy_description.messages}}
@@ -68,7 +68,7 @@
   <div class='form-group row {{strategy_url_row_class}}'>
     <label for='strategy_url' class='col-sm-4 col-form-label'>strategy_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.strategy_url.has_errors}}is-invalid{{/errors.strategy_url.has_errors}}' id='strategy_url' name='strategy_url' placeholder='' value='{{strategy_url}}' >
+      <input type='text' class='form-control {{#errors.strategy_url.has_errors}}is-invalid{{/errors.strategy_url.has_errors}}' id='strategy_url' name='strategy_url' placeholder='' value='{{strategy_url}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.strategy_url.messages}}<li>{{.}}</li>{{/errors.strategy_url.messages}}
@@ -80,68 +80,30 @@
     <div class='col-sm-7'>
 	Current id value: {{wincon_cardface_id}} (see below for lookup value)<br>
 	<select class='select2_wincon_cardface_id form-control' id='wincon_cardface_id' name='wincon_cardface_id'  >
-	<option value='{{wincon_cardface_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{wincon_cardface_id}}' selected='selected'>{{wincon_cardface_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('wincon_cardface_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#wincon_cardface_id option:selected');
-    const cardfaceId = element.val();
-    let cardfaceIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/cardface/' + cardfaceId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        cardfaceIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_wincon_cardface_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/cardface',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_wincon_cardface_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/cardface',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-wincon_cardface_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('wincon_cardface_id');
-        if (cardfaceIdHasError === true) {
-            $('#select2-wincon_cardface_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -149,7 +111,7 @@ $(document).ready(function () {
   <div class='form-group row {{WOTC_rule_reference_row_class}}'>
     <label for='WOTC_rule_reference' class='col-sm-4 col-form-label'>WOTC_rule_reference</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.WOTC_rule_reference.has_errors}}is-invalid{{/errors.WOTC_rule_reference.has_errors}}' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='NULL' value='{{WOTC_rule_reference}}' >
+      <input type='text' class='form-control {{#errors.WOTC_rule_reference.has_errors}}is-invalid{{/errors.WOTC_rule_reference.has_errors}}' id='WOTC_rule_reference' name='WOTC_rule_reference' placeholder='NULL' value='{{WOTC_rule_reference}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.WOTC_rule_reference.messages}}<li>{{.}}</li>{{/errors.WOTC_rule_reference.messages}}
@@ -162,7 +124,7 @@ $(document).ready(function () {
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -193,7 +155,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -469,26 +431,6 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -502,26 +444,13 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

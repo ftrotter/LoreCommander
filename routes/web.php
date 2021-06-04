@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('pod_matrix', 'DraftPodMatrix@show_matrix');
+
+
+
 Route::get('changeCard/{channel_id}/{multiverse_id}', 'cardShowController@sendCardPush');
 Route::get('showCard/{channel_id}', 'cardShowController@showCard');
 Route::get('showJustCard/{channel_id}', 'cardShowController@showJustCard');

@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{last_name_row_class}}'>
     <label for='last_name' class='col-sm-4 col-form-label'>last_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.last_name.has_errors}}is-invalid{{/errors.last_name.has_errors}}' id='last_name' name='last_name' placeholder='' value='{{last_name}}' >
+      <input type='text' class='form-control {{#errors.last_name.has_errors}}is-invalid{{/errors.last_name.has_errors}}' id='last_name' name='last_name' placeholder='' value='{{last_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.last_name.messages}}<li>{{.}}</li>{{/errors.last_name.messages}}
@@ -58,7 +58,7 @@
   <div class='form-group row {{first_name_row_class}}'>
     <label for='first_name' class='col-sm-4 col-form-label'>first_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.first_name.has_errors}}is-invalid{{/errors.first_name.has_errors}}' id='first_name' name='first_name' placeholder='' value='{{first_name}}' >
+      <input type='text' class='form-control {{#errors.first_name.has_errors}}is-invalid{{/errors.first_name.has_errors}}' id='first_name' name='first_name' placeholder='' value='{{first_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.first_name.messages}}<li>{{.}}</li>{{/errors.first_name.messages}}
@@ -68,7 +68,7 @@
   <div class='form-group row {{person_blurb_row_class}}'>
     <label for='person_blurb' class='col-sm-4 col-form-label'>person_blurb</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.person_blurb.has_errors}}is-invalid{{/errors.person_blurb.has_errors}}' id='person_blurb' name='person_blurb' placeholder='' value='{{person_blurb}}' >
+      <input type='text' class='form-control {{#errors.person_blurb.has_errors}}is-invalid{{/errors.person_blurb.has_errors}}' id='person_blurb' name='person_blurb' placeholder='' value='{{person_blurb}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.person_blurb.messages}}<li>{{.}}</li>{{/errors.person_blurb.messages}}
@@ -78,7 +78,7 @@
   <div class='form-group row {{image_uri_row_class}}'>
     <label for='image_uri' class='col-sm-4 col-form-label'>image_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}' >
+      <input type='text' class='form-control {{#errors.image_uri.has_errors}}is-invalid{{/errors.image_uri.has_errors}}' id='image_uri' name='image_uri' placeholder='NULL' value='{{image_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.image_uri.messages}}<li>{{.}}</li>{{/errors.image_uri.messages}}
@@ -91,7 +91,7 @@
   <div class='form-group row {{wallpaper_download_url_row_class}}'>
     <label for='wallpaper_download_url' class='col-sm-4 col-form-label'>wallpaper_download_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.wallpaper_download_url.has_errors}}is-invalid{{/errors.wallpaper_download_url.has_errors}}' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='NULL' value='{{wallpaper_download_url}}' >
+      <input type='text' class='form-control {{#errors.wallpaper_download_url.has_errors}}is-invalid{{/errors.wallpaper_download_url.has_errors}}' id='wallpaper_download_url' name='wallpaper_download_url' placeholder='NULL' value='{{wallpaper_download_url}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.wallpaper_download_url.messages}}<li>{{.}}</li>{{/errors.wallpaper_download_url.messages}}
@@ -104,7 +104,7 @@
   <div class='form-group row {{mtgwiki_url_row_class}}'>
     <label for='mtgwiki_url' class='col-sm-4 col-form-label'>mtgwiki_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.mtgwiki_url.has_errors}}is-invalid{{/errors.mtgwiki_url.has_errors}}' id='mtgwiki_url' name='mtgwiki_url' placeholder='NULL' value='{{mtgwiki_url}}' >
+      <input type='text' class='form-control {{#errors.mtgwiki_url.has_errors}}is-invalid{{/errors.mtgwiki_url.has_errors}}' id='mtgwiki_url' name='mtgwiki_url' placeholder='NULL' value='{{mtgwiki_url}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.mtgwiki_url.messages}}<li>{{.}}</li>{{/errors.mtgwiki_url.messages}}
@@ -117,7 +117,7 @@
   <div class='form-group row {{wizards_story_url_row_class}}'>
     <label for='wizards_story_url' class='col-sm-4 col-form-label'>wizards_story_url</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.wizards_story_url.has_errors}}is-invalid{{/errors.wizards_story_url.has_errors}}' id='wizards_story_url' name='wizards_story_url' placeholder='NULL' value='{{wizards_story_url}}' >
+      <input type='text' class='form-control {{#errors.wizards_story_url.has_errors}}is-invalid{{/errors.wizards_story_url.has_errors}}' id='wizards_story_url' name='wizards_story_url' placeholder='NULL' value='{{wizards_story_url}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.wizards_story_url.messages}}<li>{{.}}</li>{{/errors.wizards_story_url.messages}}
@@ -130,7 +130,7 @@
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -161,7 +161,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -509,26 +509,6 @@
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -542,26 +522,13 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly
