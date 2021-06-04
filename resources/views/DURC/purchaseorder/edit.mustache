@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -50,68 +50,30 @@
     <div class='col-sm-7'>
 	Current id value: {{supplier_id}} (see below for lookup value)<br>
 	<select class='select2_supplier_id form-control' id='supplier_id' name='supplier_id'  >
-	<option value='{{supplier_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{supplier_id}}' selected='selected'>{{supplier_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('supplier_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#supplier_id option:selected');
-    const supplierId = element.val();
-    let supplierIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/supplier/' + supplierId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        supplierIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_supplier_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/supplier',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_supplier_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/supplier',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-supplier_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('supplier_id');
-        if (supplierIdHasError === true) {
-            $('#select2-supplier_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -121,68 +83,30 @@ $(document).ready(function () {
     <div class='col-sm-7'>
 	Current id value: {{createdBy_employee_id}} (see below for lookup value)<br>
 	<select class='select2_createdBy_employee_id form-control' id='createdBy_employee_id' name='createdBy_employee_id'  >
-	<option value='{{createdBy_employee_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{createdBy_employee_id}}' selected='selected'>{{createdBy_employee_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('createdBy_employee_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#createdBy_employee_id option:selected');
-    const employeeId = element.val();
-    let employeeIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/employee/' + employeeId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        employeeIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_createdBy_employee_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/employee',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_createdBy_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-createdBy_employee_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('createdBy_employee_id');
-        if (employeeIdHasError === true) {
-            $('#select2-createdBy_employee_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -190,7 +114,7 @@ $(document).ready(function () {
   <div class='form-group row {{submittedDate_row_class}}'>
     <label for='submittedDate' class='col-sm-4 col-form-label'>submittedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.submittedDate.has_errors}}is-invalid{{/errors.submittedDate.has_errors}}' id='submittedDate' name='submittedDate' placeholder='NULL' value='{{submittedDate}}' >
+      <input type='text' class='form-control {{#errors.submittedDate.has_errors}}is-invalid{{/errors.submittedDate.has_errors}}' id='submittedDate' name='submittedDate' placeholder='NULL' value='{{submittedDate}}' >
 
 <button type='button' class='btn btn-primary' id='submittedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -224,7 +148,7 @@ $(document).ready(function () {
   <div class='form-group row {{creationDate_row_class}}'>
     <label for='creationDate' class='col-sm-4 col-form-label'>creationDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.creationDate.has_errors}}is-invalid{{/errors.creationDate.has_errors}}' id='creationDate' name='creationDate' placeholder='current_timestamp()' value='{{creationDate}}' >
+      <input type='text' class='form-control {{#errors.creationDate.has_errors}}is-invalid{{/errors.creationDate.has_errors}}' id='creationDate' name='creationDate' placeholder='current_timestamp()' value='{{creationDate}}' >
 
 <button type='button' class='btn btn-primary' id='creationDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -257,68 +181,30 @@ $(document).ready(function () {
     <div class='col-sm-7'>
 	Current id value: {{status_id}} (see below for lookup value)<br>
 	<select class='select2_status_id form-control' id='status_id' name='status_id'  >
-	<option value='{{status_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{status_id}}' selected='selected'>{{status_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('status_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#status_id option:selected');
-    const purchaseOrderStatusId = element.val();
-    let purchaseOrderStatusIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/purchaseOrderStatus/' + purchaseOrderStatusId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        purchaseOrderStatusIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_status_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/purchaseOrderStatus',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_status_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/purchaseOrderStatus',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-status_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('status_id');
-        if (purchaseOrderStatusIdHasError === true) {
-            $('#select2-status_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -326,7 +212,7 @@ $(document).ready(function () {
   <div class='form-group row {{expectedDate_row_class}}'>
     <label for='expectedDate' class='col-sm-4 col-form-label'>expectedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.expectedDate.has_errors}}is-invalid{{/errors.expectedDate.has_errors}}' id='expectedDate' name='expectedDate' placeholder='NULL' value='{{expectedDate}}' >
+      <input type='text' class='form-control {{#errors.expectedDate.has_errors}}is-invalid{{/errors.expectedDate.has_errors}}' id='expectedDate' name='expectedDate' placeholder='NULL' value='{{expectedDate}}' >
 
 <button type='button' class='btn btn-primary' id='expectedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -360,7 +246,7 @@ $(document).ready(function () {
   <div class='form-group row {{shippingFee_row_class}}'>
     <label for='shippingFee' class='col-sm-4 col-form-label'>shippingFee</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.shippingFee.has_errors}}is-invalid{{/errors.shippingFee.has_errors}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}' >
+      <input type='text' class='form-control {{#errors.shippingFee.has_errors}}is-invalid{{/errors.shippingFee.has_errors}}' id='shippingFee' name='shippingFee' placeholder='0.0000' value='{{shippingFee}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.shippingFee.messages}}<li>{{.}}</li>{{/errors.shippingFee.messages}}
@@ -370,7 +256,7 @@ $(document).ready(function () {
   <div class='form-group row {{taxes_row_class}}'>
     <label for='taxes' class='col-sm-4 col-form-label'>taxes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.taxes.has_errors}}is-invalid{{/errors.taxes.has_errors}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}' >
+      <input type='text' class='form-control {{#errors.taxes.has_errors}}is-invalid{{/errors.taxes.has_errors}}' id='taxes' name='taxes' placeholder='0.0000' value='{{taxes}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.taxes.messages}}<li>{{.}}</li>{{/errors.taxes.messages}}
@@ -380,7 +266,7 @@ $(document).ready(function () {
   <div class='form-group row {{paymentDate_row_class}}'>
     <label for='paymentDate' class='col-sm-4 col-form-label'>paymentDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.paymentDate.has_errors}}is-invalid{{/errors.paymentDate.has_errors}}' id='paymentDate' name='paymentDate' placeholder='NULL' value='{{paymentDate}}' >
+      <input type='text' class='form-control {{#errors.paymentDate.has_errors}}is-invalid{{/errors.paymentDate.has_errors}}' id='paymentDate' name='paymentDate' placeholder='NULL' value='{{paymentDate}}' >
 
 <button type='button' class='btn btn-primary' id='paymentDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -414,7 +300,7 @@ $(document).ready(function () {
   <div class='form-group row {{paymentAmount_row_class}}'>
     <label for='paymentAmount' class='col-sm-4 col-form-label'>paymentAmount</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.paymentAmount.has_errors}}is-invalid{{/errors.paymentAmount.has_errors}}' id='paymentAmount' name='paymentAmount' placeholder='0.0000' value='{{paymentAmount}}' >
+      <input type='text' class='form-control {{#errors.paymentAmount.has_errors}}is-invalid{{/errors.paymentAmount.has_errors}}' id='paymentAmount' name='paymentAmount' placeholder='0.0000' value='{{paymentAmount}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.paymentAmount.messages}}<li>{{.}}</li>{{/errors.paymentAmount.messages}}
@@ -427,7 +313,7 @@ $(document).ready(function () {
   <div class='form-group row {{paymentMethod_row_class}}'>
     <label for='paymentMethod' class='col-sm-4 col-form-label'>paymentMethod</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.paymentMethod.has_errors}}is-invalid{{/errors.paymentMethod.has_errors}}' id='paymentMethod' name='paymentMethod' placeholder='NULL' value='{{paymentMethod}}' >
+      <input type='text' class='form-control {{#errors.paymentMethod.has_errors}}is-invalid{{/errors.paymentMethod.has_errors}}' id='paymentMethod' name='paymentMethod' placeholder='NULL' value='{{paymentMethod}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.paymentMethod.messages}}<li>{{.}}</li>{{/errors.paymentMethod.messages}}
@@ -440,7 +326,7 @@ $(document).ready(function () {
   <div class='form-group row {{notes_row_class}}'>
     <label for='notes' class='col-sm-4 col-form-label'>notes</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
+      <input type='text' class='form-control {{#errors.notes.has_errors}}is-invalid{{/errors.notes.has_errors}}' id='notes' name='notes' placeholder='NULL' value='{{notes}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.notes.messages}}<li>{{.}}</li>{{/errors.notes.messages}}
@@ -455,68 +341,30 @@ $(document).ready(function () {
     <div class='col-sm-7'>
 	Current id value: {{approvedBy_employee_id}} (see below for lookup value)<br>
 	<select class='select2_approvedBy_employee_id form-control' id='approvedBy_employee_id' name='approvedBy_employee_id'  >
-	<option value='{{approvedBy_employee_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{approvedBy_employee_id}}' selected='selected'>{{approvedBy_employee_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('approvedBy_employee_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#approvedBy_employee_id option:selected');
-    const employeeId = element.val();
-    let employeeIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/employee/' + employeeId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        employeeIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_approvedBy_employee_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/employee',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_approvedBy_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-approvedBy_employee_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('approvedBy_employee_id');
-        if (employeeIdHasError === true) {
-            $('#select2-approvedBy_employee_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -524,7 +372,7 @@ $(document).ready(function () {
   <div class='form-group row {{approvedDate_row_class}}'>
     <label for='approvedDate' class='col-sm-4 col-form-label'>approvedDate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.approvedDate.has_errors}}is-invalid{{/errors.approvedDate.has_errors}}' id='approvedDate' name='approvedDate' placeholder='NULL' value='{{approvedDate}}' >
+      <input type='text' class='form-control {{#errors.approvedDate.has_errors}}is-invalid{{/errors.approvedDate.has_errors}}' id='approvedDate' name='approvedDate' placeholder='NULL' value='{{approvedDate}}' >
 
 <button type='button' class='btn btn-primary' id='approvedDate_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -560,68 +408,30 @@ $(document).ready(function () {
     <div class='col-sm-7'>
 	Current id value: {{submittedBy_employee_id}} (see below for lookup value)<br>
 	<select class='select2_submittedBy_employee_id form-control' id='submittedBy_employee_id' name='submittedBy_employee_id'  >
-	<option value='{{submittedBy_employee_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{submittedBy_employee_id}}' selected='selected'>{{submittedBy_employee_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('submittedBy_employee_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#submittedBy_employee_id option:selected');
-    const employeeId = element.val();
-    let employeeIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/employee/' + employeeId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        employeeIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_submittedBy_employee_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/employee',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_submittedBy_employee_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/employee',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-submittedBy_employee_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('submittedBy_employee_id');
-        if (employeeIdHasError === true) {
-            $('#select2-submittedBy_employee_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -1041,26 +851,6 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -1074,26 +864,13 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

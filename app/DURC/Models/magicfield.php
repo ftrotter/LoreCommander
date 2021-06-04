@@ -4,7 +4,6 @@ namespace App\DURC\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -17,9 +16,7 @@ DURC_aaa.magicField by DURC.
 
 */
 
-class magicfield extends DURCModel {
-
-	 //not auditable, configured using is_auditable = 0 in config json
+class magicfield extends DURCModel{
 
     
 

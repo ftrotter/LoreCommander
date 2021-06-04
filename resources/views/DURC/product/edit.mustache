@@ -38,7 +38,7 @@
   <div class='form-group row {{supplier_ids_row_class}}'>
     <label for='supplier_ids' class='col-sm-4 col-form-label'>supplier_ids</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.supplier_ids.has_errors}}is-invalid{{/errors.supplier_ids.has_errors}}' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}' >
+      <input type='text' class='form-control {{#errors.supplier_ids.has_errors}}is-invalid{{/errors.supplier_ids.has_errors}}' id='supplier_ids' name='supplier_ids' placeholder='NULL' value='{{supplier_ids}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.supplier_ids.messages}}<li>{{.}}</li>{{/errors.supplier_ids.messages}}
@@ -51,7 +51,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -61,7 +61,7 @@
   <div class='form-group row {{productCode_row_class}}'>
     <label for='productCode' class='col-sm-4 col-form-label'>productCode</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.productCode.has_errors}}is-invalid{{/errors.productCode.has_errors}}' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}' >
+      <input type='text' class='form-control {{#errors.productCode.has_errors}}is-invalid{{/errors.productCode.has_errors}}' id='productCode' name='productCode' placeholder='NULL' value='{{productCode}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.productCode.messages}}<li>{{.}}</li>{{/errors.productCode.messages}}
@@ -74,7 +74,7 @@
   <div class='form-group row {{productName_row_class}}'>
     <label for='productName' class='col-sm-4 col-form-label'>productName</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.productName.has_errors}}is-invalid{{/errors.productName.has_errors}}' id='productName' name='productName' placeholder='NULL' value='{{productName}}' >
+      <input type='text' class='form-control {{#errors.productName.has_errors}}is-invalid{{/errors.productName.has_errors}}' id='productName' name='productName' placeholder='NULL' value='{{productName}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.productName.messages}}<li>{{.}}</li>{{/errors.productName.messages}}
@@ -87,7 +87,7 @@
   <div class='form-group row {{description_row_class}}'>
     <label for='description' class='col-sm-4 col-form-label'>description</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.description.has_errors}}is-invalid{{/errors.description.has_errors}}' id='description' name='description' placeholder='NULL' value='{{description}}' >
+      <input type='text' class='form-control {{#errors.description.has_errors}}is-invalid{{/errors.description.has_errors}}' id='description' name='description' placeholder='NULL' value='{{description}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.description.messages}}<li>{{.}}</li>{{/errors.description.messages}}
@@ -100,7 +100,7 @@
   <div class='form-group row {{standardCost_row_class}}'>
     <label for='standardCost' class='col-sm-4 col-form-label'>standardCost</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.standardCost.has_errors}}is-invalid{{/errors.standardCost.has_errors}}' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}' >
+      <input type='text' class='form-control {{#errors.standardCost.has_errors}}is-invalid{{/errors.standardCost.has_errors}}' id='standardCost' name='standardCost' placeholder='0.0000' value='{{standardCost}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.standardCost.messages}}<li>{{.}}</li>{{/errors.standardCost.messages}}
@@ -113,7 +113,7 @@
   <div class='form-group row {{listPrice_row_class}}'>
     <label for='listPrice' class='col-sm-4 col-form-label'>listPrice</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.listPrice.has_errors}}is-invalid{{/errors.listPrice.has_errors}}' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}' >
+      <input type='text' class='form-control {{#errors.listPrice.has_errors}}is-invalid{{/errors.listPrice.has_errors}}' id='listPrice' name='listPrice' placeholder='0.0000' value='{{listPrice}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.listPrice.messages}}<li>{{.}}</li>{{/errors.listPrice.messages}}
@@ -123,7 +123,7 @@
   <div class='form-group row {{reorderLevel_row_class}}'>
     <label for='reorderLevel' class='col-sm-4 col-form-label'>reorderLevel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.reorderLevel.has_errors}}is-invalid{{/errors.reorderLevel.has_errors}}' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}' >
+      <input type='text' class='form-control {{#errors.reorderLevel.has_errors}}is-invalid{{/errors.reorderLevel.has_errors}}' id='reorderLevel' name='reorderLevel' placeholder='NULL' value='{{reorderLevel}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.reorderLevel.messages}}<li>{{.}}</li>{{/errors.reorderLevel.messages}}
@@ -136,7 +136,7 @@
   <div class='form-group row {{targetLevel_row_class}}'>
     <label for='targetLevel' class='col-sm-4 col-form-label'>targetLevel</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.targetLevel.has_errors}}is-invalid{{/errors.targetLevel.has_errors}}' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}' >
+      <input type='text' class='form-control {{#errors.targetLevel.has_errors}}is-invalid{{/errors.targetLevel.has_errors}}' id='targetLevel' name='targetLevel' placeholder='NULL' value='{{targetLevel}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.targetLevel.messages}}<li>{{.}}</li>{{/errors.targetLevel.messages}}
@@ -149,7 +149,7 @@
   <div class='form-group row {{quantityPerUnit_row_class}}'>
     <label for='quantityPerUnit' class='col-sm-4 col-form-label'>quantityPerUnit</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.quantityPerUnit.has_errors}}is-invalid{{/errors.quantityPerUnit.has_errors}}' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}' >
+      <input type='text' class='form-control {{#errors.quantityPerUnit.has_errors}}is-invalid{{/errors.quantityPerUnit.has_errors}}' id='quantityPerUnit' name='quantityPerUnit' placeholder='NULL' value='{{quantityPerUnit}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.quantityPerUnit.messages}}<li>{{.}}</li>{{/errors.quantityPerUnit.messages}}
@@ -162,7 +162,7 @@
   <div class='form-group row {{discontinued_row_class}}'>
     <label for='discontinued' class='col-sm-4 col-form-label'>discontinued</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.discontinued.has_errors}}is-invalid{{/errors.discontinued.has_errors}}' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}' >
+      <input type='text' class='form-control {{#errors.discontinued.has_errors}}is-invalid{{/errors.discontinued.has_errors}}' id='discontinued' name='discontinued' placeholder='0' value='{{discontinued}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.discontinued.messages}}<li>{{.}}</li>{{/errors.discontinued.messages}}
@@ -172,7 +172,7 @@
   <div class='form-group row {{minimumReorderQuantity_row_class}}'>
     <label for='minimumReorderQuantity' class='col-sm-4 col-form-label'>minimumReorderQuantity</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.minimumReorderQuantity.has_errors}}is-invalid{{/errors.minimumReorderQuantity.has_errors}}' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}' >
+      <input type='text' class='form-control {{#errors.minimumReorderQuantity.has_errors}}is-invalid{{/errors.minimumReorderQuantity.has_errors}}' id='minimumReorderQuantity' name='minimumReorderQuantity' placeholder='NULL' value='{{minimumReorderQuantity}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.minimumReorderQuantity.messages}}<li>{{.}}</li>{{/errors.minimumReorderQuantity.messages}}
@@ -185,7 +185,7 @@
   <div class='form-group row {{category_row_class}}'>
     <label for='category' class='col-sm-4 col-form-label'>category</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.category.has_errors}}is-invalid{{/errors.category.has_errors}}' id='category' name='category' placeholder='NULL' value='{{category}}' >
+      <input type='text' class='form-control {{#errors.category.has_errors}}is-invalid{{/errors.category.has_errors}}' id='category' name='category' placeholder='NULL' value='{{category}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.category.messages}}<li>{{.}}</li>{{/errors.category.messages}}
@@ -198,7 +198,7 @@
   <div class='form-group row {{attachments_row_class}}'>
     <label for='attachments' class='col-sm-4 col-form-label'>attachments</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.attachments.has_errors}}is-invalid{{/errors.attachments.has_errors}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}' >
+      <input type='text' class='form-control {{#errors.attachments.has_errors}}is-invalid{{/errors.attachments.has_errors}}' id='attachments' name='attachments' placeholder='NULL' value='{{attachments}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.attachments.messages}}<li>{{.}}</li>{{/errors.attachments.messages}}
@@ -368,26 +368,6 @@
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -401,26 +381,13 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

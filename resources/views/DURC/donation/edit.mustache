@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{amount_row_class}}'>
     <label for='amount' class='col-sm-4 col-form-label'>amount</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.amount.has_errors}}is-invalid{{/errors.amount.has_errors}}' id='amount' name='amount' placeholder='' value='{{amount}}' >
+      <input type='text' class='form-control {{#errors.amount.has_errors}}is-invalid{{/errors.amount.has_errors}}' id='amount' name='amount' placeholder='' value='{{amount}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.amount.messages}}<li>{{.}}</li>{{/errors.amount.messages}}
@@ -60,68 +60,30 @@
     <div class='col-sm-7'>
 	Current id value: {{nonprofitcorp_id}} (see below for lookup value)<br>
 	<select class='select2_nonprofitcorp_id form-control' id='nonprofitcorp_id' name='nonprofitcorp_id'  >
-	<option value='{{nonprofitcorp_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	<option value='{{nonprofitcorp_id}}' selected='selected'>{{nonprofitcorp_id}}</option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('nonprofitcorp_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#nonprofitcorp_id option:selected');
-    const nonprofitcorpId = element.val();
-    let nonprofitcorpIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/nonprofitcorp/' + nonprofitcorpId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        nonprofitcorpIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_nonprofitcorp_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/nonprofitcorp',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
+
+$('.select2_nonprofitcorp_id').select2({
+  ajax: {
+    url: '/DURC/searchjson/nonprofitcorp',
+    delay: 1000,
+    dataType: 'json',
+    data: function (params) {
+          var query = {
+              q: params.term,
+              page: params.page || 1
           }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-nonprofitcorp_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('nonprofitcorp_id');
-        if (nonprofitcorpIdHasError === true) {
-            $('#select2-nonprofitcorp_id-container').addClass('text-danger');
-        }
-    });
+
+          // Query parameters will be ?search=[term]&page=[page]
+          return query;
+      }
+  }
 });
+
 
 </script>
 
@@ -129,7 +91,7 @@ $(document).ready(function () {
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -160,7 +122,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -191,7 +153,7 @@ $(document).ready(function () {
   <div class='form-group row {{deleted_at_row_class}}'>
     <label for='deleted_at' class='col-sm-4 col-form-label'>deleted_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.deleted_at.has_errors}}is-invalid{{/errors.deleted_at.has_errors}}' id='deleted_at' name='deleted_at' placeholder='NULL' value='{{deleted_at}}' >
+      <input type='text' class='form-control {{#errors.deleted_at.has_errors}}is-invalid{{/errors.deleted_at.has_errors}}' id='deleted_at' name='deleted_at' placeholder='NULL' value='{{deleted_at}}' >
 
 <button type='button' class='btn btn-primary' id='deleted_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -293,26 +255,6 @@ $(document).ready(function () {
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -326,26 +268,13 @@ $(document).ready(function () {
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

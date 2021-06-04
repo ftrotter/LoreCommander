@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{datetime_none_row_class}}'>
     <label for='datetime_none' class='col-sm-4 col-form-label'>datetime_none</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.datetime_none.has_errors}}is-invalid{{/errors.datetime_none.has_errors}}' id='datetime_none' name='datetime_none' placeholder='' value='{{datetime_none}}' >
+      <input type='text' class='form-control {{#errors.datetime_none.has_errors}}is-invalid{{/errors.datetime_none.has_errors}}' id='datetime_none' name='datetime_none' placeholder='' value='{{datetime_none}}' >
 
 <button type='button' class='btn btn-primary' id='datetime_none_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -79,7 +79,7 @@
   <div class='form-group row {{date_none_row_class}}'>
     <label for='date_none' class='col-sm-4 col-form-label'>date_none</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.date_none.has_errors}}is-invalid{{/errors.date_none.has_errors}}' id='date_none' name='date_none' placeholder='' value='{{date_none}}' >
+      <input type='text' class='form-control {{#errors.date_none.has_errors}}is-invalid{{/errors.date_none.has_errors}}' id='date_none' name='date_none' placeholder='' value='{{date_none}}' >
         
     <button type='button' class='btn btn-primary' id='date_none_FontPicker'>
     <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -111,7 +111,7 @@
   <div class='form-group row {{datetime_current_row_class}}'>
     <label for='datetime_current' class='col-sm-4 col-form-label'>datetime_current</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.datetime_current.has_errors}}is-invalid{{/errors.datetime_current.has_errors}}' id='datetime_current' name='datetime_current' placeholder='current_timestamp()' value='{{datetime_current}}' >
+      <input type='text' class='form-control {{#errors.datetime_current.has_errors}}is-invalid{{/errors.datetime_current.has_errors}}' id='datetime_current' name='datetime_current' placeholder='current_timestamp()' value='{{datetime_current}}' >
 
 <button type='button' class='btn btn-primary' id='datetime_current_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -142,7 +142,7 @@
   <div class='form-group row {{date_current_row_class}}'>
     <label for='date_current' class='col-sm-4 col-form-label'>date_current</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.date_current.has_errors}}is-invalid{{/errors.date_current.has_errors}}' id='date_current' name='date_current' placeholder=''Current timestamp not supported for date'' value='{{date_current}}' >
+      <input type='text' class='form-control {{#errors.date_current.has_errors}}is-invalid{{/errors.date_current.has_errors}}' id='date_current' name='date_current' placeholder=''Current timestamp not supported for date'' value='{{date_current}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.date_current.messages}}<li>{{.}}</li>{{/errors.date_current.messages}}
@@ -155,7 +155,7 @@
   <div class='form-group row {{datetime_null_row_class}}'>
     <label for='datetime_null' class='col-sm-4 col-form-label'>datetime_null</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.datetime_null.has_errors}}is-invalid{{/errors.datetime_null.has_errors}}' id='datetime_null' name='datetime_null' placeholder='NULL' value='{{datetime_null}}' >
+      <input type='text' class='form-control {{#errors.datetime_null.has_errors}}is-invalid{{/errors.datetime_null.has_errors}}' id='datetime_null' name='datetime_null' placeholder='NULL' value='{{datetime_null}}' >
 
 <button type='button' class='btn btn-primary' id='datetime_null_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -189,7 +189,7 @@
   <div class='form-group row {{date_null_row_class}}'>
     <label for='date_null' class='col-sm-4 col-form-label'>date_null</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.date_null.has_errors}}is-invalid{{/errors.date_null.has_errors}}' id='date_null' name='date_null' placeholder='NULL' value='{{date_null}}' >
+      <input type='text' class='form-control {{#errors.date_null.has_errors}}is-invalid{{/errors.date_null.has_errors}}' id='date_null' name='date_null' placeholder='NULL' value='{{date_null}}' >
         
     <button type='button' class='btn btn-primary' id='date_null_FontPicker'>
     <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -224,7 +224,7 @@
   <div class='form-group row {{datetime_defined_row_class}}'>
     <label for='datetime_defined' class='col-sm-4 col-form-label'>datetime_defined</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.datetime_defined.has_errors}}is-invalid{{/errors.datetime_defined.has_errors}}' id='datetime_defined' name='datetime_defined' placeholder=''2000-01-01 01:23:45'' value='{{datetime_defined}}' >
+      <input type='text' class='form-control {{#errors.datetime_defined.has_errors}}is-invalid{{/errors.datetime_defined.has_errors}}' id='datetime_defined' name='datetime_defined' placeholder=''2000-01-01 01:23:45'' value='{{datetime_defined}}' >
 
 <button type='button' class='btn btn-primary' id='datetime_defined_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -255,7 +255,7 @@
   <div class='form-group row {{date_defined_row_class}}'>
     <label for='date_defined' class='col-sm-4 col-form-label'>date_defined</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.date_defined.has_errors}}is-invalid{{/errors.date_defined.has_errors}}' id='date_defined' name='date_defined' placeholder=''2000-01-01'' value='{{date_defined}}' >
+      <input type='text' class='form-control {{#errors.date_defined.has_errors}}is-invalid{{/errors.date_defined.has_errors}}' id='date_defined' name='date_defined' placeholder=''2000-01-01'' value='{{date_defined}}' >
         
     <button type='button' class='btn btn-primary' id='date_defined_FontPicker'>
     <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -310,26 +310,6 @@
 <br>
     
     <script type='text/javascript'>
-    
-        // These function control the spinner display when loading many remote entities
-        let loading_queue = [];
-        function add_to_loading_queue(element) {
-            if (loading_queue.length == 0) {
-                $('#loader').modal();
-            }
-            loading_queue.push(element);
-        }
-
-        function remove_from_loading_queue(element) {
-            const index = loading_queue.indexOf(element);
-            if (index >= 0) {
-              loading_queue.splice(index, 1);
-            }
-            if (loading_queue.length == 0) {
-                $('#loader').modal('hide');
-            }
-        }
-        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -343,26 +323,13 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
-                    if (c === true) {
-                        last_null_values[id]= $('#'+id).val();
-                        $('#'+id).val(null);
-                        $('#'+id).attr('readonly', true);
-                    }
+                    last_null_values[id]= $('#'+id).val();
+                    $('#'+id).val(null);
+                    $('#'+id).attr('readonly', true);
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
-            });
-            
-            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
-            $('.nullable').click(function(e) {
-                let checkboxId = '#' + $(this).attr('id') + 'Null';
-                if ($(checkboxId).prop('checked')) {
-                    // Uncheck the null box and clear read-only by triggering change
-                    $(checkboxId).prop('checked', '');
-                    $(checkboxId).change();
-                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

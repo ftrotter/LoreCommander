@@ -18,6 +18,7 @@ class  ScryfallSaver {
 		//these values can just be safely saved straight to the database.
                 public static  $card_field_mirror = [
                         'lang',
+			'released_at',
                         'oracle_id',
                         'rulings_uri',
                         'layout',
@@ -124,7 +125,7 @@ class  ScryfallSaver {
 			}	
 	
 			foreach($card_loop as $this_card){
-	
+				
 				if(isset($this_card['illustration_id'])){	
 					$illustration_id = $this_card['illustration_id'];
 				}else{

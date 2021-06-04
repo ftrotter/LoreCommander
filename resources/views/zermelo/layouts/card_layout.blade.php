@@ -28,6 +28,13 @@
 
     }
 
+    @media print {
+	.alternate_row {
+		background-color: white;
+	}
+
+     }
+
 
 </style>
 </head>

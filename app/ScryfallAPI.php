@@ -82,6 +82,11 @@ class  ScryfallAPI {
     
     		if($info['http_code']==200){
 			$this_data = json_decode($response,true);
+			if(is_null($this_data['data'])){
+				echo "Error: nothing in the data field..\n";
+				var_export($this_data);
+				return([]);
+			}
 			if(count($this_data['data']) == $page_size){
 				//get the next page of data..
 				$new_page = $page_id +  1;
