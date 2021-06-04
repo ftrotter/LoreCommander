@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=22ba3af19e033bf883567b2238b1ec94
+FILE_SIG=db792dccfc7a61c3cfc455bb1c16737f
 */
 namespace App;
 /*
@@ -43,7 +43,7 @@ class card extends \App\DURC\Models\card
 			//'scryfall_api_uri', //varchar
 			//'layout', //varchar
 			//'rarity', //varchar
-			//'released_at', //varchar
+			//'released_at', //date
 			//'set_name', //varchar
 			//'set_type', //varchar
 			//'mtgset_id', //int

@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ DURC_aaa.test_created_only by DURC.
 
 */
 
-class test_created_only extends DURCModel{
+class test_created_only extends DURCModel {
+
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 

@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{tag_name_row_class}}'>
     <label for='tag_name' class='col-sm-4 col-form-label'>tag_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.tag_name.has_errors}}is-invalid{{/errors.tag_name.has_errors}}' id='tag_name' name='tag_name' placeholder='' value='{{tag_name}}' >
+      <input type='text' class='form-control  {{#errors.tag_name.has_errors}}is-invalid{{/errors.tag_name.has_errors}}' id='tag_name' name='tag_name' placeholder='' value='{{tag_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.tag_name.messages}}<li>{{.}}</li>{{/errors.tag_name.messages}}
@@ -59,7 +59,12 @@
     <div class='col-sm-4'><label>is_directed</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_directed' name='is_directed' {{is_directed}}  >
+            <input type='checkbox' id='is_directed' class='{{#errors.is_directed.has_errors}}is-invalid{{/errors.is_directed.has_errors}}'name='is_directed' {{is_directed}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_directed.messages}}<li>{{.}}</li>{{/errors.is_directed.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -69,30 +74,68 @@
     <div class='col-sm-7'>
 	Current id value: {{excludes_tag_id}} (see below for lookup value)<br>
 	<select class='select2_excludes_tag_id form-control' id='excludes_tag_id' name='excludes_tag_id'  >
-	<option value='{{excludes_tag_id}}' selected='selected'>{{excludes_tag_id}}</option>
+	<option value='{{excludes_tag_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
 	</select>
     </div>
   </div>
 
 <script type='text/javascript'>
-
-$('.select2_excludes_tag_id').select2({
-  ajax: {
-    url: '/DURC/searchjson/tag',
-    delay: 1000,
-    dataType: 'json',
-    data: function (params) {
-          var query = {
-              q: params.term,
-              page: params.page || 1
+$(document).ready(function () {
+    // Show the loader/spinner
+    add_to_loading_queue('excludes_tag_id');
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#excludes_tag_id option:selected');
+    const tagId = element.val();
+    let tagIdHasError = false;
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/tag/' + tagId,
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        tagIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
+        $('.select2_excludes_tag_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/tag',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
           }
-
-          // Query parameters will be ?search=[term]&page=[page]
-          return query;
-      }
-  }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-excludes_tag_id-container').removeClass('text-danger');
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        remove_from_loading_queue('excludes_tag_id');
+        if (tagIdHasError === true) {
+            $('#select2-excludes_tag_id-container').addClass('text-danger');
+        }
+    });
 });
-
 
 </script>
 
@@ -100,7 +143,7 @@ $('.select2_excludes_tag_id').select2({
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -131,7 +174,7 @@ $('.select2_excludes_tag_id').select2({
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -398,6 +441,26 @@ $('.select2_excludes_tag_id').select2({
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -411,13 +474,26 @@ $('.select2_excludes_tag_id').select2({
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

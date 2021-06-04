@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{scryfall_id_row_class}}'>
     <label for='scryfall_id' class='col-sm-4 col-form-label'>scryfall_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.scryfall_id.has_errors}}is-invalid{{/errors.scryfall_id.has_errors}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}' >
+      <input type='text' class='form-control  {{#errors.scryfall_id.has_errors}}is-invalid{{/errors.scryfall_id.has_errors}}' id='scryfall_id' name='scryfall_id' placeholder='' value='{{scryfall_id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.scryfall_id.messages}}<li>{{.}}</li>{{/errors.scryfall_id.messages}}
@@ -58,7 +58,7 @@
   <div class='form-group row {{code_row_class}}'>
     <label for='code' class='col-sm-4 col-form-label'>code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.code.has_errors}}is-invalid{{/errors.code.has_errors}}' id='code' name='code' placeholder='' value='{{code}}' >
+      <input type='text' class='form-control  {{#errors.code.has_errors}}is-invalid{{/errors.code.has_errors}}' id='code' name='code' placeholder='' value='{{code}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.code.messages}}<li>{{.}}</li>{{/errors.code.messages}}
@@ -68,7 +68,7 @@
   <div class='form-group row {{mtgo_code_row_class}}'>
     <label for='mtgo_code' class='col-sm-4 col-form-label'>mtgo_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mtgo_code.has_errors}}is-invalid{{/errors.mtgo_code.has_errors}}' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}' >
+      <input type='text' class='form-control nullable {{#errors.mtgo_code.has_errors}}is-invalid{{/errors.mtgo_code.has_errors}}' id='mtgo_code' name='mtgo_code' placeholder='NULL' value='{{mtgo_code}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.mtgo_code.messages}}<li>{{.}}</li>{{/errors.mtgo_code.messages}}
@@ -81,7 +81,7 @@
   <div class='form-group row {{arena_code_row_class}}'>
     <label for='arena_code' class='col-sm-4 col-form-label'>arena_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.arena_code.has_errors}}is-invalid{{/errors.arena_code.has_errors}}' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}' >
+      <input type='text' class='form-control nullable {{#errors.arena_code.has_errors}}is-invalid{{/errors.arena_code.has_errors}}' id='arena_code' name='arena_code' placeholder='NULL' value='{{arena_code}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.arena_code.messages}}<li>{{.}}</li>{{/errors.arena_code.messages}}
@@ -94,7 +94,7 @@
   <div class='form-group row {{tcgplayer_id_row_class}}'>
     <label for='tcgplayer_id' class='col-sm-4 col-form-label'>tcgplayer_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.tcgplayer_id.has_errors}}is-invalid{{/errors.tcgplayer_id.has_errors}}' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}' >
+      <input type='text' class='form-control nullable {{#errors.tcgplayer_id.has_errors}}is-invalid{{/errors.tcgplayer_id.has_errors}}' id='tcgplayer_id' name='tcgplayer_id' placeholder='NULL' value='{{tcgplayer_id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.tcgplayer_id.messages}}<li>{{.}}</li>{{/errors.tcgplayer_id.messages}}
@@ -107,7 +107,7 @@
   <div class='form-group row {{name_row_class}}'>
     <label for='name' class='col-sm-4 col-form-label'>name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
+      <input type='text' class='form-control  {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.name.messages}}<li>{{.}}</li>{{/errors.name.messages}}
@@ -117,7 +117,7 @@
   <div class='form-group row {{set_type_row_class}}'>
     <label for='set_type' class='col-sm-4 col-form-label'>set_type</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.set_type.has_errors}}is-invalid{{/errors.set_type.has_errors}}' id='set_type' name='set_type' placeholder='' value='{{set_type}}' >
+      <input type='text' class='form-control  {{#errors.set_type.has_errors}}is-invalid{{/errors.set_type.has_errors}}' id='set_type' name='set_type' placeholder='' value='{{set_type}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.set_type.messages}}<li>{{.}}</li>{{/errors.set_type.messages}}
@@ -127,7 +127,7 @@
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}' >
+      <input type='text' class='form-control nullable {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}' >
         
     <button type='button' class='btn btn-primary' id='released_at_FontPicker'>
     <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -162,7 +162,7 @@
   <div class='form-group row {{block_code_row_class}}'>
     <label for='block_code' class='col-sm-4 col-form-label'>block_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.block_code.has_errors}}is-invalid{{/errors.block_code.has_errors}}' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}' >
+      <input type='text' class='form-control nullable {{#errors.block_code.has_errors}}is-invalid{{/errors.block_code.has_errors}}' id='block_code' name='block_code' placeholder='NULL' value='{{block_code}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.block_code.messages}}<li>{{.}}</li>{{/errors.block_code.messages}}
@@ -175,7 +175,7 @@
   <div class='form-group row {{block_row_class}}'>
     <label for='block' class='col-sm-4 col-form-label'>block</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.block.has_errors}}is-invalid{{/errors.block.has_errors}}' id='block' name='block' placeholder='NULL' value='{{block}}' >
+      <input type='text' class='form-control nullable {{#errors.block.has_errors}}is-invalid{{/errors.block.has_errors}}' id='block' name='block' placeholder='NULL' value='{{block}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.block.messages}}<li>{{.}}</li>{{/errors.block.messages}}
@@ -188,7 +188,7 @@
   <div class='form-group row {{parent_set_code_row_class}}'>
     <label for='parent_set_code' class='col-sm-4 col-form-label'>parent_set_code</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.parent_set_code.has_errors}}is-invalid{{/errors.parent_set_code.has_errors}}' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}' >
+      <input type='text' class='form-control nullable {{#errors.parent_set_code.has_errors}}is-invalid{{/errors.parent_set_code.has_errors}}' id='parent_set_code' name='parent_set_code' placeholder='NULL' value='{{parent_set_code}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.parent_set_code.messages}}<li>{{.}}</li>{{/errors.parent_set_code.messages}}
@@ -201,7 +201,7 @@
   <div class='form-group row {{card_count_row_class}}'>
     <label for='card_count' class='col-sm-4 col-form-label'>card_count</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.card_count.has_errors}}is-invalid{{/errors.card_count.has_errors}}' id='card_count' name='card_count' placeholder='' value='{{card_count}}' >
+      <input type='text' class='form-control  {{#errors.card_count.has_errors}}is-invalid{{/errors.card_count.has_errors}}' id='card_count' name='card_count' placeholder='' value='{{card_count}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.card_count.messages}}<li>{{.}}</li>{{/errors.card_count.messages}}
@@ -212,7 +212,12 @@
     <div class='col-sm-4'><label>is_digital</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_digital' name='is_digital' {{is_digital}}  >
+            <input type='checkbox' id='is_digital' class='{{#errors.is_digital.has_errors}}is-invalid{{/errors.is_digital.has_errors}}'name='is_digital' {{is_digital}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_digital.messages}}<li>{{.}}</li>{{/errors.is_digital.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -221,7 +226,12 @@
     <div class='col-sm-4'><label>is_foil_only</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_foil_only' name='is_foil_only' {{is_foil_only}}  >
+            <input type='checkbox' id='is_foil_only' class='{{#errors.is_foil_only.has_errors}}is-invalid{{/errors.is_foil_only.has_errors}}'name='is_foil_only' {{is_foil_only}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_foil_only.messages}}<li>{{.}}</li>{{/errors.is_foil_only.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -230,7 +240,12 @@
     <div class='col-sm-4'><label>is_nonfoil_only</label></div>
     <div class='col-sm-7'>
         <div class='checkbox'>
-            <input type='checkbox' id='is_nonfoil_only' name='is_nonfoil_only' {{is_nonfoil_only}}  >
+            <input type='checkbox' id='is_nonfoil_only' class='{{#errors.is_nonfoil_only.has_errors}}is-invalid{{/errors.is_nonfoil_only.has_errors}}'name='is_nonfoil_only' {{is_nonfoil_only}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_nonfoil_only.messages}}<li>{{.}}</li>{{/errors.is_nonfoil_only.messages}}
+                </ul>
+            </div>
        </div> 
     </div>
   </div>
@@ -238,7 +253,7 @@
   <div class='form-group row {{scryfall_uri_row_class}}'>
     <label for='scryfall_uri' class='col-sm-4 col-form-label'>scryfall_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.scryfall_uri.has_errors}}is-invalid{{/errors.scryfall_uri.has_errors}}' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}' >
+      <input type='text' class='form-control  {{#errors.scryfall_uri.has_errors}}is-invalid{{/errors.scryfall_uri.has_errors}}' id='scryfall_uri' name='scryfall_uri' placeholder='' value='{{scryfall_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.scryfall_uri.messages}}<li>{{.}}</li>{{/errors.scryfall_uri.messages}}
@@ -248,7 +263,7 @@
   <div class='form-group row {{mtgset_uri_row_class}}'>
     <label for='mtgset_uri' class='col-sm-4 col-form-label'>mtgset_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.mtgset_uri.has_errors}}is-invalid{{/errors.mtgset_uri.has_errors}}' id='mtgset_uri' name='mtgset_uri' placeholder='' value='{{mtgset_uri}}' >
+      <input type='text' class='form-control  {{#errors.mtgset_uri.has_errors}}is-invalid{{/errors.mtgset_uri.has_errors}}' id='mtgset_uri' name='mtgset_uri' placeholder='' value='{{mtgset_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.mtgset_uri.messages}}<li>{{.}}</li>{{/errors.mtgset_uri.messages}}
@@ -258,7 +273,7 @@
   <div class='form-group row {{icon_svg_uri_row_class}}'>
     <label for='icon_svg_uri' class='col-sm-4 col-form-label'>icon_svg_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.icon_svg_uri.has_errors}}is-invalid{{/errors.icon_svg_uri.has_errors}}' id='icon_svg_uri' name='icon_svg_uri' placeholder='' value='{{icon_svg_uri}}' >
+      <input type='text' class='form-control  {{#errors.icon_svg_uri.has_errors}}is-invalid{{/errors.icon_svg_uri.has_errors}}' id='icon_svg_uri' name='icon_svg_uri' placeholder='' value='{{icon_svg_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.icon_svg_uri.messages}}<li>{{.}}</li>{{/errors.icon_svg_uri.messages}}
@@ -268,7 +283,7 @@
   <div class='form-group row {{search_uri_row_class}}'>
     <label for='search_uri' class='col-sm-4 col-form-label'>search_uri</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.search_uri.has_errors}}is-invalid{{/errors.search_uri.has_errors}}' id='search_uri' name='search_uri' placeholder='' value='{{search_uri}}' >
+      <input type='text' class='form-control  {{#errors.search_uri.has_errors}}is-invalid{{/errors.search_uri.has_errors}}' id='search_uri' name='search_uri' placeholder='' value='{{search_uri}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.search_uri.messages}}<li>{{.}}</li>{{/errors.search_uri.messages}}
@@ -278,7 +293,7 @@
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -309,7 +324,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -482,6 +497,26 @@
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -495,13 +530,26 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

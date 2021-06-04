@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{art_name_row_class}}'>
     <label for='art_name' class='col-sm-4 col-form-label'>art_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.art_name.has_errors}}is-invalid{{/errors.art_name.has_errors}}' id='art_name' name='art_name' placeholder='NULL' value='{{art_name}}' >
+      <input type='text' class='form-control nullable {{#errors.art_name.has_errors}}is-invalid{{/errors.art_name.has_errors}}' id='art_name' name='art_name' placeholder='NULL' value='{{art_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.art_name.messages}}<li>{{.}}</li>{{/errors.art_name.messages}}
@@ -61,7 +61,7 @@
   <div class='form-group row {{set_name_row_class}}'>
     <label for='set_name' class='col-sm-4 col-form-label'>set_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.set_name.has_errors}}is-invalid{{/errors.set_name.has_errors}}' id='set_name' name='set_name' placeholder='NULL' value='{{set_name}}' >
+      <input type='text' class='form-control nullable {{#errors.set_name.has_errors}}is-invalid{{/errors.set_name.has_errors}}' id='set_name' name='set_name' placeholder='NULL' value='{{set_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.set_name.messages}}<li>{{.}}</li>{{/errors.set_name.messages}}
@@ -74,7 +74,7 @@
   <div class='form-group row {{art_release_date_row_class}}'>
     <label for='art_release_date' class='col-sm-4 col-form-label'>art_release_date</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.art_release_date.has_errors}}is-invalid{{/errors.art_release_date.has_errors}}' id='art_release_date' name='art_release_date' placeholder='NULL' value='{{art_release_date}}' >
+      <input type='text' class='form-control nullable {{#errors.art_release_date.has_errors}}is-invalid{{/errors.art_release_date.has_errors}}' id='art_release_date' name='art_release_date' placeholder='NULL' value='{{art_release_date}}' >
 
 <button type='button' class='btn btn-primary' id='art_release_date_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -108,7 +108,7 @@
   <div class='form-group row {{author_name_row_class}}'>
     <label for='author_name' class='col-sm-4 col-form-label'>author_name</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.author_name.has_errors}}is-invalid{{/errors.author_name.has_errors}}' id='author_name' name='author_name' placeholder='' value='{{author_name}}' >
+      <input type='text' class='form-control  {{#errors.author_name.has_errors}}is-invalid{{/errors.author_name.has_errors}}' id='author_name' name='author_name' placeholder='' value='{{author_name}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.author_name.messages}}<li>{{.}}</li>{{/errors.author_name.messages}}
@@ -118,7 +118,7 @@
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control nullable {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -152,7 +152,7 @@
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -294,6 +294,26 @@
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -307,13 +327,26 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly

@@ -38,7 +38,7 @@
   <div class='form-group row {{id_row_class}}'>
     <label for='id' class='col-sm-4 col-form-label'>id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
+      <input type='text' class='form-control  {{#errors.id.has_errors}}is-invalid{{/errors.id.has_errors}}' id='id' name='id' placeholder='' value='{{id}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.id.messages}}<li>{{.}}</li>{{/errors.id.messages}}
@@ -48,7 +48,7 @@
   <div class='form-group row {{thisint_row_class}}'>
     <label for='thisint' class='col-sm-4 col-form-label'>thisint</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisint.has_errors}}is-invalid{{/errors.thisint.has_errors}}' id='thisint' name='thisint' placeholder='NULL' value='{{thisint}}' >
+      <input type='text' class='form-control nullable {{#errors.thisint.has_errors}}is-invalid{{/errors.thisint.has_errors}}' id='thisint' name='thisint' placeholder='NULL' value='{{thisint}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thisint.messages}}<li>{{.}}</li>{{/errors.thisint.messages}}
@@ -61,7 +61,7 @@
   <div class='form-group row {{thisfloat_row_class}}'>
     <label for='thisfloat' class='col-sm-4 col-form-label'>thisfloat</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisfloat.has_errors}}is-invalid{{/errors.thisfloat.has_errors}}' id='thisfloat' name='thisfloat' placeholder='NULL' value='{{thisfloat}}' >
+      <input type='text' class='form-control nullable {{#errors.thisfloat.has_errors}}is-invalid{{/errors.thisfloat.has_errors}}' id='thisfloat' name='thisfloat' placeholder='NULL' value='{{thisfloat}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thisfloat.messages}}<li>{{.}}</li>{{/errors.thisfloat.messages}}
@@ -74,7 +74,7 @@
   <div class='form-group row {{thisdecimal_row_class}}'>
     <label for='thisdecimal' class='col-sm-4 col-form-label'>thisdecimal</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisdecimal.has_errors}}is-invalid{{/errors.thisdecimal.has_errors}}' id='thisdecimal' name='thisdecimal' placeholder='NULL' value='{{thisdecimal}}' >
+      <input type='text' class='form-control nullable {{#errors.thisdecimal.has_errors}}is-invalid{{/errors.thisdecimal.has_errors}}' id='thisdecimal' name='thisdecimal' placeholder='NULL' value='{{thisdecimal}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thisdecimal.messages}}<li>{{.}}</li>{{/errors.thisdecimal.messages}}
@@ -87,7 +87,7 @@
   <div class='form-group row {{thisvarchar_row_class}}'>
     <label for='thisvarchar' class='col-sm-4 col-form-label'>thisvarchar</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisvarchar.has_errors}}is-invalid{{/errors.thisvarchar.has_errors}}' id='thisvarchar' name='thisvarchar' placeholder='NULL' value='{{thisvarchar}}' >
+      <input type='text' class='form-control nullable {{#errors.thisvarchar.has_errors}}is-invalid{{/errors.thisvarchar.has_errors}}' id='thisvarchar' name='thisvarchar' placeholder='NULL' value='{{thisvarchar}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thisvarchar.messages}}<li>{{.}}</li>{{/errors.thisvarchar.messages}}
@@ -100,7 +100,7 @@
   <div class='form-group row {{thisdate_row_class}}'>
     <label for='thisdate' class='col-sm-4 col-form-label'>thisdate</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisdate.has_errors}}is-invalid{{/errors.thisdate.has_errors}}' id='thisdate' name='thisdate' placeholder='NULL' value='{{thisdate}}' >
+      <input type='text' class='form-control nullable {{#errors.thisdate.has_errors}}is-invalid{{/errors.thisdate.has_errors}}' id='thisdate' name='thisdate' placeholder='NULL' value='{{thisdate}}' >
         
     <button type='button' class='btn btn-primary' id='thisdate_FontPicker'>
     <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -135,7 +135,7 @@
   <div class='form-group row {{thisdatetime_row_class}}'>
     <label for='thisdatetime' class='col-sm-4 col-form-label'>thisdatetime</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisdatetime.has_errors}}is-invalid{{/errors.thisdatetime.has_errors}}' id='thisdatetime' name='thisdatetime' placeholder='NULL' value='{{thisdatetime}}' >
+      <input type='text' class='form-control nullable {{#errors.thisdatetime.has_errors}}is-invalid{{/errors.thisdatetime.has_errors}}' id='thisdatetime' name='thisdatetime' placeholder='NULL' value='{{thisdatetime}}' >
 
 <button type='button' class='btn btn-primary' id='thisdatetime_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -169,7 +169,7 @@
   <div class='form-group row {{thistimestamp_row_class}}'>
     <label for='thistimestamp' class='col-sm-4 col-form-label'>thistimestamp</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thistimestamp.has_errors}}is-invalid{{/errors.thistimestamp.has_errors}}' id='thistimestamp' name='thistimestamp' placeholder='NULL' value='{{thistimestamp}}' >
+      <input type='text' class='form-control nullable {{#errors.thistimestamp.has_errors}}is-invalid{{/errors.thistimestamp.has_errors}}' id='thistimestamp' name='thistimestamp' placeholder='NULL' value='{{thistimestamp}}' >
 
 <button type='button' class='btn btn-primary' id='thistimestamp_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -203,7 +203,7 @@
   <div class='form-group row {{thischar_row_class}}'>
     <label for='thischar' class='col-sm-4 col-form-label'>thischar</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thischar.has_errors}}is-invalid{{/errors.thischar.has_errors}}' id='thischar' name='thischar' placeholder='' value='{{thischar}}' >
+      <input type='text' class='form-control  {{#errors.thischar.has_errors}}is-invalid{{/errors.thischar.has_errors}}' id='thischar' name='thischar' placeholder='' value='{{thischar}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thischar.messages}}<li>{{.}}</li>{{/errors.thischar.messages}}
@@ -213,7 +213,7 @@
   <div class='form-group row {{thistext_row_class}}'>
     <label for='thistext' class='col-sm-4 col-form-label'>thistext</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thistext.has_errors}}is-invalid{{/errors.thistext.has_errors}}' id='thistext' name='thistext' placeholder='' value='{{thistext}}' >
+      <input type='text' class='form-control  {{#errors.thistext.has_errors}}is-invalid{{/errors.thistext.has_errors}}' id='thistext' name='thistext' placeholder='' value='{{thistext}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thistext.messages}}<li>{{.}}</li>{{/errors.thistext.messages}}
@@ -223,7 +223,7 @@
   <div class='form-group row {{thisblob_row_class}}'>
     <label for='thisblob' class='col-sm-4 col-form-label'>thisblob</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thisblob.has_errors}}is-invalid{{/errors.thisblob.has_errors}}' id='thisblob' name='thisblob' placeholder='NULL' value='{{thisblob}}' >
+      <input type='text' class='form-control nullable {{#errors.thisblob.has_errors}}is-invalid{{/errors.thisblob.has_errors}}' id='thisblob' name='thisblob' placeholder='NULL' value='{{thisblob}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thisblob.messages}}<li>{{.}}</li>{{/errors.thisblob.messages}}
@@ -236,7 +236,7 @@
   <div class='form-group row {{thistinyint_row_class}}'>
     <label for='thistinyint' class='col-sm-4 col-form-label'>thistinyint</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thistinyint.has_errors}}is-invalid{{/errors.thistinyint.has_errors}}' id='thistinyint' name='thistinyint' placeholder='' value='{{thistinyint}}' >
+      <input type='text' class='form-control  {{#errors.thistinyint.has_errors}}is-invalid{{/errors.thistinyint.has_errors}}' id='thistinyint' name='thistinyint' placeholder='' value='{{thistinyint}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thistinyint.messages}}<li>{{.}}</li>{{/errors.thistinyint.messages}}
@@ -246,7 +246,7 @@
   <div class='form-group row {{thistinytext_row_class}}'>
     <label for='thistinytext' class='col-sm-4 col-form-label'>thistinytext</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control {{#errors.thistinytext.has_errors}}is-invalid{{/errors.thistinytext.has_errors}}' id='thistinytext' name='thistinytext' placeholder='' value='{{thistinytext}}' >
+      <input type='text' class='form-control  {{#errors.thistinytext.has_errors}}is-invalid{{/errors.thistinytext.has_errors}}' id='thistinytext' name='thistinytext' placeholder='' value='{{thistinytext}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.thistinytext.messages}}<li>{{.}}</li>{{/errors.thistinytext.messages}}
@@ -279,6 +279,26 @@
 <br>
     
     <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
     // This javascript controls the null checkboxes
         $(document).ready(function() {
             
@@ -292,13 +312,26 @@
 
                 // store current value, and set to null
                 if ($(this).prop('checked')) {
-                    last_null_values[id]= $('#'+id).val();
-                    $('#'+id).val(null);
-                    $('#'+id).attr('readonly', true);
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
                 } else {
                     $('#'+id).val(last_null_values[id]);
                     $('#'+id).attr('readonly', false);
                 }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
             });
             
             // Trigger change on page load. If the null box is checked, mark field readonly
