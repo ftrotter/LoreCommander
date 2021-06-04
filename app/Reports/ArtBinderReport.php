@@ -61,7 +61,6 @@ LIMIT 1;
 	}
 
 	$is_cache_exist = false; //assume this for debugging...
-	echo "Running cache";
 
 	if(!$is_cache_exist){
 
@@ -77,7 +76,7 @@ LIMIT 1;
 		$create_pagemap_table_sql = "
 CREATE TABLE _zermelo_cache.$collectnum_cache_table (
   `illustration_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_by_me` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_by_me`  DATE,
   `sortable_collector_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `binder_page_number` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -121,25 +120,43 @@ ORDER BY card_count DESC, artist
 
 
 		$total_pages = 0;
+		$pages = [];
 		foreach($artist_pages as $artist => $page_array){
-			foreach($page_array as $this_page){
+			foreach($page_array as $page_num => $this_page){
+				
+				$pages[$total_pages] = [
+								'artist' => $artist, 
+								'page' => $page_num,
+							];
+
 				$total_pages++;
 			}
 		}
 
-		echo "<pre> Total Pages = $total_pages \n";
-		var_export($artist_pages);
-		exit();
+		$last_artist = null;
+		$from_row_count = 0;
+		for($i = 0; $i < $total_pages; $i++){
+		
+			$current_artist = $pages[$i]['artist'];
+			$current_artist_page = $pages[$i]['page'];	
+
+			if(is_null($last_artist)){
+				$last_artist = $current_artist;
+			}
+
+			if($last_artist == $current_artist){ //then the artist has changed...
+				$from_row_count = 0;
+			}else{
+				$from_row_count = $from_row_count + $cards_per_page;
+				
+			}
 
 
-		for($i = 0; $i <= $total_pages; $i++){
-			$from_row_count = $i * $cards_per_page;		
-	
 			$insert_sql = "
 INSERT INTO _zermelo_cache.$collectnum_cache_table
 SELECT 
 	illustration_id,
-	card.sortable_collector_number AS sort_by_me,
+	card.released_at AS sort_by_me,
 	card.sortable_collector_number,
 	'$i' AS binder_page_number,
 	CURRENT_TIME() AS created_at
@@ -147,9 +164,9 @@ FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
-WHERE mtgset_id = $mtgset_id
+WHERE artist = '$artist'
 AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
-GROUP BY illustration_id, sortable_collector_number
+GROUP BY illustration_id, card.released_at, sortable_collector_number
 ORDER BY sortable_collector_number ASC
 LIMIT $from_row_count, $cards_per_page 
 ";
@@ -157,62 +174,11 @@ LIMIT $from_row_count, $cards_per_page
 			$pdo->exec($insert_sql);
 		}
 		
-
-		//now we do the same thing.. but for our WUBRG sort...
-
-		// we need an empty cache table for this report.. 
-		$drop_pagemap_table_sql = "DROP TABLE IF EXISTS _zermelo_cache.$WUBRG_cache_table";
-		$pdo->exec($drop_pagemap_table_sql);
-
-		//now re-create it from scratch
-		$create_pagemap_table_sql = "
-CREATE TABLE _zermelo_cache.$WUBRG_cache_table (
-  `illustration_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_by_me` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sortable_collector_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `binder_page_number` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-"; 
-		$pdo->exec($create_pagemap_table_sql);
-
-		//total pages will be the same for both caches...
-		//so we do not need to recalculate $total_pages
-
-		for($i = 0; $i <= $total_pages; $i++){
-			$from_row_count = $i * $cards_per_page;		
-	
-			$insert_sql = "
-INSERT INTO _zermelo_cache.$WUBRG_cache_table
-SELECT 
-	illustration_id,
-	CONCAT(card.binder_group_number,cardface.name,sortable_collector_number) AS sort_by_me,
-	card.sortable_collector_number,
-	'$i' AS binder_page_number,
-	CURRENT_TIME() AS created_at
-FROM lore.cardface
-JOIN lore.card ON
-        card.id =
-        cardface.card_id
-WHERE mtgset_id = $mtgset_id
-AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
-GROUP BY card.binder_group_number, illustration_id, sortable_collector_number, cardface.name
-ORDER BY card.binder_group_number ASC, sort_by_me ASC
-LIMIT $from_row_count, $cards_per_page 
-";
-	
-			$pdo->exec($insert_sql);
-
-		}
-
+	//There is no WUBRG sort...
 
 	} //end cache creation logic, should only run the first time for each set... 
 
 		$divider_page_cache_table = $collectnum_cache_table;
-		if($sort_method == 'sort_WUBRG'){
-			//the other sort table takes precedence here...
-			$divider_page_cache_table = $WUBRG_cache_table;
-		}
 
 
         	$sql = "
@@ -236,8 +202,7 @@ JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON (
 		pagemap_cache.sortable_collector_number =
 		card.sortable_collector_number
 	)
-WHERE mtgset_id = $mtgset_id
-AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
+WHERE ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
 GROUP BY cardface.illustration_id, card.collector_number
 ORDER BY binder_page_number ASC, sort_by_me ASC
 ";
