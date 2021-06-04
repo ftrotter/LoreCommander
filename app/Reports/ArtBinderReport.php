@@ -164,7 +164,7 @@ FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
-WHERE artist = '$artist'
+WHERE artist = '$artist' AND layout = 'art_series'
 AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
 GROUP BY illustration_id, card.released_at, sortable_collector_number
 ORDER BY sortable_collector_number ASC
@@ -189,20 +189,16 @@ SELECT
 	, MAX(scryfall_web_uri) AS card_img_top_anchor
         , MAX(image_uri_normal) AS card_img_top
         , binder_page_number + 1 AS card_layout_block_id
-	, CONCAT('Page Number ', binder_page_number + 1 ) AS card_layout_block_label
+	, CONCAT(artist , ' p:' , binder_page_number + 1 ) AS card_layout_block_label
 	, sort_by_me
 FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
-JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON ( 
+JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache 
 		pagemap_cache.illustration_id =
 		cardface.illustration_id
-	AND
-		pagemap_cache.sortable_collector_number =
-		card.sortable_collector_number
-	)
-WHERE ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
+WHERE layout = 'art_series' AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
 GROUP BY cardface.illustration_id, card.collector_number
 ORDER BY binder_page_number ASC, sort_by_me ASC
 ";
