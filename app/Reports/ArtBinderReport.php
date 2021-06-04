@@ -135,6 +135,8 @@ ORDER BY card_count DESC, artist
 
 		$last_artist = null;
 		$from_row_count = 0;
+
+
 		for($i = 0; $i < $total_pages; $i++){
 		
 			$current_artist = $pages[$i]['artist'];
@@ -164,16 +166,20 @@ FROM lore.cardface
 JOIN lore.card ON
         card.id =
         cardface.card_id
-WHERE artist = '$artist' AND layout = 'art_series'
+WHERE artist = '$current_artist' AND layout = 'art_series'
 AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
 GROUP BY illustration_id, card.released_at, sortable_collector_number
 ORDER BY sortable_collector_number ASC
 LIMIT $from_row_count, $cards_per_page 
 ";
-		
+
+			$last_artist = $current_artist;
+
 			$pdo->exec($insert_sql);
 		}
 		
+
+
 	//There is no WUBRG sort...
 
 	} //end cache creation logic, should only run the first time for each set... 
