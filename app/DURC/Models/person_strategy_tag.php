@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ lore.person_strategy_tag by DURC.
 
 */
 
-class person_strategy_tag extends DURCModel{
+class person_strategy_tag extends DURCModel  implements Auditable {
+
+	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
 
     
 

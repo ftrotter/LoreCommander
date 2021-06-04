@@ -4,6 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
+use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -16,7 +17,9 @@ lore.card by DURC.
 
 */
 
-class card extends DURCModel{
+class card extends DURCModel {
+
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 
@@ -51,7 +54,7 @@ class card extends DURCModel{
 		'scryfall_api_uri' => 'varchar',
 		'layout' => 'varchar',
 		'rarity' => 'varchar',
-		'released_at' => 'varchar',
+		'released_at' => 'date',
 		'set_name' => 'varchar',
 		'set_type' => 'varchar',
 		'mtgset_id' => 'int',
@@ -274,7 +277,7 @@ CREATE TABLE `lore`.`card` (
   `scryfall_api_uri` varchar(255) NOT NULL,
   `layout` varchar(50) NOT NULL,
   `rarity` varchar(50) NOT NULL,
-  `released_at` varchar(50) DEFAULT NULL,
+  `released_at` date DEFAULT NULL,
   `set_name` varchar(255) NOT NULL,
   `set_type` varchar(255) NOT NULL,
   `mtgset_id` int(11) NOT NULL,

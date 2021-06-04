@@ -10,7 +10,7 @@ CREATE TABLE `card` (
   `scryfall_api_uri` varchar(255) NOT NULL,
   `layout` varchar(50) NOT NULL,
   `rarity` varchar(50) NOT NULL,
-  `released_at` varchar(50) DEFAULT NULL,
+  `released_at` date DEFAULT NULL,
   `set_name` varchar(255) NOT NULL,
   `set_type` varchar(255) NOT NULL,
   `mtgset_id` int(11) NOT NULL,
