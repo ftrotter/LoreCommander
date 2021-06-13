@@ -3,7 +3,9 @@
   <title>Card Viewer</title>
 
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -15,7 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
 
-  <script src="/js/pusher-4.4.min.js"></script>
+  <script src="/js/pusher-7.0.min.js"></script>
   <script src='/js/mustache.3.0.1.js'></script>
   <script>
 
@@ -28,6 +30,8 @@
     		});
 
     		var channel = pusher.subscribe('{{$channel_id}}');
+
+
     		channel.bind('show_this_card', function(data) {
 
 			var scryfall_url = 'https://api.scryfall.com/cards/multiverse/' + data['multiverse_id'];
