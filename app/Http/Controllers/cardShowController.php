@@ -76,6 +76,35 @@ class cardShowController extends Controller
         	$app_id = config('broadcasting.connections.pusher.app_id');
         	$cluster = config('broadcasting.connections.pusher.options.cluster');
 
+		if(is_null($app_key) || $app_key == ''){
+			return response()->json([
+				'result' => 'error',
+				'error_message' => 'Pusher PUSHER_APP_KEY not configured in .env',
+			]);
+		}
+
+		if(is_null($app_secret) || $app_secret == ''){
+			return response()->json([
+				'result' => 'error',
+				'error_message' => 'Pusher PUSHER_APP_SECRET not configured in .env',
+			]);
+		}
+
+		if(is_null($app_id) || $app_id == ''){
+			return response()->json([
+				'result' => 'error',
+				'error_message' => 'Pusher PUSHER_APP_ID not configured .env',
+			]);
+		}
+		
+		if(is_null($cluster) || $cluster == ''){
+			return response()->json([
+				'result' => 'error',
+				'error_message' => 'Pusher PUSHER_APP_CLUSTER not configured .env',
+			]);
+		}
+
+
         	$pusher = new \Pusher\Pusher($app_key, $app_secret, $app_id,['cluster' => $cluster]);
 
         	$pusher->trigger( $channel_id, 'show_this_card',  ['multiverse_id' => $multiverse_id] );
