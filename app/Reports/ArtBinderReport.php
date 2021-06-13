@@ -87,15 +87,15 @@ CREATE TABLE _zermelo_cache.$collectnum_cache_table (
 		//now we need to loop over the results, and use the LIMIT function to get identifably pages in groups of nine. 
 		//we need to know how long to do that for, so we need to get the total number of rows as a starting point
 		$artist_list_sql = "
-SELECT artist, COUNT(DISTINCT(card.id)) AS card_count
-FROM `card`
-JOIN cardface ON 
+SELECT cardface.artist, COUNT(DISTINCT(card.id)) AS card_count
+FROM lore.card
+JOIN lore.cardface ON 
 	card.id =
     	cardface.card_id 
-WHERE layout = 'art_series' AND artist != ''
-AND ( illustration_id != '0' AND illustration_id IS NOT NULL)
-GROUP BY artist
-ORDER BY card_count DESC, artist
+WHERE card.layout = 'art_series' AND cardface.artist != ''
+AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
+GROUP BY cardface.artist, cardface.illustration_id
+ORDER BY card_count DESC, cardface.artist
 ";
 
 		$stm = $pdo->query($artist_list_sql);
@@ -153,7 +153,7 @@ ORDER BY card_count DESC, artist
 				
 			}
 
-
+			//this sql gets run one or more times per artist.. and ads them to the cache..
 			$insert_sql = "
 INSERT INTO _zermelo_cache.$collectnum_cache_table
 SELECT 
@@ -187,24 +187,43 @@ LIMIT $from_row_count, $cards_per_page
 		$divider_page_cache_table = $collectnum_cache_table;
 
 
+			//Take a look at this art card: 
+			//https://api.scryfall.com/cards/de50341a-6637-4971-9794-0660c7b68b18
+			//and note that the system gives it two "faces". One face is the art, 
+			//and the other is a signature card.... 
+			//we have no interest in having two slots for the same card, so we need 
+			//to be able to tell the difference between the "art" side and the "not art" side.
+			//we do this with a join back to the cardface table looking for the use of the illustration
+			//on a normal card i.e. not an "art_series card". 
         	$sql = "
 SELECT
+	card.id AS card_id,
+	cardface.id AS cardface_id,
         CONCAT('(', card.collector_number, ')') AS card_body
-	, MAX(name) AS card_name
+	, MAX(cardface.name) AS card_name
 	, card.collector_number
-	, MAX(scryfall_web_uri) AS card_img_top_anchor
-        , MAX(image_uri_normal) AS card_img_top
+	, MAX(card.scryfall_web_uri) AS card_img_top_anchor
+        , MAX(cardface.image_uri_normal) AS card_img_top
         , binder_page_number + 1 AS card_layout_block_id
-	, CONCAT(artist , ' p:' , binder_page_number + 1 ) AS card_layout_block_label
+	, CONCAT(cardface.artist , ' p:' , binder_page_number + 1 ) AS card_layout_block_label
 	, sort_by_me
-FROM lore.cardface
-JOIN lore.card ON
-        card.id =
-        cardface.card_id
-JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache 
+FROM lore.cardface 
+JOIN lore.card ON 
+	cardface.card_id =
+	card.id
+JOIN lore.cardface AS normal_card_face ON 
+	normal_card_face.illustration_id = 
+	cardface.illustration_id
+JOIN lore.card AS normal_card ON (
+	normal_card.id =
+	normal_card_face.card_id 
+	AND
+	normal_card.layout != 'art_series'
+	)
+JOIN _zermelo_cache.$divider_page_cache_table AS pagemap_cache ON
 		pagemap_cache.illustration_id =
 		cardface.illustration_id
-WHERE layout = 'art_series' AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
+WHERE card.layout = 'art_series' AND ( cardface.illustration_id != '0' AND cardface.illustration_id IS NOT NULL)
 GROUP BY cardface.illustration_id, card.collector_number
 ORDER BY binder_page_number ASC, sort_by_me ASC
 ";
