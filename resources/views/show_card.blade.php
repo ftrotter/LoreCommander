@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
 
-  <script src="/js/pusher-4.4.min.js"></script>
+  <script src="/js/pusher-7.0.min.js"></script>
   <script src='/js/mustache.3.0.1.js'></script>
   <script>
 
@@ -189,6 +189,17 @@ Also, if you are using <a target='_blank' href='https://privacybadger.org/'>Priv
 <input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen(document.body)">
 <br>
 Thanks to <a target='_blank' href='https://scryfall.com'>ScryFall</a> for the amazing API and image database that makes this possible, as well as to WotC whose generous policies with fan content make both this site and ScryFall possible. 
+
+<br><br>
+<h4>Testing</h4>
+<p>You can use the following urls to test this system without delver lens..</p>
+<ul>
+@foreach ($demo_card_list as $card)
+<li>
+	<a target='_blank' href='/changeCard/fredTV/{{$card->multi_id}}'>{{ $card->name }}</a>
+</li>
+@endforeach
+</ul>
 </div>
 </body>
 
