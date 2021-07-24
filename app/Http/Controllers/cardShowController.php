@@ -8,6 +8,30 @@ use Illuminate\Http\Request;
 class cardShowController extends Controller
 {
 
+	public $demo_card_list = [
+			[	
+				'multi_id' => '461089',
+				'name' => 'Giant Growth',
+			],
+			[	
+				'multi_id' => '526238',
+				'name' => 'Counterspell',
+			],
+			[	
+				'multi_id' => '489616',
+				'name'  => 'Serra Angel',
+			],
+			[	
+				'multi_id' => '442071',
+				'name' 	=> 'Dark Ritual',
+			],
+			[	
+				'multi_id' => '438694', 
+				'name' => 'Fireball',
+			],
+		];
+
+
 /*
 	Shows the core Card interface, which gives the details of the card as well as card variations..
 	Note: FireFox will fail if you have privacy badger running without approving the scryfall api url.
@@ -22,6 +46,7 @@ class cardShowController extends Controller
 				'channel_id'  => $channel_id,
 				'base_url' => $url,
 				'current_url' => $current_url,
+				'demo_card_list' => json_decode(json_encode($this->demo_card_list)),
 				]);
 		
 	}
@@ -40,6 +65,7 @@ class cardShowController extends Controller
 				'channel_id'  => $channel_id,
 				'base_url' => $url,
 				'current_url' => $current_url,
+				'demo_card_list' => json_decode(json_encode($this->demo_card_list)),
 				]);
 		
 	}
@@ -58,10 +84,11 @@ class cardShowController extends Controller
 
 
 		return view('show_just_card',[
-			'channel_id'  => $channel_id,
-			'base_url' => $url,
-			'current_url' => $current_url,
-			]);
+				'channel_id'  => $channel_id,
+				'base_url' => $url,
+				'current_url' => $current_url,
+				'demo_card_list' => json_decode(json_encode($this->demo_card_list)),
+				]);
 		
 	}
 /*
