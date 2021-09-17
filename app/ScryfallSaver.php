@@ -101,6 +101,7 @@ class  ScryfallSaver {
 			'eur' => 3,
 			'tix' => 4,
 			'eur_foil' => 5,
+			'usd_etched' => 6,
 		];
 
 	public static  function saveCardList($cards){
