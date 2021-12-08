@@ -165,7 +165,7 @@ unofficial Fan Content permitted under the Wizards of the Coast Fan Content Poli
 		</div>
 	</div>
 </main>
-    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/bootstrap.4.3.1.min.js"></script>
 
   </body>
