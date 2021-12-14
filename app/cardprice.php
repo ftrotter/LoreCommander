@@ -1,11 +1,11 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=f1b30af957da1748bbadb04e8e9424fe
+FILE_SIG=8dcbefa9405bf746574624394706052b
 */
 namespace App;
 /*
-	cardprice: controls lore.cardprice
+	cardprice: controls lore_price.cardprice
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.

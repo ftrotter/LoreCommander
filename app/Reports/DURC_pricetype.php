@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=66ff561b938f6230c9da188428ad9b93
+FILE_SIG=32c9d8ac8273397f682b2c435904e3ac
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -219,7 +219,7 @@ array (
     'prefix' => NULL,
     'type' => 'cardprice',
     'from_table' => 'cardprice',
-    'from_db' => 'lore',
+    'from_db' => 'lore_price',
     'from_column' => 'pricetype_id',
     'other_columns' => 
     array (

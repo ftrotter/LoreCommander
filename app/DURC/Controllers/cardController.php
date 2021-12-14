@@ -272,7 +272,9 @@ class cardController extends DURCController
         $tmp_card->legal_pioneer = $request->legal_pioneer;
         $tmp_card->legal_gladiator = $request->legal_gladiator;
         $tmp_card->legal_premodern = $request->legal_premodern;
+        $tmp_card->legal_historicbrawl = $request->legal_historicbrawl;
         $tmp_card->binder_group_number = $request->binder_group_number;
+        $tmp_card->legal_paupercommander = $request->legal_paupercommander;
 
 
         try {
@@ -508,7 +510,9 @@ class cardController extends DURCController
         $tmp_card->legal_pioneer = $request->legal_pioneer;
         $tmp_card->legal_gladiator = $request->legal_gladiator;
         $tmp_card->legal_premodern = $request->legal_premodern;
+        $tmp_card->legal_historicbrawl = $request->legal_historicbrawl;
         $tmp_card->binder_group_number = $request->binder_group_number;
+        $tmp_card->legal_paupercommander = $request->legal_paupercommander;
 
         $id = $card->id;
         

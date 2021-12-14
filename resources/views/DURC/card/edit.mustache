@@ -568,6 +568,16 @@ $(document).ready(function () {
           </ul>
        </div>
     </div></div>
+  <div class='form-group row {{legal_historicbrawl_row_class}}'>
+    <label for='legal_historicbrawl' class='col-sm-4 col-form-label'>legal_historicbrawl</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_historicbrawl.has_errors}}is-invalid{{/errors.legal_historicbrawl.has_errors}}' id='legal_historicbrawl' name='legal_historicbrawl' placeholder='0' value='{{legal_historicbrawl}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_historicbrawl.messages}}<li>{{.}}</li>{{/errors.legal_historicbrawl.messages}}
+          </ul>
+       </div>
+    </div></div>
   <div class='form-group row {{binder_group_number_row_class}}'>
     <label for='binder_group_number' class='col-sm-4 col-form-label'>binder_group_number</label>
     <div class='col-sm-7'>
@@ -643,6 +653,16 @@ $(document).ready(function () {
 </script>
 
     </div></div>
+  <div class='form-group row {{legal_paupercommander_row_class}}'>
+    <label for='legal_paupercommander' class='col-sm-4 col-form-label'>legal_paupercommander</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_paupercommander.has_errors}}is-invalid{{/errors.legal_paupercommander.has_errors}}' id='legal_paupercommander' name='legal_paupercommander' placeholder='0' value='{{legal_paupercommander}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_paupercommander.messages}}<li>{{.}}</li>{{/errors.legal_paupercommander.messages}}
+          </ul>
+       </div>
+    </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
@@ -693,7 +713,7 @@ $(document).ready(function () {
 			<th> color </th>
 			<th> color_identity </th>
 			<th> flavor_text </th>
-			<th> cardface_image_uri </th>
+			<th> image_uri </th>
 			<th> mana_cost </th>
 			<th> cmc </th>
 			<th> name </th>
@@ -702,7 +722,6 @@ $(document).ready(function () {
 			<th> toughness </th>
 			<th> type_line </th>
 			<th> border_color </th>
-			<th> image_uri </th>
 			<th> image_uri_art_crop </th>
 			<th> image_hash_art_crop </th>
 			<th> image_uri_small </th>
@@ -749,7 +768,7 @@ $(document).ready(function () {
 			<td>{{color}}</td>
 			<td>{{color_identity}}</td>
 			<td>{{flavor_text}}</td>
-			<td>{{cardface_image_uri}}</td>
+			<td>{{image_uri}}</td>
 			<td>{{mana_cost}}</td>
 			<td>{{cmc}}</td>
 			<td>{{name}}</td>
@@ -758,7 +777,6 @@ $(document).ready(function () {
 			<td>{{toughness}}</td>
 			<td>{{type_line}}</td>
 			<td>{{border_color}}</td>
-			<td>{{image_uri}}</td>
 			<td>{{image_uri_art_crop}}</td>
 			<td>{{image_hash_art_crop}}</td>
 			<td>{{image_uri_small}}</td>

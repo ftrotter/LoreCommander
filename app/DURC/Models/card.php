@@ -86,9 +86,11 @@ class card extends DURCModel {
 		'legal_pioneer' => 'tinyint',
 		'legal_gladiator' => 'tinyint',
 		'legal_premodern' => 'tinyint',
+		'legal_historicbrawl' => 'tinyint',
 		'binder_group_number' => 'int',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
+		'legal_paupercommander' => 'tinyint',
 	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required/present form elements
@@ -129,8 +131,10 @@ class card extends DURCModel {
 		'legal_pioneer',
 		'legal_gladiator',
 		'legal_premodern',
+		'legal_historicbrawl',
 		'created_at',
 		'updated_at',
+		'legal_paupercommander',
 	]; // End of nullable fields
 
     // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
@@ -176,9 +180,11 @@ class card extends DURCModel {
 		'legal_pioneer' => '0',
 		'legal_gladiator' => '0',
 		'legal_premodern' => '0',
+		'legal_historicbrawl' => '0',
 		'binder_group_number' => '0',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
+		'legal_paupercommander' => '0',
 	];  // End of attributes
         
     //everything is fillable by default
@@ -225,7 +231,9 @@ class card extends DURCModel {
 		'legal_pioneer' => 'integer',
 		'legal_gladiator' => 'integer',
 		'legal_premodern' => 'integer',
+		'legal_historicbrawl' => 'integer',
 		'binder_group_number' => 'integer|nullable',
+		'legal_paupercommander' => 'integer',
 	]; // End of validation rules
 		        
 		
@@ -309,9 +317,11 @@ CREATE TABLE `lore`.`card` (
   `legal_pioneer` tinyint(1) NOT NULL DEFAULT 0,
   `legal_gladiator` tinyint(1) NOT NULL DEFAULT 0,
   `legal_premodern` tinyint(1) NOT NULL DEFAULT 0,
+  `legal_historicbrawl` tinyint(1) NOT NULL DEFAULT 0,
   `binder_group_number` int(11) DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `legal_paupercommander` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),
   KEY `set_name` (`set_name`),

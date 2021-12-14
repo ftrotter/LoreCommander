@@ -8,7 +8,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
-lore.cardprice by DURC.
+lore_price.cardprice by DURC.
 
 	This class will be overwritten during future auto-generation runs..
 	Itjust reflects whatever is in the database..
@@ -25,7 +25,7 @@ class cardprice extends DURCModel {
 
     
         // the datbase for this model
-        protected $table = 'lore.cardprice';
+        protected $table = 'lore_price.cardprice';
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
@@ -117,7 +117,7 @@ class cardprice extends DURCModel {
 
 //Originating SQL Schema
 /*
-CREATE TABLE `lore`.`cardprice` (
+CREATE TABLE `lore_price`.`cardprice` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `card_id` int(11) NOT NULL,
   `scryfall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,

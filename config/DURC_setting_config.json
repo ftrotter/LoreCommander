@@ -320,12 +320,6 @@
             "is_audited": 1,
             "is_listed_in_webindex": 0
         },
-        "cardprice": {
-            "is_show_web_interface": 1,
-            "is_user_only_web_interface": 0,
-            "is_audited": 0,
-            "is_listed_in_webindex": 0
-        },
         "classofc": {
             "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
@@ -476,7 +470,21 @@
             "is_audited": 1,
             "is_listed_in_webindex": 0
         },
+        "cardprice": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        },
         "audit": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        }
+    },
+    "lore_price": {
+        "cardprice": {
             "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,

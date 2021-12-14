@@ -220,10 +220,6 @@ Route::get('durctest', function () {
  			'/DURC/cardface_person_atag/create', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/1', //from: lore.cardface_person_atag 
  			'/DURC/cardface_person_atag/1/edit', //from: lore.cardface_person_atag 
- 			'/DURC/cardprice', //from: lore.cardprice 
- 			'/DURC/cardprice/create', //from: lore.cardprice 
- 			'/DURC/cardprice/1', //from: lore.cardprice 
- 			'/DURC/cardprice/1/edit', //from: lore.cardprice 
  			'/DURC/classofc', //from: lore.classofc 
  			'/DURC/classofc/create', //from: lore.classofc 
  			'/DURC/classofc/1', //from: lore.classofc 
@@ -324,6 +320,10 @@ Route::get('durctest', function () {
  			'/DURC/wallpaper_url/create', //from: lore.wallpaper_url 
  			'/DURC/wallpaper_url/1', //from: lore.wallpaper_url 
  			'/DURC/wallpaper_url/1/edit', //from: lore.wallpaper_url 
+ 			'/DURC/cardprice', //from: lore_price.cardprice 
+ 			'/DURC/cardprice/create', //from: lore_price.cardprice 
+ 			'/DURC/cardprice/1', //from: lore_price.cardprice 
+ 			'/DURC/cardprice/1/edit', //from: lore_price.cardprice 
 
 
 	]; //end route_list
