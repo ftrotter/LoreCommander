@@ -2,7 +2,7 @@
 
 	///HARDCODE HERE..
 	//something like
-	$hardcode_db_list = '--DB=lore --DB=DURC_aaa --DB=DURC_irs --DB=DURC_northwind_model --DB=DURC_northwind_data';
+	$hardcode_db_list = '--DB=lore --DB=lore_price --DB=DURC_aaa --DB=DURC_irs --DB=DURC_northwind_model --DB=DURC_northwind_data';
 
 
 	$script_name = array_shift($argv);

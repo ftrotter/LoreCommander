@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2dc059605bc47f9d578269d6b42c5cec
+FILE_SIG=1d6805d015033a7f13461912b1b0a7ee
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -1028,6 +1028,19 @@ array (
       ),
       41 => 
       array (
+        'column_name' => 'legal_historicbrawl',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      42 => 
+      array (
         'column_name' => 'binder_group_number',
         'data_type' => 'int',
         'is_primary_key' => false,
@@ -1039,7 +1052,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      42 => 
+      43 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -1052,7 +1065,7 @@ array (
         'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
-      43 => 
+      44 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
@@ -1063,6 +1076,19 @@ array (
         'foreign_table' => NULL,
         'is_nullable' => false,
         'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
+      ),
+      45 => 
+      array (
+        'column_name' => 'legal_paupercommander',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
         'is_auto_increment' => false,
       ),
     ),

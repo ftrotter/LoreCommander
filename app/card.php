@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=db792dccfc7a61c3cfc455bb1c16737f
+FILE_SIG=3d7844124d90b792a16ce1a7af4d0577
 */
 namespace App;
 /*
@@ -75,9 +75,11 @@ class card extends \App\DURC\Models\card
 			//'legal_pioneer', //tinyint
 			//'legal_gladiator', //tinyint
 			//'legal_premodern', //tinyint
+			//'legal_historicbrawl', //tinyint
 			//'binder_group_number', //int
 			//'created_at', //datetime
 			//'updated_at', //datetime
+			//'legal_paupercommander', //tinyint
 		]; //end hidden array
 
 

@@ -414,13 +414,6 @@ Route::get("/DURC/json/cardface_person_atag/", 'cardface_person_atagController@j
 Route::get("/DURC/searchjson/cardface_person_atag/", 'cardface_person_atagController@search');
 
  
-//DURC->	lore.cardprice
-Route::resource("/DURC/cardprice", 'cardpriceController');
-Route::get("/DURC/json/cardprice/{cardprice_id}", 'cardpriceController@jsonone');
-Route::get("/DURC/json/cardprice/", 'cardpriceController@jsonall');
-Route::get("/DURC/searchjson/cardprice/", 'cardpriceController@search');
-
- 
 //DURC->	lore.classofc
 Route::resource("/DURC/classofc", 'classofcController');
 Route::get("/DURC/json/classofc/{classofc_id}", 'classofcController@jsonone');
@@ -594,6 +587,13 @@ Route::resource("/DURC/wallpaper_url", 'wallpaper_urlController');
 Route::get("/DURC/json/wallpaper_url/{wallpaper_url_id}", 'wallpaper_urlController@jsonone');
 Route::get("/DURC/json/wallpaper_url/", 'wallpaper_urlController@jsonall');
 Route::get("/DURC/searchjson/wallpaper_url/", 'wallpaper_urlController@search');
+
+ 
+//DURC->	lore_price.cardprice
+Route::resource("/DURC/cardprice", 'cardpriceController');
+Route::get("/DURC/json/cardprice/{cardprice_id}", 'cardpriceController@jsonone');
+Route::get("/DURC/json/cardprice/", 'cardpriceController@jsonall');
+Route::get("/DURC/searchjson/cardprice/", 'cardpriceController@search');
 
 
 

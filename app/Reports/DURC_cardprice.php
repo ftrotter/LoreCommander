@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=880618730a93e4f0da788ee33541489e
+FILE_SIG=14489e46a5a9e55f7cfac1f46fde9998
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -85,7 +85,7 @@ $joined_select_field_sql
 , cardprice.created_at AS created_at
 , cardprice.updated_at AS updated_at
 
-FROM lore.cardprice
+FROM lore_price.cardprice
 
 LEFT JOIN lore.card AS A_card ON 
 	A_card.id =
@@ -110,7 +110,7 @@ $joined_select_field_sql
 , cardprice.created_at AS created_at
 , cardprice.updated_at AS updated_at
  
-FROM lore.cardprice 
+FROM lore_price.cardprice 
 
 LEFT JOIN lore.card AS A_card ON 
 	A_card.id =
@@ -899,6 +899,19 @@ array (
       ),
       41 => 
       array (
+        'column_name' => 'legal_historicbrawl',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      42 => 
+      array (
         'column_name' => 'binder_group_number',
         'data_type' => 'int',
         'is_primary_key' => false,
@@ -910,7 +923,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      42 => 
+      43 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -923,7 +936,7 @@ array (
         'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
-      43 => 
+      44 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',
@@ -934,6 +947,19 @@ array (
         'foreign_table' => NULL,
         'is_nullable' => false,
         'default_value' => 'current_timestamp()',
+        'is_auto_increment' => false,
+      ),
+      45 => 
+      array (
+        'column_name' => 'legal_paupercommander',
+        'data_type' => 'tinyint',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => '0',
         'is_auto_increment' => false,
       ),
     ),
