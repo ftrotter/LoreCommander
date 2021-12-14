@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=b5ac9f3fd24ef3826efb10dd316ba284
+FILE_SIG=dec5ce7209737149d766d44903e42ba6
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -531,7 +531,7 @@ array (
       ),
       8 => 
       array (
-        'column_name' => 'cardface_image_uri',
+        'column_name' => 'image_uri',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -648,19 +648,6 @@ array (
       ),
       17 => 
       array (
-        'column_name' => 'image_uri',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-      18 => 
-      array (
         'column_name' => 'image_uri_art_crop',
         'data_type' => 'varchar',
         'is_primary_key' => false,
@@ -672,7 +659,7 @@ array (
         'default_value' => '\'NULL\'',
         'is_auto_increment' => false,
       ),
-      19 => 
+      18 => 
       array (
         'column_name' => 'image_hash_art_crop',
         'data_type' => 'varchar',
@@ -685,7 +672,7 @@ array (
         'default_value' => '\'NULL\'',
         'is_auto_increment' => false,
       ),
-      20 => 
+      19 => 
       array (
         'column_name' => 'image_uri_small',
         'data_type' => 'varchar',
@@ -698,7 +685,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      21 => 
+      20 => 
       array (
         'column_name' => 'image_hash_small',
         'data_type' => 'varchar',
@@ -711,7 +698,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      22 => 
+      21 => 
       array (
         'column_name' => 'image_uri_normal',
         'data_type' => 'varchar',
@@ -724,7 +711,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      23 => 
+      22 => 
       array (
         'column_name' => 'image_hash_normal',
         'data_type' => 'varchar',
@@ -737,7 +724,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      24 => 
+      23 => 
       array (
         'column_name' => 'image_uri_large',
         'data_type' => 'varchar',
@@ -750,7 +737,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      25 => 
+      24 => 
       array (
         'column_name' => 'image_hash_large',
         'data_type' => 'varchar',
@@ -763,7 +750,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      26 => 
+      25 => 
       array (
         'column_name' => 'image_uri_png',
         'data_type' => 'varchar',
@@ -776,7 +763,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      27 => 
+      26 => 
       array (
         'column_name' => 'image_hash_png',
         'data_type' => 'varchar',
@@ -789,7 +776,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      28 => 
+      27 => 
       array (
         'column_name' => 'image_uri_border_crop',
         'data_type' => 'varchar',
@@ -802,7 +789,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      29 => 
+      28 => 
       array (
         'column_name' => 'image_hash_border_crop',
         'data_type' => 'varchar',
@@ -815,7 +802,7 @@ array (
         'default_value' => 'NULL',
         'is_auto_increment' => false,
       ),
-      30 => 
+      29 => 
       array (
         'column_name' => 'is_foil',
         'data_type' => 'tinyint',
@@ -828,7 +815,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      31 => 
+      30 => 
       array (
         'column_name' => 'is_nonfoil',
         'data_type' => 'tinyint',
@@ -841,7 +828,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      32 => 
+      31 => 
       array (
         'column_name' => 'is_oversized',
         'data_type' => 'tinyint',
@@ -854,7 +841,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      33 => 
+      32 => 
       array (
         'column_name' => 'is_color_green',
         'data_type' => 'tinyint',
@@ -867,7 +854,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      34 => 
+      33 => 
       array (
         'column_name' => 'is_color_red',
         'data_type' => 'tinyint',
@@ -880,7 +867,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      35 => 
+      34 => 
       array (
         'column_name' => 'is_color_blue',
         'data_type' => 'tinyint',
@@ -893,7 +880,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      36 => 
+      35 => 
       array (
         'column_name' => 'is_color_black',
         'data_type' => 'tinyint',
@@ -906,7 +893,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      37 => 
+      36 => 
       array (
         'column_name' => 'is_color_white',
         'data_type' => 'tinyint',
@@ -919,7 +906,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      38 => 
+      37 => 
       array (
         'column_name' => 'is_colorless',
         'data_type' => 'tinyint',
@@ -932,7 +919,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      39 => 
+      38 => 
       array (
         'column_name' => 'color_count',
         'data_type' => 'int',
@@ -945,7 +932,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      40 => 
+      39 => 
       array (
         'column_name' => 'is_color_identity_green',
         'data_type' => 'tinyint',
@@ -958,7 +945,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      41 => 
+      40 => 
       array (
         'column_name' => 'is_color_identity_red',
         'data_type' => 'tinyint',
@@ -971,7 +958,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      42 => 
+      41 => 
       array (
         'column_name' => 'is_color_identity_blue',
         'data_type' => 'tinyint',
@@ -984,7 +971,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      43 => 
+      42 => 
       array (
         'column_name' => 'is_color_identity_black',
         'data_type' => 'tinyint',
@@ -997,7 +984,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      44 => 
+      43 => 
       array (
         'column_name' => 'is_color_identity_white',
         'data_type' => 'tinyint',
@@ -1010,7 +997,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      45 => 
+      44 => 
       array (
         'column_name' => 'color_identity_count',
         'data_type' => 'int',
@@ -1023,7 +1010,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      46 => 
+      45 => 
       array (
         'column_name' => 'is_snow',
         'data_type' => 'tinyint',
@@ -1036,7 +1023,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      47 => 
+      46 => 
       array (
         'column_name' => 'has_phyrexian_mana',
         'data_type' => 'tinyint',
@@ -1049,7 +1036,7 @@ array (
         'default_value' => '0',
         'is_auto_increment' => false,
       ),
-      48 => 
+      47 => 
       array (
         'column_name' => 'for_fulltext_search',
         'data_type' => 'varchar',
@@ -1062,7 +1049,7 @@ array (
         'default_value' => '\'\'\'\'\'\'',
         'is_auto_increment' => false,
       ),
-      49 => 
+      48 => 
       array (
         'column_name' => 'created_at',
         'data_type' => 'datetime',
@@ -1075,7 +1062,7 @@ array (
         'default_value' => 'current_timestamp()',
         'is_auto_increment' => false,
       ),
-      50 => 
+      49 => 
       array (
         'column_name' => 'updated_at',
         'data_type' => 'datetime',

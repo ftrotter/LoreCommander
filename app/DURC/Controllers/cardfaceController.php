@@ -239,7 +239,7 @@ class cardfaceController extends DURCController
         $tmp_cardface->color = $request->color;
         $tmp_cardface->color_identity = $request->color_identity;
         $tmp_cardface->flavor_text = $request->flavor_text;
-        $tmp_cardface->cardface_image_uri = $request->cardface_image_uri;
+        $tmp_cardface->image_uri = $request->image_uri;
         $tmp_cardface->mana_cost = $request->mana_cost;
         $tmp_cardface->cmc = $request->cmc;
         $tmp_cardface->name = $request->name;
@@ -248,7 +248,6 @@ class cardfaceController extends DURCController
         $tmp_cardface->toughness = $request->toughness;
         $tmp_cardface->type_line = $request->type_line;
         $tmp_cardface->border_color = $request->border_color;
-        $tmp_cardface->image_uri = $request->image_uri;
         $tmp_cardface->image_uri_art_crop = $request->image_uri_art_crop;
         $tmp_cardface->image_hash_art_crop = $request->image_hash_art_crop;
         $tmp_cardface->image_uri_small = $request->image_uri_small;
@@ -482,7 +481,7 @@ class cardfaceController extends DURCController
         $tmp_cardface->color = $request->color;
         $tmp_cardface->color_identity = $request->color_identity;
         $tmp_cardface->flavor_text = $request->flavor_text;
-        $tmp_cardface->cardface_image_uri = $request->cardface_image_uri;
+        $tmp_cardface->image_uri = $request->image_uri;
         $tmp_cardface->mana_cost = $request->mana_cost;
         $tmp_cardface->cmc = $request->cmc;
         $tmp_cardface->name = $request->name;
@@ -491,7 +490,6 @@ class cardfaceController extends DURCController
         $tmp_cardface->toughness = $request->toughness;
         $tmp_cardface->type_line = $request->type_line;
         $tmp_cardface->border_color = $request->border_color;
-        $tmp_cardface->image_uri = $request->image_uri;
         $tmp_cardface->image_uri_art_crop = $request->image_uri_art_crop;
         $tmp_cardface->image_hash_art_crop = $request->image_hash_art_crop;
         $tmp_cardface->image_uri_small = $request->image_uri_small;
