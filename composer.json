@@ -15,7 +15,7 @@
 
     ],
     "require": {
-        "php": ">=7.2.0",
+        "php": "^7.2.0|^8.0",
         "careset/caresetjwtauthclient": "dev-master",
         "careset/durc": ">=1.0",
         "careset/zermelo": ">=2.0",
@@ -24,7 +24,7 @@
         "laravel/framework": "^6.20",
         "laravel/helpers": "^1.1",
         "owen-it/laravel-auditing": "^10.0",
-        "phpunit/phpunit": "^7.3",
+        "phpunit/phpunit": "^7.3|^8.0",
         "proai/laravel-handlebars": "~1.9",
         "pusher/pusher-php-server": "^4.0",
 	"kub-at/php-simple-html-dom-parser": "^1.9",
