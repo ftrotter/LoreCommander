@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=f493e6a89c3cae1a0b9a1fd36e0a8fa3
+FILE_SIG=13f2a5b84a68a3ef473419bab1850466
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -277,7 +277,7 @@ array (
     'column_name' => 'purchaseOrder_id',
     'data_type' => 'int',
     'is_primary_key' => false,
-    'is_foreign_key' => true,
+    'is_foreign_key' => false,
     'is_linked_key' => true,
     'foreign_db' => 'DURC_northwind_data',
     'foreign_table' => 'purchaseOrder',
@@ -290,7 +290,7 @@ array (
     'column_name' => 'product_id',
     'data_type' => 'int',
     'is_primary_key' => false,
-    'is_foreign_key' => true,
+    'is_foreign_key' => false,
     'is_linked_key' => true,
     'foreign_db' => 'DURC_northwind_model',
     'foreign_table' => 'product',
@@ -355,10 +355,10 @@ array (
     'column_name' => 'inventory_id',
     'data_type' => 'int',
     'is_primary_key' => false,
-    'is_foreign_key' => true,
-    'is_linked_key' => true,
-    'foreign_db' => 'DURC_northwind_data',
-    'foreign_table' => 'inventoryTransaction',
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
     'is_nullable' => true,
     'default_value' => 'NULL',
     'is_auto_increment' => false,
@@ -397,7 +397,7 @@ array (
         'column_name' => 'supplier_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'supplier',
@@ -410,7 +410,7 @@ array (
         'column_name' => 'createdBy_employee_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'employee',
@@ -449,10 +449,10 @@ array (
         'column_name' => 'status_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'northwind_model',
-        'foreign_table' => 'purchaseOrderStatus',
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
         'is_nullable' => true,
         'default_value' => '0',
         'is_auto_increment' => false,
