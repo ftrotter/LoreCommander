@@ -128,38 +128,13 @@
   <div class='form-group row {{released_at_row_class}}'>
     <label for='released_at' class='col-sm-4 col-form-label'>released_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='NULL' value='{{released_at}}' >
-        
-    <button type='button' class='btn btn-primary' id='released_at_FontPicker'>
-    <img src='/css/ic_today_black_24dp_1x.png'> 
-    </button>
-    <button type='button' class='btn btn-primary' id='released_at_TodayNow'> Today </button>
-    <div class='invalid-feedback'>
-      <ul>
-      {{#errors.released_at.messages}}<li>{{.}}</li>{{/errors.released_at.messages}}
-      </ul>
-   </div>
-   <script>
-	var released_atConv = new AnyTime.Converter({format: '%Y-%m-%d'});
-  	$('#released_at_TodayNow').click( function(e) {
-      		$('#released_at').val(released_atConv.format(new Date())).change(); } );
-
-    	$('#released_at_FontPicker').click(
-      		function(e) {
-        		$('#released_at').AnyTime_noPicker().AnyTime_picker(
-				{
-    					format: '%Y-%m-%d',
-    					formatUtcOffset: '%: (%@)'
-				} 
-			).focus();
-        	e.preventDefault();
-        	} );
-    </script>
-
-    </div><div class='col-sm-1'>
-                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='released_at' name='released_atNull' id='released_atNull' value='released_atNull' {{released_at_checked}}>
-                    <label class='form-check-label' for='released_atNull'>null</label>
-                </div></div>
+      <input type='text' class='form-control  {{#errors.released_at.has_errors}}is-invalid{{/errors.released_at.has_errors}}' id='released_at' name='released_at' placeholder='' value='{{released_at}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.released_at.messages}}<li>{{.}}</li>{{/errors.released_at.messages}}
+          </ul>
+       </div>
+    </div></div>
   <div class='form-group row {{set_name_row_class}}'>
     <label for='set_name' class='col-sm-4 col-form-label'>set_name</label>
     <div class='col-sm-7'>
@@ -254,25 +229,15 @@ $(document).ready(function () {
   <div class='form-group row {{collector_number_row_class}}'>
     <label for='collector_number' class='col-sm-4 col-form-label'>collector_number</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.collector_number.has_errors}}is-invalid{{/errors.collector_number.has_errors}}' id='collector_number' name='collector_number' placeholder='''' value='{{collector_number}}' >
+      <input type='text' class='form-control nullable {{#errors.collector_number.has_errors}}is-invalid{{/errors.collector_number.has_errors}}' id='collector_number' name='collector_number' placeholder='NULL' value='{{collector_number}}' >
       <div class='invalid-feedback'>
           <ul>
           {{#errors.collector_number.messages}}<li>{{.}}</li>{{/errors.collector_number.messages}}
           </ul>
        </div>
-    </div></div>
-  <div class='form-group row {{sortable_collector_number_row_class}}'>
-    <label for='sortable_collector_number' class='col-sm-4 col-form-label'>sortable_collector_number</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.sortable_collector_number.has_errors}}is-invalid{{/errors.sortable_collector_number.has_errors}}' id='sortable_collector_number' name='sortable_collector_number' placeholder='NULL' value='{{sortable_collector_number}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.sortable_collector_number.messages}}<li>{{.}}</li>{{/errors.sortable_collector_number.messages}}
-          </ul>
-       </div>
     </div><div class='col-sm-1'>
-                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='sortable_collector_number' name='sortable_collector_numberNull' id='sortable_collector_numberNull' value='sortable_collector_numberNull' {{sortable_collector_number_checked}}>
-                    <label class='form-check-label' for='sortable_collector_numberNull'>null</label>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='collector_number' name='collector_numberNull' id='collector_numberNull' value='collector_numberNull' {{collector_number_checked}}>
+                    <label class='form-check-label' for='collector_numberNull'>null</label>
                 </div></div>
   <div class='form-group row {{variation_of_scryfall_id_row_class}}'>
     <label for='variation_of_scryfall_id' class='col-sm-4 col-form-label'>variation_of_scryfall_id</label>
@@ -408,6 +373,82 @@ $(document).ready(function () {
     </div>
   </div>
 
+  <div class='form-group row {{legal_paupercommander_row_class}}'>
+    <label for='legal_paupercommander' class='col-sm-4 col-form-label'>legal_paupercommander</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_paupercommander.has_errors}}is-invalid{{/errors.legal_paupercommander.has_errors}}' id='legal_paupercommander' name='legal_paupercommander' placeholder='0' value='{{legal_paupercommander}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_paupercommander.messages}}<li>{{.}}</li>{{/errors.legal_paupercommander.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{legal_alchemy_row_class}}'>
+    <label for='legal_alchemy' class='col-sm-4 col-form-label'>legal_alchemy</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.legal_alchemy.has_errors}}is-invalid{{/errors.legal_alchemy.has_errors}}' id='legal_alchemy' name='legal_alchemy' placeholder='0' value='{{legal_alchemy}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_alchemy.messages}}<li>{{.}}</li>{{/errors.legal_alchemy.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='legal_alchemy' name='legal_alchemyNull' id='legal_alchemyNull' value='legal_alchemyNull' {{legal_alchemy_checked}}>
+                    <label class='form-check-label' for='legal_alchemyNull'>null</label>
+                </div></div>
+  <div class='form-group row {{legal_premodern_row_class}}'>
+    <label for='legal_premodern' class='col-sm-4 col-form-label'>legal_premodern</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_premodern.has_errors}}is-invalid{{/errors.legal_premodern.has_errors}}' id='legal_premodern' name='legal_premodern' placeholder='0' value='{{legal_premodern}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_premodern.messages}}<li>{{.}}</li>{{/errors.legal_premodern.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{legal_historicbrawl_row_class}}'>
+    <label for='legal_historicbrawl' class='col-sm-4 col-form-label'>legal_historicbrawl</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.legal_historicbrawl.has_errors}}is-invalid{{/errors.legal_historicbrawl.has_errors}}' id='legal_historicbrawl' name='legal_historicbrawl' placeholder='0' value='{{legal_historicbrawl}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_historicbrawl.messages}}<li>{{.}}</li>{{/errors.legal_historicbrawl.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='legal_historicbrawl' name='legal_historicbrawlNull' id='legal_historicbrawlNull' value='legal_historicbrawlNull' {{legal_historicbrawl_checked}}>
+                    <label class='form-check-label' for='legal_historicbrawlNull'>null</label>
+                </div></div>
+  <div class='form-group row {{legal_pioneer_row_class}}'>
+    <label for='legal_pioneer' class='col-sm-4 col-form-label'>legal_pioneer</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_pioneer.has_errors}}is-invalid{{/errors.legal_pioneer.has_errors}}' id='legal_pioneer' name='legal_pioneer' placeholder='0' value='{{legal_pioneer}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_pioneer.messages}}<li>{{.}}</li>{{/errors.legal_pioneer.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{legal_gladiator_row_class}}'>
+    <label for='legal_gladiator' class='col-sm-4 col-form-label'>legal_gladiator</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_gladiator.has_errors}}is-invalid{{/errors.legal_gladiator.has_errors}}' id='legal_gladiator' name='legal_gladiator' placeholder='0' value='{{legal_gladiator}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_gladiator.messages}}<li>{{.}}</li>{{/errors.legal_gladiator.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{legal_historic_row_class}}'>
+    <label for='legal_historic' class='col-sm-4 col-form-label'>legal_historic</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.legal_historic.has_errors}}is-invalid{{/errors.legal_historic.has_errors}}' id='legal_historic' name='legal_historic' placeholder='0' value='{{legal_historic}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.legal_historic.messages}}<li>{{.}}</li>{{/errors.legal_historic.messages}}
+          </ul>
+       </div>
+    </div></div>
   <div class='form-group row {{legal_oldschool_row_class}}'>
     <label for='legal_oldschool' class='col-sm-4 col-form-label'>legal_oldschool</label>
     <div class='col-sm-7'>
@@ -528,73 +569,10 @@ $(document).ready(function () {
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{legal_historic_row_class}}'>
-    <label for='legal_historic' class='col-sm-4 col-form-label'>legal_historic</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.legal_historic.has_errors}}is-invalid{{/errors.legal_historic.has_errors}}' id='legal_historic' name='legal_historic' placeholder='0' value='{{legal_historic}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.legal_historic.messages}}<li>{{.}}</li>{{/errors.legal_historic.messages}}
-          </ul>
-       </div>
-    </div></div>
-  <div class='form-group row {{legal_pioneer_row_class}}'>
-    <label for='legal_pioneer' class='col-sm-4 col-form-label'>legal_pioneer</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.legal_pioneer.has_errors}}is-invalid{{/errors.legal_pioneer.has_errors}}' id='legal_pioneer' name='legal_pioneer' placeholder='0' value='{{legal_pioneer}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.legal_pioneer.messages}}<li>{{.}}</li>{{/errors.legal_pioneer.messages}}
-          </ul>
-       </div>
-    </div></div>
-  <div class='form-group row {{legal_gladiator_row_class}}'>
-    <label for='legal_gladiator' class='col-sm-4 col-form-label'>legal_gladiator</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.legal_gladiator.has_errors}}is-invalid{{/errors.legal_gladiator.has_errors}}' id='legal_gladiator' name='legal_gladiator' placeholder='0' value='{{legal_gladiator}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.legal_gladiator.messages}}<li>{{.}}</li>{{/errors.legal_gladiator.messages}}
-          </ul>
-       </div>
-    </div></div>
-  <div class='form-group row {{legal_premodern_row_class}}'>
-    <label for='legal_premodern' class='col-sm-4 col-form-label'>legal_premodern</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.legal_premodern.has_errors}}is-invalid{{/errors.legal_premodern.has_errors}}' id='legal_premodern' name='legal_premodern' placeholder='0' value='{{legal_premodern}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.legal_premodern.messages}}<li>{{.}}</li>{{/errors.legal_premodern.messages}}
-          </ul>
-       </div>
-    </div></div>
-  <div class='form-group row {{legal_historicbrawl_row_class}}'>
-    <label for='legal_historicbrawl' class='col-sm-4 col-form-label'>legal_historicbrawl</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.legal_historicbrawl.has_errors}}is-invalid{{/errors.legal_historicbrawl.has_errors}}' id='legal_historicbrawl' name='legal_historicbrawl' placeholder='0' value='{{legal_historicbrawl}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.legal_historicbrawl.messages}}<li>{{.}}</li>{{/errors.legal_historicbrawl.messages}}
-          </ul>
-       </div>
-    </div></div>
-  <div class='form-group row {{binder_group_number_row_class}}'>
-    <label for='binder_group_number' class='col-sm-4 col-form-label'>binder_group_number</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control nullable {{#errors.binder_group_number.has_errors}}is-invalid{{/errors.binder_group_number.has_errors}}' id='binder_group_number' name='binder_group_number' placeholder='0' value='{{binder_group_number}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.binder_group_number.messages}}<li>{{.}}</li>{{/errors.binder_group_number.messages}}
-          </ul>
-       </div>
-    </div><div class='col-sm-1'>
-                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='binder_group_number' name='binder_group_numberNull' id='binder_group_numberNull' value='binder_group_numberNull' {{binder_group_number_checked}}>
-                    <label class='form-check-label' for='binder_group_numberNull'>null</label>
-                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -625,7 +603,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -652,16 +630,6 @@ $(document).ready(function () {
         	} );
 </script>
 
-    </div></div>
-  <div class='form-group row {{legal_paupercommander_row_class}}'>
-    <label for='legal_paupercommander' class='col-sm-4 col-form-label'>legal_paupercommander</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.legal_paupercommander.has_errors}}is-invalid{{/errors.legal_paupercommander.has_errors}}' id='legal_paupercommander' name='legal_paupercommander' placeholder='0' value='{{legal_paupercommander}}' >
-      <div class='invalid-feedback'>
-          <ul>
-          {{#errors.legal_paupercommander.messages}}<li>{{.}}</li>{{/errors.legal_paupercommander.messages}}
-          </ul>
-       </div>
     </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>

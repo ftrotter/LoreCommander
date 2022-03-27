@@ -254,74 +254,16 @@ $(document).ready(function () {
   <div class='form-group row {{inventory_id_row_class}}'>
     <label for='inventory_id' class='col-sm-4 col-form-label'>inventory_id</label>
     <div class='col-sm-7'>
-	Current id value: {{inventory_id}} (see below for lookup value)<br>
-	<select class='select2_inventory_id form-control' id='inventory_id' name='inventory_id'  >
-	<option value='{{inventory_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
-	</select>
-    </div>
-  </div>
-
-<script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('inventory_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#inventory_id option:selected');
-    const inventoryTransactionId = element.val();
-    let inventoryTransactionIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/inventoryTransaction/' + inventoryTransactionId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        inventoryTransactionIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_inventory_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/inventoryTransaction',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
-          }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-inventory_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('inventory_id');
-        if (inventoryTransactionIdHasError === true) {
-            $('#select2-inventory_id-container').addClass('text-danger');
-        }
-    });
-});
-
-</script>
-
-
+      <input type='text' class='form-control nullable {{#errors.inventory_id.has_errors}}is-invalid{{/errors.inventory_id.has_errors}}' id='inventory_id' name='inventory_id' placeholder='NULL' value='{{inventory_id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.inventory_id.messages}}<li>{{.}}</li>{{/errors.inventory_id.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='inventory_id' name='inventory_idNull' id='inventory_idNull' value='inventory_idNull' {{inventory_id_checked}}>
+                    <label class='form-check-label' for='inventory_idNull'>null</label>
+                </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
       <button type='submit' class='btn btn-primary'>Save Data</button>
