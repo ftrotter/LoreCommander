@@ -101,6 +101,7 @@ SELECT id, creature_name FROM lore.creature
 	$disallowed_list = [
 		'Legendary',
 		'Enchantment',
+		'Equipment',
 		'Land',
 		'//',
 	];
