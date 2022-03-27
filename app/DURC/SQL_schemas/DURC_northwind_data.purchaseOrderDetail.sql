@@ -13,9 +13,6 @@ CREATE TABLE `purchaseOrderDetail` (
   KEY `id` (`id`),
   KEY `inventory_id` (`inventory_id`),
   KEY `purchaseOrder_id` (`purchaseOrder_id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `fkPurchaseOrderDetailInventoryTransaction1` FOREIGN KEY (`inventory_id`) REFERENCES `inventoryTransaction` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkPurchaseOrderDetailProducts1` FOREIGN KEY (`product_id`) REFERENCES `northwind_model`.`product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkPurchaseOrderDetailPurchaseOrder1` FOREIGN KEY (`purchaseOrder_id`) REFERENCES `purchaseOrder` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

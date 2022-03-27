@@ -10,7 +10,6 @@ CREATE TABLE `invoice` (
   `amountDue` decimal(19,4) DEFAULT 0.0000,
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
-  KEY `fkInvoicesOrder1_idx` (`order_id`),
-  CONSTRAINT `fkInvoicesOrder1` FOREIGN KEY (`order_id`) REFERENCES `northwind_model`.`order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fkInvoicesOrder1_idx` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
