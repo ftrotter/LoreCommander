@@ -1,6 +1,5 @@
-backup/*.txt
+/backup/*.txt
 #do not backup the data, just the schemas
-=======
 
 #CareSet defaults
 *.yaml
