@@ -153,10 +153,7 @@ CREATE TABLE `DURC_northwind_data`.`orderDetail` (
   KEY `product_id` (`product_id`),
   KEY `purchaseOrder_id` (`PurchaseOrder_id`),
   KEY `fkOrderDetailOrder1_idx` (`order_id`),
-  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`),
-  CONSTRAINT `fkOrderDetailOrder1` FOREIGN KEY (`order_id`) REFERENCES `northwind_model`.`order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrderDetailOrderDetailStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`orderDetailStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrderDetailProducts1` FOREIGN KEY (`product_id`) REFERENCES `northwind_model`.`product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8
 */
 

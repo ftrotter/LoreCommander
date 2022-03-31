@@ -245,7 +245,6 @@ class cardController extends DURCController
         $tmp_card->set_type = $request->set_type;
         $tmp_card->mtgset_id = $request->mtgset_id;
         $tmp_card->collector_number = $request->collector_number;
-        $tmp_card->sortable_collector_number = $request->sortable_collector_number;
         $tmp_card->variation_of_scryfall_id = $request->variation_of_scryfall_id;
         $tmp_card->edhrec_rank = $request->edhrec_rank;
         $tmp_card->is_promo = $request->is_promo;
@@ -256,6 +255,13 @@ class cardController extends DURCController
         $tmp_card->is_game_paper = $request->is_game_paper;
         $tmp_card->is_game_mtgo = $request->is_game_mtgo;
         $tmp_card->is_game_arena = $request->is_game_arena;
+        $tmp_card->legal_paupercommander = $request->legal_paupercommander;
+        $tmp_card->legal_alchemy = $request->legal_alchemy;
+        $tmp_card->legal_premodern = $request->legal_premodern;
+        $tmp_card->legal_historicbrawl = $request->legal_historicbrawl;
+        $tmp_card->legal_pioneer = $request->legal_pioneer;
+        $tmp_card->legal_gladiator = $request->legal_gladiator;
+        $tmp_card->legal_historic = $request->legal_historic;
         $tmp_card->legal_oldschool = $request->legal_oldschool;
         $tmp_card->legal_duel = $request->legal_duel;
         $tmp_card->legal_commander = $request->legal_commander;
@@ -268,13 +274,6 @@ class cardController extends DURCController
         $tmp_card->legal_frontier = $request->legal_frontier;
         $tmp_card->legal_future = $request->legal_future;
         $tmp_card->legal_standard = $request->legal_standard;
-        $tmp_card->legal_historic = $request->legal_historic;
-        $tmp_card->legal_pioneer = $request->legal_pioneer;
-        $tmp_card->legal_gladiator = $request->legal_gladiator;
-        $tmp_card->legal_premodern = $request->legal_premodern;
-        $tmp_card->legal_historicbrawl = $request->legal_historicbrawl;
-        $tmp_card->binder_group_number = $request->binder_group_number;
-        $tmp_card->legal_paupercommander = $request->legal_paupercommander;
 
 
         try {
@@ -483,7 +482,6 @@ class cardController extends DURCController
         $tmp_card->set_type = $request->set_type;
         $tmp_card->mtgset_id = $request->mtgset_id;
         $tmp_card->collector_number = $request->collector_number;
-        $tmp_card->sortable_collector_number = $request->sortable_collector_number;
         $tmp_card->variation_of_scryfall_id = $request->variation_of_scryfall_id;
         $tmp_card->edhrec_rank = $request->edhrec_rank;
         $tmp_card->is_promo = $request->is_promo;
@@ -494,6 +492,13 @@ class cardController extends DURCController
         $tmp_card->is_game_paper = $request->is_game_paper;
         $tmp_card->is_game_mtgo = $request->is_game_mtgo;
         $tmp_card->is_game_arena = $request->is_game_arena;
+        $tmp_card->legal_paupercommander = $request->legal_paupercommander;
+        $tmp_card->legal_alchemy = $request->legal_alchemy;
+        $tmp_card->legal_premodern = $request->legal_premodern;
+        $tmp_card->legal_historicbrawl = $request->legal_historicbrawl;
+        $tmp_card->legal_pioneer = $request->legal_pioneer;
+        $tmp_card->legal_gladiator = $request->legal_gladiator;
+        $tmp_card->legal_historic = $request->legal_historic;
         $tmp_card->legal_oldschool = $request->legal_oldschool;
         $tmp_card->legal_duel = $request->legal_duel;
         $tmp_card->legal_commander = $request->legal_commander;
@@ -506,13 +511,6 @@ class cardController extends DURCController
         $tmp_card->legal_frontier = $request->legal_frontier;
         $tmp_card->legal_future = $request->legal_future;
         $tmp_card->legal_standard = $request->legal_standard;
-        $tmp_card->legal_historic = $request->legal_historic;
-        $tmp_card->legal_pioneer = $request->legal_pioneer;
-        $tmp_card->legal_gladiator = $request->legal_gladiator;
-        $tmp_card->legal_premodern = $request->legal_premodern;
-        $tmp_card->legal_historicbrawl = $request->legal_historicbrawl;
-        $tmp_card->binder_group_number = $request->binder_group_number;
-        $tmp_card->legal_paupercommander = $request->legal_paupercommander;
 
         $id = $card->id;
         
