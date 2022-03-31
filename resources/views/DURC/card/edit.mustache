@@ -239,6 +239,19 @@ $(document).ready(function () {
                     <input class='form-check-input null-checkbox' type='checkbox' data-elem='collector_number' name='collector_numberNull' id='collector_numberNull' value='collector_numberNull' {{collector_number_checked}}>
                     <label class='form-check-label' for='collector_numberNull'>null</label>
                 </div></div>
+  <div class='form-group row {{sortable_collector_number_row_class}}'>
+    <label for='sortable_collector_number' class='col-sm-4 col-form-label'>sortable_collector_number</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.sortable_collector_number.has_errors}}is-invalid{{/errors.sortable_collector_number.has_errors}}' id='sortable_collector_number' name='sortable_collector_number' placeholder='NULL' value='{{sortable_collector_number}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.sortable_collector_number.messages}}<li>{{.}}</li>{{/errors.sortable_collector_number.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='sortable_collector_number' name='sortable_collector_numberNull' id='sortable_collector_numberNull' value='sortable_collector_numberNull' {{sortable_collector_number_checked}}>
+                    <label class='form-check-label' for='sortable_collector_numberNull'>null</label>
+                </div></div>
   <div class='form-group row {{variation_of_scryfall_id_row_class}}'>
     <label for='variation_of_scryfall_id' class='col-sm-4 col-form-label'>variation_of_scryfall_id</label>
     <div class='col-sm-7'>

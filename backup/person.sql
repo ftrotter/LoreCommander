@@ -1,13 +1,25 @@
+<<<<<<< HEAD
 -- MariaDB dump 10.19  Distrib 10.5.15-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: lore
 -- ------------------------------------------------------
 -- Server version	10.5.15-MariaDB-1:10.5.15+maria~focal
+=======
+-- MySQL dump 10.16  Distrib 10.2.15-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: lore
+-- ------------------------------------------------------
+-- Server version	10.2.15-MariaDB-10.2.15+maria~xenial-log
+>>>>>>> ce43b1cccffcb01cc57cc0014bf8e8f03a4a4461
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+<<<<<<< HEAD
 /*!40101 SET NAMES utf8mb4 */;
+=======
+/*!40101 SET NAMES utf8 */;
+>>>>>>> ce43b1cccffcb01cc57cc0014bf8e8f03a4a4461
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='' */;
@@ -24,7 +36,10 @@ CREATE TABLE `person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(100) NOT NULL,
   `first_name` varchar(100) NOT NULL,
+<<<<<<< HEAD
   `person_blurb` varchar(2000) NOT NULL,
+=======
+>>>>>>> ce43b1cccffcb01cc57cc0014bf8e8f03a4a4461
   `image_uri` varchar(255) DEFAULT NULL,
   `wallpaper_download_url` varchar(500) DEFAULT NULL,
   `mtgwiki_url` varchar(255) DEFAULT NULL,
@@ -33,7 +48,11 @@ CREATE TABLE `person` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `last_name` (`last_name`,`first_name`)
+<<<<<<< HEAD
 ) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+=======
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+>>>>>>> ce43b1cccffcb01cc57cc0014bf8e8f03a4a4461
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -44,4 +63,8 @@ CREATE TABLE `person` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2022-03-31 21:49:26
+=======
+-- Dump completed on 2019-09-01  5:54:12
+>>>>>>> ce43b1cccffcb01cc57cc0014bf8e8f03a4a4461

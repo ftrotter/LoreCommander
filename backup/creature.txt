@@ -1188,6 +1188,7 @@
 1188	Zombie Wolf	https://communityleadership.org.uk/wp-content/uploads/2014/03/Question-Mark-Picture.jpg	2019-08-25 20:57:06	2019-08-25 20:57:06
 1189	Zombie Wurm	https://communityleadership.org.uk/wp-content/uploads/2014/03/Question-Mark-Picture.jpg	2019-08-25 20:57:06	2019-08-25 20:57:06
 1190	Zubera Spirit	https://communityleadership.org.uk/wp-content/uploads/2014/03/Question-Mark-Picture.jpg	2019-08-25 20:57:06	2019-08-25 20:57:06
+<<<<<<< HEAD
 1191	Adventure	\N	2019-12-12 14:22:49	2019-12-12 14:22:49
 1192	Cephalid Noble	\N	2019-12-12 14:22:49	2019-12-12 14:22:49
 1193	Dragon Noble	\N	2019-12-12 14:22:49	2019-12-12 14:22:49
@@ -1605,3 +1606,5 @@
 1605	Squid Pirate	\N	2022-03-27 21:12:25	2022-03-27 21:12:25
 1606	The Biggest, Baddest, Nastiest,	\N	2022-03-27 21:12:25	2022-03-27 21:12:25
 1607	Treefolk Wizard	\N	2022-03-27 21:12:25	2022-03-27 21:12:25
+=======
+>>>>>>> ce43b1cccffcb01cc57cc0014bf8e8f03a4a4461

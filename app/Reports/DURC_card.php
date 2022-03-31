@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=2eb5bc178975d8e1e8c76eb269c2b9fa
+FILE_SIG=e3c54684556f5d65a06ec90b44b91a76
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -78,6 +78,7 @@ $joined_select_field_sql
 , card.set_type AS set_type
 , card.mtgset_id AS mtgset_id
 , card.collector_number AS collector_number
+, card.sortable_collector_number AS sortable_collector_number
 , card.variation_of_scryfall_id AS variation_of_scryfall_id
 , card.edhrec_rank AS edhrec_rank
 , card.is_promo AS is_promo
@@ -137,6 +138,7 @@ $joined_select_field_sql
 , card.set_type AS set_type
 , card.mtgset_id AS mtgset_id
 , card.collector_number AS collector_number
+, card.sortable_collector_number AS sortable_collector_number
 , card.variation_of_scryfall_id AS variation_of_scryfall_id
 , card.edhrec_rank AS edhrec_rank
 , card.is_promo AS is_promo
@@ -471,6 +473,19 @@ array (
   ),
   14 => 
   array (
+    'column_name' => 'sortable_collector_number',
+    'data_type' => 'decimal',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
+  ),
+  15 => 
+  array (
     'column_name' => 'variation_of_scryfall_id',
     'data_type' => 'varchar',
     'is_primary_key' => false,
@@ -482,7 +497,7 @@ array (
     'default_value' => '\'NULL\'',
     'is_auto_increment' => false,
   ),
-  15 => 
+  16 => 
   array (
     'column_name' => 'edhrec_rank',
     'data_type' => 'int',
@@ -495,7 +510,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  16 => 
+  17 => 
   array (
     'column_name' => 'is_promo',
     'data_type' => 'tinyint',
@@ -508,7 +523,7 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
-  17 => 
+  18 => 
   array (
     'column_name' => 'is_reserved',
     'data_type' => 'tinyint',
@@ -521,7 +536,7 @@ array (
     'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
-  18 => 
+  19 => 
   array (
     'column_name' => 'is_story_spotlight',
     'data_type' => 'tinyint',
@@ -534,7 +549,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  19 => 
+  20 => 
   array (
     'column_name' => 'is_reprint',
     'data_type' => 'int',
@@ -547,7 +562,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  20 => 
+  21 => 
   array (
     'column_name' => 'is_variation',
     'data_type' => 'tinyint',
@@ -560,7 +575,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  21 => 
+  22 => 
   array (
     'column_name' => 'is_game_paper',
     'data_type' => 'tinyint',
@@ -573,7 +588,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  22 => 
+  23 => 
   array (
     'column_name' => 'is_game_mtgo',
     'data_type' => 'tinyint',
@@ -586,7 +601,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  23 => 
+  24 => 
   array (
     'column_name' => 'is_game_arena',
     'data_type' => 'tinyint',
@@ -599,7 +614,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  24 => 
+  25 => 
   array (
     'column_name' => 'legal_paupercommander',
     'data_type' => 'tinyint',
@@ -612,7 +627,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  25 => 
+  26 => 
   array (
     'column_name' => 'legal_alchemy',
     'data_type' => 'tinyint',
@@ -625,7 +640,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  26 => 
+  27 => 
   array (
     'column_name' => 'legal_premodern',
     'data_type' => 'tinyint',
@@ -638,7 +653,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  27 => 
+  28 => 
   array (
     'column_name' => 'legal_historicbrawl',
     'data_type' => 'tinyint',
@@ -651,7 +666,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  28 => 
+  29 => 
   array (
     'column_name' => 'legal_pioneer',
     'data_type' => 'tinyint',
@@ -664,7 +679,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  29 => 
+  30 => 
   array (
     'column_name' => 'legal_gladiator',
     'data_type' => 'tinyint',
@@ -677,7 +692,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  30 => 
+  31 => 
   array (
     'column_name' => 'legal_historic',
     'data_type' => 'tinyint',
@@ -690,7 +705,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  31 => 
+  32 => 
   array (
     'column_name' => 'legal_oldschool',
     'data_type' => 'tinyint',
@@ -703,7 +718,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  32 => 
+  33 => 
   array (
     'column_name' => 'legal_duel',
     'data_type' => 'tinyint',
@@ -716,7 +731,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  33 => 
+  34 => 
   array (
     'column_name' => 'legal_commander',
     'data_type' => 'tinyint',
@@ -729,7 +744,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  34 => 
+  35 => 
   array (
     'column_name' => 'legal_brawl',
     'data_type' => 'tinyint',
@@ -742,7 +757,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  35 => 
+  36 => 
   array (
     'column_name' => 'legal_penny',
     'data_type' => 'tinyint',
@@ -755,7 +770,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  36 => 
+  37 => 
   array (
     'column_name' => 'legal_vintage',
     'data_type' => 'tinyint',
@@ -768,7 +783,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  37 => 
+  38 => 
   array (
     'column_name' => 'legal_pauper',
     'data_type' => 'tinyint',
@@ -781,7 +796,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  38 => 
+  39 => 
   array (
     'column_name' => 'legal_legacy',
     'data_type' => 'tinyint',
@@ -794,7 +809,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  39 => 
+  40 => 
   array (
     'column_name' => 'legal_modern',
     'data_type' => 'tinyint',
@@ -807,7 +822,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  40 => 
+  41 => 
   array (
     'column_name' => 'legal_frontier',
     'data_type' => 'tinyint',
@@ -820,7 +835,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  41 => 
+  42 => 
   array (
     'column_name' => 'legal_future',
     'data_type' => 'tinyint',
@@ -833,7 +848,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  42 => 
+  43 => 
   array (
     'column_name' => 'legal_standard',
     'data_type' => 'tinyint',
@@ -846,7 +861,7 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  43 => 
+  44 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -859,7 +874,7 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
-  44 => 
+  45 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',

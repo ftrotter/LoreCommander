@@ -1,0 +1,278 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+            </div>
+
+{{#is_new}}
+<form action='/DURC/powertoughsource' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/powertoughsource/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>powertoughsource</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_powertoughsource/'>Return to powertoughsource list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/powertoughsource/create'>Create new powertoughsource </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{scryfall_web_uri_row_class}}'>
+    <label for='scryfall_web_uri' class='col-sm-4 col-form-label'>scryfall_web_uri</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.scryfall_web_uri.has_errors}}is-invalid{{/errors.scryfall_web_uri.has_errors}}' id='scryfall_web_uri' name='scryfall_web_uri' placeholder='' value='{{scryfall_web_uri}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.scryfall_web_uri.messages}}<li>{{.}}</li>{{/errors.scryfall_web_uri.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{name_row_class}}'>
+    <label for='name' class='col-sm-4 col-form-label'>name</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.name.has_errors}}is-invalid{{/errors.name.has_errors}}' id='name' name='name' placeholder='' value='{{name}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.name.messages}}<li>{{.}}</li>{{/errors.name.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{cmc_row_class}}'>
+    <label for='cmc' class='col-sm-4 col-form-label'>cmc</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.cmc.has_errors}}is-invalid{{/errors.cmc.has_errors}}' id='cmc' name='cmc' placeholder='NULL' value='{{cmc}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.cmc.messages}}<li>{{.}}</li>{{/errors.cmc.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='cmc' name='cmcNull' id='cmcNull' value='cmcNull' {{cmc_checked}}>
+                    <label class='form-check-label' for='cmcNull'>null</label>
+                </div></div>
+  <div class='form-group row {{power_row_class}}'>
+    <label for='power' class='col-sm-4 col-form-label'>power</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.power.has_errors}}is-invalid{{/errors.power.has_errors}}' id='power' name='power' placeholder='NULL' value='{{power}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.power.messages}}<li>{{.}}</li>{{/errors.power.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='power' name='powerNull' id='powerNull' value='powerNull' {{power_checked}}>
+                    <label class='form-check-label' for='powerNull'>null</label>
+                </div></div>
+  <div class='form-group row {{toughness_row_class}}'>
+    <label for='toughness' class='col-sm-4 col-form-label'>toughness</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.toughness.has_errors}}is-invalid{{/errors.toughness.has_errors}}' id='toughness' name='toughness' placeholder='NULL' value='{{toughness}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.toughness.messages}}<li>{{.}}</li>{{/errors.toughness.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='toughness' name='toughnessNull' id='toughnessNull' value='toughnessNull' {{toughness_checked}}>
+                    <label class='form-check-label' for='toughnessNull'>null</label>
+                </div></div>
+  <div class='form-group row {{power_plus_toughness_row_class}}'>
+    <label for='power_plus_toughness' class='col-sm-4 col-form-label'>power_plus_toughness</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.power_plus_toughness.has_errors}}is-invalid{{/errors.power_plus_toughness.has_errors}}' id='power_plus_toughness' name='power_plus_toughness' placeholder='NULL' value='{{power_plus_toughness}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.power_plus_toughness.messages}}<li>{{.}}</li>{{/errors.power_plus_toughness.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='power_plus_toughness' name='power_plus_toughnessNull' id='power_plus_toughnessNull' value='power_plus_toughnessNull' {{power_plus_toughness_checked}}>
+                    <label class='form-check-label' for='power_plus_toughnessNull'>null</label>
+                </div></div>
+  <div class='form-group row {{is_color_identity_green_row_class}}'>
+    <div class='col-sm-4'><label>is_color_identity_green</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_identity_green' class='{{#errors.is_color_identity_green.has_errors}}is-invalid{{/errors.is_color_identity_green.has_errors}}'name='is_color_identity_green' {{is_color_identity_green}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_green.messages}}<li>{{.}}</li>{{/errors.is_color_identity_green.messages}}
+                </ul>
+            </div>
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_identity_red_row_class}}'>
+    <div class='col-sm-4'><label>is_color_identity_red</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_identity_red' class='{{#errors.is_color_identity_red.has_errors}}is-invalid{{/errors.is_color_identity_red.has_errors}}'name='is_color_identity_red' {{is_color_identity_red}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_red.messages}}<li>{{.}}</li>{{/errors.is_color_identity_red.messages}}
+                </ul>
+            </div>
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_identity_blue_row_class}}'>
+    <div class='col-sm-4'><label>is_color_identity_blue</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_identity_blue' class='{{#errors.is_color_identity_blue.has_errors}}is-invalid{{/errors.is_color_identity_blue.has_errors}}'name='is_color_identity_blue' {{is_color_identity_blue}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_blue.messages}}<li>{{.}}</li>{{/errors.is_color_identity_blue.messages}}
+                </ul>
+            </div>
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_identity_black_row_class}}'>
+    <div class='col-sm-4'><label>is_color_identity_black</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_identity_black' class='{{#errors.is_color_identity_black.has_errors}}is-invalid{{/errors.is_color_identity_black.has_errors}}'name='is_color_identity_black' {{is_color_identity_black}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_black.messages}}<li>{{.}}</li>{{/errors.is_color_identity_black.messages}}
+                </ul>
+            </div>
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row {{is_color_identity_white_row_class}}'>
+    <div class='col-sm-4'><label>is_color_identity_white</label></div>
+    <div class='col-sm-7'>
+        <div class='checkbox'>
+            <input type='checkbox' id='is_color_identity_white' class='{{#errors.is_color_identity_white.has_errors}}is-invalid{{/errors.is_color_identity_white.has_errors}}'name='is_color_identity_white' {{is_color_identity_white}}  >
+            <div class='invalid-feedback'>
+                <ul>
+                  {{#errors.is_color_identity_white.messages}}<li>{{.}}</li>{{/errors.is_color_identity_white.messages}}
+                </ul>
+            </div>
+       </div> 
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+  
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/powertoughsource/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='powertoughsource' class='do-soft-delete btn btn-outline-danger'>Hard Delete powertoughsource</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+    
+    <script type='text/javascript'>
+    
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+        
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+            
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+            
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+            
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }               
+            });
+            
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

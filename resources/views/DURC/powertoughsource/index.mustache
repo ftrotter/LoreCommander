@@ -1,0 +1,139 @@
+
+<h1>powertoughsource list </h1>
+<h3> <a href='/Zermelo/DURC_powertoughsource'>Zermelo powertoughsource Report</a></h3>
+Create <a href='/DURC/powertoughsource/create/'>new powertoughsource</a><br>
+
+
+{{^is_need_paging}}
+<p>
+{{total}} results. All rows shown.
+</p>
+{{/is_need_paging}}
+
+{{#is_need_paging}}
+
+<div class='dataTables_paginate paging_simple_numbers' id='table_powertoughsource_page'>
+	<ul class='pagination'>
+		<li class='paginate_button page-item previous {{first_page_class}}' 
+			id='table_powertoughsource_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+		</li>
+		<li class='paginate_button page-item {{prev_page_class}}'>
+			<a href='{{prev_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+		</li>
+		<li class='paginate_button page-item active'>
+			<a href='#' aria-controls='table_powertoughsource' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+		</li>
+		<li class='paginate_button page-item {{next_page_class}} '>
+			<a href='{{next_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+		</li>
+		<li class='paginate_button page-item {{last_page_class}}'>
+			<a href='{{last_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+		</li>
+	</ul>
+</div>
+{{/is_need_paging}}
+
+
+<table id='table_powertoughsource' class='table table-bordered table-hover table-responsive table-sm'>
+<thead><tr>
+<th scope='col'>scryfall_web_uri</th>
+<th scope='col'>name</th>
+<th scope='col'>cmc</th>
+<th scope='col'>power</th>
+<th scope='col'>toughness</th>
+<th scope='col'>power_plus_toughness</th>
+<th scope='col'>is_color_identity_green</th>
+<th scope='col'>is_color_identity_red</th>
+<th scope='col'>is_color_identity_blue</th>
+<th scope='col'>is_color_identity_black</th>
+<th scope='col'>is_color_identity_white</th>
+
+</tr></thead>
+<tfoot><tr>
+<th scope='col'>scryfall_web_uri</th>
+<th scope='col'>name</th>
+<th scope='col'>cmc</th>
+<th scope='col'>power</th>
+<th scope='col'>toughness</th>
+<th scope='col'>power_plus_toughness</th>
+<th scope='col'>is_color_identity_green</th>
+<th scope='col'>is_color_identity_red</th>
+<th scope='col'>is_color_identity_blue</th>
+<th scope='col'>is_color_identity_black</th>
+<th scope='col'>is_color_identity_white</th>
+
+</tr></tfoot>
+<tbody>
+  {{#data}}
+    <tr>
+				<td>{{scryfall_web_uri}}</td>
+			<td>{{name}}</td>
+			<td>{{cmc}}</td>
+			<td>{{power}}</td>
+			<td>{{toughness}}</td>
+			<td>{{power_plus_toughness}}</td>
+			<td>{{is_color_identity_green}}</td>
+			<td>{{is_color_identity_red}}</td>
+			<td>{{is_color_identity_blue}}</td>
+			<td>{{is_color_identity_black}}</td>
+			<td>{{is_color_identity_white}}</td>
+
+    </tr>
+  {{/data}}
+
+<tbody></table>
+
+
+
+{{^is_need_paging}}
+<p>
+{{total}} results. All rows shown.
+</p>
+{{/is_need_paging}}
+
+{{#is_need_paging}}
+
+<div class='dataTables_paginate paging_simple_numbers' id='table_powertoughsource_page'>
+	<ul class='pagination'>
+		<li class='paginate_button page-item previous {{first_page_class}}' 
+			id='table_powertoughsource_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+		</li>
+		<li class='paginate_button page-item {{prev_page_class}}'>
+			<a href='{{prev_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+		</li>
+		<li class='paginate_button page-item active'>
+			<a href='#' aria-controls='table_powertoughsource' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+		</li>
+		<li class='paginate_button page-item {{next_page_class}} '>
+			<a href='{{next_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+		</li>
+		<li class='paginate_button page-item {{last_page_class}}'>
+			<a href='{{last_page_url}}' aria-controls='table_powertoughsource' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+		</li>
+	</ul>
+</div>
+{{/is_need_paging}}
+
+
+<script type='text/javascript'>
+//we need a way to check to see if the page is loaded before we call DataTable()
+//but we frequently do not have JQuery yet... it could be loaded at the bottom of the page...
+//so we have a pure JS alternative to the ready() function..
+var DURC_checkReadyState = setInterval(() => {
+  if (document.readyState === 'complete') {
+    clearInterval(DURC_checkReadyState);
+    // document is ready
+    $('#table_powertoughsource').DataTable(
+{
+        'paging':   false,
+        'info':     false
+}
+);
+  }
+}, 100);
+
+
+</script>
+

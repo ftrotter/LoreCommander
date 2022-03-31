@@ -15,6 +15,7 @@ CREATE TABLE `card` (
   `set_type` varchar(255) NOT NULL,
   `mtgset_id` int(11) NOT NULL,
   `collector_number` varchar(10) DEFAULT NULL,
+  `sortable_collector_number` decimal(10,2) DEFAULT NULL,
   `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',
   `edhrec_rank` int(11) DEFAULT 0,
   `is_promo` tinyint(1) NOT NULL,
