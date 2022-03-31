@@ -14,24 +14,24 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `person_strategy_tag`
+-- Table structure for table `person_classofc_tag`
 --
 
-DROP TABLE IF EXISTS `person_strategy_tag`;
+DROP TABLE IF EXISTS `person_classofc_tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `person_strategy_tag` (
+CREATE TABLE `person_classofc_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `person_id` int(11) NOT NULL,
-  `strategy_id` int(11) NOT NULL,
+  `classofc_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
   `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,
   `link_note` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`tag_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`tag_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
