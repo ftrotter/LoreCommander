@@ -57,17 +57,25 @@ class  ScryfallSaver {
                 ];
 
                 public  static $is_legal = [
-                        'oldschool',
-                        'duel',
-                        'commander',
-                        'penny',
-                        'vintage',
-                        'pauper',
-                        'legacy',
-                        'modern',
-                        'frontier',
-                        'future',
                         'standard',
+                        'future',
+			'historic',
+			'gladiator',
+			'pioneer',
+			'explorer',
+                        'modern',
+                        'legacy',
+                        'pauper',
+                        'vintage',
+                        'penny',
+                        'commander',
+			'brawl',
+			'historicbrawl',
+			'alchemy',
+			'paupercommander',
+                        'duel',	
+                        'oldschool',
+                        'premodern',
                 ];
 
                 //set this so that we can uses less / greater than to see if legal
@@ -105,6 +113,10 @@ class  ScryfallSaver {
 		];
 
 	public static  function saveCardList($cards){
+
+		$is_new_legality = false;
+		$new_legality_list = [];
+
 
 		foreach($cards as $this_outer_card){
 			//first we consider the cardfaces...
@@ -187,10 +199,19 @@ class  ScryfallSaver {
 				}
 	
 				//flatten the legalities i.e. legacy, modern and standard
+				//The lagalities change too much and this part of the script would generate a column for data that we have not designed...
+				//which would crash things. Now modifying to make sure the field exists before prsuming to save it.
+				//this creates a chore of occasionally modifying the list in is_legal above and also adding space in the card table for new legalities
 				if(isset($this_card['legalities'])){
 					foreach($this_card['legalities'] as $legal_in => $legal_status){
 						$legal_score = self::$legal_lookup[$legal_status];
-						$card_fill["legal_$legal_in"] = $legal_score; //it is 0 by dfault..
+						if(in_array($legal_in,self::$is_legal)){	
+							$card_fill["legal_$legal_in"] = $legal_score; //it is 0 by dfault..
+						}else{
+							//getting hear means there is a new legality..
+							$is_new_legality = true;
+							$new_legality_list[] = $legal_in;		
+						}
 					}
 				}
 	
@@ -317,7 +338,11 @@ class  ScryfallSaver {
 	
 		} //end of card loop
 
-
+		//should there be better error logging? yes, there should.
+		if($is_new_legality){
+			echo "Warning: new legalities found!!";	
+			var_export($new_legalities_list);
+		}
 
 
 	}
