@@ -112,7 +112,8 @@
 		<div class='col-md-3'>
 		<h3> Cancel <small> (from Zendikar block) </small> </h3>
 		<a target='_blank' href='https://scryfall.com/card/zen/44/cancel?utm_source=api'>
-			<img width='400px' src='https://img.scryfall.com/cards/art_crop/front/9/e/9e557f54-3d9d-4610-a0d0-5874feacc76e.jpg?1562614848'>
+			<img width='400px' 
+src='https://c1.scryfall.com/file/scryfall-cards/art_crop/front/9/e/9e557f54-3d9d-4610-a0d0-5874feacc76e.jpg?1562614848'>
 		</a>
 		</div>
 		</div>
