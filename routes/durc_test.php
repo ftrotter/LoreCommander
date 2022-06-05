@@ -280,6 +280,10 @@ Route::get('durctest', function () {
  			'/DURC/person_strategy_tag/create', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1', //from: lore.person_strategy_tag 
  			'/DURC/person_strategy_tag/1/edit', //from: lore.person_strategy_tag 
+ 			'/DURC/powertoughsource', //from: lore.powertoughsource 
+ 			'/DURC/powertoughsource/create', //from: lore.powertoughsource 
+ 			'/DURC/powertoughsource/1', //from: lore.powertoughsource 
+ 			'/DURC/powertoughsource/1/edit', //from: lore.powertoughsource 
  			'/DURC/pricetype', //from: lore.pricetype 
  			'/DURC/pricetype/create', //from: lore.pricetype 
  			'/DURC/pricetype/1', //from: lore.pricetype 

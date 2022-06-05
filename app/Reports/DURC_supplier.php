@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7a32613780aaf24066d74402981c90bc
+FILE_SIG=e28829c9042693f53d9443db56ffe0da
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -451,7 +451,7 @@ array (
         'column_name' => 'supplier_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'supplier',
@@ -464,7 +464,7 @@ array (
         'column_name' => 'createdBy_employee_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'employee',
@@ -503,10 +503,10 @@ array (
         'column_name' => 'status_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'northwind_model',
-        'foreign_table' => 'purchaseOrderStatus',
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
         'is_nullable' => true,
         'default_value' => '0',
         'is_auto_increment' => false,

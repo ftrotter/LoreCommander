@@ -21,9 +21,6 @@ CREATE TABLE `purchaseOrder` (
   UNIQUE KEY `id` (`id`),
   KEY `createdBy` (`createdBy_employee_id`),
   KEY `status_id` (`status_id`),
-  KEY `supplier_id` (`supplier_id`),
-  CONSTRAINT `fkPurchaseOrderEmployees1` FOREIGN KEY (`createdBy_employee_id`) REFERENCES `northwind_model`.`employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkPurchaseOrderPurchaseOrderStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`purchaseOrderStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkPurchaseOrderSuppliers1` FOREIGN KEY (`supplier_id`) REFERENCES `northwind_model`.`supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `supplier_id` (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

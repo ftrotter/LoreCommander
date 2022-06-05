@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=11bc301306e84ee0e4ab189020d2b160
+FILE_SIG=e3c54684556f5d65a06ec90b44b91a76
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -89,6 +89,13 @@ $joined_select_field_sql
 , card.is_game_paper AS is_game_paper
 , card.is_game_mtgo AS is_game_mtgo
 , card.is_game_arena AS is_game_arena
+, card.legal_paupercommander AS legal_paupercommander
+, card.legal_alchemy AS legal_alchemy
+, card.legal_premodern AS legal_premodern
+, card.legal_historicbrawl AS legal_historicbrawl
+, card.legal_pioneer AS legal_pioneer
+, card.legal_gladiator AS legal_gladiator
+, card.legal_historic AS legal_historic
 , card.legal_oldschool AS legal_oldschool
 , card.legal_duel AS legal_duel
 , card.legal_commander AS legal_commander
@@ -101,15 +108,8 @@ $joined_select_field_sql
 , card.legal_frontier AS legal_frontier
 , card.legal_future AS legal_future
 , card.legal_standard AS legal_standard
-, card.legal_historic AS legal_historic
-, card.legal_pioneer AS legal_pioneer
-, card.legal_gladiator AS legal_gladiator
-, card.legal_premodern AS legal_premodern
-, card.legal_historicbrawl AS legal_historicbrawl
-, card.binder_group_number AS binder_group_number
 , card.created_at AS created_at
 , card.updated_at AS updated_at
-, card.legal_paupercommander AS legal_paupercommander
 
 FROM lore.card
 
@@ -149,6 +149,13 @@ $joined_select_field_sql
 , card.is_game_paper AS is_game_paper
 , card.is_game_mtgo AS is_game_mtgo
 , card.is_game_arena AS is_game_arena
+, card.legal_paupercommander AS legal_paupercommander
+, card.legal_alchemy AS legal_alchemy
+, card.legal_premodern AS legal_premodern
+, card.legal_historicbrawl AS legal_historicbrawl
+, card.legal_pioneer AS legal_pioneer
+, card.legal_gladiator AS legal_gladiator
+, card.legal_historic AS legal_historic
 , card.legal_oldschool AS legal_oldschool
 , card.legal_duel AS legal_duel
 , card.legal_commander AS legal_commander
@@ -161,15 +168,8 @@ $joined_select_field_sql
 , card.legal_frontier AS legal_frontier
 , card.legal_future AS legal_future
 , card.legal_standard AS legal_standard
-, card.legal_historic AS legal_historic
-, card.legal_pioneer AS legal_pioneer
-, card.legal_gladiator AS legal_gladiator
-, card.legal_premodern AS legal_premodern
-, card.legal_historicbrawl AS legal_historicbrawl
-, card.binder_group_number AS binder_group_number
 , card.created_at AS created_at
 , card.updated_at AS updated_at
-, card.legal_paupercommander AS legal_paupercommander
  
 FROM lore.card 
 
@@ -409,14 +409,14 @@ array (
   9 => 
   array (
     'column_name' => 'released_at',
-    'data_type' => 'date',
+    'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => true,
-    'default_value' => 'NULL',
+    'is_nullable' => false,
+    'default_value' => NULL,
     'is_auto_increment' => false,
   ),
   10 => 
@@ -467,8 +467,8 @@ array (
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '\'\'',
+    'is_nullable' => true,
+    'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
   14 => 
@@ -616,7 +616,7 @@ array (
   ),
   25 => 
   array (
-    'column_name' => 'legal_oldschool',
+    'column_name' => 'legal_paupercommander',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -629,187 +629,18 @@ array (
   ),
   26 => 
   array (
-    'column_name' => 'legal_duel',
+    'column_name' => 'legal_alchemy',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => false,
+    'is_nullable' => true,
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
   27 => 
-  array (
-    'column_name' => 'legal_commander',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  28 => 
-  array (
-    'column_name' => 'legal_brawl',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  29 => 
-  array (
-    'column_name' => 'legal_penny',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  30 => 
-  array (
-    'column_name' => 'legal_vintage',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  31 => 
-  array (
-    'column_name' => 'legal_pauper',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  32 => 
-  array (
-    'column_name' => 'legal_legacy',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  33 => 
-  array (
-    'column_name' => 'legal_modern',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  34 => 
-  array (
-    'column_name' => 'legal_frontier',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  35 => 
-  array (
-    'column_name' => 'legal_future',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  36 => 
-  array (
-    'column_name' => 'legal_standard',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  37 => 
-  array (
-    'column_name' => 'legal_historic',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  38 => 
-  array (
-    'column_name' => 'legal_pioneer',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  39 => 
-  array (
-    'column_name' => 'legal_gladiator',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
-    'is_auto_increment' => false,
-  ),
-  40 => 
   array (
     'column_name' => 'legal_premodern',
     'data_type' => 'tinyint',
@@ -822,9 +653,178 @@ array (
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
-  41 => 
+  28 => 
   array (
     'column_name' => 'legal_historicbrawl',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  29 => 
+  array (
+    'column_name' => 'legal_pioneer',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  30 => 
+  array (
+    'column_name' => 'legal_gladiator',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  31 => 
+  array (
+    'column_name' => 'legal_historic',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  32 => 
+  array (
+    'column_name' => 'legal_oldschool',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  33 => 
+  array (
+    'column_name' => 'legal_duel',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  34 => 
+  array (
+    'column_name' => 'legal_commander',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  35 => 
+  array (
+    'column_name' => 'legal_brawl',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  36 => 
+  array (
+    'column_name' => 'legal_penny',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  37 => 
+  array (
+    'column_name' => 'legal_vintage',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  38 => 
+  array (
+    'column_name' => 'legal_pauper',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  39 => 
+  array (
+    'column_name' => 'legal_legacy',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  40 => 
+  array (
+    'column_name' => 'legal_modern',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  41 => 
+  array (
+    'column_name' => 'legal_frontier',
     'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -837,18 +837,31 @@ array (
   ),
   42 => 
   array (
-    'column_name' => 'binder_group_number',
-    'data_type' => 'int',
+    'column_name' => 'legal_future',
+    'data_type' => 'tinyint',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => true,
+    'is_nullable' => false,
     'default_value' => '0',
     'is_auto_increment' => false,
   ),
   43 => 
+  array (
+    'column_name' => 'legal_standard',
+    'data_type' => 'tinyint',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => '0',
+    'is_auto_increment' => false,
+  ),
+  44 => 
   array (
     'column_name' => 'created_at',
     'data_type' => 'datetime',
@@ -858,10 +871,10 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
-    'default_value' => 'current_timestamp()',
+    'default_value' => NULL,
     'is_auto_increment' => false,
   ),
-  44 => 
+  45 => 
   array (
     'column_name' => 'updated_at',
     'data_type' => 'datetime',
@@ -871,20 +884,7 @@ array (
     'foreign_db' => NULL,
     'foreign_table' => NULL,
     'is_nullable' => false,
-    'default_value' => 'current_timestamp()',
-    'is_auto_increment' => false,
-  ),
-  45 => 
-  array (
-    'column_name' => 'legal_paupercommander',
-    'data_type' => 'tinyint',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => '0',
+    'default_value' => NULL,
     'is_auto_increment' => false,
   ),
 )

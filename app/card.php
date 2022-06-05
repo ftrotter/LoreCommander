@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=3d7844124d90b792a16ce1a7af4d0577
+FILE_SIG=71ceb8c8f08b57d354fc840cb6b928dc
 */
 namespace App;
 /*
@@ -43,7 +43,7 @@ class card extends \App\DURC\Models\card
 			//'scryfall_api_uri', //varchar
 			//'layout', //varchar
 			//'rarity', //varchar
-			//'released_at', //date
+			//'released_at', //varchar
 			//'set_name', //varchar
 			//'set_type', //varchar
 			//'mtgset_id', //int
@@ -59,6 +59,13 @@ class card extends \App\DURC\Models\card
 			//'is_game_paper', //tinyint
 			//'is_game_mtgo', //tinyint
 			//'is_game_arena', //tinyint
+			//'legal_paupercommander', //tinyint
+			//'legal_alchemy', //tinyint
+			//'legal_premodern', //tinyint
+			//'legal_historicbrawl', //tinyint
+			//'legal_pioneer', //tinyint
+			//'legal_gladiator', //tinyint
+			//'legal_historic', //tinyint
 			//'legal_oldschool', //tinyint
 			//'legal_duel', //tinyint
 			//'legal_commander', //tinyint
@@ -71,15 +78,8 @@ class card extends \App\DURC\Models\card
 			//'legal_frontier', //tinyint
 			//'legal_future', //tinyint
 			//'legal_standard', //tinyint
-			//'legal_historic', //tinyint
-			//'legal_pioneer', //tinyint
-			//'legal_gladiator', //tinyint
-			//'legal_premodern', //tinyint
-			//'legal_historicbrawl', //tinyint
-			//'binder_group_number', //int
 			//'created_at', //datetime
 			//'updated_at', //datetime
-			//'legal_paupercommander', //tinyint
 		]; //end hidden array
 
 

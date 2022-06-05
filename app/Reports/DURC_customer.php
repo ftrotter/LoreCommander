@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=1acbe2f17f4d6c87a3c3dfb54b2f1c2a
+FILE_SIG=4f43360db022ba63504a84a60d810c33
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -511,7 +511,7 @@ array (
         'column_name' => 'employee_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'employee',
@@ -524,7 +524,7 @@ array (
         'column_name' => 'customer_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'customer',
@@ -563,7 +563,7 @@ array (
         'column_name' => 'shipper_id',
         'data_type' => 'int',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
+        'is_foreign_key' => false,
         'is_linked_key' => true,
         'foreign_db' => 'DURC_northwind_model',
         'foreign_table' => 'shipper',
@@ -732,10 +732,10 @@ array (
         'column_name' => 'taxStatus_id',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'northwind_model',
-        'foreign_table' => 'orderTaxStatus',
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
         'is_nullable' => true,
         'default_value' => 'NULL',
         'is_auto_increment' => false,
@@ -745,10 +745,10 @@ array (
         'column_name' => 'status_id',
         'data_type' => 'tinyint',
         'is_primary_key' => false,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'northwind_model',
-        'foreign_table' => 'orderStatus',
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
         'is_nullable' => true,
         'default_value' => '0',
         'is_auto_increment' => false,

@@ -255,74 +255,16 @@ $(document).ready(function () {
   <div class='form-group row {{status_id_row_class}}'>
     <label for='status_id' class='col-sm-4 col-form-label'>status_id</label>
     <div class='col-sm-7'>
-	Current id value: {{status_id}} (see below for lookup value)<br>
-	<select class='select2_status_id form-control' id='status_id' name='status_id'  >
-	<option value='{{status_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
-	</select>
-    </div>
-  </div>
-
-<script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('status_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#status_id option:selected');
-    const purchaseOrderStatusId = element.val();
-    let purchaseOrderStatusIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/purchaseOrderStatus/' + purchaseOrderStatusId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        purchaseOrderStatusIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_status_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/purchaseOrderStatus',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
-          }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-status_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('status_id');
-        if (purchaseOrderStatusIdHasError === true) {
-            $('#select2-status_id-container').addClass('text-danger');
-        }
-    });
-});
-
-</script>
-
-
+      <input type='text' class='form-control nullable {{#errors.status_id.has_errors}}is-invalid{{/errors.status_id.has_errors}}' id='status_id' name='status_id' placeholder='0' value='{{status_id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.status_id.messages}}<li>{{.}}</li>{{/errors.status_id.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='status_id' name='status_idNull' id='status_idNull' value='status_idNull' {{status_id_checked}}>
+                    <label class='form-check-label' for='status_idNull'>null</label>
+                </div></div>
   <div class='form-group row {{expectedDate_row_class}}'>
     <label for='expectedDate' class='col-sm-4 col-form-label'>expectedDate</label>
     <div class='col-sm-7'>

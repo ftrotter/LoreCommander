@@ -1853,10 +1853,10 @@
                     "column_name": "transactionType",
                     "data_type": "tinyint",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "northwind_model",
-                    "foreign_table": "inventoryTransactionType",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": false,
                     "default_value": null,
                     "is_auto_increment": false
@@ -1889,7 +1889,7 @@
                     "column_name": "product_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "product",
@@ -1913,7 +1913,7 @@
                     "column_name": "purchaseOrder_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_data",
                     "foreign_table": "purchaseOrder",
@@ -1925,10 +1925,10 @@
                     "column_name": "customerOrder_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "DURC_northwind_data",
-                    "foreign_table": "order",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": true,
                     "default_value": "NULL",
                     "is_auto_increment": false
@@ -1962,7 +1962,7 @@
                     "local_key": "purchaseOrder_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`inventoryTransaction` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `transactionType` tinyint(4) NOT NULL,\n  `transactionCreatedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `transactionModifiedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `product_id` int(11) NOT NULL,\n  `quantity` int(11) NOT NULL,\n  `purchaseOrder_id` int(11) DEFAULT NULL,\n  `customerOrder_id` int(11) DEFAULT NULL,\n  `comments` varchar(255) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `customerOrder_id` (`customerOrder_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `transactionType` (`transactionType`),\n  CONSTRAINT `fkInventoryTransactionInventoryTransactionType1` FOREIGN KEY (`transactionType`) REFERENCES `northwind_model`.`inventoryTransactionType` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkInventoryTransactionOrder1` FOREIGN KEY (`customerOrder_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkInventoryTransactionProducts1` FOREIGN KEY (`product_id`) REFERENCES `northwind_model`.`product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkInventoryTransactionPurchaseOrder1` FOREIGN KEY (`purchaseOrder_id`) REFERENCES `purchaseOrder` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`inventoryTransaction` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `transactionType` tinyint(4) NOT NULL,\n  `transactionCreatedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `transactionModifiedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `product_id` int(11) NOT NULL,\n  `quantity` int(11) NOT NULL,\n  `purchaseOrder_id` int(11) DEFAULT NULL,\n  `customerOrder_id` int(11) DEFAULT NULL,\n  `comments` varchar(255) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `customerOrder_id` (`customerOrder_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `transactionType` (`transactionType`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         },
         "invoice": {
             "table_name": "invoice",
@@ -1984,7 +1984,7 @@
                     "column_name": "order_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_data",
                     "foreign_table": "order",
@@ -2062,7 +2062,7 @@
                     "local_key": "order_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`invoice` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) DEFAULT NULL,\n  `invoiceDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `dueDate` datetime DEFAULT NULL,\n  `tax` decimal(19,4) DEFAULT 0.0000,\n  `shipping` decimal(19,4) DEFAULT 0.0000,\n  `amountDue` decimal(19,4) DEFAULT 0.0000,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `fkInvoicesOrder1_idx` (`order_id`),\n  CONSTRAINT `fkInvoicesOrder1` FOREIGN KEY (`order_id`) REFERENCES `northwind_model`.`order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`invoice` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) DEFAULT NULL,\n  `invoiceDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `dueDate` datetime DEFAULT NULL,\n  `tax` decimal(19,4) DEFAULT 0.0000,\n  `shipping` decimal(19,4) DEFAULT 0.0000,\n  `amountDue` decimal(19,4) DEFAULT 0.0000,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `fkInvoicesOrder1_idx` (`order_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         },
         "order": {
             "table_name": "order",
@@ -2084,7 +2084,7 @@
                     "column_name": "employee_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "employee",
@@ -2096,7 +2096,7 @@
                     "column_name": "customer_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "customer",
@@ -2132,7 +2132,7 @@
                     "column_name": "shipper_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "shipper",
@@ -2288,10 +2288,10 @@
                     "column_name": "taxStatus_id",
                     "data_type": "tinyint",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "northwind_model",
-                    "foreign_table": "orderTaxStatus",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": true,
                     "default_value": "NULL",
                     "is_auto_increment": false
@@ -2300,10 +2300,10 @@
                     "column_name": "status_id",
                     "data_type": "tinyint",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "northwind_model",
-                    "foreign_table": "orderStatus",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": true,
                     "default_value": "0",
                     "is_auto_increment": false
@@ -2348,7 +2348,7 @@
                     "local_key": "shipper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`),\n  CONSTRAINT `fkOrderCustomers` FOREIGN KEY (`customer_id`) REFERENCES `northwind_model`.`customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderEmployees1` FOREIGN KEY (`employee_id`) REFERENCES `northwind_model`.`employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderOrderStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`orderStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderOrderTaxStatus1` FOREIGN KEY (`taxStatus_id`) REFERENCES `northwind_model`.`orderTaxStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderShippers1` FOREIGN KEY (`shipper_id`) REFERENCES `northwind_model`.`shipper` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         },
         "orderdetail": {
             "table_name": "orderDetail",
@@ -2370,7 +2370,7 @@
                     "column_name": "order_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_data",
                     "foreign_table": "order",
@@ -2382,7 +2382,7 @@
                     "column_name": "product_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "product",
@@ -2430,10 +2430,10 @@
                     "column_name": "status_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "northwind_model",
-                    "foreign_table": "orderDetailStatus",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": true,
                     "default_value": "NULL",
                     "is_auto_increment": false
@@ -2498,7 +2498,7 @@
                     "local_key": "PurchaseOrder_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`orderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL DEFAULT 0.0000,\n  `unitPrice` decimal(19,4) DEFAULT 0.0000,\n  `discount` double NOT NULL DEFAULT 0,\n  `status_id` int(11) DEFAULT NULL,\n  `dateAllocated` datetime DEFAULT NULL,\n  `PurchaseOrder_id` int(11) DEFAULT NULL,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`PurchaseOrder_id`),\n  KEY `fkOrderDetailOrder1_idx` (`order_id`),\n  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`),\n  CONSTRAINT `fkOrderDetailOrder1` FOREIGN KEY (`order_id`) REFERENCES `northwind_model`.`order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderDetailOrderDetailStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`orderDetailStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkOrderDetailProducts1` FOREIGN KEY (`product_id`) REFERENCES `northwind_model`.`product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`orderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL DEFAULT 0.0000,\n  `unitPrice` decimal(19,4) DEFAULT 0.0000,\n  `discount` double NOT NULL DEFAULT 0,\n  `status_id` int(11) DEFAULT NULL,\n  `dateAllocated` datetime DEFAULT NULL,\n  `PurchaseOrder_id` int(11) DEFAULT NULL,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`PurchaseOrder_id`),\n  KEY `fkOrderDetailOrder1_idx` (`order_id`),\n  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         },
         "order_2017": {
             "table_name": "order_2017",
@@ -3330,7 +3330,7 @@
                     "column_name": "supplier_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "supplier",
@@ -3342,7 +3342,7 @@
                     "column_name": "createdBy_employee_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "employee",
@@ -3378,10 +3378,10 @@
                     "column_name": "status_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "northwind_model",
-                    "foreign_table": "purchaseOrderStatus",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": true,
                     "default_value": "0",
                     "is_auto_increment": false
@@ -3560,7 +3560,7 @@
                     "local_key": "submittedBy_employee_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrder` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `supplier_id` int(11) DEFAULT NULL,\n  `createdBy_employee_id` int(11) DEFAULT NULL,\n  `submittedDate` datetime DEFAULT NULL,\n  `creationDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `status_id` int(11) DEFAULT 0,\n  `expectedDate` datetime DEFAULT NULL,\n  `shippingFee` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `taxes` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `paymentDate` datetime DEFAULT NULL,\n  `paymentAmount` decimal(19,4) DEFAULT 0.0000,\n  `paymentMethod` varchar(50) DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `approvedBy_employee_id` int(11) DEFAULT NULL,\n  `approvedDate` datetime DEFAULT NULL,\n  `submittedBy_employee_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`),\n  KEY `createdBy` (`createdBy_employee_id`),\n  KEY `status_id` (`status_id`),\n  KEY `supplier_id` (`supplier_id`),\n  CONSTRAINT `fkPurchaseOrderEmployees1` FOREIGN KEY (`createdBy_employee_id`) REFERENCES `northwind_model`.`employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkPurchaseOrderPurchaseOrderStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`purchaseOrderStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkPurchaseOrderSuppliers1` FOREIGN KEY (`supplier_id`) REFERENCES `northwind_model`.`supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrder` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `supplier_id` int(11) DEFAULT NULL,\n  `createdBy_employee_id` int(11) DEFAULT NULL,\n  `submittedDate` datetime DEFAULT NULL,\n  `creationDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `status_id` int(11) DEFAULT 0,\n  `expectedDate` datetime DEFAULT NULL,\n  `shippingFee` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `taxes` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `paymentDate` datetime DEFAULT NULL,\n  `paymentAmount` decimal(19,4) DEFAULT 0.0000,\n  `paymentMethod` varchar(50) DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `approvedBy_employee_id` int(11) DEFAULT NULL,\n  `approvedDate` datetime DEFAULT NULL,\n  `submittedBy_employee_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`),\n  KEY `createdBy` (`createdBy_employee_id`),\n  KEY `status_id` (`status_id`),\n  KEY `supplier_id` (`supplier_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         },
         "purchaseorderdetail": {
             "table_name": "purchaseOrderDetail",
@@ -3582,7 +3582,7 @@
                     "column_name": "purchaseOrder_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_data",
                     "foreign_table": "purchaseOrder",
@@ -3594,7 +3594,7 @@
                     "column_name": "product_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
+                    "is_foreign_key": false,
                     "is_linked_key": true,
                     "foreign_db": "DURC_northwind_model",
                     "foreign_table": "product",
@@ -3654,10 +3654,10 @@
                     "column_name": "inventory_id",
                     "data_type": "int",
                     "is_primary_key": false,
-                    "is_foreign_key": true,
-                    "is_linked_key": true,
-                    "foreign_db": "DURC_northwind_data",
-                    "foreign_table": "inventoryTransaction",
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
                     "is_nullable": true,
                     "default_value": "NULL",
                     "is_auto_increment": false
@@ -3679,7 +3679,7 @@
                     "local_key": "product_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `purchaseOrder_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL,\n  `unitCost` decimal(19,4) NOT NULL,\n  `dateReceived` datetime DEFAULT NULL,\n  `postedToInventory` tinyint(1) NOT NULL DEFAULT 0,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `product_id` (`product_id`),\n  CONSTRAINT `fkPurchaseOrderDetailInventoryTransaction1` FOREIGN KEY (`inventory_id`) REFERENCES `inventoryTransaction` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkPurchaseOrderDetailProducts1` FOREIGN KEY (`product_id`) REFERENCES `northwind_model`.`product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkPurchaseOrderDetailPurchaseOrder1` FOREIGN KEY (`purchaseOrder_id`) REFERENCES `purchaseOrder` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `purchaseOrder_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL,\n  `unitCost` decimal(19,4) NOT NULL,\n  `dateReceived` datetime DEFAULT NULL,\n  `postedToInventory` tinyint(1) NOT NULL DEFAULT 0,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `product_id` (`product_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
         }
     },
     "DURC_northwind_model": {
@@ -5623,14 +5623,14 @@
                 },
                 {
                     "column_name": "released_at",
-                    "data_type": "date",
+                    "data_type": "varchar",
                     "is_primary_key": false,
                     "is_foreign_key": false,
                     "is_linked_key": false,
                     "foreign_db": null,
                     "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "NULL",
+                    "is_nullable": false,
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -5677,8 +5677,8 @@
                     "is_linked_key": false,
                     "foreign_db": null,
                     "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "''",
+                    "is_nullable": true,
+                    "default_value": "NULL",
                     "is_auto_increment": false
                 },
                 {
@@ -5803,6 +5803,90 @@
                 },
                 {
                     "column_name": "is_game_arena",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_paupercommander",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_alchemy",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_premodern",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_historicbrawl",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_pioneer",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_gladiator",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_historic",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5958,78 +6042,6 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_historic",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_pioneer",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_gladiator",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_premodern",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_historicbrawl",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "binder_group_number",
-                    "data_type": "int",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
                     "column_name": "created_at",
                     "data_type": "datetime",
                     "is_primary_key": false,
@@ -6038,7 +6050,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
+                    "default_value": null,
                     "is_auto_increment": false
                 },
                 {
@@ -6050,19 +6062,7 @@
                     "foreign_db": null,
                     "foreign_table": null,
                     "is_nullable": false,
-                    "default_value": "current_timestamp()",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_paupercommander",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
+                    "default_value": null,
                     "is_auto_increment": false
                 }
             ],
@@ -6091,7 +6091,7 @@
                     "from_column": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` date DEFAULT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `collector_number` varchar(20) NOT NULL DEFAULT '',\n  `sortable_collector_number` decimal(15,3) DEFAULT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pioneer` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_gladiator` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_premodern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historicbrawl` tinyint(1) NOT NULL DEFAULT 0,\n  `binder_group_number` int(11) DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `legal_paupercommander` tinyint(1) NOT NULL DEFAULT 0,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `collector_number` varchar(10) DEFAULT NULL,\n  `sortable_collector_number` decimal(10,2) DEFAULT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_paupercommander` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_alchemy` tinyint(4) DEFAULT 0,\n  `legal_premodern` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_historicbrawl` tinyint(4) DEFAULT 0,\n  `legal_pioneer` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_gladiator` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
         },
         "cardface": {
             "table_name": "cardface",
@@ -8899,6 +8899,145 @@
                 }
             },
             "create_table_sql": "CREATE TABLE `lore`.`person_strategy_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `strategy_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`tag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+        },
+        "powertoughsource": {
+            "table_name": "powertoughsource",
+            "db": "lore",
+            "column_data": [
+                {
+                    "column_name": "scryfall_web_uri",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "name",
+                    "data_type": "varchar",
+                    "is_primary_key": true,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "cmc",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "power",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "toughness",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "power_plus_toughness",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_color_identity_green",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_color_identity_red",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_color_identity_blue",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_color_identity_black",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "is_color_identity_white",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `lore`.`powertoughsource` (\n  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 NOT NULL,\n  `name` varchar(255) CHARACTER SET utf8 NOT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `power` decimal(10,0) DEFAULT NULL,\n  `toughness` decimal(10,0) DEFAULT NULL,\n  `power_plus_toughness` decimal(11,0) DEFAULT NULL,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  UNIQUE KEY `name` (`name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "pricetype": {
             "table_name": "pricetype",

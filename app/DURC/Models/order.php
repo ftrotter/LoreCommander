@@ -208,12 +208,7 @@ CREATE TABLE `DURC_northwind_data`.`order` (
   KEY `shipper_id` (`shipper_id`),
   KEY `taxStatus` (`taxStatus_id`),
   KEY `shipZipPostalCode` (`shipZipPostalCode`),
-  KEY `fkOrderOrderStatus1` (`status_id`),
-  CONSTRAINT `fkOrderCustomers` FOREIGN KEY (`customer_id`) REFERENCES `northwind_model`.`customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrderEmployees1` FOREIGN KEY (`employee_id`) REFERENCES `northwind_model`.`employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrderOrderStatus1` FOREIGN KEY (`status_id`) REFERENCES `northwind_model`.`orderStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrderOrderTaxStatus1` FOREIGN KEY (`taxStatus_id`) REFERENCES `northwind_model`.`orderTaxStatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrderShippers1` FOREIGN KEY (`shipper_id`) REFERENCES `northwind_model`.`shipper` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fkOrderOrderStatus1` (`status_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8
 */
 
