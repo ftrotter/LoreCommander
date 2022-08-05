@@ -112,6 +112,27 @@ class  ScryfallSaver {
 			'usd_etched' => 6,
 		];
 
+
+	public static function starttime(){
+		//based on https://withdave.com/2010/09/benchmarking-testing-php-script-microtime/
+		$r = explode( ' ', microtime() );
+		$r = $r[1] + $r[0];
+		return $r;
+
+	}
+
+
+	public static function endtime($starttime){
+
+		$r = explode( ' ', microtime() );
+		$r = $r[1] + $r[0];
+		$r = round($r - $starttime,4);
+		return $r;
+
+	}
+
+
+
 	public static  function saveCardList($cards){
 
 		$is_new_legality = false;
@@ -120,6 +141,9 @@ class  ScryfallSaver {
 
 		foreach($cards as $this_outer_card){
 			//first we consider the cardfaces...
+
+			$card_start_time = self::starttime();
+
 	
 			$card_loop = [];
 			if(isset($this_outer_card['card_faces'])){
@@ -336,6 +360,11 @@ class  ScryfallSaver {
 	
 			} //end of cardface loop
 	
+			$time_to_save_this_card = self::endtime($card_start_time);
+
+			echo "time to save this card: $time_to_save_this_card\n";
+
+
 		} //end of card loop
 
 		//should there be better error logging? yes, there should.

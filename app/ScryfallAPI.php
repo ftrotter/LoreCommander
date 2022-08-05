@@ -54,7 +54,7 @@ class  ScryfallAPI {
 	public static function getAllAnything($url,$page_id = 1){
 
 		//slow down.
-		sleep(1);
+		//sleep(1);
 
 	
 		if(strpos($url,'?') !== false){
@@ -111,11 +111,11 @@ class  ScryfallAPI {
 				return([]); 
 			}
 
-
+			
         		echo "Response : $response";
         		echo "Request not successful. Response code : ".$info['http_code']." <br>";
 			echo "tried to get $full_url\n";
-			exit();
+			return([]);
     		}
 
 

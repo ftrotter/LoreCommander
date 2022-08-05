@@ -117,7 +117,7 @@ class SlowScrapeScryfall extends Command
 
 	//some meta mapping data to help us map each card to the right local variables.
 
-	$is_get_all = false;
+	$is_get_all = true;
 	if($is_get_all){
 		$sets = \App\mtgset::all();
 	}else{
@@ -125,7 +125,7 @@ class SlowScrapeScryfall extends Command
 
 	}
 
-	echo "Working on ".count($sets) . "total sets\n";
+	echo "Working on ".count($sets) . " total sets\n";
 
 	sleep(5);
 
