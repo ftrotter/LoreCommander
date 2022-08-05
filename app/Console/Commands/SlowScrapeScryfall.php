@@ -117,14 +117,39 @@ class SlowScrapeScryfall extends Command
 
 	//some meta mapping data to help us map each card to the right local variables.
 
-	foreach($set_code_list as $mtgset_id => $this_set_code){
+	$is_get_all = false;
+	if($is_get_all){
+		$sets = \App\mtgset::all();
+	}else{
+		$sets = \App\mtgset::whereYear('released_at',date('Y'))->get();
+
+	}
+
+	echo "Working on ".count($sets) . "total sets\n";
+
+	sleep(5);
+
+// 	this assumes we always want to do everything
+//	foreach($set_code_list as $mtgset_id => $this_set_code){
+
+	foreach($sets as $this_set_obj){
+			
+		$mtgset_id = $this_set_obj->id;
+		$this_set_code = $this_set_obj->code;
 	
 		echo "Working on setcode:$this_set_code\n";
+
+		$Dmtgset = \App\mtgset::find($mtgset_id);
 		
+		try {	
 		$cards = \App\ScryfallAPI::getAllCardsInSet($this_set_code);
 	
 		\App\ScryfallSaver::saveCardList($cards);
 		
+		} catch (Exception $e) {
+			echo "Failed to get cards for $this_set_code\n";
+		}
+
 	} //end of set loop.
 
 
