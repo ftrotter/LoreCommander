@@ -166,6 +166,13 @@ SELECT * FROM lore.classofc
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
 		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
 			$name = $class_of_creature_array['classofc_name'];
+			//now there are single quotes in creature types... 
+			//so we need to run a pretty complex process to escape the variable..
+			//then remove the single quotes on the outside of the name.. 
+			//so that it can live correctly in '%something%' like statement we are using..
+			$name = DB::connection()->getPdo()->quote($name);
+			$name = substr($name,0,-1); //removes the trailing '
+			$name = substr($name,1); //removes the prefixed ' should be ready to go now..
 			$insert_sql = "
 INSERT IGNORE lore.classofc_creature
 SELECT 
