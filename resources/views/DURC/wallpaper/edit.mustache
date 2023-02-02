@@ -6,7 +6,7 @@
 {{/has_session_status}}
 
 <div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
-                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
             </div>
 
 {{#is_new}}
@@ -185,7 +185,7 @@
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>
-  
+
 </fieldset>
 </div></div>
 </form>
@@ -239,7 +239,7 @@
 			<td>{{wallpaper_name}}</td>
 			<td>{{wallpaper_id_DURClabel}} ({{wallpaper_id}}) </td>			<td>{{illustration_id_DURClabel}} ({{illustration_id}}) </td>			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/wallpaper_illustration}}
@@ -282,7 +282,7 @@
 			<td>{{is_highest_resolution}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/wallpaper_url}}
@@ -292,9 +292,9 @@
 <br>
 </div></div> <!--end has many card-->
 <br>
-    
+
     <script type='text/javascript'>
-    
+
         // These function control the spinner display when loading many remote entities
         let loading_queue = [];
         function add_to_loading_queue(element) {
@@ -313,13 +313,13 @@
                 $('#loader').modal('hide');
             }
         }
-        
+
     // This javascript controls the null checkboxes
         $(document).ready(function() {
-            
+
             // keep an assoc array of the last entered values
             let last_null_values = {};
-            
+
             $('.null-checkbox').change(function(e) {
 
                 // get the id of the element we're next to
@@ -338,7 +338,7 @@
                     $('#'+id).attr('readonly', false);
                 }
             });
-            
+
             // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
             $('.nullable').click(function(e) {
                 let checkboxId = '#' + $(this).attr('id') + 'Null';
@@ -346,11 +346,11 @@
                     // Uncheck the null box and clear read-only by triggering change
                     $(checkboxId).prop('checked', '');
                     $(checkboxId).change();
-                }               
+                }
             });
-            
+
             // Trigger change on page load. If the null box is checked, mark field readonly
-            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // If the null checkbox isn't checked, but the value is empty string, check null
             // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
                 let id = $(this).attr('data-elem');

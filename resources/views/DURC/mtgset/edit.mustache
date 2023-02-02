@@ -6,7 +6,7 @@
 {{/has_session_status}}
 
 <div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
-                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
             </div>
 
 {{#is_new}}
@@ -290,6 +290,19 @@
           </ul>
        </div>
     </div></div>
+  <div class='form-group row {{printed_size_row_class}}'>
+    <label for='printed_size' class='col-sm-4 col-form-label'>printed_size</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.printed_size.has_errors}}is-invalid{{/errors.printed_size.has_errors}}' id='printed_size' name='printed_size' placeholder='NULL' value='{{printed_size}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.printed_size.messages}}<li>{{.}}</li>{{/errors.printed_size.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='printed_size' name='printed_sizeNull' id='printed_sizeNull' value='printed_sizeNull' {{printed_size_checked}}>
+                    <label class='form-check-label' for='printed_sizeNull'>null</label>
+                </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
@@ -357,7 +370,7 @@
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>
-  
+
 </fieldset>
 </div></div>
 </form>
@@ -407,6 +420,7 @@
 			<th> set_name </th>
 			<th> set_type </th>
 			<th> mtgset_id </th>
+			<th> binder_group_number </th>
 			<th> collector_number </th>
 			<th> sortable_collector_number </th>
 			<th> variation_of_scryfall_id </th>
@@ -419,25 +433,25 @@
 			<th> is_game_paper </th>
 			<th> is_game_mtgo </th>
 			<th> is_game_arena </th>
-			<th> legal_paupercommander </th>
-			<th> legal_alchemy </th>
-			<th> legal_premodern </th>
-			<th> legal_historicbrawl </th>
-			<th> legal_pioneer </th>
-			<th> legal_gladiator </th>
+			<th> legal_standard </th>
+			<th> legal_future </th>
 			<th> legal_historic </th>
-			<th> legal_oldschool </th>
-			<th> legal_duel </th>
+			<th> legal_gladiator </th>
+			<th> legal_pioneer </th>
+			<th> legal_explorer </th>
+			<th> legal_modern </th>
+			<th> legal_legacy </th>
+			<th> legal_pauper </th>
+			<th> legal_vintage </th>
+			<th> legal_penny </th>
 			<th> legal_commander </th>
 			<th> legal_brawl </th>
-			<th> legal_penny </th>
-			<th> legal_vintage </th>
-			<th> legal_pauper </th>
-			<th> legal_legacy </th>
-			<th> legal_modern </th>
-			<th> legal_frontier </th>
-			<th> legal_future </th>
-			<th> legal_standard </th>
+			<th> legal_historicbrawl </th>
+			<th> legal_alchemy </th>
+			<th> legal_paupercommander </th>
+			<th> legal_duel </th>
+			<th> legal_oldschool </th>
+			<th> legal_premodern </th>
 			<th> created_at </th>
 			<th> updated_at </th>
 
@@ -457,7 +471,8 @@
 			<td>{{released_at}}</td>
 			<td>{{set_name}}</td>
 			<td>{{set_type}}</td>
-			<td>{{mtgset_id_DURClabel}} ({{mtgset_id}}) </td>			<td>{{collector_number}}</td>
+			<td>{{mtgset_id_DURClabel}} ({{mtgset_id}}) </td>			<td>{{binder_group_number}}</td>
+			<td>{{collector_number}}</td>
 			<td>{{sortable_collector_number}}</td>
 			<td>{{variation_of_scryfall_id_DURClabel}} ({{variation_of_scryfall_id}}) </td>			<td>{{edhrec_rank}}</td>
 			<td>{{is_promo}}</td>
@@ -468,28 +483,28 @@
 			<td>{{is_game_paper}}</td>
 			<td>{{is_game_mtgo}}</td>
 			<td>{{is_game_arena}}</td>
-			<td>{{legal_paupercommander}}</td>
-			<td>{{legal_alchemy}}</td>
-			<td>{{legal_premodern}}</td>
-			<td>{{legal_historicbrawl}}</td>
-			<td>{{legal_pioneer}}</td>
-			<td>{{legal_gladiator}}</td>
+			<td>{{legal_standard}}</td>
+			<td>{{legal_future}}</td>
 			<td>{{legal_historic}}</td>
-			<td>{{legal_oldschool}}</td>
-			<td>{{legal_duel}}</td>
+			<td>{{legal_gladiator}}</td>
+			<td>{{legal_pioneer}}</td>
+			<td>{{legal_explorer}}</td>
+			<td>{{legal_modern}}</td>
+			<td>{{legal_legacy}}</td>
+			<td>{{legal_pauper}}</td>
+			<td>{{legal_vintage}}</td>
+			<td>{{legal_penny}}</td>
 			<td>{{legal_commander}}</td>
 			<td>{{legal_brawl}}</td>
-			<td>{{legal_penny}}</td>
-			<td>{{legal_vintage}}</td>
-			<td>{{legal_pauper}}</td>
-			<td>{{legal_legacy}}</td>
-			<td>{{legal_modern}}</td>
-			<td>{{legal_frontier}}</td>
-			<td>{{legal_future}}</td>
-			<td>{{legal_standard}}</td>
+			<td>{{legal_historicbrawl}}</td>
+			<td>{{legal_alchemy}}</td>
+			<td>{{legal_paupercommander}}</td>
+			<td>{{legal_duel}}</td>
+			<td>{{legal_oldschool}}</td>
+			<td>{{legal_premodern}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/card}}
@@ -499,9 +514,9 @@
 <br>
 </div></div> <!--end has many card-->
 <br>
-    
+
     <script type='text/javascript'>
-    
+
         // These function control the spinner display when loading many remote entities
         let loading_queue = [];
         function add_to_loading_queue(element) {
@@ -520,13 +535,13 @@
                 $('#loader').modal('hide');
             }
         }
-        
+
     // This javascript controls the null checkboxes
         $(document).ready(function() {
-            
+
             // keep an assoc array of the last entered values
             let last_null_values = {};
-            
+
             $('.null-checkbox').change(function(e) {
 
                 // get the id of the element we're next to
@@ -545,7 +560,7 @@
                     $('#'+id).attr('readonly', false);
                 }
             });
-            
+
             // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
             $('.nullable').click(function(e) {
                 let checkboxId = '#' + $(this).attr('id') + 'Null';
@@ -553,11 +568,11 @@
                     // Uncheck the null box and clear read-only by triggering change
                     $(checkboxId).prop('checked', '');
                     $(checkboxId).change();
-                }               
+                }
             });
-            
+
             // Trigger change on page load. If the null box is checked, mark field readonly
-            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // If the null checkbox isn't checked, but the value is empty string, check null
             // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
                 let id = $(this).attr('data-elem');

@@ -6,7 +6,7 @@
 {{/has_session_status}}
 
 <div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
-                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
             </div>
 
 {{#is_new}}
@@ -356,7 +356,7 @@ $(document).ready(function () {
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>
-  
+
 </fieldset>
 </div></div>
 </form>
@@ -434,7 +434,7 @@ $(document).ready(function () {
 			<td>{{paidDate}}</td>
 			<td>{{notes}}</td>
 			<td>{{taxRate}}</td>
-			<td>{{taxStatus_id_DURClabel}} ({{taxStatus_id}}) </td>			<td>{{status_id_DURClabel}} ({{status_id}}) </td>		
+			<td>{{taxStatus_id_DURClabel}} ({{taxStatus_id}}) </td>			<td>{{status_id_DURClabel}} ({{status_id}}) </td>
 		{{/.}}
 	</tr>
 {{/order}}
@@ -488,7 +488,7 @@ $(document).ready(function () {
 			<td>{{minimumReorderQuantity}}</td>
 			<td>{{category}}</td>
 			<td>{{attachments}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/product}}
@@ -541,7 +541,7 @@ $(document).ready(function () {
 			<td>{{paymentMethod}}</td>
 			<td>{{notes}}</td>
 			<td>{{approvedBy_employee_id_DURClabel}} ({{approvedBy_employee_id}}) </td>			<td>{{approvedDate}}</td>
-			<td>{{submittedBy_employee_id_DURClabel}} ({{submittedBy_employee_id}}) </td>		
+			<td>{{submittedBy_employee_id_DURClabel}} ({{submittedBy_employee_id}}) </td>
 		{{/.}}
 	</tr>
 {{/purchaseorder}}
@@ -550,9 +550,9 @@ $(document).ready(function () {
 </div></div> <!-- end purchaseorder card-->
 </div></div> <!--end belongs to card-->
 <br>
-    
+
     <script type='text/javascript'>
-    
+
         // These function control the spinner display when loading many remote entities
         let loading_queue = [];
         function add_to_loading_queue(element) {
@@ -571,13 +571,13 @@ $(document).ready(function () {
                 $('#loader').modal('hide');
             }
         }
-        
+
     // This javascript controls the null checkboxes
         $(document).ready(function() {
-            
+
             // keep an assoc array of the last entered values
             let last_null_values = {};
-            
+
             $('.null-checkbox').change(function(e) {
 
                 // get the id of the element we're next to
@@ -596,7 +596,7 @@ $(document).ready(function () {
                     $('#'+id).attr('readonly', false);
                 }
             });
-            
+
             // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
             $('.nullable').click(function(e) {
                 let checkboxId = '#' + $(this).attr('id') + 'Null';
@@ -604,11 +604,11 @@ $(document).ready(function () {
                     // Uncheck the null box and clear read-only by triggering change
                     $(checkboxId).prop('checked', '');
                     $(checkboxId).change();
-                }               
+                }
             });
-            
+
             // Trigger change on page load. If the null box is checked, mark field readonly
-            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // If the null checkbox isn't checked, but the value is empty string, check null
             // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
                 let id = $(this).attr('data-elem');

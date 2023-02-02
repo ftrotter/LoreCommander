@@ -6,7 +6,7 @@
 {{/has_session_status}}
 
 <div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
-                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want.. 
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
             </div>
 
 {{#is_new}}
@@ -135,7 +135,7 @@
       <button type='submit' class='btn btn-primary'>Save Data</button>
     </div>
   </div>
-  
+
 </fieldset>
 </div></div>
 </form>
@@ -187,7 +187,7 @@
 			<td><a href='/DURC/classofc_creature/{{id}}'>{{id}}</a></td>
 			<td>{{classofc_id_DURClabel}} ({{classofc_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/classofc_creature}}
@@ -223,7 +223,7 @@
 			<td><a href='/DURC/creature_cardface/{{id}}'>{{id}}</a></td>
 			<td>{{cardface_id_DURClabel}} ({{cardface_id}}) </td>			<td>{{creature_id_DURClabel}} ({{creature_id}}) </td>			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/creature_cardface}}
@@ -264,7 +264,7 @@
 			<td>{{link_note}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/person_creature_tag}}
@@ -305,7 +305,7 @@
 			<td>{{theme_description}}</td>
 			<td>{{emblematic_person_id_DURClabel}} ({{emblematic_person_id}}) </td>			<td>{{emblematic_cardface_id_DURClabel}} ({{emblematic_cardface_id}}) </td>			<td>{{emblematic_creature_id_DURClabel}} ({{emblematic_creature_id}}) </td>			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
-		
+
 		{{/.}}
 	</tr>
 {{/emblematic_theme}}
@@ -315,9 +315,9 @@
 <br>
 </div></div> <!--end has many card-->
 <br>
-    
+
     <script type='text/javascript'>
-    
+
         // These function control the spinner display when loading many remote entities
         let loading_queue = [];
         function add_to_loading_queue(element) {
@@ -336,13 +336,13 @@
                 $('#loader').modal('hide');
             }
         }
-        
+
     // This javascript controls the null checkboxes
         $(document).ready(function() {
-            
+
             // keep an assoc array of the last entered values
             let last_null_values = {};
-            
+
             $('.null-checkbox').change(function(e) {
 
                 // get the id of the element we're next to
@@ -361,7 +361,7 @@
                     $('#'+id).attr('readonly', false);
                 }
             });
-            
+
             // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
             $('.nullable').click(function(e) {
                 let checkboxId = '#' + $(this).attr('id') + 'Null';
@@ -369,11 +369,11 @@
                     // Uncheck the null box and clear read-only by triggering change
                     $(checkboxId).prop('checked', '');
                     $(checkboxId).change();
-                }               
+                }
             });
-            
+
             // Trigger change on page load. If the null box is checked, mark field readonly
-            // If the null checkbox isn't checked, but the value is empty string, check null 
+            // If the null checkbox isn't checked, but the value is empty string, check null
             // checkbox and also mark readonly
             $('.null-checkbox').each(function() {
                 let id = $(this).attr('data-elem');

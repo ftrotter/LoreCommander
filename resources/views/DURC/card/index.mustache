@@ -49,6 +49,7 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 <th scope='col'>set_name</th>
 <th scope='col'>set_type</th>
 <th scope='col'>mtgset_id</th>
+<th scope='col'>binder_group_number</th>
 <th scope='col'>collector_number</th>
 <th scope='col'>sortable_collector_number</th>
 <th scope='col'>variation_of_scryfall_id</th>
@@ -61,25 +62,25 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 <th scope='col'>is_game_paper</th>
 <th scope='col'>is_game_mtgo</th>
 <th scope='col'>is_game_arena</th>
-<th scope='col'>legal_paupercommander</th>
-<th scope='col'>legal_alchemy</th>
-<th scope='col'>legal_premodern</th>
-<th scope='col'>legal_historicbrawl</th>
-<th scope='col'>legal_pioneer</th>
-<th scope='col'>legal_gladiator</th>
+<th scope='col'>legal_standard</th>
+<th scope='col'>legal_future</th>
 <th scope='col'>legal_historic</th>
-<th scope='col'>legal_oldschool</th>
-<th scope='col'>legal_duel</th>
+<th scope='col'>legal_gladiator</th>
+<th scope='col'>legal_pioneer</th>
+<th scope='col'>legal_explorer</th>
+<th scope='col'>legal_modern</th>
+<th scope='col'>legal_legacy</th>
+<th scope='col'>legal_pauper</th>
+<th scope='col'>legal_vintage</th>
+<th scope='col'>legal_penny</th>
 <th scope='col'>legal_commander</th>
 <th scope='col'>legal_brawl</th>
-<th scope='col'>legal_penny</th>
-<th scope='col'>legal_vintage</th>
-<th scope='col'>legal_pauper</th>
-<th scope='col'>legal_legacy</th>
-<th scope='col'>legal_modern</th>
-<th scope='col'>legal_frontier</th>
-<th scope='col'>legal_future</th>
-<th scope='col'>legal_standard</th>
+<th scope='col'>legal_historicbrawl</th>
+<th scope='col'>legal_alchemy</th>
+<th scope='col'>legal_paupercommander</th>
+<th scope='col'>legal_duel</th>
+<th scope='col'>legal_oldschool</th>
+<th scope='col'>legal_premodern</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -97,6 +98,7 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 <th scope='col'>set_name</th>
 <th scope='col'>set_type</th>
 <th scope='col'>mtgset_id</th>
+<th scope='col'>binder_group_number</th>
 <th scope='col'>collector_number</th>
 <th scope='col'>sortable_collector_number</th>
 <th scope='col'>variation_of_scryfall_id</th>
@@ -109,25 +111,25 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 <th scope='col'>is_game_paper</th>
 <th scope='col'>is_game_mtgo</th>
 <th scope='col'>is_game_arena</th>
-<th scope='col'>legal_paupercommander</th>
-<th scope='col'>legal_alchemy</th>
-<th scope='col'>legal_premodern</th>
-<th scope='col'>legal_historicbrawl</th>
-<th scope='col'>legal_pioneer</th>
-<th scope='col'>legal_gladiator</th>
+<th scope='col'>legal_standard</th>
+<th scope='col'>legal_future</th>
 <th scope='col'>legal_historic</th>
-<th scope='col'>legal_oldschool</th>
-<th scope='col'>legal_duel</th>
+<th scope='col'>legal_gladiator</th>
+<th scope='col'>legal_pioneer</th>
+<th scope='col'>legal_explorer</th>
+<th scope='col'>legal_modern</th>
+<th scope='col'>legal_legacy</th>
+<th scope='col'>legal_pauper</th>
+<th scope='col'>legal_vintage</th>
+<th scope='col'>legal_penny</th>
 <th scope='col'>legal_commander</th>
 <th scope='col'>legal_brawl</th>
-<th scope='col'>legal_penny</th>
-<th scope='col'>legal_vintage</th>
-<th scope='col'>legal_pauper</th>
-<th scope='col'>legal_legacy</th>
-<th scope='col'>legal_modern</th>
-<th scope='col'>legal_frontier</th>
-<th scope='col'>legal_future</th>
-<th scope='col'>legal_standard</th>
+<th scope='col'>legal_historicbrawl</th>
+<th scope='col'>legal_alchemy</th>
+<th scope='col'>legal_paupercommander</th>
+<th scope='col'>legal_duel</th>
+<th scope='col'>legal_oldschool</th>
+<th scope='col'>legal_premodern</th>
 <th scope='col'>created_at</th>
 <th scope='col'>updated_at</th>
 
@@ -144,7 +146,8 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 			<td>{{released_at}}</td>
 			<td>{{set_name}}</td>
 			<td>{{set_type}}</td>
-			<td>{{mtgset_id_DURClabel}} <a href='/DURC/mtgset/{{mtgset_id}}/'> ({{mtgset_id}})</a> </td>			<td>{{collector_number}}</td>
+			<td>{{mtgset_id_DURClabel}} <a href='/DURC/mtgset/{{mtgset_id}}/'> ({{mtgset_id}})</a> </td>			<td>{{binder_group_number}}</td>
+			<td>{{collector_number}}</td>
 			<td>{{sortable_collector_number}}</td>
 			<td>{{edhrec_rank}}</td>
 			<td>{{is_promo}}</td>
@@ -155,25 +158,25 @@ Create <a href='/DURC/card/create/'>new card</a><br>
 			<td>{{is_game_paper}}</td>
 			<td>{{is_game_mtgo}}</td>
 			<td>{{is_game_arena}}</td>
-			<td>{{legal_paupercommander}}</td>
-			<td>{{legal_alchemy}}</td>
-			<td>{{legal_premodern}}</td>
-			<td>{{legal_historicbrawl}}</td>
-			<td>{{legal_pioneer}}</td>
-			<td>{{legal_gladiator}}</td>
+			<td>{{legal_standard}}</td>
+			<td>{{legal_future}}</td>
 			<td>{{legal_historic}}</td>
-			<td>{{legal_oldschool}}</td>
-			<td>{{legal_duel}}</td>
+			<td>{{legal_gladiator}}</td>
+			<td>{{legal_pioneer}}</td>
+			<td>{{legal_explorer}}</td>
+			<td>{{legal_modern}}</td>
+			<td>{{legal_legacy}}</td>
+			<td>{{legal_pauper}}</td>
+			<td>{{legal_vintage}}</td>
+			<td>{{legal_penny}}</td>
 			<td>{{legal_commander}}</td>
 			<td>{{legal_brawl}}</td>
-			<td>{{legal_penny}}</td>
-			<td>{{legal_vintage}}</td>
-			<td>{{legal_pauper}}</td>
-			<td>{{legal_legacy}}</td>
-			<td>{{legal_modern}}</td>
-			<td>{{legal_frontier}}</td>
-			<td>{{legal_future}}</td>
-			<td>{{legal_standard}}</td>
+			<td>{{legal_historicbrawl}}</td>
+			<td>{{legal_alchemy}}</td>
+			<td>{{legal_paupercommander}}</td>
+			<td>{{legal_duel}}</td>
+			<td>{{legal_oldschool}}</td>
+			<td>{{legal_premodern}}</td>
 			<td>{{created_at}}</td>
 			<td>{{updated_at}}</td>
 
