@@ -7,5 +7,5 @@ CREATE TABLE `salesReport` (
   `filterRowSource` longtext DEFAULT NULL,
   `default` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`groupBy`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

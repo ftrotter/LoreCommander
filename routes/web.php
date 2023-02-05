@@ -519,6 +519,13 @@ Route::get("/DURC/json/person_strategy_tag/", 'person_strategy_tagController@jso
 Route::get("/DURC/searchjson/person_strategy_tag/", 'person_strategy_tagController@search');
 
  
+//DURC->	lore.powertoughsource
+Route::resource("/DURC/powertoughsource", 'powertoughsourceController');
+Route::get("/DURC/json/powertoughsource/{powertoughsource_id}", 'powertoughsourceController@jsonone');
+Route::get("/DURC/json/powertoughsource/", 'powertoughsourceController@jsonall');
+Route::get("/DURC/searchjson/powertoughsource/", 'powertoughsourceController@search');
+
+ 
 //DURC->	lore.pricetype
 Route::resource("/DURC/pricetype", 'pricetypeController');
 Route::get("/DURC/json/pricetype/{pricetype_id}", 'pricetypeController@jsonone');

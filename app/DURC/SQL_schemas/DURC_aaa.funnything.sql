@@ -5,15 +5,15 @@ CREATE TABLE `funnything` (
   `thisint` int(11) DEFAULT NULL,
   `thisfloat` float DEFAULT NULL,
   `thisdecimal` decimal(5,5) DEFAULT NULL,
-  `thisvarchar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thisvarchar` varchar(100) DEFAULT NULL,
   `thisdate` date DEFAULT NULL,
   `thisdatetime` datetime DEFAULT NULL,
   `thistimestamp` timestamp NULL DEFAULT NULL,
-  `thischar` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `thistext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thischar` char(1) NOT NULL,
+  `thistext` mediumtext NOT NULL,
   `thisblob` blob DEFAULT NULL,
   `thistinyint` tinyint(11) NOT NULL,
-  `thistinytext` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thistinytext` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

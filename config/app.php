@@ -218,7 +218,6 @@ return [
         CareSet\DURC\DURCServiceProvider::class,
 
 	//Eloquent Auditing from http://www.laravel-auditing.com
-	OwenIt\Auditing\AuditingServiceProvider::class,
 
     ],
 

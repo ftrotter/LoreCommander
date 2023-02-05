@@ -74,7 +74,7 @@
                     "from_column": "author_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`author` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `lastname` varchar(255) NOT NULL,\n  `firstname` varchar(255) NOT NULL,\n  `created_date` datetime DEFAULT NULL,\n  `updated_date` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`author` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `lastname` varchar(255) NOT NULL,\n  `firstname` varchar(255) NOT NULL,\n  `created_date` datetime DEFAULT NULL,\n  `updated_date` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "author_book": {
             "table_name": "author_book",
@@ -152,7 +152,7 @@
                     "local_key": "authortype_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`author_book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `author_id` int(11) NOT NULL,\n  `book_id` int(11) NOT NULL,\n  `authortype_id` int(11) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`author_book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `author_id` int(11) NOT NULL,\n  `book_id` int(11) NOT NULL,\n  `authortype_id` int(11) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "authortype": {
             "table_name": "authortype",
@@ -216,7 +216,7 @@
                     "from_column": "authortype_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`authortype` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `authortypedesc` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`authortype` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `authortypedesc` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "book": {
             "table_name": "book",
@@ -292,7 +292,7 @@
                     "from_column": "book_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(255) NOT NULL,\n  `release_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`book` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(255) NOT NULL,\n  `release_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "charactertest": {
             "table_name": "characterTest",
@@ -323,7 +323,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`characterTest` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `funny_character_field` varchar(1000) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`characterTest` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `funny_character_field` varchar(1000) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         },
         "comment": {
             "table_name": "comment",
@@ -399,7 +399,7 @@
                     "local_key": "post_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`comment` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `comment_text` varchar(1000) NOT NULL,\n  `post_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`comment` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `comment_text` varchar(1000) NOT NULL,\n  `post_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "donation": {
             "table_name": "donation",
@@ -487,7 +487,7 @@
                     "local_key": "nonprofitcorp_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`donation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `amount` int(11) NOT NULL,\n  `nonprofitcorp_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`donation` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `amount` int(11) NOT NULL,\n  `nonprofitcorp_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "filtertest": {
             "table_name": "filterTest",
@@ -554,7 +554,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`filterTest` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `test_url` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `test_json` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`filterTest` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `test_url` varchar(1000) NOT NULL,\n  `test_json` mediumtext NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "foreignkeytestgizmo": {
             "table_name": "foreignkeytestgizmo",
@@ -621,7 +621,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`foreignkeytestgizmo` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `gizmoname` varchar(100) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`foreignkeytestgizmo` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `gizmoname` varchar(100) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "foreignkeytestthingy": {
             "table_name": "foreignkeytestthingy",
@@ -700,7 +700,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`foreignkeytestthingy` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `thingyname` varchar(100) NOT NULL,\n  `gizmopickupaskey` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `gizmopickupaskey` (`gizmopickupaskey`),\n  CONSTRAINT `forgizmo` FOREIGN KEY (`gizmopickupaskey`) REFERENCES `foreignkeytestgizmo` (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`foreignkeytestthingy` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `thingyname` varchar(100) NOT NULL,\n  `gizmopickupaskey` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `gizmopickupaskey` (`gizmopickupaskey`),\n  CONSTRAINT `forgizmo` FOREIGN KEY (`gizmopickupaskey`) REFERENCES `foreignkeytestgizmo` (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "funnything": {
             "table_name": "funnything",
@@ -863,7 +863,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`funnything` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `thisint` int(11) DEFAULT NULL,\n  `thisfloat` float DEFAULT NULL,\n  `thisdecimal` decimal(5,5) DEFAULT NULL,\n  `thisvarchar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,\n  `thisdate` date DEFAULT NULL,\n  `thisdatetime` datetime DEFAULT NULL,\n  `thistimestamp` timestamp NULL DEFAULT NULL,\n  `thischar` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `thistext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `thisblob` blob DEFAULT NULL,\n  `thistinyint` tinyint(11) NOT NULL,\n  `thistinytext` text COLLATE utf8mb4_unicode_ci NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`funnything` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `thisint` int(11) DEFAULT NULL,\n  `thisfloat` float DEFAULT NULL,\n  `thisdecimal` decimal(5,5) DEFAULT NULL,\n  `thisvarchar` varchar(100) DEFAULT NULL,\n  `thisdate` date DEFAULT NULL,\n  `thisdatetime` datetime DEFAULT NULL,\n  `thistimestamp` timestamp NULL DEFAULT NULL,\n  `thischar` char(1) NOT NULL,\n  `thistext` mediumtext NOT NULL,\n  `thisblob` blob DEFAULT NULL,\n  `thistinyint` tinyint(11) NOT NULL,\n  `thistinytext` text NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "magicfield": {
             "table_name": "magicField",
@@ -1002,7 +1002,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`magicField` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `editsome_markdown` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_sql_code` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_php_code` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_python_code` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,\n  `typesome_javascript_code` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `this_datetime` datetime NOT NULL,\n  `this_date` date NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `deleted_at` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`magicField` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `editsome_markdown` varchar(2000) NOT NULL,\n  `typesome_sql_code` varchar(2000) NOT NULL,\n  `typesome_php_code` mediumtext NOT NULL,\n  `typesome_python_code` mediumtext NOT NULL,\n  `typesome_javascript_code` varchar(3000) NOT NULL,\n  `this_datetime` datetime NOT NULL,\n  `this_date` date NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `deleted_at` datetime DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "post": {
             "table_name": "post",
@@ -1085,7 +1085,7 @@
                     "from_column": "post_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`post` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(100) NOT NULL,\n  `content` varchar(1000) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`post` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `title` varchar(100) NOT NULL,\n  `content` varchar(1000) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "sibling": {
             "table_name": "sibling",
@@ -1196,7 +1196,7 @@
                     "local_key": "sibling_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`sibling` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `siblingname` varchar(255) NOT NULL,\n  `step_sibling_id` int(11) DEFAULT NULL,\n  `sibling_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`sibling` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `siblingname` varchar(255) NOT NULL,\n  `step_sibling_id` int(11) DEFAULT NULL,\n  `sibling_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "tags_report": {
             "table_name": "tags_report",
@@ -1371,7 +1371,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`tags_report` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `field_to_bold_in_report_display` varchar(255) NOT NULL,\n  `field_to_hide_by_default` varchar(255) NOT NULL,\n  `field_to_italic_in_report_display` varchar(255) NOT NULL,\n  `field_to_right_align_in_report` varchar(255) NOT NULL,\n  `field_to_bolditalic_in_report_display` varchar(255) NOT NULL,\n  `numeric_field` int(11) NOT NULL,\n  `decimal_field` decimal(10,4) NOT NULL,\n  `currency_field` varchar(255) NOT NULL,\n  `percent_field` int(11) NOT NULL,\n  `url_field` varchar(255) NOT NULL,\n  `time_field` time NOT NULL,\n  `date_field` date NOT NULL,\n  `datetime_field` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`tags_report` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `field_to_bold_in_report_display` varchar(255) NOT NULL,\n  `field_to_hide_by_default` varchar(255) NOT NULL,\n  `field_to_italic_in_report_display` varchar(255) NOT NULL,\n  `field_to_right_align_in_report` varchar(255) NOT NULL,\n  `field_to_bolditalic_in_report_display` varchar(255) NOT NULL,\n  `numeric_field` int(11) NOT NULL,\n  `decimal_field` decimal(10,4) NOT NULL,\n  `currency_field` varchar(255) NOT NULL,\n  `percent_field` int(11) NOT NULL,\n  `url_field` varchar(255) NOT NULL,\n  `time_field` time NOT NULL,\n  `date_field` date NOT NULL,\n  `datetime_field` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         },
         "test_boolean": {
             "table_name": "test_boolean",
@@ -1462,7 +1462,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_boolean` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `label` varchar(255) NOT NULL,\n  `is_something` varchar(255) NOT NULL,\n  `has_something` varchar(255) NOT NULL,\n  `is_something2` tinyint(4) DEFAULT NULL,\n  `has_something2` tinyint(4) DEFAULT NULL,\n  `has_something3` tinyint(1) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_boolean` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `label` varchar(255) NOT NULL,\n  `is_something` varchar(255) NOT NULL,\n  `has_something` varchar(255) NOT NULL,\n  `is_something2` tinyint(4) DEFAULT NULL,\n  `has_something2` tinyint(4) DEFAULT NULL,\n  `has_something3` tinyint(1) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "test_created_only": {
             "table_name": "test_created_only",
@@ -1505,7 +1505,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_created_only` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `name` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_created_only` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `name` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "test_default_date": {
             "table_name": "test_default_date",
@@ -1620,7 +1620,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_default_date` (\n  `id` int(11) NOT NULL,\n  `datetime_none` datetime NOT NULL,\n  `date_none` date NOT NULL,\n  `datetime_current` datetime NOT NULL DEFAULT current_timestamp(),\n  `date_current` varchar(255) DEFAULT 'Current timestamp not supported for date',\n  `datetime_null` datetime DEFAULT NULL,\n  `date_null` date DEFAULT NULL,\n  `datetime_defined` datetime NOT NULL DEFAULT '2000-01-01 01:23:45',\n  `date_defined` date NOT NULL DEFAULT '2000-01-01',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_default_date` (\n  `id` int(11) NOT NULL,\n  `datetime_none` datetime NOT NULL,\n  `date_none` date NOT NULL,\n  `datetime_current` datetime NOT NULL DEFAULT current_timestamp(),\n  `date_current` varchar(255) DEFAULT 'Current timestamp not supported for date',\n  `datetime_null` datetime DEFAULT NULL,\n  `date_null` date DEFAULT NULL,\n  `datetime_defined` datetime NOT NULL DEFAULT '2000-01-01 01:23:45',\n  `date_defined` date NOT NULL DEFAULT '2000-01-01',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "test_null_default": {
             "table_name": "test_null_default",
@@ -1699,7 +1699,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_null_default` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `null_var` varchar(255) DEFAULT NULL,\n  `non_null_var_def` varchar(255) NOT NULL,\n  `non_null_var_no_def` varchar(255) DEFAULT NULL,\n  `nullable_w_default` varchar(255) DEFAULT 'THIS IS THE DEFAULT',\n  `non_null_default` varchar(255) NOT NULL DEFAULT 'I CANNOT BE NULL',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`test_null_default` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `null_var` varchar(255) DEFAULT NULL,\n  `non_null_var_def` varchar(255) NOT NULL,\n  `non_null_var_no_def` varchar(255) DEFAULT NULL,\n  `nullable_w_default` varchar(255) DEFAULT 'THIS IS THE DEFAULT',\n  `non_null_default` varchar(255) NOT NULL DEFAULT 'I CANNOT BE NULL',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "vote": {
             "table_name": "vote",
@@ -1775,7 +1775,7 @@
                     "local_key": "post_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_aaa`.`vote` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `post_id` int(11) NOT NULL,\n  `votenum` varchar(11) NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1"
+            "create_table_sql": "CREATE TABLE `DURC_aaa`.`vote` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `post_id` int(11) NOT NULL,\n  `votenum` varchar(11) NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         }
     },
     "DURC_irs": {
@@ -1829,7 +1829,7 @@
                     "from_column": "nonprofitcorp_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_irs`.`nonprofitcorp` (\n  `id` int(11) NOT NULL,\n  `EIN` int(9) NOT NULL DEFAULT 0,\n  `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `DURC_irs`.`nonprofitcorp` (\n  `id` int(11) NOT NULL,\n  `EIN` int(9) NOT NULL DEFAULT 0,\n  `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         }
     },
     "DURC_northwind_data": {
@@ -1962,7 +1962,7 @@
                     "local_key": "purchaseOrder_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`inventoryTransaction` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `transactionType` tinyint(4) NOT NULL,\n  `transactionCreatedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `transactionModifiedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `product_id` int(11) NOT NULL,\n  `quantity` int(11) NOT NULL,\n  `purchaseOrder_id` int(11) DEFAULT NULL,\n  `customerOrder_id` int(11) DEFAULT NULL,\n  `comments` varchar(255) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `customerOrder_id` (`customerOrder_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `transactionType` (`transactionType`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`inventoryTransaction` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `transactionType` tinyint(4) NOT NULL,\n  `transactionCreatedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `transactionModifiedDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `product_id` int(11) NOT NULL,\n  `quantity` int(11) NOT NULL,\n  `purchaseOrder_id` int(11) DEFAULT NULL,\n  `customerOrder_id` int(11) DEFAULT NULL,\n  `comments` varchar(255) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `customerOrder_id` (`customerOrder_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `transactionType` (`transactionType`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "invoice": {
             "table_name": "invoice",
@@ -2062,7 +2062,7 @@
                     "local_key": "order_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`invoice` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) DEFAULT NULL,\n  `invoiceDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `dueDate` datetime DEFAULT NULL,\n  `tax` decimal(19,4) DEFAULT 0.0000,\n  `shipping` decimal(19,4) DEFAULT 0.0000,\n  `amountDue` decimal(19,4) DEFAULT 0.0000,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `fkInvoicesOrder1_idx` (`order_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`invoice` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) DEFAULT NULL,\n  `invoiceDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `dueDate` datetime DEFAULT NULL,\n  `tax` decimal(19,4) DEFAULT 0.0000,\n  `shipping` decimal(19,4) DEFAULT 0.0000,\n  `amountDue` decimal(19,4) DEFAULT 0.0000,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `fkInvoicesOrder1_idx` (`order_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "order": {
             "table_name": "order",
@@ -2348,7 +2348,7 @@
                     "local_key": "shipper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "orderdetail": {
             "table_name": "orderDetail",
@@ -2498,7 +2498,7 @@
                     "local_key": "PurchaseOrder_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`orderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL DEFAULT 0.0000,\n  `unitPrice` decimal(19,4) DEFAULT 0.0000,\n  `discount` double NOT NULL DEFAULT 0,\n  `status_id` int(11) DEFAULT NULL,\n  `dateAllocated` datetime DEFAULT NULL,\n  `PurchaseOrder_id` int(11) DEFAULT NULL,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`PurchaseOrder_id`),\n  KEY `fkOrderDetailOrder1_idx` (`order_id`),\n  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`orderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `order_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL DEFAULT 0.0000,\n  `unitPrice` decimal(19,4) DEFAULT 0.0000,\n  `discount` double NOT NULL DEFAULT 0,\n  `status_id` int(11) DEFAULT NULL,\n  `dateAllocated` datetime DEFAULT NULL,\n  `PurchaseOrder_id` int(11) DEFAULT NULL,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `product_id` (`product_id`),\n  KEY `purchaseOrder_id` (`PurchaseOrder_id`),\n  KEY `fkOrderDetailOrder1_idx` (`order_id`),\n  KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "order_2017": {
             "table_name": "order_2017",
@@ -2768,7 +2768,7 @@
                     "local_key": "shipper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2017` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2017` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "order_2018": {
             "table_name": "order_2018",
@@ -3038,7 +3038,7 @@
                     "local_key": "shipper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2018` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2018` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "order_2019": {
             "table_name": "order_2019",
@@ -3308,7 +3308,7 @@
                     "local_key": "shipper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2019` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`order_2019` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `employee_id` int(11) DEFAULT NULL,\n  `customer_id` int(11) DEFAULT NULL,\n  `orderDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `shippedDate` datetime DEFAULT NULL,\n  `shipper_id` int(11) DEFAULT NULL,\n  `shipName` varchar(50) DEFAULT NULL,\n  `shipAddress` longtext DEFAULT NULL,\n  `shipCity` varchar(50) DEFAULT NULL,\n  `shipStateProvince` varchar(50) DEFAULT NULL,\n  `shipZipPostalCode` varchar(50) DEFAULT NULL,\n  `shipCountryRegion` varchar(50) DEFAULT NULL,\n  `shippingFee` decimal(19,4) DEFAULT 0.0000,\n  `taxes` decimal(19,4) DEFAULT 0.0000,\n  `paymentType` varchar(50) DEFAULT NULL,\n  `paidDate` datetime DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `taxRate` double DEFAULT 0,\n  `taxStatus_id` tinyint(4) DEFAULT NULL,\n  `status_id` tinyint(4) DEFAULT 0,\n  PRIMARY KEY (`id`),\n  KEY `customer_id` (`customer_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `id` (`id`),\n  KEY `shipper_id` (`shipper_id`),\n  KEY `taxStatus` (`taxStatus_id`),\n  KEY `shipZipPostalCode` (`shipZipPostalCode`),\n  KEY `fkOrderOrderStatus1` (`status_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "purchaseorder": {
             "table_name": "purchaseOrder",
@@ -3560,7 +3560,7 @@
                     "local_key": "submittedBy_employee_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrder` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `supplier_id` int(11) DEFAULT NULL,\n  `createdBy_employee_id` int(11) DEFAULT NULL,\n  `submittedDate` datetime DEFAULT NULL,\n  `creationDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `status_id` int(11) DEFAULT 0,\n  `expectedDate` datetime DEFAULT NULL,\n  `shippingFee` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `taxes` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `paymentDate` datetime DEFAULT NULL,\n  `paymentAmount` decimal(19,4) DEFAULT 0.0000,\n  `paymentMethod` varchar(50) DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `approvedBy_employee_id` int(11) DEFAULT NULL,\n  `approvedDate` datetime DEFAULT NULL,\n  `submittedBy_employee_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`),\n  KEY `createdBy` (`createdBy_employee_id`),\n  KEY `status_id` (`status_id`),\n  KEY `supplier_id` (`supplier_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrder` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `supplier_id` int(11) DEFAULT NULL,\n  `createdBy_employee_id` int(11) DEFAULT NULL,\n  `submittedDate` datetime DEFAULT NULL,\n  `creationDate` datetime NOT NULL DEFAULT current_timestamp(),\n  `status_id` int(11) DEFAULT 0,\n  `expectedDate` datetime DEFAULT NULL,\n  `shippingFee` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `taxes` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `paymentDate` datetime DEFAULT NULL,\n  `paymentAmount` decimal(19,4) DEFAULT 0.0000,\n  `paymentMethod` varchar(50) DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `approvedBy_employee_id` int(11) DEFAULT NULL,\n  `approvedDate` datetime DEFAULT NULL,\n  `submittedBy_employee_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`),\n  KEY `createdBy` (`createdBy_employee_id`),\n  KEY `status_id` (`status_id`),\n  KEY `supplier_id` (`supplier_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "purchaseorderdetail": {
             "table_name": "purchaseOrderDetail",
@@ -3679,7 +3679,7 @@
                     "local_key": "product_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `purchaseOrder_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL,\n  `unitCost` decimal(19,4) NOT NULL,\n  `dateReceived` datetime DEFAULT NULL,\n  `postedToInventory` tinyint(1) NOT NULL DEFAULT 0,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `product_id` (`product_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_data`.`purchaseOrderDetail` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `purchaseOrder_id` int(11) NOT NULL,\n  `product_id` int(11) DEFAULT NULL,\n  `quantity` decimal(18,4) NOT NULL,\n  `unitCost` decimal(19,4) NOT NULL,\n  `dateReceived` datetime DEFAULT NULL,\n  `postedToInventory` tinyint(1) NOT NULL DEFAULT 0,\n  `inventory_id` int(11) DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `id` (`id`),\n  KEY `inventory_id` (`inventory_id`),\n  KEY `purchaseOrder_id` (`purchaseOrder_id`),\n  KEY `product_id` (`product_id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         }
     },
     "DURC_northwind_model": {
@@ -3712,7 +3712,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`appstring` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `stringData` varchar(255) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`appstring` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `stringData` varchar(255) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "customer": {
             "table_name": "customer",
@@ -4013,7 +4013,7 @@
                     "from_column": "customer_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`customer` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `companyName` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  `random_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`companyName`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`customer` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `companyName` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  `random_date` datetime NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  `deleted_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`companyName`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "employee": {
             "table_name": "employee",
@@ -4296,7 +4296,7 @@
                     "from_column": "employee_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`employee` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`employee` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "employeeprivilege": {
             "table_name": "employeePrivilege",
@@ -4343,7 +4343,7 @@
                     "local_key": "privilege_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`employeePrivilege` (\n  `employee_id` int(11) NOT NULL,\n  `privilege_id` int(11) NOT NULL,\n  PRIMARY KEY (`employee_id`,`privilege_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `privilege_id` (`privilege_id`),\n  CONSTRAINT `fkEmployeePrivilegeEmployees1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkEmployeePrivilegePrivilege1` FOREIGN KEY (`privilege_id`) REFERENCES `privilege` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`employeePrivilege` (\n  `employee_id` int(11) NOT NULL,\n  `privilege_id` int(11) NOT NULL,\n  PRIMARY KEY (`employee_id`,`privilege_id`),\n  KEY `employee_id` (`employee_id`),\n  KEY `privilege_id` (`privilege_id`),\n  CONSTRAINT `fkEmployeePrivilegeEmployees1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n  CONSTRAINT `fkEmployeePrivilegePrivilege1` FOREIGN KEY (`privilege_id`) REFERENCES `privilege` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "inventorytransactiontype": {
             "table_name": "inventoryTransactionType",
@@ -4374,7 +4374,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`inventoryTransactionType` (\n  `id` tinyint(4) NOT NULL,\n  `typeName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`inventoryTransactionType` (\n  `id` tinyint(4) NOT NULL,\n  `typeName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "orderdetailstat": {
             "table_name": "orderDetailStat",
@@ -4405,7 +4405,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`orderDetailStat` (\n  `id` int(11) NOT NULL,\n  `statusName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`orderDetailStat` (\n  `id` int(11) NOT NULL,\n  `statusName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "orderstat": {
             "table_name": "orderStat",
@@ -4436,7 +4436,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`orderStat` (\n  `id` tinyint(4) NOT NULL,\n  `statusName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`orderStat` (\n  `id` tinyint(4) NOT NULL,\n  `statusName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "ordertaxstat": {
             "table_name": "orderTaxStat",
@@ -4467,7 +4467,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`orderTaxStat` (\n  `id` tinyint(4) NOT NULL,\n  `taxStatName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`orderTaxStat` (\n  `id` tinyint(4) NOT NULL,\n  `taxStatName` varchar(50) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "privilege": {
             "table_name": "privilege",
@@ -4507,7 +4507,7 @@
                     "from_column": "privilege_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`privilege` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `privilegeName` varchar(50) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`privilege` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `privilegeName` varchar(50) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "product": {
             "table_name": "product",
@@ -4705,7 +4705,7 @@
                     "from_column": "product_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`product` (\n  `supplier_ids` longtext DEFAULT NULL,\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `productCode` varchar(25) DEFAULT NULL,\n  `productName` varchar(50) DEFAULT NULL,\n  `description` longtext DEFAULT NULL,\n  `standardCost` decimal(19,4) DEFAULT 0.0000,\n  `listPrice` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `reorderLevel` int(11) DEFAULT NULL,\n  `targetLevel` int(11) DEFAULT NULL,\n  `quantityPerUnit` varchar(50) DEFAULT NULL,\n  `discontinued` tinyint(1) NOT NULL DEFAULT 0,\n  `minimumReorderQuantity` int(11) DEFAULT NULL,\n  `category` varchar(50) DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `productCode` (`productCode`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`product` (\n  `supplier_ids` longtext DEFAULT NULL,\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `productCode` varchar(25) DEFAULT NULL,\n  `productName` varchar(50) DEFAULT NULL,\n  `description` longtext DEFAULT NULL,\n  `standardCost` decimal(19,4) DEFAULT 0.0000,\n  `listPrice` decimal(19,4) NOT NULL DEFAULT 0.0000,\n  `reorderLevel` int(11) DEFAULT NULL,\n  `targetLevel` int(11) DEFAULT NULL,\n  `quantityPerUnit` varchar(50) DEFAULT NULL,\n  `discontinued` tinyint(1) NOT NULL DEFAULT 0,\n  `minimumReorderQuantity` int(11) DEFAULT NULL,\n  `category` varchar(50) DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `productCode` (`productCode`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "purchaseorderstat": {
             "table_name": "purchaseOrderStat",
@@ -4736,7 +4736,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`purchaseOrderStat` (\n  `id` int(11) NOT NULL,\n  `status` varchar(50) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`purchaseOrderStat` (\n  `id` int(11) NOT NULL,\n  `status` varchar(50) DEFAULT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "salesreport": {
             "table_name": "salesReport",
@@ -4803,7 +4803,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`salesReport` (\n  `groupBy` varchar(50) NOT NULL,\n  `display` varchar(50) DEFAULT NULL,\n  `title` varchar(50) DEFAULT NULL,\n  `filterRowSource` longtext DEFAULT NULL,\n  `default` tinyint(1) NOT NULL DEFAULT 0,\n  PRIMARY KEY (`groupBy`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`salesReport` (\n  `groupBy` varchar(50) NOT NULL,\n  `display` varchar(50) DEFAULT NULL,\n  `title` varchar(50) DEFAULT NULL,\n  `filterRowSource` longtext DEFAULT NULL,\n  `default` tinyint(1) NOT NULL DEFAULT 0,\n  PRIMARY KEY (`groupBy`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "shipper": {
             "table_name": "shipper",
@@ -5056,7 +5056,7 @@
                     "from_column": "shipper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`shipper` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`shipper` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "supplier": {
             "table_name": "supplier",
@@ -5288,7 +5288,7 @@
                     "from_column": "supplier_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`supplier` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `DURC_northwind_model`.`supplier` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `company` varchar(50) DEFAULT NULL,\n  `lastName` varchar(50) DEFAULT NULL,\n  `firstName` varchar(50) DEFAULT NULL,\n  `emailAddress` varchar(50) DEFAULT NULL,\n  `jobTitle` varchar(50) DEFAULT NULL,\n  `businessPhone` varchar(25) DEFAULT NULL,\n  `homePhone` varchar(25) DEFAULT NULL,\n  `mobilePhone` varchar(25) DEFAULT NULL,\n  `faxNumber` varchar(25) DEFAULT NULL,\n  `address` longtext DEFAULT NULL,\n  `city` varchar(50) DEFAULT NULL,\n  `stateProvince` varchar(50) DEFAULT NULL,\n  `zipPostalCode` varchar(15) DEFAULT NULL,\n  `countryRegion` varchar(50) DEFAULT NULL,\n  `webPage` longtext DEFAULT NULL,\n  `notes` longtext DEFAULT NULL,\n  `attachments` longblob DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  KEY `city` (`city`),\n  KEY `company` (`company`),\n  KEY `firstName` (`firstName`),\n  KEY `lastName` (`lastName`),\n  KEY `zipPostalCode` (`zipPostalCode`),\n  KEY `stateProvince` (`stateProvince`)\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         }
     },
     "lore": {
@@ -5345,7 +5345,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `lore`.`artist` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `artist_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `artist_name` (`artist_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`artist` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `artist_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `artist_name` (`artist_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "artistcredit": {
             "table_name": "artistcredit",
@@ -5412,7 +5412,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `lore`.`artistcredit` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `artistcredit_name` varchar(255) NOT NULL,\n  `is_plain_credit` tinyint(1) NOT NULL DEFAULT 1,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `artistcredit_name` (`artistcredit_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`artistcredit` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `artistcredit_name` varchar(255) NOT NULL,\n  `is_plain_credit` tinyint(1) NOT NULL DEFAULT 1,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `artistcredit_name` (`artistcredit_name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "atag": {
             "table_name": "atag",
@@ -5507,7 +5507,7 @@
                     "from_column": "atag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `arttag_name` varchar(255) NOT NULL,\n  `is_directed` tinyint(1) NOT NULL DEFAULT 0,\n  `excludes_arttag_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`arttag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `arttag_name` varchar(255) NOT NULL,\n  `is_directed` tinyint(1) NOT NULL DEFAULT 0,\n  `excludes_arttag_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`arttag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "card": {
             "table_name": "card",
@@ -5670,6 +5670,18 @@
                     "is_auto_increment": false
                 },
                 {
+                    "column_name": "binder_group_number",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
                     "column_name": "collector_number",
                     "data_type": "varchar",
                     "is_primary_key": false,
@@ -5814,7 +5826,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_paupercommander",
+                    "column_name": "legal_standard",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5826,55 +5838,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_alchemy",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_premodern",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_historicbrawl",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": true,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_pioneer",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_gladiator",
+                    "column_name": "legal_future",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5898,7 +5862,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_oldschool",
+                    "column_name": "legal_gladiator",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5910,7 +5874,79 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_duel",
+                    "column_name": "legal_pioneer",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_explorer",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_modern",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_legacy",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_pauper",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_vintage",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_penny",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5946,7 +5982,31 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_penny",
+                    "column_name": "legal_historicbrawl",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_alchemy",
+                    "data_type": "tinyint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "0",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "legal_paupercommander",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5958,7 +6018,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_vintage",
+                    "column_name": "legal_duel",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5970,7 +6030,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_pauper",
+                    "column_name": "legal_oldschool",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -5982,55 +6042,7 @@
                     "is_auto_increment": false
                 },
                 {
-                    "column_name": "legal_legacy",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_modern",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_frontier",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_future",
-                    "data_type": "tinyint",
-                    "is_primary_key": false,
-                    "is_foreign_key": false,
-                    "is_linked_key": false,
-                    "foreign_db": null,
-                    "foreign_table": null,
-                    "is_nullable": false,
-                    "default_value": "0",
-                    "is_auto_increment": false
-                },
-                {
-                    "column_name": "legal_standard",
+                    "column_name": "legal_premodern",
                     "data_type": "tinyint",
                     "is_primary_key": false,
                     "is_foreign_key": false,
@@ -6091,7 +6103,7 @@
                     "from_column": "card_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `collector_number` varchar(10) DEFAULT NULL,\n  `sortable_collector_number` decimal(10,2) DEFAULT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_paupercommander` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_alchemy` tinyint(4) DEFAULT 0,\n  `legal_premodern` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_historicbrawl` tinyint(4) DEFAULT 0,\n  `legal_pioneer` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_gladiator` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_frontier` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`card` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `lang` varchar(5) NOT NULL,\n  `oracle_id` varchar(255) NOT NULL,\n  `rulings_uri` varchar(255) NOT NULL,\n  `scryfall_web_uri` varchar(255) NOT NULL,\n  `scryfall_api_uri` varchar(255) NOT NULL,\n  `layout` varchar(50) NOT NULL,\n  `rarity` varchar(50) NOT NULL,\n  `released_at` varchar(50) NOT NULL,\n  `set_name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `mtgset_id` int(11) NOT NULL,\n  `binder_group_number` int(11) DEFAULT NULL,\n  `collector_number` varchar(10) DEFAULT NULL,\n  `sortable_collector_number` decimal(10,2) DEFAULT NULL,\n  `variation_of_scryfall_id` varchar(255) DEFAULT 'NULL',\n  `edhrec_rank` int(11) DEFAULT 0,\n  `is_promo` tinyint(1) NOT NULL,\n  `is_reserved` tinyint(1) DEFAULT NULL,\n  `is_story_spotlight` tinyint(1) NOT NULL DEFAULT 0,\n  `is_reprint` int(11) NOT NULL DEFAULT 0,\n  `is_variation` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_paper` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_mtgo` tinyint(1) NOT NULL DEFAULT 0,\n  `is_game_arena` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_standard` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_future` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historic` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_gladiator` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_pioneer` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_explorer` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_modern` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_legacy` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_pauper` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_vintage` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_penny` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_commander` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_brawl` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_historicbrawl` tinyint(4) DEFAULT 0,\n  `legal_alchemy` tinyint(4) DEFAULT 0,\n  `legal_paupercommander` tinyint(4) NOT NULL DEFAULT 0,\n  `legal_duel` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_oldschool` tinyint(1) NOT NULL DEFAULT 0,\n  `legal_premodern` tinyint(4) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`,`mtgset_id`),\n  KEY `set_name` (`set_name`),\n  KEY `is_story_spotlight` (`is_story_spotlight`),\n  KEY `is_game_paper` (`is_game_paper`),\n  KEY `is_game_mtgo` (`is_game_mtgo`),\n  KEY `is_game_arena` (`is_game_arena`),\n  KEY `legal_commander` (`legal_commander`),\n  KEY `legal_penny` (`legal_penny`),\n  KEY `legal_modern` (`legal_modern`),\n  KEY `legal_standard` (`legal_standard`),\n  KEY `scryfall_id_2` (`scryfall_id`,`mtgset_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "cardface": {
             "table_name": "cardface",
@@ -6765,7 +6777,7 @@
                     "from_column": "emblematic_cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `mana_cost` varchar(255) DEFAULT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(2000) DEFAULT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_nonfoil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `mana_cost` varchar(255) DEFAULT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(2000) DEFAULT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_nonfoil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  KEY `card_id` (`card_id`,`illustration_id`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "cardface_classofc_atag": {
             "table_name": "cardface_classofc_atag",
@@ -6891,7 +6903,7 @@
                     "local_key": "atag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface_classofc_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface_classofc_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "cardface_person_atag": {
             "table_name": "cardface_person_atag",
@@ -7017,7 +7029,7 @@
                     "local_key": "atag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface_person_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `person_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface_person_atag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `person_id` int(11) NOT NULL,\n  `atag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "classofc": {
             "table_name": "classofc",
@@ -7159,7 +7171,7 @@
                     "from_column": "classofc_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofc` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_name` varchar(255) NOT NULL,\n  `classofc_img_uri` varchar(255) DEFAULT NULL,\n  `classofc_wiki_url` varchar(255) DEFAULT NULL,\n  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creatureclass_name` (`classofc_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_name` varchar(255) NOT NULL,\n  `classofc_img_uri` varchar(255) DEFAULT NULL,\n  `classofc_wiki_url` varchar(255) DEFAULT NULL,\n  `is_mega_class` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creatureclass_name` (`classofc_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "classofc_cardface": {
             "table_name": "classofc_cardface",
@@ -7242,7 +7254,7 @@
                     "local_key": "classofc_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`classofc_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "classofc_classofc_vspack": {
             "table_name": "classofc_classofc_vspack",
@@ -7368,7 +7380,7 @@
                     "local_key": "vspack_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofc_classofc_vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `second_classofc_id` int(11) NOT NULL,\n  `vspack_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofc_id` (`classofc_id`,`second_classofc_id`,`vspack_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_classofc_vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `second_classofc_id` int(11) NOT NULL,\n  `vspack_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofc_id` (`classofc_id`,`second_classofc_id`,`vspack_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "classofc_creature": {
             "table_name": "classofc_creature",
@@ -7451,7 +7463,7 @@
                     "local_key": "creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`classofc_creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofcreature_id` (`classofc_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`classofc_creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `classofc_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `classofcreature_id` (`classofc_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "creature": {
             "table_name": "creature",
@@ -7548,7 +7560,7 @@
                     "from_column": "emblematic_creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `creature_image_uri` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creature_name` (`creature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`creature` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `creature_name` varchar(255) NOT NULL,\n  `creature_image_uri` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `creature_name` (`creature_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "creature_cardface": {
             "table_name": "creature_cardface",
@@ -7631,7 +7643,7 @@
                     "local_key": "creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`creature_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`creature_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id` (`cardface_id`,`creature_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "mtgset": {
             "table_name": "mtgset",
@@ -7878,6 +7890,18 @@
                     "is_auto_increment": false
                 },
                 {
+                    "column_name": "printed_size",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
                     "column_name": "created_at",
                     "data_type": "datetime",
                     "is_primary_key": false,
@@ -7911,7 +7935,7 @@
                     "from_column": "mtgset_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `arena_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` date DEFAULT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `is_nonfoil_only` tinyint(1) DEFAULT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`mtgset` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `scryfall_id` varchar(255) NOT NULL,\n  `code` varchar(10) NOT NULL,\n  `mtgo_code` varchar(255) DEFAULT NULL,\n  `arena_code` varchar(255) DEFAULT NULL,\n  `tcgplayer_id` int(11) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `set_type` varchar(255) NOT NULL,\n  `released_at` date DEFAULT NULL,\n  `block_code` varchar(255) DEFAULT NULL,\n  `block` varchar(255) DEFAULT NULL,\n  `parent_set_code` varchar(255) DEFAULT NULL,\n  `card_count` int(11) NOT NULL,\n  `is_digital` tinyint(1) NOT NULL,\n  `is_foil_only` tinyint(1) NOT NULL,\n  `is_nonfoil_only` tinyint(1) DEFAULT NULL,\n  `scryfall_uri` varchar(255) NOT NULL,\n  `mtgset_uri` varchar(255) NOT NULL,\n  `icon_svg_uri` varchar(255) NOT NULL,\n  `search_uri` varchar(255) NOT NULL,\n  `printed_size` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `scryfall_id` (`scryfall_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "mverse": {
             "table_name": "mverse",
@@ -7999,7 +8023,7 @@
                     "local_key": "cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`mverse` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `multiverse_id` int(11) NOT NULL,\n  `gatherer_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id_2` (`cardface_id`,`multiverse_id`),\n  KEY `cardface_id` (`cardface_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`mverse` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `cardface_id` int(11) NOT NULL,\n  `multiverse_id` int(11) NOT NULL,\n  `gatherer_url` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `cardface_id_2` (`cardface_id`,`multiverse_id`),\n  KEY `cardface_id` (`cardface_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         },
         "pack": {
             "table_name": "pack",
@@ -8090,7 +8114,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `lore`.`pack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `pack_name` varchar(255) NOT NULL,\n  `pack_wizards_url` varchar(2000) NOT NULL,\n  `pack_wiki_url` varchar(2000) NOT NULL,\n  `pack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`pack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `pack_name` varchar(255) NOT NULL,\n  `pack_wizards_url` varchar(2000) NOT NULL,\n  `pack_wiki_url` varchar(2000) NOT NULL,\n  `pack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "person": {
             "table_name": "person",
@@ -8268,7 +8292,7 @@
                     "from_column": "emblematic_person_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(100) NOT NULL,\n  `first_name` varchar(100) NOT NULL,\n  `person_blurb` varchar(2000) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `wallpaper_download_url` varchar(500) DEFAULT NULL,\n  `mtgwiki_url` varchar(255) DEFAULT NULL,\n  `wizards_story_url` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`,`first_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `last_name` varchar(100) NOT NULL,\n  `first_name` varchar(100) NOT NULL,\n  `person_blurb` varchar(2000) NOT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `wallpaper_download_url` varchar(500) DEFAULT NULL,\n  `mtgwiki_url` varchar(255) DEFAULT NULL,\n  `wizards_story_url` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `last_name` (`last_name`,`first_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "person_classofc_cardface": {
             "table_name": "person_classofc_cardface",
@@ -8394,7 +8418,7 @@
                     "local_key": "cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `cardface_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`cardface_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_classofc_cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `cardface_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`cardface_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "person_classofc_tag": {
             "table_name": "person_classofc_tag",
@@ -8520,7 +8544,7 @@
                     "local_key": "tag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_classofc_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`tag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_classofc_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `classofc_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`classofc_id`,`tag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "person_creature_tag": {
             "table_name": "person_creature_tag",
@@ -8646,7 +8670,7 @@
                     "local_key": "tag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_creature_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`creature_id`,`tag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_creature_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `creature_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`creature_id`,`tag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "person_strategy_strategytag": {
             "table_name": "person_strategy_strategytag",
@@ -8772,7 +8796,7 @@
                     "local_key": "strategytag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_strategy_strategytag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `strategy_id` int(11) NOT NULL,\n  `strategytag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`strategytag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_strategy_strategytag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `strategy_id` int(11) NOT NULL,\n  `strategytag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`strategytag_id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "person_strategy_tag": {
             "table_name": "person_strategy_tag",
@@ -8898,7 +8922,7 @@
                     "local_key": "tag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`person_strategy_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `strategy_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`tag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`person_strategy_tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `person_id` int(11) NOT NULL,\n  `strategy_id` int(11) NOT NULL,\n  `tag_id` int(11) NOT NULL,\n  `is_bulk_linker` tinyint(1) NOT NULL DEFAULT 0,\n  `link_note` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `person_id` (`person_id`,`strategy_id`,`tag_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "powertoughsource": {
             "table_name": "powertoughsource",
@@ -9037,7 +9061,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `lore`.`powertoughsource` (\n  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 NOT NULL,\n  `name` varchar(255) CHARACTER SET utf8 NOT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `power` decimal(10,0) DEFAULT NULL,\n  `toughness` decimal(10,0) DEFAULT NULL,\n  `power_plus_toughness` decimal(11,0) DEFAULT NULL,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  UNIQUE KEY `name` (`name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `lore`.`powertoughsource` (\n  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,\n  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `power` decimal(10,0) DEFAULT NULL,\n  `toughness` decimal(10,0) DEFAULT NULL,\n  `power_plus_toughness` decimal(11,0) DEFAULT NULL,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  UNIQUE KEY `name` (`name`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "pricetype": {
             "table_name": "pricetype",
@@ -9101,7 +9125,7 @@
                     "from_column": "pricetype_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`pricetype` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `pricetype_name` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `pricetype_name` (`pricetype_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `lore`.`pricetype` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `pricetype_name` varchar(25) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `pricetype_name` (`pricetype_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
         "scanhistory": {
             "table_name": "scanhistory",
@@ -9168,7 +9192,7 @@
                     "is_auto_increment": false
                 }
             ],
-            "create_table_sql": "CREATE TABLE `lore`.`scanhistory` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `multiverse_id` int(11) NOT NULL,\n  `viewchannel` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`scanhistory` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `multiverse_id` int(11) NOT NULL,\n  `viewchannel` varchar(255) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "strategy": {
             "table_name": "strategy",
@@ -9296,7 +9320,7 @@
                     "local_key": "wincon_cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`strategy` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `strategy_name` varchar(255) NOT NULL,\n  `strategy_description` varchar(2000) NOT NULL,\n  `strategy_url` varchar(500) NOT NULL,\n  `wincon_cardface_id` int(11) DEFAULT NULL,\n  `WOTC_rule_reference` varchar(10) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`strategy` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `strategy_name` varchar(255) NOT NULL,\n  `strategy_description` varchar(2000) NOT NULL,\n  `strategy_url` varchar(500) NOT NULL,\n  `wincon_cardface_id` int(11) DEFAULT NULL,\n  `WOTC_rule_reference` varchar(10) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "strategytag": {
             "table_name": "strategytag",
@@ -9360,7 +9384,7 @@
                     "from_column": "strategytag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`strategytag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `strategytag_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`strategytag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `strategytag_name` varchar(255) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "tag": {
             "table_name": "tag",
@@ -9478,7 +9502,7 @@
                     "local_key": "excludes_tag_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `tag_name` varchar(255) NOT NULL,\n  `is_directed` tinyint(1) NOT NULL DEFAULT 0,\n  `excludes_tag_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`tag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`tag` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `tag_name` varchar(255) NOT NULL,\n  `is_directed` tinyint(1) NOT NULL DEFAULT 0,\n  `excludes_tag_id` int(11) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `tag_name` (`tag_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "theme": {
             "table_name": "theme",
@@ -9604,7 +9628,7 @@
                     "local_key": "emblematic_creature_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`theme` (\n  `id` int(11) NOT NULL,\n  `theme_name` varchar(150) NOT NULL,\n  `theme_description` text NOT NULL,\n  `emblematic_person_id` int(11) NOT NULL,\n  `emblematic_cardface_id` int(11) NOT NULL,\n  `emblematic_creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp()\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`theme` (\n  `id` int(11) NOT NULL,\n  `theme_name` varchar(150) NOT NULL,\n  `theme_description` text NOT NULL,\n  `emblematic_person_id` int(11) NOT NULL,\n  `emblematic_cardface_id` int(11) NOT NULL,\n  `emblematic_creature_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp()\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         },
         "vspack": {
             "table_name": "vspack",
@@ -9704,7 +9728,7 @@
                     "from_column": "vspack_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `vspack_name` varchar(255) NOT NULL,\n  `vspack_wizards_url` varchar(2000) NOT NULL,\n  `vspack_wiki_url` varchar(2000) NOT NULL,\n  `vspack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8"
+            "create_table_sql": "CREATE TABLE `lore`.`vspack` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `vspack_name` varchar(255) NOT NULL,\n  `vspack_wizards_url` varchar(2000) NOT NULL,\n  `vspack_wiki_url` varchar(2000) NOT NULL,\n  `vspack_img_url` varchar(2000) NOT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "wallpaper": {
             "table_name": "wallpaper",
@@ -9811,7 +9835,7 @@
                     "from_column": "wallpaper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`wallpaper` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `art_name` varchar(190) DEFAULT NULL,\n  `set_name` varchar(190) DEFAULT NULL,\n  `art_release_date` datetime DEFAULT NULL,\n  `author_name` varchar(190) NOT NULL,\n  `created_at` datetime DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `art_name` (`art_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `art_name` varchar(190) DEFAULT NULL,\n  `set_name` varchar(190) DEFAULT NULL,\n  `art_release_date` datetime DEFAULT NULL,\n  `author_name` varchar(190) NOT NULL,\n  `created_at` datetime DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `art_name` (`art_name`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         },
         "wallpaper_illustration": {
             "table_name": "wallpaper_illustration",
@@ -9899,7 +9923,7 @@
                     "local_key": "wallpaper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_illustration` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `wallpaper_name` varchar(190) DEFAULT NULL,\n  `wallpaper_id` int(11) DEFAULT NULL,\n  `illustration_id` varchar(190) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_illustration` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `wallpaper_name` varchar(190) DEFAULT NULL,\n  `wallpaper_id` int(11) DEFAULT NULL,\n  `illustration_id` varchar(190) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         },
         "wallpaper_url": {
             "table_name": "wallpaper_url",
@@ -10011,7 +10035,7 @@
                     "local_key": "wallpaper_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_url` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `wallpaper_id` int(11) NOT NULL,\n  `wallpaper_url_name` varchar(190) NOT NULL,\n  `lore`.`wallpaper_url` varchar(190) NOT NULL,\n  `wallpaper_local_path` varchar(255) DEFAULT NULL,\n  `is_highest_resolution` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `lore`.`wallpaper_url` (`lore`.`wallpaper_url`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4"
+            "create_table_sql": "CREATE TABLE `lore`.`wallpaper_url` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `wallpaper_id` int(11) NOT NULL,\n  `wallpaper_url_name` varchar(190) NOT NULL,\n  `lore`.`wallpaper_url` varchar(190) NOT NULL,\n  `wallpaper_local_path` varchar(255) DEFAULT NULL,\n  `is_highest_resolution` tinyint(1) NOT NULL DEFAULT 0,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `lore`.`wallpaper_url` (`lore`.`wallpaper_url`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"
         }
     },
     "lore_price": {
@@ -10120,7 +10144,7 @@
                     "local_key": "pricetype_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore_price`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`),\n  KEY `created_at` (`created_at`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `lore_price`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`),\n  KEY `created_at` (`created_at`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         }
     }
 }

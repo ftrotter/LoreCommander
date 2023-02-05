@@ -4,5 +4,5 @@ CREATE TABLE `characterTest` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `funny_character_field` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

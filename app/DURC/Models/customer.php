@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -213,7 +213,7 @@ CREATE TABLE `DURC_northwind_model`.`customer` (
   KEY `lastName` (`lastName`),
   KEY `zipPostalCode` (`zipPostalCode`),
   KEY `stateProvince` (`stateProvince`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

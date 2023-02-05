@@ -10,5 +10,5 @@ CREATE TABLE `foreignkeytestthingy` (
   PRIMARY KEY (`id`),
   KEY `gizmopickupaskey` (`gizmopickupaskey`),
   CONSTRAINT `forgizmo` FOREIGN KEY (`gizmopickupaskey`) REFERENCES `foreignkeytestgizmo` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

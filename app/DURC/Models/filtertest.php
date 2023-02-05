@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -95,8 +95,8 @@ class filtertest extends DURCModel {
 /*
 CREATE TABLE `DURC_aaa`.`filterTest` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `test_url` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `test_json` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `test_url` varchar(1000) NOT NULL,
+  `test_json` mediumtext NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)

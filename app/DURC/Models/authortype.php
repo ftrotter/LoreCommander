@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -105,7 +105,7 @@ CREATE TABLE `DURC_aaa`.`authortype` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci
 */
 
 

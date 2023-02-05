@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -110,7 +110,7 @@ CREATE TABLE `DURC_northwind_model`.`employeePrivilege` (
   KEY `privilege_id` (`privilege_id`),
   CONSTRAINT `fkEmployeePrivilegeEmployees1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fkEmployeePrivilegePrivilege1` FOREIGN KEY (`privilege_id`) REFERENCES `privilege` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

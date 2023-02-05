@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -99,7 +99,7 @@ class pricetype extends DURCModel {
 /*
 CREATE TABLE `lore`.`pricetype` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pricetype_name` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pricetype_name` varchar(25) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

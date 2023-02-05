@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -17,9 +17,9 @@ lore.person by DURC.
 
 */
 
-class person extends DURCModel  implements Auditable {
+class person extends DURCModel {
 
-	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 
@@ -184,7 +184,7 @@ CREATE TABLE `lore`.`person` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `last_name` (`last_name`,`first_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

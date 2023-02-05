@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -17,9 +17,9 @@ lore.tag by DURC.
 
 */
 
-class tag extends DURCModel  implements Auditable {
+class tag extends DURCModel {
 
-	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 
@@ -141,7 +141,7 @@ CREATE TABLE `lore`.`tag` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `tag_name` (`tag_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

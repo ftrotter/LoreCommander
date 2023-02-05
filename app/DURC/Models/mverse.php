@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -115,7 +115,7 @@ CREATE TABLE `lore`.`mverse` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `cardface_id_2` (`cardface_id`,`multiverse_id`),
   KEY `cardface_id` (`cardface_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 */
 
 

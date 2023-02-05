@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -125,15 +125,15 @@ CREATE TABLE `DURC_aaa`.`funnything` (
   `thisint` int(11) DEFAULT NULL,
   `thisfloat` float DEFAULT NULL,
   `thisdecimal` decimal(5,5) DEFAULT NULL,
-  `thisvarchar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thisvarchar` varchar(100) DEFAULT NULL,
   `thisdate` date DEFAULT NULL,
   `thisdatetime` datetime DEFAULT NULL,
   `thistimestamp` timestamp NULL DEFAULT NULL,
-  `thischar` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `thistext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thischar` char(1) NOT NULL,
+  `thistext` mediumtext NOT NULL,
   `thisblob` blob DEFAULT NULL,
   `thistinyint` tinyint(11) NOT NULL,
-  `thistinytext` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thistinytext` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 */

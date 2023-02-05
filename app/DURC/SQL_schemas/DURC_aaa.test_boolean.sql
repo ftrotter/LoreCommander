@@ -9,5 +9,5 @@ CREATE TABLE `test_boolean` (
   `has_something2` tinyint(4) DEFAULT NULL,
   `has_something3` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

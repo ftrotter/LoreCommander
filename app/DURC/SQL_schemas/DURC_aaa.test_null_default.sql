@@ -8,5 +8,5 @@ CREATE TABLE `test_null_default` (
   `nullable_w_default` varchar(255) DEFAULT 'THIS IS THE DEFAULT',
   `non_null_default` varchar(255) NOT NULL DEFAULT 'I CANNOT BE NULL',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

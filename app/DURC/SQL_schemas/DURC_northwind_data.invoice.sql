@@ -11,5 +11,5 @@ CREATE TABLE `invoice` (
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `fkInvoicesOrder1_idx` (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

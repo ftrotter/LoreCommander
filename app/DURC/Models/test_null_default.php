@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -104,7 +104,7 @@ CREATE TABLE `DURC_aaa`.`test_null_default` (
   `nullable_w_default` varchar(255) DEFAULT 'THIS IS THE DEFAULT',
   `non_null_default` varchar(255) NOT NULL DEFAULT 'I CANNOT BE NULL',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

@@ -4,5 +4,5 @@ CREATE TABLE `orderStat` (
   `id` tinyint(4) NOT NULL,
   `statusName` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

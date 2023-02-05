@@ -11,5 +11,5 @@ CREATE TABLE `test_default_date` (
   `datetime_defined` datetime NOT NULL DEFAULT '2000-01-01 01:23:45',
   `date_defined` date NOT NULL DEFAULT '2000-01-01',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

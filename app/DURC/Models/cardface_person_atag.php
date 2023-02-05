@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -17,9 +17,9 @@ lore.cardface_person_atag by DURC.
 
 */
 
-class cardface_person_atag extends DURCModel  implements Auditable {
+class cardface_person_atag extends DURCModel {
 
-	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 
@@ -141,7 +141,7 @@ CREATE TABLE `lore`.`cardface_person_atag` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `cardface_id` (`cardface_id`,`person_id`,`atag_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

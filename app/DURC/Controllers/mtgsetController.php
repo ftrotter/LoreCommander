@@ -250,6 +250,7 @@ class mtgsetController extends DURCController
         $tmp_mtgset->mtgset_uri = $request->mtgset_uri;
         $tmp_mtgset->icon_svg_uri = $request->icon_svg_uri;
         $tmp_mtgset->search_uri = $request->search_uri;
+        $tmp_mtgset->printed_size = $request->printed_size;
 
 
         try {
@@ -464,6 +465,7 @@ class mtgsetController extends DURCController
         $tmp_mtgset->mtgset_uri = $request->mtgset_uri;
         $tmp_mtgset->icon_svg_uri = $request->icon_svg_uri;
         $tmp_mtgset->search_uri = $request->search_uri;
+        $tmp_mtgset->printed_size = $request->printed_size;
 
         $id = $mtgset->id;
         

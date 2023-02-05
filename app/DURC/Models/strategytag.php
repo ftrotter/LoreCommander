@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -17,9 +17,9 @@ lore.strategytag by DURC.
 
 */
 
-class strategytag extends DURCModel  implements Auditable {
+class strategytag extends DURCModel {
 
-	 use \OwenIt\Auditing\Auditable; // configured using is_auditable = 1 in config json
+	 //not auditable, configured using is_auditable = 0 in config json
 
     
 
@@ -103,7 +103,7 @@ CREATE TABLE `lore`.`strategytag` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

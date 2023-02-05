@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -111,7 +111,7 @@ CREATE TABLE `DURC_aaa`.`foreignkeytestthingy` (
   PRIMARY KEY (`id`),
   KEY `gizmopickupaskey` (`gizmopickupaskey`),
   CONSTRAINT `forgizmo` FOREIGN KEY (`gizmopickupaskey`) REFERENCES `foreignkeytestgizmo` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci
 */
 
 

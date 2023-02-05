@@ -204,6 +204,10 @@ WHERE creature.creature_name LIKE '%$name%'
 	foreach($all_class_of_creature as $coc_id => $class_of_creature_array){
 		if(!$class_of_creature_array['is_mega_class']){ //there is a different system for the megaclasses
 			$name = $class_of_creature_array['classofc_name'];
+			//repeating santiization process above...
+			$name = DB::connection()->getPdo()->quote($name);
+			$name = substr($name,0,-1); //removes the trailing '
+			$name = substr($name,1); //removes the prefixed ' should be ready to go now..
 			$insert_sql = "
 INSERT IGNORE lore.classofc_cardface
 SELECT 
@@ -259,6 +263,10 @@ SELECT * FROM lore.creature
 		$name = $creature_array['creature_name'];
 		//this SQL will link all of the cardfaces that have the mention of the creature name...
 		//and avoid token and the funny card sets...
+			//repeating santiization process above...
+			$name = DB::connection()->getPdo()->quote($name);
+			$name = substr($name,0,-1); //removes the trailing '
+			$name = substr($name,1); //removes the prefixed ' should be ready to go now..
 		$insert_sql = "
 INSERT IGNORE lore.creature_cardface
 SELECT 

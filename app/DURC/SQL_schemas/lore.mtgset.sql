@@ -21,9 +21,10 @@ CREATE TABLE `mtgset` (
   `mtgset_uri` varchar(255) NOT NULL,
   `icon_svg_uri` varchar(255) NOT NULL,
   `search_uri` varchar(255) NOT NULL,
+  `printed_size` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -1,8 +1,8 @@
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `powertoughsource` (
-  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cmc` decimal(10,2) DEFAULT NULL,
   `power` decimal(10,0) DEFAULT NULL,
   `toughness` decimal(10,0) DEFAULT NULL,

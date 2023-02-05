@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -388,13 +388,14 @@ CREATE TABLE `lore`.`cardface` (
   KEY `is_color_black` (`is_color_black`),
   KEY `is_color_white` (`is_color_white`),
   KEY `is_colorless` (`is_colorless`),
+  KEY `card_id` (`card_id`,`illustration_id`),
   FULLTEXT KEY `artist` (`artist`),
   FULLTEXT KEY `flavor_text` (`flavor_text`),
   FULLTEXT KEY `oracle_text` (`oracle_text`),
   FULLTEXT KEY `type_line` (`type_line`),
   FULLTEXT KEY `name` (`name`),
   FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

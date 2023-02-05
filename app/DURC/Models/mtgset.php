@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -63,6 +63,7 @@ class mtgset extends DURCModel {
 		'mtgset_uri' => 'varchar',
 		'icon_svg_uri' => 'varchar',
 		'search_uri' => 'varchar',
+		'printed_size' => 'int',
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime',
 	]; //end field_type_map
@@ -107,6 +108,7 @@ class mtgset extends DURCModel {
 		'mtgset_uri' => null,
 		'icon_svg_uri' => null,
 		'search_uri' => null,
+		'printed_size' => 'NULL',
 		'created_at' => 'current_timestamp()',
 		'updated_at' => 'current_timestamp()',
 	];  // End of attributes
@@ -135,6 +137,7 @@ class mtgset extends DURCModel {
 		'mtgset_uri' => 'url|required',
 		'icon_svg_uri' => 'url|required',
 		'search_uri' => 'url|required',
+		'printed_size' => 'integer|nullable',
 	]; // End of validation rules
 		        
 		
@@ -182,11 +185,12 @@ CREATE TABLE `lore`.`mtgset` (
   `mtgset_uri` varchar(255) NOT NULL,
   `icon_svg_uri` varchar(255) NOT NULL,
   `search_uri` varchar(255) NOT NULL,
+  `printed_size` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `scryfall_id` (`scryfall_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

@@ -22,5 +22,5 @@ CREATE TABLE `purchaseOrder` (
   KEY `createdBy` (`createdBy_employee_id`),
   KEY `status_id` (`status_id`),
   KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

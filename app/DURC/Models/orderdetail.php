@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -154,7 +154,7 @@ CREATE TABLE `DURC_northwind_data`.`orderDetail` (
   KEY `purchaseOrder_id` (`PurchaseOrder_id`),
   KEY `fkOrderDetailOrder1_idx` (`order_id`),
   KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 */
 
 

@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -99,9 +99,9 @@ class nonprofitcorp extends DURCModel {
 CREATE TABLE `DURC_irs`.`nonprofitcorp` (
   `id` int(11) NOT NULL,
   `EIN` int(9) NOT NULL DEFAULT 0,
-  `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `TAXPAYER_NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 */
 
 

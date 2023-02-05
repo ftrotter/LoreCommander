@@ -4,7 +4,7 @@ namespace App\DURC\Models;
 
 use CareSet\DURC\DURCModel;
 use CareSet\DURC\DURC;
-use OwenIt\Auditing\Contracts\Auditable;
+//use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 
 
@@ -118,8 +118,8 @@ class powertoughsource extends DURCModel {
 //Originating SQL Schema
 /*
 CREATE TABLE `lore`.`powertoughsource` (
-  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `scryfall_web_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cmc` decimal(10,2) DEFAULT NULL,
   `power` decimal(10,0) DEFAULT NULL,
   `toughness` decimal(10,0) DEFAULT NULL,

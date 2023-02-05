@@ -18,5 +18,5 @@ CREATE TABLE `orderDetail` (
   KEY `purchaseOrder_id` (`PurchaseOrder_id`),
   KEY `fkOrderDetailOrder1_idx` (`order_id`),
   KEY `fkOrderDetailOrderDetailStatus1_idx` (`status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
