@@ -13,7 +13,7 @@ class cheap_foils extends AbstractCardsReport
 
     public function GetReportDescription(): ?string { 
 	$desc = 
-		"Cheapest Foils"
+		"Cheapest Foils";
 	return($desc);
     }
 
@@ -59,10 +59,9 @@ class cheap_foils extends AbstractCardsReport
 
         $sql = "
 SELECT
-cardface.name AS card_name,
-`type_line`,
-scryfall_web_uri,
-`image_uri_normal`,
+CONCAT(cardface.name,' <br>', `type_line`) AS card_title,
+`image_uri_normal` AS card_img_top,
+CONCAT('<a target=_blank href=\"', scryfall_web_uri, '\">price: ', price, '</a>') AS card_text,
 `is_foil`,
 `is_color_green`, `is_color_red`, `is_color_blue`, `is_color_black`, `is_color_white`
 
@@ -79,6 +78,7 @@ JOIN lore_price.cardprice ON (
 JOIN  lore_price.most_recent_price_update 
 WHERE is_foil = 1 AND 
 	DATE(cardprice.created_at) = most_recent_update_date 
+	AND price IS NOT NULL
 ORDER BY price ASC
 LIMIT 1, 10000
 ";
