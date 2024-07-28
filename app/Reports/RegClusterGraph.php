@@ -21,7 +21,7 @@ class RegClusterGraph extends AbstractGraphReport
     */
     public function getReportDescription(): string
     {
-        return("Shows clusters of regulations");
+        return("Shows cluster of regulations");
     }
 
     /**
@@ -49,7 +49,7 @@ SELECT
     'Comment' AS source_group,
     0 AS source_latitude,
     0 AS source_longitude,
-    'https://not.yet.com/' AS source_json_url,
+    CONCAT('/DURC/json/comment/',unique_comment_id) AS source_json_url,
     '' AS source_img,
     `other_unique_comment_id` AS target_id,
     right_comment.commentId AS target_name,
@@ -58,18 +58,18 @@ SELECT
     'Comment' AS target_group,
     0 AS target_latitude,
     0 AS target_longitude,
-    'https://not.yet.com/' AS target_json_url,
+    CONCAT('/DURC/json/comment/',other_unique_comment_id) AS target_json_url,
     '' AS target_img,
     Round(50 * `score`,0) AS weight,
     '' AS link_type,
     1 AS query_num
-FROM $db.comment_clusters
+FROM $db.comment_cluster
 JOIN $db.comment AS left_comment ON 
 	left_comment.id = 
-	comment_clusters.unique_comment_id 
+	comment_cluster.unique_comment_id 
 JOIN $db.comment AS right_comment ON 
 	right_comment.id = 
-	comment_clusters.other_unique_comment_id 
+	comment_cluster.other_unique_comment_id 
 WHERE unique_comment_id = 1 OR other_unique_comment_id = 1
 ";
 
