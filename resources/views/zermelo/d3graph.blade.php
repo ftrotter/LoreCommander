@@ -277,9 +277,8 @@
       Data loading error
     </h1>
 <h3> 	There was a problem loading your data, please report this bug to
-	<a href='mailto:support@careset.com?subject=Data+load+error&body=Trouble%20loading%20data%20at%20cube.careset.com%20%2FFORCE%2Fdandelion_simple%2F1114904687'
-	>
-	support@careset.com</a></h3>
+your support team.
+</h3>
   </div>
   <div class="col-md-2"></div>
 </div>
