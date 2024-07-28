@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=dd41b04336d6cec155b813d3512e207c
+FILE_SIG=d0287cd844c7361b5385ea03c2522481
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -45,19 +45,6 @@ class DURC_comment extends AbstractTabularReport
 
 
 
-	$post_field = \App\post::getNameField();	
-	$joined_select_field_sql .= "
-, A_post.$post_field  AS $post_field
-"; 
-	$post_img_field = \App\post::getImgField();
-	if(!is_null($post_img_field)){
-		if($is_debug){echo "post has an image field of: |$post_img_field|
-";}
-		$joined_select_field_sql .= "
-, A_post.$post_img_field  AS $post_img_field
-"; 
-	}
-
 
         if(is_null($index)){
 
@@ -65,16 +52,14 @@ class DURC_comment extends AbstractTabularReport
 SELECT
 comment.id
 $joined_select_field_sql 
+, comment.commentId AS commentId
+, comment.comment_on_documentId AS comment_on_documentId
+, comment.comment_date_text AS comment_date_text
+, comment.comment_date AS comment_date
 , comment.comment_text AS comment_text
-, comment.post_id AS post_id
-, comment.created_at AS created_at
-, comment.updated_at AS updated_at
+, comment.simplified_comment_text AS simplified_comment_text
 
-FROM DURC_aaa.comment
-
-LEFT JOIN DURC_aaa.post AS A_post ON 
-	A_post.id =
-	comment.post_id
+FROM mirrulation.comment
 
 ";
 
@@ -84,16 +69,14 @@ LEFT JOIN DURC_aaa.post AS A_post ON
 SELECT
 comment.id 
 $joined_select_field_sql
+, comment.commentId AS commentId
+, comment.comment_on_documentId AS comment_on_documentId
+, comment.comment_date_text AS comment_date_text
+, comment.comment_date AS comment_date
 , comment.comment_text AS comment_text
-, comment.post_id AS post_id
-, comment.created_at AS created_at
-, comment.updated_at AS updated_at
+, comment.simplified_comment_text AS simplified_comment_text
  
-FROM DURC_aaa.comment 
-
-LEFT JOIN DURC_aaa.post AS A_post ON 
-	A_post.id =
-	comment.post_id
+FROM mirrulation.comment 
 
 WHERE comment.id = $index
 ";
@@ -130,19 +113,6 @@ WHERE comment.id = $index
 
 
 
-	$post_field = \App\post::getNameField();	
-	$joined_select_field_sql .= "
-, A_post.$post_field  AS $post_field
-"; 
-	$post_img_field = \App\post::getImgField();
-	if(!is_null($post_img_field)){
-		if($is_debug){echo "post has an image field of: |$post_img_field|
-";}
-		$joined_select_field_sql .= "
-, A_post.$post_img_field  AS $post_img_field
-"; 
-	}
-
 
 
         //link this row to its DURC editor
@@ -157,18 +127,6 @@ WHERE comment.id = $index
 	}
 
 
-
-$post_tmp = ''.$post_field;
-if(isset($row[$post_tmp])){
-	$post_data = $row[$post_tmp];
-	$row[$post_tmp] = "<a target='_blank' href='/Zermelo/DURC_post/$post_id'>$post_data</a>";
-}
-
-$post_img_tmp = ''.$post_img_field;
-if(isset($row[$post_img_tmp]) && strlen($post_img_tmp) > 0){
-	$post_img_data = $row[$post_img_tmp];
-	$row[$post_img_tmp] = "<img width='200px' src='$post_img_data'>";
-}
 
 
 
@@ -222,7 +180,20 @@ array (
   ),
   1 => 
   array (
-    'column_name' => 'comment_text',
+    'column_name' => 'commentId',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  2 => 
+  array (
+    'column_name' => 'comment_on_documentId',
     'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
@@ -233,23 +204,10 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
-  2 => 
-  array (
-    'column_name' => 'post_id',
-    'data_type' => 'int',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => true,
-    'foreign_db' => 'DURC_aaa',
-    'foreign_table' => 'post',
-    'is_nullable' => false,
-    'default_value' => NULL,
-    'is_auto_increment' => false,
-  ),
   3 => 
   array (
-    'column_name' => 'created_at',
-    'data_type' => 'datetime',
+    'column_name' => 'comment_date_text',
+    'data_type' => 'varchar',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
@@ -261,8 +219,34 @@ array (
   ),
   4 => 
   array (
-    'column_name' => 'updated_at',
+    'column_name' => 'comment_date',
     'data_type' => 'datetime',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
+  ),
+  5 => 
+  array (
+    'column_name' => 'comment_text',
+    'data_type' => 'longtext',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => false,
+    'default_value' => NULL,
+    'is_auto_increment' => false,
+  ),
+  6 => 
+  array (
+    'column_name' => 'simplified_comment_text',
+    'data_type' => 'longtext',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
@@ -293,7 +277,7 @@ array (
         'is_primary_key' => true,
         'is_foreign_key' => true,
         'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
+        'foreign_db' => 'mirrulation',
         'foreign_table' => 'comment',
         'is_nullable' => false,
         'default_value' => NULL,
@@ -306,7 +290,7 @@ array (
         'is_primary_key' => true,
         'is_foreign_key' => true,
         'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
+        'foreign_db' => 'mirrulation',
         'foreign_table' => 'comment',
         'is_nullable' => false,
         'default_value' => NULL,
@@ -356,7 +340,7 @@ array (
         'is_primary_key' => true,
         'is_foreign_key' => true,
         'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
+        'foreign_db' => 'mirrulation',
         'foreign_table' => 'comment',
         'is_nullable' => false,
         'default_value' => NULL,
@@ -369,7 +353,7 @@ array (
         'is_primary_key' => true,
         'is_foreign_key' => true,
         'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
+        'foreign_db' => 'mirrulation',
         'foreign_table' => 'comment',
         'is_nullable' => false,
         'default_value' => NULL,
@@ -405,84 +389,7 @@ array (
   ),
 )
 //belongs_to
-array (
-  'post' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'post',
-    'to_table' => 'post',
-    'to_db' => 'DURC_aaa',
-    'local_key' => 'post_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => true,
-      ),
-      1 => 
-      array (
-        'column_name' => 'title',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'content',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      4 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
-)
+NULL
 //many_many
 NULL
 //many_through

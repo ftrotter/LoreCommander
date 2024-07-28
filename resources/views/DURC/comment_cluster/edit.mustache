@@ -242,10 +242,12 @@ $(document).ready(function () {
 <thead>
 <tr>
 			<th> id </th>
+			<th> commentId </th>
+			<th> comment_on_documentId </th>
+			<th> comment_date_text </th>
+			<th> comment_date </th>
 			<th> comment_text </th>
-			<th> post_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
+			<th> simplified_comment_text </th>
 
 </tr>
 </thead>
@@ -254,9 +256,12 @@ $(document).ready(function () {
 	<tr>
 		{{#.}}
 			<td><a href='/DURC/comment/{{id}}'>{{id}}</a></td>
+			<td>{{commentId}}</td>
+			<td>{{comment_on_documentId}}</td>
+			<td>{{comment_date_text}}</td>
+			<td>{{comment_date}}</td>
 			<td>{{comment_text}}</td>
-			<td>{{post_id_DURClabel}} ({{post_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
+			<td>{{simplified_comment_text}}</td>
 
 		{{/.}}
 	</tr>
@@ -277,10 +282,12 @@ $(document).ready(function () {
 <thead>
 <tr>
 			<th> id </th>
+			<th> commentId </th>
+			<th> comment_on_documentId </th>
+			<th> comment_date_text </th>
+			<th> comment_date </th>
 			<th> comment_text </th>
-			<th> post_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
+			<th> simplified_comment_text </th>
 
 </tr>
 </thead>
@@ -289,9 +296,12 @@ $(document).ready(function () {
 	<tr>
 		{{#.}}
 			<td><a href='/DURC/comment/{{id}}'>{{id}}</a></td>
+			<td>{{commentId}}</td>
+			<td>{{comment_on_documentId}}</td>
+			<td>{{comment_date_text}}</td>
+			<td>{{comment_date}}</td>
 			<td>{{comment_text}}</td>
-			<td>{{post_id_DURClabel}} ({{post_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
+			<td>{{simplified_comment_text}}</td>
 
 		{{/.}}
 	</tr>

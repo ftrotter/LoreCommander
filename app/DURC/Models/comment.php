@@ -8,7 +8,7 @@ use CareSet\DURC\DURC;
 /*
 	Note this class was auto-generated from 
 
-DURC_aaa.comment by DURC.
+mirrulation.comment by DURC.
 
 	This class will be overwritten during future auto-generation runs..
 	Itjust reflects whatever is in the database..
@@ -25,49 +25,54 @@ class comment extends DURCModel {
 
     
         // the datbase for this model
-        protected $table = 'DURC_aaa.comment';
+        protected $table = 'mirrulation.comment';
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
 			'unique_comment_cluster', //from from one
 			'other_unique_comment_cluster', //from from one
-			'post', //from belongs to
 		];
 
 
 	//DURC did not detect any date fields
 
-	public $timestamps = true;
-	const UPDATED_AT = 'updated_at';
-	const CREATED_AT = 'created_at';
+	public $timestamps = false;
+	//DURC NOTE: did not find updated_at and created_at fields for this model
+
+	
 	
 	
 
 	//for many functions to work, we need to be able to do a lookup on the field_type and get back the MariaDB/MySQL column type.
 	static $field_type_map = [
 		'id' => 'int',
-		'comment_text' => 'varchar',
-		'post_id' => 'int',
-		'created_at' => 'datetime',
-		'updated_at' => 'datetime',
+		'commentId' => 'varchar',
+		'comment_on_documentId' => 'varchar',
+		'comment_date_text' => 'varchar',
+		'comment_date' => 'datetime',
+		'comment_text' => 'longtext',
+		'simplified_comment_text' => 'longtext',
 	]; //end field_type_map
 		
     // Indicate which fields are nullable for the UI to be able to validate required/present form elements
     protected $non_nullable_fields = [
 		'id',
+		'commentId',
+		'comment_on_documentId',
+		'comment_date_text',
 		'comment_text',
-		'post_id',
-		'created_at',
-		'updated_at',
+		'simplified_comment_text',
 	]; // End of nullable fields
 
     // Use default_values array to specify the default values for each field (if any) indicated by the DB schema, to be used as placeholder on form elements
     protected $default_values = [
 		'id' => null,
+		'commentId' => null,
+		'comment_on_documentId' => null,
+		'comment_date_text' => null,
+		'comment_date' => 'NULL',
 		'comment_text' => null,
-		'post_id' => null,
-		'created_at' => null,
-		'updated_at' => null,
+		'simplified_comment_text' => null,
 	];  // End of attributes
         
     //everything is fillable by default
@@ -75,10 +80,12 @@ class comment extends DURCModel {
 		
     // These are validation rules used by the DURCModel parent to validate data before storage
     protected static $rules = [
+		'commentId' => 'required',
+		'comment_on_documentId' => 'required',
+		'comment_date_text' => 'required',
+		'comment_date' => 'nullable',
 		'comment_text' => 'required',
-		'post_id' => 'integer|required',
-		'created_at' => 'required',
-		'updated_at' => 'required',
+		'simplified_comment_text' => 'required',
 	]; // End of validation rules
 		        
 		
@@ -109,25 +116,23 @@ class comment extends DURCModel {
 		
 //DURC BELONGS_TO SECTION
 
-/**
-*	get the single post for this comment
-*/
-	public function post(){
-		return $this->belongsTo('App\post','post_id','id');
-	}
-
-
+			//DURC did not detect any belongs_to relationships
 
 //Originating SQL Schema
 /*
-CREATE TABLE `DURC_aaa`.`comment` (
+CREATE TABLE `mirrulation`.`comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comment_text` varchar(1000) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci
+  `commentId` varchar(100) NOT NULL,
+  `comment_on_documentId` varchar(50) NOT NULL,
+  `comment_date_text` varchar(50) NOT NULL,
+  `comment_date` datetime DEFAULT NULL,
+  `comment_text` longtext NOT NULL,
+  `simplified_comment_text` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `commentId` (`commentId`),
+  FULLTEXT KEY `full_on_comment_index` (`comment_text`),
+  FULLTEXT KEY `simplified_comment_text` (`simplified_comment_text`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 */
 
 

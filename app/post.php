@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=7123693e8a4f04903a662ba0f6cf86b4
+FILE_SIG=dcd0969665676fca6a079fde4b9f626b
 */
 namespace App;
 /*
@@ -26,7 +26,6 @@ class post extends \App\DURC\Models\post
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'comment', //from from many
 			'vote', //from from many
 		];
 
@@ -42,15 +41,6 @@ class post extends \App\DURC\Models\post
 
 
 //DURC HAS_MANY SECTION
-
-/**
-*	DURC is handling the comment for this post in post
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function comment(){
-		return parent::comment();
-	}
-
 
 /**
 *	DURC is handling the vote for this post in post

@@ -159,43 +159,6 @@
 
 <div class='card'>
   <div class='card-header'>
-    Has many comment ( <a href='/DURC/comment/'>see all</a> )
-{{^comment}}
-(no values)
-{{/comment}}
-  </div>
-<div class='card-body'>
-
-<table id='table_comment' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> comment_text </th>
-			<th> post_id </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#comment}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/comment/{{id}}'>{{id}}</a></td>
-			<td>{{comment_text}}</td>
-			<td>{{post_id_DURClabel}} ({{post_id}}) </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-
-		{{/.}}
-	</tr>
-{{/comment}}
-</tbody>
-</table>
-</div></div> <!-- end comment card-->
-<br>
-
-<div class='card'>
-  <div class='card-header'>
     Has many vote ( <a href='/DURC/vote/'>see all</a> )
 {{^vote}}
 (no values)

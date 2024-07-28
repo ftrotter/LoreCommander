@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=db04fede823df70ec6da6607f361ad4a
+FILE_SIG=15df6f36b42b70a6b23b9df91d7c0abf
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -85,11 +85,11 @@ $joined_select_field_sql
 
 FROM mirrulation.comment_cluster
 
-LEFT JOIN DURC_aaa.comment AS A_comment ON 
+LEFT JOIN mirrulation.comment AS A_comment ON 
 	A_comment.id =
 	comment_cluster.unique_comment_id
 
-LEFT JOIN DURC_aaa.comment AS B_comment ON 
+LEFT JOIN mirrulation.comment AS B_comment ON 
 	B_comment.id =
 	comment_cluster.other_unique_comment_id
 
@@ -108,11 +108,11 @@ $joined_select_field_sql
  
 FROM mirrulation.comment_cluster 
 
-LEFT JOIN DURC_aaa.comment AS A_comment ON 
+LEFT JOIN mirrulation.comment AS A_comment ON 
 	A_comment.id =
 	comment_cluster.unique_comment_id
 
-LEFT JOIN DURC_aaa.comment AS B_comment ON 
+LEFT JOIN mirrulation.comment AS B_comment ON 
 	B_comment.id =
 	comment_cluster.other_unique_comment_id
 
@@ -260,7 +260,7 @@ array (
     'is_primary_key' => true,
     'is_foreign_key' => true,
     'is_linked_key' => true,
-    'foreign_db' => 'DURC_aaa',
+    'foreign_db' => 'mirrulation',
     'foreign_table' => 'comment',
     'is_nullable' => false,
     'default_value' => NULL,
@@ -273,7 +273,7 @@ array (
     'is_primary_key' => true,
     'is_foreign_key' => true,
     'is_linked_key' => true,
-    'foreign_db' => 'DURC_aaa',
+    'foreign_db' => 'mirrulation',
     'foreign_table' => 'comment',
     'is_nullable' => false,
     'default_value' => NULL,
@@ -317,7 +317,7 @@ array (
     'prefix' => 'unique',
     'type' => 'comment',
     'to_table' => 'comment',
-    'to_db' => 'DURC_aaa',
+    'to_db' => 'mirrulation',
     'local_key' => 'unique_comment_id',
     'other_columns' => 
     array (
@@ -336,7 +336,20 @@ array (
       ),
       1 => 
       array (
-        'column_name' => 'comment_text',
+        'column_name' => 'commentId',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      2 => 
+      array (
+        'column_name' => 'comment_on_documentId',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -347,23 +360,10 @@ array (
         'default_value' => NULL,
         'is_auto_increment' => false,
       ),
-      2 => 
-      array (
-        'column_name' => 'post_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'post',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
       3 => 
       array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
+        'column_name' => 'comment_date_text',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -375,8 +375,34 @@ array (
       ),
       4 => 
       array (
-        'column_name' => 'updated_at',
+        'column_name' => 'comment_date',
         'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      5 => 
+      array (
+        'column_name' => 'comment_text',
+        'data_type' => 'longtext',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      6 => 
+      array (
+        'column_name' => 'simplified_comment_text',
+        'data_type' => 'longtext',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -393,7 +419,7 @@ array (
     'prefix' => 'other_unique',
     'type' => 'comment',
     'to_table' => 'comment',
-    'to_db' => 'DURC_aaa',
+    'to_db' => 'mirrulation',
     'local_key' => 'other_unique_comment_id',
     'other_columns' => 
     array (
@@ -412,7 +438,20 @@ array (
       ),
       1 => 
       array (
-        'column_name' => 'comment_text',
+        'column_name' => 'commentId',
+        'data_type' => 'varchar',
+        'is_primary_key' => false,
+        'is_foreign_key' => true,
+        'is_linked_key' => true,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      2 => 
+      array (
+        'column_name' => 'comment_on_documentId',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -423,23 +462,10 @@ array (
         'default_value' => NULL,
         'is_auto_increment' => false,
       ),
-      2 => 
-      array (
-        'column_name' => 'post_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'post',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
       3 => 
       array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
+        'column_name' => 'comment_date_text',
+        'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
@@ -451,8 +477,34 @@ array (
       ),
       4 => 
       array (
-        'column_name' => 'updated_at',
+        'column_name' => 'comment_date',
         'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => true,
+        'default_value' => 'NULL',
+        'is_auto_increment' => false,
+      ),
+      5 => 
+      array (
+        'column_name' => 'comment_text',
+        'data_type' => 'longtext',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      6 => 
+      array (
+        'column_name' => 'simplified_comment_text',
+        'data_type' => 'longtext',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,

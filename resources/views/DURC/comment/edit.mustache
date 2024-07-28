@@ -45,6 +45,70 @@
           </ul>
        </div>
     </div></div>
+  <div class='form-group row {{commentId_row_class}}'>
+    <label for='commentId' class='col-sm-4 col-form-label'>commentId</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.commentId.has_errors}}is-invalid{{/errors.commentId.has_errors}}' id='commentId' name='commentId' placeholder='' value='{{commentId}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.commentId.messages}}<li>{{.}}</li>{{/errors.commentId.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{comment_on_documentId_row_class}}'>
+    <label for='comment_on_documentId' class='col-sm-4 col-form-label'>comment_on_documentId</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.comment_on_documentId.has_errors}}is-invalid{{/errors.comment_on_documentId.has_errors}}' id='comment_on_documentId' name='comment_on_documentId' placeholder='' value='{{comment_on_documentId}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.comment_on_documentId.messages}}<li>{{.}}</li>{{/errors.comment_on_documentId.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{comment_date_text_row_class}}'>
+    <label for='comment_date_text' class='col-sm-4 col-form-label'>comment_date_text</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.comment_date_text.has_errors}}is-invalid{{/errors.comment_date_text.has_errors}}' id='comment_date_text' name='comment_date_text' placeholder='' value='{{comment_date_text}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.comment_date_text.messages}}<li>{{.}}</li>{{/errors.comment_date_text.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{comment_date_row_class}}'>
+    <label for='comment_date' class='col-sm-4 col-form-label'>comment_date</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.comment_date.has_errors}}is-invalid{{/errors.comment_date.has_errors}}' id='comment_date' name='comment_date' placeholder='NULL' value='{{comment_date}}' >
+
+<button type='button' class='btn btn-primary' id='comment_date_FontPicker'>
+<img src='/css/ic_today_black_24dp_1x.png'> 
+</button>
+<button type='button' class='btn btn-primary' id='comment_date_TodayNow'> Today and Now</button>
+<div class='invalid-feedback'>
+  <ul>
+  {{#errors.comment_date.messages}}<li>{{.}}</li>{{/errors.comment_date.messages}}
+  </ul>
+</div><script>
+	var comment_dateConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
+  	$('#comment_date_TodayNow').click( function(e) {
+      		$('#comment_date').val(comment_dateConv.format(new Date())).change(); } );
+
+    	$('#comment_date_FontPicker').click(
+      		function(e) {
+        		$('#comment_date').AnyTime_noPicker().AnyTime_picker(
+				{
+    					format: '%Y-%m-%d %T',
+    					formatUtcOffset: '%: (%@)'
+				} 
+			).focus();
+        	e.preventDefault();
+        	} );
+</script>
+
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='comment_date' name='comment_dateNull' id='comment_dateNull' value='comment_dateNull' {{comment_date_checked}}>
+                    <label class='form-check-label' for='comment_dateNull'>null</label>
+                </div></div>
   <div class='form-group row {{comment_text_row_class}}'>
     <label for='comment_text' class='col-sm-4 col-form-label'>comment_text</label>
     <div class='col-sm-7'>
@@ -55,138 +119,15 @@
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{post_id_row_class}}'>
-    <label for='post_id' class='col-sm-4 col-form-label'>post_id</label>
+  <div class='form-group row {{simplified_comment_text_row_class}}'>
+    <label for='simplified_comment_text' class='col-sm-4 col-form-label'>simplified_comment_text</label>
     <div class='col-sm-7'>
-	Current id value: {{post_id}} (see below for lookup value)<br>
-	<select class='select2_post_id form-control' id='post_id' name='post_id'  >
-	<option value='{{post_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
-	</select>
-    </div>
-  </div>
-
-<script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('post_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#post_id option:selected');
-    const postId = element.val();
-    let postIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/post/' + postId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        postIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_post_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/post',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
-          }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-post_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('post_id');
-        if (postIdHasError === true) {
-            $('#select2-post_id-container').addClass('text-danger');
-        }
-    });
-});
-
-</script>
-
-
-  <div class='form-group row {{created_at_row_class}}'>
-    <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
-
-<button type='button' class='btn btn-primary' id='created_at_FontPicker'>
-<img src='/css/ic_today_black_24dp_1x.png'> 
-</button>
-<button type='button' class='btn btn-primary' id='created_at_TodayNow'> Today and Now</button>
-<div class='invalid-feedback'>
-  <ul>
-  {{#errors.created_at.messages}}<li>{{.}}</li>{{/errors.created_at.messages}}
-  </ul>
-</div><script>
-	var created_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
-  	$('#created_at_TodayNow').click( function(e) {
-      		$('#created_at').val(created_atConv.format(new Date())).change(); } );
-
-    	$('#created_at_FontPicker').click(
-      		function(e) {
-        		$('#created_at').AnyTime_noPicker().AnyTime_picker(
-				{
-    					format: '%Y-%m-%d %T',
-    					formatUtcOffset: '%: (%@)'
-				} 
-			).focus();
-        	e.preventDefault();
-        	} );
-</script>
-
-    </div></div>
-  <div class='form-group row {{updated_at_row_class}}'>
-    <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
-    <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
-
-<button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
-<img src='/css/ic_today_black_24dp_1x.png'> 
-</button>
-<button type='button' class='btn btn-primary' id='updated_at_TodayNow'> Today and Now</button>
-<div class='invalid-feedback'>
-  <ul>
-  {{#errors.updated_at.messages}}<li>{{.}}</li>{{/errors.updated_at.messages}}
-  </ul>
-</div><script>
-	var updated_atConv = new AnyTime.Converter({format: '%Y-%m-%d %T'});
-  	$('#updated_at_TodayNow').click( function(e) {
-      		$('#updated_at').val(updated_atConv.format(new Date())).change(); } );
-
-    	$('#updated_at_FontPicker').click(
-      		function(e) {
-        		$('#updated_at').AnyTime_noPicker().AnyTime_picker(
-				{
-    					format: '%Y-%m-%d %T',
-    					formatUtcOffset: '%: (%@)'
-				} 
-			).focus();
-        	e.preventDefault();
-        	} );
-</script>
-
+      <input type='text' class='form-control  {{#errors.simplified_comment_text.has_errors}}is-invalid{{/errors.simplified_comment_text.has_errors}}' id='simplified_comment_text' name='simplified_comment_text' placeholder='' value='{{simplified_comment_text}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.simplified_comment_text.messages}}<li>{{.}}</li>{{/errors.simplified_comment_text.messages}}
+          </ul>
+       </div>
     </div></div>
   <div class='form-group row'>
     <div class='col-sm-8'>
@@ -290,49 +231,6 @@ $(document).ready(function () {
 </div></div> <!-- end other_unique_comment_cluster card-->
 <br>
 </div></div> <!--end has many card-->
-<br>
-<div class='card'>
-  <div class='card-header'>
-    Belongs To Relationships
-  </div>
-<div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    post ( <a href='/DURC/post/'>see all</a> )
-{{^post}}
-(no values)
-{{/post}}
-  </div>
-<div class='card-body'>
-<table id='table_post' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> title </th>
-			<th> content </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#post}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/post/{{id}}'>{{id}}</a></td>
-			<td>{{title}}</td>
-			<td>{{content}}</td>
-			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-
-		{{/.}}
-	</tr>
-{{/post}}
-</tbody>
-</table>
-</div></div> <!-- end post card-->
-</div></div> <!--end belongs to card-->
 <br>
 
     <script type='text/javascript'>

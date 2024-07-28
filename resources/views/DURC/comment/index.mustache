@@ -37,25 +37,32 @@ Create <a href='/DURC/comment/create/'>new comment</a><br>
 
 <table id='table_comment' class='table table-bordered table-hover table-responsive table-sm'>
 <thead><tr>
-<th scope='col'>#</th><th scope='col'>comment_text</th>
-<th scope='col'>post_id</th>
-<th scope='col'>created_at</th>
-<th scope='col'>updated_at</th>
+<th scope='col'>#</th><th scope='col'>commentId</th>
+<th scope='col'>comment_on_documentId</th>
+<th scope='col'>comment_date_text</th>
+<th scope='col'>comment_date</th>
+<th scope='col'>comment_text</th>
+<th scope='col'>simplified_comment_text</th>
 
 </tr></thead>
 <tfoot><tr>
-<th scope='col'>#</th><th scope='col'>comment_text</th>
-<th scope='col'>post_id</th>
-<th scope='col'>created_at</th>
-<th scope='col'>updated_at</th>
+<th scope='col'>#</th><th scope='col'>commentId</th>
+<th scope='col'>comment_on_documentId</th>
+<th scope='col'>comment_date_text</th>
+<th scope='col'>comment_date</th>
+<th scope='col'>comment_text</th>
+<th scope='col'>simplified_comment_text</th>
 
 </tr></tfoot>
 <tbody>
   {{#data}}
     <tr>
-	<th scope='row'><a href='/DURC/comment/{{id}}/'> {{id}} </a></th>			<td>{{comment_text}}</td>
-			<td>{{post_id_DURClabel}} <a href='/DURC/post/{{post_id}}/'> ({{post_id}})</a> </td>			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
+	<th scope='row'><a href='/DURC/comment/{{id}}/'> {{id}} </a></th>			<td>{{commentId}}</td>
+			<td>{{comment_on_documentId}}</td>
+			<td>{{comment_date_text}}</td>
+			<td>{{comment_date}}</td>
+			<td>{{comment_text}}</td>
+			<td>{{simplified_comment_text}}</td>
 
     </tr>
   {{/data}}

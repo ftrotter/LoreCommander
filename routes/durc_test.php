@@ -36,10 +36,6 @@ Route::get('durctest', function () {
  			'/DURC/charactertest/create', //from: DURC_aaa.characterTest 
  			'/DURC/charactertest/1', //from: DURC_aaa.characterTest 
  			'/DURC/charactertest/1/edit', //from: DURC_aaa.characterTest 
- 			'/DURC/comment', //from: DURC_aaa.comment 
- 			'/DURC/comment/create', //from: DURC_aaa.comment 
- 			'/DURC/comment/1', //from: DURC_aaa.comment 
- 			'/DURC/comment/1/edit', //from: DURC_aaa.comment 
  			'/DURC/donation', //from: DURC_aaa.donation 
  			'/DURC/donation/create', //from: DURC_aaa.donation 
  			'/DURC/donation/1', //from: DURC_aaa.donation 
@@ -328,6 +324,10 @@ Route::get('durctest', function () {
  			'/DURC/cardprice/create', //from: lore_price.cardprice 
  			'/DURC/cardprice/1', //from: lore_price.cardprice 
  			'/DURC/cardprice/1/edit', //from: lore_price.cardprice 
+ 			'/DURC/comment', //from: mirrulation.comment 
+ 			'/DURC/comment/create', //from: mirrulation.comment 
+ 			'/DURC/comment/1', //from: mirrulation.comment 
+ 			'/DURC/comment/1/edit', //from: mirrulation.comment 
  			'/DURC/comment_cluster', //from: mirrulation.comment_cluster 
  			'/DURC/comment_cluster/create', //from: mirrulation.comment_cluster 
  			'/DURC/comment_cluster/1', //from: mirrulation.comment_cluster 

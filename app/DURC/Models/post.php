@@ -29,7 +29,6 @@ class post extends DURCModel {
 
 	//DURC will dymanically copy these into the $with variable... which prevents recursion problem: https://laracasts.com/discuss/channels/eloquent/eager-load-deep-recursion-problem?page=1
 		protected $DURC_selfish_with = [ 
-			'comment', //from from many
 			'vote', //from from many
 		];
 
@@ -82,14 +81,6 @@ class post extends DURCModel {
 		        
 		
 //DURC HAS_MANY SECTION
-
-/**
-*	get all the comment for this post
-*/
-	public function comment(){
-		return $this->hasMany('App\comment','post_id','id');
-	}
-
 
 /**
 *	get all the vote for this post

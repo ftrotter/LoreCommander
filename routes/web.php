@@ -92,13 +92,6 @@ Route::get("/DURC/json/charactertest/", 'charactertestController@jsonall');
 Route::get("/DURC/searchjson/charactertest/", 'charactertestController@search');
 
  
-//DURC->	DURC_aaa.comment
-Route::resource("/DURC/comment", 'commentController');
-Route::get("/DURC/json/comment/{comment_id}", 'commentController@jsonone');
-Route::get("/DURC/json/comment/", 'commentController@jsonall');
-Route::get("/DURC/searchjson/comment/", 'commentController@search');
-
- 
 //DURC->	DURC_aaa.donation
 Route::resource("/DURC/donation", 'donationController');
 Route::get("/DURC/json/donation/{donation_id}", 'donationController@jsonone');
@@ -601,6 +594,13 @@ Route::resource("/DURC/cardprice", 'cardpriceController');
 Route::get("/DURC/json/cardprice/{cardprice_id}", 'cardpriceController@jsonone');
 Route::get("/DURC/json/cardprice/", 'cardpriceController@jsonall');
 Route::get("/DURC/searchjson/cardprice/", 'cardpriceController@search');
+
+ 
+//DURC->	mirrulation.comment
+Route::resource("/DURC/comment", 'commentController');
+Route::get("/DURC/json/comment/{comment_id}", 'commentController@jsonone');
+Route::get("/DURC/json/comment/", 'commentController@jsonall');
+Route::get("/DURC/searchjson/comment/", 'commentController@search');
 
  
 //DURC->	mirrulation.comment_cluster

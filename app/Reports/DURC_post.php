@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=cafcd75c38bb5d8c398c078e79edd1c2
+FILE_SIG=53df06dffb812a7a4ff9180da5291553
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -229,82 +229,6 @@ array (
 )
 //has_many
 array (
-  'comment' => 
-  array (
-    'prefix' => NULL,
-    'type' => 'comment',
-    'from_table' => 'comment',
-    'from_db' => 'DURC_aaa',
-    'from_column' => 'post_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => true,
-      ),
-      1 => 
-      array (
-        'column_name' => 'comment_text',
-        'data_type' => 'varchar',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'post_id',
-        'data_type' => 'int',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'post',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'created_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      4 => 
-      array (
-        'column_name' => 'updated_at',
-        'data_type' => 'datetime',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
   'vote' => 
   array (
     'prefix' => NULL,

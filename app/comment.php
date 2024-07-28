@@ -1,11 +1,11 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c582d942c90b4e00527dedfdd3f53f70
+FILE_SIG=dfeefeebe3bcf085d4952ef34af1b02d
 */
 namespace App;
 /*
-	comment: controls DURC_aaa.comment
+	comment: controls mirrulation.comment
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
@@ -28,33 +28,25 @@ class comment extends \App\DURC\Models\comment
 		protected $DURC_selfish_with = [ 
 			'unique_comment_cluster', //from from one
 			'other_unique_comment_cluster', //from from one
-			'post', //from belongs to
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'comment_text', //varchar
-			//'post_id', //int
-			//'created_at', //datetime
-			//'updated_at', //datetime
+			//'commentId', //varchar
+			//'comment_on_documentId', //varchar
+			//'comment_date_text', //varchar
+			//'comment_date', //datetime
+			//'comment_text', //longtext
+			//'simplified_comment_text', //longtext
 		]; //end hidden array
 
 
 //DURC HAS_MANY SECTION
 			//DURC did not detect any has_many relationships
 //DURC BELONGS_TO SECTION
-
-/**
-*	DURC is handling the post for this comment in comment
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function post(){
-		return parent::post();
-	}
-
-
+			//DURC did not detect any belongs_to relationships
 
 	//look in the parent class for the SQL used to generate the underlying table
 

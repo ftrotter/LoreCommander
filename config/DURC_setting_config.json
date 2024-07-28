@@ -30,12 +30,6 @@
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
-        "comment": {
-            "is_show_web_interface": 1,
-            "is_user_only_web_interface": 0,
-            "is_audited": 0,
-            "is_listed_in_webindex": 0
-        },
         "donation": {
             "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
@@ -121,6 +115,12 @@
             "is_listed_in_webindex": 0
         },
         "vote": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        },
+        "comment": {
             "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,

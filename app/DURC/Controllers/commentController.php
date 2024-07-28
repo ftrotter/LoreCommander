@@ -17,8 +17,6 @@ class commentController extends DURCController
 
 	protected static $hidden_fields_array = [
 		'id',
-		'created_at',
-		'updated_at',
 
 	];
 
@@ -26,7 +24,6 @@ class commentController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
-		$with_summary_array[] = "post:id,".\App\post::getNameField();
 
 		return($with_summary_array);
 		
@@ -232,8 +229,12 @@ class commentController extends DURCController
         $tmp_comment = $myNewcomment;
         
         $tmp_comment->id = $request->id;
+        $tmp_comment->commentId = $request->commentId;
+        $tmp_comment->comment_on_documentId = $request->comment_on_documentId;
+        $tmp_comment->comment_date_text = $request->comment_date_text;
+        $tmp_comment->comment_date = $request->comment_date;
         $tmp_comment->comment_text = $request->comment_text;
-        $tmp_comment->post_id = $request->post_id;
+        $tmp_comment->simplified_comment_text = $request->simplified_comment_text;
 
 
         try {
@@ -429,8 +430,12 @@ class commentController extends DURCController
         $tmp_comment = $comment;
         
         $tmp_comment->id = $request->id;
+        $tmp_comment->commentId = $request->commentId;
+        $tmp_comment->comment_on_documentId = $request->comment_on_documentId;
+        $tmp_comment->comment_date_text = $request->comment_date_text;
+        $tmp_comment->comment_date = $request->comment_date;
         $tmp_comment->comment_text = $request->comment_text;
-        $tmp_comment->post_id = $request->post_id;
+        $tmp_comment->simplified_comment_text = $request->simplified_comment_text;
 
         $id = $comment->id;
         
