@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('pod_matrix', 'DraftPodMatrix@show_matrix');
 
-
+Route::get('diffview/{first_comment_id}/{second_comment_id}','DiffView@show');
 
 Route::get('changeCard/{channel_id}/{multiverse_id}', 'cardShowController@sendCardPush');
 Route::get('showCard/{channel_id}', 'cardShowController@showCard');
