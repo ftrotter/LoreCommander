@@ -19,7 +19,19 @@ class comment extends \App\DURC\Models\comment
 	//read about the structure here: https://getbootstrap.com/docs/4.3/components/card/
 	//this function should return an html snippet to go in the first 'card-body' div of an HTML interface...
 	public function getCardBody() {
-		return parent::getCardBody(); //just use the standard one unless a user over-rides this..
+
+		$commentId = $this->commentId;
+		$comment_url = "https://www.regulations.gov/comment/$commentId";
+		$comment_link = "<a href='$comment_url' target='_blank'>$commentId</a>";
+		$comment_snippet = substr($this->comment_text,0,200);
+
+
+		$comment_html = "<h5 class='card-title'>Regulations.gov Link: $comment_link</h5>
+			<div class='card-body'><small>$comment_snippet</small></div>
+		";
+
+		return($comment_html);
+
 	}
 
 
