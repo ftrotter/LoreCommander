@@ -1,18 +1,18 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c582d942c90b4e00527dedfdd3f53f70
+FILE_SIG=6266f17e648b0d61d9681f9be4e51250
 */
 namespace App;
 /*
-	comment: controls DURC_aaa.comment
+	llm_reply_per_comment: controls mirrulation.llm_reply_per_comment
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class comment extends \App\DURC\Models\comment
+class llm_reply_per_comment extends \App\DURC\Models\llm_reply_per_comment
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
@@ -26,17 +26,16 @@ class comment extends \App\DURC\Models\comment
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'unique_comment_cluster', //from from one
-			'other_unique_comment_cluster', //from from one
-			'post', //from belongs to
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
 			//'id', //int
-			//'comment_text', //varchar
-			//'post_id', //int
+			//'question_id', //int
+			//'answer', //varchar
+			//'commentId', //varchar
+			//'chatbot_id', //int
 			//'created_at', //datetime
 			//'updated_at', //datetime
 		]; //end hidden array
@@ -45,16 +44,7 @@ class comment extends \App\DURC\Models\comment
 //DURC HAS_MANY SECTION
 			//DURC did not detect any has_many relationships
 //DURC BELONGS_TO SECTION
-
-/**
-*	DURC is handling the post for this comment in comment
-*       but you can extend or override the defaults by editing this function...
-*/
-	public function post(){
-		return parent::post();
-	}
-
-
+			//DURC did not detect any belongs_to relationships
 
 	//look in the parent class for the SQL used to generate the underlying table
 
@@ -81,4 +71,4 @@ class comment extends \App\DURC\Models\comment
 	//your stuff goes here..
 	
 
-}//end comment
+}//end llm_reply_per_comment

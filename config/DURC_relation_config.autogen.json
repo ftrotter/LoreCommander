@@ -399,6 +399,22 @@
                     "local_key": "post_id"
                 }
             },
+            "has_one": {
+                "unique_comment_cluster": {
+                    "prefix": "unique",
+                    "type": "comment_cluster",
+                    "from_table": "comment_cluster",
+                    "from_db": "mirrulation",
+                    "from_column": "unique_comment_id"
+                },
+                "other_unique_comment_cluster": {
+                    "prefix": "other_unique",
+                    "type": "comment_cluster",
+                    "from_table": "comment_cluster",
+                    "from_db": "mirrulation",
+                    "from_column": "other_unique_comment_id"
+                }
+            },
             "create_table_sql": "CREATE TABLE `DURC_aaa`.`comment` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `comment_text` varchar(1000) NOT NULL,\n  `post_id` int(11) NOT NULL,\n  `created_at` datetime NOT NULL,\n  `updated_at` datetime NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
         },
         "donation": {
@@ -6777,7 +6793,7 @@
                     "from_column": "emblematic_cardface_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `mana_cost` varchar(255) DEFAULT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(2000) DEFAULT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_nonfoil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  KEY `card_id` (`card_id`,`illustration_id`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
+            "create_table_sql": "CREATE TABLE `lore`.`cardface` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `cardface_index` int(11) NOT NULL,\n  `illustration_id` varchar(255) NOT NULL,\n  `artist` varchar(255) DEFAULT NULL,\n  `color` varchar(255) DEFAULT NULL,\n  `color_identity` varchar(255) DEFAULT NULL,\n  `flavor_text` varchar(1000) DEFAULT NULL,\n  `image_uri` varchar(255) DEFAULT NULL,\n  `mana_cost` varchar(255) DEFAULT NULL,\n  `cmc` decimal(10,2) DEFAULT NULL,\n  `name` varchar(255) NOT NULL,\n  `oracle_text` varchar(2000) DEFAULT NULL,\n  `power` varchar(255) DEFAULT NULL,\n  `toughness` varchar(255) DEFAULT NULL,\n  `type_line` varchar(255) NOT NULL,\n  `border_color` varchar(255) NOT NULL,\n  `image_uri_art_crop` varchar(500) DEFAULT 'NULL',\n  `image_hash_art_crop` varchar(32) DEFAULT 'NULL',\n  `image_uri_small` varchar(500) DEFAULT NULL,\n  `image_hash_small` varchar(32) DEFAULT NULL,\n  `image_uri_normal` varchar(500) DEFAULT NULL,\n  `image_hash_normal` varchar(32) DEFAULT NULL,\n  `image_uri_large` varchar(500) DEFAULT NULL,\n  `image_hash_large` varchar(32) DEFAULT NULL,\n  `image_uri_png` varchar(500) DEFAULT NULL,\n  `image_hash_png` varchar(32) DEFAULT NULL,\n  `image_uri_border_crop` varchar(500) DEFAULT NULL,\n  `image_hash_border_crop` varchar(32) DEFAULT NULL,\n  `is_foil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_nonfoil` tinyint(1) NOT NULL DEFAULT 0,\n  `is_oversized` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_white` tinyint(1) NOT NULL DEFAULT 0,\n  `is_colorless` tinyint(1) NOT NULL DEFAULT 0,\n  `color_count` int(11) NOT NULL DEFAULT 0,\n  `is_color_identity_green` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_red` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_blue` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_black` tinyint(1) NOT NULL DEFAULT 0,\n  `is_color_identity_white` tinyint(1) NOT NULL DEFAULT 0,\n  `color_identity_count` int(11) NOT NULL DEFAULT 0,\n  `is_snow` tinyint(1) NOT NULL DEFAULT 0,\n  `has_phyrexian_mana` tinyint(1) NOT NULL DEFAULT 0,\n  `for_fulltext_search` varchar(2000) DEFAULT '''''',\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `id` (`id`,`card_id`),\n  KEY `is_color_green` (`is_color_green`),\n  KEY `is_color_red` (`is_color_red`),\n  KEY `is_color_blue` (`is_color_blue`),\n  KEY `is_color_black` (`is_color_black`),\n  KEY `is_color_white` (`is_color_white`),\n  KEY `is_colorless` (`is_colorless`),\n  KEY `card_id` (`card_id`,`illustration_id`),\n  KEY `card_id_2` (`card_id`,`is_foil`),\n  FULLTEXT KEY `artist` (`artist`),\n  FULLTEXT KEY `flavor_text` (`flavor_text`),\n  FULLTEXT KEY `oracle_text` (`oracle_text`),\n  FULLTEXT KEY `type_line` (`type_line`),\n  FULLTEXT KEY `name` (`name`),\n  FULLTEXT KEY `for_fulltext_search` (`for_fulltext_search`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci"
         },
         "cardface_classofc_atag": {
             "table_name": "cardface_classofc_atag",
@@ -10144,7 +10160,245 @@
                     "local_key": "pricetype_id"
                 }
             },
-            "create_table_sql": "CREATE TABLE `lore_price`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`),\n  KEY `created_at` (`created_at`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+            "create_table_sql": "CREATE TABLE `lore_price`.`cardprice` (\n  `id` bigint(11) NOT NULL AUTO_INCREMENT,\n  `card_id` int(11) NOT NULL,\n  `scryfall_id` varchar(255) NOT NULL,\n  `pricetype_id` int(11) NOT NULL,\n  `price` decimal(10,2) DEFAULT NULL,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `card_id` (`card_id`),\n  KEY `created_at` (`created_at`),\n  KEY `card_id_2` (`card_id`,`pricetype_id`,`price`),\n  KEY `pricetype_id` (`pricetype_id`,`price`),\n  KEY `card_id_3` (`card_id`,`pricetype_id`),\n  KEY `card_id_4` (`card_id`,`created_at`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        }
+    },
+    "mirrulation": {
+        "comment_cluster": {
+            "table_name": "comment_cluster",
+            "db": "mirrulation",
+            "column_data": [
+                {
+                    "column_name": "unique_comment_id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "comment",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "other_unique_comment_id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": "DURC_aaa",
+                    "foreign_table": "comment",
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "score",
+                    "data_type": "decimal",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "diff_text",
+                    "data_type": "text",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                }
+            ],
+            "belongs_to": {
+                "unique_comment": {
+                    "prefix": "unique",
+                    "type": "comment",
+                    "to_table": "comment",
+                    "to_db": "DURC_aaa",
+                    "local_key": "unique_comment_id"
+                },
+                "other_unique_comment": {
+                    "prefix": "other_unique",
+                    "type": "comment",
+                    "to_table": "comment",
+                    "to_db": "DURC_aaa",
+                    "local_key": "other_unique_comment_id"
+                }
+            },
+            "create_table_sql": "CREATE TABLE `mirrulation`.`comment_cluster` (\n  `unique_comment_id` int(11) NOT NULL,\n  `other_unique_comment_id` int(11) NOT NULL,\n  `score` decimal(7,5) NOT NULL,\n  `diff_text` text DEFAULT NULL,\n  PRIMARY KEY (`unique_comment_id`,`other_unique_comment_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        },
+        "llm_reply_per_comment": {
+            "table_name": "llm_reply_per_comment",
+            "db": "mirrulation",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "question_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "answer",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "commentId",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "chatbot_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "1",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "created_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "updated_at",
+                    "data_type": "datetime",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": "current_timestamp()",
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `mirrulation`.`llm_reply_per_comment` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `question_id` int(11) NOT NULL,\n  `answer` varchar(1000) NOT NULL,\n  `commentId` varchar(100) NOT NULL,\n  `chatbot_id` int(11) NOT NULL DEFAULT 1,\n  `created_at` datetime NOT NULL DEFAULT current_timestamp(),\n  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        },
+        "questions_for_llm": {
+            "table_name": "questions_for_llm",
+            "db": "mirrulation",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "question_text",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `mirrulation`.`questions_for_llm` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `question_text` varchar(1000) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        },
+        "unique_comment": {
+            "table_name": "unique_comment",
+            "db": "mirrulation",
+            "column_data": [
+                {
+                    "column_name": "id",
+                    "data_type": "int",
+                    "is_primary_key": true,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": true
+                },
+                {
+                    "column_name": "simplified_comment_text",
+                    "data_type": "longtext",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "comment_count",
+                    "data_type": "bigint",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `mirrulation`.`unique_comment` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `simplified_comment_text` longtext NOT NULL,\n  `comment_count` bigint(21) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         }
     }
 }

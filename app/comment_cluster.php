@@ -1,18 +1,18 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=c582d942c90b4e00527dedfdd3f53f70
+FILE_SIG=d2bdb535775c462141fa5095c9c40d91
 */
 namespace App;
 /*
-	comment: controls DURC_aaa.comment
+	comment_cluster: controls mirrulation.comment_cluster
 
 This class started life as a DURC model, but itwill no longer be overwritten by the generator
 this is safe to edit.
 
 
 */
-class comment extends \App\DURC\Models\comment
+class comment_cluster extends \App\DURC\Models\comment_cluster
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card
@@ -26,19 +26,17 @@ class comment extends \App\DURC\Models\comment
 	//You may need to change these for 'one to very very many' relationships.
 /*
 		protected $DURC_selfish_with = [ 
-			'unique_comment_cluster', //from from one
-			'other_unique_comment_cluster', //from from one
-			'post', //from belongs to
+			'unique_comment', //from belongs to
+			'other_unique_comment', //from belongs to
 		];
 
 */
 	//you can uncomment fields to prevent them from being serialized into the API!
 	protected  $hidden = [
-			//'id', //int
-			//'comment_text', //varchar
-			//'post_id', //int
-			//'created_at', //datetime
-			//'updated_at', //datetime
+			//'unique_comment_id', //int
+			//'other_unique_comment_id', //int
+			//'score', //decimal
+			//'diff_text', //text
 		]; //end hidden array
 
 
@@ -47,11 +45,20 @@ class comment extends \App\DURC\Models\comment
 //DURC BELONGS_TO SECTION
 
 /**
-*	DURC is handling the post for this comment in comment
+*	DURC is handling the unique_comment for this comment_cluster in comment_cluster
 *       but you can extend or override the defaults by editing this function...
 */
-	public function post(){
-		return parent::post();
+	public function unique_comment(){
+		return parent::unique_comment();
+	}
+
+
+/**
+*	DURC is handling the other_unique_comment for this comment_cluster in comment_cluster
+*       but you can extend or override the defaults by editing this function...
+*/
+	public function other_unique_comment(){
+		return parent::other_unique_comment();
 	}
 
 
@@ -81,4 +88,4 @@ class comment extends \App\DURC\Models\comment
 	//your stuff goes here..
 	
 
-}//end comment
+}//end comment_cluster

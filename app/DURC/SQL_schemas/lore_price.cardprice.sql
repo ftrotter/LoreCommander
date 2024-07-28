@@ -10,6 +10,10 @@ CREATE TABLE `cardprice` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `card_id` (`card_id`),
-  KEY `created_at` (`created_at`)
+  KEY `created_at` (`created_at`),
+  KEY `card_id_2` (`card_id`,`pricetype_id`,`price`),
+  KEY `pricetype_id` (`pricetype_id`,`price`),
+  KEY `card_id_3` (`card_id`,`pricetype_id`),
+  KEY `card_id_4` (`card_id`,`created_at`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

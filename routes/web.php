@@ -602,6 +602,34 @@ Route::get("/DURC/json/cardprice/{cardprice_id}", 'cardpriceController@jsonone')
 Route::get("/DURC/json/cardprice/", 'cardpriceController@jsonall');
 Route::get("/DURC/searchjson/cardprice/", 'cardpriceController@search');
 
+ 
+//DURC->	mirrulation.comment_cluster
+Route::resource("/DURC/comment_cluster", 'comment_clusterController');
+Route::get("/DURC/json/comment_cluster/{comment_cluster_id}", 'comment_clusterController@jsonone');
+Route::get("/DURC/json/comment_cluster/", 'comment_clusterController@jsonall');
+Route::get("/DURC/searchjson/comment_cluster/", 'comment_clusterController@search');
+
+ 
+//DURC->	mirrulation.llm_reply_per_comment
+Route::resource("/DURC/llm_reply_per_comment", 'llm_reply_per_commentController');
+Route::get("/DURC/json/llm_reply_per_comment/{llm_reply_per_comment_id}", 'llm_reply_per_commentController@jsonone');
+Route::get("/DURC/json/llm_reply_per_comment/", 'llm_reply_per_commentController@jsonall');
+Route::get("/DURC/searchjson/llm_reply_per_comment/", 'llm_reply_per_commentController@search');
+
+ 
+//DURC->	mirrulation.questions_for_llm
+Route::resource("/DURC/questions_for_llm", 'questions_for_llmController');
+Route::get("/DURC/json/questions_for_llm/{questions_for_llm_id}", 'questions_for_llmController@jsonone');
+Route::get("/DURC/json/questions_for_llm/", 'questions_for_llmController@jsonall');
+Route::get("/DURC/searchjson/questions_for_llm/", 'questions_for_llmController@search');
+
+ 
+//DURC->	mirrulation.unique_comment
+Route::resource("/DURC/unique_comment", 'unique_commentController');
+Route::get("/DURC/json/unique_comment/{unique_comment_id}", 'unique_commentController@jsonone');
+Route::get("/DURC/json/unique_comment/", 'unique_commentController@jsonall');
+Route::get("/DURC/searchjson/unique_comment/", 'unique_commentController@search');
+
 
 
 

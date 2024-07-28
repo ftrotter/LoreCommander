@@ -10,22 +10,22 @@
             </div>
 
 {{#is_new}}
-<form action='/DURC/comment' method='POST'>
+<form action='/DURC/llm_reply_per_comment' method='POST'>
 {{/is_new}}
 
 {{^is_new}}
-<form action='/DURC/comment/{{id}}' method='POST'>
+<form action='/DURC/llm_reply_per_comment/{{id}}' method='POST'>
     <input type='hidden' name='_method' value='PUT'>
 {{/is_new}}
 
-	<h1>comment</h1>
+	<h1>llm_reply_per_comment</h1>
 <div class='card'>
   <div class='card-header'>
 <h4> {{durc_instance_name}}</h4>
 <ul>
-<li> <a href='/Zermelo/DURC_comment/'>Return to comment list</a> </li>
+<li> <a href='/Zermelo/DURC_llm_reply_per_comment/'>Return to llm_reply_per_comment list</a> </li>
 {{^is_new}}
-<li> <a href='/DURC/comment/create'>Create new comment </a> </li>
+<li> <a href='/DURC/llm_reply_per_comment/create'>Create new llm_reply_per_comment </a> </li>
 {{/is_new}}
 </ul>
   </div>
@@ -45,91 +45,50 @@
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{comment_text_row_class}}'>
-    <label for='comment_text' class='col-sm-4 col-form-label'>comment_text</label>
+  <div class='form-group row {{question_id_row_class}}'>
+    <label for='question_id' class='col-sm-4 col-form-label'>question_id</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.comment_text.has_errors}}is-invalid{{/errors.comment_text.has_errors}}' id='comment_text' name='comment_text' placeholder='' value='{{comment_text}}' >
+      <input type='text' class='form-control  {{#errors.question_id.has_errors}}is-invalid{{/errors.question_id.has_errors}}' id='question_id' name='question_id' placeholder='' value='{{question_id}}' >
       <div class='invalid-feedback'>
           <ul>
-          {{#errors.comment_text.messages}}<li>{{.}}</li>{{/errors.comment_text.messages}}
+          {{#errors.question_id.messages}}<li>{{.}}</li>{{/errors.question_id.messages}}
           </ul>
        </div>
     </div></div>
-  <div class='form-group row {{post_id_row_class}}'>
-    <label for='post_id' class='col-sm-4 col-form-label'>post_id</label>
+  <div class='form-group row {{answer_row_class}}'>
+    <label for='answer' class='col-sm-4 col-form-label'>answer</label>
     <div class='col-sm-7'>
-	Current id value: {{post_id}} (see below for lookup value)<br>
-	<select class='select2_post_id form-control' id='post_id' name='post_id'  >
-	<option value='{{post_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
-	</select>
-    </div>
-  </div>
-
-<script type='text/javascript'>
-$(document).ready(function () {
-    // Show the loader/spinner
-    add_to_loading_queue('post_id');
-    
-    // Get the option element that is currently selected and it's foreign ID
-    const element = $('#post_id option:selected');
-    const postId = element.val();
-    let postIdHasError = false;
-    
-    // Use the json API to get the text of the selected element. 
-    // We do this dynamically so we don't have to figure out in the controller
-    // what elements are select2 elements, and populate from related models
-    $.ajax({
-        type: 'GET',
-        url: '/DURC/json/post/' + postId,
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // data.text has the same text string (formed from concatinating search fields) as
-        // the elements in the select list
-        element.html(data.text);
-    })
-    .fail(function(xhr, status, error) {
-        // Display the error text
-        element.html(JSON.parse(xhr.responseText));
-        postIdHasError = true;
-    })
-    .always(function (data) {
-        // Create the select2 dropdown    
-        $('.select2_post_id').select2({
-          width: '100%',   
-          ajax: {
-            url: '/DURC/searchjson/post',
-            dataType: 'json',
-            data: function (params) {
-                  var query = {
-                      q: params.term,
-                      page: params.page || 1
-                  }
-        
-                  // Query parameters will be ?search=[term]&page=[page]
-                  return query;
-              }
-          }
-        })
-        .change(function() {
-            // When we change the value, remove the danger class because we assume you pick a valid option.
-            $('#select2-post_id-container').removeClass('text-danger');
-        });
-        
-        // Hide the loader/spinner after the select2 has been built
-        remove_from_loading_queue('post_id');
-        if (postIdHasError === true) {
-            $('#select2-post_id-container').addClass('text-danger');
-        }
-    });
-});
-
-</script>
-
-
+      <input type='text' class='form-control  {{#errors.answer.has_errors}}is-invalid{{/errors.answer.has_errors}}' id='answer' name='answer' placeholder='' value='{{answer}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.answer.messages}}<li>{{.}}</li>{{/errors.answer.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{commentId_row_class}}'>
+    <label for='commentId' class='col-sm-4 col-form-label'>commentId</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.commentId.has_errors}}is-invalid{{/errors.commentId.has_errors}}' id='commentId' name='commentId' placeholder='' value='{{commentId}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.commentId.messages}}<li>{{.}}</li>{{/errors.commentId.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{chatbot_id_row_class}}'>
+    <label for='chatbot_id' class='col-sm-4 col-form-label'>chatbot_id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.chatbot_id.has_errors}}is-invalid{{/errors.chatbot_id.has_errors}}' id='chatbot_id' name='chatbot_id' placeholder='1' value='{{chatbot_id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.chatbot_id.messages}}<li>{{.}}</li>{{/errors.chatbot_id.messages}}
+          </ul>
+       </div>
+    </div></div>
   <div class='form-group row {{created_at_row_class}}'>
     <label for='created_at' class='col-sm-4 col-form-label'>created_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='' value='{{created_at}}' >
+      <input type='text' class='form-control  {{#errors.created_at.has_errors}}is-invalid{{/errors.created_at.has_errors}}' id='created_at' name='created_at' placeholder='current_timestamp()' value='{{created_at}}' >
 
 <button type='button' class='btn btn-primary' id='created_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -160,7 +119,7 @@ $(document).ready(function () {
   <div class='form-group row {{updated_at_row_class}}'>
     <label for='updated_at' class='col-sm-4 col-form-label'>updated_at</label>
     <div class='col-sm-7'>
-      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='' value='{{updated_at}}' >
+      <input type='text' class='form-control  {{#errors.updated_at.has_errors}}is-invalid{{/errors.updated_at.has_errors}}' id='updated_at' name='updated_at' placeholder='current_timestamp()' value='{{updated_at}}' >
 
 <button type='button' class='btn btn-primary' id='updated_at_FontPicker'>
 <img src='/css/ic_today_black_24dp_1x.png'> 
@@ -201,138 +160,16 @@ $(document).ready(function () {
   <div class='form-group row'>
               <div class='col-sm-12 text-right'>
 
-<form action='/DURC/comment/{{id}}' method='POST'>
+<form action='/DURC/llm_reply_per_comment/{{id}}' method='POST'>
     	<input type='hidden' name='_method' value='DELETE'>
 	<input type='hidden' name='_token' value='{{csrf_token}}'>
 
-              <button type='button' data-id='{{id}}' data-controller='comment' class='do-soft-delete btn btn-outline-danger'>Hard Delete comment</button>
+              <button type='button' data-id='{{id}}' data-controller='llm_reply_per_comment' class='do-soft-delete btn btn-outline-danger'>Hard Delete llm_reply_per_comment</button>
 </form>
               </div>
             </div>
 
 
-<br>
-<div class='card'>
-  <div class='card-header'>
-    Relationships
-  </div>
-<div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    Has one unique_comment_cluster ( <a href='/DURC/comment_cluster/'>see all</a> )
-{{^unique_comment_cluster}}
-(no values)
-{{/unique_comment_cluster}}
-  </div>
-<div class='card-body'>
-
-<table id='table_unique_comment_cluster' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> unique_comment_id </th>
-			<th> other_unique_comment_id </th>
-			<th> score </th>
-			<th> diff_text </th>
-
-</tr>
-</thead>
-<tbody>
-{{#unique_comment_cluster}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/comment_cluster/{{unique_comment_id}}'>{{unique_comment_id}}</a></td>
-			<td><a href='/DURC/comment_cluster/{{other_unique_comment_id}}'>{{other_unique_comment_id}}</a></td>
-			<td>{{score}}</td>
-			<td>{{diff_text}}</td>
-
-		{{/.}}
-	</tr>
-{{/unique_comment_cluster}}
-</tbody>
-</table>
-</div></div> <!-- end unique_comment_cluster card-->
-<br>
-
-<div class='card'>
-  <div class='card-header'>
-    Has one other_unique_comment_cluster ( <a href='/DURC/comment_cluster/'>see all</a> )
-{{^other_unique_comment_cluster}}
-(no values)
-{{/other_unique_comment_cluster}}
-  </div>
-<div class='card-body'>
-
-<table id='table_other_unique_comment_cluster' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> unique_comment_id </th>
-			<th> other_unique_comment_id </th>
-			<th> score </th>
-			<th> diff_text </th>
-
-</tr>
-</thead>
-<tbody>
-{{#other_unique_comment_cluster}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/comment_cluster/{{unique_comment_id}}'>{{unique_comment_id}}</a></td>
-			<td><a href='/DURC/comment_cluster/{{other_unique_comment_id}}'>{{other_unique_comment_id}}</a></td>
-			<td>{{score}}</td>
-			<td>{{diff_text}}</td>
-
-		{{/.}}
-	</tr>
-{{/other_unique_comment_cluster}}
-</tbody>
-</table>
-</div></div> <!-- end other_unique_comment_cluster card-->
-<br>
-</div></div> <!--end has many card-->
-<br>
-<div class='card'>
-  <div class='card-header'>
-    Belongs To Relationships
-  </div>
-<div class='card-body'>
-
-<div class='card'>
-  <div class='card-header'>
-    post ( <a href='/DURC/post/'>see all</a> )
-{{^post}}
-(no values)
-{{/post}}
-  </div>
-<div class='card-body'>
-<table id='table_post' class='table table-bordered table-hover table-responsive table-sm'>
-<thead>
-<tr>
-			<th> id </th>
-			<th> title </th>
-			<th> content </th>
-			<th> created_at </th>
-			<th> updated_at </th>
-
-</tr>
-</thead>
-<tbody>
-{{#post}}
-	<tr>
-		{{#.}}
-			<td><a href='/DURC/post/{{id}}'>{{id}}</a></td>
-			<td>{{title}}</td>
-			<td>{{content}}</td>
-			<td>{{created_at}}</td>
-			<td>{{updated_at}}</td>
-
-		{{/.}}
-	</tr>
-{{/post}}
-</tbody>
-</table>
-</div></div> <!-- end post card-->
-</div></div> <!--end belongs to card-->
 <br>
 
     <script type='text/javascript'>

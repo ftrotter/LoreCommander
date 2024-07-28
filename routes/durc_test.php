@@ -328,6 +328,22 @@ Route::get('durctest', function () {
  			'/DURC/cardprice/create', //from: lore_price.cardprice 
  			'/DURC/cardprice/1', //from: lore_price.cardprice 
  			'/DURC/cardprice/1/edit', //from: lore_price.cardprice 
+ 			'/DURC/comment_cluster', //from: mirrulation.comment_cluster 
+ 			'/DURC/comment_cluster/create', //from: mirrulation.comment_cluster 
+ 			'/DURC/comment_cluster/1', //from: mirrulation.comment_cluster 
+ 			'/DURC/comment_cluster/1/edit', //from: mirrulation.comment_cluster 
+ 			'/DURC/llm_reply_per_comment', //from: mirrulation.llm_reply_per_comment 
+ 			'/DURC/llm_reply_per_comment/create', //from: mirrulation.llm_reply_per_comment 
+ 			'/DURC/llm_reply_per_comment/1', //from: mirrulation.llm_reply_per_comment 
+ 			'/DURC/llm_reply_per_comment/1/edit', //from: mirrulation.llm_reply_per_comment 
+ 			'/DURC/questions_for_llm', //from: mirrulation.questions_for_llm 
+ 			'/DURC/questions_for_llm/create', //from: mirrulation.questions_for_llm 
+ 			'/DURC/questions_for_llm/1', //from: mirrulation.questions_for_llm 
+ 			'/DURC/questions_for_llm/1/edit', //from: mirrulation.questions_for_llm 
+ 			'/DURC/unique_comment', //from: mirrulation.unique_comment 
+ 			'/DURC/unique_comment/create', //from: mirrulation.unique_comment 
+ 			'/DURC/unique_comment/1', //from: mirrulation.unique_comment 
+ 			'/DURC/unique_comment/1/edit', //from: mirrulation.unique_comment 
 
 
 	]; //end route_list

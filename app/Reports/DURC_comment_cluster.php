@@ -1,25 +1,25 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=dd41b04336d6cec155b813d3512e207c
+FILE_SIG=db04fede823df70ec6da6607f361ad4a
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 
-class DURC_comment extends AbstractTabularReport
+class DURC_comment_cluster extends AbstractTabularReport
 {
 
     //returns the name of the report
     public function GetReportName(): string {
-        $report_name = "comment Report";
+        $report_name = "comment_cluster Report";
         return($report_name);
     }
 
     //returns the description of the report. HTML is allowed here.
     public function GetReportDescription(): ?string {
-        $desc = "View the comment data
+        $desc = "View the comment_cluster data
 			<br>
-			<a href='/DURC/comment/create'>Add new comment</a>
+			<a href='/DURC/comment_cluster/create'>Add new comment_cluster</a>
 ";
         return($desc);
     }
@@ -34,7 +34,7 @@ class DURC_comment extends AbstractTabularReport
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\comment::getImgField();
+	$img_field_name = \App\comment_cluster::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -45,16 +45,29 @@ class DURC_comment extends AbstractTabularReport
 
 
 
-	$post_field = \App\post::getNameField();	
+	$comment_field = \App\comment::getNameField();	
 	$joined_select_field_sql .= "
-, A_post.$post_field  AS $post_field
+, A_comment.$comment_field  AS unique_$comment_field
 "; 
-	$post_img_field = \App\post::getImgField();
-	if(!is_null($post_img_field)){
-		if($is_debug){echo "post has an image field of: |$post_img_field|
+	$comment_img_field = \App\comment::getImgField();
+	if(!is_null($comment_img_field)){
+		if($is_debug){echo "comment has an image field of: |$comment_img_field|
 ";}
 		$joined_select_field_sql .= "
-, A_post.$post_img_field  AS $post_img_field
+, A_comment.$comment_img_field  AS unique_$comment_img_field
+"; 
+	}
+
+	$comment_field = \App\comment::getNameField();	
+	$joined_select_field_sql .= "
+, B_comment.$comment_field  AS other_unique_$comment_field
+"; 
+	$comment_img_field = \App\comment::getImgField();
+	if(!is_null($comment_img_field)){
+		if($is_debug){echo "comment has an image field of: |$comment_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_comment.$comment_img_field  AS other_unique_$comment_img_field
 "; 
 	}
 
@@ -63,18 +76,22 @@ class DURC_comment extends AbstractTabularReport
 
                 $sql = "
 SELECT
-comment.id
+comment_cluster.id
 $joined_select_field_sql 
-, comment.comment_text AS comment_text
-, comment.post_id AS post_id
-, comment.created_at AS created_at
-, comment.updated_at AS updated_at
+, comment_cluster.unique_comment_id AS unique_comment_id
+, comment_cluster.other_unique_comment_id AS other_unique_comment_id
+, comment_cluster.score AS score
+, comment_cluster.diff_text AS diff_text
 
-FROM DURC_aaa.comment
+FROM mirrulation.comment_cluster
 
-LEFT JOIN DURC_aaa.post AS A_post ON 
-	A_post.id =
-	comment.post_id
+LEFT JOIN DURC_aaa.comment AS A_comment ON 
+	A_comment.id =
+	comment_cluster.unique_comment_id
+
+LEFT JOIN DURC_aaa.comment AS B_comment ON 
+	B_comment.id =
+	comment_cluster.other_unique_comment_id
 
 ";
 
@@ -82,20 +99,24 @@ LEFT JOIN DURC_aaa.post AS A_post ON
 
                 $sql = "
 SELECT
-comment.id 
+comment_cluster.id 
 $joined_select_field_sql
-, comment.comment_text AS comment_text
-, comment.post_id AS post_id
-, comment.created_at AS created_at
-, comment.updated_at AS updated_at
+, comment_cluster.unique_comment_id AS unique_comment_id
+, comment_cluster.other_unique_comment_id AS other_unique_comment_id
+, comment_cluster.score AS score
+, comment_cluster.diff_text AS diff_text
  
-FROM DURC_aaa.comment 
+FROM mirrulation.comment_cluster 
 
-LEFT JOIN DURC_aaa.post AS A_post ON 
-	A_post.id =
-	comment.post_id
+LEFT JOIN DURC_aaa.comment AS A_comment ON 
+	A_comment.id =
+	comment_cluster.unique_comment_id
 
-WHERE comment.id = $index
+LEFT JOIN DURC_aaa.comment AS B_comment ON 
+	B_comment.id =
+	comment_cluster.other_unique_comment_id
+
+WHERE comment_cluster.id = $index
 ";
 
         }
@@ -119,7 +140,7 @@ WHERE comment.id = $index
 
 
 	//get the local image field for this report... null if not found..
-	$img_field_name = \App\comment::getImgField();
+	$img_field_name = \App\comment_cluster::getImgField();
 	if(isset($$img_field_name)){
 		$img_field = $$img_field_name;
 	}else{
@@ -130,23 +151,36 @@ WHERE comment.id = $index
 
 
 
-	$post_field = \App\post::getNameField();	
+	$comment_field = \App\comment::getNameField();	
 	$joined_select_field_sql .= "
-, A_post.$post_field  AS $post_field
+, A_comment.$comment_field  AS unique_$comment_field
 "; 
-	$post_img_field = \App\post::getImgField();
-	if(!is_null($post_img_field)){
-		if($is_debug){echo "post has an image field of: |$post_img_field|
+	$comment_img_field = \App\comment::getImgField();
+	if(!is_null($comment_img_field)){
+		if($is_debug){echo "comment has an image field of: |$comment_img_field|
 ";}
 		$joined_select_field_sql .= "
-, A_post.$post_img_field  AS $post_img_field
+, A_comment.$comment_img_field  AS unique_$comment_img_field
+"; 
+	}
+
+	$comment_field = \App\comment::getNameField();	
+	$joined_select_field_sql .= "
+, B_comment.$comment_field  AS other_unique_$comment_field
+"; 
+	$comment_img_field = \App\comment::getImgField();
+	if(!is_null($comment_img_field)){
+		if($is_debug){echo "comment has an image field of: |$comment_img_field|
+";}
+		$joined_select_field_sql .= "
+, B_comment.$comment_img_field  AS other_unique_$comment_img_field
 "; 
 	}
 
 
 
         //link this row to its DURC editor
-        $row['id'] = "<a href='/DURC/comment/$id'>$id</a>";
+        $row['id'] = "<a href='/DURC/comment_cluster/$id'>$id</a>";
 
 
 
@@ -158,16 +192,28 @@ WHERE comment.id = $index
 
 
 
-$post_tmp = ''.$post_field;
-if(isset($row[$post_tmp])){
-	$post_data = $row[$post_tmp];
-	$row[$post_tmp] = "<a target='_blank' href='/Zermelo/DURC_post/$post_id'>$post_data</a>";
+$unique_comment_tmp = 'unique_'.$comment_field;
+if(isset($row[$unique_comment_tmp])){
+	$unique_comment_data = $row[$unique_comment_tmp];
+	$row[$unique_comment_tmp] = "<a target='_blank' href='/Zermelo/DURC_comment/$unique_comment_id'>$unique_comment_data</a>";
 }
 
-$post_img_tmp = ''.$post_img_field;
-if(isset($row[$post_img_tmp]) && strlen($post_img_tmp) > 0){
-	$post_img_data = $row[$post_img_tmp];
-	$row[$post_img_tmp] = "<img width='200px' src='$post_img_data'>";
+$unique_comment_img_tmp = 'unique_'.$comment_img_field;
+if(isset($row[$unique_comment_img_tmp]) && strlen($unique_comment_img_tmp) > 0){
+	$unique_comment_img_data = $row[$unique_comment_img_tmp];
+	$row[$unique_comment_img_tmp] = "<img width='200px' src='$unique_comment_img_data'>";
+}
+
+$other_unique_comment_tmp = 'other_unique_'.$comment_field;
+if(isset($row[$other_unique_comment_tmp])){
+	$other_unique_comment_data = $row[$other_unique_comment_tmp];
+	$row[$other_unique_comment_tmp] = "<a target='_blank' href='/Zermelo/DURC_comment/$other_unique_comment_id'>$other_unique_comment_data</a>";
+}
+
+$other_unique_comment_img_tmp = 'other_unique_'.$comment_img_field;
+if(isset($row[$other_unique_comment_img_tmp]) && strlen($other_unique_comment_img_tmp) > 0){
+	$other_unique_comment_img_data = $row[$other_unique_comment_img_tmp];
+	$row[$other_unique_comment_img_tmp] = "<img width='200px' src='$other_unique_comment_img_data'>";
 }
 
 
@@ -209,210 +255,70 @@ if(isset($row[$post_img_tmp]) && strlen($post_img_tmp) > 0){
 array (
   0 => 
   array (
-    'column_name' => 'id',
+    'column_name' => 'unique_comment_id',
     'data_type' => 'int',
     'is_primary_key' => true,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => 'DURC_aaa',
+    'foreign_table' => 'comment',
     'is_nullable' => false,
     'default_value' => NULL,
-    'is_auto_increment' => true,
+    'is_auto_increment' => false,
   ),
   1 => 
   array (
-    'column_name' => 'comment_text',
-    'data_type' => 'varchar',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
+    'column_name' => 'other_unique_comment_id',
+    'data_type' => 'int',
+    'is_primary_key' => true,
+    'is_foreign_key' => true,
+    'is_linked_key' => true,
+    'foreign_db' => 'DURC_aaa',
+    'foreign_table' => 'comment',
     'is_nullable' => false,
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
   2 => 
   array (
-    'column_name' => 'post_id',
-    'data_type' => 'int',
+    'column_name' => 'score',
+    'data_type' => 'decimal',
     'is_primary_key' => false,
     'is_foreign_key' => false,
-    'is_linked_key' => true,
-    'foreign_db' => 'DURC_aaa',
-    'foreign_table' => 'post',
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
     'is_nullable' => false,
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
   3 => 
   array (
-    'column_name' => 'created_at',
-    'data_type' => 'datetime',
+    'column_name' => 'diff_text',
+    'data_type' => 'text',
     'is_primary_key' => false,
     'is_foreign_key' => false,
     'is_linked_key' => false,
     'foreign_db' => NULL,
     'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => NULL,
-    'is_auto_increment' => false,
-  ),
-  4 => 
-  array (
-    'column_name' => 'updated_at',
-    'data_type' => 'datetime',
-    'is_primary_key' => false,
-    'is_foreign_key' => false,
-    'is_linked_key' => false,
-    'foreign_db' => NULL,
-    'foreign_table' => NULL,
-    'is_nullable' => false,
-    'default_value' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
     'is_auto_increment' => false,
   ),
 )
 //has_many
 NULL
 //has_one
-array (
-  'unique_comment_cluster' => 
-  array (
-    'prefix' => 'unique',
-    'type' => 'comment_cluster',
-    'from_table' => 'comment_cluster',
-    'from_db' => 'mirrulation',
-    'from_column' => 'unique_comment_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'unique_comment_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'comment',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      1 => 
-      array (
-        'column_name' => 'other_unique_comment_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'comment',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'score',
-        'data_type' => 'decimal',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'diff_text',
-        'data_type' => 'text',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
-  'other_unique_comment_cluster' => 
-  array (
-    'prefix' => 'other_unique',
-    'type' => 'comment_cluster',
-    'from_table' => 'comment_cluster',
-    'from_db' => 'mirrulation',
-    'from_column' => 'other_unique_comment_id',
-    'other_columns' => 
-    array (
-      0 => 
-      array (
-        'column_name' => 'unique_comment_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'comment',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      1 => 
-      array (
-        'column_name' => 'other_unique_comment_id',
-        'data_type' => 'int',
-        'is_primary_key' => true,
-        'is_foreign_key' => true,
-        'is_linked_key' => true,
-        'foreign_db' => 'DURC_aaa',
-        'foreign_table' => 'comment',
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      2 => 
-      array (
-        'column_name' => 'score',
-        'data_type' => 'decimal',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => false,
-        'default_value' => NULL,
-        'is_auto_increment' => false,
-      ),
-      3 => 
-      array (
-        'column_name' => 'diff_text',
-        'data_type' => 'text',
-        'is_primary_key' => false,
-        'is_foreign_key' => false,
-        'is_linked_key' => false,
-        'foreign_db' => NULL,
-        'foreign_table' => NULL,
-        'is_nullable' => true,
-        'default_value' => 'NULL',
-        'is_auto_increment' => false,
-      ),
-    ),
-  ),
-)
+NULL
 //belongs_to
 array (
-  'post' => 
+  'unique_comment' => 
   array (
-    'prefix' => NULL,
-    'type' => 'post',
-    'to_table' => 'post',
+    'prefix' => 'unique',
+    'type' => 'comment',
+    'to_table' => 'comment',
     'to_db' => 'DURC_aaa',
-    'local_key' => 'post_id',
+    'local_key' => 'unique_comment_id',
     'other_columns' => 
     array (
       0 => 
@@ -430,7 +336,7 @@ array (
       ),
       1 => 
       array (
-        'column_name' => 'title',
+        'column_name' => 'comment_text',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
@@ -443,13 +349,89 @@ array (
       ),
       2 => 
       array (
-        'column_name' => 'content',
+        'column_name' => 'post_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'DURC_aaa',
+        'foreign_table' => 'post',
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      3 => 
+      array (
+        'column_name' => 'created_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      4 => 
+      array (
+        'column_name' => 'updated_at',
+        'data_type' => 'datetime',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+    ),
+  ),
+  'other_unique_comment' => 
+  array (
+    'prefix' => 'other_unique',
+    'type' => 'comment',
+    'to_table' => 'comment',
+    'to_db' => 'DURC_aaa',
+    'local_key' => 'other_unique_comment_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'id',
+        'data_type' => 'int',
+        'is_primary_key' => true,
+        'is_foreign_key' => false,
+        'is_linked_key' => false,
+        'foreign_db' => NULL,
+        'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => true,
+      ),
+      1 => 
+      array (
+        'column_name' => 'comment_text',
         'data_type' => 'varchar',
         'is_primary_key' => false,
         'is_foreign_key' => false,
         'is_linked_key' => false,
         'foreign_db' => NULL,
         'foreign_table' => NULL,
+        'is_nullable' => false,
+        'default_value' => NULL,
+        'is_auto_increment' => false,
+      ),
+      2 => 
+      array (
+        'column_name' => 'post_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'DURC_aaa',
+        'foreign_table' => 'post',
         'is_nullable' => false,
         'default_value' => NULL,
         'is_auto_increment' => false,
