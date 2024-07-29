@@ -39,38 +39,62 @@ class RegClusterGraph extends AbstractGraphReport
 
 	$db = 'mirrulation';
 
+	$count_factor = 300;
+	$weight_factor = 10;
+	$biggest_bubble = 10000;
+
+	#TODO investigate why weight is coming out as a string?
+	#the thickness of the lines should be doing something for us.
+
         $sql = "
 
 SELECT
-    `unique_comment_id` AS source_id,
-    left_comment.commentId AS source_name,
-    500 AS source_size,
+    left_comment.id AS source_id,
+    CONCAT(left_comment.commentId,' ',unique_comment_id) AS source_name,
+    IF(left_uniquecomment.comment_count * $count_factor > $biggest_bubble,
+		$biggest_bubble, 
+		left_uniquecomment.comment_count * $count_factor) AS source_size,
     'Comment'  AS source_type,
     'Comment' AS source_group,
     0 AS source_latitude,
     0 AS source_longitude,
-    CONCAT('/DURC/json/comment/',unique_comment_id) AS source_json_url,
+    CONCAT('/DURC/json/comment/',left_comment.id) AS source_json_url,
     '' AS source_img,
-    `other_unique_comment_id` AS target_id,
-    right_comment.commentId AS target_name,
-    500 AS target_size,
+    right_comment.id AS target_id,
+    CONCAT(right_comment.commentId,' ',other_unique_comment_id) AS target_name,
+    IF(right_uniquecomment.comment_count * $count_factor > $biggest_bubble,
+		$biggest_bubble, 
+		right_uniquecomment.comment_count * $count_factor) AS target_size,
     'Comment' AS target_type,
     'Comment' AS target_group,
     0 AS target_latitude,
     0 AS target_longitude,
-    CONCAT('/DURC/json/comment/',other_unique_comment_id) AS target_json_url,
+    CONCAT('/DURC/json/comment/',right_comment.id) AS target_json_url,
     '' AS target_img,
-    Round(50 * `score`,0) AS weight,
+    ROUND($weight_factor * `score`,-1) AS weight,
     '' AS link_type,
     1 AS query_num
-FROM $db.comment_cluster
+FROM $db.uniquecomment_cluster
+JOIN $db.uniquecomment AS left_uniquecomment ON 
+	left_uniquecomment.id = 
+	uniquecomment_cluster.unique_comment_id 
+JOIN $db.uniquecomment_to_comment AS u_to_c_left ON 
+	u_to_c_left.uniquecomment_id =
+	left_uniquecomment.id
 JOIN $db.comment AS left_comment ON 
-	left_comment.id = 
-	comment_cluster.unique_comment_id 
-JOIN $db.comment AS right_comment ON 
-	right_comment.id = 
-	comment_cluster.other_unique_comment_id 
+	left_comment.id =
+	u_to_c_left.comment_id
+JOIN $db.uniquecomment AS right_uniquecomment ON 
+	right_uniquecomment.id = 
+	uniquecomment_cluster.other_unique_comment_id 
+JOIN $db.uniquecomment_to_comment AS u_to_c_right ON
+        u_to_c_right.uniquecomment_id =
+        right_uniquecomment.id
+JOIN $db.comment AS right_comment ON
+        right_comment.id =
+        u_to_c_right.comment_id
 WHERE unique_comment_id = 1 OR other_unique_comment_id = 1
+GROUP BY `unique_comment_id`, `other_unique_comment_id`
 ";
 
         return $sql;
@@ -89,6 +113,10 @@ WHERE unique_comment_id = 1 OR other_unique_comment_id = 1
     */
    public function isSQLPrintEnabled(): bool{
          return(true); //protect the sql by default
+   }
+
+   public function isCacheEnabled(){
+        return(false);
    }
 
 }
