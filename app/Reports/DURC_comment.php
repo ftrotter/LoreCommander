@@ -1,7 +1,7 @@
 <?php
 /*
 Note: because this file was signed, everything originally placed before the name space line has been replaced... with this comment ;)
-FILE_SIG=d0287cd844c7361b5385ea03c2522481
+FILE_SIG=40af9ea6f5d09d47a4c80503945cfa56
 */
 namespace App\Reports;
 use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
@@ -58,6 +58,7 @@ $joined_select_field_sql
 , comment.comment_date AS comment_date
 , comment.comment_text AS comment_text
 , comment.simplified_comment_text AS simplified_comment_text
+, comment.simplified_comment_text_md5 AS simplified_comment_text_md5
 
 FROM mirrulation.comment
 
@@ -75,6 +76,7 @@ $joined_select_field_sql
 , comment.comment_date AS comment_date
 , comment.comment_text AS comment_text
 , comment.simplified_comment_text AS simplified_comment_text
+, comment.simplified_comment_text_md5 AS simplified_comment_text_md5
  
 FROM mirrulation.comment 
 
@@ -256,16 +258,67 @@ array (
     'default_value' => NULL,
     'is_auto_increment' => false,
   ),
+  7 => 
+  array (
+    'column_name' => 'simplified_comment_text_md5',
+    'data_type' => 'varchar',
+    'is_primary_key' => false,
+    'is_foreign_key' => false,
+    'is_linked_key' => false,
+    'foreign_db' => NULL,
+    'foreign_table' => NULL,
+    'is_nullable' => true,
+    'default_value' => 'NULL',
+    'is_auto_increment' => false,
+  ),
 )
 //has_many
-NULL
+array (
+  'uniquecomment_to_comment' => 
+  array (
+    'prefix' => NULL,
+    'type' => 'uniquecomment_to_comment',
+    'from_table' => 'uniquecomment_to_comment',
+    'from_db' => 'mirrulation',
+    'from_column' => 'comment_id',
+    'other_columns' => 
+    array (
+      0 => 
+      array (
+        'column_name' => 'comment_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'mirrulation',
+        'foreign_table' => 'comment',
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+      1 => 
+      array (
+        'column_name' => 'uniquecomment_id',
+        'data_type' => 'int',
+        'is_primary_key' => false,
+        'is_foreign_key' => false,
+        'is_linked_key' => true,
+        'foreign_db' => 'mirrulation',
+        'foreign_table' => 'uniquecomment',
+        'is_nullable' => false,
+        'default_value' => '0',
+        'is_auto_increment' => false,
+      ),
+    ),
+  ),
+)
 //has_one
 array (
-  'unique_comment_cluster' => 
+  'unique_uniquecomment_cluster' => 
   array (
     'prefix' => 'unique',
-    'type' => 'comment_cluster',
-    'from_table' => 'comment_cluster',
+    'type' => 'uniquecomment_cluster',
+    'from_table' => 'uniquecomment_cluster',
     'from_db' => 'mirrulation',
     'from_column' => 'unique_comment_id',
     'other_columns' => 
@@ -324,11 +377,11 @@ array (
       ),
     ),
   ),
-  'other_unique_comment_cluster' => 
+  'other_unique_uniquecomment_cluster' => 
   array (
     'prefix' => 'other_unique',
-    'type' => 'comment_cluster',
-    'from_table' => 'comment_cluster',
+    'type' => 'uniquecomment_cluster',
+    'from_table' => 'uniquecomment_cluster',
     'from_db' => 'mirrulation',
     'from_column' => 'other_unique_comment_id',
     'other_columns' => 

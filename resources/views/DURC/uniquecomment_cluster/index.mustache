@@ -1,0 +1,116 @@
+
+<h1>uniquecomment_cluster list </h1>
+<h3> <a href='/Zermelo/DURC_uniquecomment_cluster'>Zermelo uniquecomment_cluster Report</a></h3>
+Create <a href='/DURC/uniquecomment_cluster/create/'>new uniquecomment_cluster</a><br>
+
+
+{{^is_need_paging}}
+<p>
+{{total}} results. All rows shown.
+</p>
+{{/is_need_paging}}
+
+{{#is_need_paging}}
+
+<div class='dataTables_paginate paging_simple_numbers' id='table_uniquecomment_cluster_page'>
+	<ul class='pagination'>
+		<li class='paginate_button page-item previous {{first_page_class}}' 
+			id='table_uniquecomment_cluster_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+		</li>
+		<li class='paginate_button page-item {{prev_page_class}}'>
+			<a href='{{prev_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+		</li>
+		<li class='paginate_button page-item active'>
+			<a href='#' aria-controls='table_uniquecomment_cluster' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+		</li>
+		<li class='paginate_button page-item {{next_page_class}} '>
+			<a href='{{next_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+		</li>
+		<li class='paginate_button page-item {{last_page_class}}'>
+			<a href='{{last_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+		</li>
+	</ul>
+</div>
+{{/is_need_paging}}
+
+
+<table id='table_uniquecomment_cluster' class='table table-bordered table-hover table-responsive table-sm'>
+<thead><tr>
+<th scope='col'>unique_comment_id</th>
+<th scope='col'>other_unique_comment_id</th>
+<th scope='col'>score</th>
+<th scope='col'>diff_text</th>
+
+</tr></thead>
+<tfoot><tr>
+<th scope='col'>unique_comment_id</th>
+<th scope='col'>other_unique_comment_id</th>
+<th scope='col'>score</th>
+<th scope='col'>diff_text</th>
+
+</tr></tfoot>
+<tbody>
+  {{#data}}
+    <tr>
+				<td>{{unique_comment_id_DURClabel}} <a href='/DURC/comment/{{unique_comment_id}}/'> ({{unique_comment_id}})</a> </td>			<td>{{other_unique_comment_id_DURClabel}} <a href='/DURC/comment/{{other_unique_comment_id}}/'> ({{other_unique_comment_id}})</a> </td>			<td>{{score}}</td>
+			<td>{{diff_text}}</td>
+
+    </tr>
+  {{/data}}
+
+<tbody></table>
+
+
+
+{{^is_need_paging}}
+<p>
+{{total}} results. All rows shown.
+</p>
+{{/is_need_paging}}
+
+{{#is_need_paging}}
+
+<div class='dataTables_paginate paging_simple_numbers' id='table_uniquecomment_cluster_page'>
+	<ul class='pagination'>
+		<li class='paginate_button page-item previous {{first_page_class}}' 
+			id='table_uniquecomment_cluster_previous'>
+			<a href='{{first_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='0' tabindex='0' class='page-link'>First</a>
+		</li>
+		<li class='paginate_button page-item {{prev_page_class}}'>
+			<a href='{{prev_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='1' tabindex='0' class='page-link'>Previous</a>
+		</li>
+		<li class='paginate_button page-item active'>
+			<a href='#' aria-controls='table_uniquecomment_cluster' data-dt-idx='2' tabindex='0' class='page-link'>{{current_page}}</a>
+		</li>
+		<li class='paginate_button page-item {{next_page_class}} '>
+			<a href='{{next_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='3' tabindex='0' class='page-link'>Next</a>
+		</li>
+		<li class='paginate_button page-item {{last_page_class}}'>
+			<a href='{{last_page_url}}' aria-controls='table_uniquecomment_cluster' data-dt-idx='4' tabindex='0' class='page-link'>Last</a>
+		</li>
+	</ul>
+</div>
+{{/is_need_paging}}
+
+
+<script type='text/javascript'>
+//we need a way to check to see if the page is loaded before we call DataTable()
+//but we frequently do not have JQuery yet... it could be loaded at the bottom of the page...
+//so we have a pure JS alternative to the ready() function..
+var DURC_checkReadyState = setInterval(() => {
+  if (document.readyState === 'complete') {
+    clearInterval(DURC_checkReadyState);
+    // document is ready
+    $('#table_uniquecomment_cluster').DataTable(
+{
+        'paging':   false,
+        'info':     false
+}
+);
+  }
+}, 100);
+
+
+</script>
+

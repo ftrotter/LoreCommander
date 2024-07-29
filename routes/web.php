@@ -603,13 +603,6 @@ Route::get("/DURC/json/comment/", 'commentController@jsonall');
 Route::get("/DURC/searchjson/comment/", 'commentController@search');
 
  
-//DURC->	mirrulation.comment_cluster
-Route::resource("/DURC/comment_cluster", 'comment_clusterController');
-Route::get("/DURC/json/comment_cluster/{comment_cluster_id}", 'comment_clusterController@jsonone');
-Route::get("/DURC/json/comment_cluster/", 'comment_clusterController@jsonall');
-Route::get("/DURC/searchjson/comment_cluster/", 'comment_clusterController@search');
-
- 
 //DURC->	mirrulation.llm_reply_per_comment
 Route::resource("/DURC/llm_reply_per_comment", 'llm_reply_per_commentController');
 Route::get("/DURC/json/llm_reply_per_comment/{llm_reply_per_comment_id}", 'llm_reply_per_commentController@jsonone');
@@ -624,11 +617,25 @@ Route::get("/DURC/json/questions_for_llm/", 'questions_for_llmController@jsonall
 Route::get("/DURC/searchjson/questions_for_llm/", 'questions_for_llmController@search');
 
  
-//DURC->	mirrulation.unique_comment
-Route::resource("/DURC/unique_comment", 'unique_commentController');
-Route::get("/DURC/json/unique_comment/{unique_comment_id}", 'unique_commentController@jsonone');
-Route::get("/DURC/json/unique_comment/", 'unique_commentController@jsonall');
-Route::get("/DURC/searchjson/unique_comment/", 'unique_commentController@search');
+//DURC->	mirrulation.uniquecomment
+Route::resource("/DURC/uniquecomment", 'uniquecommentController');
+Route::get("/DURC/json/uniquecomment/{uniquecomment_id}", 'uniquecommentController@jsonone');
+Route::get("/DURC/json/uniquecomment/", 'uniquecommentController@jsonall');
+Route::get("/DURC/searchjson/uniquecomment/", 'uniquecommentController@search');
+
+ 
+//DURC->	mirrulation.uniquecomment_cluster
+Route::resource("/DURC/uniquecomment_cluster", 'uniquecomment_clusterController');
+Route::get("/DURC/json/uniquecomment_cluster/{uniquecomment_cluster_id}", 'uniquecomment_clusterController@jsonone');
+Route::get("/DURC/json/uniquecomment_cluster/", 'uniquecomment_clusterController@jsonall');
+Route::get("/DURC/searchjson/uniquecomment_cluster/", 'uniquecomment_clusterController@search');
+
+ 
+//DURC->	mirrulation.uniquecomment_to_comment
+Route::resource("/DURC/uniquecomment_to_comment", 'uniquecomment_to_commentController');
+Route::get("/DURC/json/uniquecomment_to_comment/{uniquecomment_to_comment_id}", 'uniquecomment_to_commentController@jsonone');
+Route::get("/DURC/json/uniquecomment_to_comment/", 'uniquecomment_to_commentController@jsonall');
+Route::get("/DURC/searchjson/uniquecomment_to_comment/", 'uniquecomment_to_commentController@search');
 
 
 

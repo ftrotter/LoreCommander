@@ -8,8 +8,10 @@ CREATE TABLE `comment` (
   `comment_date` datetime DEFAULT NULL,
   `comment_text` longtext NOT NULL,
   `simplified_comment_text` longtext NOT NULL,
+  `simplified_comment_text_md5` varchar(33) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `commentId` (`commentId`),
+  KEY `md5 index` (`simplified_comment_text_md5`),
   FULLTEXT KEY `full_on_comment_index` (`comment_text`),
   FULLTEXT KEY `simplified_comment_text` (`simplified_comment_text`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

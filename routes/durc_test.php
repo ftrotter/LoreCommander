@@ -328,10 +328,6 @@ Route::get('durctest', function () {
  			'/DURC/comment/create', //from: mirrulation.comment 
  			'/DURC/comment/1', //from: mirrulation.comment 
  			'/DURC/comment/1/edit', //from: mirrulation.comment 
- 			'/DURC/comment_cluster', //from: mirrulation.comment_cluster 
- 			'/DURC/comment_cluster/create', //from: mirrulation.comment_cluster 
- 			'/DURC/comment_cluster/1', //from: mirrulation.comment_cluster 
- 			'/DURC/comment_cluster/1/edit', //from: mirrulation.comment_cluster 
  			'/DURC/llm_reply_per_comment', //from: mirrulation.llm_reply_per_comment 
  			'/DURC/llm_reply_per_comment/create', //from: mirrulation.llm_reply_per_comment 
  			'/DURC/llm_reply_per_comment/1', //from: mirrulation.llm_reply_per_comment 
@@ -340,10 +336,18 @@ Route::get('durctest', function () {
  			'/DURC/questions_for_llm/create', //from: mirrulation.questions_for_llm 
  			'/DURC/questions_for_llm/1', //from: mirrulation.questions_for_llm 
  			'/DURC/questions_for_llm/1/edit', //from: mirrulation.questions_for_llm 
- 			'/DURC/unique_comment', //from: mirrulation.unique_comment 
- 			'/DURC/unique_comment/create', //from: mirrulation.unique_comment 
- 			'/DURC/unique_comment/1', //from: mirrulation.unique_comment 
- 			'/DURC/unique_comment/1/edit', //from: mirrulation.unique_comment 
+ 			'/DURC/uniquecomment', //from: mirrulation.uniquecomment 
+ 			'/DURC/uniquecomment/create', //from: mirrulation.uniquecomment 
+ 			'/DURC/uniquecomment/1', //from: mirrulation.uniquecomment 
+ 			'/DURC/uniquecomment/1/edit', //from: mirrulation.uniquecomment 
+ 			'/DURC/uniquecomment_cluster', //from: mirrulation.uniquecomment_cluster 
+ 			'/DURC/uniquecomment_cluster/create', //from: mirrulation.uniquecomment_cluster 
+ 			'/DURC/uniquecomment_cluster/1', //from: mirrulation.uniquecomment_cluster 
+ 			'/DURC/uniquecomment_cluster/1/edit', //from: mirrulation.uniquecomment_cluster 
+ 			'/DURC/uniquecomment_to_comment', //from: mirrulation.uniquecomment_to_comment 
+ 			'/DURC/uniquecomment_to_comment/create', //from: mirrulation.uniquecomment_to_comment 
+ 			'/DURC/uniquecomment_to_comment/1', //from: mirrulation.uniquecomment_to_comment 
+ 			'/DURC/uniquecomment_to_comment/1/edit', //from: mirrulation.uniquecomment_to_comment 
 
 
 	]; //end route_list

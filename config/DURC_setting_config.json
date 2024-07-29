@@ -510,12 +510,6 @@
             "is_audited": 0,
             "is_listed_in_webindex": 0
         },
-        "comment_cluster": {
-            "is_show_web_interface": 1,
-            "is_user_only_web_interface": 0,
-            "is_audited": 0,
-            "is_listed_in_webindex": 0
-        },
         "llm_reply_per_comment": {
             "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
@@ -523,6 +517,30 @@
             "is_listed_in_webindex": 0
         },
         "questions_for_llm": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        },
+        "uniquecomment": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        },
+        "uniquecomment_cluster": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        },
+        "uniquecomment_to_comment": {
+            "is_show_web_interface": 1,
+            "is_user_only_web_interface": 0,
+            "is_audited": 0,
+            "is_listed_in_webindex": 0
+        },
+        "comment_cluster": {
             "is_show_web_interface": 1,
             "is_user_only_web_interface": 0,
             "is_audited": 0,

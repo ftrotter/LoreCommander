@@ -1,0 +1,392 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
+            </div>
+
+{{#is_new}}
+<form action='/DURC/uniquecomment_cluster' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/uniquecomment_cluster/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>uniquecomment_cluster</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_uniquecomment_cluster/'>Return to uniquecomment_cluster list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/uniquecomment_cluster/create'>Create new uniquecomment_cluster </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{unique_comment_id_row_class}}'>
+    <label for='unique_comment_id' class='col-sm-4 col-form-label'>unique_comment_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{unique_comment_id}} (see below for lookup value)<br>
+	<select class='select2_unique_comment_id form-control' id='unique_comment_id' name='unique_comment_id'  >
+	<option value='{{unique_comment_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    add_to_loading_queue('unique_comment_id');
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#unique_comment_id option:selected');
+    const commentId = element.val();
+    let commentIdHasError = false;
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/comment/' + commentId,
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        commentIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
+        $('.select2_unique_comment_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/comment',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
+          }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-unique_comment_id-container').removeClass('text-danger');
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        remove_from_loading_queue('unique_comment_id');
+        if (commentIdHasError === true) {
+            $('#select2-unique_comment_id-container').addClass('text-danger');
+        }
+    });
+});
+
+</script>
+
+
+  <div class='form-group row {{other_unique_comment_id_row_class}}'>
+    <label for='other_unique_comment_id' class='col-sm-4 col-form-label'>other_unique_comment_id</label>
+    <div class='col-sm-7'>
+	Current id value: {{other_unique_comment_id}} (see below for lookup value)<br>
+	<select class='select2_other_unique_comment_id form-control' id='other_unique_comment_id' name='other_unique_comment_id'  >
+	<option value='{{other_unique_comment_id}}' selected='selected'><!-- Replaced Dynamically with Text from related model --></option>
+	</select>
+    </div>
+  </div>
+
+<script type='text/javascript'>
+$(document).ready(function () {
+    // Show the loader/spinner
+    add_to_loading_queue('other_unique_comment_id');
+    
+    // Get the option element that is currently selected and it's foreign ID
+    const element = $('#other_unique_comment_id option:selected');
+    const commentId = element.val();
+    let commentIdHasError = false;
+    
+    // Use the json API to get the text of the selected element. 
+    // We do this dynamically so we don't have to figure out in the controller
+    // what elements are select2 elements, and populate from related models
+    $.ajax({
+        type: 'GET',
+        url: '/DURC/json/comment/' + commentId,
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // data.text has the same text string (formed from concatinating search fields) as
+        // the elements in the select list
+        element.html(data.text);
+    })
+    .fail(function(xhr, status, error) {
+        // Display the error text
+        element.html(JSON.parse(xhr.responseText));
+        commentIdHasError = true;
+    })
+    .always(function (data) {
+        // Create the select2 dropdown    
+        $('.select2_other_unique_comment_id').select2({
+          width: '100%',   
+          ajax: {
+            url: '/DURC/searchjson/comment',
+            dataType: 'json',
+            data: function (params) {
+                  var query = {
+                      q: params.term,
+                      page: params.page || 1
+                  }
+        
+                  // Query parameters will be ?search=[term]&page=[page]
+                  return query;
+              }
+          }
+        })
+        .change(function() {
+            // When we change the value, remove the danger class because we assume you pick a valid option.
+            $('#select2-other_unique_comment_id-container').removeClass('text-danger');
+        });
+        
+        // Hide the loader/spinner after the select2 has been built
+        remove_from_loading_queue('other_unique_comment_id');
+        if (commentIdHasError === true) {
+            $('#select2-other_unique_comment_id-container').addClass('text-danger');
+        }
+    });
+});
+
+</script>
+
+
+  <div class='form-group row {{score_row_class}}'>
+    <label for='score' class='col-sm-4 col-form-label'>score</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.score.has_errors}}is-invalid{{/errors.score.has_errors}}' id='score' name='score' placeholder='' value='{{score}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.score.messages}}<li>{{.}}</li>{{/errors.score.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{diff_text_row_class}}'>
+    <label for='diff_text' class='col-sm-4 col-form-label'>diff_text</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.diff_text.has_errors}}is-invalid{{/errors.diff_text.has_errors}}' id='diff_text' name='diff_text' placeholder='NULL' value='{{diff_text}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.diff_text.messages}}<li>{{.}}</li>{{/errors.diff_text.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='diff_text' name='diff_textNull' id='diff_textNull' value='diff_textNull' {{diff_text_checked}}>
+                    <label class='form-check-label' for='diff_textNull'>null</label>
+                </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/uniquecomment_cluster/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='uniquecomment_cluster' class='do-soft-delete btn btn-outline-danger'>Hard Delete uniquecomment_cluster</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+<div class='card'>
+  <div class='card-header'>
+    Belongs To Relationships
+  </div>
+<div class='card-body'>
+
+<div class='card'>
+  <div class='card-header'>
+    unique_comment ( <a href='/DURC/comment/'>see all</a> )
+{{^unique_comment}}
+(no values)
+{{/unique_comment}}
+  </div>
+<div class='card-body'>
+<table id='table_unique_comment' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> commentId </th>
+			<th> comment_on_documentId </th>
+			<th> comment_date_text </th>
+			<th> comment_date </th>
+			<th> comment_text </th>
+			<th> simplified_comment_text </th>
+			<th> simplified_comment_text_md5 </th>
+
+</tr>
+</thead>
+<tbody>
+{{#unique_comment}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/comment/{{id}}'>{{id}}</a></td>
+			<td>{{commentId}}</td>
+			<td>{{comment_on_documentId}}</td>
+			<td>{{comment_date_text}}</td>
+			<td>{{comment_date}}</td>
+			<td>{{comment_text}}</td>
+			<td>{{simplified_comment_text}}</td>
+			<td>{{simplified_comment_text_md5}}</td>
+
+		{{/.}}
+	</tr>
+{{/unique_comment}}
+</tbody>
+</table>
+</div></div> <!-- end unique_comment card-->
+
+<div class='card'>
+  <div class='card-header'>
+    other_unique_comment ( <a href='/DURC/comment/'>see all</a> )
+{{^other_unique_comment}}
+(no values)
+{{/other_unique_comment}}
+  </div>
+<div class='card-body'>
+<table id='table_other_unique_comment' class='table table-bordered table-hover table-responsive table-sm'>
+<thead>
+<tr>
+			<th> id </th>
+			<th> commentId </th>
+			<th> comment_on_documentId </th>
+			<th> comment_date_text </th>
+			<th> comment_date </th>
+			<th> comment_text </th>
+			<th> simplified_comment_text </th>
+			<th> simplified_comment_text_md5 </th>
+
+</tr>
+</thead>
+<tbody>
+{{#other_unique_comment}}
+	<tr>
+		{{#.}}
+			<td><a href='/DURC/comment/{{id}}'>{{id}}</a></td>
+			<td>{{commentId}}</td>
+			<td>{{comment_on_documentId}}</td>
+			<td>{{comment_date_text}}</td>
+			<td>{{comment_date}}</td>
+			<td>{{comment_text}}</td>
+			<td>{{simplified_comment_text}}</td>
+			<td>{{simplified_comment_text_md5}}</td>
+
+		{{/.}}
+	</tr>
+{{/other_unique_comment}}
+</tbody>
+</table>
+</div></div> <!-- end other_unique_comment card-->
+</div></div> <!--end belongs to card-->
+<br>
+
+    <script type='text/javascript'>
+
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }
+            });
+
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

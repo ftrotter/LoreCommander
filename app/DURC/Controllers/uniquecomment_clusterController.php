@@ -2,21 +2,20 @@
 
 namespace App\DURC\Controllers;
 
-use App\comment;
+use App\uniquecomment_cluster;
 use Illuminate\Http\Request;
 use CareSet\DURC\DURC;
 use CareSet\DURC\DURCController;
 use Illuminate\Support\Facades\View;
 use CareSet\DURC\DURCInvalidDataException;
 
-class commentController extends DURCController
+class uniquecomment_clusterController extends DURCController
 {
 
 
 	public $view_data = [];
 
 	protected static $hidden_fields_array = [
-		'id',
 
 	];
 
@@ -24,6 +23,8 @@ class commentController extends DURCController
 	public function getWithArgumentArray(){
 		
 		$with_summary_array = [];
+		$with_summary_array[] = "unique_comment:id,".\App\comment::getNameField();
+		$with_summary_array[] = "other_unique_comment:id,".\App\comment::getNameField();
 
 		return($with_summary_array);
 		
@@ -36,7 +37,7 @@ class commentController extends DURCController
 
 		$with_argument = $this->getWithArgumentArray();
 
-		$these = comment::with($with_argument)->paginate(100);
+		$these = uniquecomment_cluster::with($with_argument)->paginate(100);
 
         	foreach($these->toArray() as $key => $value){ //add the contents of the obj to the the view 
 			$return_me[$key] = $value;
@@ -51,8 +52,8 @@ class commentController extends DURCController
                                         //then this is a loaded attribute..
                                         //lets move it one level higher...
 
-                                        if ( isset( comment::$field_type_map[$lowest_key] ) ) {
-                                            $field_type = comment::$field_type_map[ $lowest_key ];
+                                        if ( isset( uniquecomment_cluster::$field_type_map[$lowest_key] ) ) {
+                                            $field_type = uniquecomment_cluster::$field_type_map[ $lowest_key ];
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = DURC::formatForDisplay( $field_type, $lowest_key, $lowest_data, true );
                                         } else {
                                             $return_me_data[$data_i][$key .'_id_DURClabel'] = $lowest_data;
@@ -60,8 +61,8 @@ class commentController extends DURCController
                                 }
                         }
 
-                        if ( isset( comment::$field_type_map[$key] ) ) {
-                            $field_type = comment::$field_type_map[ $key ];
+                        if ( isset( uniquecomment_cluster::$field_type_map[$key] ) ) {
+                            $field_type = uniquecomment_cluster::$field_type_map[ $key ];
                             $return_me_data[$data_i][$key] = DURC::formatForDisplay( $field_type, $key, $value, true );
                         } else {
                             $return_me_data[$data_i][$key] = $value;
@@ -125,11 +126,11 @@ class commentController extends DURCController
 		//TODO we need to escape this query string to avoid SQL injection.
 
 		//what is the field I should be searching
-                $search_fields = comment::getSearchFields();
+                $search_fields = uniquecomment_cluster::getSearchFields();
 
 		//sometimes there is an image field that contains the url of an image
 		//but this is typically null
-		$img_field = comment::getImgField();
+		$img_field = uniquecomment_cluster::getImgField();
 
 		$where_sql = '';
 		$or = '';
@@ -138,7 +139,7 @@ class commentController extends DURCController
 			$or = ' OR ';
 		}
 
-		$query = comment::whereRaw($where_sql);
+		$query = uniquecomment_cluster::whereRaw($where_sql);
 		            
 		$count = $query->count();			
 		$these = $query
@@ -190,7 +191,7 @@ class commentController extends DURCController
 
     /**
      * Get a json version of all the objects.. 
-     * @param  \App\comment  $comment
+     * @param  \App\uniquecomment_cluster  $uniquecomment_cluster
      * @return JSON of the object
      */
     public function jsonall(Request $request){
@@ -211,7 +212,7 @@ class commentController extends DURCController
             var_export($this->view_data);
             exit();
         }
-        $durc_template_results = view('DURC.comment.index',$this->view_data);        
+        $durc_template_results = view('DURC.uniquecomment_cluster.index',$this->view_data);        
         return view($main_template_name,['content' => $durc_template_results]);
     }
 
@@ -223,28 +224,24 @@ class commentController extends DURCController
     */ 
     public function store(Request $request){
 
-        $myNewcomment = new comment();
+        $myNewuniquecomment_cluster = new uniquecomment_cluster();
 
         //the games we play to easily auto-generate code..
-        $tmp_comment = $myNewcomment;
+        $tmp_uniquecomment_cluster = $myNewuniquecomment_cluster;
         
-        $tmp_comment->id = $request->id;
-        $tmp_comment->commentId = $request->commentId;
-        $tmp_comment->comment_on_documentId = $request->comment_on_documentId;
-        $tmp_comment->comment_date_text = $request->comment_date_text;
-        $tmp_comment->comment_date = $request->comment_date;
-        $tmp_comment->comment_text = $request->comment_text;
-        $tmp_comment->simplified_comment_text = $request->simplified_comment_text;
-        $tmp_comment->simplified_comment_text_md5 = $request->simplified_comment_text_md5;
+        $tmp_uniquecomment_cluster->unique_comment_id = $request->unique_comment_id;
+        $tmp_uniquecomment_cluster->other_unique_comment_id = $request->other_unique_comment_id;
+        $tmp_uniquecomment_cluster->score = $request->score;
+        $tmp_uniquecomment_cluster->diff_text = $request->diff_text;
 
 
         try {
-            $tmp_comment->save();
+            $tmp_uniquecomment_cluster->save();
 
-        $new_id = $myNewcomment->id;
-        return redirect("/DURC/comment/$new_id")->with('status', 'Data Saved!');
+        $new_id = $myNewuniquecomment_cluster->id;
+        return redirect("/DURC/uniquecomment_cluster/$new_id")->with('status', 'Data Saved!');
         } catch (DURCInvalidDataException $e) {
-            return back()->withInput()->with('errors', $tmp_comment->getErrors());
+            return back()->withInput()->with('errors', $tmp_uniquecomment_cluster->getErrors());
 
         } catch (\Exception $e) {
             return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
@@ -256,26 +253,26 @@ class commentController extends DURCController
 
     /**
      * Display the specified resource.
-     * @param  \App\$comment  $comment
+     * @param  \App\$uniquecomment_cluster  $uniquecomment_cluster
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, comment $comment){
-	return($this->edit($request, $comment));
+    public function show(Request $request, uniquecomment_cluster $uniquecomment_cluster){
+	return($this->edit($request, $uniquecomment_cluster));
     }
 
     /**
      * Get a json version of the given object 
-     * @param  \App\comment  $comment
+     * @param  \App\uniquecomment_cluster  $uniquecomment_cluster
      * @return JSON of the object
      */
-    public function jsonone(Request $request, $comment_id){
-		$comment = \App\comment::find($comment_id);
-		if ($comment === null) {
-            return response()->json("comment with id = {$comment_id} Not Found", 404);
+    public function jsonone(Request $request, $uniquecomment_cluster_id){
+		$uniquecomment_cluster = \App\uniquecomment_cluster::find($uniquecomment_cluster_id);
+		if ($uniquecomment_cluster === null) {
+            return response()->json("uniquecomment_cluster with id = {$uniquecomment_cluster_id} Not Found", 404);
         }
-		$comment = $comment->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
-		$return_me_array = $comment->toArray();
-		$search_fields = \App\comment::getSearchFields();
+		$uniquecomment_cluster = $uniquecomment_cluster->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+		$return_me_array = $uniquecomment_cluster->toArray();
+		$search_fields = \App\uniquecomment_cluster::getSearchFields();
 
         $tmp_text = '';
         foreach($return_me_array as $field => $data){
@@ -291,17 +288,17 @@ class commentController extends DURCController
 		
 		
 		//lets see if we can calculate a card-img-top for a front end bootstrap card interface
-		$img_uri_field = \App\comment::getImgField();
+		$img_uri_field = \App\uniquecomment_cluster::getImgField();
 		if(!is_null($img_uri_field)){ //then this object has an image link..
 			if(!isset($return_me_array['card_img_top'])){ //allow the user to use this as a field without pestering..
-				$return_me_array['card_img_top'] = $comment->$img_uri_field;
+				$return_me_array['card_img_top'] = $uniquecomment_cluster->$img_uri_field;
 			}
 		}
 
 		//lets get a card_body from the DURC mode class!!
 		if(!isset($return_me_array['card_body'])){ //allow the user to use this as a field without pestering..
 			//this is simply the name unless someone has put work into this...
-			$return_me_array['card_body'] = $comment->getCardBody();
+			$return_me_array['card_body'] = $uniquecomment_cluster->getCardBody();
 		}
 		
 		return response()->json($return_me_array);
@@ -314,17 +311,17 @@ class commentController extends DURCController
      */
     public function create(Request $request){
         // but really, we are just going to edit a new object..
-        $new_instance = new comment();
+        $new_instance = new uniquecomment_cluster();
         return $this->edit($request, $new_instance); 
     }
 
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\comment  $comment
+     * @param  \App\uniquecomment_cluster  $uniquecomment_cluster
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, comment $comment){
+    public function edit(Request $request, uniquecomment_cluster $uniquecomment_cluster){
 
         $main_template_name = $this->_getMainTemplateName();
         
@@ -348,7 +345,7 @@ class commentController extends DURCController
     
         $this->view_data['csrf_token'] = csrf_token();
         
-        foreach ( comment::$field_type_map as $column_name => $field_type ) {
+        foreach ( uniquecomment_cluster::$field_type_map as $column_name => $field_type ) {
             // If this field name is in the configured list of hidden fields, do not display the row.
             $this->view_data["{$column_name}_row_class"] = '';
             if ( in_array( $column_name, self::$hidden_fields_array ) ) {
@@ -363,14 +360,14 @@ class commentController extends DURCController
             }
         }
     
-        if($comment->exists){	
+        if($uniquecomment_cluster->exists){	
     
       		//well lets properly eager load this object with a refresh to load all of the related things
-      		$comment = $comment->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
+      		$uniquecomment_cluster = $uniquecomment_cluster->fresh_with_relations(); //this is a custom function from DURCModel. you can control what gets autoloaded by modifying the DURC_selfish_with contents on your customized models
     
       		//put the contents into the view...
 		//we have to do this even if the object is new, because sometimes the variable is set from a GET or POST request... 
-      		foreach($comment->toArray() as $key => $value){
+      		foreach($uniquecomment_cluster->toArray() as $key => $value){
                 
                 	if (array_key_exists($key, $request->old())) {
                     		$input = $request->old($key);
@@ -378,30 +375,30 @@ class commentController extends DURCController
                     		$input = $value;
                 	}
             
-                	if ( isset( comment::$field_type_map[$key] ) ) {
-                		$field_type = comment::$field_type_map[ $key ];
+                	if ( isset( uniquecomment_cluster::$field_type_map[$key] ) ) {
+                		$field_type = uniquecomment_cluster::$field_type_map[ $key ];
                 		$this->view_data[$key] = DURC::formatForDisplay( $field_type, $key, $input );
         		} else {
                 		$this->view_data[$key] = $input;
         		}
                 
        	 		// If this is a nullable field, see whether null checkbox should be checked by default
-       	 		if ($comment->isFieldNullable($key) &&
+       	 		if ($uniquecomment_cluster->isFieldNullable($key) &&
                 		$input == null) {
                 		$this->view_data["{$key}_checked"] = "checked";
         		}
        		}
     
             	//what is this object called?
-            	$name_field = $comment->_getBestName();
+            	$name_field = $uniquecomment_cluster->_getBestName();
             	$this->view_data['is_new'] = false;
-            	$this->view_data['durc_instance_name'] = $comment->$name_field;
+            	$this->view_data['durc_instance_name'] = $uniquecomment_cluster->$name_field;
 
         }else{
 		//this has not been saved yet, but we still want to honor GET and POST variables etc. 
-        	$comment = new comment();
+        	$uniquecomment_cluster = new uniquecomment_cluster();
 		$params = $request->all(); //this will include GET and POST variables, etc
-		$comment->fill($params);  //this will initialize the contents of the object with anything in the GET etc.
+		$uniquecomment_cluster->fill($params);  //this will initialize the contents of the object with anything in the GET etc.
 		foreach($params as $key => $value){
 			$this->view_data[$key] = $value;
 		}
@@ -416,37 +413,33 @@ class commentController extends DURCController
         }
         
     
-        $durc_template_results = view('DURC.comment.edit',$this->view_data);        
+        $durc_template_results = view('DURC.uniquecomment_cluster.edit',$this->view_data);        
         return view($main_template_name,['content' => $durc_template_results]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\comment  $comment
+     * @param  \App\uniquecomment_cluster  $uniquecomment_cluster
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, comment $comment){
+    public function update(Request $request, uniquecomment_cluster $uniquecomment_cluster){
 
-        $tmp_comment = $comment;
+        $tmp_uniquecomment_cluster = $uniquecomment_cluster;
         
-        $tmp_comment->id = $request->id;
-        $tmp_comment->commentId = $request->commentId;
-        $tmp_comment->comment_on_documentId = $request->comment_on_documentId;
-        $tmp_comment->comment_date_text = $request->comment_date_text;
-        $tmp_comment->comment_date = $request->comment_date;
-        $tmp_comment->comment_text = $request->comment_text;
-        $tmp_comment->simplified_comment_text = $request->simplified_comment_text;
-        $tmp_comment->simplified_comment_text_md5 = $request->simplified_comment_text_md5;
+        $tmp_uniquecomment_cluster->unique_comment_id = $request->unique_comment_id;
+        $tmp_uniquecomment_cluster->other_unique_comment_id = $request->other_unique_comment_id;
+        $tmp_uniquecomment_cluster->score = $request->score;
+        $tmp_uniquecomment_cluster->diff_text = $request->diff_text;
 
-        $id = $comment->id;
+        $id = $uniquecomment_cluster->id;
         
         try {
-            $tmp_comment->save();
+            $tmp_uniquecomment_cluster->save();
 
-            return redirect("/DURC/comment/$id")->with('status', 'Data Saved!');
+            return redirect("/DURC/uniquecomment_cluster/$id")->with('status', 'Data Saved!');
         } catch (DURCInvalidDataException $e) {
-            return back()->withInput()->with('errors', $tmp_comment->getErrors());
+            return back()->withInput()->with('errors', $tmp_uniquecomment_cluster->getErrors());
 
         } catch (\Exception $e) {
             return back()->withInput()->with('status', 'There was an error in your data: '.$e->getMessage());
@@ -456,11 +449,11 @@ class commentController extends DURCController
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\comment  $comment
+     * @param  \App\uniquecomment_cluster  $uniquecomment_cluster
      * @return \Illuminate\Http\Response
      */
-    public function destroy(comment $comment){
-	    return comment::destroy( $comment->id );  
+    public function destroy(uniquecomment_cluster $uniquecomment_cluster){
+	    return uniquecomment_cluster::destroy( $uniquecomment_cluster->id );  
     }
     
     /**
@@ -470,7 +463,7 @@ class commentController extends DURCController
      */
     public function restore( $id )
     {
-        $comment = comment::withTrashed()->find($id)->restore();
+        $uniquecomment_cluster = uniquecomment_cluster::withTrashed()->find($id)->restore();
         return redirect("/DURC/test_soft_delete/$id")->with('status', 'Data Restored!');
     }
 }
