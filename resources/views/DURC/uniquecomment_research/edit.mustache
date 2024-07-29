@@ -1,0 +1,176 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
+            </div>
+
+{{#is_new}}
+<form action='/DURC/uniquecomment_research' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/uniquecomment_research/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>uniquecomment_research</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_uniquecomment_research/'>Return to uniquecomment_research list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/uniquecomment_research/create'>Create new uniquecomment_research </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{simplified_comment_text_md5_row_class}}'>
+    <label for='simplified_comment_text_md5' class='col-sm-4 col-form-label'>simplified_comment_text_md5</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.simplified_comment_text_md5.has_errors}}is-invalid{{/errors.simplified_comment_text_md5.has_errors}}' id='simplified_comment_text_md5' name='simplified_comment_text_md5' placeholder='' value='{{simplified_comment_text_md5}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.simplified_comment_text_md5.messages}}<li>{{.}}</li>{{/errors.simplified_comment_text_md5.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{uniquecomment_name_row_class}}'>
+    <label for='uniquecomment_name' class='col-sm-4 col-form-label'>uniquecomment_name</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.uniquecomment_name.has_errors}}is-invalid{{/errors.uniquecomment_name.has_errors}}' id='uniquecomment_name' name='uniquecomment_name' placeholder='' value='{{uniquecomment_name}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.uniquecomment_name.messages}}<li>{{.}}</li>{{/errors.uniquecomment_name.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{uniquecomment_org_url_row_class}}'>
+    <label for='uniquecomment_org_url' class='col-sm-4 col-form-label'>uniquecomment_org_url</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.uniquecomment_org_url.has_errors}}is-invalid{{/errors.uniquecomment_org_url.has_errors}}' id='uniquecomment_org_url' name='uniquecomment_org_url' placeholder='' value='{{uniquecomment_org_url}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.uniquecomment_org_url.messages}}<li>{{.}}</li>{{/errors.uniquecomment_org_url.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row {{uniquecomment_wayback_machine_url_row_class}}'>
+    <label for='uniquecomment_wayback_machine_url' class='col-sm-4 col-form-label'>uniquecomment_wayback_machine_url</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.uniquecomment_wayback_machine_url.has_errors}}is-invalid{{/errors.uniquecomment_wayback_machine_url.has_errors}}' id='uniquecomment_wayback_machine_url' name='uniquecomment_wayback_machine_url' placeholder='' value='{{uniquecomment_wayback_machine_url}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.uniquecomment_wayback_machine_url.messages}}<li>{{.}}</li>{{/errors.uniquecomment_wayback_machine_url.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/uniquecomment_research/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='uniquecomment_research' class='do-soft-delete btn btn-outline-danger'>Hard Delete uniquecomment_research</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+
+    <script type='text/javascript'>
+
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }
+            });
+
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

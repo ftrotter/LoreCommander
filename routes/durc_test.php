@@ -344,6 +344,14 @@ Route::get('durctest', function () {
  			'/DURC/uniquecomment_cluster/create', //from: mirrulation.uniquecomment_cluster 
  			'/DURC/uniquecomment_cluster/1', //from: mirrulation.uniquecomment_cluster 
  			'/DURC/uniquecomment_cluster/1/edit', //from: mirrulation.uniquecomment_cluster 
+ 			'/DURC/uniquecomment_decomposed', //from: mirrulation.uniquecomment_decomposed 
+ 			'/DURC/uniquecomment_decomposed/create', //from: mirrulation.uniquecomment_decomposed 
+ 			'/DURC/uniquecomment_decomposed/1', //from: mirrulation.uniquecomment_decomposed 
+ 			'/DURC/uniquecomment_decomposed/1/edit', //from: mirrulation.uniquecomment_decomposed 
+ 			'/DURC/uniquecomment_research', //from: mirrulation.uniquecomment_research 
+ 			'/DURC/uniquecomment_research/create', //from: mirrulation.uniquecomment_research 
+ 			'/DURC/uniquecomment_research/1', //from: mirrulation.uniquecomment_research 
+ 			'/DURC/uniquecomment_research/1/edit', //from: mirrulation.uniquecomment_research 
  			'/DURC/uniquecomment_to_comment', //from: mirrulation.uniquecomment_to_comment 
  			'/DURC/uniquecomment_to_comment/create', //from: mirrulation.uniquecomment_to_comment 
  			'/DURC/uniquecomment_to_comment/1', //from: mirrulation.uniquecomment_to_comment 

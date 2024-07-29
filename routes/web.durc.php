@@ -581,6 +581,20 @@ Route::get("/DURC/json/uniquecomment_cluster/", 'uniquecomment_clusterController
 Route::get("/DURC/searchjson/uniquecomment_cluster/", 'uniquecomment_clusterController@search');
 
  
+//DURC->	mirrulation.uniquecomment_decomposed
+Route::resource("/DURC/uniquecomment_decomposed", 'uniquecomment_decomposedController');
+Route::get("/DURC/json/uniquecomment_decomposed/{uniquecomment_decomposed_id}", 'uniquecomment_decomposedController@jsonone');
+Route::get("/DURC/json/uniquecomment_decomposed/", 'uniquecomment_decomposedController@jsonall');
+Route::get("/DURC/searchjson/uniquecomment_decomposed/", 'uniquecomment_decomposedController@search');
+
+ 
+//DURC->	mirrulation.uniquecomment_research
+Route::resource("/DURC/uniquecomment_research", 'uniquecomment_researchController');
+Route::get("/DURC/json/uniquecomment_research/{uniquecomment_research_id}", 'uniquecomment_researchController@jsonone');
+Route::get("/DURC/json/uniquecomment_research/", 'uniquecomment_researchController@jsonall');
+Route::get("/DURC/searchjson/uniquecomment_research/", 'uniquecomment_researchController@search');
+
+ 
 //DURC->	mirrulation.uniquecomment_to_comment
 Route::resource("/DURC/uniquecomment_to_comment", 'uniquecomment_to_commentController');
 Route::get("/DURC/json/uniquecomment_to_comment/{uniquecomment_to_comment_id}", 'uniquecomment_to_commentController@jsonone');

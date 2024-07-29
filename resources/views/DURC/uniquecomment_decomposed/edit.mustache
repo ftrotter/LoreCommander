@@ -1,0 +1,185 @@
+
+{{#has_session_status}}
+<div class='alert alert-info' role='alert'>
+  {{session_status}}
+</div>
+{{/has_session_status}}
+
+<div id='delete-success-alert' class='alert alert-success' role='alert' style='display: none;'>
+                You have successfully deleted this record. This was a hard delete, no going back. But you can save again if you want..
+            </div>
+
+{{#is_new}}
+<form action='/DURC/uniquecomment_decomposed' method='POST'>
+{{/is_new}}
+
+{{^is_new}}
+<form action='/DURC/uniquecomment_decomposed/{{id}}' method='POST'>
+    <input type='hidden' name='_method' value='PUT'>
+{{/is_new}}
+
+	<h1>uniquecomment_decomposed</h1>
+<div class='card'>
+  <div class='card-header'>
+<h4> {{durc_instance_name}}</h4>
+<ul>
+<li> <a href='/Zermelo/DURC_uniquecomment_decomposed/'>Return to uniquecomment_decomposed list</a> </li>
+{{^is_new}}
+<li> <a href='/DURC/uniquecomment_decomposed/create'>Create new uniquecomment_decomposed </a> </li>
+{{/is_new}}
+</ul>
+  </div>
+<div class='card-body'>
+
+  <fieldset>
+    <legend>Edit {{durc_instance_name}}  </legend>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+	
+  <div class='form-group row {{node_row_class}}'>
+    <label for='node' class='col-sm-4 col-form-label'>node</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.node.has_errors}}is-invalid{{/errors.node.has_errors}}' id='node' name='node' placeholder='NULL' value='{{node}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.node.messages}}<li>{{.}}</li>{{/errors.node.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='node' name='nodeNull' id='nodeNull' value='nodeNull' {{node_checked}}>
+                    <label class='form-check-label' for='nodeNull'>null</label>
+                </div></div>
+  <div class='form-group row {{node_name_row_class}}'>
+    <label for='node_name' class='col-sm-4 col-form-label'>node_name</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.node_name.has_errors}}is-invalid{{/errors.node_name.has_errors}}' id='node_name' name='node_name' placeholder='NULL' value='{{node_name}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.node_name.messages}}<li>{{.}}</li>{{/errors.node_name.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='node_name' name='node_nameNull' id='node_nameNull' value='node_nameNull' {{node_name_checked}}>
+                    <label class='form-check-label' for='node_nameNull'>null</label>
+                </div></div>
+  <div class='form-group row {{node_type_row_class}}'>
+    <label for='node_type' class='col-sm-4 col-form-label'>node_type</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control nullable {{#errors.node_type.has_errors}}is-invalid{{/errors.node_type.has_errors}}' id='node_type' name='node_type' placeholder='NULL' value='{{node_type}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.node_type.messages}}<li>{{.}}</li>{{/errors.node_type.messages}}
+          </ul>
+       </div>
+    </div><div class='col-sm-1'>
+                    <input class='form-check-input null-checkbox' type='checkbox' data-elem='node_type' name='node_typeNull' id='node_typeNull' value='node_typeNull' {{node_type_checked}}>
+                    <label class='form-check-label' for='node_typeNull'>null</label>
+                </div></div>
+  <div class='form-group row {{esse_id_row_class}}'>
+    <label for='esse_id' class='col-sm-4 col-form-label'>esse_id</label>
+    <div class='col-sm-7'>
+      <input type='text' class='form-control  {{#errors.esse_id.has_errors}}is-invalid{{/errors.esse_id.has_errors}}' id='esse_id' name='esse_id' placeholder='' value='{{esse_id}}' >
+      <div class='invalid-feedback'>
+          <ul>
+          {{#errors.esse_id.messages}}<li>{{.}}</li>{{/errors.esse_id.messages}}
+          </ul>
+       </div>
+    </div></div>
+  <div class='form-group row'>
+    <div class='col-sm-8'>
+      <button type='submit' class='btn btn-primary'>Save Data</button>
+    </div>
+  </div>
+
+</fieldset>
+</div></div>
+</form>
+<br>
+  <div class='form-group row'>
+              <div class='col-sm-12 text-right'>
+
+<form action='/DURC/uniquecomment_decomposed/{{id}}' method='POST'>
+    	<input type='hidden' name='_method' value='DELETE'>
+	<input type='hidden' name='_token' value='{{csrf_token}}'>
+
+              <button type='button' data-id='{{id}}' data-controller='uniquecomment_decomposed' class='do-soft-delete btn btn-outline-danger'>Hard Delete uniquecomment_decomposed</button>
+</form>
+              </div>
+            </div>
+
+
+<br>
+
+    <script type='text/javascript'>
+
+        // These function control the spinner display when loading many remote entities
+        let loading_queue = [];
+        function add_to_loading_queue(element) {
+            if (loading_queue.length == 0) {
+                $('#loader').modal();
+            }
+            loading_queue.push(element);
+        }
+
+        function remove_from_loading_queue(element) {
+            const index = loading_queue.indexOf(element);
+            if (index >= 0) {
+              loading_queue.splice(index, 1);
+            }
+            if (loading_queue.length == 0) {
+                $('#loader').modal('hide');
+            }
+        }
+
+    // This javascript controls the null checkboxes
+        $(document).ready(function() {
+
+            // keep an assoc array of the last entered values
+            let last_null_values = {};
+
+            $('.null-checkbox').change(function(e) {
+
+                // get the id of the element we're next to
+                let id = $(this).attr('data-elem');
+
+                // store current value, and set to null
+                if ($(this).prop('checked')) {
+                    let c = confirm("Are you sure you want to overwrite this value with NULL?");
+                    if (c === true) {
+                        last_null_values[id]= $('#'+id).val();
+                        $('#'+id).val(null);
+                        $('#'+id).attr('readonly', true);
+                    }
+                } else {
+                    $('#'+id).val(last_null_values[id]);
+                    $('#'+id).attr('readonly', false);
+                }
+            });
+
+            // If a field with a nulllable class is clicked, unset the null checkbox and unlock field
+            $('.nullable').click(function(e) {
+                let checkboxId = '#' + $(this).attr('id') + 'Null';
+                if ($(checkboxId).prop('checked')) {
+                    // Uncheck the null box and clear read-only by triggering change
+                    $(checkboxId).prop('checked', '');
+                    $(checkboxId).change();
+                }
+            });
+
+            // Trigger change on page load. If the null box is checked, mark field readonly
+            // If the null checkbox isn't checked, but the value is empty string, check null
+            // checkbox and also mark readonly
+            $('.null-checkbox').each(function() {
+                let id = $(this).attr('data-elem');
+                if ($(this).prop('checked')) {
+                    // The null box is checked
+                    $('#'+id).attr('readonly', true);
+                } else if (!$(this).prop('checked') &&
+                    $('#'+id).val() == '') {
+                    // The null box is not checked, but the value is empty
+                    // Check the null box
+                    $(this).prop('checked', 'checked');
+                    $('#'+id).attr('readonly', true);
+                }
+            });
+        });
+    </script>

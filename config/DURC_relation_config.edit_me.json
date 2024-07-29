@@ -10450,6 +10450,116 @@
             },
             "create_table_sql": "CREATE TABLE `mirrulation`.`uniquecomment_cluster` (\n  `unique_comment_id` int(11) NOT NULL,\n  `other_unique_comment_id` int(11) NOT NULL,\n  `score` decimal(9,5) NOT NULL,\n  `diff_text` text DEFAULT NULL,\n  PRIMARY KEY (`unique_comment_id`,`other_unique_comment_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         },
+        "uniquecomment_decomposed": {
+            "table_name": "uniquecomment_decomposed",
+            "db": "mirrulation",
+            "column_data": [
+                {
+                    "column_name": "node",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "node_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "node_type",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": true,
+                    "default_value": "NULL",
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "esse_id",
+                    "data_type": "int",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `mirrulation`.`uniquecomment_decomposed` (\n  `node` varchar(255) DEFAULT NULL,\n  `node_name` varchar(255) DEFAULT NULL,\n  `node_type` varchar(255) DEFAULT NULL,\n  `esse_id` int(11) NOT NULL,\n  KEY `node` (`node`,`esse_id`)\n) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci"
+        },
+        "uniquecomment_research": {
+            "table_name": "uniquecomment_research",
+            "db": "mirrulation",
+            "column_data": [
+                {
+                    "column_name": "simplified_comment_text_md5",
+                    "data_type": "varchar",
+                    "is_primary_key": true,
+                    "is_foreign_key": true,
+                    "is_linked_key": true,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "uniquecomment_name",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "uniquecomment_org_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                },
+                {
+                    "column_name": "uniquecomment_wayback_machine_url",
+                    "data_type": "varchar",
+                    "is_primary_key": false,
+                    "is_foreign_key": false,
+                    "is_linked_key": false,
+                    "foreign_db": null,
+                    "foreign_table": null,
+                    "is_nullable": false,
+                    "default_value": null,
+                    "is_auto_increment": false
+                }
+            ],
+            "create_table_sql": "CREATE TABLE `mirrulation`.`uniquecomment_research` (\n  `simplified_comment_text_md5` varchar(33) NOT NULL,\n  `uniquecomment_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,\n  `uniquecomment_org_url` varchar(255) NOT NULL,\n  `uniquecomment_wayback_machine_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,\n  PRIMARY KEY (`simplified_comment_text_md5`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        },
         "uniquecomment_to_comment": {
             "table_name": "uniquecomment_to_comment",
             "db": "mirrulation",
