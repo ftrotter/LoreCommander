@@ -1,13 +1,17 @@
+version: '3.8'
+
 services:
   app:
     build:
-      context: ..
-      dockerfile: LoreCommander/docker/Dockerfile
+      context: .
+      dockerfile: docker/Dockerfile
     container_name: lorecommander_app
+    networks:
+      - lorecommander_network
     ports:
       - "8080:80"
     volumes:
-      - ../LoreCommander:/var/www/html/LoreCommander
+      - .:/var/www/html/LoreCommander
       - ../Zermelo:/var/www/html/Zermelo
       - ../DURC:/var/www/html/DURC
       # Mount a volume for the local image cache
@@ -24,9 +28,11 @@ services:
   db:
     image: mariadb:10.5
     container_name: lorecommander_db
+    networks:
+      - lorecommander_network
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
@@ -36,3 +42,7 @@ services:
 volumes:
   lorecommander_db_data:
   lorecommander_imgdata:
+
+networks:
+  lorecommander_network:
+    driver: bridge

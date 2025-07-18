@@ -19,36 +19,28 @@ fi
 
 # 4. Run composer install.
 echo "Running composer install..."
-php use_local_careset_libraries.php
 if [ -f ".env" ]; then
-    export $(cat .env | xargs)
+    export $(grep -v '^#' .env | xargs)
 fi
 composer config -g github-oauth.github.com ${GITHUB_TOKEN}
-COMPOSER=composer-dev.json composer install --no-interaction
+COMPOSER=composer-dev.json composer install --no-interaction --ignore-platform-reqs
 
-# 5. Create the databases
-echo "Creating databases..."
-if [ -f ".env" ]; then
-    export $(cat .env | xargs)
-fi
-mysql -e < ./docker/init.sql
-
-# 6. Run the core Laravel and DURC setup commands.
+# 5. Run the core Laravel and DURC setup commands.
 echo "Running initial application setup..."
 php artisan key:generate
 php artisan vendor:publish --provider='ftrotter\DURC\DURCServiceProvider'
 php artisan migrate:fresh --seed
 
-# 7. Run the Zermelo installation non-interactively.
+# 6. Run the Zermelo installation non-interactively.
 echo "Installing Zermelo (non-interactive)..."
 php artisan zermelo:install --force
 
-# 8. Set final permissions for storage and the image cache.
+# 7. Set final permissions for storage and the image cache.
 echo "Setting final permissions..."
 chown -R www-data:www-data /var/www/html/LoreCommander/storage
 chown -R www-data:www-data /var/www/html/LoreCommander/public/imgdata
 
-# 9. Start the Apache server.
+# 8. Start the Apache server.
 echo "Setup complete. Starting Apache server..."
 echo "The application is now running. You can run 'docker-compose exec app php artisan scry:sync' to populate the database."
-apache2ctl -D FOREGROUND
+exec apache2ctl -D FOREGROUND

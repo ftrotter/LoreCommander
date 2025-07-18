@@ -23,10 +23,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Copy custom PHP configuration
-COPY LoreCommander/docker/custom.ini /etc/php/8.1/apache2/conf.d/custom.ini
+COPY docker/custom.ini /etc/php/8.1/apache2/conf.d/custom.ini
 
 # Copy custom Apache configuration
-COPY LoreCommander/docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
@@ -36,7 +36,7 @@ RUN mkdir -p /var/www/html/LoreCommander/public/imgdata
 WORKDIR /var/www/html/LoreCommander
 
 # Copy the entrypoint script and make it executable
-COPY LoreCommander/docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Expose port 80 and set the entrypoint
