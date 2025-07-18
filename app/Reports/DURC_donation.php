@@ -4,7 +4,7 @@ Note: because this file was signed, everything originally placed before the name
 FILE_SIG=21fc58b2025c3a7cce7ad5195c11a43d
 */
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\Zermelo\Reports\Tabular\AbstractTabularReport;
 
 class DURC_donation extends AbstractTabularReport
 {

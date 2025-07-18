@@ -2,8 +2,8 @@
 
 namespace App\DURC\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use CareSet\DURC\DURCModel;
-use CareSet\DURC\DURC;
+use ftrotter\DURC\DURCModel;
+use ftrotter\DURC\DURC;
 //use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 

@@ -1,6 +1,6 @@
 <?php
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
+use ftrotter\Zermelo\Reports\Cards\AbstractCardsReport;
 use DB;
 
 class BinderReport extends AbstractCardsReport

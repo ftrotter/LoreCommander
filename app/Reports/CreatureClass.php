@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\Zermelo\Reports\Tabular\AbstractTabularReport;
 
 class CreatureClass extends AbstractTabularReport
 {

@@ -4,10 +4,10 @@ namespace App\DURC\Controllers;
 
 use App\test_default_date;
 use Illuminate\Http\Request;
-use CareSet\DURC\DURC;
-use CareSet\DURC\DURCController;
+use ftrotter\DURC\DURC;
+use ftrotter\DURC\DURCController;
 use Illuminate\Support\Facades\View;
-use CareSet\DURC\DURCInvalidDataException;
+use ftrotter\DURC\DURCInvalidDataException;
 
 class test_default_dateController extends DURCController
 {

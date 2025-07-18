@@ -215,7 +215,7 @@ return [
 
 
 	// load DURC
-        CareSet\DURC\DURCServiceProvider::class,
+        ftrotter\DURC\DURCServiceProvider::class,
 
 	//Eloquent Auditing from http://www.laravel-auditing.com
 

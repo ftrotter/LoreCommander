@@ -4,10 +4,10 @@ namespace App\DURC\Controllers;
 
 use App\classofc_creature;
 use Illuminate\Http\Request;
-use CareSet\DURC\DURC;
-use CareSet\DURC\DURCController;
+use ftrotter\DURC\DURC;
+use ftrotter\DURC\DURCController;
 use Illuminate\Support\Facades\View;
-use CareSet\DURC\DURCInvalidDataException;
+use ftrotter\DURC\DURCInvalidDataException;
 
 class classofc_creatureController extends DURCController
 {

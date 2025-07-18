@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Graph\AbstractGraphReport;
+use ftrotter\Zermelo\Reports\Graph\AbstractGraphReport;
 
 class TEST_GraphTest extends AbstractGraphReport
 {
