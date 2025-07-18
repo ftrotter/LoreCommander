@@ -76,13 +76,13 @@ SELECT
 '' AS target_json_url,
 '' AS target_img,
 
-`patient_count` AS weight,
+IF(`patient_count` > 450, 450, patient_count) AS weight,
 'referral' AS link_type,
 0 AS query_num
 
 
-FROM ndh.dg_10000_2015 
-WHERE from_npi = 1003000126 OR to_npi = 1003000126
+FROM ndh.dg_1003000126_2015 
+WHERE patient_count > 1000
 ";
         return $sql;
     }
