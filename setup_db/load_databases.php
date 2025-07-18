@@ -11,18 +11,21 @@
 		'DURC_irs',
 		'DURC_northwind_data',
 		'DURC_northwind_model',
+		'_zermelo_config',
+		'ndh',
 	];
 
 	$commands = [];
 
 	foreach($databases as $this_db){
 
-		$commands[] = "mysqladmin -f -u root --password=$password drop $this_db";
-		$commands[] = "mysqladmin -u root --password=$password create $this_db";
-		$commands[] = "mysql -u root --password=$password $this_db < $this_db.sql";
+		$commands[] = "mysqladmin -f -h db -u root --password=$password drop $this_db";
+		$commands[] = "mysqladmin -h db -u root --password=$password create $this_db";
+		$commands[] = "mysql -h db -u root --password=$password $this_db < $this_db.sql";
 	}
 
 
+	chdir('/var/www/html/LoreCommander/setup_db');
 	foreach($commands as $this_command){
 		$safe_print_command = str_replace($password,'*******',$this_command);
 		echo "Running\n$safe_print_command\n";

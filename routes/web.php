@@ -650,7 +650,3 @@ Route::resource("/DURC/uniquecomment_to_comment", 'uniquecomment_to_commentContr
 Route::get("/DURC/json/uniquecomment_to_comment/{uniquecomment_to_comment_id}", 'uniquecomment_to_commentController@jsonone');
 Route::get("/DURC/json/uniquecomment_to_comment/", 'uniquecomment_to_commentController@jsonall');
 Route::get("/DURC/searchjson/uniquecomment_to_comment/", 'uniquecomment_to_commentController@search');
-
-
-
-

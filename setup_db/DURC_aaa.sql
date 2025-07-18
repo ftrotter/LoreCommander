@@ -228,31 +228,33 @@ CREATE TABLE `funnything` (
 --
 
 DROP TABLE IF EXISTS `graphdata_nodetypetests`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `graphdata_nodetypetests` (
-  `source_id` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `source_name` varchar(190) CHARACTER SET latin1 NOT NULL,
+  `source_id` varchar(25) NOT NULL,
+  `source_name` varchar(190) NOT NULL,
   `source_size` int(11) NOT NULL DEFAULT 0,
-  `source_type` varchar(190) CHARACTER SET latin1 NOT NULL,
-  `source_group` varchar(190) CHARACTER SET latin1 NOT NULL,
+  `source_type` varchar(100) NOT NULL,
+  `source_group` varchar(190) NOT NULL,
   `source_longitude` decimal(17,7) NOT NULL DEFAULT 0.0000000,
   `source_latitude` decimal(17,7) NOT NULL DEFAULT 0.0000000,
-  `source_img` varchar(190) CHARACTER SET latin1 DEFAULT NULL,
-  `target_id` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `target_name` varchar(190) CHARACTER SET latin1 NOT NULL,
+  `source_img` varchar(190) DEFAULT NULL,
+  `target_id` varchar(25) NOT NULL,
+  `target_name` varchar(190) NOT NULL,
   `target_size` int(11) NOT NULL DEFAULT 0,
-  `target_type` varchar(190) CHARACTER SET latin1 NOT NULL,
-  `target_group` varchar(190) CHARACTER SET latin1 NOT NULL,
+  `target_type` varchar(100) NOT NULL,
+  `target_group` varchar(190) NOT NULL,
   `target_longitude` decimal(17,7) NOT NULL DEFAULT 0.0000000,
   `target_latitude` decimal(17,7) NOT NULL DEFAULT 0.0000000,
-  `target_img` varchar(190) CHARACTER SET latin1 DEFAULT NULL,
+  `target_img` varchar(190) DEFAULT NULL,
   `weight` int(11) NOT NULL DEFAULT 50,
-  `link_type` varchar(190) CHARACTER SET latin1 NOT NULL,
-  `query_num` int(11) NOT NULL,
-  PRIMARY KEY (`source_id`,`source_type`,`target_id`,`target_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `link_type` varchar(190) NOT NULL,
+  `query_num` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `graphdata_nodetypetests`
+  ADD PRIMARY KEY (`source_id`,`source_type`,`target_id`,`target_type`);
+
 
 --
 -- Table structure for table `magicField`
@@ -354,7 +356,7 @@ CREATE TABLE `test_boolean` (
   `has_something2` tinyint(4) DEFAULT NULL,
   `has_something3` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -436,5 +438,19 @@ CREATE TABLE `vote` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Table structure for table `leading_zero`
+--
+
+DROP TABLE IF EXISTS `leading_zero`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `leading_zero` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `leading_zero_field` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Dump completed on 2020-12-28  2:44:01

@@ -45,7 +45,24 @@ Things to test</p>
     public function GetSQL()
     {
 	//replace with your own SQL
-        $sql = "SELECT * FROM DURC_aaa.tags_report";
+        $sql = "
+SELECT
+    `id`,
+    `field_to_bold_in_report_display`,
+    `field_to_hide_by_default`,
+    `field_to_italic_in_report_display`,
+    `field_to_right_align_in_report`,
+    `field_to_bolditalic_in_report_display`,
+    `numeric_field`,
+    `decimal_field`,
+    `currency_field`,
+    `percent_field`,
+    `url_field`,
+    `time_field`,
+    `date_field`,
+    `datetime_field`
+FROM
+    DURC_aaa.tags_report";
     	return $sql;
     }
 

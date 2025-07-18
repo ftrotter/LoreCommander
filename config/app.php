@@ -217,6 +217,9 @@ return [
 	// load DURC
         ftrotter\DURC\DURCServiceProvider::class,
 
+    // load Zermelo
+        ftrotter\Zermelo\ZermeloServiceProvider::class,
+
 	//Eloquent Auditing from http://www.laravel-auditing.com
 
     ],
