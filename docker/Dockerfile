@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     netcat-openbsd \
     mysql-client \
     sudo \
+    phpmyadmin \
     && apt-get clean
 
 # Copy custom PHP configuration
@@ -27,9 +28,13 @@ COPY docker/custom.ini /etc/php/8.1/apache2/conf.d/custom.ini
 
 # Copy custom Apache configuration
 COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/phpmyadmin.conf /etc/apache2/conf-available/phpmyadmin.conf
+COPY docker/config.inc.php /etc/phpmyadmin/config.inc.php
+
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
+RUN a2enconf phpmyadmin
 
 # Set up working directory and permissions
 RUN mkdir -p /var/www/html/LoreCommander/public/imgdata
