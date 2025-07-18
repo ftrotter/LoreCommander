@@ -38,8 +38,11 @@ This is the simplest test.
     **/
     public function GetSQL()
     {
-	//replace with your own SQL
-        $sql = "
+        $db_driver = \DB::connection()->getDriverName();
+
+        if ($db_driver == 'mysql') {
+            //replace with your own SQL
+            $sql = "
 SELECT
     `endpoint_type`, `endpoint_type_description`,
     `endpoint`, `affiliation`, `endpoint_description`,
@@ -51,7 +54,20 @@ SELECT
     `affiliation_address_country`, `affiliation_address_postal_code`, `npi`
 FROM ndh.nppes
 ";
-
+        } else {
+            $sql = "
+SELECT
+    endpoint_type, endpoint_type_description,
+    endpoint, affiliation, endpoint_description,
+    affiliation_legal_business_name, use_code,
+    use_description, other_use_description, content_type,
+    content_description, other_content_description,
+    affiliation_address_line_1, affiliation_address_line_2,
+    affiliation_address_city, affiliation_address_state,
+    affiliation_address_country, affiliation_address_postal_code, npi
+FROM nppes
+";
+        }
     	return $sql;
     }
 
