@@ -340,6 +340,11 @@ CREATE TABLE `tags_report` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `tags_report` (`id`, `field_to_bold_in_report_display`, `field_to_hide_by_default`, `field_to_italic_in_report_display`, `field_to_right_align_in_report`, `field_to_bolditalic_in_report_display`, `numeric_field`, `decimal_field`, `currency_field`, `percent_field`, `url_field`, `time_field`, `date_field`, `datetime_field`) VALUES
+(1, 'this should be bold', 'this should be hidden', 'this should be italic', 'right align', 'bold and italic', 1, '1.2000', '100', 20, 'https://fredtrotter.com', '17:25:39', '2025-07-18', '2025-07-18 21:25:39');
+
+
+
 --
 -- Table structure for table `test_boolean`
 --
