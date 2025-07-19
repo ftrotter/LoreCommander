@@ -1,0 +1,73 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: lorecommander_app_postgres
+    networks:
+      - lorecommander_network_postgres
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html/LoreCommander
+      - ../Zermelo:/var/www/html/Zermelo
+      - ../DURC:/var/www/html/DURC
+      # Mount a volume for the local image cache
+      - lorecommander_imgdata_postgres:/var/www/html/LoreCommander/public/imgdata
+    depends_on:
+      - db
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=lorecommander
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=rootsecret
+
+  db:
+    image: postgres:13
+    container_name: lorecommander_db_postgres
+    networks:
+      - lorecommander_network_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lorecommander
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rootsecret
+    ports:
+      - "5433:5432"
+    volumes:
+      - lorecommander_db_data_postgres:/var/lib/postgresql/data
+      - ./docker/postgres/init.sh:/docker-entrypoint-initdb.d/init.sh
+    command:
+      - "postgres"
+      - "-c"
+      - "log_statement=all"
+      - "-c"
+      - "log_destination=stderr"
+      - "-c"
+      - "log_connections=on"
+      - "-c"
+      - "log_disconnections=on"
+      - "-c"
+      - "log_duration=on"
+      - "-c"
+      - "log_error_verbosity=verbose"
+      - "-c"
+      - "log_hostname=on"
+      - "-c"
+      - "log_line_prefix='%m [%p] %q%u@%d '"
+      - "-c"
+      - "log_min_duration_statement=0"
+      - "-c"
+      - "log_min_error_statement=log"
+      - "-c"
+      - "log_min_messages=log"
+
+volumes:
+  lorecommander_db_data_postgres:
+  lorecommander_imgdata_postgres:
+
+networks:
+  lorecommander_network_postgres:
+    driver: bridge

@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     git \
     netcat-openbsd \
     mysql-client \
+    postgresql-client \
     sudo \
     phpmyadmin \
     && apt-get clean
