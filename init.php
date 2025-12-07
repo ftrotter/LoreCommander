@@ -44,8 +44,18 @@
 
 	echo "Checking for $composer_config_dir\n";	
 	if(!file_exists($composer_config_dir)){
-		echo "Error: The directory $composer_config_dir needs to exist and be writable to save authorizations etc... \n";
-		exit();
+
+
+		//lets check for OSX
+		$osx_composer_config_dir = "/Users/$real_user/.composer";
+		if(!file_exists($osx_composer_config_dir)){
+
+			echo "Error: The directory $composer_config_dir (linux) or $osx_composer_config_dir (OSX) needs to exist and be writable to save authorizations etc... \n";
+			exit();
+		}
+
+		$composer_config_dir = $osx_composer_config_dir;
+
 	}
 
 

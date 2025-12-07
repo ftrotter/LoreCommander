@@ -1,6 +1,6 @@
 <?php
 namespace App\Reports;
-use ftrotter\Zermelo\Reports\Cards\AbstractCardsReport;
+use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
 
 class CardSearchUsingImgGrid extends AbstractCardsReport
 {
