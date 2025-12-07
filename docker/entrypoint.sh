@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+# Don't use set -e since we want to continue even if some commands fail
 
 # 1. Wait for the database to be ready.
 echo "Waiting for database connection..."
@@ -11,36 +11,72 @@ echo "Database is ready."
 # 2. Navigate to the application directory.
 cd /var/www/html/LoreCommander
 
-# 3. Create the .env file from the example if it doesn't exist.
+# 3. Create the .env file from the Docker example if it doesn't exist.
 if [ ! -f ".env" ]; then
-    echo "Creating .env file from example..."
-    cp .env.example .env
+    if [ -f ".env.docker.example" ]; then
+        echo "Creating .env file from .env.docker.example..."
+        cp .env.docker.example .env
+    elif [ -f ".env.example" ]; then
+        echo "Warning: .env.docker.example not found, using .env.example..."
+        cp .env.example .env
+    else
+        echo "Error: No .env.example file found!"
+    fi
 fi
 
 # 4. Run composer install.
 echo "Running composer install..."
 if [ -f ".env" ]; then
-    export $(grep -v '^#' .env | xargs)
+    export $(grep -v '^#' .env | grep '=' | xargs)
 fi
-composer config -g github-oauth.github.com ${GITHUB_TOKEN}
-COMPOSER=composer-dev.json composer install --no-interaction --ignore-platform-reqs
 
-# 5. Run the core Laravel and DURC setup commands.
+# Set GitHub token only if it's a valid token (not a placeholder)
+if [ -n "${GITHUB_TOKEN}" ] && [ "${GITHUB_TOKEN}" != "NEED_THIS_FOR_COMPOSER" ] && [ "${GITHUB_TOKEN}" != "your_github_personal_access_token_here" ]; then
+    echo "Configuring GitHub OAuth token..."
+    composer config -g github-oauth.github.com ${GITHUB_TOKEN}
+else
+    echo "Warning: No valid GITHUB_TOKEN provided. Using local path repositories instead."
+fi
+
+# Remove the lock file to ensure fresh compatible packages are installed
+if [ -f "composer-dev.lock" ]; then
+    echo "Removing existing composer-dev.lock for fresh install..."
+    rm composer-dev.lock
+fi
+
+echo "Running composer update with local package symlinks..."
+COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable
+
+# 5. Run the core Laravel setup commands.
 echo "Running initial application setup..."
-php artisan key:generate
-php artisan vendor:publish --provider='ftrotter\DURC\DURCServiceProvider'
-php artisan migrate:fresh --seed
+php artisan key:generate --force
+php artisan vendor:publish --provider='CareSet\DURC\DURCServiceProvider' --force
 
-# 6. Run the Zermelo installation non-interactively.
-echo "Installing Zermelo (non-interactive)..."
-php artisan zermelo:install --force
+# 6. Run database-dependent commands (these may fail if database isn't configured)
+echo "Running database migrations..."
+if php artisan migrate:fresh --seed 2>&1; then
+    echo "Database migrations completed successfully."
+else
+    echo "Warning: Database migrations failed. You may need to run 'docker-compose exec app php artisan migrate:fresh --seed' manually."
+fi
 
-# 7. Set final permissions for storage and the image cache.
+# 7. Run the Zermelo installation non-interactively.
+echo "Installing Zermelo..."
+if php artisan zermelo:install --force 2>&1; then
+    echo "Zermelo installation completed successfully."
+else
+    echo "Warning: Zermelo installation failed. You may need to run 'docker-compose exec app php artisan zermelo:install --force' manually."
+fi
+
+# 8. Set final permissions for storage and the image cache.
 echo "Setting final permissions..."
 chown -R www-data:www-data /var/www/html/LoreCommander/storage
 chown -R www-data:www-data /var/www/html/LoreCommander/public/imgdata
 
-# 8. Start the Apache server.
+# 9. Start the Apache server.
+echo "=============================================="
 echo "Setup complete. Starting Apache server..."
-echo "The application is now running. You can run 'docker-compose exec app php artisan scry:sync' to populate the database."
+echo "The application is now running at http://localhost:8080"
+echo "phpMyAdmin is available at http://localhost:8080/pma4414"
+echo "=============================================="
 exec apache2ctl -D FOREGROUND
