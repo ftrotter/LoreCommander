@@ -1180,7 +1180,7 @@
             "dist": {
                 "type": "path",
                 "url": "../DURC",
-                "reference": "9790be896f6dc0ca7d1357dfb35c4636d5d9e208"
+                "reference": "05e0749a360217915f61fc1d502412ff77f2e217"
             },
             "require": {
                 "erusev/parsedown": "^1.7",
@@ -1234,7 +1234,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Zermelo",
-                "reference": "9784b7f0fed7421251cc083657666c9062f4e984"
+                "reference": "1e356e6a4507cf29017c2c9a94979b014180a57b"
             },
             "require": {
                 "components/jquery": "3.3.1",
