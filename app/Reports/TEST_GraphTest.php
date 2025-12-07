@@ -147,7 +147,7 @@ FROM DURC_aaa.graphdata_nodetypetests
     * for security reasons it should be off by default.
     */
    public function isSQLPrintEnabled(): bool{
-         return(true); //protect the sql by default
+         return(true); 
    }
 
 }

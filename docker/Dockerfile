@@ -39,9 +39,10 @@ RUN a2enconf phpmyadmin
 RUN mkdir -p /var/www/html/LoreCommander/public/imgdata
 WORKDIR /var/www/html/LoreCommander
 
-# Copy the entrypoint script and make it executable
+# Copy the entrypoint script and database setup script, make them executable
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY docker/setup_databases.sh /usr/local/bin/setup_databases.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/setup_databases.sh
 
 # Expose port 80 and set the entrypoint
 EXPOSE 80

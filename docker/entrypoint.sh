@@ -8,6 +8,18 @@ while ! nc -z db 3306; do
 done
 echo "Database is ready."
 
+# 1b. Load databases from setup_db if they are missing or empty.
+echo "Checking setup databases..."
+if [ -f "/usr/local/bin/setup_databases.sh" ]; then
+    /usr/local/bin/setup_databases.sh
+elif [ -f "/var/www/html/LoreCommander/docker/setup_databases.sh" ]; then
+    # Fallback to mounted volume location during development
+    chmod +x /var/www/html/LoreCommander/docker/setup_databases.sh
+    /var/www/html/LoreCommander/docker/setup_databases.sh
+else
+    echo "Warning: setup_databases.sh not found, skipping database initialization."
+fi
+
 # 2. Navigate to the application directory.
 cd /var/www/html/LoreCommander
 
