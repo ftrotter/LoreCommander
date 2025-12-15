@@ -57,11 +57,14 @@ if [ -f "composer-dev.lock" ]; then
 fi
 
 # Disable TLS for Composer (required for environments with SSL inspection/firewall issues)
+# Both the config and environment variable are needed for curl error 60 issues
 echo "Configuring Composer to disable TLS..."
 composer config --global disable-tls true
+composer config --global secure-http false
+export COMPOSER_DISABLE_TLS=1
 
 echo "Running composer update with local package symlinks..."
-COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable
+COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable --no-cache
 
 # 5. Run the core Laravel setup commands.
 echo "Running initial application setup..."
