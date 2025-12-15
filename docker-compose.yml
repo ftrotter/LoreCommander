@@ -15,15 +15,16 @@ services:
       # Mount a volume for the local image cache
       - lorecommander_imgdata:/var/www/html/LoreCommander/public/imgdata
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DB_HOST=db
       - DB_PORT=3306
-      - DB_DATABASE=${DB_DATABASE}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - DB_DATABASE=${DB_DATABASE:-lorecommander}
+      - DB_USERNAME=${DB_USERNAME:-loreuser}
+      - DB_PASSWORD=${DB_PASSWORD:-secret}
+      - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-rootsecret}
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
 
   db:
     image: mariadb:10.5
@@ -33,10 +34,16 @@ services:
     restart: unless-stopped
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootsecret}
+      MYSQL_DATABASE: ${DB_DATABASE:-lorecommander}
+      MYSQL_USER: ${DB_USERNAME:-loreuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
     ports:
       - "3306:3306"
     volumes:

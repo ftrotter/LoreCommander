@@ -57,7 +57,7 @@ return [
      */
     'SQL_PRINT_PREFIX' => env("SQL_PREFIX","ZermeloSQL"),
 
-    'SQL_PRINT_ENABLED' => env("SQL_PRINTER_ENABLED",true),
+    'SQL_PRINT_ENABLED' => env("SQL_PRINTER_ENABLED",false),
 
     'SQL_PRINT_VIEW_TEMPLATE' => env("SQL_PRINT_VIEW_TEMPLATE","Zermelo::layouts.sql_layout"),
 
