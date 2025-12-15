@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     software-properties-common \
+    ca-certificates \
     apache2 \
     php8.1 \
     php8.1-mysql \
@@ -21,6 +22,7 @@ RUN apt-get update && apt-get install -y \
     mysql-client \
     sudo \
     phpmyadmin \
+    && update-ca-certificates \
     && apt-get clean
 
 # Copy custom PHP configuration

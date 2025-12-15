@@ -56,11 +56,6 @@ if [ -f "composer-dev.lock" ]; then
     rm composer-dev.lock
 fi
 
-# Disable SSL/TLS verification for Composer (for environments with certificate issues)
-echo "Configuring Composer to skip SSL verification..."
-composer config -g disable-tls true
-composer config -g secure-http false
-
 echo "Running composer update with local package symlinks..."
 COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable
 
