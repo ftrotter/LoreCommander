@@ -56,6 +56,10 @@ if [ -f "composer-dev.lock" ]; then
     rm composer-dev.lock
 fi
 
+# Disable TLS for Composer (required for environments with SSL inspection/firewall issues)
+echo "Configuring Composer to disable TLS..."
+composer config --global disable-tls true
+
 echo "Running composer update with local package symlinks..."
 COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable
 
