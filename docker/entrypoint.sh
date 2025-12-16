@@ -50,7 +50,7 @@ COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable
 # 5. Run the core Laravel setup commands.
 echo "Running initial application setup..."
 php artisan key:generate --force
-php artisan vendor:publish --provider='CareSet\DURC\DURCServiceProvider' --force
+php artisan vendor:publish --provider='ftrotter\DURCC\DURCCServiceProvider' --force
 
 # 6. Run database-dependent commands (these may fail if database isn't configured)
 echo "Running database migrations..."
@@ -60,12 +60,12 @@ else
     echo "Warning: Database migrations failed. You may need to run 'docker-compose exec app php artisan migrate:fresh --seed' manually."
 fi
 
-# 7. Run the Zermelo installation non-interactively.
-echo "Installing Zermelo..."
-if php artisan zermelo:install --force 2>&1; then
-    echo "Zermelo installation completed successfully."
+# 7. Run the ZZermelo installation non-interactively.
+echo "Installing ZZermelo..."
+if php artisan zzermelo:install --force 2>&1; then
+    echo "ZZermelo installation completed successfully."
 else
-    echo "Warning: Zermelo installation failed. You may need to run 'docker-compose exec app php artisan zermelo:install --force' manually."
+    echo "Warning: ZZermelo installation failed. You may need to run 'docker-compose exec app php artisan zzermelo:install --force' manually."
 fi
 
 # 8. Set final permissions for storage and the image cache.

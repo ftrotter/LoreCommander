@@ -161,11 +161,11 @@ php lore.php --install --dev
 # 5. Run the core Laravel and DURC setup commands.
 echo "Running initial application setup..."
 php artisan key:generate
-php artisan vendor:publish --provider='CareSet\DURC\DURCServiceProvider'
+php artisan vendor:publish --provider='ftrotter\DURCC\DURCCServiceProvider'
 
-# 6. Run the Zermelo installation non-interactively.
-echo "Installing Zermelo (non-interactive)..."
-php artisan zermelo:install --force
+# 6. Run the ZZermelo installation non-interactively.
+echo "Installing ZZermelo (non-interactive)..."
+php artisan zzermelo:install --force
 
 # 7. Set final permissions for storage and the image cache.
 echo "Setting final permissions..."

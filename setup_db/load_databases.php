@@ -11,8 +11,9 @@
 		'DURC_irs',
 		'DURC_northwind_data',
 		'DURC_northwind_model',
-		'_zermelo_config',
+		'_zzermelo_config',
 		'ndh',
+		'lore',
 	];
 
 	$commands = [];

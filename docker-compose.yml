@@ -41,6 +41,7 @@ services:
     volumes:
       - lorecommander_db_data:/var/lib/mysql
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./setup_db:/docker-entrypoint-initdb.d/setup_db
 
 volumes:
   lorecommander_db_data:
