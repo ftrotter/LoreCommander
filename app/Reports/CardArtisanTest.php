@@ -1,6 +1,6 @@
 <?php
 namespace App\Reports;
-use ftrotter\ZZermelo\Reports\Cards\AbstractCardsReport;
+use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
 
 class CardArtisanTest extends AbstractCardsReport
 {

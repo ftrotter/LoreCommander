@@ -1,8 +1,8 @@
 <?php
 namespace App\Reports;
-use ftrotter\ZZermelo\Models\Socket;
-use ftrotter\ZZermelo\Models\Wrench;
-use ftrotter\ZZermelo\Reports\Cards\AbstractCardsReport;
+use CareSet\Zermelo\Models\Socket;
+use CareSet\Zermelo\Models\Wrench;
+use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
 
 class CardTest extends AbstractCardsReport
 {

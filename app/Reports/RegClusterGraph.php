@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use ftrotter\ZZermelo\Reports\Graph\AbstractGraphReport;
+use CareSet\Zermelo\Reports\Graph\AbstractGraphReport;
 
 class RegClusterGraph extends AbstractGraphReport
 {

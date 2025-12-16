@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
+use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
 
 class CardSearch extends AbstractTabularReport
 {

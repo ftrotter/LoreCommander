@@ -9,16 +9,22 @@
     "type": "project",
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/ftrotter/ZZermelo.git"
+            "type": "path",
+            "url": "../Zermelo",
+            "options": {
+                "symlink": true
+            }
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/ftrotter/DURCC.git"
+            "type": "path",
+            "url": "../DURC",
+            "options": {
+                "symlink": true
+            }
         }
     ],
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "proai/laravel-handlebars": "^1.6",
         "laravel/framework": "^8.0",
         "phpunit/phpunit": "^9.5",
@@ -38,8 +44,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "ftrotter\\DURCC\\": "../DURCC/src/",
-            "ftrotter\\ZZermelo\\": "../ZZermelo/src/"
+            "CareSet\\DURC\\": "../DURC/src/",
+            "CareSet\\Zermelo\\": "../Zermelo/src/"
         }
     },
     "autoload-dev": {

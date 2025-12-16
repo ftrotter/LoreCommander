@@ -1,6 +1,6 @@
 <?php
 namespace App\Reports;
-use ftrotter\ZZermelo\Reports\Tree\AbstractTreeReport;
+use CareSet\Zermelo\Reports\Tree\AbstractTreeReport;
 
 class TreeCardTest extends AbstractTreeReport
 {

@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     git \
     netcat-openbsd \
     mysql-client \
-    postgresql-client \
     sudo \
     phpmyadmin \
     && apt-get clean
@@ -37,8 +36,7 @@ COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/phpmyadmin.conf /etc/apache2/conf-available/phpmyadmin.conf
 COPY docker/config.inc.php /etc/phpmyadmin/config.inc.php
 
-
-# Enable Apache rewrite module
+# Enable Apache rewrite module and phpMyAdmin
 RUN a2enmod rewrite
 RUN a2enconf phpmyadmin
 
