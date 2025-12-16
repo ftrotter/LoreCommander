@@ -30,6 +30,7 @@ services:
     networks:
       - lorecommander_network
     restart: unless-stopped
+    # Character set defaults are set in mysql.cnf, but also specified here as backup
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -42,6 +43,8 @@ services:
       - lorecommander_db_data:/var/lib/mysql
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./setup_db:/docker-entrypoint-initdb.d/setup_db
+      # MySQL configuration file for character set and collation defaults
+      - ./docker/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
 
 volumes:
   lorecommander_db_data:

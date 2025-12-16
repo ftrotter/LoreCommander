@@ -35,34 +35,18 @@ class CSVReportGraph extends AbstractGraphReport
     public function GetSQL()
     {
 
+        $csv_table_name = $this->getCode();
+
 // a good url for target...
 
+        // Use SELECT * to pick up all columns including optional ones like:
+        // source_group_order, target_group_order (for controlling Group Gravity left-to-right ordering)
+        // source_latitude, source_longitude, target_latitude, target_longitude (for geo positioning)
+        // source_img, target_img (for node images)
+        // source_json_url, target_json_url (for node click details)
         $sql = "
-SELECT 
-
-    source_id,
-    source_name,
-    source_size,
-    source_type,
-    source_group,
-    source_latitude,
-    source_longitude,
-    source_img,
-
-    target_id,
-    target_name,
-    target_size,
-    target_type,
-    target_group,
-    target_latitude,
-    target_longitude,
-    target_json_url,
-    target_img,
-
-    weight,
-    link_type,
-    query_num
-FROM  graph_reports.mayo_clinic_graph
+SELECT *
+FROM graph_reports.$csv_table_name
 ";
 
         return $sql;
