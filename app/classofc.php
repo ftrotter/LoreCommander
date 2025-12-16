@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class classofc extends \App\DURC\Models\classofc
+class classofc extends \App\DURCC\Models\classofc
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

@@ -6,7 +6,7 @@ FILE_SIG=ed35fc68d07a0f2dd9a1489164d02ee8
 namespace App\Http\Controllers;
 
 use App\appstring;
-use App\DURC\Controllers\appstringController as DURCParentController;
+use App\DURCC\Controllers\appstringController as DURCParentController;
 use Illuminate\Http\Request;
 
 class appstringController extends DURCParentController

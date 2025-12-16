@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class uniquecomment_to_comment extends \App\DURC\Models\uniquecomment_to_comment
+class uniquecomment_to_comment extends \App\DURCC\Models\uniquecomment_to_comment
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

@@ -6,7 +6,7 @@ FILE_SIG=9a4e19c70523c9722c1c38253522c2d8
 namespace App\Http\Controllers;
 
 use App\person_creature_tag;
-use App\DURC\Controllers\person_creature_tagController as DURCParentController;
+use App\DURCC\Controllers\person_creature_tagController as DURCParentController;
 use Illuminate\Http\Request;
 
 class person_creature_tagController extends DURCParentController

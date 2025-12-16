@@ -6,7 +6,7 @@ FILE_SIG=ba4c4e1d50c3c9911a99da4183607eb6
 namespace App\Http\Controllers;
 
 use App\employee;
-use App\DURC\Controllers\employeeController as DURCParentController;
+use App\DURCC\Controllers\employeeController as DURCParentController;
 use Illuminate\Http\Request;
 
 class employeeController extends DURCParentController

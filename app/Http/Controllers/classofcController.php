@@ -6,7 +6,7 @@ FILE_SIG=3be423a5bb5eb4b86bb2b6ea785ccae1
 namespace App\Http\Controllers;
 
 use App\classofc;
-use App\DURC\Controllers\classofcController as DURCParentController;
+use App\DURCC\Controllers\classofcController as DURCParentController;
 use Illuminate\Http\Request;
 
 class classofcController extends DURCParentController

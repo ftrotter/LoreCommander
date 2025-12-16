@@ -6,7 +6,7 @@ FILE_SIG=f9d97663856ee84862729dfefcd15d10
 namespace App\Http\Controllers;
 
 use App\product;
-use App\DURC\Controllers\productController as DURCParentController;
+use App\DURCC\Controllers\productController as DURCParentController;
 use Illuminate\Http\Request;
 
 class productController extends DURCParentController

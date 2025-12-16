@@ -6,7 +6,7 @@ FILE_SIG=5fc2e2e27a507d7df97d476ced682ae6
 namespace App\Http\Controllers;
 
 use App\wallpaper_url;
-use App\DURC\Controllers\wallpaper_urlController as DURCParentController;
+use App\DURCC\Controllers\wallpaper_urlController as DURCParentController;
 use Illuminate\Http\Request;
 
 class wallpaper_urlController extends DURCParentController

@@ -6,7 +6,7 @@ FILE_SIG=3c181f6b811d3fe1b1d0385d2814406b
 namespace App\Http\Controllers;
 
 use App\vote;
-use App\DURC\Controllers\voteController as DURCParentController;
+use App\DURCC\Controllers\voteController as DURCParentController;
 use Illuminate\Http\Request;
 
 class voteController extends DURCParentController

@@ -6,7 +6,7 @@ FILE_SIG=694987d321d30a94a2e06b283b90451f
 namespace App\Http\Controllers;
 
 use App\ordertaxstat;
-use App\DURC\Controllers\ordertaxstatController as DURCParentController;
+use App\DURCC\Controllers\ordertaxstatController as DURCParentController;
 use Illuminate\Http\Request;
 
 class ordertaxstatController extends DURCParentController

@@ -2,7 +2,7 @@
 
 namespace App\Reports;
 
-use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
 
 class TestDefaultSortOrderReport extends AbstractTabularReport
 {

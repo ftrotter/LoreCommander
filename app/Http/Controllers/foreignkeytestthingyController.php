@@ -6,7 +6,7 @@ FILE_SIG=ae4077967426d025e7cdef1643eb5a70
 namespace App\Http\Controllers;
 
 use App\foreignkeytestthingy;
-use App\DURC\Controllers\foreignkeytestthingyController as DURCParentController;
+use App\DURCC\Controllers\foreignkeytestthingyController as DURCParentController;
 use Illuminate\Http\Request;
 
 class foreignkeytestthingyController extends DURCParentController

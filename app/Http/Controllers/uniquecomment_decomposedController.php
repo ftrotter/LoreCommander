@@ -6,7 +6,7 @@ FILE_SIG=c8f485086147927d596d0fe2d1680e91
 namespace App\Http\Controllers;
 
 use App\uniquecomment_decomposed;
-use App\DURC\Controllers\uniquecomment_decomposedController as DURCParentController;
+use App\DURCC\Controllers\uniquecomment_decomposedController as DURCParentController;
 use Illuminate\Http\Request;
 
 class uniquecomment_decomposedController extends DURCParentController

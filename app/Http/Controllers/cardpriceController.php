@@ -6,7 +6,7 @@ FILE_SIG=9acab2d08d7c451e482e028073d8c50b
 namespace App\Http\Controllers;
 
 use App\cardprice;
-use App\DURC\Controllers\cardpriceController as DURCParentController;
+use App\DURCC\Controllers\cardpriceController as DURCParentController;
 use Illuminate\Http\Request;
 
 class cardpriceController extends DURCParentController

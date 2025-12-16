@@ -6,7 +6,7 @@ FILE_SIG=0b0ccbf1c23265b1a4f7dedf48f0987f
 namespace App\Http\Controllers;
 
 use App\llm_reply_per_comment;
-use App\DURC\Controllers\llm_reply_per_commentController as DURCParentController;
+use App\DURCC\Controllers\llm_reply_per_commentController as DURCParentController;
 use Illuminate\Http\Request;
 
 class llm_reply_per_commentController extends DURCParentController

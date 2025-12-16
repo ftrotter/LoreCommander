@@ -6,7 +6,7 @@ FILE_SIG=6f0b32f0b75fa3009b0ee0e2e8466334
 namespace App\Http\Controllers;
 
 use App\order_2018;
-use App\DURC\Controllers\order_2018Controller as DURCParentController;
+use App\DURCC\Controllers\order_2018Controller as DURCParentController;
 use Illuminate\Http\Request;
 
 class order_2018Controller extends DURCParentController

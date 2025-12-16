@@ -6,7 +6,7 @@ FILE_SIG=2a2b63c2f21d436a432940400ad32773
 namespace App\Http\Controllers;
 
 use App\classofcreature_copy;
-use App\DURC\Controllers\classofcreature_copyController as DURCParentController;
+use App\DURCC\Controllers\classofcreature_copyController as DURCParentController;
 use Illuminate\Http\Request;
 
 class classofcreature_copyController extends DURCParentController

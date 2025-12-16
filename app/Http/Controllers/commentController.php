@@ -6,7 +6,7 @@ FILE_SIG=5ecf04de03517742cac1da81e1bc374a
 namespace App\Http\Controllers;
 
 use App\comment;
-use App\DURC\Controllers\commentController as DURCParentController;
+use App\DURCC\Controllers\commentController as DURCParentController;
 use Illuminate\Http\Request;
 
 class commentController extends DURCParentController

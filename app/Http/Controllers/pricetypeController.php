@@ -6,7 +6,7 @@ FILE_SIG=2269462e258439da2b749de6e856af3c
 namespace App\Http\Controllers;
 
 use App\pricetype;
-use App\DURC\Controllers\pricetypeController as DURCParentController;
+use App\DURCC\Controllers\pricetypeController as DURCParentController;
 use Illuminate\Http\Request;
 
 class pricetypeController extends DURCParentController

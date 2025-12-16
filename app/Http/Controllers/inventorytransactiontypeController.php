@@ -6,7 +6,7 @@ FILE_SIG=ecb5540bbf9b75493427da8d483f0cfe
 namespace App\Http\Controllers;
 
 use App\inventorytransactiontype;
-use App\DURC\Controllers\inventorytransactiontypeController as DURCParentController;
+use App\DURCC\Controllers\inventorytransactiontypeController as DURCParentController;
 use Illuminate\Http\Request;
 
 class inventorytransactiontypeController extends DURCParentController

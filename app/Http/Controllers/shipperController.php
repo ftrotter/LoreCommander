@@ -6,7 +6,7 @@ FILE_SIG=f84b7a115653b408463a2be12e7be565
 namespace App\Http\Controllers;
 
 use App\shipper;
-use App\DURC\Controllers\shipperController as DURCParentController;
+use App\DURCC\Controllers\shipperController as DURCParentController;
 use Illuminate\Http\Request;
 
 class shipperController extends DURCParentController

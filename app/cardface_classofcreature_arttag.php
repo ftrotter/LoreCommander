@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class cardface_classofcreature_arttag extends \App\DURC\Models\cardface_classofcreature_arttag
+class cardface_classofcreature_arttag extends \App\DURCC\Models\cardface_classofcreature_arttag
 {
 
 	//You may need to change these for 'one to very very many' relationships.

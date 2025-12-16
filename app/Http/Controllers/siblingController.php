@@ -6,7 +6,7 @@ FILE_SIG=6443a1124e2184c7cb5ade7cca901051
 namespace App\Http\Controllers;
 
 use App\sibling;
-use App\DURC\Controllers\siblingController as DURCParentController;
+use App\DURCC\Controllers\siblingController as DURCParentController;
 use Illuminate\Http\Request;
 
 class siblingController extends DURCParentController

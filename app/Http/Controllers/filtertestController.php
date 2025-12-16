@@ -6,7 +6,7 @@ FILE_SIG=f6efb27b7e3b5489eb171ea7fe3a7839
 namespace App\Http\Controllers;
 
 use App\filtertest;
-use App\DURC\Controllers\filtertestController as DURCParentController;
+use App\DURCC\Controllers\filtertestController as DURCParentController;
 use Illuminate\Http\Request;
 
 class filtertestController extends DURCParentController

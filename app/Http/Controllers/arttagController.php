@@ -6,7 +6,7 @@ FILE_SIG=586ae4fa2280eb5d7ca0600a8f169dbf
 namespace App\Http\Controllers;
 
 use App\arttag;
-use App\DURC\Controllers\arttagController as DURCParentController;
+use App\DURCC\Controllers\arttagController as DURCParentController;
 use Illuminate\Http\Request;
 
 class arttagController extends DURCParentController

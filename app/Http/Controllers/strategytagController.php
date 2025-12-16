@@ -6,7 +6,7 @@ FILE_SIG=563d7054d9976558982b15d278b19efb
 namespace App\Http\Controllers;
 
 use App\strategytag;
-use App\DURC\Controllers\strategytagController as DURCParentController;
+use App\DURCC\Controllers\strategytagController as DURCParentController;
 use Illuminate\Http\Request;
 
 class strategytagController extends DURCParentController

@@ -6,7 +6,7 @@ FILE_SIG=897b4e0f21975bac1abe3d374161515d
 namespace App\Http\Controllers;
 
 use App\invoice;
-use App\DURC\Controllers\invoiceController as DURCParentController;
+use App\DURCC\Controllers\invoiceController as DURCParentController;
 use Illuminate\Http\Request;
 
 class invoiceController extends DURCParentController

@@ -6,7 +6,7 @@ FILE_SIG=bad73868be28e201091a2143b1cd339e
 namespace App\Http\Controllers;
 
 use App\uniquecomment;
-use App\DURC\Controllers\uniquecommentController as DURCParentController;
+use App\DURCC\Controllers\uniquecommentController as DURCParentController;
 use Illuminate\Http\Request;
 
 class uniquecommentController extends DURCParentController

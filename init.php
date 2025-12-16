@@ -65,7 +65,7 @@
 		"sudo -u $real_user composer update",
 		"sudo -u $real_user php artisan key:generate",
 //		"sudo -u $real_user cp ./templates/ReadMe.template.md README.md",
-		"sudo -u $real_user php artisan vendor:publish --provider='CareSet\DURC\DURCServiceProvider'",
+		"sudo -u $real_user php artisan vendor:publish --provider='ftrotter\DURCC\DURCCServiceProvider'",
 //		"sudo -u $real_user php artisan vendor:publish --tag=laravel-handlebars",
 		"chmod g+w storage/* -R", //this will actually be run as root!! and 
 		"chown $real_user:www-data storage/* -R", //this will 

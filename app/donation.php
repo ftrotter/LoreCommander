@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class donation extends \App\DURC\Models\donation
+class donation extends \App\DURCC\Models\donation
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

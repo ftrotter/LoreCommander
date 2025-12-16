@@ -6,7 +6,7 @@ FILE_SIG=885bc1839f318a8a0d1b038d194344f7
 namespace App\Http\Controllers;
 
 use App\test_null_default;
-use App\DURC\Controllers\test_null_defaultController as DURCParentController;
+use App\DURCC\Controllers\test_null_defaultController as DURCParentController;
 use Illuminate\Http\Request;
 
 class test_null_defaultController extends DURCParentController

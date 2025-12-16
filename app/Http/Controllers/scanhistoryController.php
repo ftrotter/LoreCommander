@@ -6,7 +6,7 @@ FILE_SIG=551c19152492640048f3af72f43205b5
 namespace App\Http\Controllers;
 
 use App\scanhistory;
-use App\DURC\Controllers\scanhistoryController as DURCParentController;
+use App\DURCC\Controllers\scanhistoryController as DURCParentController;
 use Illuminate\Http\Request;
 
 class scanhistoryController extends DURCParentController

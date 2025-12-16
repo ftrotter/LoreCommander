@@ -6,7 +6,7 @@ FILE_SIG=73ef350c61eed30dd569d762e52c85a7
 namespace App\Http\Controllers;
 
 use App\product_to_supplier;
-use App\DURC\Controllers\product_to_supplierController as DURCParentController;
+use App\DURCC\Controllers\product_to_supplierController as DURCParentController;
 use Illuminate\Http\Request;
 
 class product_to_supplierController extends DURCParentController

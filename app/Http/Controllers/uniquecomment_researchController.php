@@ -6,7 +6,7 @@ FILE_SIG=700327e7b125007f5787c69ee8a77fc6
 namespace App\Http\Controllers;
 
 use App\uniquecomment_research;
-use App\DURC\Controllers\uniquecomment_researchController as DURCParentController;
+use App\DURCC\Controllers\uniquecomment_researchController as DURCParentController;
 use Illuminate\Http\Request;
 
 class uniquecomment_researchController extends DURCParentController

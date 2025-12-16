@@ -6,7 +6,7 @@ FILE_SIG=d5dafe3f0baf00b2bdf18cb219005478
 namespace App\Http\Controllers;
 
 use App\classofc_cardface;
-use App\DURC\Controllers\classofc_cardfaceController as DURCParentController;
+use App\DURCC\Controllers\classofc_cardfaceController as DURCParentController;
 use Illuminate\Http\Request;
 
 class classofc_cardfaceController extends DURCParentController

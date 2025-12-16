@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class uniquecomment_research extends \App\DURC\Models\uniquecomment_research
+class uniquecomment_research extends \App\DURCC\Models\uniquecomment_research
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

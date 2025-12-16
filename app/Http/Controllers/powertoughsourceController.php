@@ -6,7 +6,7 @@ FILE_SIG=bc64b017787fd5e1dd1c1a0c9475ee6d
 namespace App\Http\Controllers;
 
 use App\powertoughsource;
-use App\DURC\Controllers\powertoughsourceController as DURCParentController;
+use App\DURCC\Controllers\powertoughsourceController as DURCParentController;
 use Illuminate\Http\Request;
 
 class powertoughsourceController extends DURCParentController

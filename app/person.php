@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class person extends \App\DURC\Models\person 
+class person extends \App\DURCC\Models\person 
 {
 
 	//this controls what is downloaded in the json for this object under card_body.. 

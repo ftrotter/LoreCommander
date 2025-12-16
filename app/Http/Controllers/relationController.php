@@ -6,7 +6,7 @@ FILE_SIG=14e659263a08b8997b8606db9982564e
 namespace App\Http\Controllers;
 
 use App\relation;
-use App\DURC\Controllers\relationController as DURCParentController;
+use App\DURCC\Controllers\relationController as DURCParentController;
 use Illuminate\Http\Request;
 
 class relationController extends DURCParentController

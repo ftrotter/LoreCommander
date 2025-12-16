@@ -6,7 +6,7 @@ FILE_SIG=d2bde82dac656999df009c57254a5ad0
 namespace App\Http\Controllers;
 
 use App\atag;
-use App\DURC\Controllers\atagController as DURCParentController;
+use App\DURCC\Controllers\atagController as DURCParentController;
 use Illuminate\Http\Request;
 
 class atagController extends DURCParentController

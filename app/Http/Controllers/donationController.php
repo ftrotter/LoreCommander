@@ -6,7 +6,7 @@ FILE_SIG=03a21178401ce9d115f6a2c00594adab
 namespace App\Http\Controllers;
 
 use App\donation;
-use App\DURC\Controllers\donationController as DURCParentController;
+use App\DURCC\Controllers\donationController as DURCParentController;
 use Illuminate\Http\Request;
 
 class donationController extends DURCParentController

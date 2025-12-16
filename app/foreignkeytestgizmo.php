@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class foreignkeytestgizmo extends \App\DURC\Models\foreignkeytestgizmo
+class foreignkeytestgizmo extends \App\DURCC\Models\foreignkeytestgizmo
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

@@ -6,7 +6,7 @@ FILE_SIG=121f48e3a157ea8d1778dad814b97e31
 namespace App\Http\Controllers;
 
 use App\uniquecomment_cluster;
-use App\DURC\Controllers\uniquecomment_clusterController as DURCParentController;
+use App\DURCC\Controllers\uniquecomment_clusterController as DURCParentController;
 use Illuminate\Http\Request;
 
 class uniquecomment_clusterController extends DURCParentController

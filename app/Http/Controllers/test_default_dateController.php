@@ -6,7 +6,7 @@ FILE_SIG=999aba0e2a8700553f7023c1fb6dca22
 namespace App\Http\Controllers;
 
 use App\test_default_date;
-use App\DURC\Controllers\test_default_dateController as DURCParentController;
+use App\DURCC\Controllers\test_default_dateController as DURCParentController;
 use Illuminate\Http\Request;
 
 class test_default_dateController extends DURCParentController

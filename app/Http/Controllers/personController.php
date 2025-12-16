@@ -6,7 +6,7 @@ FILE_SIG=3ca5d3b2d9be4f963d1a51d1c2f2c8a8
 namespace App\Http\Controllers;
 
 use App\person;
-use App\DURC\Controllers\personController as DURCParentController;
+use App\DURCC\Controllers\personController as DURCParentController;
 use Illuminate\Http\Request;
 
 class personController extends DURCParentController

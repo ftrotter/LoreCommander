@@ -6,7 +6,7 @@ FILE_SIG=49792d81bd2c56ffea5e696f691d3241
 namespace App\Http\Controllers;
 
 use App\charactertest;
-use App\DURC\Controllers\charactertestController as DURCParentController;
+use App\DURCC\Controllers\charactertestController as DURCParentController;
 use Illuminate\Http\Request;
 
 class charactertestController extends DURCParentController

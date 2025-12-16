@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class product extends \App\DURC\Models\product
+class product extends \App\DURCC\Models\product
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

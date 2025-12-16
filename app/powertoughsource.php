@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class powertoughsource extends \App\DURC\Models\powertoughsource
+class powertoughsource extends \App\DURCC\Models\powertoughsource
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

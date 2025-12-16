@@ -6,7 +6,7 @@ FILE_SIG=1f3a38bd67feba8bda2f26f44ecff56f
 namespace App\Http\Controllers;
 
 use App\authortype;
-use App\DURC\Controllers\authortypeController as DURCParentController;
+use App\DURCC\Controllers\authortypeController as DURCParentController;
 use Illuminate\Http\Request;
 
 class authortypeController extends DURCParentController

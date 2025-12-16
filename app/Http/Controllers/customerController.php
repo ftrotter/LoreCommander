@@ -6,7 +6,7 @@ FILE_SIG=3ba269618aee43f92a04ca4208bd3af0
 namespace App\Http\Controllers;
 
 use App\customer;
-use App\DURC\Controllers\customerController as DURCParentController;
+use App\DURCC\Controllers\customerController as DURCParentController;
 use Illuminate\Http\Request;
 
 class customerController extends DURCParentController

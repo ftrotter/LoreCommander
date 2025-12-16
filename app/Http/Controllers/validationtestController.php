@@ -6,7 +6,7 @@ FILE_SIG=1fbefe7c6bcb1254ce3e3365f6617d17
 namespace App\Http\Controllers;
 
 use App\validationtest;
-use App\DURC\Controllers\validationtestController as DURCParentController;
+use App\DURCC\Controllers\validationtestController as DURCParentController;
 use Illuminate\Http\Request;
 
 class validationtestController extends DURCParentController

@@ -6,7 +6,7 @@ FILE_SIG=af079cf5d47b4ae0abaf6cfa8f723a08
 namespace App\Http\Controllers;
 
 use App\book;
-use App\DURC\Controllers\bookController as DURCParentController;
+use App\DURCC\Controllers\bookController as DURCParentController;
 use Illuminate\Http\Request;
 
 class bookController extends DURCParentController

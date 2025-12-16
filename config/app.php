@@ -215,10 +215,10 @@ return [
 
 
 	// load DURC
-        CareSet\DURC\DURCServiceProvider::class,
+        ftrotter\DURCC\DURCCServiceProvider::class,
 
     // load Zermelo
-        CareSet\Zermelo\ZermeloServiceProvider::class,
+        ftrotter\ZZermelo\ZZermeloServiceProvider::class,
 
 	//Eloquent Auditing from http://www.laravel-auditing.com
 

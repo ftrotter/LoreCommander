@@ -6,7 +6,7 @@ FILE_SIG=06e716dce155ed98065748d315dcfc07
 namespace App\Http\Controllers;
 
 use App\order;
-use App\DURC\Controllers\orderController as DURCParentController;
+use App\DURCC\Controllers\orderController as DURCParentController;
 use Illuminate\Http\Request;
 
 class orderController extends DURCParentController

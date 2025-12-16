@@ -6,7 +6,7 @@ FILE_SIG=431ca680a65c4d06937a0c70a69087da
 namespace App\Http\Controllers;
 
 use App\cardface_classofc_atag;
-use App\DURC\Controllers\cardface_classofc_atagController as DURCParentController;
+use App\DURCC\Controllers\cardface_classofc_atagController as DURCParentController;
 use Illuminate\Http\Request;
 
 class cardface_classofc_atagController extends DURCParentController

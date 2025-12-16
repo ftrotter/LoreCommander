@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class author_book extends \App\DURC\Models\author_book
+class author_book extends \App\DURCC\Models\author_book
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

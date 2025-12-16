@@ -5,7 +5,7 @@
 	to use: http://[baseUrl]/durctest
 	
 	To remove routes from production, remove the require for this file from the register() method
-	of the DURCServiceProvider.
+	of the DURCCServiceProvider.
 
 */
 

@@ -6,7 +6,7 @@ FILE_SIG=942bb7321db78b3f817450f6d4665d16
 namespace App\Http\Controllers;
 
 use App\pack;
-use App\DURC\Controllers\packController as DURCParentController;
+use App\DURCC\Controllers\packController as DURCParentController;
 use Illuminate\Http\Request;
 
 class packController extends DURCParentController

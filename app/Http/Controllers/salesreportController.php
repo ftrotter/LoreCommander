@@ -6,7 +6,7 @@ FILE_SIG=abe6a1b0fa65405a399583c2e65aa391
 namespace App\Http\Controllers;
 
 use App\salesreport;
-use App\DURC\Controllers\salesreportController as DURCParentController;
+use App\DURCC\Controllers\salesreportController as DURCParentController;
 use Illuminate\Http\Request;
 
 class salesreportController extends DURCParentController

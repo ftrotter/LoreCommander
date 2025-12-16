@@ -6,7 +6,7 @@ FILE_SIG=738d58be0d2e69704e709ae30af35428
 namespace App\Http\Controllers;
 
 use App\funnything;
-use App\DURC\Controllers\funnythingController as DURCParentController;
+use App\DURCC\Controllers\funnythingController as DURCParentController;
 use Illuminate\Http\Request;
 
 class funnythingController extends DURCParentController

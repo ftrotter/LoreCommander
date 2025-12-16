@@ -6,7 +6,7 @@ FILE_SIG=6c4ffa0637a3c6da97a6ad15db86da47
 namespace App\Http\Controllers;
 
 use App\uniquecomment_to_comment;
-use App\DURC\Controllers\uniquecomment_to_commentController as DURCParentController;
+use App\DURCC\Controllers\uniquecomment_to_commentController as DURCParentController;
 use Illuminate\Http\Request;
 
 class uniquecomment_to_commentController extends DURCParentController

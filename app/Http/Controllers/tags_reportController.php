@@ -6,7 +6,7 @@ FILE_SIG=e1eb84e620f66b4db0219113cd8e49dc
 namespace App\Http\Controllers;
 
 use App\tags_report;
-use App\DURC\Controllers\tags_reportController as DURCParentController;
+use App\DURCC\Controllers\tags_reportController as DURCParentController;
 use Illuminate\Http\Request;
 
 class tags_reportController extends DURCParentController

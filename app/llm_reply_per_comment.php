@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class llm_reply_per_comment extends \App\DURC\Models\llm_reply_per_comment
+class llm_reply_per_comment extends \App\DURCC\Models\llm_reply_per_comment
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

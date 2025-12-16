@@ -6,7 +6,7 @@ FILE_SIG=5a9dee8a061408eea0cb71f7823170ec
 namespace App\Http\Controllers;
 
 use App\mtgset;
-use App\DURC\Controllers\mtgsetController as DURCParentController;
+use App\DURCC\Controllers\mtgsetController as DURCParentController;
 use Illuminate\Http\Request;
 
 class mtgsetController extends DURCParentController

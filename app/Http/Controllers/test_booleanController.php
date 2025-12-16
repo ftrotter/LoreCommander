@@ -6,7 +6,7 @@ FILE_SIG=0d6ee641ac9250ff69c8cc161809540a
 namespace App\Http\Controllers;
 
 use App\test_boolean;
-use App\DURC\Controllers\test_booleanController as DURCParentController;
+use App\DURCC\Controllers\test_booleanController as DURCParentController;
 use Illuminate\Http\Request;
 
 class test_booleanController extends DURCParentController

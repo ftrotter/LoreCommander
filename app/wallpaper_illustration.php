@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class wallpaper_illustration extends \App\DURC\Models\wallpaper_illustration
+class wallpaper_illustration extends \App\DURCC\Models\wallpaper_illustration
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

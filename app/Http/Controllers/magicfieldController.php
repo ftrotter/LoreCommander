@@ -6,7 +6,7 @@ FILE_SIG=02ac2ecfdf462112f004768b946e166f
 namespace App\Http\Controllers;
 
 use App\magicfield;
-use App\DURC\Controllers\magicfieldController as DURCParentController;
+use App\DURCC\Controllers\magicfieldController as DURCParentController;
 use Illuminate\Http\Request;
 
 class magicfieldController extends DURCParentController

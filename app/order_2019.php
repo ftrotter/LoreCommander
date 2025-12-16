@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class order_2019 extends \App\DURC\Models\order_2019
+class order_2019 extends \App\DURCC\Models\order_2019
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

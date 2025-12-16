@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class person_classofc_cardface extends \App\DURC\Models\person_classofc_cardface
+class person_classofc_cardface extends \App\DURCC\Models\person_classofc_cardface
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

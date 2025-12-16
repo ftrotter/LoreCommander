@@ -6,7 +6,7 @@ FILE_SIG=b5d0253508b3c78966c95cde527bbc38
 namespace App\Http\Controllers;
 
 use App\artistcredit;
-use App\DURC\Controllers\artistcreditController as DURCParentController;
+use App\DURCC\Controllers\artistcreditController as DURCParentController;
 use Illuminate\Http\Request;
 
 class artistcreditController extends DURCParentController

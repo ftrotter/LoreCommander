@@ -6,7 +6,7 @@ FILE_SIG=7c555775a5e4cccb700683ab5115804a
 namespace App\Http\Controllers;
 
 use App\person_strategy_tag;
-use App\DURC\Controllers\person_strategy_tagController as DURCParentController;
+use App\DURCC\Controllers\person_strategy_tagController as DURCParentController;
 use Illuminate\Http\Request;
 
 class person_strategy_tagController extends DURCParentController

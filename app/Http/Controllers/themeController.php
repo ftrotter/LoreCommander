@@ -6,7 +6,7 @@ FILE_SIG=e789d1bf0e906e0f7013538d478a9441
 namespace App\Http\Controllers;
 
 use App\theme;
-use App\DURC\Controllers\themeController as DURCParentController;
+use App\DURCC\Controllers\themeController as DURCParentController;
 use Illuminate\Http\Request;
 
 class themeController extends DURCParentController

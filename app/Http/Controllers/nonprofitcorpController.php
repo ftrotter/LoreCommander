@@ -6,7 +6,7 @@ FILE_SIG=b8efe4e137a431b4b1b1c6e85dcadfa0
 namespace App\Http\Controllers;
 
 use App\nonprofitcorp;
-use App\DURC\Controllers\nonprofitcorpController as DURCParentController;
+use App\DURCC\Controllers\nonprofitcorpController as DURCParentController;
 use Illuminate\Http\Request;
 
 class nonprofitcorpController extends DURCParentController

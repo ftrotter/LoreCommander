@@ -6,7 +6,7 @@ FILE_SIG=a8864915811719d38bdde9523a4967a9
 namespace App\Http\Controllers;
 
 use App\post;
-use App\DURC\Controllers\postController as DURCParentController;
+use App\DURCC\Controllers\postController as DURCParentController;
 use Illuminate\Http\Request;
 
 class postController extends DURCParentController

@@ -6,7 +6,7 @@ FILE_SIG=c5055b3424394a38e2cfeae73a04c5d2
 namespace App\Http\Controllers;
 
 use App\privilege;
-use App\DURC\Controllers\privilegeController as DURCParentController;
+use App\DURCC\Controllers\privilegeController as DURCParentController;
 use Illuminate\Http\Request;
 
 class privilegeController extends DURCParentController

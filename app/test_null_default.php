@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class test_null_default extends \App\DURC\Models\test_null_default
+class test_null_default extends \App\DURCC\Models\test_null_default
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

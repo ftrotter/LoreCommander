@@ -6,7 +6,7 @@ FILE_SIG=63b20beeb7d46920e42bbe2b36a26a83
 namespace App\Http\Controllers;
 
 use App\mverse;
-use App\DURC\Controllers\mverseController as DURCParentController;
+use App\DURCC\Controllers\mverseController as DURCParentController;
 use Illuminate\Http\Request;
 
 class mverseController extends DURCParentController

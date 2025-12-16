@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class comment_cluster extends \App\DURC\Models\comment_cluster
+class comment_cluster extends \App\DURCC\Models\comment_cluster
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

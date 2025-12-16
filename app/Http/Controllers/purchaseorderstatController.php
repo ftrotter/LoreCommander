@@ -6,7 +6,7 @@ FILE_SIG=e7362ea5bc68e5137f4b197292252d69
 namespace App\Http\Controllers;
 
 use App\purchaseorderstat;
-use App\DURC\Controllers\purchaseorderstatController as DURCParentController;
+use App\DURCC\Controllers\purchaseorderstatController as DURCParentController;
 use Illuminate\Http\Request;
 
 class purchaseorderstatController extends DURCParentController

@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class nonprofitcorp extends \App\DURC\Models\nonprofitcorp
+class nonprofitcorp extends \App\DURCC\Models\nonprofitcorp
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

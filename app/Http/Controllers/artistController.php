@@ -6,7 +6,7 @@ FILE_SIG=632d3168946c65b776c10676d276b7a9
 namespace App\Http\Controllers;
 
 use App\artist;
-use App\DURC\Controllers\artistController as DURCParentController;
+use App\DURCC\Controllers\artistController as DURCParentController;
 use Illuminate\Http\Request;
 
 class artistController extends DURCParentController

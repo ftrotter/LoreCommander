@@ -6,7 +6,7 @@ FILE_SIG=5d35987367d54d8e111c66779a644342
 namespace App\Http\Controllers;
 
 use App\classofcreature;
-use App\DURC\Controllers\classofcreatureController as DURCParentController;
+use App\DURCC\Controllers\classofcreatureController as DURCParentController;
 use Illuminate\Http\Request;
 
 class classofcreatureController extends DURCParentController

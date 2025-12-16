@@ -6,7 +6,7 @@ FILE_SIG=d0709dfd37328bebc2df416e44fe8b99
 namespace App\Http\Controllers;
 
 use App\questions_for_llm;
-use App\DURC\Controllers\questions_for_llmController as DURCParentController;
+use App\DURCC\Controllers\questions_for_llmController as DURCParentController;
 use Illuminate\Http\Request;
 
 class questions_for_llmController extends DURCParentController

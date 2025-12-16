@@ -12,7 +12,7 @@ this is safe to edit.
 
 
 */
-class mtgset extends \App\DURC\Models\mtgset
+class mtgset extends \App\DURCC\Models\mtgset
 {
 	//this controls what is downloaded in the json for this object under card_body.. 
 	//this function returns the html snippet that should be loaded for the summary of this object in a bootstrap card

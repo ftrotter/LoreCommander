@@ -6,7 +6,7 @@ FILE_SIG=d5a417eacd2e3f3db118f36c13616f4b
 namespace App\Http\Controllers;
 
 use App\test_created_only;
-use App\DURC\Controllers\test_created_onlyController as DURCParentController;
+use App\DURCC\Controllers\test_created_onlyController as DURCParentController;
 use Illuminate\Http\Request;
 
 class test_created_onlyController extends DURCParentController
