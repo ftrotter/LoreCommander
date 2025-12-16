@@ -8,6 +8,7 @@ services:
       - lorecommander_network
     ports:
       - "8080:80"
+      - "8443:443"
     volumes:
       - .:/var/www/html/LoreCommander
       - ../ZZermelo:/var/www/html/Zermelo

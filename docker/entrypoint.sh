@@ -95,7 +95,15 @@ chown -R www-data:www-data /var/www/html/LoreCommander/public/imgdata
 # 9. Start the Apache server.
 echo "=============================================="
 echo "Setup complete. Starting Apache server..."
-echo "The application is now running at http://localhost:8080"
-echo "phpMyAdmin is available at http://localhost:8080/pma4414"
+echo "The application is now running at:"
+echo "  HTTP:  http://localhost:8080"
+echo "  HTTPS: https://localhost:8443"
+echo ""
+echo "phpMyAdmin is available at:"
+echo "  HTTP:  http://localhost:8080/pma4414"
+echo "  HTTPS: https://localhost:8443/pma4414 (recommended)"
+echo ""
+echo "Note: The HTTPS certificate is self-signed. Your browser will"
+echo "show a security warning - this is expected for development."
 echo "=============================================="
 exec apache2ctl -D FOREGROUND
