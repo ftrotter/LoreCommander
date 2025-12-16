@@ -8,6 +8,8 @@
 --
 -- These will be run through app/Reports/CSVReportGraph.php to verify the behavior.
 -- Access via: /ZZermeloGraph/CSVReportGraph/{table_name}
+--
+-- NOTE: Node names include their group_order value for easy visual verification!
 -- =====================================================
 
 -- First ensure the database exists
@@ -18,9 +20,9 @@ USE graph_reports;
 -- TEST 1: SUCCESS CASE - Proper group_order usage
 -- =====================================================
 -- This table demonstrates correct usage of group_order:
--- - All nodes in "Hospitals" group have group_order = 1
--- - All nodes in "Doctors" group have group_order = 2  
--- - All nodes in "Patients" group have group_order = 3
+-- - All nodes in "Hospitals" group have group_order = 1 (leftmost)
+-- - All nodes in "Doctors" group have group_order = 2 (middle)
+-- - All nodes in "Patients" group have group_order = 3 (rightmost)
 -- Expected: Graph should render with groups ordered left-to-right: Hospitals -> Doctors -> Patients
 
 DROP TABLE IF EXISTS test_group_order_success;
@@ -53,47 +55,48 @@ CREATE TABLE test_group_order_success (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Insert test data: Hospitals (leftmost) -> Doctors (middle) -> Patients (rightmost)
+-- NODE NAMES INCLUDE GROUP_ORDER FOR EASY VISUAL VERIFICATION!
 INSERT INTO test_group_order_success 
 (source_id, source_name, source_type, source_group, source_group_order,
  target_id, target_name, target_type, target_group, target_group_order,
  weight, link_type, query_num) VALUES
 
 -- Hospital to Doctor relationships (Hospitals = order 1, Doctors = order 2)
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals', 1,
- 'doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
+('hosp_001', 'General Hospital [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
  10.0, 'employs', 1),
 
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals', 1,
- 'doc_002', 'Dr. Jones', 'Doctor', 'Doctors', 2,
+('hosp_001', 'General Hospital [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_002', 'Dr. Jones [order=2]', 'Doctor', 'Doctors', 2,
  8.0, 'employs', 1),
 
-('hosp_002', 'City Medical Center', 'Hospital', 'Hospitals', 1,
- 'doc_003', 'Dr. Williams', 'Doctor', 'Doctors', 2,
+('hosp_002', 'City Medical [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_003', 'Dr. Williams [order=2]', 'Doctor', 'Doctors', 2,
  12.0, 'employs', 1),
 
-('hosp_002', 'City Medical Center', 'Hospital', 'Hospitals', 1,
- 'doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
+('hosp_002', 'City Medical [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
  5.0, 'employs', 1),
 
 -- Doctor to Patient relationships (Doctors = order 2, Patients = order 3)
-('doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
- 'pat_001', 'John Doe', 'Patient', 'Patients', 3,
+('doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
+ 'pat_001', 'John Doe [order=3]', 'Patient', 'Patients', 3,
  3.0, 'treats', 2),
 
-('doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
- 'pat_002', 'Jane Doe', 'Patient', 'Patients', 3,
+('doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
+ 'pat_002', 'Jane Doe [order=3]', 'Patient', 'Patients', 3,
  4.0, 'treats', 2),
 
-('doc_002', 'Dr. Jones', 'Doctor', 'Doctors', 2,
- 'pat_003', 'Bob Wilson', 'Patient', 'Patients', 3,
+('doc_002', 'Dr. Jones [order=2]', 'Doctor', 'Doctors', 2,
+ 'pat_003', 'Bob Wilson [order=3]', 'Patient', 'Patients', 3,
  2.0, 'treats', 2),
 
-('doc_003', 'Dr. Williams', 'Doctor', 'Doctors', 2,
- 'pat_001', 'John Doe', 'Patient', 'Patients', 3,
+('doc_003', 'Dr. Williams [order=2]', 'Doctor', 'Doctors', 2,
+ 'pat_001', 'John Doe [order=3]', 'Patient', 'Patients', 3,
  1.0, 'treats', 2),
 
-('doc_003', 'Dr. Williams', 'Doctor', 'Doctors', 2,
- 'pat_004', 'Alice Brown', 'Patient', 'Patients', 3,
+('doc_003', 'Dr. Williams [order=2]', 'Doctor', 'Doctors', 2,
+ 'pat_004', 'Alice Brown [order=3]', 'Patient', 'Patients', 3,
  6.0, 'treats', 2);
 
 
@@ -134,28 +137,29 @@ CREATE TABLE test_group_order_inconsistent (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Insert test data with INCONSISTENT group_order for "Doctors" group
+-- NOTICE: Doctors have order=2 in first query but order=5 in second query (BUG!)
 INSERT INTO test_group_order_inconsistent 
 (source_id, source_name, source_type, source_group, source_group_order,
  target_id, target_name, target_type, target_group, target_group_order,
  weight, link_type, query_num) VALUES
 
 -- Hospital to Doctor: Doctors get group_order = 2
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals', 1,
- 'doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
+('hosp_001', 'General Hospital [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
  10.0, 'employs', 1),
 
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals', 1,
- 'doc_002', 'Dr. Jones', 'Doctor', 'Doctors', 2,
+('hosp_001', 'General Hospital [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_002', 'Dr. Jones [order=2]', 'Doctor', 'Doctors', 2,
  8.0, 'employs', 1),
 
 -- Doctor to Patient: Same doctor now has DIFFERENT group_order = 5 (BUG!)
 -- This should trigger the inconsistency error
-('doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 5,
- 'pat_001', 'John Doe', 'Patient', 'Patients', 3,
+('doc_001', 'Dr. Smith [order=5-WRONG!]', 'Doctor', 'Doctors', 5,
+ 'pat_001', 'John Doe [order=3]', 'Patient', 'Patients', 3,
  3.0, 'treats', 2),
 
-('doc_002', 'Dr. Jones', 'Doctor', 'Doctors', 5,
- 'pat_002', 'Jane Doe', 'Patient', 'Patients', 3,
+('doc_002', 'Dr. Jones [order=5-WRONG!]', 'Doctor', 'Doctors', 5,
+ 'pat_002', 'Jane Doe [order=3]', 'Patient', 'Patients', 3,
  4.0, 'treats', 2);
 
 
@@ -202,18 +206,18 @@ INSERT INTO test_group_order_null
  weight, link_type, query_num) VALUES
 
 -- First row has proper group_order
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals', 1,
- 'doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
+('hosp_001', 'General Hospital [order=1]', 'Hospital', 'Hospitals', 1,
+ 'doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
  10.0, 'employs', 1),
 
 -- Second row has NULL source_group_order (BUG!)
-('hosp_002', 'City Medical Center', 'Hospital', 'Hospitals', NULL,
- 'doc_002', 'Dr. Jones', 'Doctor', 'Doctors', 2,
+('hosp_002', 'City Medical [order=NULL-BUG!]', 'Hospital', 'Hospitals', NULL,
+ 'doc_002', 'Dr. Jones [order=2]', 'Doctor', 'Doctors', 2,
  8.0, 'employs', 1),
 
 -- Third row is fine
-('doc_001', 'Dr. Smith', 'Doctor', 'Doctors', 2,
- 'pat_001', 'John Doe', 'Patient', 'Patients', 3,
+('doc_001', 'Dr. Smith [order=2]', 'Doctor', 'Doctors', 2,
+ 'pat_001', 'John Doe [order=3]', 'Patient', 'Patients', 3,
  3.0, 'treats', 2);
 
 
@@ -251,26 +255,26 @@ CREATE TABLE test_group_order_none (
     query_num INT NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Insert test data without any group_order columns
+-- Insert test data without any group_order columns (names say "no order specified")
 INSERT INTO test_group_order_none 
 (source_id, source_name, source_type, source_group,
  target_id, target_name, target_type, target_group,
  weight, link_type, query_num) VALUES
 
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals',
- 'doc_001', 'Dr. Smith', 'Doctor', 'Doctors',
+('hosp_001', 'General Hospital [no order]', 'Hospital', 'Hospitals',
+ 'doc_001', 'Dr. Smith [no order]', 'Doctor', 'Doctors',
  10.0, 'employs', 1),
 
-('hosp_001', 'General Hospital', 'Hospital', 'Hospitals',
- 'doc_002', 'Dr. Jones', 'Doctor', 'Doctors',
+('hosp_001', 'General Hospital [no order]', 'Hospital', 'Hospitals',
+ 'doc_002', 'Dr. Jones [no order]', 'Doctor', 'Doctors',
  8.0, 'employs', 1),
 
-('doc_001', 'Dr. Smith', 'Doctor', 'Doctors',
- 'pat_001', 'John Doe', 'Patient', 'Patients',
+('doc_001', 'Dr. Smith [no order]', 'Doctor', 'Doctors',
+ 'pat_001', 'John Doe [no order]', 'Patient', 'Patients',
  3.0, 'treats', 2),
 
-('doc_002', 'Dr. Jones', 'Doctor', 'Doctors',
- 'pat_002', 'Jane Doe', 'Patient', 'Patients',
+('doc_002', 'Dr. Jones [no order]', 'Doctor', 'Doctors',
+ 'pat_002', 'Jane Doe [no order]', 'Patient', 'Patients',
  4.0, 'treats', 2);
 
 
@@ -279,11 +283,12 @@ INSERT INTO test_group_order_none
 -- =====================================================
 -- 
 -- Access via browser (after running this SQL):
---   /ZZermeloGraph/CSVReportGraph/test_group_order_success      -> Should work, groups ordered: Hospitals(1) -> Doctors(2) -> Patients(3)
+--   /ZZermeloGraph/CSVReportGraph/test_group_order_success      -> Should work, groups ordered: [order=1] -> [order=2] -> [order=3]
 --   /ZZermeloGraph/CSVReportGraph/test_group_order_inconsistent -> Should ERROR: "Doctors" group has conflicting group_order values: 2, 5
 --   /ZZermeloGraph/CSVReportGraph/test_group_order_null         -> Should ERROR: source_group_order contains NULL values
 --   /ZZermeloGraph/CSVReportGraph/test_group_order_none         -> Should work with default ordering (backwards compatibility)
 --
+-- NODE NAMES INCLUDE GROUP_ORDER VALUE FOR EASY VISUAL VERIFICATION!
 -- =====================================================
 
 SELECT 'Test tables created successfully!' AS result;
