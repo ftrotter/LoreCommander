@@ -2,8 +2,8 @@
 
 namespace App\DURC\Models;
 
-use ftrotter\DURC\DURCModel;
-use ftrotter\DURC\DURC;
+use ftrotter\DURCC\DURCModel;
+use ftrotter\DURCC\DURC;
 //use Owen It\Auditing\Contracts\Auditable;
 /*
 	Note this class was auto-generated from 

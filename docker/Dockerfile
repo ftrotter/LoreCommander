@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     apache2 \
     php8.1 \
     php8.1-mysql \
+    php8.1-pgsql \
     php8.1-mbstring \
     php8.1-xml \
     php8.1-curl \
@@ -23,6 +24,10 @@ RUN apt-get update && apt-get install -y \
     sudo \
     phpmyadmin \
     && apt-get clean
+
+# Enable PHP extensions
+RUN phpenmod pdo_pgsql
+RUN phpenmod pgsql
 
 # Copy custom PHP configuration
 COPY docker/custom.ini /etc/php/8.1/apache2/conf.d/custom.ini

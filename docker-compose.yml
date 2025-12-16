@@ -12,8 +12,8 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html/LoreCommander
-      - ../Zermelo:/var/www/html/Zermelo
-      - ../DURC:/var/www/html/DURC
+      - ../ZZermelo:/var/www/html/Zermelo
+      - ../DURCC:/var/www/html/DURC
       # Mount a volume for the local image cache
       - lorecommander_imgdata:/var/www/html/LoreCommander/public/imgdata
     depends_on:

@@ -14,15 +14,11 @@ services:
       - ../DURC:/var/www/html/DURC
       # Mount a volume for the local image cache
       - lorecommander_imgdata_postgres:/var/www/html/LoreCommander/public/imgdata
+      - ./docker/entrypoint.sh:/usr/local/bin/entrypoint.sh
     depends_on:
       - db
-    environment:
-      - DB_CONNECTION=pgsql
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_DATABASE=lorecommander
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=rootsecret
+    env_file:
+      - .env.docker
 
   db:
     image: postgres:13

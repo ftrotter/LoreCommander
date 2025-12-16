@@ -9,8 +9,8 @@
     "type": "project",
     "require": {
         "php": "^8.0",
-        "ftrotter/durc": "dev-master",
-        "ftrotter/zermelo": "dev-master",
+        "ftrotter/durcc": "dev-main",
+        "ftrotter/zzermelo": "dev-main",
         "davidgorges/color-contrast": "^1.0",
         "ftrotter/two-table-monolog-mysql": "dev-master",
         "jfcherng/php-diff": "^6.16",

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use ftrotter\Zermelo\Reports\Graph\AbstractGraphReport;
+use ftrotter\ZZermelo\Reports\Graph\AbstractGraphReport;
 
 class TEST_graph_npi extends AbstractGraphReport
 {

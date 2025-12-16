@@ -14,8 +14,6 @@
 
 $repos = [
 	'ftrotter',
-	'docgraph',
-	'careset',
 	];
 
 foreach($repos as $this_repo){

@@ -1,6 +1,6 @@
 <?php
 namespace App\Reports;
-use ftrotter\Zermelo\Reports\Cards\AbstractCardsReport;
+use ftrotter\ZZermelo\Reports\Cards\AbstractCardsReport;
 
 class cardMostSets extends AbstractCardsReport
 {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use ftrotter\Zermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
 use DB;
 
 class SetBinderMap extends AbstractTabularReport

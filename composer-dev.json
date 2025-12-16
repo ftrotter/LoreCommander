@@ -10,11 +10,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/ftrotter/Zermelo.git"
+            "url": "https://github.com/ftrotter/ZZermelo.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/ftrotter/DURC.git"
+            "url": "https://github.com/ftrotter/DURCC.git"
         }
     ],
     "require": {
@@ -26,8 +26,8 @@
         "sunra/php-simple-html-dom-parser": "^1.5",
         "superbalist/flysystem-google-storage": "^7.0",
         "vlucas/phpdotenv": "^5.2",
-        "ftrotter/zermelo": "dev-main",
-        "ftrotter/durc": "dev-main"
+        "ftrotter/zzermelo": "dev-main",
+        "ftrotter/durcc": "dev-main"
     },
     "require-dev": {
     },
@@ -38,8 +38,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "ftrotter\\DURC\\": "../DURC/src/",
-            "ftrotter\\Zermelo\\": "../Zermelo/src/"
+            "ftrotter\\DURCC\\": "../DURCC/src/",
+            "ftrotter\\ZZermelo\\": "../ZZermelo/src/"
         }
     },
     "autoload-dev": {

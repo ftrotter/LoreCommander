@@ -4,10 +4,10 @@ namespace App\DURC\Controllers;
 
 use App\person_strategy_tag;
 use Illuminate\Http\Request;
-use ftrotter\DURC\DURC;
-use ftrotter\DURC\DURCController;
+use ftrotter\DURCC\DURC;
+use ftrotter\DURCC\DURCController;
 use Illuminate\Support\Facades\View;
-use ftrotter\DURC\DURCInvalidDataException;
+use ftrotter\DURCC\DURCInvalidDataException;
 
 class person_strategy_tagController extends DURCController
 {
