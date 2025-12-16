@@ -83,4 +83,9 @@ FROM  graph_reports.mayo_clinic_graph
          return(true); //protect the sql by default
    }
 
+
+   public function isCacheEnabled(){
+        return(false);
+   }
+
 }
