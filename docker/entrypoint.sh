@@ -50,6 +50,7 @@ COMPOSER=composer-dev.json composer update --no-interaction --prefer-stable
 # 5. Run the core Laravel setup commands.
 echo "Running initial application setup..."
 php artisan key:generate --force
+php artisan config:clear
 php artisan vendor:publish --provider='ftrotter\DURCC\DURCCServiceProvider' --force
 
 # 6. Run database-dependent commands (these may fail if database isn't configured)

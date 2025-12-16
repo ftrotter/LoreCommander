@@ -1,13 +1,10 @@
--- Grant permissions for ZZermelo cache and config databases
--- These databases are created dynamically by ZZermelo
+-- Grant full privileges to loreuser on all databases
+-- loreuser needs root-level access for ZZermelo and DURCC operations
 
-GRANT ALL PRIVILEGES ON `_zzermelo_cache`.* TO 'loreuser'@'%';
-GRANT ALL PRIVILEGES ON `_zzermelo_config`.* TO 'loreuser'@'%';
-GRANT CREATE ON *.* TO 'loreuser'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'loreuser'@'%' WITH GRANT OPTION;
 
--- Create the lore database and grant permissions
+-- Create the lore database
 CREATE DATABASE IF NOT EXISTS `lore` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-GRANT ALL PRIVILEGES ON `lore`.* TO 'loreuser'@'%';
 
 -- Source the lore database schema
 USE `lore`;
